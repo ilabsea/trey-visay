@@ -1,0 +1,324 @@
+[
+  {
+    "id": 1,
+    "name": "ផ្នែកកសិកម្ម និងធនធានធម្មជាតិ",
+    "parend_id": null,
+    "icon": null,
+    "short_description": "",
+    "long_description": "",
+    "video_link": "",
+    "children": [
+      {
+        "id": null,
+        "name": "វិស្វករកសិកម្ម",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នវិទ្យាសាស្ត្រផ្នែកសត្វ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកបង្វឹកសត្វ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកខួងដី ឬគ្រឺហក្នុងកិច្ចការសំណង់",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "វិស្វករបរិស្ថាន",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកបច្ចេកទេសផ្នែកនេសាទ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកវិទ្យសាស្ត្រផ្នែកម្ហូបអាហារ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកឯកទេសផ្នែកព្រៃឈើ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "ឧទ្យាននុរក្ស (អ្នកការពារឧទ្យាន)",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកឯកទេសថ្នាំសម្លាប់សត្វល្អិត",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "វិស្វករប្រេងកាត",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកឯកទេសផ្នែកគុណភាពដី",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "ពេទ្យសត្វ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកថែរក្សាសួនសត្វ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកថែទាំកសិដ្ឋានចិញ្ចឹមសត្វ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "ផ្នែកស្ថាបត្យកម្ម និងសំណង់",
+    "parend_id": null,
+    "icon": null,
+    "short_description": "",
+    "long_description": "",
+    "video_link": "",
+    "children": [
+      {
+        "id": null,
+        "name": "ស្ថាបត្យករ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកឯកទេសផ្នែករៀបឥដ្ឋសំណង់",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកត្រួតពិនិត្យអគារ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកបញ្ជាគ្រឿងចក្រឈូសឆាយ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកឯកទេសផ្នែកគ្រឿងឈើ (ជាងឈើ)",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកគ្រប់គ្រងការសាងសង់",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកបញ្ជាម៉ាស៊ីនស្ទូច",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកបច្ចេកទេសអគ្គិសនី",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកបច្ចេកទេសម៉ាស៊ីនត្រជាក់",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកដំឡើងបរិក្ខារប្រើប្រាស់ក្នុងផ្ទះ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកឯកទេសផ្នែកលាបថ្នាំ",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកឯកទេសតបណ្តាញទុយោទឹក",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកឯកទេសផ្នែកប្រកដំបូល",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកបច្ចេកទេសវាស់ស្ទង់",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      },
+      {
+        "id": null,
+        "name": "អ្នកបច្ចេកទេសកាត់ និងរៀបថ្ម",
+        "parend_id": null,
+        "icon": null,
+        "short_description": "",
+        "long_description": "",
+        "video_link": "",
+        "children": []
+      }
+    ]
+  }
+]
