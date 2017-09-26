@@ -9,8 +9,12 @@ import {
 } from 'react-native';
 
 import gStyles from '../config/styles'
+import realm from '../schema';
 
 class Login extends Component {
+  componentWillMount() {
+    // alert(realm.objects('User').length);
+  }
   submit() {
     alert('click submit');
   }
