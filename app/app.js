@@ -3,8 +3,18 @@ import { Text, View } from 'react-native';
 
 import Login  from './roots/login';
 import Logout   from './roots/logout';
+import {
+  StackNavigator,
+} from 'react-navigation';
 
-class Root extends Component {
+import ProfileForm from './components/profile_form/profile_form';
+
+// const App = StackNavigator({
+//   Profile: { screen: ProfileForm },
+//   Login: { screen: Login },
+// });
+
+class App extends Component {
 
   renderContent() {
     return (
@@ -33,4 +43,4 @@ class Root extends Component {
   }
 }
 
-export default Root;
+export default App;
