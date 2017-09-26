@@ -31,12 +31,12 @@ User.schema = {
     number_of_sisters: {type: 'int', default: 0},
     number_of_brothers: {type: 'int', default: 0},
     // * family Situation
-    is_divorce: {type: 'boolean', default: false},
-    is_disable: {type: 'boolean', default: false},
-    is_domestic_violence: {type: 'boolean', default: false},
-    is_smoking: {type: 'boolean', default: false},
-    is_alcoholic: {type: 'boolean', default: false},
-    is_drug: {type: 'boolean', default: false},
+    is_divorce: {type: 'bool', default: false},
+    is_disable: {type: 'bool', default: false},
+    is_domestic_violence: {type: 'bool', default: false},
+    is_smoking: {type: 'bool', default: false},
+    is_alcoholic: {type: 'bool', default: false},
+    is_drug: {type: 'bool', default: false},
     house_type: 'string',
     collective_income: 'string'
   }
