@@ -8,43 +8,82 @@ import {
   Button
 } from 'react-native';
 
-import gStyles from '../config/styles'
 import realm from '../schema';
 
+// Source for form
+// https://facebook.github.io/react/docs/forms.html
+
 class Login extends Component {
+  static navigationOptions = {
+    title: 'Trey Visay',
+  };
+
+  constructor(props) {
+    super(props);
+    this.state = { userName: '' };
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   componentWillMount() {
     // alert(realm.objects('User').length);
   }
-  submit() {
-    alert('click submit');
+
+  handleUsernameChange(text) {
+    this.setState({userName: text});
+  }
+
+  handlePasswordChange(text) {
+    this.setState({password: text});
+  }
+
+  handleSubmit(event) {
+    if (!this.state.userName || !this.state.password) {
+      alert('please filling the user name and password');
+      return;
+    }
+
+    if (this.state.userName == 'sokly' && this.state.password == '123456') {
+      this.props.navigation.navigate('ProfileForm');
+    } else {
+      alert('your username and password is invalid');
+    }
   }
 
   render() {
-    return (
-      <View style={gStyles.container}>
-        <Text style={gStyles.titleText}>Trey Visay</Text>
+    const { navigate } = this.props.navigation;
 
+    return (
+      <View style={styles.container}>
         <View style={{marginTop: 16, marginBottom: 16}}>
-          <Text style={gStyles.subTitle}>Sign In</Text>
+          <Text style={styles.subTitle}>Sign In</Text>
           <Text>to continue to Trey Visay</Text>
         </View>
 
-        <Text style={gStyles.inputLabel}>Name</Text>
-        <TextInput style={gStyles.inputText}/>
+        <Text style={styles.inputLabel}>Name</Text>
+        <TextInput
+          style={styles.inputText}
+          onChangeText={this.handleUsernameChange}
+          value={this.state.userName}
+        />
 
-        <Text style={gStyles.inputLabel}>Password</Text>
-        <TextInput style={gStyles.inputText} secureTextEntry={true}/>
+        <Text style={styles.inputLabel}>Password</Text>
+        <TextInput
+          style={styles.inputText} secureTextEntry={true}
+          onChangeText={this.handlePasswordChange}
+        />
 
         <Button
-          style={styles.signIn}
-          onPress={this.submit}
-          title="Next"
+          style={styles.createAccount}
+          onPress={this.handleSubmit}
+          title="Submit"
           accessibilityLabel="Next to continue login"
         />
 
         <Button
           style={styles.createAccount}
-          onPress={this.submit}
+          onPress={() => navigate('Register')}
           title="Create New Trey Visay Account"
           accessibilityLabel="Next to continue login"
         />
@@ -61,6 +100,26 @@ const styles = StyleSheet.create({
   createAccount: {
     alignSelf: 'flex-end',
     backgroundColor: 'transparent'
+  },
+  container: {
+    padding: 24,
+    flex: 1,
+    flexDirection: 'column'
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold'
+  },
+  subTitle: {
+    fontSize: 16
+  },
+  inputText: {
+    height: 40,
+    paddingLeft: 5,
+    paddingRight: 5
+  },
+  inputLabel: {
+
   }
 })
 

@@ -4,19 +4,54 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
-import App from './app/app';
+// import React, { Component } from 'react';
+// import { AppRegistry } from 'react-native';
+// import { Text, View } from 'react-native';
+// // import App from './app/app';
+// import { StackNavigator } from 'react-navigation';
 
-export default class TreyVisay extends Component {
-  render() {
-    return (
-      <App></App>
-    );
-  }
-}
+// export default class TreyVisay extends Component {
+//   static navigationOptions = {
+//     title: 'Welcome',
+//   };
+
+//   render() {
+//     return (
+//       <App></App>
+//     );
+//   }
+// }
+
+// Sources:
+// https://reactnavigation.org/docs/intro/headers
+
+import React from 'react';
+import {
+  AppRegistry,
+  Text,
+  View,
+  Button
+} from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import Login  from './app/roots/login';
+import Register  from './app/roots/register';
+import Home  from './app/screens/home';
+import ProfileForm  from './app/screens/profile_form';
+
+export default  TreyVisay = StackNavigator({
+  Login: { screen: Login },
+  Home: { screen: Home },
+  ProfileForm: { screen: ProfileForm },
+  Register: { screen: Register },
+});
 
 AppRegistry.registerComponent('TreyVisay', () => TreyVisay);
+
+
+
+
+
+
 
 
 // import React, { Component } from 'react';
