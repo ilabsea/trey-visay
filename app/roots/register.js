@@ -8,6 +8,8 @@ import {
   Button
 } from 'react-native';
 
+import realm from '../schema';
+
 class Register extends Component {
   static navigationOptions = {
     title: 'បង្កើតគណនី Trey Visay',
@@ -23,10 +25,33 @@ class Register extends Component {
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.buildData = this.buildData.bind(this);
+  }
+
+  componentWillMount() {
+    alert(realm.objects('User').length);
   }
 
   handleSubmit() {
-    alert('handleSubmit');
+    try {
+      realm.write(() => {
+        realm.create('User', this.buildData());
+        this.props.navigation.navigate('ProfileForm');
+
+      });
+    } catch (e) {
+      console.log("Error on creation");
+      alert('Fail to create user!');
+    }
+  }
+
+  buildData() {
+    return {
+      id: 1,
+      fullName: this.state.fullName,
+      userName: this.state.userName,
+      password: this.state.password
+    };
   }
 
   render() {
@@ -37,7 +62,7 @@ class Register extends Component {
             <Text style={styles.inputLabel}>Full name</Text>
             <TextInput
               style={styles.inputText}
-              onChangeText={(text) => this.setState({fullName: text})}
+              onChangeText={(text) => this.setState({fullName: text, userName: text.split(' ').join('_')})}
               value={this.state.fullName}
             />
 
@@ -62,7 +87,7 @@ class Register extends Component {
             <Text style={styles.inputLabel}>User name</Text>
             <TextInput
               style={styles.inputText}
-              value={this.state.fullName.split(' ').join('_')}
+              value={this.state.userName}
               editable={false}
             />
           </View>

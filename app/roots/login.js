@@ -44,11 +44,18 @@ class Login extends Component {
       return;
     }
 
-    if (this.state.userName == 'sokly' && this.state.password == '123456') {
+    let users = realm.objects('User').filtered('userName="' + this.state.userName + '" AND password="' + this.state.password + '"');
+    if (!!users.length) {
       this.props.navigation.navigate('ProfileForm');
     } else {
       alert('your username and password is invalid');
     }
+
+    // if (this.state.userName == 'sokly' && this.state.password == '123456') {
+    //   this.props.navigation.navigate('ProfileForm');
+    // } else {
+    //   alert('your username and password is invalid');
+    // }
   }
 
   render() {
