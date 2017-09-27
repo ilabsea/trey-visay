@@ -39,10 +39,10 @@ import Home  from './app/screens/home';
 import ProfileForm  from './app/screens/profile_form';
 
 export default  TreyVisay = StackNavigator({
+  Register: { screen: Register },
   Login: { screen: Login },
   Home: { screen: Home },
   ProfileForm: { screen: ProfileForm },
-  Register: { screen: Register },
 });
 
 AppRegistry.registerComponent('TreyVisay', () => TreyVisay);

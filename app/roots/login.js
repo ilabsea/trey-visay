@@ -70,7 +70,8 @@ class Login extends Component {
 
         <Text style={styles.inputLabel}>Password</Text>
         <TextInput
-          style={styles.inputText} secureTextEntry={true}
+          style={styles.inputText}
+          secureTextEntry={true}
           onChangeText={this.handlePasswordChange}
         />
 
