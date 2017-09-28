@@ -6,11 +6,15 @@ import {
   TextInput,
   StyleSheet,
   Button,
-  Picker
+  Picker,
+  Switch
 } from 'react-native';
 
 import realm from '../schema';
 import NumberInput from '../components/number_input';
+import RadioGroup from '../components/radio_group';
+import RadioGroupContainer from '../components/radio_group_container';
+import InputTextContainer from '../components/input_text_container';
 
 class ProfileForm extends React.Component {
   static navigationOptions = {
@@ -40,7 +44,7 @@ class ProfileForm extends React.Component {
       numberOfSisters: '',
       numberOfBrothers: '',
       // * family Situation
-      isDivorce: '',
+      isDivorce: 0,
       isDisable: '',
       isDomesticViolence: '',
       isSmoking: '',
@@ -55,30 +59,25 @@ class ProfileForm extends React.Component {
   }
 
   handleSubmit() {
-
   }
 
   buildData() {
-
   }
 
   render() {
     return (
       <View style={styles.container}>
         <ScrollView style={styles.scrollContainer}>
+          {/*personal_information----------------------------*/}
           <Text style={styles.subTitle}>Personal information</Text>
 
           <View style={styles.row}>
             <View style={styles.leftColumn}>
 
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Full name</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({fullName: text, userName: text.split(' ').join('_')})}
-                  value={this.state.fullName}
-                />
-              </View>
+              <InputTextContainer
+                onChangeText={((text) => this.setState({fullName: text, userName: text.split(' ').join('_')})).bind(this)}
+                label='fullName'
+              ></InputTextContainer>
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Gender</Text>
@@ -96,47 +95,31 @@ class ProfileForm extends React.Component {
                 <Text style={styles.inputLabel}>Date of birth</Text>
               </View>
 
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Phone number</Text>
-                <TextInput
-                  style={styles.inputText}
-                  keyboardType='numeric'
-                  onChangeText={(text) => this.setState({phoneNumber: text})}
-                  value={this.state.phoneNumber}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Nationality</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({nationality: text})}
-                  value={this.state.nationality}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>School name</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({schoolName: text})}
-                  value={this.state.schoolName}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Grade</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({grade: text})}
-                  value={this.state.grade}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Address</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({address: text})}
-                  value={this.state.address}
-                />
-              </View>
+              <InputTextContainer
+                onChangeText={((text) => this.setState({phoneNumber: text})).bind(this)}
+                label='phoneNumber'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({Nationality: text})).bind(this)}
+                label='Nationality'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({schoolName: text})).bind(this)}
+                label='schoolName'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({grade: text})).bind(this)}
+                label='grade'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({address: text})).bind(this)}
+                label='address'
+              ></InputTextContainer>
+
             </View>
 
             <View style={styles.rightColumn}>
@@ -151,102 +134,118 @@ class ProfileForm extends React.Component {
             </View>
           </View>
 
+          {/*family_information----------------------------*/}
+
           <Text style={styles.subTitle}>Family information</Text>
 
           <View style={styles.row}>
             <View style={styles.leftColumn}>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Father name</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({fatherName: text})}
-                  value={this.state.fatherName}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Father occupation</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({fatherOccupation: text})}
-                  value={this.state.fatherOccupation}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Mother name</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({motherName: text})}
-                  value={this.state.motherName}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Mother occupation</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({motherOccupation: text})}
-                  value={this.state.motherOccupation}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Guidance</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({guidance: text})}
-                  value={this.state.guidance}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Parent Contact Number</Text>
-                <TextInput
-                  style={styles.inputText}
-                  keyboardType='numeric'
-                  onChangeText={(text) => this.setState({parentContactNumber: text})}
-                  value={this.state.parentContactNumber}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Number of family member</Text>
-                <TextInput
-                  style={styles.inputText}
-                  keyboardType='numeric'
-                  onChangeText={(text) => this.setState({numberOfFamilyMember: text})}
-                  value={this.state.numberOfFamilyMember}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Number of sisters</Text>
-                <TextInput
-                  style={styles.inputText}
-                  keyboardType='numeric'
-                  onChangeText={(text) => this.setState({numberOfSisters: text})}
-                  value={this.state.numberOfSisters}
-                />
-              </View>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Number of brothers</Text>
-                <TextInput
-                  style={styles.inputText}
-                  keyboardType='numeric'
-                  onChangeText={(text) => this.setState({numberOfBrothers: text})}
-                  value={this.state.numberOfBrothers}
-                />
-              </View>
+              <InputTextContainer
+                onChangeText={((text) => this.setState({fatherName: text})).bind(this)}
+                label='fatherName'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({fatherOccupation: text})).bind(this)}
+                label='fatherOccupation'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({motherName: text})).bind(this)}
+                label='motherName'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({motherOccupation: text})).bind(this)}
+                label='motherOccupation'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({guidance: text})).bind(this)}
+                label='guidance'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({parentContactNumber: text})).bind(this)}
+                label='parentContactNumber'
+                keyboardType='numeric'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({numberOfFamilyMember: text})).bind(this)}
+                label='numberOfFamilyMember'
+                keyboardType='numeric'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({numberOfSisters: text})).bind(this)}
+                label='numberOfSisters'
+                keyboardType='numeric'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({numberOfBrothers: text})).bind(this)}
+                label='numberOfBrothers'
+                keyboardType='numeric'
+              ></InputTextContainer>
             </View>
             <View style={styles.rightColumn}>
             </View>
           </View>
 
+          {/*family_situaion----------------------------*/}
+
           <Text style={styles.subTitle}>Family Situation</Text>
+
           <View style={styles.row}>
             <View style={styles.leftColumn}>
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>isDivorce</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({isDivorce: text})}
-                  value={this.state.isDivorce}
-                />
-              </View>
+
+              <RadioGroupContainer
+                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                onPress={((text) => this.setState({isDivorce: text})).bind(this)}
+                value={this.state.isDivorce}
+              ></RadioGroupContainer>
+
+              <RadioGroupContainer
+                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                onPress={((text) => this.setState({isDisable: text})).bind(this)}
+                value={this.state.isDisable}
+              ></RadioGroupContainer>
+
+              <RadioGroupContainer
+                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                onPress={((text) => this.setState({isDomesticViolence: text})).bind(this)}
+                value={this.state.isDomesticViolence}
+              ></RadioGroupContainer>
+
+              <RadioGroupContainer
+                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                onPress={((text) => this.setState({isSmoking: text})).bind(this)}
+                value={this.state.isSmoking}
+              ></RadioGroupContainer>
+
+              <RadioGroupContainer
+                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                onPress={((text) => this.setState({isAlcoholic: text})).bind(this)}
+                value={this.state.isAlcoholic}
+              ></RadioGroupContainer>
+
+              <RadioGroupContainer
+                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                onPress={((text) => this.setState({isDrug: text})).bind(this)}
+                value={this.state.isDrug}
+              ></RadioGroupContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({houseType: text})).bind(this)}
+                label='houseType'
+              ></InputTextContainer>
+
+              <InputTextContainer
+                onChangeText={((text) => this.setState({collectiveIncome: text})).bind(this)}
+                label='collectiveIncome'
+              ></InputTextContainer>
+
             </View>
             <View style={styles.rightColumn}>
             </View>
@@ -261,7 +260,6 @@ class ProfileForm extends React.Component {
             accessibilityLabel="Create Account"
           />
         </View>
-
       </View>
     )
   }
@@ -309,8 +307,7 @@ const styles = StyleSheet.create({
     padding: 2,
     marginTop: 18,
     marginBottom: 18
-  }
+  },
 })
-
 
 export default ProfileForm;
