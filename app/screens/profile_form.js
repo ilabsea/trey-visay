@@ -9,7 +9,7 @@ import {
   Picker,
   Switch
 } from 'react-native';
-import DatePicker from 'react-native-datepicker'
+import DatePicker from 'react-native-datepicker';
 
 import realm from '../schema';
 import RadioGroupContainer from '../components/radio_group_container';
@@ -23,6 +23,7 @@ class ProfileForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      uuid: '123',
       fullName: 'Sokly Heng',
       userName: 'sokly_heng',
       sex: '',
@@ -335,10 +336,6 @@ const styles = StyleSheet.create({
   },
   leftColumn: {
     flex: 2
-  },
-  rightColumn: {
-    flex: 1,
-    paddingLeft: 20
   },
   submitWrapper: {
     marginTop: 30,

@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import realm from '../schema';
+import uuidv4 from '../utils/uuidv4';
 
 class Register extends Component {
   static navigationOptions = {
@@ -29,7 +30,7 @@ class Register extends Component {
   }
 
   componentWillMount() {
-    alert(realm.objects('User').length);
+    alert(JSON.stringify(realm.objects('User')));
   }
 
   handleSubmit() {
@@ -47,7 +48,7 @@ class Register extends Component {
 
   buildData() {
     return {
-      id: 1,
+      uuid: uuidv4(),
       fullName: this.state.fullName,
       userName: this.state.userName,
       password: this.state.password
