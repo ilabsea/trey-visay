@@ -11,8 +11,6 @@ import {
 } from 'react-native';
 
 import realm from '../schema';
-import NumberInput from '../components/number_input';
-import RadioGroup from '../components/radio_group';
 import RadioGroupContainer from '../components/radio_group_container';
 import InputTextContainer from '../components/input_text_container';
 
@@ -24,8 +22,8 @@ class ProfileForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      fullName: '',
-      userName: '',
+      fullName: 'Sokly Heng',
+      userName: 'sokly_heng',
       sex: '',
       dateOfBirth: '',
       phoneNumber: '',
@@ -45,11 +43,11 @@ class ProfileForm extends React.Component {
       numberOfBrothers: '',
       // * family Situation
       isDivorce: 0,
-      isDisable: '',
-      isDomesticViolence: '',
-      isSmoking: '',
-      isAlcoholic: '',
-      isDrug: '',
+      isDisable: 0,
+      isDomesticViolence: 0,
+      isSmoking: 0,
+      isAlcoholic: 0,
+      isDrug: 0,
       houseType: '',
       collectiveIncome: ''
     }
@@ -77,6 +75,7 @@ class ProfileForm extends React.Component {
               <InputTextContainer
                 onChangeText={((text) => this.setState({fullName: text, userName: text.split(' ').join('_')})).bind(this)}
                 label='fullName'
+                value={this.state.fullName}
               ></InputTextContainer>
 
               <View style={styles.inputContainer}>
@@ -98,26 +97,31 @@ class ProfileForm extends React.Component {
               <InputTextContainer
                 onChangeText={((text) => this.setState({phoneNumber: text})).bind(this)}
                 label='phoneNumber'
+                value={this.state.phoneNumber}
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({Nationality: text})).bind(this)}
                 label='Nationality'
+                value={this.state.Nationality}
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({schoolName: text})).bind(this)}
                 label='schoolName'
+                value={this.state.schoolName}
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({grade: text})).bind(this)}
                 label='grade'
+                value={this.state.grade}
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({address: text})).bind(this)}
                 label='address'
+                value={this.state.address}
               ></InputTextContainer>
 
             </View>
@@ -143,49 +147,58 @@ class ProfileForm extends React.Component {
               <InputTextContainer
                 onChangeText={((text) => this.setState({fatherName: text})).bind(this)}
                 label='fatherName'
+                value={this.state.fatherName}
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({fatherOccupation: text})).bind(this)}
                 label='fatherOccupation'
+                value={this.state.fatherOccupation}
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({motherName: text})).bind(this)}
                 label='motherName'
+                value={this.state.motherName}
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({motherOccupation: text})).bind(this)}
                 label='motherOccupation'
+                value={this.state.motherOccupation}
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({guidance: text})).bind(this)}
                 label='guidance'
+                value={this.state.guidance}
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({parentContactNumber: text})).bind(this)}
                 label='parentContactNumber'
+                value={this.state.parentContactNumber}
                 keyboardType='numeric'
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({numberOfFamilyMember: text})).bind(this)}
                 label='numberOfFamilyMember'
+                value={this.state.numberOfFamilyMember}
                 keyboardType='numeric'
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({numberOfSisters: text})).bind(this)}
                 label='numberOfSisters'
+                value={this.state.numberOfSisters}
                 keyboardType='numeric'
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({numberOfBrothers: text})).bind(this)}
                 label='numberOfBrothers'
+                value={this.state.numberOfBrothers}
                 keyboardType='numeric'
               ></InputTextContainer>
             </View>
@@ -239,11 +252,13 @@ class ProfileForm extends React.Component {
               <InputTextContainer
                 onChangeText={((text) => this.setState({houseType: text})).bind(this)}
                 label='houseType'
+                value={this.state.houseType}
               ></InputTextContainer>
 
               <InputTextContainer
                 onChangeText={((text) => this.setState({collectiveIncome: text})).bind(this)}
                 label='collectiveIncome'
+                value={this.state.collectiveIncome}
               ></InputTextContainer>
 
             </View>

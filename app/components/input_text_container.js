@@ -19,6 +19,7 @@ class InputTextContainer extends Component {
           style={ styles.inputText }
           onChangeText={ this.props.onChangeText }
           keyboardType={ this.props.keyboardType || 'default'}
+          value={ this.props.value }
         />
       </View>
     );
