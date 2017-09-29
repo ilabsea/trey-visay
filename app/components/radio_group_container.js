@@ -15,7 +15,7 @@ class RadioGroupContainer extends Component {
   render() {
     return (
       <View style={styles.inputContainer}>
-        <Text style={styles.radioTitle}>isDrug</Text>
+        <Text style={styles.radioTitle}>{this.props.label}</Text>
         <RadioGroup
           options={this.props.options}
           onPress={(this.props.onPress).bind(this)}
