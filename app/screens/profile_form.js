@@ -25,6 +25,7 @@ class ProfileForm extends React.Component {
     this.state = {
       uuid: '123',
       fullName: 'Sokly Heng',
+      password: '1234',
       userName: 'sokly_heng',
       sex: '',
       dateOfBirth: '',
@@ -44,14 +45,14 @@ class ProfileForm extends React.Component {
       numberOfSisters: '',
       numberOfBrothers: '',
       // * family Situation
-      isDivorce: 0,
-      isDisable: 0,
-      isDomesticViolence: 0,
-      isSmoking: 0,
-      isAlcoholic: 0,
-      isDrug: 0,
-      houseType: '',
-      collectiveIncome: ''
+      isDivorce: false,
+      isDisable: false,
+      isDomesticViolence: false,
+      isSmoking: false,
+      isAlcoholic: false,
+      isDrug: false,
+      houseType: 'wooden_house',
+      collectiveIncome: '0-250_000'
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -59,9 +60,22 @@ class ProfileForm extends React.Component {
   }
 
   handleSubmit() {
+    try {
+      realm.write(() => {
+        realm.create('User', this.buildData(), true);
+        alert(JSON.stringify(realm.objects('User')[realm.objects('User').length - 1]));
+      });
+    } catch (e) {
+      alert(e);
+    }
   }
 
   buildData() {
+    let data = Object.assign({}, this.state);
+    data.numberOfFamilyMember = parseInt(this.state.numberOfFamilyMember);
+    data.numberOfBrothers = parseInt(this.state.numberOfBrothers);
+    data.numberOfSisters = parseInt(this.state.numberOfSisters);
+    return data;
   }
 
   render() {
@@ -235,42 +249,42 @@ class ProfileForm extends React.Component {
             <View style={styles.leftColumn}>
 
               <RadioGroupContainer
-                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
                 onPress={((text) => this.setState({isDivorce: text})).bind(this)}
                 value={this.state.isDivorce}
                 label='isDivorce'
               ></RadioGroupContainer>
 
               <RadioGroupContainer
-                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
                 onPress={((text) => this.setState({isDisable: text})).bind(this)}
                 value={this.state.isDisable}
                 label='isDisable'
               ></RadioGroupContainer>
 
               <RadioGroupContainer
-                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
                 onPress={((text) => this.setState({isDomesticViolence: text})).bind(this)}
                 value={this.state.isDomesticViolence}
                 label='isDomesticViolence'
               ></RadioGroupContainer>
 
               <RadioGroupContainer
-                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
                 onPress={((text) => this.setState({isSmoking: text})).bind(this)}
                 value={this.state.isSmoking}
                 label='isSmoking'
               ></RadioGroupContainer>
 
               <RadioGroupContainer
-                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
                 onPress={((text) => this.setState({isAlcoholic: text})).bind(this)}
                 value={this.state.isAlcoholic}
                 label='isAlcoholic'
               ></RadioGroupContainer>
 
               <RadioGroupContainer
-                options={[{ label: 'No', value: 0 }, { label: 'Yes', value: 1 }]}
+                options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
                 onPress={((text) => this.setState({isDrug: text})).bind(this)}
                 value={this.state.isDrug}
                 label='isDrug'
