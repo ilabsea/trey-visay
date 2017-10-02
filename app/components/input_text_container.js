@@ -30,7 +30,8 @@ const styles = StyleSheet.create({
   inputContainer: {
     padding: 2,
     marginTop: 18,
-    marginBottom: 18
+    marginBottom: 18,
+    maxWidth: 500
   },
   inputText: {
     height: 40,

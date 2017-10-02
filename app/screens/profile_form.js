@@ -73,8 +73,8 @@ class ProfileForm extends React.Component {
   buildData() {
     let data = Object.assign({}, this.state);
     data.numberOfFamilyMember = parseInt(this.state.numberOfFamilyMember);
-    data.numberOfBrothers = parseInt(this.state.numberOfBrothers);
-    data.numberOfSisters = parseInt(this.state.numberOfSisters);
+    data.numberOfBrothers     = parseInt(this.state.numberOfBrothers);
+    data.numberOfSisters      = parseInt(this.state.numberOfSisters);
     return data;
   }
 
@@ -359,7 +359,8 @@ const styles = StyleSheet.create({
   inputText: {
     height: 40,
     paddingLeft: 5,
-    paddingRight: 5
+    paddingRight: 5,
+    maxWidth: 500
   },
   subTitle: {
     fontSize: 20,
@@ -369,7 +370,8 @@ const styles = StyleSheet.create({
   inputContainer: {
     padding: 2,
     marginTop: 18,
-    marginBottom: 18
+    marginBottom: 18,
+    maxWidth: 500
   },
 })
 
