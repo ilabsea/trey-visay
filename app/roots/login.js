@@ -68,12 +68,11 @@ class Login extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const isEnabled = this.state.username.length > 0 && this.state.password.length > 0;
+    const isEnabled = this.state.username.length && this.state.password.length;
 
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        <View
-          style={{flexGrow: 1}}>
+        <View style={{flexGrow: 1}}>
           <View style={{marginTop: 16, marginBottom: 16}}>
             <Text style={styles.subTitle}>Sign In</Text>
             <Text style={{color: '#fff'}}>to continue to Trey Visay</Text>
@@ -86,7 +85,6 @@ class Login extends Component {
             placeholder='Username'
             placeholderTextColor='rgba(255,255,255,0.7)'
             autoCorrect={false}
-            value={this.state.username}
             underlineColorAndroid='rgba(0,0,0,0)'
             onSubmitEditing={() => this.passwordInput.focus()}
           />
@@ -98,7 +96,6 @@ class Login extends Component {
             placeholder='Password'
             placeholderTextColor='rgba(255,255,255,0.7)'
             onChangeText={this.handlePasswordChange}
-            value={this.state.password}
             ref={(input) => this.passwordInput = input}
           />
 
@@ -110,9 +107,9 @@ class Login extends Component {
           />
         </View>
 
-        <View style={styles.createAccountContainer}>
+        <View>
           <TouchableOpacity
-            style={styles.createAccount}
+            style={styles.btnRegister}
             onPress={() => navigate('Register')}>
             <Text style={{fontSize: 16, color: '#fff'}}>Create New Trey Visay Account</Text>
           </TouchableOpacity>
@@ -124,28 +121,10 @@ class Login extends Component {
 }
 
 const styles = StyleSheet.create({
-  signIn: {
-    marginTop: 40,
-    color: '#fff',
-  },
-  createAccountContainer: {
-    padding: 24
-  },
-  createAccount: {
-    alignSelf: 'center',
-    borderWidth: 0.5,
-    borderColor: '#fff',
-    paddingHorizontal: 15,
-    paddingVertical: 5
-  },
   container: {
     padding: 24,
     flex: 1,
     backgroundColor: '#1abc9c',
-  },
-  titleText: {
-    fontSize: 20,
-    fontWeight: 'bold'
   },
   subTitle: {
     fontSize: 16,
@@ -158,7 +137,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     color: '#fff',
   },
-  inputLabel: {
+  btnRegister: {
+    alignSelf: 'center',
+    borderWidth: 0.5,
+    borderColor: '#fff',
+    paddingHorizontal: 15,
+    paddingVertical: 5,
+    marginBottom: 24
   }
 })
 

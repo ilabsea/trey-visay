@@ -5,7 +5,8 @@ import {
   ScrollView,
   TextInput,
   StyleSheet,
-  Button
+  Button,
+  Alert,
 } from 'react-native';
 
 import realm from '../schema';
@@ -20,9 +21,9 @@ class Register extends Component {
     super(props)
     this.state = {
       fullName: '',
-      userName: '',
+      username: '',
       password: '',
-      confirmPassword: '',
+      passwordConfirmation: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,10 +31,17 @@ class Register extends Component {
   }
 
   componentWillMount() {
-    alert(JSON.stringify(realm.objects('User')));
+    // alert(JSON.stringify(realm.objects('User')));
   }
 
   handleSubmit() {
+    if (this.state.password !== this.state.passwordConfirmation) {
+      Alert.alert(
+        'Incorrect password',
+        "Password confirm doesn't match password.")
+      return;
+    }
+
     try {
       realm.write(() => {
         realm.create('User', this.buildData());
@@ -50,12 +58,15 @@ class Register extends Component {
     return {
       uuid: uuidv4(),
       fullName: this.state.fullName,
-      userName: this.state.userName,
+      username: this.state.username,
       password: this.state.password
     };
   }
 
   render() {
+    const isEnabled = this.state.fullName.length &&
+                      this.state.password.length &&
+                      this.state.passwordConfirmation.length;
     return (
       <View style={styles.container}>
         <View style={styles.row}>
@@ -63,8 +74,11 @@ class Register extends Component {
             <Text style={styles.inputLabel}>Full name</Text>
             <TextInput
               style={styles.inputText}
-              onChangeText={(text) => this.setState({fullName: text, userName: text.split(' ').join('_')})}
+              onChangeText={(text) => this.setState({fullName: text, username: text.split(' ').join('_')})}
               value={this.state.fullName}
+              underlineColorAndroid='rgba(0,0,0,0)'
+              onSubmitEditing={() => this.passwordInput.focus()}
+              returnKeyType='next'
             />
 
             <Text style={styles.inputLabel}>Password</Text>
@@ -73,23 +87,28 @@ class Register extends Component {
               secureTextEntry={true}
               onChangeText={(text) => this.setState({password: text})}
               value={this.state.password}
+              ref={(input) => this.passwordInput = input}
+              onSubmitEditing={() => this.passwordConfirmationInput.focus()}
+              returnKeyType='next'
             />
 
             <Text style={styles.inputLabel}>Confirm password</Text>
             <TextInput
               style={styles.inputText}
               secureTextEntry={true}
-              onChangeText={(text) => this.setState({confirmPassword: text})}
-              value={this.state.confirmPassword}
+              onChangeText={(text) => this.setState({passwordConfirmation: text})}
+              value={this.state.passwordConfirmation}
+              ref={(input) => this.passwordConfirmationInput = input}
+              returnKeyType='done'
             />
           </View>
 
           <View style={styles.rightColumn}>
             <Text style={styles.inputLabel}>User name</Text>
             <TextInput
-              style={styles.inputText}
-              value={this.state.userName}
+              value={this.state.username}
               editable={false}
+              underlineColorAndroid='rgba(0,0,0,0.7)'
             />
           </View>
         </View>
@@ -98,8 +117,9 @@ class Register extends Component {
           <Button
             style={styles.submit}
             onPress={this.handleSubmit}
-            title="Submit"
+            title="Register"
             accessibilityLabel="Create Account"
+            disabled={!isEnabled}
           />
         </View>
 
@@ -112,7 +132,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 24,
     flex: 1,
-    flexDirection: 'column'
+    backgroundColor: '#1abc9c',
   },
   row: {
     flexDirection: 'row'
@@ -129,9 +149,16 @@ const styles = StyleSheet.create({
   },
   inputText: {
     height: 40,
-    paddingLeft: 5,
-    paddingRight: 5
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    paddingHorizontal: 10,
+    marginBottom: 20,
+    marginTop: 10,
+    color: '#fff',
   },
+  inputLabel: {
+    color: '#fff',
+    fontWeight: 'bold'
+  }
 })
 
 export default Register;
