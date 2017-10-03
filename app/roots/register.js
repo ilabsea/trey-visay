@@ -76,7 +76,7 @@ class Register extends Component {
               style={styles.inputText}
               onChangeText={(text) => this.setState({fullName: text, username: text.split(' ').join('_')})}
               value={this.state.fullName}
-              underlineColorAndroid='rgba(0,0,0,0)'
+              underlineColorAndroid='transparent'
               onSubmitEditing={() => this.passwordInput.focus()}
               returnKeyType='next'
             />

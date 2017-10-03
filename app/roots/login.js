@@ -85,7 +85,7 @@ class Login extends Component {
             placeholder='Username'
             placeholderTextColor='rgba(255,255,255,0.7)'
             autoCorrect={false}
-            underlineColorAndroid='rgba(0,0,0,0)'
+            underlineColorAndroid='transparent'
             onSubmitEditing={() => this.passwordInput.focus()}
           />
 
