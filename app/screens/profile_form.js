@@ -26,7 +26,7 @@ class ProfileForm extends React.Component {
       uuid: '123',
       fullName: 'Sokly Heng',
       password: '1234',
-      userName: 'sokly_heng',
+      username: 'sokly_heng',
       sex: '',
       dateOfBirth: '',
       phoneNumber: '',
@@ -89,7 +89,7 @@ class ProfileForm extends React.Component {
             <View style={styles.leftColumn}>
 
               <InputTextContainer
-                onChangeText={((text) => this.setState({fullName: text, userName: text.split(' ').join('_')})).bind(this)}
+                onChangeText={((text) => this.setState({fullName: text, username: text.split(' ').join('_')})).bind(this)}
                 label='fullName'
                 value={this.state.fullName}
               ></InputTextContainer>
@@ -98,7 +98,7 @@ class ProfileForm extends React.Component {
                 <Text style={styles.inputLabel}>User name</Text>
                 <TextInput
                   style={styles.inputText}
-                  value={this.state.userName}
+                  value={this.state.username}
                   editable={false}
                 />
               </View>

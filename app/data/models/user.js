@@ -11,7 +11,7 @@ User.schema = {
     uuid: 'string',
     fullName: 'string',
     password: 'string',
-    userName: { type: 'string', indexed: true },
+    username: { type: 'string', indexed: true },
     sex: { type: 'string', optional: true },
     dateOfBirth: { type: 'string', optional: true },
     phoneNumber: { type: 'string', optional: true },

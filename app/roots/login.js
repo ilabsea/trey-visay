@@ -23,7 +23,7 @@ class Login extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { userName: '', password: '' };
+    this.state = { username: '', password: '' };
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -34,7 +34,7 @@ class Login extends Component {
   }
 
   handleUsernameChange(text) {
-    this.setState({userName: text});
+    this.setState({username: text});
   }
 
   handlePasswordChange(text) {
@@ -42,13 +42,13 @@ class Login extends Component {
   }
 
   handleSubmit(event) {
-    let users = realm.objects('User').filtered('userName="' + this.state.userName + '" AND password="' + this.state.password + '"');
+    let users = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"');
     if (!!users.length) {
       this.props.navigation.navigate('ProfileForm');
       return;
     }
 
-    let usernames = realm.objects('User').filtered('userName="' + this.state.userName + '"');
+    let usernames = realm.objects('User').filtered('username="' + this.state.username + '"');
     if (!!usernames.length) {
       Alert.alert(
         'Incorrect password',
@@ -59,7 +59,7 @@ class Login extends Component {
         "The username you entered doesn't appear to belong to an account. Please check your username and try again.")
     }
 
-    // if (this.state.userName == 'sokly' && this.state.password == '123456') {
+    // if (this.state.username == 'sokly' && this.state.password == '123456') {
     //   this.props.navigation.navigate('ProfileForm');
     // } else {
     //   alert('your username and password is invalid');
@@ -68,7 +68,7 @@ class Login extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const isEnabled = this.state.userName.length > 0 && this.state.password.length > 0;
+    const isEnabled = this.state.username.length > 0 && this.state.password.length > 0;
 
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
