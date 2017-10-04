@@ -27,7 +27,7 @@ class ProfileForm extends React.Component {
       fullName: 'Sokly Heng',
       password: '1234',
       username: 'sokly_heng',
-      sex: '',
+      sex: 'female',
       dateOfBirth: '',
       phoneNumber: '',
       nationality: 'ខ្មែរ',
@@ -103,17 +103,12 @@ class ProfileForm extends React.Component {
                 />
               </View>
 
-              <View style={styles.inputContainer}>
-                <Text style={styles.inputLabel}>Gender</Text>
-                <Picker
-                  selectedValue={this.state.sex}
-                  onValueChange={(itemValue, itemIndex) => this.setState({sex: itemValue})}>
-                  <Picker.Item label="Female" value="female" />
-                  <Picker.Item label="Male" value="male" />
-                  <Picker.Item label="Other" value="other" />
-                  <Picker.Item label="Rather not say" value="rather_not_say" />
-                </Picker>
-              </View>
+              <RadioGroupContainer
+                options={[{ label: 'Female', value: 'female' }, { label: 'Male', value: 'male' }, { label: 'Other', value: 'other' }]}
+                onPress={((text) => this.setState({sex: text})).bind(this)}
+                value={this.state.sex}
+                label='Gender'
+              ></RadioGroupContainer>
 
               <View style={styles.inputContainer}>
                 <Text style={styles.inputLabel}>Date of birth</Text>
@@ -132,7 +127,7 @@ class ProfileForm extends React.Component {
                 onChangeText={((text) => this.setState({phoneNumber: text})).bind(this)}
                 label='phoneNumber'
                 value={this.state.phoneNumber}
-                keyboardType='numeric'
+                keyboardType='phone-pad'
               ></InputTextContainer>
 
               <InputTextContainer
@@ -214,7 +209,7 @@ class ProfileForm extends React.Component {
                 onChangeText={((text) => this.setState({parentContactNumber: text})).bind(this)}
                 label='parentContactNumber'
                 value={this.state.parentContactNumber}
-                keyboardType='numeric'
+                keyboardType='phone-pad'
               ></InputTextContainer>
 
               <InputTextContainer

@@ -96,6 +96,7 @@ class Login extends Component {
             placeholder='Password'
             placeholderTextColor='rgba(255,255,255,0.7)'
             onChangeText={this.handlePasswordChange}
+            underlineColorAndroid='transparent'
             ref={(input) => this.passwordInput = input}
           />
 

@@ -11,21 +11,22 @@ class RadioGroup extends Component {
     return (
       <RadioForm formHorizontal={true} animation={true}>
         { this.props.options.map((obj, i) => {
-          return( <RadioButton labelHorizontal={true} key={i} >
-            <RadioButtonInput
-              obj={obj}
-              index={i}
-              isSelected={this.props.value == i}
-              onPress={this.props.onPress}
-            />
-            <RadioButtonLabel
-              obj={obj}
-              index={i}
-              labelHorizontal={true}
-              onPress={this.props.onPress}
-              labelStyle={{fontSize: 20}}
-              labelWrapStyle={{marginRight: 20}}
-            />
+          return(
+            <RadioButton labelHorizontal={true} key={i}>
+              <RadioButtonInput
+                obj={obj}
+                index={i}
+                isSelected={this.props.value == obj.value}
+                onPress={this.props.onPress}
+              />
+              <RadioButtonLabel
+                obj={obj}
+                index={i}
+                labelHorizontal={true}
+                onPress={this.props.onPress}
+                labelStyle={{fontSize: 20}}
+                labelWrapStyle={{marginRight: 20}}
+              />
             </RadioButton>)
         })}
       </RadioForm>
