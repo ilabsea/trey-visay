@@ -48,22 +48,9 @@ class Login extends Component {
       return;
     }
 
-    let usernames = realm.objects('User').filtered('username="' + this.state.username + '"');
-    if (!!usernames.length) {
-      Alert.alert(
-        'Incorrect password',
-        'The passwrod you entered is incorrect. Please try atain.')
-    } else {
-      Alert.alert(
-        'Incorrect username',
-        "The username you entered doesn't appear to belong to an account. Please check your username and try again.")
-    }
-
-    // if (this.state.username == 'sokly' && this.state.password == '123456') {
-    //   this.props.navigation.navigate('ProfileForm');
-    // } else {
-    //   alert('your username and password is invalid');
-    // }
+    Alert.alert(
+      'Incorrect username or password',
+      'The username or passwrod you entered is incorrect. Please try atain.')
   }
 
   render() {
