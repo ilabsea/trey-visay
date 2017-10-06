@@ -7,7 +7,6 @@ import {
   StyleSheet,
   Button,
   Picker,
-  Switch
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 
@@ -18,8 +17,14 @@ import InputTextContainer from '../components/input_text_container';
 let formError = {};
 
 class ProfileForm extends React.Component {
-  static navigationOptions = {
-    title: 'ប្រវត្តិរូបសង្ខេប',
+  // https://github.com/react-community/react-navigation/issues/145
+  static navigationOptions = ({ navigation }) => {
+    const { state } = navigation;
+
+    return {
+      title: 'ប្រវត្តិរូបសង្ខេប',
+      headerRight: <Button title="Save" onPress={() => state.params.handleSubmit()} />,
+    };
   };
 
   constructor(props) {
@@ -64,6 +69,9 @@ class ProfileForm extends React.Component {
     this.checkRequire = this.checkRequire.bind(this);
   }
 
+  componentDidMount() {
+    this.props.navigation.setParams({ handleSubmit: this.handleSubmit });
+  }
 
   checkRequire(field) {
     if (!this.state[field].length) {
@@ -111,8 +119,8 @@ class ProfileForm extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
-        <ScrollView style={styles.scrollContainer}>
+      <ScrollView style={styles.scrollContainer}>
+        <View style={styles.container}>
           {/*personal_information----------------------------*/}
           <Text style={styles.subTitle}>Personal information</Text>
 
@@ -344,36 +352,21 @@ class ProfileForm extends React.Component {
               </Picker>
             </View>
           </View>
-        </ScrollView>
-
-        <View style={styles.submitWrapper}>
-          <Button
-            style={styles.submit}
-            onPress={this.handleSubmit}
-            title="Submit"
-            accessibilityLabel="Create Account"
-          />
         </View>
-      </View>
+      </ScrollView>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    flex: 1,
+    flexDirection: 'column',
+  },
   container: {
     flex: 1,
-    flexDirection: 'column'
-  },
-  scrollContainer: {
-    flexGrow: 1,
     flexDirection: 'column',
-    paddingHorizontal: 24,
-    marginVertical: 24,
-  },
-  submitWrapper: {
-    marginTop: 30,
     padding: 24,
-    paddingTop: 0
   },
   inputText: {
     height: 40,

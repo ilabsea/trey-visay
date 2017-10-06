@@ -13,8 +13,13 @@ import realm from '../schema';
 import uuidv4 from '../utils/uuidv4';
 
 class Register extends Component {
-  static navigationOptions = {
-    title: 'បង្កើតគណនី Trey Visay',
+  static navigationOptions = ({ navigation }) => {
+    const { goBack } = navigation;
+
+    return {
+      title: 'បង្កើតគណនី Trey Visay',
+      headerRight: <Button title="Sign In" onPress={() => goBack()} />,
+    };
   };
 
   constructor(props) {
