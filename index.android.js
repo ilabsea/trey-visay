@@ -4,52 +4,106 @@
  * @flow
  */
 
-// import React, { Component } from 'react';
-// import { AppRegistry } from 'react-native';
-// import { Text, View } from 'react-native';
-// // import App from './app/app';
-// import { StackNavigator } from 'react-navigation';
-
-// export default class TreyVisay extends Component {
-//   static navigationOptions = {
-//     title: 'Welcome',
-//   };
-
-//   render() {
-//     return (
-//       <App></App>
-//     );
-//   }
-// }
-
-// Sources:
-// https://reactnavigation.org/docs/intro/headers
-
-import React from 'react';
+import React, { Component } from 'react';
 import {
   AppRegistry,
   Text,
   View,
-  Button
+  AsyncStorage,
 } from 'react-native';
-import { StackNavigator } from 'react-navigation';
-import Login  from './app/roots/login';
-import Register  from './app/roots/register';
-import Home  from './app/screens/home';
-import ProfileForm  from './app/screens/profile_form';
+import AccountNav from './app/screens/account_nav';
+import ProfileForm from './app/screens/profile_form';
+import Home from './app/screens/home';
+import realm from './app/schema';
 
-export default  TreyVisay = StackNavigator({
-  ProfileForm: { screen: ProfileForm },
-  Login: { screen: Login },
-  Register: { screen: Register },
-  Home: { screen: Home },
-});
+let currentUser;
+export default class TreyVisay extends Component {
+  constructor(props) {
+    super(props);
+    this.isLogined = this.isLogined.bind(this);
+    this.isUserInfoCompleted = this.isUserInfoCompleted.bind(this);
+    this.state = {user: ''};
+    this.getUser = this.getUser.bind(this);
+  }
+
+  isUserInfoCompleted(token) {
+    let users = realm.objects('User').filtered('uuid="' + token + '"');
+
+    return !!users[0].dateOfBirth;
+  }
+
+  isLogined(token) {
+    let users = realm.objects('User').filtered('uuid="' + token + '"');
+
+    return !!users.length;
+  }
+
+  getUser(token) {
+    let users = realm.objects('User').filtered('uuid="' + token + '"');
+    return users[0];
+  }
+
+  componentWillMount() {
+    AsyncStorage.getItem('token',
+      (err, token) => {
+        let user = this.getUser(token);
+        if (!!user) {
+          currentUser = user;
+          this.setState(user);
+        } else {
+          AsyncStorage.removeItem('token');
+        }
+      }
+    );
+  }
+
+  render() {
+    // try {
+    //   const token = await AsyncStorage.getItem('token');
+
+    //   if (!token || !this.isLogined(token)) {
+    //     return (<AccountNav></AccountNav>);
+    //   }
+
+    //   if (this.isUserInfoCompleted(token)) {
+    //     return (<Home></Home>)
+    //   }
+
+    //   return (<ProfileForm></ProfileForm>);
+
+    // } catch (error) {
+    //   return (
+    //     <AccountNav></AccountNav>
+    //   );
+    // }
+
+    // AsyncStorage.getItem('token',
+    //   (err, token) => {
+    //     user = this.getUser(token);
+    //     if (!user) {
+    //       AsyncStorage.removeItem('token')
+    //       return (<AccountNav></AccountNav>)
+    //     } else {
+    //       return (<Home></Home>)
+    //     }
+    //     // alert(token);
+    //   }
+    // );
+
+    // if(!!this.state.user) {
+    if(!!currentUser) {
+      return (<Home></Home>)
+    } else {
+      return (<AccountNav></AccountNav>)
+    }
+  }
+}
+
 
 AppRegistry.registerComponent('TreyVisay', () => TreyVisay);
 
 
-
-
+// -------------------------------
 
 
 

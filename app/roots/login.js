@@ -9,9 +9,11 @@ import {
   KeyboardAvoidingView,
   Alert,
   TouchableOpacity,
+  AsyncStorage,
 } from 'react-native';
 
 import realm from '../schema';
+import ProfileForm from '../screens/profile_form';
 
 // Source for form
 // https://facebook.github.io/react/docs/forms.html
@@ -43,14 +45,20 @@ class Login extends Component {
 
   handleSubmit(event) {
     let users = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"');
+
     if (!!users.length) {
-      this.props.navigation.navigate('ProfileForm');
-      return;
+      AsyncStorage.setItem('token', users[0].uuid,
+        () => {
+          this.props.navigation.navigate('ProfileForm');
+        }
+      );
+
+    } else {
+      Alert.alert(
+        'Incorrect username or password',
+        'The username or passwrod you entered is incorrect. Please try atain.')
     }
 
-    Alert.alert(
-      'Incorrect username or password',
-      'The username or passwrod you entered is incorrect. Please try atain.')
   }
 
   render() {

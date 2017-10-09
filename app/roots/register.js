@@ -25,6 +25,7 @@ class Register extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      uuid: uuidv4(),
       fullName: '',
       username: '',
       password: '',
@@ -33,10 +34,15 @@ class Register extends Component {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.buildData = this.buildData.bind(this);
+    this.setToken = this.setToken.bind(this);
   }
 
   componentWillMount() {
     // alert(JSON.stringify(realm.objects('User')));
+  }
+
+  async setToken() {
+    await AsyncStorage.setItem('token', this.state.uuid);
   }
 
   handleSubmit() {
@@ -50,8 +56,8 @@ class Register extends Component {
     try {
       realm.write(() => {
         realm.create('User', this.buildData());
+        this.setToken();
         this.props.navigation.navigate('ProfileForm');
-
       });
     } catch (e) {
       console.log("Error on creation");
@@ -61,7 +67,7 @@ class Register extends Component {
 
   buildData() {
     return {
-      uuid: uuidv4(),
+      uuid: this.state.uuid,
       fullName: this.state.fullName,
       username: this.state.username,
       password: this.state.password
