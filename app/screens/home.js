@@ -1,42 +1,21 @@
-import React, {Component} from 'react';
-import {
-  Text,
-  View,
-  Button,
-  AsyncStorage,
-} from 'react-native';
-import Login  from '../roots/login';
-import ProfileForm  from './profile_form';
+import React from 'react';
+import { DrawerNavigator } from 'react-navigation';
 
-class HomeScreen extends Component {
-  static navigationOptions = {
-    title: 'Home',
-  };
+import Dashboard from './dashboard';
+import About from './about';
 
-  constructor(props) {
-    super(props)
+
+const HomeScreen = DrawerNavigator(
+  {
+    Dashboard: { screen: Dashboard },
+    About: { screen: About },
+  },
+  {
+    initialRouteName: 'Dashboard',
+    contentOptions: {
+      activeTintColor: '#e91e63',
+    },
   }
-
-  logout() {
-    AsyncStorage.removeItem('token', () => {
-      alert('logout');
-      // this.props.navigation.navigate('Login');
-    })
-  }
-
-  render() {
-    // const { navigate } = this.props.navigation;
-
-    return (
-      <View>
-        <Text>Hello, Navigation!</Text>
-        <Button
-          onPress={this.logout.bind(this)}
-          title="Chat with Lucy"
-        />
-      </View>
-    );
-  }
-}
+);
 
 export default HomeScreen;
