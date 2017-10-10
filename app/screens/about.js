@@ -15,11 +15,7 @@ class About extends Component {
     return (
       <ScrollView>
         <Text>About</Text>
-        <Button
-          onPress={() => this.props.navigation.navigate('DrawerOpen')}
-          title="Open drawer"
-        />
-        <Button onPress={() => this.props.navigation.goBack(null)} title="Go back" />
+
       </ScrollView>
     )
   }
