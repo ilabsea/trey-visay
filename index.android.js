@@ -91,11 +91,15 @@ export default class TreyVisay extends Component {
     // );
 
     // if(!!this.state.user) {
-    if(!!currentUser) {
-      return (<Home></Home>)
-    } else {
-      return (<AccountNav></AccountNav>)
-    }
+    // if(!!currentUser) {
+    //   return (<Home></Home>)
+    // } else {
+    //   return (<AccountNav></AccountNav>)
+    // }
+
+    return(
+      <Home></Home>
+    )
   }
 }
 

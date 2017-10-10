@@ -3,6 +3,7 @@ import { DrawerNavigator } from 'react-navigation';
 
 import Dashboard from './dashboard';
 import About from './about';
+import DrawerMenu from './drawer_menu';
 
 
 const HomeScreen = DrawerNavigator(
@@ -11,7 +12,8 @@ const HomeScreen = DrawerNavigator(
     About: { screen: About },
   },
   {
-    initialRouteName: 'Dashboard',
+    // initialRouteName: 'Dashboard',
+    contentComponent: DrawerMenu,
     contentOptions: {
       activeTintColor: '#e91e63',
     },
