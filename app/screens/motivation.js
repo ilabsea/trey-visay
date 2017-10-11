@@ -12,7 +12,7 @@ import {
   Divider,
 } from 'react-native-material-ui';
 
-class Instruction extends Component {
+class Motivation extends Component {
   render() {
     return (
       <ThemeProvider uiTheme={{}}>
@@ -69,4 +69,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Instruction;
+export default Motivation;

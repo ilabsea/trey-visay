@@ -16,6 +16,8 @@ import ProfileForm from './app/screens/profile_form';
 import Home from './app/screens/home';
 import realm from './app/schema';
 
+import Profile from './app/screens/profile';
+
 let currentUser;
 export default class TreyVisay extends Component {
   constructor(props) {

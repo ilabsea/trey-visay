@@ -44,10 +44,6 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { navigator } = this.context;
-    const { theme, counter } = this.state;
-    const { onIconPress } = this.props;
-
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
