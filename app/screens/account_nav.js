@@ -13,7 +13,7 @@ import ProfileForm from './profile_form';
 export default  AccountNav = StackNavigator({
   Login: { screen: Login },
   Register: { screen: Register },
-  ProfileForm: { screen: ProfileForm },
+  // ProfileForm: { screen: ProfileForm },
 }, {
   initialRouteName: 'Login',
   // headerMode: 'none'
