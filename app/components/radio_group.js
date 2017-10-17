@@ -18,6 +18,8 @@ class RadioGroup extends Component {
                 index={i}
                 isSelected={this.props.value == obj.value}
                 onPress={this.props.onPress}
+                buttonSize={10}
+                buttonOuterSize={20}
               />
               <RadioButtonLabel
                 obj={obj}

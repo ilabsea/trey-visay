@@ -1,9 +1,11 @@
 import Db from './db';
 import User from '../models/user';
+import PersonalUnderstanding from '../models/personal_understanding';
 
 class DbHelper {
   modelSchema = [
-    User
+    User,
+    PersonalUnderstanding,
   ];
 
   // activeInstancePath = (myLocalRealmPath)

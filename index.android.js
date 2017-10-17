@@ -15,6 +15,10 @@ import AccountNav from './app/screens/account_nav';
 import ProfileForm from './app/screens/profile_form';
 import Home from './app/screens/home';
 import realm from './app/schema';
+import AppNav from './app/screens/app_nav';
+
+import { Provider } from 'react-redux';
+import store from './app/redux/store';
 
 import Profile from './app/screens/profile';
 
@@ -99,10 +103,17 @@ export default class TreyVisay extends Component {
     //   return (<AccountNav></AccountNav>)
     // }
 
+    // return(
+    //   <Provider store={store}>
+    //     <MyForm onSubmit={(values) => this.submitForm(values)} />
+    //   </Provider>
+    // )
+
     return(
-      <Home></Home>
+      <AppNav />
     )
   }
+
 }
 
 

@@ -9,12 +9,17 @@
   "dependencies": {
     "react": "16.0.0-alpha.12",
     "react-native": "0.48.3",
+    "react-native-checkbox-group": "^1.0.3",
     "react-native-datepicker": "^1.6.0",
     "react-native-elements": "^0.17.0",
     "react-native-material-ui": "^1.13.0",
     "react-native-simple-radio-button": "^2.6.2",
+    "react-native-vector-icons": "^4.4.2",
     "react-navigation": "^1.0.0-beta.11",
-    "realm": "^1.12.0"
+    "react-redux": "^5.0.6",
+    "realm": "^1.12.0",
+    "redux": "^3.7.2",
+    "redux-form": "^7.1.1"
   },
   "devDependencies": {
     "babel-jest": "21.0.2",
