@@ -4,15 +4,13 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
   ThemeProvider,
-  Divider,
-  Avatar,
-  Card,
   Toolbar,
-  TouchableOpacity,
+  Icon,
 } from 'react-native-material-ui';
 
 import ScrollableHeader from '../components/scrollable_header';
@@ -49,17 +47,49 @@ export default class Profile extends Component {
     return (
       <View style={[styles.box, {marginTop: 60}]}>
         <View style={styles.item}>
-          <Text style={styles.itemTitle}>Title</Text>
-          <Text>action</Text>
+          <Text style={styles.itemTitle}>ព័ត៌មានផ្ទាល់ខ្លួន</Text>
+          <TouchableOpacity>
+            <Icon name="edit" />
+          </TouchableOpacity>
         </View>
 
         <View style={styles.item}>
-          <Text style={styles.itemLabel}>Title </Text>
+          <Text style={styles.itemLabel}>ឈ្មោះពេញ</Text>
           <Text style={styles.itemValue}>: Value</Text>
         </View>
 
         <View style={styles.item}>
-          <Text style={styles.itemLabel}>Title </Text>
+          <Text style={styles.itemLabel}>ភេទ</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>សញ្ជាតិ</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>លេខទូរស័ព្ទ</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>រៀនថ្នាក់ទី</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>រៀននៅសាលា</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>អាស័យដ្ឋានបច្ចុប្បន្ន</Text>
           <Text style={styles.itemValue}>: Value</Text>
         </View>
       </View>
@@ -69,7 +99,37 @@ export default class Profile extends Component {
   _renderFamilyInfo() {
     return (
       <View style={styles.box}>
-        <Text>_renderFamilyInfo</Text>
+        <View style={styles.item}>
+          <Text style={styles.itemTitle}>ព័ត៌មានគ្រួសារ</Text>
+          <TouchableOpacity>
+            <Icon name="edit" />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>ឪពុកឈ្មោះ</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>ម្តាយឈ្មោះ</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>អាណាព្យាបាល</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>លេខទូរស័ព្ទឪពុកម្តាយ</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>ចំនួយសមាជិកគ្រួសារ</Text>
+          <Text style={styles.itemValue}>: Value</Text>
+        </View>
       </View>
     )
   }
@@ -77,14 +137,54 @@ export default class Profile extends Component {
   _renderFamilySituation() {
     return (
       <View style={styles.box}>
-        <Text>_renderFamilySituation</Text>
+        <View style={styles.item}>
+          <Text style={styles.itemTitle}>ស្ថានភាពគ្រួសារ</Text>
+          <TouchableOpacity>
+            <Icon name="edit" />
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={[styles.itemLabel, {flex: 2}]}>ឪពុកម្តាយលែងលះ</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={[styles.itemLabel, {flex: 2}]}>មានពិការភាពក្នុងគ្រួសារ</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+        </View>
+        <View style={styles.item}>
+          <Text style={[styles.itemLabel, {flex: 2}]}>មានអំពើហិង្សាក្នុងគ្រួសារ</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយជក់បារី</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+        </View>
+        <View style={styles.item}>
+          <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយញៀនសុរា</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+        </View>
+        <View style={styles.item}>
+          <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយជក់គ្រឿងញៀន</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+        </View>
+        <View style={styles.item}>
+          <Text style={[styles.itemLabel, {flex: 2}]}>ប្រភេទផ្ទះរបស់សិស្ស</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={[styles.itemLabel, {flex: 2}]}>ចំណូលប្រចាំខែគិតជាលុយរៀល</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+        </View>
       </View>
     )
   }
 
   _renderHeader() {
     return(
-      <ThemeProvider uiTheme={{}}>
       <Toolbar
         leftElement="menu"
         centerElement="My Profile"
@@ -97,19 +197,20 @@ export default class Profile extends Component {
           container: {backgroundColor: 'transparent'}
         }}
       />
-      </ThemeProvider>
     )
   }
 
   render() {
     return (
-      <ScrollableHeader
-        customView={ this._renderScrollViewContent.bind(this) }
-        imageBgSrc={ require('../assets/images/cat.jpg') }
-        customHeader={ this._renderHeader.bind(this) }
-        profile={require('../assets/images/default_profile.png')}
-        profileSize={120}
-      />
+      <ThemeProvider uiTheme={{}}>
+        <ScrollableHeader
+          customView={ this._renderScrollViewContent.bind(this) }
+          imageBgSrc={ require('../assets/images/cat.jpg') }
+          customHeader={ this._renderHeader.bind(this) }
+          profile={require('../assets/images/default_profile.png')}
+          profileSize={120}
+        />
+      </ThemeProvider>
     )
   }
 }
@@ -151,5 +252,4 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   }
-
 });
