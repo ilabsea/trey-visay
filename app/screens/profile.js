@@ -26,7 +26,7 @@ export default class Profile extends Component {
 
     // alert(JSON.stringify(this.state.user));
 
-    this._renderPersonalInfor = this._renderPersonalInfor.bind(this);
+    this._renderPersonalInfo = this._renderPersonalInfo.bind(this);
     this._renderFamilyInfo = this._renderFamilyInfo.bind(this);
     this._renderFamilySituation = this._renderFamilySituation.bind(this);
   }
@@ -45,14 +45,14 @@ export default class Profile extends Component {
           />
         </View>
 
-        { this._renderPersonalInfor() }
+        { this._renderPersonalInfo() }
         { this._renderFamilyInfo() }
         { this._renderFamilySituation() }
       </View>
     )
   }
 
-  _renderPersonalInfor() {
+  _renderPersonalInfo() {
     return (
       <View style={[styles.box, {marginTop: 60}]}>
         <View style={styles.item}>
@@ -198,8 +198,6 @@ export default class Profile extends Component {
         leftElement="menu"
         centerElement="My Profile"
         rightElement='edit'
-        searchable={null}
-        searchValue=''
         onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
         onRightElementPress={() => this.props.navigation.navigate('About')}
         style={{
