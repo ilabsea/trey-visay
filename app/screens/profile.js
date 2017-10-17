@@ -14,24 +14,33 @@ import {
 } from 'react-native-material-ui';
 
 import ScrollableHeader from '../components/scrollable_header';
+import realm from '../schema';
+
+const PROFILE_SIZE = 120;
 
 export default class Profile extends Component {
 
   constructor(props) {
     super(props);
+    this.state = { user: {} }
+
+    // alert(JSON.stringify(this.state.user));
+
     this._renderPersonalInfor = this._renderPersonalInfor.bind(this);
     this._renderFamilyInfo = this._renderFamilyInfo.bind(this);
     this._renderFamilySituation = this._renderFamilySituation.bind(this);
   }
 
-  _renderScrollViewContent() {
-    const PROFILE_SIZE = 120;
+  componentWillMount() {
+    this.state.user = realm.objects('User')[0];
+  }
 
+  _renderScrollViewContent() {
     return (
       <View>
-        <View style={{position: 'absolute', left: 24, top: -PROFILE_SIZE*2/3, zIndex: 1}}>
+        <View style={styles.avataContainer}>
           <Image
-            style={{width: PROFILE_SIZE, height: PROFILE_SIZE, borderRadius: PROFILE_SIZE/2}}
+            style={styles.avata}
             source={require('../assets/images/default_profile.png')}
           />
         </View>
@@ -55,42 +64,42 @@ export default class Profile extends Component {
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>ឈ្មោះពេញ</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.fullName}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>ភេទ</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.sex}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.dateOfBirth}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>សញ្ជាតិ</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.nationality}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>លេខទូរស័ព្ទ</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.phoneNumber}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>រៀនថ្នាក់ទី</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.grade}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>រៀននៅសាលា</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.schoolName}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>អាស័យដ្ឋានបច្ចុប្បន្ន</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.address}</Text>
         </View>
       </View>
     )
@@ -108,27 +117,27 @@ export default class Profile extends Component {
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>ឪពុកឈ្មោះ</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.fatherName}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>ម្តាយឈ្មោះ</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.motherName}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>អាណាព្យាបាល</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.guidance}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>លេខទូរស័ព្ទឪពុកម្តាយ</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemValue}>: {this.state.user.parentContactNumber}</Text>
         </View>
 
         <View style={styles.item}>
-          <Text style={styles.itemLabel}>ចំនួយសមាជិកគ្រួសារ</Text>
-          <Text style={styles.itemValue}>: Value</Text>
+          <Text style={styles.itemLabel}>ចំនួនសមាជិកគ្រួសារ</Text>
+          <Text style={styles.itemValue}>: {this.state.user.numberOfFamilyMember} (ស្រី{this.state.user.numberOfSisters} ប្រុស{this.state.user.numberOfBrothers})</Text>
         </View>
       </View>
     )
@@ -146,38 +155,38 @@ export default class Profile extends Component {
 
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>ឪពុកម្តាយលែងលះ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDivorce ? 'មាន' : 'គ្មាន'}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>មានពិការភាពក្នុងគ្រួសារ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDisable ? 'មាន' : 'គ្មាន'}</Text>
         </View>
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>មានអំពើហិង្សាក្នុងគ្រួសារ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDomesticViolence ? 'មាន' : 'គ្មាន'}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយជក់បារី</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isSmoking ? 'មាន' : 'គ្មាន'}</Text>
         </View>
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយញៀនសុរា</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isAlcoholic ? 'មាន' : 'គ្មាន'}</Text>
         </View>
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយជក់គ្រឿងញៀន</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDrug ? 'មាន' : 'គ្មាន'}</Text>
         </View>
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>ប្រភេទផ្ទះរបស់សិស្ស</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.houseType}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>ចំណូលប្រចាំខែគិតជាលុយរៀល</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: Value</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.collectiveIncome}</Text>
         </View>
       </View>
     )
@@ -208,7 +217,7 @@ export default class Profile extends Component {
           imageBgSrc={ require('../assets/images/cat.jpg') }
           customHeader={ this._renderHeader.bind(this) }
           profile={require('../assets/images/default_profile.png')}
-          profileSize={120}
+          profileSize={PROFILE_SIZE}
         />
       </ThemeProvider>
     )
@@ -251,5 +260,16 @@ const styles = StyleSheet.create({
     flex: 2,
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  avataContainer: {
+    position: 'absolute',
+    left: 24,
+    top: -PROFILE_SIZE*2/3,
+    zIndex: 1
+  },
+  avata: {
+    width: PROFILE_SIZE,
+    height: PROFILE_SIZE,
+    borderRadius: PROFILE_SIZE/2,
   }
 });

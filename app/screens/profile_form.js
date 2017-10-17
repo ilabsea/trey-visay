@@ -181,9 +181,21 @@ class ProfileForm extends React.Component {
               <Picker
                 selectedValue={this.state.schoolName}
                 onValueChange={(itemValue, itemIndex) => this.setState({schoolName: itemValue})}>
-                <Picker.Item label="សាលា NGS1" value="ngs1" />
-                <Picker.Item label="សាលា NGS2" value="ngs2" />
-                <Picker.Item label="សាលា NGS3" value="ngs3" />
+                <Picker.Item label="សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ" value="សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ" />
+                <Picker.Item label="វិទ្យាល័យជាស៊ីមព្រែកអញ្ចាញ" value="វិទ្យាល័យជាស៊ីមព្រែកអញ្ចាញ" />
+                <Picker.Item label="វិទ្យាល័យព្រែកលៀប" value="វិទ្យាល័យព្រែកលៀប" />
+                <Picker.Item label="វិទ្យាល័យហ៊ុនសែនកំពង់ចាម" value="វិទ្យាល័យហ៊ុនសែនកំពង់ចាម" />
+                <Picker.Item label="អនុវិទ្យាល័យគោកព្រីង" value="អនុវិទ្យាល័យគោកព្រីង" />
+                <Picker.Item label="វិទ្យាល័យសម្តេចតេជោហ៊ុនសែនសណ្តែក" value="វិទ្យាល័យសម្តេចតេជោហ៊ុនសែនសណ្តែក" />
+                <Picker.Item label="វិទ្យាល័យហោណាំហុងព្រៃញា" value="វិទ្យាល័យហោណាំហុងព្រៃញា" />
+                <Picker.Item label="វិទ្យាល័យល្វា" value="វិទ្យាល័យល្វា" />
+                <Picker.Item label="វិទ្យាល័យហ.សពាមជីកង" value="វិទ្យាល័យហ.សពាមជីកង" />
+                <Picker.Item label="អនុវិទ្យាល័យហ.សទួលសុភី" value="អនុវិទ្យាល័យហ.សទួលសុភី" />
+                <Picker.Item label="វិទ្យាល័យហ.សក្រូចឆ្មារ" value="វិទ្យាល័យហ.សក្រូចឆ្មារ" />
+                <Picker.Item label="វិទ្យាល័យសម្តេចហ៊ុនសែនប៉ើសពីរ" value="វិទ្យាល័យសម្តេចហ៊ុនសែនប៉ើសពីរ" />
+                <Picker.Item label="វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក" value="វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក" />
+                <Picker.Item label="វិទ្យាល័យជីហែ" value="វិទ្យាល័យជីហែ" />
+                <Picker.Item label="វិទ្យាល័យក្រុមព្រះមហាលាភ" value="វិទ្យាល័យក្រុមព្រះមហាលាភ" />
               </Picker>
             </View>
 
