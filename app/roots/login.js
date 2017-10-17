@@ -18,6 +18,7 @@ import realm from '../schema';
 import ProfileForm from '../screens/profile_form';
 import BackgroundImage from '../components/image_background';
 import Button from '../components/button';
+import LinearGradient from 'react-native-linear-gradient';
 
 // Source for form
 // https://facebook.github.io/react/docs/forms.html
@@ -71,7 +72,7 @@ export default class Login extends Component {
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
 
     return (
-      <View style={styles.container}>
+      <LinearGradient style={styles.container} colors={['#4B8FD3', '#1976d2']}>
         <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
           <ScrollView style={{padding: 24}}>
             <View style={{flex: 1, alignItems: 'center'}}>
@@ -125,7 +126,7 @@ export default class Login extends Component {
             </View>
           </ScrollView>
         </BackgroundImage>
-      </View>
+      </LinearGradient>
     )
   }
 }
@@ -133,7 +134,6 @@ export default class Login extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#4B8FD3',
   },
   title: {
     fontSize: 40,
