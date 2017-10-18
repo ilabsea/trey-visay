@@ -26,8 +26,6 @@ export default class TreyVisay extends Component {
       isLoggedin: false,
       loaded: false,
     };
-
-    this.isUserInfoCompleted = this.isUserInfoCompleted.bind(this);
   }
 
   handleUser(userId) {

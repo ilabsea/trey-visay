@@ -42,15 +42,20 @@ export default class Login extends Component {
 
   handleSubmit(event) {
     let users = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"');
-
-    if (!!users.length) {
-      User.setLogin(users[0].uuid);
-      this.props.navigation.navigate('ProfileForm');
-    } else {
-      Alert.alert(
+    if (!users.length) {
+      return Alert.alert(
         'Incorrect username or password',
-        'The username or passwrod you entered is incorrect. Please try atain.')
+        'The username or passwrod you entered is incorrect. Please try atain.');
     }
+
+    User.setLogin(users[0].uuid);
+
+    if (!!users[0].dateOfBirth) {
+      // @Todo: check navigation
+      return this.props.navigation.navigate('Home');
+    }
+
+    this.props.navigation.navigate('ProfileForm');
   }
 
   render() {

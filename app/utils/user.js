@@ -5,7 +5,7 @@ import {
 let STORAGE_KEY = 'USER_ID';
 
 export default class User {
-  static userID=null;
+  static userID;
 
   static getID() {
     return this.userID;
@@ -24,6 +24,7 @@ export default class User {
 
   static logout(callback) {
     AsyncStorage.removeItem(STORAGE_KEY, () => {
+      this.setID(null);
       !!callback && callback();
     });
   }

@@ -18,4 +18,3 @@ export default  AccountNav = StackNavigator({
   initialRouteName: 'Login',
   headerMode: 'none'
 });
-

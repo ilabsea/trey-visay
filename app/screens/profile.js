@@ -13,8 +13,12 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
-import ScrollableHeader from '../components/scrollable_header';
+// Utils
 import realm from '../schema';
+import User from '../utils/user';
+
+// Components
+import ScrollableHeader from '../components/scrollable_header';
 
 const PROFILE_SIZE = 120;
 
@@ -32,7 +36,9 @@ export default class Profile extends Component {
   }
 
   componentWillMount() {
-    this.state.user = realm.objects('User')[0];
+    // this.state.user = realm.objects('User')[0];
+    let users = realm.objects('User').filtered('uuid="' + User.getID() + '"');
+    this.setState({user: users[0]})
   }
 
   _renderScrollViewContent() {
@@ -155,29 +161,29 @@ export default class Profile extends Component {
 
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>ឪពុកម្តាយលែងលះ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDivorce ? 'មាន' : 'គ្មាន'}</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDivorce ? 'មាន' : 'គ្មានទេ'}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>មានពិការភាពក្នុងគ្រួសារ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDisable ? 'មាន' : 'គ្មាន'}</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDisable ? 'មាន' : 'គ្មានទេ'}</Text>
         </View>
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>មានអំពើហិង្សាក្នុងគ្រួសារ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDomesticViolence ? 'មាន' : 'គ្មាន'}</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDomesticViolence ? 'មាន' : 'គ្មានទេ'}</Text>
         </View>
 
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយជក់បារី</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isSmoking ? 'មាន' : 'គ្មាន'}</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isSmoking ? 'មាន' : 'គ្មានទេ'}</Text>
         </View>
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយញៀនសុរា</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isAlcoholic ? 'មាន' : 'គ្មាន'}</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isAlcoholic ? 'មាន' : 'គ្មានទេ'}</Text>
         </View>
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយជក់គ្រឿងញៀន</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDrug ? 'មាន' : 'គ្មាន'}</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDrug ? 'មាន' : 'គ្មានទេ'}</Text>
         </View>
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>ប្រភេទផ្ទះរបស់សិស្ស</Text>

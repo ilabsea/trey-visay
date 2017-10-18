@@ -15,10 +15,13 @@ import {
   Toolbar,
   Icon
 } from 'react-native-material-ui';
-
 import DatePicker from 'react-native-datepicker';
 
+// Utils
 import realm from '../schema';
+import User from '../utils/user';
+
+// Components
 import RadioGroupContainer from '../components/radio_group_container';
 import InputTextContainer from '../components/input_text_container';
 
@@ -38,16 +41,16 @@ class ProfileForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      uuid: '123',
+      uuid: '',
       fullName: '',
-      password: '1234',
-      username: 'sokly_heng',
-      sex: 'female',
+      password: '',
+      username: '',
+      sex: 'ស្រី',
       dateOfBirth: '',
       phoneNumber: '',
       nationality: 'ខ្មែរ',
-      schoolName: '',
-      grade: '',
+      schoolName: 'សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ',
+      grade: '9',
       address: '',
       // *family information
       fatherName: '',
@@ -66,8 +69,8 @@ class ProfileForm extends React.Component {
       isSmoking: false,
       isAlcoholic: false,
       isDrug: false,
-      houseType: 'wooden_house',
-      collectiveIncome: '0-250_000',
+      houseType: 'ផ្ទះឈើ',
+      collectiveIncome: 'លើស1លាន',
       errors: {}
     }
 
@@ -79,6 +82,14 @@ class ProfileForm extends React.Component {
 
   componentDidMount() {
     // this.props.navigation.setParams({ handleSubmit: this.handleSubmit });
+    let users = realm.objects('User').filtered('uuid="' + User.getID() + '"');
+    let user = users[0];
+    this.setState({
+      fullName: user.fullName,
+      uuid: user.uuid,
+      password: user.password,
+      username: user.username
+    });
   }
 
   render() {
@@ -90,10 +101,20 @@ class ProfileForm extends React.Component {
             {this._renderPersonalInfo()}
             {this._renderFamilyInfo()}
             {this._renderFamilySituation()}
+
+            <Button
+              title='ចាកចេញ'
+              style={{backgroundColor: 'red'}}
+              onPress={this.logout.bind(this)}/>
           </View>
         </ScrollView>
       </ThemeProvider>
     )
+  }
+
+  logout() {
+    User.logout();
+    this.props.navigation.navigate('Login');
   }
 
   checkRequire(field) {
@@ -122,6 +143,7 @@ class ProfileForm extends React.Component {
     try {
       realm.write(() => {
         realm.create('User', this.buildData(), true);
+        this.props.navigation.navigate('Home');
         alert(JSON.stringify(realm.objects('User')[realm.objects('User').length - 1]));
       });
     } catch (e) {
@@ -174,7 +196,7 @@ class ProfileForm extends React.Component {
         </View>
 
         <RadioGroupContainer
-          options={[{ label: 'Female', value: 'female' }, { label: 'Male', value: 'male' }, { label: 'Other', value: 'other' }]}
+          options={[{ label: 'ស្រី', value: 'ស្រី' }, { label: 'ប្រុស', value: 'ប្រុស' }, { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }]}
           onPress={((text) => this.setState({sex: text})).bind(this)}
           value={this.state.sex}
           label='Gender'
@@ -380,10 +402,10 @@ class ProfileForm extends React.Component {
           <Picker
             selectedValue={this.state.houseType}
             onValueChange={(itemValue, itemIndex) => this.setState({houseType: itemValue})}>
-            <Picker.Item label="ផ្ទះឈើ" value="wooden_house" />
-            <Picker.Item label="ផ្ទះថ្ម" value="concrete_house" />
-            <Picker.Item label="ផ្ទះស័ង្កសី" value="zinc_house" />
-            <Picker.Item label="ផ្ទះស្លឹក" value="leaf_house" />
+            <Picker.Item label="ផ្ទះឈើ" value="ផ្ទះឈើ" />
+            <Picker.Item label="ផ្ទះថ្ម" value="ផ្ទះថ្ម" />
+            <Picker.Item label="ផ្ទះស័ង្កសី" value="ផ្ទះស័ង្កសី" />
+            <Picker.Item label="ផ្ទះស្លឹក" value="ផ្ទះស្លឹក" />
           </Picker>
         </View>
 
@@ -392,11 +414,11 @@ class ProfileForm extends React.Component {
           <Picker
             selectedValue={this.state.collectiveIncome}
             onValueChange={(itemValue, itemIndex) => this.setState({collectiveIncome: itemValue})}>
-            <Picker.Item label="ក្រោម 25ម៉ឺន" value="0-250_000" />
-            <Picker.Item label="ចន្លោះ 25ម៉ឺន-50ម៉ឺន" value="250_000-50_0000" />
-            <Picker.Item label="ចន្លោះ 50ម៉ឺន-75ម៉ឺន" value="500_000R-750_000" />
-            <Picker.Item label="ចន្លោះ 75ម៉ឺន-1លាន" value="750_000-1000_000" />
-            <Picker.Item label="លើសពី 1លាន" value="Above_1M" />
+            <Picker.Item label="ក្រោម 25ម៉ឺន" value="0-25ម៉ឺន" />
+            <Picker.Item label="ចន្លោះ 25ម៉ឺន-50ម៉ឺន" value="25ម៉ឺន-50ម៉ឺន" />
+            <Picker.Item label="ចន្លោះ 50ម៉ឺន-75ម៉ឺន" value="50ម៉ឺន-75ម៉ឺន" />
+            <Picker.Item label="ចន្លោះ 75ម៉ឺន-1លាន" value="75ម៉ឺន-1លាន" />
+            <Picker.Item label="លើស1លាន" value="លើស1លាន" />
           </Picker>
         </View>
       </View>
