@@ -10,27 +10,22 @@ import {
   AsyncStorage,
   Image,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
+// Utils
 import realm from '../schema';
-import ProfileForm from '../screens/profile_form';
+import User from '../utils/user';
+
+// Components
 import BackgroundImage from '../components/image_background';
 import Button from '../components/button';
-import LinearGradient from 'react-native-linear-gradient';
 
 // Source for form
 // https://facebook.github.io/react/docs/forms.html
-
 export default class Login extends Component {
-  // static navigationOptions = {
-  //   title: 'Trey Visay',
-  // };
-
   constructor(props) {
     super(props);
     this.state = { username: '', password: '' };
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -49,22 +44,16 @@ export default class Login extends Component {
     let users = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"');
 
     if (!!users.length) {
-      AsyncStorage.setItem('token', users[0].uuid,
-        () => {
-          this.props.navigation.navigate('ProfileForm');
-        }
-      );
-
+      User.setLogin(users[0].uuid);
+      this.props.navigation.navigate('ProfileForm');
     } else {
       Alert.alert(
         'Incorrect username or password',
         'The username or passwrod you entered is incorrect. Please try atain.')
     }
-
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     const isEnabled = this.state.username.length && this.state.password.length;
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
 
@@ -85,7 +74,7 @@ export default class Login extends Component {
             <View>
               <TextInput
                 style={styles.inputText}
-                onChangeText={this.handleUsernameChange}
+                onChangeText={this.handleUsernameChange.bind(this)}
                 returnKeyType='next'
                 placeholder='ឈ្មោះគណនី'
                 placeholderTextColor='rgba(0,0,0,0.7)'
@@ -100,7 +89,7 @@ export default class Login extends Component {
                 returnKeyType='go'
                 placeholder='លេខសម្ងាត់'
                 placeholderTextColor='rgba(0,0,0,0.7)'
-                onChangeText={this.handlePasswordChange}
+                onChangeText={this.handlePasswordChange.bind(this)}
                 underlineColorAndroid='transparent'
                 ref={(input) => this.passwordInput = input}
               />
@@ -117,7 +106,7 @@ export default class Login extends Component {
             <View style={styles.registerContainer}>
               <Text style={styles.registerText}>មិនទាន់មានគណនីមែនទេ?</Text>
               <TouchableOpacity
-                onPress={() => navigate('Register')}>
+                onPress={() => this.props.navigation.navigate('Register')}>
                 <Text style={styles.btnRegister}>បង្កើតគណនី</Text>
               </TouchableOpacity>
             </View>
@@ -171,5 +160,4 @@ const styles = StyleSheet.create({
   btnLogin: {
     marginTop: 24,
   }
-
 })

@@ -9,12 +9,16 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
+// Utils
 import realm from '../schema';
 import uuidv4 from '../utils/uuidv4';
+import User from '../utils/user';
+
+// Components
 import BackgroundImage from '../components/image_background';
 import Button from '../components/button';
-import LinearGradient from 'react-native-linear-gradient';
 
 class Register extends Component {
   // static navigationOptions = ({ navigation }) => {
@@ -36,17 +40,11 @@ class Register extends Component {
       passwordConfirmation: ''
     }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.buildData = this.buildData.bind(this);
-    this.setToken = this.setToken.bind(this);
   }
 
   componentWillMount() {
     // alert(JSON.stringify(realm.objects('User')));
-  }
-
-  async setToken() {
-    await AsyncStorage.setItem('token', this.state.uuid);
   }
 
   handleSubmit() {
@@ -60,7 +58,7 @@ class Register extends Component {
     try {
       realm.write(() => {
         realm.create('User', this.buildData());
-        this.setToken();
+        User.setLogin(this.state.uuid);
         this.props.navigation.navigate('ProfileForm');
       });
     } catch (e) {
@@ -145,7 +143,7 @@ class Register extends Component {
               <View style={styles.submitWrapper}>
                 <Button
                   style={styles.btnSubmit}
-                  onPress={this.handleSubmit}
+                  onPress={this.handleSubmit.bind(this)}
                   disabled={!isEnabled}
                 >
                   <Text style={[styles.loginText, {color: btnSubmitTextColor}]}>ចុះឈ្មោះ</Text>
@@ -155,7 +153,7 @@ class Register extends Component {
               <View style={styles.loginContainer}>
                 <Text style={styles.loginText}>មានគណនីមែនទេ?</Text>
                 <TouchableOpacity
-                  onPress={() => this.props.navigation.navigate('Login')}>
+                  onPress={() => this.props.navigation.goBack()}>
                   <Text style={styles.btnLogin}>ចូលគណនី</Text>
                 </TouchableOpacity>
               </View>
