@@ -1,6 +1,4 @@
-import {
-  AsyncStorage,
-} from 'react-native';
+import { AsyncStorage } from 'react-native';
 
 let STORAGE_KEY = 'USER_ID';
 

@@ -16,6 +16,8 @@ import realm from './app/schema';
 import AccountNav from './app/screens/account_nav';
 import ProfileForm from './app/screens/profile_form';
 import Home from './app/screens/home';
+
+// @Todo: comment it
 import AppNav from './app/screens/app_nav';
 import Profile from './app/screens/profile';
 
@@ -51,6 +53,11 @@ export default class TreyVisay extends Component {
     if (!this.state.loaded) {
       return (<View/>)
     }
+
+    // @Todo: comment this block when final result
+    // if(true) {
+    //   return()
+    // }
 
     if (!this.state.isLoggedin) {
       return (<AccountNav/>);
