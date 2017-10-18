@@ -63,7 +63,7 @@ export default class ScrollableHeader extends Component {
     });
 
     {/*custom Header goes here*/}
-    let bgColor = this.props.backgroundColor || '#03A9F4';
+    let bgColor = this.props.backgroundColor || '#1976d2';
 
     return (
       <View style={[styles.fill, {paddingBottom: 24}]}>
