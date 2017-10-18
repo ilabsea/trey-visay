@@ -18,7 +18,7 @@ export default class Button extends Component {
     return (
       <TouchableOpacity
         {...props}
-        style={[styles.button, {backgroundColor: btnSubmitColor}]}>
+        style={[styles.button, {backgroundColor: btnSubmitColor}, style]}>
         {children}
       </TouchableOpacity>
     )

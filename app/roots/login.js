@@ -5,13 +5,10 @@ import {
   ScrollView,
   TextInput,
   StyleSheet,
-
-  KeyboardAvoidingView,
   Alert,
   TouchableOpacity,
   AsyncStorage,
   Image,
-  TouchableHighlight
 } from 'react-native';
 
 import realm from '../schema';
@@ -150,7 +147,7 @@ const styles = StyleSheet.create({
     height: 48,
     backgroundColor: '#fff',
     paddingHorizontal: 10,
-    marginBottom: 20,
+    marginBottom: 10,
     borderRadius: 5
   },
   registerText: {
@@ -170,6 +167,9 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontWeight: 'bold',
+  },
+  btnLogin: {
+    marginTop: 24,
   }
 
 })
