@@ -26,19 +26,12 @@ export default class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { user: {} }
-
-    // alert(JSON.stringify(this.state.user));
-
-    this._renderPersonalInfo = this._renderPersonalInfo.bind(this);
-    this._renderFamilyInfo = this._renderFamilyInfo.bind(this);
-    this._renderFamilySituation = this._renderFamilySituation.bind(this);
+    this.state = { user: {} };
   }
 
   componentWillMount() {
-    // this.state.user = realm.objects('User')[0];
-    let users = realm.objects('User').filtered('uuid="' + User.getID() + '"');
-    this.setState({user: users[0]})
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    this.setState({user: user})
   }
 
   _renderScrollViewContent() {
@@ -229,16 +222,6 @@ export default class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
-  fill: {
-    flex: 1,
-  },
-  row: {
-    height: 40,
-    margin: 16,
-    backgroundColor: '#D3D3D3',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   box: {
     marginTop: 10,
     marginHorizontal: 24,
