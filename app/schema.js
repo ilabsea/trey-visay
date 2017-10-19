@@ -5,5 +5,7 @@
 
 import Realm from 'realm';
 import User from './data/models/user';
+import PersonalUnderstanding from './data/models/personal_understanding';
+import arrayInt from './data/models/arrayInt';
 
-export default new Realm({schema: [User]});
+export default new Realm({schema: [User, PersonalUnderstanding, arrayInt]});

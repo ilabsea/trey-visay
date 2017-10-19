@@ -20,7 +20,7 @@ var RadioButtonGroup = React.createClass({
         onPress={this.props.onPress}
         buttonSize={15}
         circleSize={10}
-        labelStyle={{marginLeft: 0, marginRight: 30, fontSize: 16}}
+        labelStyle={{marginLeft: 0, marginRight: 10, fontSize: 16}}
       />
 
 

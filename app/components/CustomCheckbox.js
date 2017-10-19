@@ -17,14 +17,15 @@ export default function CustomCheckbox(props) {
                     checkedIcon="ios-checkbox-outline"
                     uncheckedIcon="ios-square-outline"
                     checkboxes={
-                                            [
-                                              { value: 1, label: 'ឳពុកម្តាយ'},
-                                              { value: 2, label: 'បងប្អូន' },
-                                              { value: 3, label: 'ក្រុមប្រឹក្សាកុមារ' },
-                                              { value: 4, label: 'នាយកសាលា' },
-                                              { value: 5, label: 'គ្រូ' },
-                                              { value: 6, label: 'មិត្តភក្តិ'}
-                                            ]}
+                                  [
+                                    { value: 1, label: 'ឳពុកម្តាយ'},
+                                    { value: 2, label: 'បងប្អូន' },
+                                    { value: 3, label: 'ក្រុមប្រឹក្សាកុមារ' },
+                                    { value: 4, label: 'នាយកសាលា' },
+                                    { value: 5, label: 'គ្រូ' },
+                                    { value: 6, label: 'មិត្តភក្តិ'}
+                                  ]
+                                }
                     labelStyle={{
                       color: '#333',
                       fontSize: 20,

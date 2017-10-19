@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
+import { reduxForm, Field, formValueSelector, } from 'redux-form';
 import { ScrollView, View, Text, TouchableOpacity, Button, StyleSheet } from 'react-native';
 
 import CustomTextInput from '../../components/CustomTextInput'
@@ -10,12 +11,13 @@ import CustomCheckbox from '../../components/CustomCheckbox'
 function Form(props) {
 
   const formStates = ['asyncValidating', 'dirty', 'pristine', 'valid', 'invalid', 'submitting',
-    'submitSucceeded', 'submitFailed'];
+    'submitSucceeded', 'submitFailed', 'haveEverThoughtOfCareerIsYes'];
 
   return (
     <ScrollView
       showsVerticalScrollIndicator={false}
       style={styles.scrollContainer}>
+
       <View style={styles.formGroup}>
         <Text style={styles.labelGroup}>តើអ្នកនឹងបន្តការសិក្សារហូតដល់ថ្នាក់ទី១២ដែរឬទេ?</Text>
         <Field
@@ -28,8 +30,6 @@ function Form(props) {
                           {label: 'មិនដឹង', value: 'Don_Know'}
                         ]
                       }
-          buttonColor={'red'}
-          buttonInnerColor={'red'}
         />
       </View>
 
@@ -56,11 +56,11 @@ function Form(props) {
           radio_props={
                         [
                           {label: 'បាទ/ចាស', value: 'Yes' },
-                          {label: 'ទេ', value: 'No'},
-                          {label: 'មិនដឹង', value: 'Don_Know'}
+                          {label: 'ទេ', value: 'No'}
                         ]
                       }
         />
+
       </View>
 
       <View style={styles.formGroup}>
@@ -69,7 +69,7 @@ function Form(props) {
           name={'carrerName'}
           component={CustomTextInput}
           multiline={true}
-          numberOfLines={2}
+          editable={props.haveEverThoughtOfCareerIsYes}
         />
       </View>
 
@@ -81,10 +81,12 @@ function Form(props) {
           component={CustomTextInput}
           multiline={true}
           numberOfLines={3}
+          editable={props.haveEverThoughtOfCareerIsYes}
         />
       </View>
 
-      <View style={styles.formGroup}>
+
+      <View style={styles.formGroup} pointerEvents={ props.haveEverThoughtOfCareerIsYes ? "auto" : "none"}>
         <Text style={styles.labelGroup}>តើឪពុកម្តាយអ្នកយល់ស្របជាមួយគំនិតរបស់អ្នកដែរឬទេ?</Text>
         <Field
           name={'doesParentsAgreeWith'}
@@ -93,7 +95,7 @@ function Form(props) {
                         [
                           {label: 'បាទ/ចាស', value: 'Yes' },
                           {label: 'ទេ', value: 'No'},
-                          {label: 'មិនដឹង', value: 'Don_Know'}
+                          {label: 'មិនដឹង', value: 'Don_Know'},
                         ]
                       }
         />
@@ -133,6 +135,8 @@ function Form(props) {
       </Button>
     </ScrollView>
   );
+
+
 }
 
 const styles = StyleSheet.create({
@@ -151,14 +155,21 @@ const styles = StyleSheet.create({
   }
 })
 
-export default reduxForm({
-  form: 'signIn',
-  validate: (values) => {
-      const errors = {};
-      errors.name = !values.name
-        ? 'Name field is required'
-        : undefined;
-
-      return errors;
-    }
+Form = reduxForm({
+  form: 'personalUnderstandingForm',
 })(Form);
+
+const selector = formValueSelector('personalUnderstandingForm');
+
+Form = connect(
+  state => {
+    const haveEverThoughtOfCareerIsYes = (selector(state, 'haveYouEverThoughtOfCarrer') == 'Yes');
+
+    return {
+      haveEverThoughtOfCareerIsYes
+    }
+  }
+)(Form);
+
+
+export default Form;

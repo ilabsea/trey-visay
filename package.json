@@ -9,9 +9,11 @@
   "dependencies": {
     "react": "16.0.0-alpha.12",
     "react-native": "0.48.3",
+    "react-native-autogrow-textinput": "^4.1.0",
     "react-native-checkbox-group": "^1.0.3",
     "react-native-datepicker": "^1.6.0",
     "react-native-elements": "^0.17.0",
+    "react-native-material-textfield": "^0.10.0",
     "react-native-material-ui": "^1.13.0",
     "react-native-simple-radio-button": "^2.6.2",
     "react-native-vector-icons": "^4.4.2",

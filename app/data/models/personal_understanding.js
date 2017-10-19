@@ -11,14 +11,14 @@ PersonalUnderstanding.schema = {
   primaryKey: 'uuid',
   properties: {
     uuid: 'string',
-    isGoingToStudyTillGrade12: 'string',
-    areParentsAllowYouToStudyTillGrade12: 'string',
-    everThougthOfCarreer: 'string',
-    carreerName: 'string',
-    howToReachCarreerGoal: 'string',
-    doesParentsAgreeWith: 'string',
-    everTalkedWithAnyoneAboutCarrerr: 'string',
-    howToReachJobVacancy: 'string',
-    whoToReachJobVacancy: 'string',
+    isGoingToStudyTillGrade12:  {type: 'string', optional: true},
+    areParentsAllowYouToStudyTillGrade12: {type: 'string', optional: true},
+    everThougthOfCarreer: {type: 'string', optional: true},
+    carreerName: {type: 'string', optional: true},
+    howToReachCarreerGoal: {type: 'string', optional: true},
+    doesParentsAgreeWith: {type: 'string', optional: true},
+    everTalkedWithAnyoneAboutCarrerr: {type: 'list', objectType: 'arrayInt'},
+    howToReachJobVacancy: {type: 'string', optional: true},
+    whoToReachJobVacancy: {type: 'string', optional: true},
   }
 }

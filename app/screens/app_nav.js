@@ -2,10 +2,9 @@ import {
   StackNavigator,
 } from 'react-navigation';
 
-import PersonalUnderstandingForm from './personal_understanding_form/personal_understanding_form';
+import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 
 const AppNav = StackNavigator({
-
   PersonalUnderstandingForm: {screen: PersonalUnderstandingForm},
 });
 

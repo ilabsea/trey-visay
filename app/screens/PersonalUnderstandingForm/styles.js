@@ -7,7 +7,8 @@ export default StyleSheet.create({
   },
   buttonText: {
     fontSize: 18,
-    color: 'white',
-    alignSelf: 'center'
+    color: 'black'
   },
+
+
 });

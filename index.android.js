@@ -110,7 +110,7 @@ export default class TreyVisay extends Component {
     // )
 
     return(
-      <AppNav />
+      <Home />
     )
   }
 
