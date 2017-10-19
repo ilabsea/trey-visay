@@ -15,6 +15,8 @@ import {
 
 import Icon from 'react-native-vector-icons/Ionicons';
 
+import User from '../utils/user';
+
 class DrawerMenu extends Component {
   static navigationOptions = {
     drawerLabel: 'DrawerMenu',
@@ -22,6 +24,11 @@ class DrawerMenu extends Component {
 
   onPress() {
     this.props.navigation.navigate('DrawerClose')
+  }
+
+  logout() {
+    User.logout();
+    this.props.navigation.navigate('Login');
   }
 
   render() {
@@ -52,6 +59,10 @@ class DrawerMenu extends Component {
 
           <TouchableOpacity style={styles.item} onPress={this.onPress.bind(this)}>
             <Text>About</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.item} onPress={this.logout.bind(this)}>
+            <Text>Logout</Text>
           </TouchableOpacity>
 
         </ScrollView>

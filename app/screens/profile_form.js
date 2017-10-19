@@ -15,10 +15,13 @@ import {
   Toolbar,
   Icon
 } from 'react-native-material-ui';
-
 import DatePicker from 'react-native-datepicker';
 
+// Utils
 import realm from '../schema';
+import User from '../utils/user';
+
+// Components
 import RadioGroupContainer from '../components/radio_group_container';
 import InputTextContainer from '../components/input_text_container';
 
@@ -38,16 +41,16 @@ class ProfileForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      uuid: '123',
+      uuid: '',
       fullName: '',
-      password: '1234',
-      username: 'sokly_heng',
-      sex: 'female',
+      password: '',
+      username: '',
+      sex: 'ស្រី',
       dateOfBirth: '',
       phoneNumber: '',
       nationality: 'ខ្មែរ',
-      schoolName: '',
-      grade: '',
+      schoolName: 'សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ',
+      grade: '9',
       address: '',
       // *family information
       fatherName: '',
@@ -66,8 +69,8 @@ class ProfileForm extends React.Component {
       isSmoking: false,
       isAlcoholic: false,
       isDrug: false,
-      houseType: 'wooden_house',
-      collectiveIncome: '0-250_000',
+      houseType: 'ផ្ទះឈើ',
+      collectiveIncome: 'លើស1លាន',
       errors: {}
     }
 
@@ -79,6 +82,14 @@ class ProfileForm extends React.Component {
 
   componentDidMount() {
     // this.props.navigation.setParams({ handleSubmit: this.handleSubmit });
+    let users = realm.objects('User').filtered('uuid="' + User.getID() + '"');
+    let user = users[0];
+    this.setState({
+      fullName: user.fullName,
+      uuid: user.uuid,
+      password: user.password,
+      username: user.username
+    });
   }
 
   render() {
@@ -90,10 +101,20 @@ class ProfileForm extends React.Component {
             {this._renderPersonalInfo()}
             {this._renderFamilyInfo()}
             {this._renderFamilySituation()}
+
+            <Button
+              title='ចាកចេញ'
+              color='red'
+              onPress={this.logout.bind(this)}/>
           </View>
         </ScrollView>
       </ThemeProvider>
     )
+  }
+
+  logout() {
+    User.logout();
+    this.props.navigation.navigate('Login');
   }
 
   checkRequire(field) {
@@ -122,6 +143,7 @@ class ProfileForm extends React.Component {
     try {
       realm.write(() => {
         realm.create('User', this.buildData(), true);
+        this.props.navigation.navigate('Home');
         alert(JSON.stringify(realm.objects('User')[realm.objects('User').length - 1]));
       });
     } catch (e) {
@@ -159,13 +181,13 @@ class ProfileForm extends React.Component {
 
         <InputTextContainer
           onChangeText={((text) => this.setState({fullName: text})).bind(this)}
-          label='fullName'
+          label='ឈ្មោះពេញ'
           value={this.state.fullName}
           errors={this.state.errors.fullName}
         ></InputTextContainer>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>User name</Text>
+          <Text style={styles.inputLabel}>ឈ្មោះគណនី</Text>
           <TextInput
             style={styles.inputText}
             value={this.state.username}
@@ -174,14 +196,14 @@ class ProfileForm extends React.Component {
         </View>
 
         <RadioGroupContainer
-          options={[{ label: 'Female', value: 'female' }, { label: 'Male', value: 'male' }, { label: 'Other', value: 'other' }]}
+          options={[{ label: 'ស្រី', value: 'ស្រី' }, { label: 'ប្រុស', value: 'ប្រុស' }, { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }]}
           onPress={((text) => this.setState({sex: text})).bind(this)}
           value={this.state.sex}
-          label='Gender'
+          label='ភេទ'
         ></RadioGroupContainer>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>Date of birth</Text>
+          <Text style={styles.inputLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
           <DatePicker
             style={{width: 200}}
             date={this.state.dateOfBirth}
@@ -195,21 +217,33 @@ class ProfileForm extends React.Component {
         </View>
 
         <InputTextContainer
-          onChangeText={((text) => this.setState({phoneNumber: text})).bind(this)}
-          label='phoneNumber'
-          value={this.state.phoneNumber}
-          keyboardType='phone-pad'
-        ></InputTextContainer>
-
-        <InputTextContainer
           onChangeText={((text) => this.setState({nationality: text})).bind(this)}
-          label='nationality'
+          label='សញ្ជាតិ'
           value={this.state.nationality}
           errors={this.state.errors.nationality}
         ></InputTextContainer>
 
+        <InputTextContainer
+          onChangeText={((text) => this.setState({phoneNumber: text})).bind(this)}
+          label='លេខទូរស័ព្ទ'
+          value={this.state.phoneNumber}
+          keyboardType='phone-pad'
+        ></InputTextContainer>
+
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>schoolName</Text>
+          <Text style={styles.inputLabel}>រៀនថ្នាក់ទី</Text>
+          <Picker
+            selectedValue={this.state.grade}
+            onValueChange={(itemValue, itemIndex) => this.setState({grade: itemValue})}>
+            <Picker.Item label="ថ្នាក់ទី9" value="9" />
+            <Picker.Item label="ថ្នាក់ទី10" value="10" />
+            <Picker.Item label="ថ្នាក់ទី11" value="11" />
+            <Picker.Item label="ថ្នាក់ទី12" value="12" />
+          </Picker>
+        </View>
+
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>រៀននៅសាលា</Text>
           <Picker
             selectedValue={this.state.schoolName}
             onValueChange={(itemValue, itemIndex) => this.setState({schoolName: itemValue})}>
@@ -231,21 +265,9 @@ class ProfileForm extends React.Component {
           </Picker>
         </View>
 
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>Grade</Text>
-          <Picker
-            selectedValue={this.state.grade}
-            onValueChange={(itemValue, itemIndex) => this.setState({grade: itemValue})}>
-            <Picker.Item label="ថ្នាក់ទី9" value="9" />
-            <Picker.Item label="ថ្នាក់ទី10" value="10" />
-            <Picker.Item label="ថ្នាក់ទី11" value="11" />
-            <Picker.Item label="ថ្នាក់ទី12" value="12" />
-          </Picker>
-        </View>
-
         <InputTextContainer
           onChangeText={((text) => this.setState({address: text})).bind(this)}
-          label='address'
+          label='អាស័យដ្ឋានបច្ចុប្បន្ន'
           value={this.state.address}
           errors={this.state.errors.address}
         ></InputTextContainer>
@@ -259,71 +281,85 @@ class ProfileForm extends React.Component {
       <View style={styles.box}>
         <Text style={styles.subTitle}>ព័ត៌មានគ្រួសារ</Text>
 
-        <InputTextContainer
-          onChangeText={((text) => this.setState({fatherName: text})).bind(this)}
-          label='fatherName'
-          value={this.state.fatherName}
-          errors={this.state.errors.fatherName}
-        ></InputTextContainer>
+        <View style={{flexDirection: 'row'}}>
+          <InputTextContainer
+            onChangeText={((text) => this.setState({fatherName: text})).bind(this)}
+            label='ឈ្មោះឪពុក'
+            value={this.state.fatherName}
+            errors={this.state.errors.fatherName}
+            style={{flex: 1}}
+          ></InputTextContainer>
 
-        <InputTextContainer
-          onChangeText={((text) => this.setState({fatherOccupation: text})).bind(this)}
-          label='fatherOccupation'
-          value={this.state.fatherOccupation}
-          errors={this.state.errors.fatherOccupation}
-        ></InputTextContainer>
+          <InputTextContainer
+            onChangeText={((text) => this.setState({fatherOccupation: text})).bind(this)}
+            label='មុខរបរ'
+            value={this.state.fatherOccupation}
+            errors={this.state.errors.fatherOccupation}
+            style={{flex: 1}}
+          ></InputTextContainer>
+        </View>
 
-        <InputTextContainer
-          onChangeText={((text) => this.setState({motherName: text})).bind(this)}
-          label='motherName'
-          value={this.state.motherName}
-          errors={this.state.errors.motherName}
-        ></InputTextContainer>
 
-        <InputTextContainer
-          onChangeText={((text) => this.setState({motherOccupation: text})).bind(this)}
-          label='motherOccupation'
-          value={this.state.motherOccupation}
-          errors={this.state.errors.motherOccupation}
-        ></InputTextContainer>
+        <View style={{flexDirection: 'row'}}>
+          <InputTextContainer
+            onChangeText={((text) => this.setState({motherName: text})).bind(this)}
+            label='ម្តាយឈ្មោះ'
+            value={this.state.motherName}
+            errors={this.state.errors.motherName}
+            style={{flex: 1}}
+          ></InputTextContainer>
+
+          <InputTextContainer
+            onChangeText={((text) => this.setState({motherOccupation: text})).bind(this)}
+            label='មុខរបរ'
+            value={this.state.motherOccupation}
+            errors={this.state.errors.motherOccupation}
+            style={{flex: 1}}
+          ></InputTextContainer>
+        </View>
 
         <InputTextContainer
           onChangeText={((text) => this.setState({guidance: text})).bind(this)}
-          label='guidance'
+          label='អាណាព្យាបាល'
           value={this.state.guidance}
           errors={this.state.errors.guidance}
         ></InputTextContainer>
 
         <InputTextContainer
           onChangeText={((text) => this.setState({parentContactNumber: text})).bind(this)}
-          label='parentContactNumber'
+          label='លេខទូរស័ព្ទឪពុកម្តាយ'
           value={this.state.parentContactNumber}
           keyboardType='phone-pad'
         ></InputTextContainer>
 
-        <InputTextContainer
-          onChangeText={((text) => this.setState({numberOfFamilyMember: text})).bind(this)}
-          label='numberOfFamilyMember'
-          value={this.state.numberOfFamilyMember}
-          errors={this.state.errors.numberOfFamilyMember}
-          keyboardType='numeric'
-        ></InputTextContainer>
+        <View style={{flexDirection: 'row'}}>
+          <InputTextContainer
+            onChangeText={((text) => this.setState({numberOfFamilyMember: text})).bind(this)}
+            label='ចំនួនសមាជិកគ្រួសារ'
+            value={this.state.numberOfFamilyMember}
+            errors={this.state.errors.numberOfFamilyMember}
+            keyboardType='numeric'
+            style={{flex: 1}}
+          ></InputTextContainer>
 
-        <InputTextContainer
-          onChangeText={((text) => this.setState({numberOfSisters: text})).bind(this)}
-          label='numberOfSisters'
-          value={this.state.numberOfSisters}
-          errors={this.state.errors.numberOfSisters}
-          keyboardType='numeric'
-        ></InputTextContainer>
+          <InputTextContainer
+            onChangeText={((text) => this.setState({numberOfSisters: text})).bind(this)}
+            label='ចំនួនបងប្អូនស្រី'
+            value={this.state.numberOfSisters}
+            errors={this.state.errors.numberOfSisters}
+            keyboardType='numeric'
+            style={{flex: 1}}
+          ></InputTextContainer>
 
-        <InputTextContainer
-          onChangeText={((text) => this.setState({numberOfBrothers: text})).bind(this)}
-          label='numberOfBrothers'
-          value={this.state.numberOfBrothers}
-          errors={this.state.errors.numberOfBrothers}
-          keyboardType='numeric'
-        ></InputTextContainer>
+          <InputTextContainer
+            onChangeText={((text) => this.setState({numberOfBrothers: text})).bind(this)}
+            label='ចំនួនបងប្អូនប្រុស'
+            value={this.state.numberOfBrothers}
+            errors={this.state.errors.numberOfBrothers}
+            keyboardType='numeric'
+            style={{flex: 1}}
+          ></InputTextContainer>
+        </View>
       </View>
     )
   }
@@ -334,69 +370,69 @@ class ProfileForm extends React.Component {
         <Text style={styles.subTitle}>ស្ថានភាពគ្រួសារ</Text>
 
         <RadioGroupContainer
-          options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
+          options={[{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}
           onPress={((text) => this.setState({isDivorce: text})).bind(this)}
           value={this.state.isDivorce}
-          label='isDivorce'
+          label='តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?'
         ></RadioGroupContainer>
 
         <RadioGroupContainer
-          options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
+          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
           onPress={((text) => this.setState({isDisable: text})).bind(this)}
           value={this.state.isDisable}
-          label='isDisable'
+          label='តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?'
         ></RadioGroupContainer>
 
         <RadioGroupContainer
-          options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
+          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
           onPress={((text) => this.setState({isDomesticViolence: text})).bind(this)}
           value={this.state.isDomesticViolence}
-          label='isDomesticViolence'
+          label='តើក្នុងគ្រួសាររបស់សិស្សមានការប្រើប្រាស់នូវអពើហិង្សាដែរឬទេ?'
         ></RadioGroupContainer>
 
         <RadioGroupContainer
-          options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
+          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
           onPress={((text) => this.setState({isSmoking: text})).bind(this)}
           value={this.state.isSmoking}
-          label='isSmoking'
+          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានជក់បារីដែរឬទេ?'
         ></RadioGroupContainer>
 
         <RadioGroupContainer
-          options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
+          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
           onPress={((text) => this.setState({isAlcoholic: text})).bind(this)}
           value={this.state.isAlcoholic}
-          label='isAlcoholic'
+          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនសុរាទេ?'
         ></RadioGroupContainer>
 
         <RadioGroupContainer
-          options={[{ label: 'No', value: false }, { label: 'Yes', value: true }]}
+          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
           onPress={((text) => this.setState({isDrug: text})).bind(this)}
           value={this.state.isDrug}
-          label='isDrug'
+          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនគ្រឿងញៀនដែរឬទេ?'
         ></RadioGroupContainer>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>houseType</Text>
+          <Text style={styles.inputLabel}>តើប្អូនមានប្រភេទផ្ទះបែបណា?</Text>
           <Picker
             selectedValue={this.state.houseType}
             onValueChange={(itemValue, itemIndex) => this.setState({houseType: itemValue})}>
-            <Picker.Item label="ផ្ទះឈើ" value="wooden_house" />
-            <Picker.Item label="ផ្ទះថ្ម" value="concrete_house" />
-            <Picker.Item label="ផ្ទះស័ង្កសី" value="zinc_house" />
-            <Picker.Item label="ផ្ទះស្លឹក" value="leaf_house" />
+            <Picker.Item label="ផ្ទះឈើ" value="ផ្ទះឈើ" />
+            <Picker.Item label="ផ្ទះថ្ម" value="ផ្ទះថ្ម" />
+            <Picker.Item label="ផ្ទះស័ង្កសី" value="ផ្ទះស័ង្កសី" />
+            <Picker.Item label="ផ្ទះស្លឹក" value="ផ្ទះស្លឹក" />
           </Picker>
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>collectiveIncome per month (គិតជារៀល)</Text>
+          <Text style={styles.inputLabel}>តើគ្រួសារប្អូនមានចំណូលប្រចាំខែប៉ុន្មាន? (គិតជារៀល)</Text>
           <Picker
             selectedValue={this.state.collectiveIncome}
             onValueChange={(itemValue, itemIndex) => this.setState({collectiveIncome: itemValue})}>
-            <Picker.Item label="ក្រោម 25ម៉ឺន" value="0-250_000" />
-            <Picker.Item label="ចន្លោះ 25ម៉ឺន-50ម៉ឺន" value="250_000-50_0000" />
-            <Picker.Item label="ចន្លោះ 50ម៉ឺន-75ម៉ឺន" value="500_000R-750_000" />
-            <Picker.Item label="ចន្លោះ 75ម៉ឺន-1លាន" value="750_000-1000_000" />
-            <Picker.Item label="លើសពី 1លាន" value="Above_1M" />
+            <Picker.Item label="ក្រោម 25ម៉ឺន" value="0-25ម៉ឺន" />
+            <Picker.Item label="ចន្លោះ 25ម៉ឺន-50ម៉ឺន" value="25ម៉ឺន-50ម៉ឺន" />
+            <Picker.Item label="ចន្លោះ 50ម៉ឺន-75ម៉ឺន" value="50ម៉ឺន-75ម៉ឺន" />
+            <Picker.Item label="ចន្លោះ 75ម៉ឺន-1លាន" value="75ម៉ឺន-1លាន" />
+            <Picker.Item label="លើស1លាន" value="លើស1លាន" />
           </Picker>
         </View>
       </View>

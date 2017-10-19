@@ -16,6 +16,5 @@ export default  AccountNav = StackNavigator({
   ProfileForm: { screen: ProfileForm },
 }, {
   initialRouteName: 'Login',
-  // headerMode: 'none'
+  headerMode: 'none'
 });
-

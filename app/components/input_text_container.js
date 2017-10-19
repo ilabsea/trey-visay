@@ -16,8 +16,10 @@ class InputTextContainer extends Component {
       return <Text key={i} style={styles.errorText}>{message}</Text>
     })
 
+    const {style, ...props} = this.props;
+
     return (
-      <View style={styles.inputContainer}>
+      <View style={[styles.inputContainer, style]}>
         <Text style={styles.inputLabel}>{this.props.label}</Text>
         <TextInput
           style={ styles.inputText }

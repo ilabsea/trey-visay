@@ -5,30 +5,27 @@ import {
   ScrollView,
   TextInput,
   StyleSheet,
-  Button,
-  KeyboardAvoidingView,
   Alert,
   TouchableOpacity,
   AsyncStorage,
+  Image,
 } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
+// Utils
 import realm from '../schema';
-import ProfileForm from '../screens/profile_form';
+import User from '../utils/user';
+
+// Components
+import BackgroundImage from '../components/image_background';
+import Button from '../components/button';
 
 // Source for form
 // https://facebook.github.io/react/docs/forms.html
-
-class Login extends Component {
-  static navigationOptions = {
-    title: 'Trey Visay',
-  };
-
+export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = { username: '', password: '' };
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentWillMount() {
@@ -45,102 +42,127 @@ class Login extends Component {
 
   handleSubmit(event) {
     let users = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"');
-
-    if (!!users.length) {
-      AsyncStorage.setItem('token', users[0].uuid,
-        () => {
-          this.props.navigation.navigate('ProfileForm');
-        }
-      );
-
-    } else {
-      Alert.alert(
+    if (!users.length) {
+      return Alert.alert(
         'Incorrect username or password',
-        'The username or passwrod you entered is incorrect. Please try atain.')
+        'The username or passwrod you entered is incorrect. Please try atain.');
     }
 
+    User.setLogin(users[0].uuid);
+
+    if (!!users[0].dateOfBirth) {
+      // @Todo: check navigation
+      return this.props.navigation.navigate('Home');
+    }
+
+    this.props.navigation.navigate('ProfileForm');
   }
 
   render() {
-    const { navigate } = this.props.navigation;
     const isEnabled = this.state.username.length && this.state.password.length;
+    const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
 
     return (
-      <KeyboardAvoidingView behavior='padding' style={styles.container}>
-        <View style={{flexGrow: 1}}>
-          <View style={{marginTop: 16, marginBottom: 16}}>
-            <Text style={styles.subTitle}>Sign In</Text>
-            <Text style={{color: '#fff'}}>to continue to Trey Visay</Text>
-          </View>
+      <LinearGradient style={styles.container} colors={['#4B8FD3', '#1976d2']}>
+        <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
+          <ScrollView style={{padding: 24}}>
+            <View style={{flex: 1, alignItems: 'center'}}>
+              <Image
+                source={require('../assets/images/logo.png')}
+                style={{width: 120, height: 120}}
+              />
 
-          <TextInput
-            style={styles.inputText}
-            onChangeText={this.handleUsernameChange}
-            returnKeyType='next'
-            placeholder='Username'
-            placeholderTextColor='rgba(255,255,255,0.7)'
-            autoCorrect={false}
-            underlineColorAndroid='transparent'
-            onSubmitEditing={() => this.passwordInput.focus()}
-          />
+              <Text style={styles.title}>ត្រីវិស័យ</Text>
+              <Text style={styles.subTitle}>បញ្ចូលគណនី</Text>
+            </View>
 
-          <TextInput
-            style={styles.inputText}
-            secureTextEntry={true}
-            returnKeyType='go'
-            placeholder='Password'
-            placeholderTextColor='rgba(255,255,255,0.7)'
-            onChangeText={this.handlePasswordChange}
-            underlineColorAndroid='transparent'
-            ref={(input) => this.passwordInput = input}
-          />
+            <View>
+              <TextInput
+                style={styles.inputText}
+                onChangeText={this.handleUsernameChange.bind(this)}
+                returnKeyType='next'
+                placeholder='ឈ្មោះគណនី'
+                placeholderTextColor='rgba(0,0,0,0.7)'
+                autoCorrect={false}
+                underlineColorAndroid='transparent'
+                onSubmitEditing={() => this.passwordInput.focus()}
+              />
 
-          <Button
-            onPress={this.handleSubmit}
-            title="Login"
-            accessibilityLabel="Next to continue login"
-            disabled={!isEnabled}
-          />
-        </View>
+              <TextInput
+                style={styles.inputText}
+                secureTextEntry={true}
+                returnKeyType='go'
+                placeholder='លេខសម្ងាត់'
+                placeholderTextColor='rgba(0,0,0,0.7)'
+                onChangeText={this.handlePasswordChange.bind(this)}
+                underlineColorAndroid='transparent'
+                ref={(input) => this.passwordInput = input}
+              />
 
-        <View>
-          <TouchableOpacity
-            style={styles.btnRegister}
-            onPress={() => navigate('Register')}>
-            <Text style={{fontSize: 16, color: '#fff'}}>Create New Trey Visay Account</Text>
-          </TouchableOpacity>
-        </View>
+              <Button
+                onPress={this.handleSubmit.bind(this)}
+                disabled={!isEnabled}
+                style={styles.btnLogin}>
 
-      </KeyboardAvoidingView>
+                <Text style={[styles.loginText, {color: btnSubmitTextColor}]}>ចូលគណនី</Text>
+              </Button>
+            </View>
+
+            <View style={styles.registerContainer}>
+              <Text style={styles.registerText}>មិនទាន់មានគណនីមែនទេ?</Text>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('Register')}>
+                <Text style={styles.btnRegister}>បង្កើតគណនី</Text>
+              </TouchableOpacity>
+            </View>
+          </ScrollView>
+        </BackgroundImage>
+      </LinearGradient>
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    padding: 24,
     flex: 1,
-    backgroundColor: '#1abc9c',
+  },
+  title: {
+    fontSize: 40,
+    fontWeight: 'bold',
+    color: '#fff',
+    marginTop: 20
   },
   subTitle: {
+    fontSize: 24,
+    color: '#fff',
+    marginVertical: 30
+  },
+  inputText: {
+    height: 48,
+    backgroundColor: '#fff',
+    paddingHorizontal: 10,
+    marginBottom: 10,
+    borderRadius: 5
+  },
+  registerText: {
+    color: '#fff',
+  },
+  registerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 30,
+  },
+  btnRegister: {
+    marginLeft: 10,
+    fontWeight: 'bold',
     fontSize: 16,
     color: '#fff'
   },
-  inputText: {
-    height: 40,
-    backgroundColor: 'rgba(255,255,255,0.2)',
-    paddingHorizontal: 10,
-    marginBottom: 20,
-    color: '#fff',
+  loginText: {
+    fontWeight: 'bold',
   },
-  btnRegister: {
-    alignSelf: 'center',
-    borderWidth: 0.5,
-    borderColor: '#fff',
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    marginBottom: 24
+  btnLogin: {
+    marginTop: 24,
   }
 })
-
-export default Login;

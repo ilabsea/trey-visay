@@ -1,10 +1,7 @@
 
 import React from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
-
 import { TextField } from 'react-native-material-textfield';
-
-import {AutoGrowingTextInput} from 'react-native-autogrow-textinput';
 
 export default function CustomTextInput(props) {
   const { input, meta, ...inputProps } = props;
