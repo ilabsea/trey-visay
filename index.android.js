@@ -20,6 +20,7 @@ import Home from './app/screens/home';
 // @Todo: comment it
 import AppNav from './app/screens/app_nav';
 import Profile from './app/screens/profile';
+import Example from './app/screens/example';
 
 export default class TreyVisay extends Component {
   constructor(props) {
@@ -55,9 +56,9 @@ export default class TreyVisay extends Component {
     }
 
     // @Todo: comment this block when final result
-    // if(true) {
-    //   return()
-    // }
+    if(false) {
+      return(<ProfileForm />)
+    }
 
     // if (!this.state.isLoggedin) {
     //   return (<AccountNav/>);

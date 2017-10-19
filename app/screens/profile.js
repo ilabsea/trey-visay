@@ -90,7 +90,7 @@ export default class Profile extends Component {
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>លេខទូរស័ព្ទ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.phoneNumber}</Text>
+          <Text style={styles.itemValue}>: {this.state.user.phoneNumber || '-'}</Text>
         </View>
 
         <View style={styles.item}>
@@ -138,7 +138,7 @@ export default class Profile extends Component {
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>លេខទូរស័ព្ទឪពុកម្តាយ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.parentContactNumber}</Text>
+          <Text style={styles.itemValue}>: {this.state.user.parentContactNumber || '-'}</Text>
         </View>
 
         <View style={styles.item}>
@@ -161,7 +161,7 @@ export default class Profile extends Component {
 
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>ឪពុកម្តាយលែងលះ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDivorce ? 'មាន' : 'គ្មានទេ'}</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDivorce ? 'លែងលះ' : 'គ្មានទេ'}</Text>
         </View>
 
         <View style={styles.item}>
