@@ -56,21 +56,19 @@ export default class TreyVisay extends Component {
     }
 
     // @Todo: comment this block when final result
-    if(false) {
-      return(<ProfileForm />)
+    if(true) {
+      return(<Home />)
     }
 
-    // if (!this.state.isLoggedin) {
-    //   return (<AccountNav/>);
-    // }
-    //
-    // if (this.isUserInfoCompleted()) {
-    //   return (<Home/>)
-    // }
+    if (!this.state.isLoggedin) {
+      return (<AccountNav/>);
+    }
 
-    return(
-      <Home />
-    )
+    if (this.isUserInfoCompleted()) {
+      return (<Home/>)
+    }
+
+    return (<ProfileForm/>);
   }
 }
 
