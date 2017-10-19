@@ -96,7 +96,7 @@ export default class ScrollableHeader extends Component {
                 transform: [{ translateY: imageTranslate }],
               },
             ]}
-            source={require('../assets/images/cat.jpg')}
+            source={this.props.imageBgSrc || require('../assets/images/cat.jpg')}
           />
 
           {this.props.profile && <Animated.Image

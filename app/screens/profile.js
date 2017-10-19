@@ -218,7 +218,7 @@ export default class Profile extends Component {
       <ThemeProvider uiTheme={{}}>
         <ScrollableHeader
           customView={ this._renderScrollViewContent.bind(this) }
-          imageBgSrc={ require('../assets/images/cat.jpg') }
+          imageBgSrc={ require('../assets/images/header_bg.jpg') }
           customHeader={ this._renderHeader.bind(this) }
           profile={require('../assets/images/default_profile.png')}
           profileSize={PROFILE_SIZE}
