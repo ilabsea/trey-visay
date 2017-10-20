@@ -12,7 +12,8 @@ import {
   ThemeProvider,
   Toolbar,
   COLOR,
-  Avatar
+  Avatar,
+  Icon,
 } from 'react-native-material-ui';
 
 const uiTheme = {
@@ -27,6 +28,16 @@ const uiTheme = {
 };
 
 class Dashboard extends Component {
+  static navigationOptions = {
+    drawerLabel: 'ត្រីវិស័យ',
+    drawerIcon: ({ tintColor }) => (
+      <ThemeProvider uiTheme={{}}>
+        <Icon name="home" />
+      </ThemeProvider>
+    ),
+  };
+
+
   constructor(props, context) {
     super(props, context);
 
@@ -34,10 +45,6 @@ class Dashboard extends Component {
       active: 'Today',
     };
   }
-
-  static navigationOptions = {
-    title: 'Menu',
-  };
 
   navigate() {
     this.props.navigation.navigate('DrawerOpen'); // open drawer

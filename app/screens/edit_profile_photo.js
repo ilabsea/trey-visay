@@ -3,12 +3,27 @@ import {
   Text,
   View,
   Button,
-  ScrollView
+  ScrollView,
+  TouchableOpacity,
 } from 'react-native';
 
+import {
+  ThemeProvider,
+  Icon,
+} from 'react-native-material-ui';
+
 export default class EditProfilePhoto extends Component {
-  static navigationOptions = {
-    drawerLabel: 'EditProfilePhoto',
+  static navigationOptions = ({ navigation }) => {
+    const { goBack } = navigation;
+
+    return {
+      title: 'កែសម្រួល',
+      headerLeft: <ThemeProvider uiTheme={{}}>
+                    <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
+                      <Icon name='close' />
+                    </TouchableOpacity>
+                  </ThemeProvider>,
+    }
   };
 
   render() {

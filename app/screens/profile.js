@@ -23,6 +23,15 @@ import ScrollableHeader from '../components/scrollable_header';
 const PROFILE_SIZE = 120;
 
 export default class Profile extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: null,
+    title: 'ប្រវត្តិរូបសង្ខេប',
+    drawerIcon: ({ tintColor }) => (
+      <ThemeProvider uiTheme={{}}>
+        <Icon name="person" />
+      </ThemeProvider>
+    ),
+  });
 
   constructor(props) {
     super(props);

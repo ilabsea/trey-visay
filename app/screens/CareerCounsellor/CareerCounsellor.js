@@ -6,7 +6,11 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { ThemeProvider, Button } from 'react-native-material-ui';
+import {
+  ThemeProvider,
+  Icon,
+  Button,
+} from 'react-native-material-ui';
 
 // const uiTheme = {
 //     palette: {
@@ -21,9 +25,13 @@ import { ThemeProvider, Button } from 'react-native-material-ui';
 
 export default class CareerCounsellor extends Component {
   static navigationOptions = {
-    drawerLabel: 'CareerCounsellor',
+    drawerLabel: 'ប្រឹក្សាអាជីព',
     headerTitle: 'Career Counsellor',
-
+    drawerIcon: ({ tintColor }) => (
+      <ThemeProvider uiTheme={{}}>
+        <Icon name="list" />
+      </ThemeProvider>
+    ),
   };
 
   render() {

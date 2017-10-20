@@ -6,9 +6,19 @@ import {
   ScrollView
 } from 'react-native';
 
+import {
+  ThemeProvider,
+  Icon,
+} from 'react-native-material-ui';
+
 class About extends Component {
   static navigationOptions = {
-    drawerLabel: 'About',
+    drawerLabel: 'អំពីកម្មវិធី',
+    drawerIcon: ({ tintColor }) => (
+      <ThemeProvider uiTheme={{}}>
+        <Icon name="list" />
+      </ThemeProvider>
+    ),
   };
 
   render() {

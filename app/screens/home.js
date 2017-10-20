@@ -1,5 +1,8 @@
 import React from 'react';
-import { DrawerNavigator, StackNavigator } from 'react-navigation';
+import {
+  DrawerNavigator,
+  StackNavigator,
+} from 'react-navigation';
 
 // Screens
 import Dashboard from './dashboard';
@@ -30,7 +33,6 @@ const profileStack = StackNavigator(
     EditFamilySituation: {screen: EditFamilySituation},
   });
 
-
 const HomeScreen = DrawerNavigator(
   {
     Dashboard: { screen: Dashboard },
@@ -43,9 +45,9 @@ const HomeScreen = DrawerNavigator(
     },
   },
   {
-    // initialRouteName: 'Dashboard',
+    initialRouteName: 'Dashboard',
     // initialRouteName: 'CareerCounsellorScreen',
-    initialRouteName: 'ProfileStack',
+    // initialRouteName: 'ProfileStack',
     contentComponent: DrawerMenu,
     contentOptions: {
       activeTintColor: '#e91e63',
