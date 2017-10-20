@@ -16,6 +16,8 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
+import User from '../utils/user';
+
 const uiTheme = {
     palette: {
         primaryColor: COLOR.green500,
@@ -37,7 +39,6 @@ class Dashboard extends Component {
     ),
   };
 
-
   constructor(props, context) {
     super(props, context);
 
@@ -50,6 +51,11 @@ class Dashboard extends Component {
     this.props.navigation.navigate('DrawerOpen'); // open drawer
   }
 
+  logout() {
+    User.logout();
+    this.props.screenProps.rootNavigation.dispatch({type: 'Navigation/RESET', routeName: 'Home', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]})
+  }
+
   render() {
     return (
       <ThemeProvider uiTheme={uiTheme}>
@@ -57,6 +63,7 @@ class Dashboard extends Component {
           <Toolbar
             leftElement="menu"
             centerElement="Dashboard"
+            searchable={{}}
             isSearchActive={false}
             rightElement={
               <TouchableOpacity style={styles.avatarContainer}>
@@ -68,6 +75,7 @@ class Dashboard extends Component {
 
           <ScrollView style={styles.scrollContainer}>
             <Text>hello</Text>
+            <Button title='ចាកចេញ' onPress={this.logout.bind(this)}/>
           </ScrollView>
         </View>
       </ThemeProvider>

@@ -42,7 +42,21 @@ const SCHOOL_NAMES = [
   "អនុវិទ្យាល័យហ.សទួលសុភី", "វិទ្យាល័យហ.សក្រូចឆ្មារ", "វិទ្យាល័យសម្តេចហ៊ុនសែនប៉ើសពីរ",
   "វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក", "វិទ្យាល័យជីហែ", "វិទ្យាល័យក្រុមព្រះមហាលាភ"];
 
-export default class ProfileForm extends React.Component {
+export default class ProfileForm extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'បំពេញប្រវត្តិរូបសង្ខេប',
+      headerStyle: { backgroundColor: '#1976d2' },
+      headerTitleStyle : {color: '#fff'},
+      headerRight: (<ThemeProvider uiTheme={{}}>
+                    <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => navigation.state.params.handleSubmit()}>
+                      <Icon name="done" color='#fff' size={24} />
+                      <Text style={styles.saveText}>រក្សាទុក</Text>
+                    </TouchableOpacity>
+                   </ThemeProvider>),
+    }
+  };
+
   constructor(props) {
     super(props)
     this.state = {
@@ -55,8 +69,10 @@ export default class ProfileForm extends React.Component {
   }
 
   componentDidMount() {
+    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
+
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    user = Object.assign({}, user, {sex: 'ស្រី', nationality: 'ខ្មែរ', grad: '9',
+    user = Object.assign({}, user, {sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9',
                                     schoolName: 'សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ',
                                     houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន'})
     this.setState({user: user});
@@ -68,8 +84,6 @@ export default class ProfileForm extends React.Component {
         <ScrollView>
           {!!this.state.user &&
             <View>
-              {this._renderHeader()}
-
               <View style={styles.container}>
                 { CONTENTS.map((obj, i) => {
                   return( <View key={i}>{this._renderSection(obj, i)}</View>)
@@ -111,7 +125,7 @@ export default class ProfileForm extends React.Component {
 
   logout() {
     User.logout();
-    this.props.navigation.navigate('Login');
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]});
   }
 
   _toggleExpanded(collapsedIndex) {
@@ -152,6 +166,8 @@ export default class ProfileForm extends React.Component {
     if (foundInSection2) {
       this.setState({collapsed1: false})
     }
+
+    this.setState({collapsed2: false})
   }
 
   handleSubmit() {
@@ -163,8 +179,8 @@ export default class ProfileForm extends React.Component {
     try {
       realm.write(() => {
         realm.create('User', this.buildData(), true);
-        this.props.navigation.navigate('Home');
-        alert(JSON.stringify(realm.objects('User')[realm.objects('User').length - 1]));
+        this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+        // alert(JSON.stringify(realm.objects('User')[realm.objects('User').length - 1]));
       });
     } catch (e) {
       alert(e);
@@ -177,20 +193,6 @@ export default class ProfileForm extends React.Component {
     user.numberOfBrothers     = parseInt(user.numberOfBrothers);
     user.numberOfSisters      = parseInt(user.numberOfSisters);
     return user;
-  }
-
-  _renderHeader() {
-    return(
-      <Toolbar
-        centerElement="បំពេញប្រវត្តិរូបសង្ខេប"
-        rightElement={
-          <TouchableOpacity style={{flexDirection: 'row'}} onPress={this.handleSubmit.bind(this)}>
-            <Icon name="done" color='#fff' size={24} />
-            <Text style={styles.saveText}>រក្សាទុក</Text>
-          </TouchableOpacity>
-        }
-      />
-    )
   }
 
   _renderPersonalInfo() {

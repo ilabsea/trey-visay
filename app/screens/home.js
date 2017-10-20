@@ -21,7 +21,6 @@ const careerCounsellorStack = StackNavigator(
     CareerCounsellorScreen: { screen: CareerCounsellor},
     PersonalUnderstandingFormScreen: { screen: PersonalUnderstandingForm}
   },
-
 );
 
 const profileStack = StackNavigator(
