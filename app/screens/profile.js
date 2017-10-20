@@ -237,16 +237,20 @@ const styles = StyleSheet.create({
   itemTitle: {
     flex: 1,
     fontSize: 20,
-    fontWeight: 'bold'
+    fontFamily: 'KhmerOureang',
+    color: '#111'
   },
   itemLabel: {
-    fontSize: 16,
     flex: 1,
+    fontSize: 16,
+    fontFamily: 'Kantumruy',
   },
   itemValue: {
     flex: 2,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'KantumruyBold',
+    color: '#111'
+
   },
   avataContainer: {
     position: 'absolute',

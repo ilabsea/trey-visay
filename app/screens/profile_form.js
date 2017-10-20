@@ -42,7 +42,7 @@ const SCHOOL_NAMES = [
   "អនុវិទ្យាល័យហ.សទួលសុភី", "វិទ្យាល័យហ.សក្រូចឆ្មារ", "វិទ្យាល័យសម្តេចហ៊ុនសែនប៉ើសពីរ",
   "វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក", "វិទ្យាល័យជីហែ", "វិទ្យាល័យក្រុមព្រះមហាលាភ"];
 
-class ProfileForm extends React.Component {
+export default class ProfileForm extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -463,5 +463,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
 })
-
-export default ProfileForm;
