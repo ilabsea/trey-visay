@@ -56,7 +56,7 @@ export default class Profile extends Component {
       <View style={[styles.box, {marginTop: 60}]}>
         <View style={styles.item}>
           <Text style={styles.itemTitle}>ព័ត៌មានផ្ទាល់ខ្លួន</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditPersonalInfo')}>
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
@@ -109,7 +109,7 @@ export default class Profile extends Component {
       <View style={styles.box}>
         <View style={styles.item}>
           <Text style={styles.itemTitle}>ព័ត៌មានគ្រួសារ</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilyInfo')}>
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
@@ -147,7 +147,7 @@ export default class Profile extends Component {
       <View style={styles.box}>
         <View style={styles.item}>
           <Text style={styles.itemTitle}>ស្ថានភាពគ្រួសារ</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilySituation')}>
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
@@ -198,7 +198,7 @@ export default class Profile extends Component {
         centerElement="My Profile"
         rightElement='edit'
         onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-        onRightElementPress={() => this.props.navigation.navigate('About')}
+        onRightElementPress={() => this.props.navigation.navigate('EditProfilePhoto')}
         style={{
           container: {backgroundColor: 'transparent'}
         }}

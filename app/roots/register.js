@@ -58,8 +58,10 @@ class Register extends Component {
     try {
       realm.write(() => {
         realm.create('User', this.buildData());
-        User.setLogin(this.state.uuid);
-        this.props.navigation.navigate('ProfileForm');
+        User.setLogin(this.state.uuid, ()=> {
+          this.props.navigation.navigate('ProfileForm');
+        });
+
       });
     } catch (e) {
       console.log("Error on creation");

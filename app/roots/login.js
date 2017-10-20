@@ -48,14 +48,14 @@ export default class Login extends Component {
         'The username or passwrod you entered is incorrect. Please try atain.');
     }
 
-    User.setLogin(users[0].uuid);
+    User.setLogin(users[0].uuid, ()=>{
+      if (!!users[0].dateOfBirth) {
+        // @Todo: check navigation
+        return this.props.navigation.navigate('Home');
+      }
 
-    if (!!users[0].dateOfBirth) {
-      // @Todo: check navigation
-      return this.props.navigation.navigate('Home');
-    }
-
-    this.props.navigation.navigate('ProfileForm');
+      this.props.navigation.navigate('ProfileForm');
+    });
   }
 
   render() {
