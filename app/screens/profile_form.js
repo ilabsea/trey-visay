@@ -23,6 +23,7 @@ import Collapsible from 'react-native-collapsible';
 // Utils
 import realm from '../schema';
 import User from '../utils/user';
+import styles from '../assets/style_sheets/profile_form';
 
 // Components
 import RadioGroupContainer from '../components/radio_group_container';
@@ -178,21 +179,13 @@ export default class ProfileForm extends Component {
 
     try {
       realm.write(() => {
-        realm.create('User', this.buildData(), true);
+        realm.create('User', this.state.user, true);
         this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
         // alert(JSON.stringify(realm.objects('User')[realm.objects('User').length - 1]));
       });
     } catch (e) {
       alert(e);
     }
-  }
-
-  buildData() {
-    let user = Object.assign({}, this.state.user);
-    user.numberOfFamilyMember = parseInt(user.numberOfFamilyMember);
-    user.numberOfBrothers     = parseInt(user.numberOfBrothers);
-    user.numberOfSisters      = parseInt(user.numberOfSisters);
-    return user;
   }
 
   _renderPersonalInfo() {
@@ -331,7 +324,7 @@ export default class ProfileForm extends Component {
           <InputTextContainer
             onChangeText={((text) => this._setUserState('numberOfFamilyMember', text)).bind(this)}
             label='ចំនួនសមាជិកគ្រួសារ'
-            value={this.state.user.numberOfFamilyMember || ''}
+            value={this.state.user.numberOfFamilyMember}
             errors={this.state.errors.numberOfFamilyMember}
             keyboardType='numeric'
             style={{flex: 1}}/>
@@ -339,7 +332,7 @@ export default class ProfileForm extends Component {
           <InputTextContainer
             onChangeText={((text) => this._setUserState('numberOfSisters', text)).bind(this)}
             label='ចំនួនបងប្អូនស្រី'
-            value={this.state.user.numberOfSisters || ''}
+            value={this.state.user.numberOfSisters}
             errors={this.state.errors.numberOfSisters}
             keyboardType='numeric'
             style={{flex: 1}}/>
@@ -347,7 +340,7 @@ export default class ProfileForm extends Component {
           <InputTextContainer
             onChangeText={((text) => this._setUserState('numberOfBrothers', text)).bind(this)}
             label='ចំនួនបងប្អូនប្រុស'
-            value={this.state.user.numberOfBrothers || ''}
+            value={this.state.user.numberOfBrothers}
             errors={this.state.errors.numberOfBrothers}
             keyboardType='numeric'
             style={{flex: 1}}/>
@@ -423,45 +416,3 @@ export default class ProfileForm extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-  },
-  inputText: {
-    height: 40,
-    paddingLeft: 5,
-    paddingRight: 5,
-    maxWidth: 500
-  },
-  subTitle: {
-    fontSize: 20,
-    fontWeight: 'bold'
-  },
-  inputContainer: {
-    padding: 2,
-    marginTop: 18,
-    marginBottom: 18,
-    maxWidth: 500
-  },
-  errorText: {
-    color: 'rgb(221,44,0)',
-    fontSize: 12,
-    lineHeight: 14
-  },
-  saveText: {
-    color: '#fff',
-    marginLeft: 10,
-    marginRight: 16,
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  box: {
-    marginBottom: 10,
-    borderWidth: 1,
-    borderColor: '#eee',
-    padding: 16,
-    backgroundColor: '#fff'
-  },
-})

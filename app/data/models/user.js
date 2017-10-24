@@ -27,9 +27,9 @@ User.schema = {
     motherOccupation: { type: 'string', optional: true },
     guidance: { type: 'string', optional: true },
     parentContactNumber: { type: 'string', optional: true },
-    numberOfFamilyMember: { type: 'int', default: 0 },
-    numberOfSisters: { type: 'int', default: 0 },
-    numberOfBrothers: { type: 'int', default: 0 },
+    numberOfFamilyMember: { type: 'string', optional: true },
+    numberOfSisters: { type: 'string', optional: true },
+    numberOfBrothers: { type: 'string', optional: true },
     // * family Situation
     isDivorce: { type: 'bool', default: false },
     isDisable: { type: 'bool', default: false },

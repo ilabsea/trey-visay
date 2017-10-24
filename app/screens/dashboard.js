@@ -20,12 +20,12 @@ import User from '../utils/user';
 
 const uiTheme = {
     palette: {
-        primaryColor: COLOR.green500,
+      primaryColor: '#1976d2',
     },
     toolbar: {
-        container: {
-            height: 50,
-        },
+      container: {
+        height: 50,
+      },
     },
 };
 
@@ -64,12 +64,6 @@ class Dashboard extends Component {
             leftElement="menu"
             centerElement="Dashboard"
             searchable={{}}
-            isSearchActive={false}
-            rightElement={
-              <TouchableOpacity style={styles.avatarContainer}>
-                <Avatar text="A" size={30} />
-              </TouchableOpacity>
-            }
             onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
           />
 

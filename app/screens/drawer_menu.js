@@ -14,6 +14,9 @@ export default CustomDrawerContentComponent = (props) => {
   return (
     <View style={styles.container}>
       <DrawerItems {...props} />
+      <TouchableOpacity>
+        <Text>ចាកចេញ</Text>
+      </TouchableOpacity>
     </View>
   )
 };

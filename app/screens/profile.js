@@ -39,8 +39,12 @@ export default class Profile extends Component {
   }
 
   componentWillMount() {
+    this.refreshState();
+  }
+
+  refreshState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    this.setState({user: user})
+    this.setState({user: user});
   }
 
   _renderScrollViewContent() {
@@ -65,7 +69,7 @@ export default class Profile extends Component {
       <View style={[styles.box, {marginTop: 60}]}>
         <View style={styles.item}>
           <Text style={styles.itemTitle}>ព័ត៌មានផ្ទាល់ខ្លួន</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditPersonalInfo')}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditPersonalInfo', { refresh: this.refreshState.bind(this) })}>
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
@@ -118,7 +122,7 @@ export default class Profile extends Component {
       <View style={styles.box}>
         <View style={styles.item}>
           <Text style={styles.itemTitle}>ព័ត៌មានគ្រួសារ</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilyInfo')}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilyInfo', { refresh: this.refreshState.bind(this) })}>
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
@@ -156,7 +160,7 @@ export default class Profile extends Component {
       <View style={styles.box}>
         <View style={styles.item}>
           <Text style={styles.itemTitle}>ស្ថានភាពគ្រួសារ</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilySituation')}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilySituation', { refresh: this.refreshState.bind(this) })}>
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
@@ -233,15 +237,14 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
   box: {
     marginTop: 10,
-    marginHorizontal: 24,
+    marginHorizontal: 16,
     borderWidth: 1,
     borderColor: '#eee',
-    padding: 16,
     backgroundColor: '#fff'
   },
   item: {
     flexDirection: 'row',
-    padding: 10
+    padding: 16
   },
   itemTitle: {
     flex: 1,
