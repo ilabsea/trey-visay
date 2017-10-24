@@ -12,8 +12,11 @@ import {
   ThemeProvider,
   Toolbar,
   COLOR,
-  Avatar
+  Avatar,
+  Icon,
 } from 'react-native-material-ui';
+
+import User from '../utils/user';
 
 const uiTheme = {
     palette: {
@@ -27,6 +30,15 @@ const uiTheme = {
 };
 
 class Dashboard extends Component {
+  static navigationOptions = {
+    drawerLabel: 'ត្រីវិស័យ',
+    drawerIcon: ({ tintColor }) => (
+      <ThemeProvider uiTheme={{}}>
+        <Icon name="home" />
+      </ThemeProvider>
+    ),
+  };
+
   constructor(props, context) {
     super(props, context);
 
@@ -35,12 +47,13 @@ class Dashboard extends Component {
     };
   }
 
-  static navigationOptions = {
-    title: 'Menu',
-  };
-
   navigate() {
     this.props.navigation.navigate('DrawerOpen'); // open drawer
+  }
+
+  logout() {
+    User.logout();
+    this.props.screenProps.rootNavigation.dispatch({type: 'Navigation/RESET', routeName: 'Home', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]})
   }
 
   render() {
@@ -50,6 +63,7 @@ class Dashboard extends Component {
           <Toolbar
             leftElement="menu"
             centerElement="Dashboard"
+            searchable={{}}
             isSearchActive={false}
             rightElement={
               <TouchableOpacity style={styles.avatarContainer}>
@@ -61,6 +75,7 @@ class Dashboard extends Component {
 
           <ScrollView style={styles.scrollContainer}>
             <Text>hello</Text>
+            <Button title='ចាកចេញ' onPress={this.logout.bind(this)}/>
           </ScrollView>
         </View>
       </ThemeProvider>

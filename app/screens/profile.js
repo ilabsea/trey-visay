@@ -23,22 +23,24 @@ import ScrollableHeader from '../components/scrollable_header';
 const PROFILE_SIZE = 120;
 
 export default class Profile extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: null,
+    title: 'ប្រវត្តិរូបសង្ខេប',
+    drawerIcon: ({ tintColor }) => (
+      <ThemeProvider uiTheme={{}}>
+        <Icon name="person" />
+      </ThemeProvider>
+    ),
+  });
 
   constructor(props) {
     super(props);
-    this.state = { user: {} }
-
-    // alert(JSON.stringify(this.state.user));
-
-    this._renderPersonalInfo = this._renderPersonalInfo.bind(this);
-    this._renderFamilyInfo = this._renderFamilyInfo.bind(this);
-    this._renderFamilySituation = this._renderFamilySituation.bind(this);
+    this.state = { user: {} };
   }
 
   componentWillMount() {
-    // this.state.user = realm.objects('User')[0];
-    let users = realm.objects('User').filtered('uuid="' + User.getID() + '"');
-    this.setState({user: users[0]})
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    this.setState({user: user})
   }
 
   _renderScrollViewContent() {
@@ -63,7 +65,7 @@ export default class Profile extends Component {
       <View style={[styles.box, {marginTop: 60}]}>
         <View style={styles.item}>
           <Text style={styles.itemTitle}>ព័ត៌មានផ្ទាល់ខ្លួន</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditPersonalInfo')}>
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
@@ -90,7 +92,7 @@ export default class Profile extends Component {
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>លេខទូរស័ព្ទ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.phoneNumber}</Text>
+          <Text style={styles.itemValue}>: {this.state.user.phoneNumber || '-'}</Text>
         </View>
 
         <View style={styles.item}>
@@ -116,7 +118,7 @@ export default class Profile extends Component {
       <View style={styles.box}>
         <View style={styles.item}>
           <Text style={styles.itemTitle}>ព័ត៌មានគ្រួសារ</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilyInfo')}>
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
@@ -138,7 +140,7 @@ export default class Profile extends Component {
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>លេខទូរស័ព្ទឪពុកម្តាយ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.parentContactNumber}</Text>
+          <Text style={styles.itemValue}>: {this.state.user.parentContactNumber || '-'}</Text>
         </View>
 
         <View style={styles.item}>
@@ -154,14 +156,14 @@ export default class Profile extends Component {
       <View style={styles.box}>
         <View style={styles.item}>
           <Text style={styles.itemTitle}>ស្ថានភាពគ្រួសារ</Text>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilySituation')}>
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
 
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>ឪពុកម្តាយលែងលះ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDivorce ? 'មាន' : 'គ្មានទេ'}</Text>
+          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDivorce ? 'លែងលះ' : 'គ្មានទេ'}</Text>
         </View>
 
         <View style={styles.item}>
@@ -205,7 +207,7 @@ export default class Profile extends Component {
         centerElement="My Profile"
         rightElement='edit'
         onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-        onRightElementPress={() => this.props.navigation.navigate('About')}
+        onRightElementPress={() => this.props.navigation.navigate('EditProfilePhoto')}
         style={{
           container: {backgroundColor: 'transparent'}
         }}
@@ -218,7 +220,7 @@ export default class Profile extends Component {
       <ThemeProvider uiTheme={{}}>
         <ScrollableHeader
           customView={ this._renderScrollViewContent.bind(this) }
-          imageBgSrc={ require('../assets/images/cat.jpg') }
+          imageBgSrc={ require('../assets/images/header_bg.jpg') }
           customHeader={ this._renderHeader.bind(this) }
           profile={require('../assets/images/default_profile.png')}
           profileSize={PROFILE_SIZE}
@@ -229,16 +231,6 @@ export default class Profile extends Component {
 }
 
 const styles = StyleSheet.create({
-  fill: {
-    flex: 1,
-  },
-  row: {
-    height: 40,
-    margin: 16,
-    backgroundColor: '#D3D3D3',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   box: {
     marginTop: 10,
     marginHorizontal: 24,
@@ -254,16 +246,20 @@ const styles = StyleSheet.create({
   itemTitle: {
     flex: 1,
     fontSize: 20,
-    fontWeight: 'bold'
+    fontFamily: 'KhmerOureang',
+    color: '#111'
   },
   itemLabel: {
-    fontSize: 16,
     flex: 1,
+    fontSize: 16,
+    fontFamily: 'Kantumruy',
   },
   itemValue: {
     flex: 2,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'KantumruyBold',
+    color: '#111'
+
   },
   avataContainer: {
     position: 'absolute',

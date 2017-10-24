@@ -21,14 +21,9 @@ import BackgroundImage from '../components/image_background';
 import Button from '../components/button';
 
 class Register extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   const { goBack } = navigation;
-
-  //   return {
-  //     title: 'បង្កើតគណនី Trey Visay',
-  //     headerRight: <Button title="Sign In" onPress={() => goBack()} />,
-  //   };
-  // };
+  static navigationOptions = {
+    header: null
+  };
 
   constructor(props) {
     super(props)
@@ -58,8 +53,10 @@ class Register extends Component {
     try {
       realm.write(() => {
         realm.create('User', this.buildData());
-        User.setLogin(this.state.uuid);
-        this.props.navigation.navigate('ProfileForm');
+        User.setLogin(this.state.uuid, ()=> {
+          this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigate', routeName:'ProfileForm'}]})
+        });
+
       });
     } catch (e) {
       console.log("Error on creation");

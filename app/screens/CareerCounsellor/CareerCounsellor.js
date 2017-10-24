@@ -7,8 +7,11 @@ import {
   StyleSheet,
 } from 'react-native';
 
-import { ThemeProvider, Button } from 'react-native-material-ui';
-import Icon from 'react-native-vector-icons/Entypo';
+import {
+  ThemeProvider,
+  Icon,
+  Button,
+} from 'react-native-material-ui';
 
 // const uiTheme = {
 //     palette: {
@@ -22,11 +25,16 @@ import Icon from 'react-native-vector-icons/Entypo';
 // };
 
 export default class CareerCounsellor extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    drawerLabel: 'Career',
+  static navigationOptions = {
+    drawerLabel: 'ប្រឹក្សាអាជីព',
     headerTitle: 'Career Counsellor',
-    headerLeft: <TouchableOpacity><Icon name="menu" size={30} style={{marginLeft: 10}} onPress={() => navigation.navigate('DrawerOpen')}/></TouchableOpacity>
-  });
+    headerLeft: <TouchableOpacity><Icon name="menu" size={30} style={{marginLeft: 10}} onPress={() => navigation.navigate('DrawerOpen')}/></TouchableOpacity>,
+    drawerIcon: ({ tintColor }) => (
+      <ThemeProvider uiTheme={{}}>
+        <Icon name="list" />
+      </ThemeProvider>
+    ),
+  };
 
   render() {
     return (

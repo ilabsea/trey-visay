@@ -6,12 +6,14 @@ import {
   ScrollView,
   TouchableHighlight,
   TouchableNativeFeedback,
-  Icon,
-  formValueSelector,
 } from 'react-native';
 
+import {
+  ThemeProvider,
+  Icon,
+} from 'react-native-material-ui';
 
-import { reduxForm, Field, submit } from 'redux-form';
+import { reduxForm, Field, submit, formValueSelector } from 'redux-form';
 import { Provider } from 'react-redux';
 import store from '../../redux/store';
 
@@ -36,6 +38,11 @@ class PersonalUnderstandingForm extends React.Component {
     headerRight: <TouchableNativeFeedback>
                   <Text style={styles.buttonText} onPress={() => navigation.state.params.handleSubmit()}>រក្សាទុក</Text>
                  </TouchableNativeFeedback>,
+    drawerIcon: ({ tintColor }) => (
+      <ThemeProvider uiTheme={{}}>
+        <Icon name="list" />
+      </ThemeProvider>
+    ),
 
   });
 

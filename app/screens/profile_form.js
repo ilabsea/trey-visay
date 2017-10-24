@@ -8,6 +8,7 @@ import {
   Button,
   Picker,
   TouchableOpacity,
+  TouchableHighlight,
 } from 'react-native';
 
 import {
@@ -15,7 +16,9 @@ import {
   Toolbar,
   Icon
 } from 'react-native-material-ui';
+
 import DatePicker from 'react-native-datepicker';
+import Collapsible from 'react-native-collapsible';
 
 // Utils
 import realm from '../schema';
@@ -27,98 +30,113 @@ import InputTextContainer from '../components/input_text_container';
 
 let formError = {};
 
-class ProfileForm extends React.Component {
-  // https://github.com/react-community/react-navigation/issues/145
-  // static navigationOptions = ({ navigation }) => {
-  //   const { state } = navigation;
+const CONTENTS = [
+  {header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo'},
+  {header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo'},
+  {header: 'ស្ថានភាពគ្រួសារ', body: '_renderFamilySituation'}];
 
-  //   return {
-  //     title: 'បំពេញប្រវត្តិរូបសង្ខេប',
-  //     headerRight: <Button title="Save" onPress={() => state.params.handleSubmit()} />,
-  //   };
-  // };
+const SCHOOL_NAMES = [
+  "សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ", "វិទ្យាល័យជាស៊ីមព្រែកអញ្ចាញ", "វិទ្យាល័យព្រែកលៀប",
+  "វិទ្យាល័យហ៊ុនសែនកំពង់ចាម", "អនុវិទ្យាល័យគោកព្រីង", "វិទ្យាល័យសម្តេចតេជោហ៊ុនសែនសណ្តែក",
+  "វិទ្យាល័យហោណាំហុងព្រៃញា", "វិទ្យាល័យល្វា", "វិទ្យាល័យហ.សពាមជីកង",
+  "អនុវិទ្យាល័យហ.សទួលសុភី", "វិទ្យាល័យហ.សក្រូចឆ្មារ", "វិទ្យាល័យសម្តេចហ៊ុនសែនប៉ើសពីរ",
+  "វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក", "វិទ្យាល័យជីហែ", "វិទ្យាល័យក្រុមព្រះមហាលាភ"];
+
+export default class ProfileForm extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'បំពេញប្រវត្តិរូបសង្ខេប',
+      headerStyle: { backgroundColor: '#1976d2' },
+      headerTitleStyle : {color: '#fff'},
+      headerRight: (<ThemeProvider uiTheme={{}}>
+                    <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => navigation.state.params.handleSubmit()}>
+                      <Icon name="done" color='#fff' size={24} />
+                      <Text style={styles.saveText}>រក្សាទុក</Text>
+                    </TouchableOpacity>
+                   </ThemeProvider>),
+    }
+  };
 
   constructor(props) {
     super(props)
     this.state = {
-      uuid: '',
-      fullName: '',
-      password: '',
-      username: '',
-      sex: 'ស្រី',
-      dateOfBirth: '',
-      phoneNumber: '',
-      nationality: 'ខ្មែរ',
-      schoolName: 'សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ',
-      grade: '9',
-      address: '',
-      // *family information
-      fatherName: '',
-      fatherOccupation: '',
-      motherName: '',
-      motherOccupation: '',
-      guidance: '',
-      parentContactNumber: '',
-      numberOfFamilyMember: '',
-      numberOfSisters: '',
-      numberOfBrothers: '',
-      // * family Situation
-      isDivorce: false,
-      isDisable: false,
-      isDomesticViolence: false,
-      isSmoking: false,
-      isAlcoholic: false,
-      isDrug: false,
-      houseType: 'ផ្ទះឈើ',
-      collectiveIncome: 'លើស1លាន',
-      errors: {}
+      user: '',
+      errors: {},
+      collapsed0: false,
+      collapsed1: true,
+      collapsed2: true,
     }
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.buildData = this.buildData.bind(this);
-    this.isValidForm = this.isValidForm.bind(this);
-    this.checkRequire = this.checkRequire.bind(this);
   }
 
   componentDidMount() {
-    // this.props.navigation.setParams({ handleSubmit: this.handleSubmit });
-    let users = realm.objects('User').filtered('uuid="' + User.getID() + '"');
-    let user = users[0];
-    this.setState({
-      fullName: user.fullName,
-      uuid: user.uuid,
-      password: user.password,
-      username: user.username
-    });
+    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
+
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    user = Object.assign({}, user, {sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9',
+                                    schoolName: 'សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ',
+                                    houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន'})
+    this.setState({user: user});
   }
 
   render() {
     return (
       <ThemeProvider uiTheme={{}}>
-        <ScrollView style={styles.scrollContainer}>
-          {this._renderHeader()}
-          <View style={styles.container}>
-            {this._renderPersonalInfo()}
-            {this._renderFamilyInfo()}
-            {this._renderFamilySituation()}
+        <ScrollView>
+          {!!this.state.user &&
+            <View>
+              <View style={styles.container}>
+                { CONTENTS.map((obj, i) => {
+                  return( <View key={i}>{this._renderSection(obj, i)}</View>)
+                })}
 
-            <Button
-              title='ចាកចេញ'
-              color='red'
-              onPress={this.logout.bind(this)}/>
-          </View>
+                <Button
+                  title="ចាកចេញ"
+                  color='red'
+                  onPress={this.logout.bind(this)}
+                />
+              </View>
+            </View>
+          }
         </ScrollView>
       </ThemeProvider>
     )
   }
 
+  _setUserState(field, value) {
+    let user = {...this.state.user};
+    user[field] = value;
+    this.setState({...this.state, user: user});
+  }
+
+  _renderSection(obj, i) {
+    let collapsedSection = 'collapsed' + i;
+    return (
+      <View style={styles.box}>
+        <TouchableHighlight onPress={this._toggleExpanded.bind(this, collapsedSection)}>
+          <Text style={styles.subTitle}>{obj.header}</Text>
+        </TouchableHighlight>
+
+        <Collapsible collapsed={this.state[collapsedSection]}>
+          {this[obj.body]()}
+        </Collapsible>
+      </View>
+    )
+  }
+
   logout() {
     User.logout();
-    this.props.navigation.navigate('Login');
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]});
+  }
+
+  _toggleExpanded(collapsedIndex) {
+    let obj = {};
+    obj[collapsedIndex] = !this.state[collapsedIndex];
+    this.setState(obj);
   }
 
   checkRequire(field) {
-    if (!this.state[field].length) {
+    let value = this.state.user[field];
+    if ( value == null || !value.length) {
       formError[field] = ["can't be blank"];
     } else {
       delete formError[field];
@@ -129,7 +147,6 @@ class ProfileForm extends React.Component {
   isValidForm() {
     fields = [ 'fullName', 'dateOfBirth', 'nationality', 'address', 'fatherName', 'fatherOccupation', 'motherName',
                'motherOccupation', 'guidance', 'numberOfFamilyMember','numberOfSisters','numberOfBrothers'];
-
     for (var i = 0; i < fields.length; i++) {
       this.checkRequire(fields[i]);
     }
@@ -137,14 +154,33 @@ class ProfileForm extends React.Component {
     return Object.keys(formError).length == 0;
   }
 
+  _openErrorCollapsed() {
+    let section1 = ['fullName', 'dateOfBirth', 'nationality', 'address'];
+    let section2 = ['fatherName', 'fatherOccupation', 'motherName', 'motherOccupation', 'guidance', 'numberOfFamilyMember','numberOfSisters','numberOfBrothers'];
+    let errors = Object.keys(formError);
+    let foundInSection1 = errors.some(r=> section1.includes(r));
+    let foundInSection2 = errors.some(r=> section2.includes(r));
+    if (foundInSection1) {
+      this.setState({collapsed0: false})
+    }
+    if (foundInSection2) {
+      this.setState({collapsed1: false})
+    }
+
+    this.setState({collapsed2: false})
+  }
+
   handleSubmit() {
-    if (!this.isValidForm()) { return; }
+    if (!this.isValidForm()) {
+      this._openErrorCollapsed();
+      return;
+    }
 
     try {
       realm.write(() => {
         realm.create('User', this.buildData(), true);
-        this.props.navigation.navigate('Home');
-        alert(JSON.stringify(realm.objects('User')[realm.objects('User').length - 1]));
+        this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+        // alert(JSON.stringify(realm.objects('User')[realm.objects('User').length - 1]));
       });
     } catch (e) {
       alert(e);
@@ -152,89 +188,71 @@ class ProfileForm extends React.Component {
   }
 
   buildData() {
-    let data = Object.assign({}, this.state);
-    delete data.errors;
-    data.numberOfFamilyMember = parseInt(this.state.numberOfFamilyMember);
-    data.numberOfBrothers     = parseInt(this.state.numberOfBrothers);
-    data.numberOfSisters      = parseInt(this.state.numberOfSisters);
-    return data;
-  }
-
-  _renderHeader() {
-    return(
-      <Toolbar
-        centerElement="បំពេញប្រវត្តិរូបសង្ខេប"
-        rightElement={
-          <TouchableOpacity style={{flexDirection: 'row'}} onPress={this.handleSubmit}>
-            <Icon name="done" color='#fff' size={24} />
-            <Text style={styles.saveText}>រក្សាទុក</Text>
-          </TouchableOpacity>
-        }
-      />
-    )
+    let user = Object.assign({}, this.state.user);
+    user.numberOfFamilyMember = parseInt(user.numberOfFamilyMember);
+    user.numberOfBrothers     = parseInt(user.numberOfBrothers);
+    user.numberOfSisters      = parseInt(user.numberOfSisters);
+    return user;
   }
 
   _renderPersonalInfo() {
     return (
-      <View style={styles.box}>
-        <Text style={styles.subTitle}>ព័ត៌មានផ្ទាល់ខ្លួន</Text>
-
+      <View>
         <InputTextContainer
-          onChangeText={((text) => this.setState({fullName: text})).bind(this)}
+          onChangeText={((text) => this._setUserState('fullName', text)).bind(this)}
           label='ឈ្មោះពេញ'
-          value={this.state.fullName}
-          errors={this.state.errors.fullName}
-        ></InputTextContainer>
+          value={this.state.user.fullName}
+          errors={this.state.errors.fullName} />
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>ឈ្មោះគណនី</Text>
           <TextInput
             style={styles.inputText}
-            value={this.state.username}
-            editable={false}
-          />
+            value={this.state.user.username}
+            editable={false} />
         </View>
 
-        <RadioGroupContainer
-          options={[{ label: 'ស្រី', value: 'ស្រី' }, { label: 'ប្រុស', value: 'ប្រុស' }, { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }]}
-          onPress={((text) => this.setState({sex: text})).bind(this)}
-          value={this.state.sex}
-          label='ភេទ'
-        ></RadioGroupContainer>
+        <View style={styles.inputContainer}>
+          <Text style={styles.inputLabel}>ភេទ</Text>
+          <Picker
+            selectedValue={this.state.user.sex}
+            onValueChange={(itemValue, itemIndex) => this._setUserState('sex', itemValue)}>
+            <Picker.Item label="ស្រី" value="ស្រី" />
+            <Picker.Item label="ប្រុស" value="ប្រុស" />
+            <Picker.Item label="ផ្សេងៗ" value="ផ្សេងៗ" />
+          </Picker>
+        </View>
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
           <DatePicker
             style={{width: 200}}
-            date={this.state.dateOfBirth}
+            date={this.state.user.dateOfBirth}
             mode="date"
             androidMode='spinner'
             placeholder="select date"
             format="DD-MMM-YYYY"
-            onDateChange={(date) => {this.setState({dateOfBirth: date})}}
-          />
+            onDateChange={(date) => {this._setUserState('dateOfBirth', date)}} />
           <Text style={styles.errorText}>{this.state.errors.dateOfBirth}</Text>
         </View>
 
         <InputTextContainer
-          onChangeText={((text) => this.setState({nationality: text})).bind(this)}
+          onChangeText={((text) => this._setUserState('nationality', text)).bind(this)}
           label='សញ្ជាតិ'
-          value={this.state.nationality}
-          errors={this.state.errors.nationality}
-        ></InputTextContainer>
+          value={this.state.user.nationality}
+          errors={this.state.errors.nationality} />
 
         <InputTextContainer
-          onChangeText={((text) => this.setState({phoneNumber: text})).bind(this)}
+          onChangeText={((text) => this._setUserState('phoneNumber', text)).bind(this)}
           label='លេខទូរស័ព្ទ'
-          value={this.state.phoneNumber}
-          keyboardType='phone-pad'
-        ></InputTextContainer>
+          value={this.state.user.phoneNumber}
+          keyboardType='phone-pad' />
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>រៀនថ្នាក់ទី</Text>
           <Picker
-            selectedValue={this.state.grade}
-            onValueChange={(itemValue, itemIndex) => this.setState({grade: itemValue})}>
+            selectedValue={this.state.user.grade}
+            onValueChange={(itemValue, itemIndex) => this._setUserState('grade', itemValue)}>
             <Picker.Item label="ថ្នាក់ទី9" value="9" />
             <Picker.Item label="ថ្នាក់ទី10" value="10" />
             <Picker.Item label="ថ្នាក់ទី11" value="11" />
@@ -245,120 +263,94 @@ class ProfileForm extends React.Component {
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>រៀននៅសាលា</Text>
           <Picker
-            selectedValue={this.state.schoolName}
-            onValueChange={(itemValue, itemIndex) => this.setState({schoolName: itemValue})}>
-            <Picker.Item label="សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ" value="សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ" />
-            <Picker.Item label="វិទ្យាល័យជាស៊ីមព្រែកអញ្ចាញ" value="វិទ្យាល័យជាស៊ីមព្រែកអញ្ចាញ" />
-            <Picker.Item label="វិទ្យាល័យព្រែកលៀប" value="វិទ្យាល័យព្រែកលៀប" />
-            <Picker.Item label="វិទ្យាល័យហ៊ុនសែនកំពង់ចាម" value="វិទ្យាល័យហ៊ុនសែនកំពង់ចាម" />
-            <Picker.Item label="អនុវិទ្យាល័យគោកព្រីង" value="អនុវិទ្យាល័យគោកព្រីង" />
-            <Picker.Item label="វិទ្យាល័យសម្តេចតេជោហ៊ុនសែនសណ្តែក" value="វិទ្យាល័យសម្តេចតេជោហ៊ុនសែនសណ្តែក" />
-            <Picker.Item label="វិទ្យាល័យហោណាំហុងព្រៃញា" value="វិទ្យាល័យហោណាំហុងព្រៃញា" />
-            <Picker.Item label="វិទ្យាល័យល្វា" value="វិទ្យាល័យល្វា" />
-            <Picker.Item label="វិទ្យាល័យហ.សពាមជីកង" value="វិទ្យាល័យហ.សពាមជីកង" />
-            <Picker.Item label="អនុវិទ្យាល័យហ.សទួលសុភី" value="អនុវិទ្យាល័យហ.សទួលសុភី" />
-            <Picker.Item label="វិទ្យាល័យហ.សក្រូចឆ្មារ" value="វិទ្យាល័យហ.សក្រូចឆ្មារ" />
-            <Picker.Item label="វិទ្យាល័យសម្តេចហ៊ុនសែនប៉ើសពីរ" value="វិទ្យាល័យសម្តេចហ៊ុនសែនប៉ើសពីរ" />
-            <Picker.Item label="វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក" value="វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក" />
-            <Picker.Item label="វិទ្យាល័យជីហែ" value="វិទ្យាល័យជីហែ" />
-            <Picker.Item label="វិទ្យាល័យក្រុមព្រះមហាលាភ" value="វិទ្យាល័យក្រុមព្រះមហាលាភ" />
+            selectedValue={this.state.user.schoolName}
+            onValueChange={(itemValue, itemIndex) => this._setUserState('schoolName', itemValue)}>
+            { SCHOOL_NAMES.map((name, i) => (
+              <Picker.Item key={i} label={name} value={name} />
+            ))}
           </Picker>
+
+          <InputTextContainer
+            onChangeText={((text) => this._setUserState('address', text)).bind(this)}
+            label='អាស័យដ្ឋានបច្ចុប្បន្ន'
+            value={this.state.user.address}
+            errors={this.state.errors.address} />
         </View>
-
-        <InputTextContainer
-          onChangeText={((text) => this.setState({address: text})).bind(this)}
-          label='អាស័យដ្ឋានបច្ចុប្បន្ន'
-          value={this.state.address}
-          errors={this.state.errors.address}
-        ></InputTextContainer>
-
       </View>
     )
   }
 
   _renderFamilyInfo() {
     return (
-      <View style={styles.box}>
-        <Text style={styles.subTitle}>ព័ត៌មានគ្រួសារ</Text>
-
+      <View>
         <View style={{flexDirection: 'row'}}>
           <InputTextContainer
-            onChangeText={((text) => this.setState({fatherName: text})).bind(this)}
+            onChangeText={((text) => this._setUserState('fatherName', text)).bind(this)}
             label='ឈ្មោះឪពុក'
-            value={this.state.fatherName}
+            value={this.state.user.fatherName}
             errors={this.state.errors.fatherName}
-            style={{flex: 1}}
-          ></InputTextContainer>
+            style={{flex: 1}}/>
 
           <InputTextContainer
-            onChangeText={((text) => this.setState({fatherOccupation: text})).bind(this)}
+            onChangeText={((text) => this._setUserState('fatherOccupation', text)).bind(this)}
             label='មុខរបរ'
-            value={this.state.fatherOccupation}
+            value={this.state.user.fatherOccupation}
             errors={this.state.errors.fatherOccupation}
-            style={{flex: 1}}
-          ></InputTextContainer>
+            style={{flex: 1}}/>
         </View>
-
 
         <View style={{flexDirection: 'row'}}>
           <InputTextContainer
-            onChangeText={((text) => this.setState({motherName: text})).bind(this)}
+            onChangeText={((text) => this._setUserState('motherName', text)).bind(this)}
             label='ម្តាយឈ្មោះ'
-            value={this.state.motherName}
+            value={this.state.user.motherName}
             errors={this.state.errors.motherName}
-            style={{flex: 1}}
-          ></InputTextContainer>
+            style={{flex: 1}}/>
 
           <InputTextContainer
-            onChangeText={((text) => this.setState({motherOccupation: text})).bind(this)}
+            onChangeText={((text) => this._setUserState('motherOccupation', text)).bind(this)}
             label='មុខរបរ'
-            value={this.state.motherOccupation}
+            value={this.state.user.motherOccupation}
             errors={this.state.errors.motherOccupation}
-            style={{flex: 1}}
-          ></InputTextContainer>
+            style={{flex: 1}}/>
         </View>
 
         <InputTextContainer
-          onChangeText={((text) => this.setState({guidance: text})).bind(this)}
+          onChangeText={((text) => this._setUserState('guidance', text)).bind(this)}
           label='អាណាព្យាបាល'
-          value={this.state.guidance}
-          errors={this.state.errors.guidance}
-        ></InputTextContainer>
+          value={this.state.user.guidance}
+          errors={this.state.errors.guidance}/>
 
         <InputTextContainer
-          onChangeText={((text) => this.setState({parentContactNumber: text})).bind(this)}
+          onChangeText={((text) => this._setUserState('parentContactNumber', text)).bind(this)}
           label='លេខទូរស័ព្ទឪពុកម្តាយ'
-          value={this.state.parentContactNumber}
-          keyboardType='phone-pad'
-        ></InputTextContainer>
+          value={this.state.user.parentContactNumber}
+          keyboardType='phone-pad'/>
 
         <View style={{flexDirection: 'row'}}>
           <InputTextContainer
-            onChangeText={((text) => this.setState({numberOfFamilyMember: text})).bind(this)}
+            onChangeText={((text) => this._setUserState('numberOfFamilyMember', text)).bind(this)}
             label='ចំនួនសមាជិកគ្រួសារ'
-            value={this.state.numberOfFamilyMember}
+            value={this.state.user.numberOfFamilyMember || ''}
             errors={this.state.errors.numberOfFamilyMember}
             keyboardType='numeric'
-            style={{flex: 1}}
-          ></InputTextContainer>
+            style={{flex: 1}}/>
 
           <InputTextContainer
-            onChangeText={((text) => this.setState({numberOfSisters: text})).bind(this)}
+            onChangeText={((text) => this._setUserState('numberOfSisters', text)).bind(this)}
             label='ចំនួនបងប្អូនស្រី'
-            value={this.state.numberOfSisters}
+            value={this.state.user.numberOfSisters || ''}
             errors={this.state.errors.numberOfSisters}
             keyboardType='numeric'
-            style={{flex: 1}}
-          ></InputTextContainer>
+            style={{flex: 1}}/>
 
           <InputTextContainer
-            onChangeText={((text) => this.setState({numberOfBrothers: text})).bind(this)}
+            onChangeText={((text) => this._setUserState('numberOfBrothers', text)).bind(this)}
             label='ចំនួនបងប្អូនប្រុស'
-            value={this.state.numberOfBrothers}
+            value={this.state.user.numberOfBrothers || ''}
             errors={this.state.errors.numberOfBrothers}
             keyboardType='numeric'
-            style={{flex: 1}}
-          ></InputTextContainer>
+            style={{flex: 1}}/>
         </View>
       </View>
     )
@@ -366,56 +358,48 @@ class ProfileForm extends React.Component {
 
   _renderFamilySituation() {
     return (
-      <View style={styles.box}>
-        <Text style={styles.subTitle}>ស្ថានភាពគ្រួសារ</Text>
-
+      <View>
         <RadioGroupContainer
           options={[{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}
-          onPress={((text) => this.setState({isDivorce: text})).bind(this)}
-          value={this.state.isDivorce}
-          label='តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?'
-        ></RadioGroupContainer>
+          onPress={((text) => this._setUserState('isDivorce', text)).bind(this)}
+          value={this.state.user.isDivorce}
+          label='តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?' />
 
         <RadioGroupContainer
           options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this.setState({isDisable: text})).bind(this)}
-          value={this.state.isDisable}
-          label='តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?'
-        ></RadioGroupContainer>
+          onPress={((text) => this._setUserState('isDisable', text)).bind(this)}
+          value={this.state.user.isDisable}
+          label='តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?' />
 
         <RadioGroupContainer
           options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this.setState({isDomesticViolence: text})).bind(this)}
-          value={this.state.isDomesticViolence}
-          label='តើក្នុងគ្រួសាររបស់សិស្សមានការប្រើប្រាស់នូវអពើហិង្សាដែរឬទេ?'
-        ></RadioGroupContainer>
+          onPress={((text) => this._setUserState('isDomesticViolence', text)).bind(this)}
+          value={this.state.user.isDomesticViolence}
+          label='តើក្នុងគ្រួសាររបស់សិស្សមានការប្រើប្រាស់នូវអពើហិង្សាដែរឬទេ?' />
 
         <RadioGroupContainer
           options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this.setState({isSmoking: text})).bind(this)}
-          value={this.state.isSmoking}
-          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានជក់បារីដែរឬទេ?'
-        ></RadioGroupContainer>
+          onPress={((text) => this._setUserState('isSmoking', text)).bind(this)}
+          value={this.state.user.isSmoking}
+          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានជក់បារីដែរឬទេ?' />
 
         <RadioGroupContainer
           options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this.setState({isAlcoholic: text})).bind(this)}
-          value={this.state.isAlcoholic}
-          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនសុរាទេ?'
-        ></RadioGroupContainer>
+          onPress={((text) => this._setUserState('isAlcoholic', text)).bind(this)}
+          value={this.state.user.isAlcoholic}
+          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនសុរាទេ?' />
 
         <RadioGroupContainer
           options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this.setState({isDrug: text})).bind(this)}
-          value={this.state.isDrug}
-          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនគ្រឿងញៀនដែរឬទេ?'
-        ></RadioGroupContainer>
+          onPress={((text) => this._setUserState('isDrug', text)).bind(this)}
+          value={this.state.user.isDrug}
+          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនគ្រឿងញៀនដែរឬទេ?' />
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>តើប្អូនមានប្រភេទផ្ទះបែបណា?</Text>
           <Picker
-            selectedValue={this.state.houseType}
-            onValueChange={(itemValue, itemIndex) => this.setState({houseType: itemValue})}>
+            selectedValue={this.state.user.houseType}
+            onValueChange={(itemValue, itemIndex) => this._setUserState('houseType', itemValue)}>
             <Picker.Item label="ផ្ទះឈើ" value="ផ្ទះឈើ" />
             <Picker.Item label="ផ្ទះថ្ម" value="ផ្ទះថ្ម" />
             <Picker.Item label="ផ្ទះស័ង្កសី" value="ផ្ទះស័ង្កសី" />
@@ -426,8 +410,8 @@ class ProfileForm extends React.Component {
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>តើគ្រួសារប្អូនមានចំណូលប្រចាំខែប៉ុន្មាន? (គិតជារៀល)</Text>
           <Picker
-            selectedValue={this.state.collectiveIncome}
-            onValueChange={(itemValue, itemIndex) => this.setState({collectiveIncome: itemValue})}>
+            selectedValue={this.state.user.collectiveIncome}
+            onValueChange={(itemValue, itemIndex) => this._setUserState('collectiveIncome', itemValue)}>
             <Picker.Item label="ក្រោម 25ម៉ឺន" value="0-25ម៉ឺន" />
             <Picker.Item label="ចន្លោះ 25ម៉ឺន-50ម៉ឺន" value="25ម៉ឺន-50ម៉ឺន" />
             <Picker.Item label="ចន្លោះ 50ម៉ឺន-75ម៉ឺន" value="50ម៉ឺន-75ម៉ឺន" />
@@ -441,13 +425,8 @@ class ProfileForm extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  scrollContainer: {
-    flex: 1,
-    flexDirection: 'column',
-  },
   container: {
     flex: 1,
-    flexDirection: 'column',
     padding: 20,
   },
   inputText: {
@@ -458,7 +437,6 @@ const styles = StyleSheet.create({
   },
   subTitle: {
     fontSize: 20,
-    marginBottom: 16,
     fontWeight: 'bold'
   },
   inputContainer: {
@@ -487,5 +465,3 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff'
   },
 })
-
-export default ProfileForm;

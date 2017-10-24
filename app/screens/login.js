@@ -23,13 +23,35 @@ import Button from '../components/button';
 // Source for form
 // https://facebook.github.io/react/docs/forms.html
 export default class Login extends Component {
+  static navigationOptions = {
+    header: null
+  };
+
   constructor(props) {
     super(props);
-    this.state = { username: '', password: '' };
+    this.state = { username: '', password: '', loaded: false };
   }
 
   componentWillMount() {
-    // alert(realm.objects('User').length);
+    User.isLoggedin(this.handleUser.bind(this));
+  }
+
+  isUserInfoCompleted() {
+    let users = realm.objects('User').filtered('uuid="' + User.getID() + '"');
+
+    return !!users.length && !!users[0].dateOfBirth;
+  }
+
+  handleUser(userId) {
+    if (!userId) {
+      return this.setState({loaded: true});
+    }
+
+    if (this.isUserInfoCompleted()) {
+      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+    }
+
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
   }
 
   handleUsernameChange(text) {
@@ -48,19 +70,22 @@ export default class Login extends Component {
         'The username or passwrod you entered is incorrect. Please try atain.');
     }
 
-    User.setLogin(users[0].uuid);
+    User.setLogin(users[0].uuid, ()=>{
+      if (!!users[0].dateOfBirth) {
+        return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+      }
 
-    if (!!users[0].dateOfBirth) {
-      // @Todo: check navigation
-      return this.props.navigation.navigate('Home');
-    }
-
-    this.props.navigation.navigate('ProfileForm');
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
+    });
   }
 
   render() {
     const isEnabled = this.state.username.length && this.state.password.length;
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
+
+    if (!this.state.loaded) {
+      return (<View/>)
+    }
 
     return (
       <LinearGradient style={styles.container} colors={['#4B8FD3', '#1976d2']}>
