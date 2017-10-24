@@ -49,7 +49,7 @@ export default class Profile extends Component {
 
   _renderScrollViewContent() {
     return (
-      <View>
+      <View style={{paddingBottom: 24}}>
         <View style={styles.avataContainer}>
           <Image
             style={styles.avata}
@@ -211,7 +211,7 @@ export default class Profile extends Component {
         centerElement="My Profile"
         rightElement='edit'
         onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-        onRightElementPress={() => this.props.navigation.navigate('EditProfilePhoto')}
+        onRightElementPress={() => this.props.navigation.navigate('EditProfilePhoto', { refresh: this.refreshState.bind(this) })}
         style={{
           container: {backgroundColor: 'transparent'}
         }}

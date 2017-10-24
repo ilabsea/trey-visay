@@ -42,7 +42,7 @@ const HomeScreen = DrawerNavigator(
     PersonalUnderstandingForm: { screen: PersonalUnderstandingForm },
     CareerCounsellorScreen: {
       name: 'CareerCounsellorStack',
-      screen: careerCounsellorStack,
+      screen: careerCounsellorStack
     },
   },
   {

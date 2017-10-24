@@ -66,7 +66,7 @@ export default class ScrollableHeader extends Component {
     let bgColor = this.props.backgroundColor || '#1976d2';
 
     return (
-      <View style={[styles.fill, {paddingBottom: 24}]}>
+      <View style={styles.fill}>
         <StatusBar
           translucent
           barStyle="light-content"

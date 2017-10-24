@@ -63,7 +63,6 @@ class Dashboard extends Component {
           <Toolbar
             leftElement="menu"
             centerElement="Dashboard"
-            searchable={{}}
             onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
           />
 
