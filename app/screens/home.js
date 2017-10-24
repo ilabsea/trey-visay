@@ -7,6 +7,7 @@ import Profile from './profile'
 import DrawerMenu from './drawer_menu';
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
+import { Icon } from 'react-native';
 import {
   StackNavigator,
 } from 'react-navigation';
@@ -28,7 +29,7 @@ const HomeScreen = DrawerNavigator(
     PersonalUnderstandingForm: { screen: PersonalUnderstandingForm },
     CareerCounsellorScreen: {
       name: 'CareerCounsellorStack',
-      screen: careerCounsellorStack
+      screen: careerCounsellorStack,
     },
   },
   {

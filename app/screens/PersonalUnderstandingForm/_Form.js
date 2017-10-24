@@ -1,12 +1,15 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field, formValueSelector, } from 'redux-form';
+import { reduxForm, Field, formValueSelector } from 'redux-form';
 import { ScrollView, View, Text, TouchableOpacity, Button, StyleSheet } from 'react-native';
 
 import CustomTextInput from '../../components/CustomTextInput'
 import CustomRadioGroup from '../../components/CustomRadioGroup'
 import CustomCheckbox from '../../components/CustomCheckbox'
+
+
+import submit from './submit'
 
 function Form(props) {
 
@@ -130,9 +133,7 @@ function Form(props) {
         />
       </View>
 
-      <Button onPress={props.handleSubmit} title="Submit">
-
-      </Button>
+      <Button onPress={props.handleSubmit} title="Submit" />
     </ScrollView>
   );
 
@@ -157,6 +158,7 @@ const styles = StyleSheet.create({
 
 Form = reduxForm({
   form: 'personalUnderstandingForm',
+  onSubmit: submit
 })(Form);
 
 const selector = formValueSelector('personalUnderstandingForm');

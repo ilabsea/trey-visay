@@ -23,7 +23,12 @@ class DrawerMenu extends Component {
   };
 
   onPress() {
-    this.props.navigation.navigate('DrawerClose')
+    this.props.navigation.navigate('DrawerClose');
+  }
+
+  goToCarerrCounsellorScreen(){
+    alert('CareerCounsellorScreen');
+    // this.props.navigation.navigate('CareerCounsellorScreen');
   }
 
   logout() {
@@ -45,7 +50,7 @@ class DrawerMenu extends Component {
             <Text>Dashboard</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.item} onPress={this.onPress.bind(this)}>
+          <TouchableOpacity style={styles.item} onPress={this.goToCarerrCounsellorScreen.bind(this)}>
             <Text>Career</Text>
           </TouchableOpacity>
 

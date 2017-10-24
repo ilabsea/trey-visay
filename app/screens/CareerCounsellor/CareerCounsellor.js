@@ -3,10 +3,12 @@ import {
   View,
   Text,
   TouchableNativeFeedback,
+  TouchableOpacity,
   StyleSheet,
 } from 'react-native';
 
 import { ThemeProvider, Button } from 'react-native-material-ui';
+import Icon from 'react-native-vector-icons/Entypo';
 
 // const uiTheme = {
 //     palette: {
@@ -20,11 +22,11 @@ import { ThemeProvider, Button } from 'react-native-material-ui';
 // };
 
 export default class CareerCounsellor extends Component {
-  static navigationOptions = {
-    drawerLabel: 'CareerCounsellor',
+  static navigationOptions = ({ navigation }) => ({
+    drawerLabel: 'Career',
     headerTitle: 'Career Counsellor',
-
-  };
+    headerLeft: <TouchableOpacity><Icon name="menu" size={30} style={{marginLeft: 10}} onPress={() => navigation.navigate('DrawerOpen')}/></TouchableOpacity>
+  });
 
   render() {
     return (
