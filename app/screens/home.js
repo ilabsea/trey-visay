@@ -16,6 +16,7 @@ import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
 import EditFamilyInfo from './edit_family_info';
 import EditFamilySituation from './edit_family_situation';
+import BrowsePhoto from './browse_photo';
 
 const careerCounsellorStack = StackNavigator(
   {
@@ -32,6 +33,7 @@ const profileStack = StackNavigator(
     EditPersonalInfo: {screen: EditPersonalInfo},
     EditFamilyInfo: {screen: EditFamilyInfo},
     EditFamilySituation: {screen: EditFamilySituation},
+    BrowsePhoto: {screen: BrowsePhoto},
   });
 
 const HomeScreen = DrawerNavigator(

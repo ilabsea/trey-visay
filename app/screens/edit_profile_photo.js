@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  StyleSheet,
 } from 'react-native';
 
 import {
@@ -14,10 +15,11 @@ import {
   Avatar,
 } from 'react-native-material-ui';
 
+import { Dialog } from 'react-native-simple-dialogs';
+
 // Utils
 import realm from '../schema';
 import User from '../utils/user';
-import styles from '../assets/style_sheets/profile_form';
 
 export default class EditProfilePhoto extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -41,6 +43,17 @@ export default class EditProfilePhoto extends Component {
     }
   };
 
+  state = {}
+
+  openDialog(show) {
+    this.setState({ showDialog: show })
+  }
+
+  selectProfilePhoto() {
+    this.openDialog(false);
+    this.props.navigation.navigate('BrowsePhoto');
+  }
+
   render() {
     return (
       <ThemeProvider uiTheme={{}}>
@@ -55,15 +68,41 @@ export default class EditProfilePhoto extends Component {
 
           </TouchableOpacity>
 
-          <TouchableOpacity style={{position: 'absolute', top: 220, left: 24}}>
+          <TouchableOpacity
+            onPress={() => this.openDialog(true)}
+            style={{position: 'absolute', top: 220, left: 24}}>
             <Image
               source={require('../assets/images/default_profile.png')}
               style={{borderRadius: 60, width: 120, height: 120 }}
             />
             <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -87, right: 30, zIndex: 10}}} />
           </TouchableOpacity>
+
+          <Dialog
+            visible={this.state.showDialog}
+            onTouchOutside={() => this.openDialog(false)}
+            contentStyle={{  alignItems: 'flex-start' }}
+            >
+            <TouchableOpacity
+              onPress={this.selectProfilePhoto.bind(this)}
+              style={{padding: 10, flexDirection: 'row'}}>
+              <Text style={styles.listItem}>Select Profile Picture</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={{padding: 10, flexDirection: 'row'}}>
+              <Text style={styles.listItem}>View Profile Picture</Text>
+            </TouchableOpacity>
+          </Dialog>
         </View>
       </ThemeProvider>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  listItem: {
+    fontSize: 20,
+    flex: 1
+  }
+});
+
