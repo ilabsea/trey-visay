@@ -19,6 +19,7 @@
     "react-native-datepicker": "^1.6.0",
     "react-native-dialogs": "0.0.20",
     "react-native-elements": "^0.17.0",
+    "react-native-image-crop-picker": "^0.18.1",
     "react-native-linear-gradient": "^2.3.0",
     "react-native-material-textfield": "^0.10.0",
     "react-native-material-ui": "^1.14.0",

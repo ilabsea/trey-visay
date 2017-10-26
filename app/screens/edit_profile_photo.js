@@ -18,11 +18,12 @@ import {
 } from 'react-native-material-ui';
 
 import { Dialog } from 'react-native-simple-dialogs';
-import styles from '../assets/style_sheets/profile_form';
+import ImagePicker from 'react-native-image-crop-picker';
 
 // Utils
 import realm from '../schema';
 import User from '../utils/user';
+import styles from '../assets/style_sheets/profile_form';
 
 export default class EditProfilePhoto extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -37,13 +38,32 @@ export default class EditProfilePhoto extends Component {
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
+      headerRight: <ThemeProvider uiTheme={{}}>
+                    <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => navigation.state.params.handleSubmit()}>
+                      <Icon name="done" color='#fff' size={24} />
+                      <Text style={styles.saveText}>រក្សាទុក</Text>
+                    </TouchableOpacity>
+                   </ThemeProvider>,
     }
   };
 
-  state = {}
+  state = {user: '', type: '', photo: '', cover: ''};
 
   componentWillMount() {
+    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
     this.refreshState();
+  }
+
+  handleSubmit() {
+    try {
+      realm.write(() => {
+        realm.create('User', this.state.user, true);
+        this.props.navigation.state.params.refresh();
+        this.props.navigation.goBack();
+      });
+    } catch (e) {
+      alert(e);
+    }
   }
 
   openDialog(show) {
@@ -52,62 +72,106 @@ export default class EditProfilePhoto extends Component {
 
   refreshState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-
-    this.setState({user: user});
-  }
-
-  selectProfilePhoto() {
-    this.openDialog(false);
-    this.props.navigation.navigate('SelectPhoto', { refresh: this.refreshState.bind(this), type: 'photo' });
-  }
-
-  selectCoverPhoto() {
-    this.openDialog(false);
-    this.props.navigation.navigate('SelectPhoto', { refresh: this.refreshState.bind(this), type: 'cover' });
-  }
-
-  deleteProfilePhoto() {
-    try {
-      realm.write(() => {
-        realm.create('User', { uuid: this.state.user.uuid, photo: '' }, true);
-        this.openDialog(false);
-        this.refreshState();
-      });
-    } catch (e) {
-      alert(e);
-    }
-  }
-
-  render() {
     let photo = require('../assets/images/default_profile.png');
     let cover = require('../assets/images/header_bg.jpg');
 
-    if (!!this.state.user.photo) {
-      photo = {uri: this.state.user.photo};
+    if (!!user.photo) {
+      photo = {uri: user.photo};
     }
 
-    if (!!this.state.user.cover) {
-      cover = {uri: this.state.user.cover};
+    if (!!user.cover) {
+      cover = {uri: user.cover};
     }
+    this.setState({photo: photo});
+    this.setState({cover: cover});
+    this.setState({user: user});
+  }
 
+  takePhoto() {
+    this.openDialog(false);
+
+    ImagePicker.openCamera({
+      width: 200,
+      height: 200,
+      cropping: true
+    }).then(image => {
+      this.handleSelectedPhoto(image);
+    });
+  }
+
+  selectPhoto() {
+    this.openDialog(false);
+
+    ImagePicker.openPicker({
+      width: 200,
+      height: 200,
+      cropping: true
+    }).then(image => {
+      this.handleSelectedPhoto(image);
+    });
+  }
+
+  handleSelectedPhoto(image) {
+    let source = { uri: image.path };
+
+    if (this.state.type == 'photo') {
+      this.setState({ photo: source });
+      this._setUserState('photo', image.path);
+    } else {
+      this.setState({ cover: source });
+      this._setUserState('cover', image.path);
+    }
+  }
+
+  _setUserState(field, value) {
+    let user = {...this.state.user};
+    user[field] = value;
+    this.setState({...this.state, user: user});
+  }
+
+  viewPhoto() {
+    this.openDialog(false);
+  }
+
+  deletePhoto() {
+    this.openDialog(false);
+
+    let photo = require('../assets/images/default_profile.png');
+    let cover = require('../assets/images/header_bg.jpg');
+
+    if (this.state.type == 'photo') {
+      this.setState({ photo: photo });
+      this._setUserState('photo', '');
+    } else {
+      this.setState({ cover: cover });
+      this._setUserState('cover', '');
+    }
+  }
+
+  handleOpenDialog(type) {
+    this.setState({type: type});
+    this.openDialog(true);
+  }
+
+  render() {
     return (
       <ThemeProvider uiTheme={{}}>
         <View style={{position: 'relative', flex: 1}}>
           <TouchableOpacity
-            onPress={this.selectCoverPhoto.bind(this)}
+            onPress={() => this.handleOpenDialog('cover')}
             style={{position: 'relative', backgroundColor:'pink'}}>
             <Image
-              source={cover}
+              source={this.state.cover}
               style={{width: null, height: 300}}/>
 
             <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -60, right: 10, zIndex: 10}}} />
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => this.openDialog(true)}
+            onPress={() => this.handleOpenDialog('photo')}
             style={{position: 'absolute', top: 220, left: 24}}>
             <Image
-              source={photo}
+              source={this.state.photo}
               style={{borderRadius: 60, width: 120, height: 120 }}/>
 
             <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -87, right: 30, zIndex: 10}}} />
@@ -119,17 +183,26 @@ export default class EditProfilePhoto extends Component {
             contentStyle={{ alignItems: 'flex-start' }} >
 
             <TouchableOpacity
-              onPress={this.selectProfilePhoto.bind(this)}
+              onPress={this.takePhoto.bind(this)}
               style={{padding: 10, flexDirection: 'row'}}>
-              <Text style={styles.listItem}>Select Profile Picture</Text>
+              <Text style={styles.listItem}>Take Picture</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{padding: 10, flexDirection: 'row'}}>
-              <Text style={styles.listItem}>View Profile Picture</Text>
+            <TouchableOpacity
+              onPress={this.selectPhoto.bind(this)}
+              style={{padding: 10, flexDirection: 'row'}}>
+              <Text style={styles.listItem}>Select Picture</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={{padding: 10, flexDirection: 'row'}}
-              onPress={this.deleteProfilePhoto.bind(this)}>
+            <TouchableOpacity
+              onPress={this.viewPhoto.bind(this)}
+              style={{padding: 10, flexDirection: 'row'}}>
+              <Text style={styles.listItem}>View Picture</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={this.deletePhoto.bind(this)}
+              style={{padding: 10, flexDirection: 'row'}}>
 
               <Text style={styles.listItem}>Delete</Text>
             </TouchableOpacity>
