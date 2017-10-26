@@ -48,12 +48,17 @@ export default class Profile extends Component {
   }
 
   _renderScrollViewContent() {
+    let photo = require('../assets/images/default_profile.png');
+
+    if (!!this.state.user.photo) {
+      photo = {uri: this.state.user.photo};
+    }
     return (
       <View style={{paddingBottom: 24}}>
         <View style={styles.avataContainer}>
           <Image
             style={styles.avata}
-            source={require('../assets/images/default_profile.png')}
+            source={photo}
           />
         </View>
 
@@ -220,14 +225,24 @@ export default class Profile extends Component {
   }
 
   render() {
+    let photo = require('../assets/images/default_profile.png');
+    let cover = require('../assets/images/header_bg.jpg');
+
+    if (!!this.state.user.photo) {
+      photo = {uri: this.state.user.photo};
+    }
+    if (!!this.state.user.cover) {
+      cover = {uri: this.state.user.cover};
+    }
+
     return (
       <ThemeProvider uiTheme={{}}>
         <ScrollableHeader
           customView={ this._renderScrollViewContent.bind(this) }
-          imageBgSrc={ require('../assets/images/header_bg.jpg') }
+          imageBgSrc={ cover }
           customHeader={ this._renderHeader.bind(this) }
-          profile={require('../assets/images/default_profile.png')}
-          profileSize={PROFILE_SIZE}
+          profile={ photo }
+          profileSize={ PROFILE_SIZE }
         />
       </ThemeProvider>
     )

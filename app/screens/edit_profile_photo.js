@@ -134,18 +134,13 @@ export default class EditProfilePhoto extends Component {
   }
 
   deletePhoto() {
-    this.openDialog(false);
-
-    let photo = require('../assets/images/default_profile.png');
-    let cover = require('../assets/images/header_bg.jpg');
-
     if (this.state.type == 'photo') {
-      this.setState({ photo: photo });
       this._setUserState('photo', '');
     } else {
-      this.setState({ cover: cover });
       this._setUserState('cover', '');
     }
+
+    this.openDialog(false);
   }
 
   handleOpenDialog(type) {
@@ -154,6 +149,16 @@ export default class EditProfilePhoto extends Component {
   }
 
   render() {
+    let photo = require('../assets/images/default_profile.png');
+    let cover = require('../assets/images/header_bg.jpg');
+
+    if (!!this.state.user.photo) {
+      photo = {uri: this.state.user.photo};
+    }
+    if (!!this.state.user.cover) {
+      cover = {uri: this.state.user.cover};
+    }
+
     return (
       <ThemeProvider uiTheme={{}}>
         <View style={{position: 'relative', flex: 1}}>
@@ -161,7 +166,7 @@ export default class EditProfilePhoto extends Component {
             onPress={() => this.handleOpenDialog('cover')}
             style={{position: 'relative', backgroundColor:'pink'}}>
             <Image
-              source={this.state.cover}
+              source={cover}
               style={{width: null, height: 300}}/>
 
             <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -60, right: 10, zIndex: 10}}} />
@@ -171,7 +176,7 @@ export default class EditProfilePhoto extends Component {
             onPress={() => this.handleOpenDialog('photo')}
             style={{position: 'absolute', top: 220, left: 24}}>
             <Image
-              source={this.state.photo}
+              source={photo}
               style={{borderRadius: 60, width: 120, height: 120 }}/>
 
             <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -87, right: 30, zIndex: 10}}} />
