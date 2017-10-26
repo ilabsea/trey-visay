@@ -129,10 +129,6 @@ export default class EditProfilePhoto extends Component {
     this.setState({...this.state, user: user});
   }
 
-  viewPhoto() {
-    this.openDialog(false);
-  }
-
   deletePhoto() {
     if (this.state.type == 'photo') {
       this._setUserState('photo', '');
@@ -197,12 +193,6 @@ export default class EditProfilePhoto extends Component {
               onPress={this.selectPhoto.bind(this)}
               style={{padding: 10, flexDirection: 'row'}}>
               <Text style={styles.listItem}>Select Picture</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={this.viewPhoto.bind(this)}
-              style={{padding: 10, flexDirection: 'row'}}>
-              <Text style={styles.listItem}>View Picture</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
