@@ -1,3 +1,5 @@
+'use strict';
+
 import React, {Component} from 'react';
 import {
   Text,
@@ -16,6 +18,7 @@ import {
 } from 'react-native-material-ui';
 
 import { Dialog } from 'react-native-simple-dialogs';
+import styles from '../assets/style_sheets/profile_form';
 
 // Utils
 import realm from '../schema';
@@ -45,44 +48,57 @@ export default class EditProfilePhoto extends Component {
 
   state = {}
 
+  componentWillMount() {
+    this.refreshState();
+  }
+
   openDialog(show) {
-    this.setState({ showDialog: show })
+    this.setState({ showDialog: show });
+  }
+
+  refreshState() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    this.setState({user: user});
   }
 
   selectProfilePhoto() {
     this.openDialog(false);
-    this.props.navigation.navigate('BrowsePhoto');
+    this.props.navigation.navigate('SelectProfilePhoto', { refresh: this.refreshState.bind(this) });
   }
 
   render() {
+    let src = require('../assets/images/default_profile.png');
+
+    if (!!this.state.user.photo) {
+      src = {uri: this.state.user.photo};
+    }
+
     return (
       <ThemeProvider uiTheme={{}}>
         <View style={{position: 'relative', flex: 1}}>
           <TouchableOpacity style={{position: 'relative', backgroundColor:'pink'}}>
             <Image
               source={require('../assets/images/header_bg.jpg')}
-              style={{width: null, height: 300}}
-            />
+              style={{width: null, height: 300}}/>
 
             <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -60, right: 10, zIndex: 10}}} />
-
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={() => this.openDialog(true)}
             style={{position: 'absolute', top: 220, left: 24}}>
             <Image
-              source={require('../assets/images/default_profile.png')}
-              style={{borderRadius: 60, width: 120, height: 120 }}
-            />
+              source={src}
+              style={{borderRadius: 60, width: 120, height: 120 }}/>
+
             <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -87, right: 30, zIndex: 10}}} />
           </TouchableOpacity>
 
           <Dialog
             visible={this.state.showDialog}
             onTouchOutside={() => this.openDialog(false)}
-            contentStyle={{  alignItems: 'flex-start' }}
-            >
+            contentStyle={{ alignItems: 'flex-start' }} >
+
             <TouchableOpacity
               onPress={this.selectProfilePhoto.bind(this)}
               style={{padding: 10, flexDirection: 'row'}}>
@@ -98,11 +114,3 @@ export default class EditProfilePhoto extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  listItem: {
-    fontSize: 20,
-    flex: 1
-  }
-});
-

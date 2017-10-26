@@ -40,4 +40,8 @@ export default StyleSheet.create({
     padding: 16,
     backgroundColor: '#fff'
   },
+  listItem: {
+    fontSize: 20,
+    flex: 1
+  }
 });

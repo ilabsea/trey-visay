@@ -13,6 +13,7 @@ User.schema = {
     password: 'string',
     username: { type: 'string', indexed: true },
     sex: { type: 'string', optional: true },
+    photo: { type: 'string', optional: true},
     dateOfBirth: { type: 'string', optional: true },
     phoneNumber: { type: 'string', optional: true },
     nationality: { type: 'string', optional: true },
