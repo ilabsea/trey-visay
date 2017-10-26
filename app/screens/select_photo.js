@@ -11,10 +11,7 @@ import {
   Image,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 // Utils
 import realm from '../schema';
@@ -85,12 +82,19 @@ export default class SelectPhoto extends Component {
     return obj;
   }
 
+  triggerCamera() {
+
+  }
+
   render() {
     return (
       <ScrollView contentContainerStyle={styles.scrollView}>
         <TouchableHighlight
+          onPress={this.triggerCamera.bind(this)}
           style={[{ width: widthItemPerRow, height: widthItemPerRow }, styles.thumb]}>
-          <Text>Camera</Text>
+          <View style={styles.cameraContainer}>
+            <Icon name="camera" size={30} color='#fff' />
+          </View>
         </TouchableHighlight>
 
         {
@@ -125,5 +129,11 @@ styles = StyleSheet.create({
   thumb: {
     marginBottom: 1,
     marginRight: 1
+  },
+  cameraContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#bbb',
   }
 });

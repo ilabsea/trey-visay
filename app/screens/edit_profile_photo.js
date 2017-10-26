@@ -37,12 +37,6 @@ export default class EditProfilePhoto extends Component {
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
-      headerRight: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => navigation.state.params.handleSubmit()}>
-                      <Icon name="done" color='#fff' size={24} />
-                      <Text style={styles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>
-                   </ThemeProvider>,
     }
   };
 
@@ -75,7 +69,7 @@ export default class EditProfilePhoto extends Component {
   deleteProfilePhoto() {
     try {
       realm.write(() => {
-        realm.create('User', {uuid: this.state.user.uuid, photo: ''}, true);
+        realm.create('User', { uuid: this.state.user.uuid, photo: '' }, true);
         this.openDialog(false);
         this.refreshState();
       });
