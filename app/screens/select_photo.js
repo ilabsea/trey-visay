@@ -21,8 +21,9 @@ import realm from '../schema';
 import User from '../utils/user';
 
 const { width } = Dimensions.get('window')
+const widthItemPerRow = width/3-1;
 
-export default class SelectProfilePhoto extends Component {
+export default class SelectPhoto extends Component {
   static navigationOptions = ({ navigation }) => {
     const {goBack} = navigation;
     return {
@@ -67,7 +68,7 @@ export default class SelectProfilePhoto extends Component {
   _handleSubmit(index) {
     try {
       realm.write(() => {
-        realm.create('User', {uuid: this.state.userId, photo: this.state.photos[index].node.image.uri}, true);
+        realm.create('User', this._buildData(index), true);
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });
@@ -76,11 +77,19 @@ export default class SelectProfilePhoto extends Component {
     }
   }
 
+  // The type can be 'photo' or 'cover'
+  _buildData(index) {
+    let obj = { uuid: this.state.userId };
+    obj[this.props.navigation.state.params.type] = this.state.photos[index].node.image.uri;
+
+    return obj;
+  }
+
   render() {
     return (
       <ScrollView contentContainerStyle={styles.scrollView}>
         <TouchableHighlight
-          style={[{ width: width/3-1, height: width/3-1 }, styles.thumb]}>
+          style={[{ width: widthItemPerRow, height: widthItemPerRow }, styles.thumb]}>
           <Text>Camera</Text>
         </TouchableHighlight>
 
@@ -94,8 +103,8 @@ export default class SelectProfilePhoto extends Component {
                 onPress={() => this.setSelected(i)}>
                 <Image
                   style={{
-                    width: width/3-1,
-                    height: width/3-1
+                    width: widthItemPerRow,
+                    height: widthItemPerRow
                   }}
                   source={{uri: p.node.image.uri}}
                 />

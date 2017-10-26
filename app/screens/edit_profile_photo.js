@@ -58,27 +58,52 @@ export default class EditProfilePhoto extends Component {
 
   refreshState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+
     this.setState({user: user});
   }
 
   selectProfilePhoto() {
     this.openDialog(false);
-    this.props.navigation.navigate('SelectProfilePhoto', { refresh: this.refreshState.bind(this) });
+    this.props.navigation.navigate('SelectPhoto', { refresh: this.refreshState.bind(this), type: 'photo' });
+  }
+
+  selectCoverPhoto() {
+    this.openDialog(false);
+    this.props.navigation.navigate('SelectPhoto', { refresh: this.refreshState.bind(this), type: 'cover' });
+  }
+
+  deleteProfilePhoto() {
+    try {
+      realm.write(() => {
+        realm.create('User', {uuid: this.state.user.uuid, photo: ''}, true);
+        this.openDialog(false);
+        this.refreshState();
+      });
+    } catch (e) {
+      alert(e);
+    }
   }
 
   render() {
-    let src = require('../assets/images/default_profile.png');
+    let photo = require('../assets/images/default_profile.png');
+    let cover = require('../assets/images/header_bg.jpg');
 
     if (!!this.state.user.photo) {
-      src = {uri: this.state.user.photo};
+      photo = {uri: this.state.user.photo};
+    }
+
+    if (!!this.state.user.cover) {
+      cover = {uri: this.state.user.cover};
     }
 
     return (
       <ThemeProvider uiTheme={{}}>
         <View style={{position: 'relative', flex: 1}}>
-          <TouchableOpacity style={{position: 'relative', backgroundColor:'pink'}}>
+          <TouchableOpacity
+            onPress={this.selectCoverPhoto.bind(this)}
+            style={{position: 'relative', backgroundColor:'pink'}}>
             <Image
-              source={require('../assets/images/header_bg.jpg')}
+              source={cover}
               style={{width: null, height: 300}}/>
 
             <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -60, right: 10, zIndex: 10}}} />
@@ -88,7 +113,7 @@ export default class EditProfilePhoto extends Component {
             onPress={() => this.openDialog(true)}
             style={{position: 'absolute', top: 220, left: 24}}>
             <Image
-              source={src}
+              source={photo}
               style={{borderRadius: 60, width: 120, height: 120 }}/>
 
             <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -87, right: 30, zIndex: 10}}} />
@@ -107,6 +132,12 @@ export default class EditProfilePhoto extends Component {
 
             <TouchableOpacity style={{padding: 10, flexDirection: 'row'}}>
               <Text style={styles.listItem}>View Profile Picture</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity style={{padding: 10, flexDirection: 'row'}}
+              onPress={this.deleteProfilePhoto.bind(this)}>
+
+              <Text style={styles.listItem}>Delete</Text>
             </TouchableOpacity>
           </Dialog>
         </View>
