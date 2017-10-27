@@ -16,7 +16,8 @@ import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
 import EditFamilyInfo from './edit_family_info';
 import EditFamilySituation from './edit_family_situation';
-import SelectPhoto from './select_photo';
+import Institution from './institution';
+import Video from './video';
 
 const careerCounsellorStack = StackNavigator(
   {
@@ -33,7 +34,6 @@ const profileStack = StackNavigator(
     EditPersonalInfo: {screen: EditPersonalInfo},
     EditFamilyInfo: {screen: EditFamilyInfo},
     EditFamilySituation: {screen: EditFamilySituation},
-    SelectPhoto: {screen: SelectPhoto},
   });
 
 const HomeScreen = DrawerNavigator(
@@ -46,6 +46,8 @@ const HomeScreen = DrawerNavigator(
       name: 'CareerCounsellorStack',
       screen: careerCounsellorStack
     },
+    Institution: { screen: Institution },
+    Video: { screen: Video },
   },
   {
     // initialRouteName: 'Dashboard',

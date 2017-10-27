@@ -11,9 +11,9 @@ import {
 
 import {
   ThemeProvider,
-  Icon,
 } from 'react-native-material-ui';
 
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { Provider, reset } from 'react-redux';
 import store from '../../redux/store';
 

@@ -44,7 +44,9 @@ class Dashboard extends Component {
 
   _renderBtnCareer() {
     return (
-      <TouchableOpacity style={[styles.btnBox, {backgroundColor: '#f4511e'}]}>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('CareerCounsellor')}
+        style={[styles.btnBox, {backgroundColor: '#f4511e'}]}>
         <AwesomeIcon name='briefcase' size={60} color='#fff' />
         <Text style={styles.btnLabel}>មុខរបរ និង អាជីព</Text>
       </TouchableOpacity>
@@ -53,7 +55,9 @@ class Dashboard extends Component {
 
   _renderBtnSchool() {
     return (
-      <TouchableOpacity style={[styles.btnBox, {backgroundColor: '#00a185', marginRight: 8}]}>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('Institution')}
+        style={[styles.btnBox, {backgroundColor: '#00a185', marginRight: 8}]}>
         <AwesomeIcon name='graduation-cap' size={60} color='#fff' />
         <Text style={styles.btnLabel}>គ្រឹះស្ថានសិក្សា</Text>
       </TouchableOpacity>
@@ -62,7 +66,9 @@ class Dashboard extends Component {
 
   _renderBtnVideo() {
     return (
-      <TouchableOpacity style={[styles.btnBox, {backgroundColor: '#673ab7', marginLeft: 8}]}>
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('Video')}
+        style={[styles.btnBox, {backgroundColor: '#673ab7', marginLeft: 8}]}>
         <AwesomeIcon name='play-circle-o' size={60} color='#fff' />
         <Text style={styles.btnLabel}>វីដេអូមុខរបរ</Text>
       </TouchableOpacity>
