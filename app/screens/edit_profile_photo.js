@@ -96,7 +96,7 @@ export default class EditProfilePhoto extends Component {
       cropping: true
     }).then(image => {
       this.handleSelectedPhoto(image);
-    });
+    }).catch((e) => {})
   }
 
   selectPhoto() {
@@ -108,7 +108,7 @@ export default class EditProfilePhoto extends Component {
       cropping: true
     }).then(image => {
       this.handleSelectedPhoto(image);
-    });
+    }).catch((e) => {});
   }
 
   handleSelectedPhoto(image) {
