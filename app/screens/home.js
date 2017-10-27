@@ -10,6 +10,7 @@ import About from './about';
 import Profile from './profile'
 import DrawerMenu from './drawer_menu';
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
+import CareerPlanningForm from './CareerPlanningForm/CareerPlanningForm';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
 import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
@@ -19,7 +20,8 @@ import EditFamilySituation from './edit_family_situation';
 const careerCounsellorStack = StackNavigator(
   {
     CareerCounsellorScreen: { screen: CareerCounsellor},
-    PersonalUnderstandingFormScreen: { screen: PersonalUnderstandingForm}
+    PersonalUnderstandingFormScreen: { screen: PersonalUnderstandingForm},
+    CareerPlanningFormScreen: { screen: CareerPlanningForm},
   },
 );
 
@@ -44,8 +46,8 @@ const HomeScreen = DrawerNavigator(
     },
   },
   {
-    initialRouteName: 'Dashboard',
-    // initialRouteName: 'CareerCounsellorScreen',
+    // initialRouteName: 'Dashboard',
+    initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
     contentComponent: DrawerMenu,
     contentOptions: {

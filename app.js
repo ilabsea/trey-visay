@@ -20,7 +20,7 @@ const AppNavigator = StackNavigator({
     }),
   },
 }, {
-  initialRouteName: 'Login',
+  initialRouteName: 'Home',
 });
 
 export default class App extends Component {

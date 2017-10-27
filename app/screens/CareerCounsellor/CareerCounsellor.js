@@ -13,22 +13,11 @@ import {
   Button,
 } from 'react-native-material-ui';
 
-// const uiTheme = {
-//     palette: {
-//         primaryColor: 'red',
-//     },
-//     toolbar: {
-//         container: {
-//             height: 50,
-//         },
-//     },
-// };
-
 export default class CareerCounsellor extends Component {
   static navigationOptions = {
     drawerLabel: 'ប្រឹក្សាអាជីព',
     headerTitle: 'Career Counsellor',
-    headerLeft: <TouchableOpacity><Icon name="menu" size={30} style={{marginLeft: 10}} onPress={() => navigation.navigate('DrawerOpen')}/></TouchableOpacity>,
+    // headerLeft: <TouchableOpacity><Icon name="menu" size={30} style={{marginLeft: 10}} onPress={() => navigation.navigate('DrawerOpen')}/></TouchableOpacity>,
     drawerIcon: ({ tintColor }) => (
       <ThemeProvider uiTheme={{}}>
         <Icon name="list" />

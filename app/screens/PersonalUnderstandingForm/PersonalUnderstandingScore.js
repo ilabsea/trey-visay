@@ -10,7 +10,7 @@ const questions = {
                       whoToReachJobVacancy: {type: 'text', rate: 1}
                    }
 
-var PersonalUnderstandingScore = class {
+class PersonalUnderstandingScore {
 
   constructor(data) {
     this.data = data;
@@ -34,10 +34,9 @@ var PersonalUnderstandingScore = class {
           }
         }
       }
-
     }
-
-    alert('You score '+ score);
+    return score;
+    // alert('You score '+ score);
 
 
   }

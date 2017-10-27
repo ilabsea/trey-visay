@@ -11,17 +11,18 @@
       "./app/assets/fonts/"
     ]
   },
-
   "dependencies": {
     "react": "16.0.0-alpha.12",
     "react-native": "0.48.3",
     "react-native-checkbox-group": "^1.0.3",
     "react-native-collapsible": "^0.9.0",
     "react-native-datepicker": "^1.6.0",
+    "react-native-dialogs": "0.0.20",
     "react-native-elements": "^0.17.0",
-    "react-native-material-textfield": "^0.10.0",
     "react-native-linear-gradient": "^2.3.0",
+    "react-native-material-textfield": "^0.10.0",
     "react-native-material-ui": "^1.13.0",
+    "react-native-popup-dialog": "^0.9.38",
     "react-native-simple-radio-button": "^2.6.2",
     "react-native-vector-icons": "^4.4.2",
     "react-navigation": "^1.0.0-beta.11",
