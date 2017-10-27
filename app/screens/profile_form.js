@@ -49,7 +49,7 @@ export default class ProfileForm extends Component {
     return {
       title: 'បំពេញប្រវត្តិរូបសង្ខេប',
       headerStyle: headerStyles.headerStyle,
-      headerTitleStyle : headerStyles.headerTitleStyle,
+      headerTitleStyle: headerStyles.headerTitleStyle,
       headerRight: (<ThemeProvider uiTheme={{}}>
                     <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
                       <Icon name="done" color='#fff' size={24} />

@@ -11,22 +11,20 @@ import {
 import {
   ThemeProvider,
   Toolbar,
-  COLOR,
   Avatar,
   Icon,
 } from 'react-native-material-ui';
 
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+
+// Utils
 import User from '../utils/user';
+import headerStyles from '../assets/style_sheets/header';
 
 const uiTheme = {
-    palette: {
-      primaryColor: '#1976d2',
-    },
-    toolbar: {
-      container: {
-        height: 50,
-      },
-    },
+  palette: {
+    primaryColor: '#1976d2',
+  }
 };
 
 class Dashboard extends Component {
@@ -39,21 +37,36 @@ class Dashboard extends Component {
     ),
   };
 
-  constructor(props, context) {
-    super(props, context);
-
-    this.state = {
-      active: 'Today',
-    };
-  }
-
-  navigate() {
-    this.props.navigation.navigate('DrawerOpen'); // open drawer
-  }
-
   logout() {
     User.logout();
     this.props.screenProps.rootNavigation.dispatch({type: 'Navigation/RESET', routeName: 'Home', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]})
+  }
+
+  _renderBtnCareer() {
+    return (
+      <TouchableOpacity style={[styles.btnBox, {backgroundColor: '#f4511e'}]}>
+        <AwesomeIcon name='briefcase' size={60} color='#fff' />
+        <Text style={styles.btnLabel}>មុខរបរ និង អាជីព</Text>
+      </TouchableOpacity>
+    )
+  }
+
+  _renderBtnSchool() {
+    return (
+      <TouchableOpacity style={[styles.btnBox, {backgroundColor: '#00a185', marginRight: 8}]}>
+        <AwesomeIcon name='graduation-cap' size={60} color='#fff' />
+        <Text style={styles.btnLabel}>គ្រឹះស្ថានសិក្សា</Text>
+      </TouchableOpacity>
+    )
+  }
+
+  _renderBtnVideo() {
+    return (
+      <TouchableOpacity style={[styles.btnBox, {backgroundColor: '#673ab7', marginLeft: 8}]}>
+        <AwesomeIcon name='play-circle-o' size={60} color='#fff' />
+        <Text style={styles.btnLabel}>វីដេអូមុខរបរ</Text>
+      </TouchableOpacity>
+    )
   }
 
   render() {
@@ -62,13 +75,23 @@ class Dashboard extends Component {
         <View style={styles.container}>
           <Toolbar
             leftElement="menu"
-            centerElement="Dashboard"
+            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
             onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
           />
 
-          <ScrollView style={styles.scrollContainer}>
-            <Text>hello</Text>
-            <Button title='ចាកចេញ' onPress={this.logout.bind(this)}/>
+          <ScrollView>
+            <View style={styles.scrollContainer}>
+              <View style={{flexDirection: 'row'}}>
+                {this._renderBtnCareer()}
+              </View>
+
+              <View style={{flexDirection: 'row'}}>
+                {this._renderBtnSchool()}
+                {this._renderBtnVideo()}
+              </View>
+
+              <Button title='ចាកចេញ' onPress={this.logout.bind(this)}/>
+            </View>
           </ScrollView>
         </View>
       </ThemeProvider>
@@ -81,9 +104,20 @@ const styles = StyleSheet.create({
     flex: 1
   },
   scrollContainer: {
+    padding: 16
   },
-  avatarContainer: {
-    marginRight: 20
+  btnBox: {
+    flex: 1,
+    height: 290,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 16,
+  },
+  btnLabel: {
+    fontFamily: 'KhmerOureang',
+    fontSize: 24,
+    lineHeight: 40,
+    color: '#fff',
   }
 });
 

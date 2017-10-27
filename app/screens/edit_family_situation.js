@@ -29,8 +29,8 @@ export default class EditFamilySituation extends Component {
 
     return {
       title: 'កែសម្រួល',
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>កែសម្រួល</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerTitleStyle : headerStyles.headerTitleStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
                       <Icon name='close' color='#fff' size={24} />
