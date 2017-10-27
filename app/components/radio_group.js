@@ -26,7 +26,7 @@ class RadioGroup extends Component {
                 index={i}
                 labelHorizontal={true}
                 onPress={this.props.onPress}
-                labelStyle={{fontSize: 20, lineHeight: 25}}
+                labelStyle={{fontSize: 16, lineHeight: 25, fontFamily: 'Kantumruy',}}
                 labelWrapStyle={{marginRight: 20, paddingVertical: 10}}
               />
             </RadioButton>)

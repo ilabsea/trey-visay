@@ -17,6 +17,7 @@ import {
 import realm from '../schema';
 import User from '../utils/user';
 import styles from '../assets/style_sheets/profile_form';
+import headerStyles from '../assets/style_sheets/header';
 
 import RadioGroupContainer from '../components/radio_group_container';
 
@@ -28,17 +29,17 @@ export default class EditFamilySituation extends Component {
 
     return {
       title: 'កែសម្រួល',
-      headerStyle: { backgroundColor: '#1976d2' },
-      headerTitleStyle : {color: '#fff'},
+      headerStyle: headerStyles.headerStyle,
+      headerTitleStyle : headerStyles.headerTitleStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
       headerRight: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => navigation.state.params.handleSubmit()}>
+                    <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
                       <Icon name="done" color='#fff' size={24} />
-                      <Text style={styles.saveText}>រក្សាទុក</Text>
+                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
                     </TouchableOpacity>
                    </ThemeProvider>,
     }

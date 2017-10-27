@@ -15,6 +15,7 @@ import LinearGradient from 'react-native-linear-gradient';
 // Utils
 import realm from '../schema';
 import User from '../utils/user';
+import styles from '../assets/style_sheets/login_form';
 
 // Components
 import BackgroundImage from '../components/image_background';
@@ -84,7 +85,7 @@ export default class Login extends Component {
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
 
     if (!this.state.loaded) {
-      return (<View/>)
+      return (null)
     }
 
     return (
@@ -129,15 +130,15 @@ export default class Login extends Component {
                 disabled={!isEnabled}
                 style={styles.btnLogin}>
 
-                <Text style={[styles.loginText, {color: btnSubmitTextColor}]}>ចូលគណនី</Text>
+                <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>ចូលគណនី</Text>
               </Button>
             </View>
 
-            <View style={styles.registerContainer}>
-              <Text style={styles.registerText}>មិនទាន់មានគណនីមែនទេ?</Text>
+            <View style={styles.row}>
+              <Text style={styles.whiteLabel}>មិនទាន់មានគណនីមែនទេ?</Text>
               <TouchableOpacity
                 onPress={() => this.props.navigation.navigate('Register')}>
-                <Text style={styles.btnRegister}>បង្កើតគណនី</Text>
+                <Text style={styles.linkText}>បង្កើតគណនី</Text>
               </TouchableOpacity>
             </View>
           </ScrollView>
@@ -146,48 +147,3 @@ export default class Login extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginTop: 20
-  },
-  subTitle: {
-    fontSize: 24,
-    color: '#fff',
-    marginVertical: 30
-  },
-  inputText: {
-    height: 48,
-    backgroundColor: '#fff',
-    paddingHorizontal: 10,
-    marginBottom: 10,
-    borderRadius: 5
-  },
-  registerText: {
-    color: '#fff',
-  },
-  registerContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
-  },
-  btnRegister: {
-    marginLeft: 10,
-    fontWeight: 'bold',
-    fontSize: 16,
-    color: '#fff'
-  },
-  loginText: {
-    fontWeight: 'bold',
-  },
-  btnLogin: {
-    marginTop: 24,
-  }
-})

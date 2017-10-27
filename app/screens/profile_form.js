@@ -24,6 +24,7 @@ import Collapsible from 'react-native-collapsible';
 import realm from '../schema';
 import User from '../utils/user';
 import styles from '../assets/style_sheets/profile_form';
+import headerStyles from '../assets/style_sheets/header';
 
 // Components
 import RadioGroupContainer from '../components/radio_group_container';
@@ -47,12 +48,12 @@ export default class ProfileForm extends Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: 'បំពេញប្រវត្តិរូបសង្ខេប',
-      headerStyle: { backgroundColor: '#1976d2' },
-      headerTitleStyle : {color: '#fff'},
+      headerStyle: headerStyles.headerStyle,
+      headerTitleStyle : headerStyles.headerTitleStyle,
       headerRight: (<ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity style={{flexDirection: 'row'}} onPress={() => navigation.state.params.handleSubmit()}>
+                    <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
                       <Icon name="done" color='#fff' size={24} />
-                      <Text style={styles.saveText}>រក្សាទុក</Text>
+                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
                     </TouchableOpacity>
                    </ThemeProvider>),
     }

@@ -15,12 +15,13 @@ import LinearGradient from 'react-native-linear-gradient';
 import realm from '../schema';
 import uuidv4 from '../utils/uuidv4';
 import User from '../utils/user';
+import styles from '../assets/style_sheets/login_form';
 
 // Components
 import BackgroundImage from '../components/image_background';
 import Button from '../components/button';
 
-class Register extends Component {
+export default class Register extends Component {
   static navigationOptions = {
     header: null
   };
@@ -95,63 +96,58 @@ class Register extends Component {
               </View>
 
               <View>
-                  <Text style={styles.inputLabel}>ឈ្មោះពេញ</Text>
-                  <TextInput
-                    style={styles.inputText}
-                    onChangeText={(text) => this.setState({fullName: text, username: text.split(' ').join('_')})}
-                    value={this.state.fullName}
-                    underlineColorAndroid='transparent'
-                    onSubmitEditing={() => this.passwordInput.focus()}
-                    returnKeyType='next'
-                  />
+                <Text style={styles.whiteLabel}>ឈ្មោះពេញ</Text>
+                <TextInput
+                  style={styles.inputText}
+                  onChangeText={(text) => this.setState({fullName: text, username: text.split(' ').join('_')})}
+                  value={this.state.fullName}
+                  underlineColorAndroid='transparent'
+                  onSubmitEditing={() => this.passwordInput.focus()}
+                  returnKeyType='next' />
 
-                  <Text style={styles.inputLabel}>ឈ្មោះគណនី</Text>
-                  <TextInput
-                    style={[styles.inputText, {backgroundColor: 'rgba(255,255,255,0.2)', color: '#fff'}]}
-                    value={this.state.username}
-                    editable={false}
-                    underlineColorAndroid='transparent'
-                    onSubmitEditing={() => this.passwordInput.focus()}
-                    returnKeyType='next'
-                  />
+                <Text style={styles.whiteLabel}>ឈ្មោះគណនី</Text>
+                <TextInput
+                  style={[styles.inputText, {backgroundColor: 'rgba(255,255,255,0.2)', color: '#fff'}]}
+                  value={this.state.username}
+                  editable={false}
+                  underlineColorAndroid='transparent'
+                  onSubmitEditing={() => this.passwordInput.focus()}
+                  returnKeyType='next' />
 
-                  <Text style={styles.inputLabel}>លេខសម្ងាត់</Text>
-                  <TextInput
-                    style={styles.inputText}
-                    secureTextEntry={true}
-                    onChangeText={(text) => this.setState({password: text})}
-                    value={this.state.password}
-                    ref={(input) => this.passwordInput = input}
-                    onSubmitEditing={() => this.passwordConfirmationInput.focus()}
-                    returnKeyType='next'
-                  />
+                <Text style={styles.whiteLabel}>លេខសម្ងាត់</Text>
+                <TextInput
+                  style={styles.inputText}
+                  secureTextEntry={true}
+                  onChangeText={(text) => this.setState({password: text})}
+                  value={this.state.password}
+                  ref={(input) => this.passwordInput = input}
+                  onSubmitEditing={() => this.passwordConfirmationInput.focus()}
+                  returnKeyType='next' />
 
-                  <Text style={styles.inputLabel}>វាយលេខសម្ងាត់ម្តងទៀត</Text>
-                  <TextInput
-                    style={styles.inputText}
-                    secureTextEntry={true}
-                    onChangeText={(text) => this.setState({passwordConfirmation: text})}
-                    value={this.state.passwordConfirmation}
-                    ref={(input) => this.passwordConfirmationInput = input}
-                    returnKeyType='done'
-                  />
+                <Text style={styles.whiteLabel}>វាយលេខសម្ងាត់ម្តងទៀត</Text>
+                <TextInput
+                  style={styles.inputText}
+                  secureTextEntry={true}
+                  onChangeText={(text) => this.setState({passwordConfirmation: text})}
+                  value={this.state.passwordConfirmation}
+                  ref={(input) => this.passwordConfirmationInput = input}
+                  returnKeyType='done' />
               </View>
 
               <View style={styles.submitWrapper}>
                 <Button
                   style={styles.btnSubmit}
                   onPress={this.handleSubmit.bind(this)}
-                  disabled={!isEnabled}
-                >
-                  <Text style={[styles.loginText, {color: btnSubmitTextColor}]}>ចុះឈ្មោះ</Text>
+                  disabled={!isEnabled} >
+                  <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>ចុះឈ្មោះ</Text>
                 </Button>
               </View>
 
-              <View style={styles.loginContainer}>
-                <Text style={styles.loginText}>មានគណនីមែនទេ?</Text>
+              <View style={styles.row}>
+                <Text style={styles.whiteLabel}>មានគណនីរួចហើយមែនទេ?</Text>
                 <TouchableOpacity
                   onPress={() => this.props.navigation.goBack()}>
-                  <Text style={styles.btnLogin}>ចូលគណនី</Text>
+                  <Text style={styles.linkText}>បញ្ចូលគណនី</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -161,55 +157,3 @@ class Register extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#1abc9c',
-  },
-  title: {
-    fontSize: 40,
-    fontWeight: 'bold',
-    color: '#fff',
-    marginTop: 20
-  },
-  subTitle: {
-    fontSize: 24,
-    color: '#fff',
-    marginVertical: 30
-  },
-  submitWrapper: {
-    marginTop: 24
-  },
-  inputText: {
-    height: 48,
-    backgroundColor: '#fff',
-    paddingHorizontal: 10,
-    marginBottom: 10,
-    marginTop: 10,
-    borderRadius: 5,
-  },
-  inputLabel: {
-    color: '#fff',
-    fontWeight: 'bold'
-  },
-  loginText: {
-    color: '#fff',
-  },
-  loginContainer: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: 30,
-  },
-  btnLogin: {
-    marginLeft: 10,
-    fontWeight: 'bold',
-    fontSize: 16,
-    color: '#fff',
-  },
-  btnSubmit: {
-  }
-})
-
-export default Register;

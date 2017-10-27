@@ -5,21 +5,18 @@ export default StyleSheet.create({
     flex: 1,
     padding: 16,
   },
-  inputText: {
-    height: 40,
-    paddingLeft: 5,
-    paddingRight: 5,
-    maxWidth: 500
-  },
   subTitle: {
-    fontSize: 20,
-    fontWeight: 'bold'
+    fontSize: 24,
+    fontFamily: 'KhmerOureang',
   },
   inputContainer: {
     padding: 2,
     marginTop: 18,
     marginBottom: 18,
     maxWidth: 500
+  },
+  inputLabel: {
+    color: 'rgba(0,0,0,0.5)',
   },
   errorText: {
     color: 'rgb(221,44,0)',

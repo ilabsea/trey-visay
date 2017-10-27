@@ -81,6 +81,7 @@ class PersonalUnderstandingForm extends React.Component {
   handleRedoBtnPress(){
     this.popupDialog.dismiss();
     console.log('handleRedoBtnPress');
+    this.refs.form.selector({shouldComponentUpdate: true});
   };
 
   handleOnDismissPopupResult(){

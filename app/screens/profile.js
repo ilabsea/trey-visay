@@ -269,15 +269,12 @@ const styles = StyleSheet.create({
   },
   itemLabel: {
     flex: 1,
-    fontSize: 16,
-    fontFamily: 'Kantumruy',
   },
   itemValue: {
     flex: 2,
     fontSize: 16,
     fontFamily: 'KantumruyBold',
     color: '#111'
-
   },
   avataContainer: {
     position: 'absolute',

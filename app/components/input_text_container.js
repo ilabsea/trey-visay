@@ -22,6 +22,7 @@ class InputTextContainer extends Component {
       <View style={[styles.inputContainer, style]}>
         <Text style={styles.inputLabel}>{this.props.label}</Text>
         <TextInput
+          underlineColorAndroid='rgba(0,0,0,0.7)'
           style={ styles.inputText }
           onChangeText={ this.props.onChangeText }
           keyboardType={ this.props.keyboardType || 'default'}
@@ -40,19 +41,14 @@ const styles = StyleSheet.create({
     marginBottom: 18,
     maxWidth: 500
   },
-  inputText: {
-    height: 40,
-    paddingLeft: 5,
-    paddingRight: 5
-  },
   errorText: {
     color: 'rgb(221,44,0)',
     fontSize: 12,
     lineHeight: 14
   },
   inputLabel: {
-
-  }
+    color: 'rgba(0,0,0,0.5)',
+  },
 })
 
 export default InputTextContainer;
