@@ -27,7 +27,7 @@ const uiTheme = {
   }
 };
 
-class Dashboard extends Component {
+export default class Dashboard extends Component {
   static navigationOptions = {
     drawerLabel: 'ត្រីវិស័យ',
     drawerIcon: ({ tintColor }) => (
@@ -126,5 +126,3 @@ const styles = StyleSheet.create({
     color: '#fff',
   }
 });
-
-export default Dashboard;

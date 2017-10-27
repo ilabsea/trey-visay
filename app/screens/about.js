@@ -3,15 +3,25 @@ import {
   Text,
   View,
   Button,
-  ScrollView
+  ScrollView,
+  StyleSheet,
 } from 'react-native';
 
 import {
   ThemeProvider,
+  Toolbar,
   Icon,
 } from 'react-native-material-ui';
 
-class About extends Component {
+import headerStyles from '../assets/style_sheets/header';
+
+const uiTheme = {
+  palette: {
+    primaryColor: '#1976d2',
+  }
+};
+
+export default class About extends Component {
   static navigationOptions = {
     drawerLabel: 'អំពីកម្មវិធី',
     drawerIcon: ({ tintColor }) => (
@@ -23,29 +33,31 @@ class About extends Component {
 
   render() {
     return (
-      <ScrollView>
-        <Text>About</Text>
+      <ThemeProvider uiTheme={uiTheme}>
+        <View style={styles.container}>
+          <Toolbar
+            leftElement="menu"
+            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>អំពីកម្មវិធី</Text>}
+            onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+          />
 
-      </ScrollView>
+          <ScrollView>
+            <View style={styles.scrollContainer}>
+              <Text>អំពីកម្មវិធី</Text>
+            </View>
+          </ScrollView>
+        </View>
+      </ThemeProvider>
     )
   }
 }
 
-export default About;
 
-// const InboxScreen = ({ navigation }) => (
-//   <MyNavScreen banner={'Inbox Screen'} navigation={navigation} />
-// );
-
-// InboxScreen.navigationOptions = {
-//   drawerLabel: 'Inbox',
-//   drawerIcon: ({ tintColor }) => (
-//     <MaterialIcons
-//       name="move-to-inbox"
-//       size={24}
-//       style={{ color: tintColor }}
-//     />
-//   ),
-// };
-
-
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  },
+  scrollContainer: {
+    padding: 16
+  },
+});
