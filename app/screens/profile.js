@@ -28,7 +28,7 @@ export default class Profile extends Component {
     title: 'ប្រវត្តិរូបសង្ខេប',
     drawerIcon: ({ tintColor }) => (
       <ThemeProvider uiTheme={{}}>
-        <Icon name="person" />
+        <Icon name="person" color={tintColor} />
       </ThemeProvider>
     ),
   });

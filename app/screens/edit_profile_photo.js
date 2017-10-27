@@ -48,7 +48,7 @@ export default class EditProfilePhoto extends Component {
     }
   };
 
-  state = {user: '', type: '', photo: '', cover: ''};
+  state = {user: '', type: ''};
 
   componentWillMount() {
     this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
@@ -73,18 +73,6 @@ export default class EditProfilePhoto extends Component {
 
   refreshState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    let photo = require('../assets/images/default_profile.png');
-    let cover = require('../assets/images/header_bg.jpg');
-
-    if (!!user.photo) {
-      photo = {uri: user.photo};
-    }
-
-    if (!!user.cover) {
-      cover = {uri: user.cover};
-    }
-    this.setState({photo: photo});
-    this.setState({cover: cover});
     this.setState({user: user});
   }
 

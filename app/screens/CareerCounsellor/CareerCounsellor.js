@@ -19,9 +19,7 @@ export default class CareerCounsellor extends Component {
     headerTitle: 'Career Counsellor',
     // headerLeft: <TouchableOpacity><Icon name="menu" size={30} style={{marginLeft: 10}} onPress={() => navigation.navigate('DrawerOpen')}/></TouchableOpacity>,
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
-        <Icon name="list" />
-      </ThemeProvider>
+      <AwesomeIcon name="briefcase" size={16} color={tintColor} />
     ),
   };
 

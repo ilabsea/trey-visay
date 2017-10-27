@@ -11,7 +11,6 @@ import {
 import {
   ThemeProvider,
   Toolbar,
-  Avatar,
   Icon,
 } from 'react-native-material-ui';
 
@@ -29,13 +28,17 @@ const uiTheme = {
 
 export default class Dashboard extends Component {
   static navigationOptions = {
-    drawerLabel: 'ត្រីវិស័យ',
+    drawerLabel: 'ទំព័រដើម',
     drawerIcon: ({ tintColor }) => (
       <ThemeProvider uiTheme={{}}>
-        <Icon name="home" />
+        <Icon name="home" color={tintColor} />
       </ThemeProvider>
     ),
   };
+
+  componentWillMount() {
+    this.props.navigation.navigate('DrawerOpen');
+  }
 
   logout() {
     User.logout();

@@ -25,7 +25,7 @@ export default class Institution extends Component {
   static navigationOptions = {
     drawerLabel: 'គ្រឹះស្ថានសិក្សា',
     drawerIcon: ({ tintColor }) => (
-      <AwesomeIcon name='play-circle-o' size={18} />
+      <AwesomeIcon name='graduation-cap' size={18} color={tintColor} />
     ),
   };
 

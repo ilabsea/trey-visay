@@ -40,9 +40,7 @@ class PersonalUnderstandingForm extends React.Component {
     title: 'ការវាយតំលៃ',
     headerRight: <Provider store={store}><CustomSubmitButton handleSubmit={() => navigation.state.params.handleSubmit()} /></Provider>,
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
-        <Icon name="list" />
-      </ThemeProvider>
+      <Icon name="briefcase" size={16}  color={tintColor} />
     ),
 
   });

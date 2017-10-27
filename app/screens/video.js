@@ -25,7 +25,7 @@ export default class Video extends Component {
   static navigationOptions = {
     drawerLabel: 'វីដេអូមុខរបរ',
     drawerIcon: ({ tintColor }) => (
-      <AwesomeIcon name='graduation-cap' size={20} />
+      <AwesomeIcon name='play-circle-o' size={20} color={tintColor} />
     ),
   };
 

@@ -26,7 +26,7 @@ export default class About extends Component {
     drawerLabel: 'អំពីកម្មវិធី',
     drawerIcon: ({ tintColor }) => (
       <ThemeProvider uiTheme={{}}>
-        <Icon name="list" />
+        <Icon name="list" color={tintColor} />
       </ThemeProvider>
     ),
   };

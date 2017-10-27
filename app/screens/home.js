@@ -54,8 +54,17 @@ const HomeScreen = DrawerNavigator(
     initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
     contentComponent: DrawerMenu,
+    order: [
+      'Dashboard',
+      'PersonalUnderstandingForm',
+      'CareerCounsellorScreen',
+      'Institution',
+      'Video',
+      'About',
+      'ProfileStack',
+    ],
     contentOptions: {
-      activeTintColor: '#e91e63',
+      activeTintColor: '#1976d2',
     },
   }
 );
