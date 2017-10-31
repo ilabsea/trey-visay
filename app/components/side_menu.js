@@ -101,10 +101,10 @@ class SideMenu extends Component {
                 style={{borderRadius: 32, width: 64, height: 64 }} />
             </View>
 
-            <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row'}}>
+            <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
               <Text style={styles.name}>{!!this.state.user && this.state.user.fullName}</Text>
-              { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={24} /> }
-              { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={24} /> }
+              { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
+              { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
             </View>
           </View>
         </TouchableNativeFeedback>
