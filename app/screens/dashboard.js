@@ -42,7 +42,7 @@ export default class Dashboard extends Component {
   _renderBtnCareer() {
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('CareerCounsellor')}
+        onPress={() => this.props.navigation.navigate('CareerCounsellorScreen')}
         style={[styles.btnBox, {backgroundColor: '#f4511e'}]}>
         <AwesomeIcon name='briefcase' size={60} color='#fff' />
         <Text style={styles.btnLabel}>មុខរបរ និង អាជីព</Text>

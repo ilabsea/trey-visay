@@ -119,17 +119,10 @@ class SideMenu extends Component {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.navigateToScreen('PersonalUnderstandingForm')}>
-              <View style={this.getWrapperStyle('PersonalUnderstandingForm')}>
-                <AwesomeIcon name='briefcase' size={16} style={this.getIconStyle('PersonalUnderstandingForm')} />
-                <Text style={this.getMenuTextStyle('PersonalUnderstandingForm')}>ការវាយតំលៃ</Text>
-              </View>
-            </TouchableOpacity>
-
             <TouchableOpacity onPress={() => this.navigateToScreen('CareerCounsellorScreen')}>
               <View style={this.getWrapperStyle('CareerCounsellorScreen')}>
                 <AwesomeIcon name='briefcase' size={16} style={this.getIconStyle('CareerCounsellorScreen')} />
-                <Text style={this.getMenuTextStyle('CareerCounsellorScreen')}>ប្រឹក្សាអាជីព</Text>
+                <Text style={this.getMenuTextStyle('CareerCounsellorScreen')}>វាយតម្លៃមុខរបរនិងអាជីព</Text>
               </View>
             </TouchableOpacity>
 
