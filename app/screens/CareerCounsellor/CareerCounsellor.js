@@ -13,6 +13,8 @@ import {
   Button,
 } from 'react-native-material-ui';
 
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+
 export default class CareerCounsellor extends Component {
   static navigationOptions = {
     drawerLabel: 'ប្រឹក្សាអាជីព',

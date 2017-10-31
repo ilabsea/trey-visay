@@ -50,8 +50,8 @@ const HomeScreen = DrawerNavigator(
     Video: { screen: Video },
   },
   {
-    // initialRouteName: 'Dashboard',
-    initialRouteName: 'CareerCounsellorScreen',
+    initialRouteName: 'Dashboard',
+    // initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
     contentComponent: DrawerMenu,
     order: [

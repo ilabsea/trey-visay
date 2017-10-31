@@ -1,3 +1,5 @@
+// https://codeburst.io/custom-drawer-using-react-navigation-80abbab489f7
+
 import React, {Component} from 'react';
 import { DrawerItems } from 'react-navigation';
 import {
@@ -24,10 +26,10 @@ export default DrawerMenu = (props) => {
   let photo = require('../assets/images/default_profile.png');
   let cover = require('../assets/images/header_bg.jpg');
 
-  if (!!user.photo) {
+  if (!!user && !!user.photo) {
     photo = {uri: user.photo};
   }
-  if (!!user.cover) {
+  if (!!user && !!user.cover) {
     cover = {uri: user.cover};
   }
 
@@ -54,7 +56,7 @@ export default DrawerMenu = (props) => {
           </View>
 
           <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row'}}>
-            <Text style={styles.name}>{user.fullName}</Text>
+            <Text style={styles.name}>{!!user && user.fullName}</Text>
             { isOpen && <AwesomeIcon name='caret-down' color='#fff' size={24} /> }
             { !isOpen && <AwesomeIcon name='caret-up' color='#fff' size={24} /> }
           </View>
