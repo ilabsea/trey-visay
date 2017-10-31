@@ -8,7 +8,7 @@ import {
 import Dashboard from './dashboard';
 import About from './about';
 import Profile from './profile'
-import DrawerMenu from './drawer_menu';
+import SideMenu from '../components/side_menu';
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 import CareerPlanningForm from './CareerPlanningForm/CareerPlanningForm';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
@@ -53,7 +53,7 @@ const HomeScreen = DrawerNavigator(
     initialRouteName: 'Dashboard',
     // initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
-    contentComponent: DrawerMenu,
+    contentComponent: SideMenu,
     order: [
       'Dashboard',
       'PersonalUnderstandingForm',

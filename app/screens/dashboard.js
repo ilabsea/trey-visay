@@ -37,12 +37,6 @@ export default class Dashboard extends Component {
   };
 
   componentWillMount() {
-    this.props.navigation.navigate('DrawerOpen');
-  }
-
-  logout() {
-    User.logout();
-    this.props.screenProps.rootNavigation.dispatch({type: 'Navigation/RESET', routeName: 'Home', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]})
   }
 
   _renderBtnCareer() {
@@ -98,8 +92,6 @@ export default class Dashboard extends Component {
                 {this._renderBtnSchool()}
                 {this._renderBtnVideo()}
               </View>
-
-              <Button title='ចាកចេញ' onPress={this.logout.bind(this)}/>
             </View>
           </ScrollView>
         </View>
