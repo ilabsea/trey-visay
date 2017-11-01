@@ -11,15 +11,22 @@ import {
   ThemeProvider,
   Icon,
   Button,
+  Toolbar,
 } from 'react-native-material-ui';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import headerStyles from '../../assets/style_sheets/header';
+
+const uiTheme = {
+  palette: {
+    primaryColor: '#1976d2',
+  }
+};
 
 export default class CareerCounsellor extends Component {
   static navigationOptions = {
-    drawerLabel: 'ប្រឹក្សាអាជីព',
-    headerTitle: 'Career Counsellor',
-    // headerLeft: <TouchableOpacity><Icon name="menu" size={30} style={{marginLeft: 10}} onPress={() => navigation.navigate('DrawerOpen')}/></TouchableOpacity>,
+    drawerLabel: 'វាយតម្លៃមុខរបរនិងអាជីព',
+    header: null,
     drawerIcon: ({ tintColor }) => (
       <AwesomeIcon name="briefcase" size={16} color={tintColor} />
     ),
@@ -27,8 +34,15 @@ export default class CareerCounsellor extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={{}}>
+      <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.wrapper}>
+
+          <Toolbar
+            leftElement="menu"
+            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វាយតម្លៃមុខរបរ និង អាជីព</Text>}
+            onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+          />
+
           <View style={{height: 50}}>
             <Button raised primary text="Personal Understanding" onPress={() => this.goToPersonalUnderstandingForm() } />
           </View>

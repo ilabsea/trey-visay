@@ -17,7 +17,7 @@ PersonalUnderstanding.schema = {
     carreerName: {type: 'string', optional: true},
     howToReachCarreerGoal: {type: 'string', optional: true},
     doesParentsAgreeWith: {type: 'string', optional: true},
-    everTalkedWithAnyoneAboutCarrerr: {type: 'list', objectType: 'arrayInt'},
+    everTalkedWithAnyoneAboutCareer: {type: 'list', objectType: 'arrayInt'},
     howToReachJobVacancy: {type: 'string', optional: true},
     whoToReachJobVacancy: {type: 'string', optional: true},
   }

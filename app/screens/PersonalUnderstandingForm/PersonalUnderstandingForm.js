@@ -6,14 +6,16 @@ import {
   ScrollView,
   TouchableHighlight,
   TouchableNativeFeedback,
+  TouchableOpacity,
   Modal,
 } from 'react-native';
 
 import {
   ThemeProvider,
+  Icon
 } from 'react-native-material-ui';
 
-import Icon from 'react-native-vector-icons/FontAwesome';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Provider, reset } from 'react-redux';
 import store from '../../redux/store';
 
@@ -28,7 +30,7 @@ import PopupDialog, {DialogTitle, SlideAnimation} from 'react-native-popup-dialo
 import Form from './_Form';
 import realm from '../../schema';
 import styles from './styles';
-
+import headerStyles from '../../assets/style_sheets/header';
 
 const slideAnimation = new SlideAnimation({
   slideFrom: 'bottom',
@@ -37,12 +39,26 @@ const slideAnimation = new SlideAnimation({
 class PersonalUnderstandingForm extends React.Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: 'ការវាយតំលៃ',
-    headerRight: <Provider store={store}><CustomSubmitButton handleSubmit={() => navigation.state.params.handleSubmit()} /></Provider>,
-    drawerIcon: ({ tintColor }) => (
-      <Icon name="briefcase" size={16}  color={tintColor} />
-    ),
+    title: 'វាយតម្លៃមុខរបរ',
+    headerTitle: <Text style={headerStyles.headerTitleStyle}>វាយតម្លៃមុខរបរ</Text>,
+    headerStyle: headerStyles.headerStyle,
+    headerLeft: <ThemeProvider uiTheme={{}}>
+                  <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                    <Icon name='close' color='#fff' size={24} />
+                  </TouchableOpacity>
+                </ThemeProvider>,
+    headerRight: <ThemeProvider uiTheme={{}}>
+                  <Provider store={store}>
+                    <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
+                      <Icon name="done" color='#fff' size={24} />
+                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
+                    </TouchableOpacity>
+                  </Provider>
+                 </ThemeProvider>,
 
+    drawerIcon: ({ tintColor }) => (
+      <AwesomeIcon name="briefcase" size={16}  color={tintColor} />
+    ),
   });
 
   constructor(props) {
@@ -54,8 +70,6 @@ class PersonalUnderstandingForm extends React.Component {
       redoTestBtnVisible: false,
       continueBtnVisible: false,
     };
-
-
   };
 
   componentDidMount() {
@@ -65,9 +79,10 @@ class PersonalUnderstandingForm extends React.Component {
   handleSubmit = () => {
     formValues = this.parseFormValue(this.refs.form.selector.props.values);
     score = new PersonalUnderstandingScore(formValues).calculate();
-    if(score < 50){
+
+    if (score < 12) {
       this.setState({redoTestBtnVisible: true});
-    }else{
+    } else {
       this.setState({continueBtnVisible: true});
     }
 
@@ -87,6 +102,8 @@ class PersonalUnderstandingForm extends React.Component {
   };
 
   handleContinueBtnPress(){
+    this.popupDialog.dismiss();
+    this.refs.form.selector({shouldComponentUpdate: true});
     this.props.navigation.navigate('CareerPlanningFormScreen');
   };
 
@@ -140,8 +157,8 @@ class PersonalUnderstandingForm extends React.Component {
   parseFormValue(values){
     if(values){
       values['uuid'] = '123';
-      if(values['everTalkedWithAnyoneAboutCarrerr']){
-        values['everTalkedWithAnyoneAboutCarrerr'] = values['everTalkedWithAnyoneAboutCarrerr'].map(function(i){ return {value: i }; } );
+      if(values['everTalkedWithAnyoneAboutCareer']){
+        values['everTalkedWithAnyoneAboutCareer'] = values['everTalkedWithAnyoneAboutCareer'].map(function(i){ return {value: i }; } );
       }
     }
     return values;

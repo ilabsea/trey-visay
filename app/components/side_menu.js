@@ -122,7 +122,7 @@ class SideMenu extends Component {
             <TouchableOpacity onPress={() => this.navigateToScreen('CareerCounsellorScreen')}>
               <View style={this.getWrapperStyle('CareerCounsellorScreen')}>
                 <AwesomeIcon name='briefcase' size={16} style={this.getIconStyle('CareerCounsellorScreen')} />
-                <Text style={this.getMenuTextStyle('CareerCounsellorScreen')}>វាយតម្លៃមុខរបរនិងអាជីព</Text>
+                <Text style={this.getMenuTextStyle('CareerCounsellorScreen')}>វាយតម្លៃមុខរបរ និង អាជីព</Text>
               </View>
             </TouchableOpacity>
 

@@ -23,8 +23,8 @@ function submit(values, callback){
 
 function parseFormValue(values){
   values['uuid'] = '123';
-  if(values['everTalkedWithAnyoneAboutCarrerr']){
-    values['everTalkedWithAnyoneAboutCarrerr'] = values['everTalkedWithAnyoneAboutCarrerr'].map(function(i){ return {value: i }; } );
+  if(values['everTalkedWithAnyoneAboutCareer']){
+    values['everTalkedWithAnyoneAboutCareer'] = values['everTalkedWithAnyoneAboutCareer'].map(function(i){ return {value: i }; } );
   }
 
   return values;

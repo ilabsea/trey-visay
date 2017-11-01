@@ -10,20 +10,20 @@ var RadioButtonGroup = React.createClass({
   },
 
   render: function() {
+    const { labelStyle } = this.props;
+    const buttonColor = this.props.buttonColor || '#4caf50';
     return (
 
       <RadioForm
         formHorizontal={true}
         radio_props={this.props.radio_props}
-        buttonColor={'#4caf50'}
+        buttonColor={buttonColor}
         initial={''}
         onPress={this.props.onPress}
         buttonSize={15}
         circleSize={10}
-        labelStyle={{marginLeft: 0, marginRight: 10, fontSize: 16}}
+        labelStyle={[labelStyle, {marginLeft: 0, marginRight: 40, fontSize: 16}]}
       />
-
-
     );
   }
 });
@@ -45,12 +45,3 @@ export default function CustomRadioGroup(props) {
     </View>
   );
 }
-
-// const styles = StyleSheet.create({
-//   formGroup: {
-//     marginTop: 10,
-//   },
-//   labelGroup: {
-//     marginBottom: 10
-//   }
-// })
