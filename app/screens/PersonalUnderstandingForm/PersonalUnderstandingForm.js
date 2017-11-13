@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {
   Text,
   View,
@@ -12,6 +12,7 @@ import {
 
 import {
   ThemeProvider,
+  Toolbar,
   Icon
 } from 'react-native-material-ui';
 
@@ -22,21 +23,20 @@ import store from '../../redux/store';
 import PersonalUnderstanding from '../../data/models/personal_understanding';
 import PersonalUnderstandingScore from './PersonalUnderstandingScore';
 import CustomSubmitButton from './CustomSubmitButton';
-
 import CareerPlanningForm from '../CareerPlanningForm/CareerPlanningForm';
-
-import PopupDialog, {DialogTitle, SlideAnimation} from 'react-native-popup-dialog';
 
 import Form from './_Form';
 import realm from '../../schema';
 import styles from './styles';
 import headerStyles from '../../assets/style_sheets/header';
 
-const slideAnimation = new SlideAnimation({
-  slideFrom: 'bottom',
-});
+const uiTheme = {
+  palette: {
+    primaryColor: '#1976d2',
+  }
+};
 
-class PersonalUnderstandingForm extends React.Component {
+export default class PersonalUnderstandingForm extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: 'វាយតម្លៃមុខរបរ',
@@ -65,12 +65,14 @@ class PersonalUnderstandingForm extends React.Component {
     super(props);
 
     this.state = {
-      scrollEnabled: true,
       score: 0,
-      redoTestBtnVisible: false,
-      continueBtnVisible: false,
+      modalVisible: false,
     };
   };
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
 
   componentDidMount() {
     this.props.navigation.setParams({handleSubmit: this.handleSubmit});
@@ -80,29 +82,16 @@ class PersonalUnderstandingForm extends React.Component {
     formValues = this.parseFormValue(this.refs.form.selector.props.values);
     score = new PersonalUnderstandingScore(formValues).calculate();
 
-    if (score < 12) {
-      this.setState({redoTestBtnVisible: true});
-    } else {
-      this.setState({continueBtnVisible: true});
-    }
-
-    this.setState({scrollEnabled: false, score: score});
-    this.popupDialog.show();
+    this.setState({score: score});
+    this.setModalVisible(!this.state.modalVisible);
   };
 
-
-  handleRedoBtnPress(){
-    this.popupDialog.dismiss();
+  handleRedoBtnPress() {
     console.log('handleRedoBtnPress');
     this.refs.form.selector({shouldComponentUpdate: true});
   };
 
-  handleOnDismissPopupResult(){
-    this.setState({scrollEnabled: true});
-  };
-
   handleContinueBtnPress(){
-    this.popupDialog.dismiss();
     this.refs.form.selector({shouldComponentUpdate: true});
     this.props.navigation.navigate('CareerPlanningFormScreen');
   };
@@ -110,37 +99,99 @@ class PersonalUnderstandingForm extends React.Component {
   render(){
     const {handleSubmit} = this.props;
     return (
-      <ScrollView scrollEnabled={this.state.scrollEnabled}>
-        <PopupDialog
-          dialogAnimation={slideAnimation}
-          dialogTitle={<DialogTitle title="លទ្ធផលវាយតំលៃមុខរបរ" />}
-          ref={(popupDialog) => { this.popupDialog = popupDialog; }}
-          onDismissed={() => {this.handleOnDismissPopupResult()}}
-          height={200}>
+      <ThemeProvider uiTheme={uiTheme}>
+        <ScrollView>
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {alert("សូមចុចលើប៊ូតុង")}}
+            >
 
-          <View style={{flex: 1, alignItems: 'center',}}>
-            <View style={{marginBottom: 10}}>
-              <Text style={{textAlign: 'center'}}>Your result is {this.state.score}</Text>
-            </View>
+            <Toolbar
+              centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វាយតម្លៃមុខរបរ និង អាជីព</Text>}
+              onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+            />
+            <ScrollView style={{backgroundColor: 'rgba(0,0,0,0.05)'}}>
+              <View style={{margin: 16, padding: 16, backgroundColor: '#fff'}}>
+                <View>
+                  <Text style={styles.subTitle}>លទ្ធផលនៃការវាយតម្លៃមុខរបរ</Text>
+                </View>
 
-            {this.state.redoTestBtnVisible &&
-              <View style={{width: 150, height: 50}}>
-                <Button title='សូមសាកល្បងម្តងទៀត' onPress={() => this.handleRedoBtnPress()}></Button>
+                { this.state.score < 12 &&
+                  <View>
+                    <View style={styles.paragraph}>
+                      <Text>
+                        ពិន្ទុរបស់ប្អូននៅទាបជាង 50% ដូចនេះយើងតម្រូវអោយប្អូនត្រូវធ្វើតេស្តឡើងវិញម្តងទៀតមិននឹងឈានទៅវគ្គបន្ទាប់។
+                      </Text>
+                    </View>
+
+                    <View style={styles.paragraph}>
+                      <Text>
+                        ការជ្រើសរើសជំនាញនិង អាជីពមួយនាពេលអនាគត គឺមានសារៈសំខាន់ណាស់សម្រាប់បុគ្គល
+                        ម្នាក់ៗ ដើម្បីទទួលបានចំណេះដឹង និងវិជ្ជាជីវៈគ្រប់គ្រាន់ និងឈានទៅប្រកួតប្រជែងទីផ្សារការងារនាពេលបច្ចុប្បន្ន។​
+                        ដូច្នេះការកំណត់ផែនការអាជីព និងការសម្រេចចិត្តជ្រើសរើសយក​ជំនាញ
+                        ជាកត្តាជំរុញឆ្ពោះទៅរកជំនាញជាក់លាក់ដែលអាចធ្វើឲ្យមនុស្សមានជំនឿជាក់លើខ្លួនឯង
+                        និងក្លាហានក្នុងស្វែងរកមុខរបរ ដើម្បីកសាងអនាគតរបស់ខ្លួន។
+                      </Text>
+                    </View>
+
+                    <View style={styles.paragraph}>
+                      <Text>
+                        យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់
+                        និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។​
+                        ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។​(សូមសែ្វងយល់សុភាសិតអប់រំខាងក្រោម៖)
+                      </Text>
+                    </View>
+
+                    <View style={styles.paragraph}>
+                      <Text>
+                        ១ មនុស្សម្នាក់ៗមិនអាចជ្រើសរើស កំណើតក្នុងគ្រួសារអ្នកមានឬអ្នកក្របានទេ
+                        ប៉ុន្ដែបុគ្គលនោះអាចកំណត់ជីវភាពរស់នៅបានប្រសើរ តាមរយៈការមានអាជីពមួយដ៏ល្អ។
+                      </Text>
+                      <Text>
+                        ២ តាំងចិត្តឲ្យបានខ្ពស់ រស់នៅជាមួយក្ដីសង្ឈឹម ទើបជីវិតមានតម្លៃពិតៗ
+                      </Text>
+                    </View>
+
+                    <View style={styles.paragraph}>
+                      <TouchableHighlight onPress={() => {
+                        this.setModalVisible(!this.state.modalVisible)
+                        store.dispatch({type: 'RESET'})
+                      }} style={styles.button}>
+                        <Text style={styles.btnText}>សូមសាកល្បងធ្វើតេស្តម្តងទៀត</Text>
+                      </TouchableHighlight>
+                    </View>
+                  </View>
+                }
+
+                { !(this.state.score < 12) &&
+                  <View>
+                    <View style={styles.paragraph}>
+                      <Text>
+                        សូមអបអរសាទរ ពិន្ទុរបស់ប្អូននៅលើសពី 50% ហើយ ដូចនេះប្អូនអាចបន្តទៅវគ្គបន្ត។
+                      </Text>
+                    </View>
+
+                    <View>
+                      <TouchableHighlight onPress={() => {
+                        this.props.navigation.navigate('CareerPlanningFormScreen');
+                        this.setModalVisible(!this.state.modalVisible)
+                      }} style={styles.button}>
+                        <Text style={styles.btnText}>ចូលទៅកាន់វគ្គបន្ត</Text>
+                      </TouchableHighlight>
+                    </View>
+                  </View>
+                }
               </View>
-            }
+            </ScrollView>
+          </Modal>
 
-            {this.state.continueBtnVisible &&
-              <View style={{width: 150, height: 50}}>
-                <Button title='បន្ត' onPress={() => this.handleContinueBtnPress()}></Button>
-              </View>
-            }
-
-          </View>
-        </PopupDialog>
-        <Provider store={store}>
-          <Form ref={'form'} />
-        </Provider>
-      </ScrollView>
+          <Provider store={store}>
+            <Form ref={'form'} />
+          </Provider>
+        </ScrollView>
+      </ThemeProvider>
     );
   };
 
@@ -152,8 +203,6 @@ class PersonalUnderstandingForm extends React.Component {
     // });
   };
 
-
-
   parseFormValue(values){
     if(values){
       values['uuid'] = '123';
@@ -164,5 +213,3 @@ class PersonalUnderstandingForm extends React.Component {
     return values;
   };
 }
-
-export default PersonalUnderstandingForm;

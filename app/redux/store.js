@@ -1,9 +1,16 @@
 import { createStore, combineReducers } from 'redux';
 import { reducer as form } from 'redux-form';
 
-const reducers = combineReducers({
+const appReducer = combineReducers({
   form
-  // your other reducers
-});
+})
 
-export default createStore(reducers);
+const rootReducer = (state, action) => {
+  if (action.type === 'RESET') {
+    state = undefined;
+  }
+
+  return appReducer(state, action)
+}
+
+export default createStore(rootReducer);
