@@ -11,6 +11,7 @@ import {
   Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import SplashScreen from 'react-native-splash-screen'
 
 // Utils
 import realm from '../schema';
@@ -34,6 +35,7 @@ export default class Login extends Component {
   }
 
   componentWillMount() {
+    SplashScreen.hide();
     User.isLoggedin(this.handleUser.bind(this));
   }
 

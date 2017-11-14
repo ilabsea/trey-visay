@@ -196,7 +196,7 @@ export default class PersonalUnderstandingForm extends Component {
   };
 
 
-  submitForm(values){
+  submitForm(values) {
     // realm.write(() => {
     //   realm.create('PersonalUnderstanding', this.buildFormValue(values));
     //   alert(JSON.stringify(realm.objects('PersonalUnderstanding')[realm.objects('PersonalUnderstanding').length - 1]));
