@@ -43,7 +43,7 @@ export default class PersonalUnderstandingForm extends Component {
     headerTitle: <Text style={headerStyles.headerTitleStyle}>វាយតម្លៃមុខរបរ</Text>,
     headerStyle: headerStyles.headerStyle,
     headerLeft: <ThemeProvider uiTheme={{}}>
-                  <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                  <TouchableOpacity onPress={() => navigation.goBack()} style={{marginHorizontal: 16}}>
                     <Icon name='close' color='#fff' size={24} />
                   </TouchableOpacity>
                 </ThemeProvider>,
@@ -122,7 +122,7 @@ export default class PersonalUnderstandingForm extends Component {
                   <View>
                     <View style={styles.paragraph}>
                       <Text>
-                        ពិន្ទុរបស់ប្អូននៅទាបជាង 50% ដូចនេះយើងតម្រូវអោយប្អូនត្រូវធ្វើតេស្តឡើងវិញម្តងទៀតមិននឹងឈានទៅវគ្គបន្ទាប់។
+                        ពិន្ទុរបស់ប្អូននៅទាបជាង 50% ដូចនេះយើងតម្រូវអោយប្អូនត្រូវធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។
                       </Text>
                     </View>
 

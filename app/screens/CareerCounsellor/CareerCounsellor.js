@@ -10,9 +10,11 @@ import {
 import {
   ThemeProvider,
   Icon,
-  Button,
   Toolbar,
 } from 'react-native-material-ui';
+
+import Button from '../../components/button';
+import myStyles from '../../assets/style_sheets/login_form';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
@@ -43,16 +45,23 @@ export default class CareerCounsellor extends Component {
             onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
           />
 
-          <View style={{height: 50}}>
-            <Button raised primary text="Personal Understanding" onPress={() => this.goToPersonalUnderstandingForm() } />
-          </View>
+          <View style={styles.box}>
+            <View style={{alignItems: 'center'}}>
+              <Text style={styles.title}>វាយតម្លៃមុខរបរ</Text>
+            </View>
 
-          <View style={{height: 50}}>
-            <Button raised primary text="Planning a future career" />
-          </View>
+            <View style={{marginTop: 20, marginBottom: 30}}>
+              <Text>ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។ ករណីសិស្ស ទទួលបានពិន្ទុក្រោម ៥០% សិស្សត្រូវតម្រូវឲ្យធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។</Text>
+            </View>
 
-          <View style={{height: 50}}>
-            <Button raised primary text="Recommendation list" />
+            <View style={{height: 50}}>
+              <Button
+                style={myStyles.btnSubmit}
+                onPress={this.goToPersonalUnderstandingForm.bind(this)}
+                >
+                <Text style={[myStyles.submitText, {color: '#fff', fontSize: 20}]}>ចាប់ផ្តើម</Text>
+              </Button>
+            </View>
           </View>
 
         </View>
@@ -69,13 +78,21 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-
   wrapper: {
     flex: 1
   },
-
   icon: {
     width: 24,
     height: 24,
   },
+  box: {
+    backgroundColor: '#fff',
+    margin: 16,
+    padding: 24
+  },
+  title: {
+    fontFamily: 'KhmerOureang',
+    fontSize: 24,
+    color: '#1976d2',
+  }
 });
