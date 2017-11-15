@@ -20,6 +20,7 @@ class RadioGroup extends Component {
                 onPress={this.props.onPress}
                 buttonSize={10}
                 buttonOuterSize={20}
+                buttonColor={'#4caf50'}
               />
               <RadioButtonLabel
                 obj={obj}

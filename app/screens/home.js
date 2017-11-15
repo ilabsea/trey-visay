@@ -11,6 +11,7 @@ import Profile from './profile'
 import SideMenu from '../components/side_menu';
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 import CareerPlanningForm from './CareerPlanningForm/CareerPlanningForm';
+import SubjectScreen from './CareerPlanningForm/subject';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
 import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
@@ -24,7 +25,10 @@ const careerCounsellorStack = StackNavigator(
     CareerCounsellorScreen: { screen: CareerCounsellor},
     PersonalUnderstandingFormScreen: { screen: PersonalUnderstandingForm},
     CareerPlanningFormScreen: { screen: CareerPlanningForm},
-  },
+    SubjectScreen: { screen: SubjectScreen},
+  }, {
+    initialRouteName: 'CareerCounsellorScreen',
+  }
 );
 
 const profileStack = StackNavigator(
@@ -50,8 +54,8 @@ const HomeScreen = DrawerNavigator(
     Video: { screen: Video },
   },
   {
-    initialRouteName: 'Dashboard',
-    // initialRouteName: 'CareerCounsellorScreen',
+    // initialRouteName: 'Dashboard',
+    initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
     contentComponent: SideMenu,
     order: [
