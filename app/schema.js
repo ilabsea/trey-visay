@@ -7,5 +7,13 @@ import Realm from 'realm';
 import User from './data/models/user';
 import PersonalUnderstanding from './data/models/personal_understanding';
 import arrayInt from './data/models/arrayInt';
+import Career from './data/models/career';
+import GeneralSubject from './data/models/general_subject';
 
-export default new Realm({schema: [User, PersonalUnderstanding, arrayInt]});
+export default new Realm({schema: [
+  User,
+  PersonalUnderstanding,
+  arrayInt,
+  Career,
+  GeneralSubject
+]});

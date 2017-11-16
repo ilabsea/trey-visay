@@ -18,6 +18,11 @@ import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 
+import realm from '../../schema';
+import User from '../../utils/user';
+import uuidv4 from '../../utils/uuidv4';
+import generalSubject from '../../data/translates/general_subject';
+
 export default class Subject extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
@@ -196,11 +201,47 @@ export default class Subject extends Component {
   }
 
   _goNext() {
+    this._checkValidation();
+
+  }
+
+  _checkValidation() {
+    var arr = [];
+    // alert(generalSubject.length);
+
+    for (let key in this.state) {
+      // check if the property/key is defined in the object itself, not in parent
+      if (!this.state[key]) {
+        arr.push(generalSubject.find((obj) => obj.en == key ));
+      }
+    }
+    arr = arr.map((o)=> o.km)
+
+    // if (arr.length > 5) {
+    //   alert('សូមបំពេញសំណួរទាំងអស់ខាងក្រោម')
+    // } else if(arr.length > 0) {
+    //   alert('សូមបំពេញសំណួរ ' + arr)
+    // } else {
+    //   this._handleSubmit();
+    // }
     this._handleSubmit();
   }
 
   _handleSubmit() {
-    alert('_handleSubmit');
+    realm.write(() => {
+      realm.create('GeneralSubject', this._buildData(), true);
+      // alert(JSON.stringify(realm.objects('GeneralSubject')[realm.objects('GeneralSubject').length -1]));
+      this.props.navigation.navigate('ValueScreen');
+    });
+  }
+
+  _buildData() {
+    let obj = Object.assign({}, this.state, {
+      // uuid: uuidv4()
+      uuid: '123',
+      userUuid: User.getID()
+    })
+    return obj;
   }
 
   render() {

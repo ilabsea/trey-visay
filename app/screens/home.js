@@ -12,6 +12,7 @@ import SideMenu from '../components/side_menu';
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 import CareerPlanningForm from './CareerPlanningForm/CareerPlanningForm';
 import SubjectScreen from './CareerPlanningForm/subject';
+import ValueScreen from './CareerPlanningForm/value_screen';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
 import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
@@ -26,8 +27,9 @@ const careerCounsellorStack = StackNavigator(
     PersonalUnderstandingFormScreen: { screen: PersonalUnderstandingForm},
     CareerPlanningFormScreen: { screen: CareerPlanningForm},
     SubjectScreen: { screen: SubjectScreen},
+    ValueScreen: { screen: ValueScreen},
   }, {
-    initialRouteName: 'CareerCounsellorScreen',
+    initialRouteName: 'ValueScreen',
   }
 );
 

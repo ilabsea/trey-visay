@@ -18,6 +18,12 @@ import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 
+import realm from '../../schema';
+import User from '../../utils/user';
+import uuidv4 from '../../utils/uuidv4';
+
+import careers from '../../data/json/careers.json';
+
 let groups = {
   group1: [],
   group2: [],
@@ -56,10 +62,13 @@ export default class CareerPlanningForm extends Component {
     }
   };
 
-  _renderCheckBoxes(title, checkboxes, group) {
+  _renderCheckBoxes(index, group) {
+    let title = careers[index].name;
+    let checkboxes = this._formatDataForCheckbox(index);
+
     return(
       <View style={styles.box}>
-        <Text style={styles.subTitle}>{title}</Text>
+        <Text style={styles.subTitle}>{index + 1}) {title}</Text>
 
         <View>
           <CheckboxGroup
@@ -82,6 +91,16 @@ export default class CareerPlanningForm extends Component {
         </View>
       </View>
     )
+  }
+
+  _formatDataForCheckbox(id) {
+    let jobs = careers[id].children;
+    let arr = [];
+
+    for(let i = 0; i < jobs.length; i++) {
+      arr.push({ value: jobs[i].id, label: jobs[i].name })
+    }
+    return arr;
   }
 
   _handleChecked(group, value) {
@@ -113,105 +132,67 @@ export default class CareerPlanningForm extends Component {
   }
 
   _renderAgricultureAndResources() {
-    let title = 'ផ្នែកកសិកម្ម និងធនធានធម្មជាតិ';
-    let checkboxes = [
-      { value: '1_1', label: 'វិស្វករ​កសិកម្ម'},
-      { value: '1_2', label: 'អ្នកវិទ្យាសាស្រ្តផ្នែកសត្វ'},
-      { value: '1_3', label: 'អ្នកបង្វឹកសត្វ'},
-      { value: '1_4', label: 'អ្នកខួងដី ឬគ្រឹះក្នុងកិច្ចការសំណង់'},
-      { value: '1_5', label: 'វិស្វករបរិស្ថាន'},
-      { value: '1_6', label: 'អ្នកបច្ចេកទេសផ្នែកនេសាទ'},
-      { value: '1_7', label: 'អ្នកវិទ្យាសាស្រផ្នែកម្ហូបអាហារ'},
-      { value: '1_8', label: 'អ្នកឯកទេសផ្នែកព្រៃឈើ'},
-      { value: '1_9', label: 'ឧទ្យាននុរក្ស (អ្នកការពារឧទ្យាន)'},
-      { value: '1_10', label: 'អ្នកឯកទេសថ្នាំសម្លាប់សត្វល្អិត'},
-      { value: '1_11', label: 'វិស្វករប្រេងកាត'},
-      { value: '1_12', label: 'អ្នកឯកទេសផ្នែកគុណភាពដី'},
-      { value: '1_13', label: 'ពេទ្យសត្វ'},
-      { value: '1_14', label: 'អ្នកថែរក្សាសួនសត្វ'},
-      { value: '1_15', label: 'អ្នកថែទាំកសិដ្ឋានចិញ្ចឹមសត្វ'},
-    ];
-
-    return this._renderCheckBoxes(title, checkboxes, 'group1');
+    return this._renderCheckBoxes(0, 'group1');
   }
 
   _renderConstruction() {
-    let title = 'ផ្នែកស្ថាប័ត្យកម្ម និងសំណង់';
-    let checkboxes = [
-      { value: '2_1', label: 'ស្ថាបត្យករ'},
-      { value: '2_2', label: 'អ្នកឯកទេសផ្នែករៀបឥដ្ឋសំណង់'},
-      { value: '2_3', label: 'អ្នកត្រួតពិនិត្យអគារ'},
-      { value: '2_4', label: 'អ្នកបញ្ជាគ្រឿងចក្រឈូសឆាយ'},
-      { value: '2_5', label: 'អ្នកឯកទេសផ្នែកគ្រឿងឈើ(ជាងឈើ)'},
-      { value: '2_6', label: 'អ្នកគ្រប់គ្រងការសាងសង់'},
-      { value: '2_7', label: 'អ្នកបញ្ជាម៉ាស៊ីនស្ទូច'},
-      { value: '2_8', label: 'អ្នកបច្ចេកទេសអគ្គិសនី'},
-      { value: '2_9', label: 'អ្នកបច្ចេកទេសម៉ាស៊ីនត្រជាក់'},
-      { value: '2_10', label: 'អ្នកដំឡើងបរិក្ខាប្រើប្រាស់ក្នុងផ្ទះ'},
-      { value: '2_11', label: 'អ្នកឯកទេសផ្នែកលាបថ្នាំ'},
-      { value: '2_12', label: 'អ្នកឯទេសតបណ្តាញទុយោទឹក'},
-      { value: '2_13', label: 'អ្នកឯកទេសផ្នែកប្រក់ដំបូល'},
-      { value: '2_14', label: 'អ្នកបច្ចេកទេសវាស់ស្ទង់'},
-      { value: '2_15', label: 'អ្នកបច្ចេកទេសកាត់ និងរៀបថ្ម'},
-    ];
-
-    return this._renderCheckBoxes(title, checkboxes, 'group2');
+    return this._renderCheckBoxes(1, 'group2');
   }
 
   _renderArtAndCommunication() {
-
+    return this._renderCheckBoxes(2, 'group3');
   }
 
   _renderTradeAndAdministration() {
-
+    return this._renderCheckBoxes(3, 'group4');
   }
 
   _renderEducationAndTraining() {
-
+    return this._renderCheckBoxes(4, 'group5');
   }
 
   _renderFinancialAndInsurance() {
-
+    return this._renderCheckBoxes(5, 'group6');
   }
 
   _renderPublicAdministration() {
-
+    return this._renderCheckBoxes(6, 'group7');
   }
 
   _renderHealthScience() {
-
+    return this._renderCheckBoxes(7, 'group8');
   }
 
   _renderHospitalityTourismAndEntertainment() {
-
+    return this._renderCheckBoxes(8, 'group9');
   }
 
   _renderServicesForPublic() {
-
+    return this._renderCheckBoxes(9, 'group10');
   }
 
   _renderInformatics() {
-
+    return this._renderCheckBoxes(10, 'group11');
   }
 
   _renderLegalAndPublicSafety() {
-
+    return this._renderCheckBoxes(11, 'group12');
   }
 
   _renderManufacturing() {
-
+    return this._renderCheckBoxes(12, 'group13');
   }
 
   _renderRetailWholesaleAndServices() {
-
+    return this._renderCheckBoxes(13, 'group14');
   }
 
   _renderScienceResearchEngineeringAndMathematics() {
-
+    return this._renderCheckBoxes(14, 'group15');
   }
 
   _renderShippingDistributionAndManagement() {
-
+    return this._renderCheckBoxes(15, 'group16');
   }
 
   _renderFooter() {
@@ -235,7 +216,20 @@ export default class CareerPlanningForm extends Component {
   }
 
   _handleSubmit() {
-    alert('_handleSubmit');
+    realm.write(() => {
+      realm.create('Career', this._buildData(), true);
+      this.props.navigation.navigate('SubjectScreen');
+    });
+  }
+
+  _buildData() {
+    let career_ids = this._totalSelected() + '';
+    return {
+      uuid: '123',
+      // uuid: uuidv4(),
+      userUuid: User.getID(),
+      careerByFavorite: career_ids
+    };
   }
 
   render() {
