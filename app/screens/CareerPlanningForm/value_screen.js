@@ -21,7 +21,7 @@ import shareStyles from './style';
 import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
-import generalSubject from '../../data/translates/general_subject';
+import valueGroup from '../../data/json/values';
 
 export default class ValueScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -40,12 +40,92 @@ export default class ValueScreen extends Component {
   };
 
   state = {
+    group1: {
+      readWritePoet: '',
+      createThingWithInnovation: '',
+      initiative: '',
+      imaginationForProcess: '',
+      painting: '',
+      DevelopYourOwnHandMadeNewSkill: '',
+      WritingComposerOrLyric: '',
+      CreateNewProducts: '',
+      JoinFestivalOrConcert: '',
+      VisitMuseumsOrExhibitions: '',
+    },
+    group2: {
+      AnalyzeDataRelatedToNumbers: '',
+      UseComputerToSolveOrPerformTasks: '',
+      UseDataOrWorkstationAndDailyLife: '',
+      UnderstandComplexMaths: '',
+      ThinkOfItThroughReasonAndKnowledge: '',
+      BecomeSpecialistInStudyAndRememberTheNumbers: '',
+      CalculateAndInputDataWithEase: '',
+      ManageMoneyEfficiently: '',
+      UnderstandWithComplexRulesOrInstructions: '',
+      CarryOutIntricateTasksAllTheTime: '',
+    },
+    group3: {
+      DoVolunteerWork: '',
+      UnderstandingAndSolvingPeopleProblems: '',
+      GrantTheGiftOfSalvation: '',
+      ShareMoneyWithFriendsOrAnyoneElse: '',
+      DoingOrServingSocialSector: '',
+      ChatOrConsultWithOtherPeople: '',
+      TeachingOrtraining: '',
+      EnsureSafetyAndHarmonyInThePublicDomain: '',
+      BeAGoodExampleToOthers: '',
+      RelieveTheSufferingOfThoseInDistress: '',
+    },
+    group4: {
+      MakeDecisionsAboutImportantTasks: '',
+      BeALeader: '',
+      PreferToBeBossRatherThanRegularEmployee: '',
+      ManageProjectPlanningCorporateAffairs: '',
+      PlansForImplementingLongTermWork: '',
+      BecomeASpecialistInBusiness: '',
+      BecomeSuccessfulInJobAndEarnHigherIncome: '',
+      ManagingOtherPeopleAffairs: '',
+      RecognizeEncouragementOfOtherLeaders: '',
+      InRoleManagementAndHaveRightToFulfillTask: '',
+    },
+    group5: {
+      PerformTasksWithEyeAndHandSimultaneously: '',
+      BeResponsiblePersonOutsideTheOffice: '',
+      AttendSportsEvents: '',
+      HaveSpecificSkillRelevantToDrivingVehicles: '',
+      WorkOnRelatedMachineryAndElectronics: '',
+      ManuallyCreateObjects: '',
+      PlantTrees: '',
+      UseHandTools: '',
+      RunningBigMachines: '',
+      CanRepairOrMaintainHomeAppliances: '',
+    },
+    group6: {
+      StriveToStudyRelevantSubjectsAndScience: '',
+      CreateAndInterpretMapOrGraphics: '',
+      TestTheTheoremOrHypothesis: '',
+      CollectDataOnGeology: '',
+      TryToFindOutAnimalsAndPlantsLifeOnTheEarth: '',
+      ExperimentalInScience: '',
+      ReadPaperOnDiscoveriesInScienceAndMedicine: '',
+      ReadAboutAdvancedTechnology: '',
+      EngagingInScientificKnowledgeOrProcesses: '',
+      SolveComplexIssues: '',
+    }
   }
 
-  _renderRadioGroups(obj) {
+  _renderRadioGroups(title, number) {
+    let obj = {
+      title: title,
+      groups: valueGroup['group'+number]
+    }
+
     return(
       <View style={styles.box}>
-        <Text style={styles.subTitle}>{obj.title}</Text>
+        <View>
+          <Text style={styles.subTitle}>កម្រងសំណួរផ្នែកទី {obj.title}</Text>
+          <Text style={{fontFamily: 'KantumruyBold', fontSize: 20}}>តើអ្នកគិតថាមានសារះសំខាន់បែបណាក្នុងការ…</Text>
+        </View>
 
         { obj.groups.map((group, i) => {
           return(
@@ -53,9 +133,14 @@ export default class ValueScreen extends Component {
               <Text style={shareStyles.label}>{group.label}</Text>
 
               <RadioGroup
-                options={[{ label: 'ខ្លាំង', value: 'ខ្លាំង' }, { label: 'មធ្យម', value: 'មធ្យម' }, { label: 'ខ្សោយ', value: 'ខ្សោយ' }]}
-                onPress={(text) => this._handleSetState(group.stateName, text)}
-                value={this.state[group.stateName]} >
+                options={[
+                  { label: 'សំខាន់ខ្លាំង', value: '4' },
+                  { label: 'សំខាន់', value: '3' },
+                  { label: 'សំខាន់ល្មម', value: '2' },
+                  { label: 'មិនសំខាន់', value: '1' }
+                ]}
+                onPress={(value) => this._handleSetState('group1', group.stateName, value)}
+                value={this.state.group1[group.stateName]} >
               </RadioGroup>
             </View>
           )
@@ -64,9 +149,12 @@ export default class ValueScreen extends Component {
     )
   }
 
-  _handleSetState(stateName, text) {
-    let obj = {};
-    obj[stateName] = text;
+  _handleSetState(groupNumber, stateName, value) {
+    let group = {...this.state[groupNumber]};
+    group[stateName] = value;
+
+    let obj = {...this.state};
+    obj[groupNumber] = group;
 
     this.setState(obj);
   }
@@ -113,7 +201,12 @@ export default class ValueScreen extends Component {
       <ThemeProvider uiTheme={{}}>
         <ScrollView>
           <View style={{margin: 16}}>
-
+            { this._renderRadioGroups('១', 1) }
+            { this._renderRadioGroups('២', 2) }
+            { this._renderRadioGroups('៣', 3) }
+            { this._renderRadioGroups('៤', 4) }
+            { this._renderRadioGroups('៥', 5) }
+            { this._renderRadioGroups('៦', 6) }
           </View>
 
           { this._renderFooter() }
