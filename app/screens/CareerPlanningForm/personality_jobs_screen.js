@@ -1,0 +1,151 @@
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
+
+import {
+  ThemeProvider,
+  Icon,
+} from 'react-native-material-ui';
+
+import CheckboxGroup from 'react-native-checkbox-group';
+
+import styles from '../../assets/style_sheets/profile_form';
+import headerStyles from '../../assets/style_sheets/header';
+import shareStyles from './style';
+
+import realm from '../../schema';
+import User from '../../utils/user';
+import uuidv4 from '../../utils/uuidv4';
+import personalityJobs from '../../data/json/personality_jobs';
+
+let careers = [];
+
+export default class PersonalityJobsScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { goBack, state } = navigation;
+
+    return {
+      title: 'ជ្រើសរើស៣មុខរបរចេញពីបុគ្គលិកលក្ខណៈរបស់អ្នក',
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើស៣មុខរបរចេញពីបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>,
+      headerStyle: headerStyles.headerStyle,
+      headerLeft: <ThemeProvider uiTheme={{}}>
+                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                      <Icon name='close' color='#fff' size={24} />
+                    </TouchableOpacity>
+                  </ThemeProvider>,
+      headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
+                      <Text style={headerStyles.saveText}>{state.params && state.params.total || 0} / 3</Text>
+                    </TouchableOpacity>),
+    }
+  };
+
+  _renderCheckBoxes() {
+    let value = personalityJobs[0];
+    let title = value.text;
+    let description = value.description;
+    let checkboxes = this._formatDataForCheckbox(0);
+
+    return(
+      <View style={styles.box}>
+        <Text style={styles.subTitle}>{title}</Text>
+        <Text>{description}</Text>
+
+        <View>
+          <CheckboxGroup
+            callback={(selected) => {this._handleChecked(selected)}}
+            iconColor={"#4caf50"}
+            iconSize={30}
+            checkedIcon="ios-checkbox-outline"
+            uncheckedIcon="ios-square-outline"
+            checkboxes={checkboxes}
+            labelStyle={{
+              color: '#333',
+              fontSize: 20,
+              marginLeft: 10
+            }}
+            rowStyle={{
+              flexDirection: 'row'
+            }}
+            rowDirection={"column"}
+          />
+        </View>
+      </View>
+    )
+  }
+
+  _formatDataForCheckbox(id) {
+    let jobs = personalityJobs[id].careers;
+    let arr = [];
+
+    for(let i = 0; i < jobs.length; i++) {
+      arr.push({ value: jobs[i].id, label: jobs[i].title })
+    }
+    return arr;
+  }
+
+  _handleChecked(value) {
+    careers = value
+    this.props.navigation.setParams({total: careers.length});
+
+    if (careers.length > 3) {
+      return alert('You must select 3 careers only!');
+    }
+  }
+
+  _renderFooter() {
+    return(
+      <View style={shareStyles.footerWrapper}>
+        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
+          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
+          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+  _goNext() {
+    let total = careers.length;
+    if (total != 3) {
+      return alert('You must select 3 careers only!');
+    }
+
+    this._handleSubmit();
+  }
+
+  _handleSubmit() {
+    // realm.write(() => {
+    //   realm.create('Career', this._buildData(), true);
+    //   this.props.navigation.navigate('SubjectScreen');
+    // });
+    this.props.navigation.navigate('SummaryScreen');
+  }
+
+  _buildData() {
+    // let career_ids = this._totalSelected() + '';
+    // return {
+    //   uuid: '123',
+    //   // uuid: uuidv4(),
+    //   userUuid: User.getID(),
+    //   careerByFavorite: career_ids
+    // };
+  }
+
+  render() {
+    return(
+      <ThemeProvider uiTheme={{}}>
+        <ScrollView>
+          <View style={{margin: 16}}>
+            { this._renderCheckBoxes() }
+          </View>
+
+          { this._renderFooter() }
+        </ScrollView>
+      </ThemeProvider>
+    );
+  };
+}

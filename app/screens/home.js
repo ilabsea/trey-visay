@@ -13,6 +13,10 @@ import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnder
 import CareerPlanningForm from './CareerPlanningForm/CareerPlanningForm';
 import SubjectScreen from './CareerPlanningForm/subject';
 import ValueScreen from './CareerPlanningForm/value_screen';
+import ValueJobsScreen from './CareerPlanningForm/value_jobs_screen';
+import PersonalityScreen from './CareerPlanningForm/personality_screen';
+import PersonalityJobsScreen from './CareerPlanningForm/personality_jobs_screen';
+import SummaryScreen from './CareerPlanningForm/summary_screen';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
 import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
@@ -28,8 +32,12 @@ const careerCounsellorStack = StackNavigator(
     CareerPlanningFormScreen: { screen: CareerPlanningForm},
     SubjectScreen: { screen: SubjectScreen},
     ValueScreen: { screen: ValueScreen},
+    ValueJobsScreen: { screen: ValueJobsScreen },
+    PersonalityScreen: { screen: PersonalityScreen },
+    PersonalityJobsScreen: { screen: PersonalityJobsScreen },
+    SummaryScreen: { screen: SummaryScreen },
   }, {
-    initialRouteName: 'ValueScreen',
+    initialRouteName: 'SummaryScreen',
   }
 );
 

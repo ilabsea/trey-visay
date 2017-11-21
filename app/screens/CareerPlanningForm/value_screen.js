@@ -172,18 +172,17 @@ export default class ValueScreen extends Component {
 
   _goNext() {
     this._checkValidation();
-
   }
 
   _checkValidation() {
-
+    this._handleSubmit();
   }
 
   _handleSubmit() {
     // realm.write(() => {
     //   realm.create('GeneralSubject', this._buildData(), true);
     //   // alert(JSON.stringify(realm.objects('GeneralSubject')[realm.objects('GeneralSubject').length -1]));
-    //   this.props.navigation.navigate('ValueScreen');
+      this.props.navigation.navigate('ValueJobsScreen');
     // });
   }
 
