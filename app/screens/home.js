@@ -17,6 +17,7 @@ import ValueJobsScreen from './CareerPlanningForm/value_jobs_screen';
 import PersonalityScreen from './CareerPlanningForm/personality_screen';
 import PersonalityJobsScreen from './CareerPlanningForm/personality_jobs_screen';
 import SummaryScreen from './CareerPlanningForm/summary_screen';
+import CareerDetailScreen from './CareerPlanningForm/career_detail_screen';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
 import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
@@ -27,17 +28,18 @@ import Video from './video';
 
 const careerCounsellorStack = StackNavigator(
   {
-    CareerCounsellorScreen: { screen: CareerCounsellor},
-    PersonalUnderstandingFormScreen: { screen: PersonalUnderstandingForm},
-    CareerPlanningFormScreen: { screen: CareerPlanningForm},
-    SubjectScreen: { screen: SubjectScreen},
-    ValueScreen: { screen: ValueScreen},
+    CareerCounsellorScreen: { screen: CareerCounsellor },
+    PersonalUnderstandingFormScreen: { screen: PersonalUnderstandingForm },
+    CareerPlanningFormScreen: { screen: CareerPlanningForm },
+    SubjectScreen: { screen: SubjectScreen },
+    ValueScreen: { screen: ValueScreen },
     ValueJobsScreen: { screen: ValueJobsScreen },
     PersonalityScreen: { screen: PersonalityScreen },
     PersonalityJobsScreen: { screen: PersonalityJobsScreen },
     SummaryScreen: { screen: SummaryScreen },
+    CareerDetailScreen: { screen: CareerDetailScreen },
   }, {
-    initialRouteName: 'SummaryScreen',
+    initialRouteName: 'CareerCounsellorScreen',
   }
 );
 

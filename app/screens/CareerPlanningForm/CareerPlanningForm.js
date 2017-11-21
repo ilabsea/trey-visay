@@ -13,6 +13,7 @@ import {
   ThemeProvider,
   Icon,
 } from 'react-native-material-ui';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -68,7 +69,12 @@ export default class CareerPlanningForm extends Component {
 
     return(
       <View style={styles.box}>
-        <Text style={styles.subTitle}>{index + 1}) {title}</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={[styles.subTitle, {flex: 1}]}>{index + 1}) {title}</Text>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('CareerDetailScreen', {title: title, careerId: index + 1})}>
+            <AwesomeIcon name='question-circle' color='#1976d2' size={24} />
+          </TouchableOpacity>
+        </View>
 
         <View>
           <CheckboxGroup
