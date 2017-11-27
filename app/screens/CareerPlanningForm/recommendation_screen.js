@@ -25,22 +25,19 @@ import personalityJobs from '../../data/json/personality_jobs';
 
 let careers = [];
 
-export default class PersonalityJobsScreen extends Component {
+export default class RecommendationScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
 
     return {
-      title: 'ជ្រើសរើស២មុខរបរចេញពីតារាងសង្ខេបលទ្ធផល',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើស២មុខរបរចេញពីតារាងសង្ខេបលទ្ធផល</Text>,
+      title: 'ការណែនាំ',
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>ការណែនាំ</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
-      headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
-                      <Text style={headerStyles.saveText}>{state.params && state.params.total || 0} / 2</Text>
-                    </TouchableOpacity>),
     }
   };
 
@@ -52,15 +49,6 @@ export default class PersonalityJobsScreen extends Component {
       arr.push({ value: jobs[i].id, label: jobs[i].title })
     }
     return arr;
-  }
-
-  _handleChecked(value) {
-    careers = value
-    this.props.navigation.setParams({total: careers.length});
-
-    if (careers.length > 2) {
-      return alert('You must select 2 careers only!');
-    }
   }
 
   _renderFooter() {
@@ -75,11 +63,6 @@ export default class PersonalityJobsScreen extends Component {
   }
 
   _goNext() {
-    let total = careers.length;
-    if (total != 2) {
-      return alert('You must select 2 careers only!');
-    }
-
     this._handleSubmit();
   }
 
@@ -88,7 +71,7 @@ export default class PersonalityJobsScreen extends Component {
     //   realm.create('Career', this._buildData(), true);
     //   this.props.navigation.navigate('SubjectScreen');
     // });
-    this.props.navigation.navigate('RecommendationScreen');
+    this.props.navigation.navigate('GoalScreen');
   }
 
   _buildData() {
@@ -102,40 +85,14 @@ export default class PersonalityJobsScreen extends Component {
   }
 
   _renderContent() {
-    let checkboxes = [
-      { value: '1', label: 'វិស្វករ​កសិកម្ម' },
-      { value: '2', label: 'វិស្វករបរិស្ថាន' },
-      { value: '3', label: 'ទន្តពេទ្យ' },
-      { value: '4', label: 'អ្នកសម្តែងសិល្បៈឬតារាសម្តែង' },
-      { value: '5', label: 'អ្នកនិពន្ធ' },
-      { value: '6', label: 'អ្នករចនាគេហទំព័រ' },
-      { value: '7', label: 'អ្នកបើយន្តហោះ' },
-      { value: '8', label: 'វិស្វករ' },
-      { value: '9', label: 'អ្នកគ្រប់គ្រងកន្លែងកម្សាន្ត' },
-    ];
-
     return(
       <View style={styles.box}>
-        <Text style={styles.subTitle}>ចូរជ្រើសរើស ២មុខរបរដែលអ្នកបំពេញចិត្តបំផុត</Text>
+        <Text style={styles.subTitle}>វិស្វករ​កសិកម្ម</Text>
 
         <View>
-          <CheckboxGroup
-            callback={(selected) => {this._handleChecked(selected)}}
-            iconColor={"#4caf50"}
-            iconSize={30}
-            checkedIcon="ios-checkbox-outline"
-            uncheckedIcon="ios-square-outline"
-            checkboxes={checkboxes}
-            labelStyle={{
-              color: '#333',
-              fontSize: 20,
-              marginLeft: 10
-            }}
-            rowStyle={{
-              flexDirection: 'row'
-            }}
-            rowDirection={"column"}
-          />
+          <Text>
+            យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។
+          </Text>
         </View>
       </View>
     )
@@ -147,6 +104,7 @@ export default class PersonalityJobsScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
+              { this._renderContent() }
               { this._renderContent() }
             </View>
 
