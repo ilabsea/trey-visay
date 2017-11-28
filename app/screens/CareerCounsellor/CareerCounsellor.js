@@ -5,11 +5,11 @@ import {
   TouchableNativeFeedback,
   TouchableOpacity,
   StyleSheet,
+  Image,
 } from 'react-native';
 
 import {
   ThemeProvider,
-  Icon,
   Toolbar,
 } from 'react-native-material-ui';
 
@@ -46,6 +46,10 @@ export default class CareerCounsellor extends Component {
           />
 
           <View style={styles.box}>
+            <View style={styles.logoWrapper}>
+              <Image source={require('../../assets/images/list.png')} style={styles.logo} />
+            </View>
+
             <View style={{alignItems: 'center'}}>
               <Text style={styles.title}>វាយតម្លៃមុខរបរ</Text>
             </View>
@@ -94,5 +98,14 @@ const styles = StyleSheet.create({
     fontFamily: 'KhmerOureang',
     fontSize: 24,
     color: '#1976d2',
+  },
+  logoWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  logo: {
+    width: 128,
+    height: 128
   }
 });
