@@ -198,18 +198,20 @@ export default class ValueScreen extends Component {
   render() {
     return(
       <ThemeProvider uiTheme={{}}>
-        <ScrollView>
-          <View style={{margin: 16}}>
-            { this._renderRadioGroups('១', 1) }
-            { this._renderRadioGroups('២', 2) }
-            { this._renderRadioGroups('៣', 3) }
-            { this._renderRadioGroups('៤', 4) }
-            { this._renderRadioGroups('៥', 5) }
-            { this._renderRadioGroups('៦', 6) }
-          </View>
+        <View style={{flex: 1}}>
+          <ScrollView style={{flex: 1}}>
+            <View style={{margin: 16}}>
+              { this._renderRadioGroups('១', 1) }
+              { this._renderRadioGroups('២', 2) }
+              { this._renderRadioGroups('៣', 3) }
+              { this._renderRadioGroups('៤', 4) }
+              { this._renderRadioGroups('៥', 5) }
+              { this._renderRadioGroups('៦', 6) }
+            </View>
 
+          </ScrollView>
           { this._renderFooter() }
-        </ScrollView>
+        </View>
       </ThemeProvider>
     );
   };

@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 
 import CheckboxGroup from 'react-native-checkbox-group';
-import { CheckBox } from 'react-native-elements'
 
 import {
   ThemeProvider,
@@ -241,28 +240,30 @@ export default class CareerPlanningForm extends Component {
   render() {
     return(
       <ThemeProvider uiTheme={{}}>
-        <ScrollView>
-          <View style={{margin: 16}}>
-            { this._renderAgricultureAndResources() }
-            { this._renderConstruction() }
-            { this._renderArtAndCommunication() }
-            { this._renderTradeAndAdministration() }
-            { this._renderEducationAndTraining() }
-            { this._renderFinancialAndInsurance() }
-            { this._renderPublicAdministration() }
-            { this._renderHealthScience() }
-            { this._renderHospitalityTourismAndEntertainment() }
-            { this._renderServicesForPublic() }
-            { this._renderInformatics() }
-            { this._renderLegalAndPublicSafety() }
-            { this._renderManufacturing() }
-            { this._renderRetailWholesaleAndServices() }
-            { this._renderScienceResearchEngineeringAndMathematics() }
-            { this._renderShippingDistributionAndManagement() }
-          </View>
+        <View style={{flex: 1}}>
+          <ScrollView style={{flex: 1}}>
+            <View style={{margin: 16}}>
+              { this._renderAgricultureAndResources() }
+              { this._renderConstruction() }
+              { this._renderArtAndCommunication() }
+              { this._renderTradeAndAdministration() }
+              { this._renderEducationAndTraining() }
+              { this._renderFinancialAndInsurance() }
+              { this._renderPublicAdministration() }
+              { this._renderHealthScience() }
+              { this._renderHospitalityTourismAndEntertainment() }
+              { this._renderServicesForPublic() }
+              { this._renderInformatics() }
+              { this._renderLegalAndPublicSafety() }
+              { this._renderManufacturing() }
+              { this._renderRetailWholesaleAndServices() }
+              { this._renderScienceResearchEngineeringAndMathematics() }
+              { this._renderShippingDistributionAndManagement() }
+            </View>
+          </ScrollView>
 
           { this._renderFooter() }
-        </ScrollView>
+        </View>
       </ThemeProvider>
     );
   };

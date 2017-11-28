@@ -47,7 +47,7 @@ export default class ContactScreen extends Component {
   }
 
   _goNext() {
-    this._handleSubmit();
+    // this._handleSubmit();
   }
 
   _handleSubmit() {

@@ -138,13 +138,15 @@ export default class PersonalityJobsScreen extends Component {
   render() {
     return(
       <ThemeProvider uiTheme={{}}>
-        <ScrollView>
-          <View style={{margin: 16}}>
-            { this._renderCheckBoxes() }
-          </View>
+        <View style={{flex: 1}}>
+          <ScrollView style={{flex: 1}}>
+            <View style={{margin: 16}}>
+              { this._renderCheckBoxes() }
+            </View>
+          </ScrollView>
 
           { this._renderFooter() }
-        </ScrollView>
+        </View>
       </ThemeProvider>
     );
   };

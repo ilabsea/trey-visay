@@ -134,18 +134,20 @@ export default class PersonalityScreen extends Component {
   render() {
     return(
       <ThemeProvider uiTheme={{}}>
-        <ScrollView>
-          <View style={{margin: 16}}>
-            { this._renderCheckBoxes('group1') }
-            { this._renderCheckBoxes('group2') }
-            { this._renderCheckBoxes('group3') }
-            { this._renderCheckBoxes('group4') }
-            { this._renderCheckBoxes('group5') }
-            { this._renderCheckBoxes('group6') }
-          </View>
+        <View style={{flex: 1}}>
+          <ScrollView style={{flex: 1}}>
+            <View style={{margin: 16}}>
+              { this._renderCheckBoxes('group1') }
+              { this._renderCheckBoxes('group2') }
+              { this._renderCheckBoxes('group3') }
+              { this._renderCheckBoxes('group4') }
+              { this._renderCheckBoxes('group5') }
+              { this._renderCheckBoxes('group6') }
+            </View>
 
+          </ScrollView>
           { this._renderFooter() }
-        </ScrollView>
+        </View>
       </ThemeProvider>
     );
   };

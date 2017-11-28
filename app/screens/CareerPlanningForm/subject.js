@@ -247,18 +247,21 @@ export default class Subject extends Component {
   render() {
     return(
       <ThemeProvider uiTheme={{}}>
-        <ScrollView>
-          <View style={{margin: 16}}>
-            { this._renderKhmer() }
-            { this._renderEnglish() }
-            { this._renderMath() }
-            { this._renderSocialStudies() }
-            { this._renderScience() }
-            { this._renderSoftSkill() }
-          </View>
+        <View style={{flex: 1}}>
+          <ScrollView style={{flex: 1}}>
+            <View style={{margin: 16}}>
+              { this._renderKhmer() }
+              { this._renderEnglish() }
+              { this._renderMath() }
+              { this._renderSocialStudies() }
+              { this._renderScience() }
+              { this._renderSoftSkill() }
+            </View>
+
+          </ScrollView>
 
           { this._renderFooter() }
-        </ScrollView>
+        </View>
       </ThemeProvider>
     );
   };
