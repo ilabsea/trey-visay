@@ -133,10 +133,10 @@ class SideMenu extends Component {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.navigateToScreen('Video')}>
-              <View style={this.getWrapperStyle('Video')}>
-                <AwesomeIcon name='play-circle-o' size={16} style={this.getIconStyle('Video')} />
-                <Text style={this.getMenuTextStyle('Video')}>វីដេអូមុខរបរ</Text>
+            <TouchableOpacity onPress={() => this.navigateToScreen('VideoScreen')}>
+              <View style={this.getWrapperStyle('VideoScreen')}>
+                <AwesomeIcon name='play-circle-o' size={16} style={this.getIconStyle('VideoScreen')} />
+                <Text style={this.getMenuTextStyle('VideoScreen')}>វីដេអូមុខរបរ</Text>
               </View>
             </TouchableOpacity>
 

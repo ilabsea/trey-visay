@@ -17,6 +17,9 @@ import ValueJobsScreen from './CareerPlanningForm/value_jobs_screen';
 import PersonalityScreen from './CareerPlanningForm/personality_screen';
 import PersonalityJobsScreen from './CareerPlanningForm/personality_jobs_screen';
 import SummaryScreen from './CareerPlanningForm/summary_screen';
+import RecommendationScreen from './CareerPlanningForm/recommendation_screen';
+import GoalScreen from './CareerPlanningForm/goal_screen';
+import ContactScreen from './CareerPlanningForm/contact_screen';
 import CareerDetailScreen from './CareerPlanningForm/career_detail_screen';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
 import EditProfilePhoto from './edit_profile_photo';
@@ -24,7 +27,7 @@ import EditPersonalInfo from './edit_personal_info';
 import EditFamilyInfo from './edit_family_info';
 import EditFamilySituation from './edit_family_situation';
 import Institution from './institution';
-import Video from './video';
+import VideoScreen from './video_screen';
 
 const careerCounsellorStack = StackNavigator(
   {
@@ -37,6 +40,9 @@ const careerCounsellorStack = StackNavigator(
     PersonalityScreen: { screen: PersonalityScreen },
     PersonalityJobsScreen: { screen: PersonalityJobsScreen },
     SummaryScreen: { screen: SummaryScreen },
+    RecommendationScreen: { screen: RecommendationScreen },
+    GoalScreen: { screen: GoalScreen },
+    ContactScreen: { screen: ContactScreen },
     CareerDetailScreen: { screen: CareerDetailScreen },
   }, {
     initialRouteName: 'CareerCounsellorScreen',
@@ -63,11 +69,12 @@ const HomeScreen = DrawerNavigator(
       screen: careerCounsellorStack
     },
     Institution: { screen: Institution },
-    Video: { screen: Video },
+    VideoScreen: { screen: VideoScreen },
   },
   {
-    // initialRouteName: 'Dashboard',
-    initialRouteName: 'CareerCounsellorScreen',
+    initialRouteName: 'Dashboard',
+    // initialRouteName: 'VideoScreen',
+    // initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
     contentComponent: SideMenu,
     order: [
@@ -75,7 +82,7 @@ const HomeScreen = DrawerNavigator(
       'PersonalUnderstandingForm',
       'CareerCounsellorScreen',
       'Institution',
-      'Video',
+      'VideoScreen',
       'About',
       'ProfileStack',
     ],
