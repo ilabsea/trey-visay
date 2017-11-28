@@ -116,7 +116,7 @@ export default class PersonalityJobsScreen extends Component {
 
     return(
       <View style={styles.box}>
-        <Text style={styles.subTitle}>ចូរជ្រើសរើស ២មុខរបរដែលអ្នកបំពេញចិត្តបំផុត</Text>
+        <Text style={styles.subTitle}>ចូរជ្រើសរើស ២មុខរបរដែលអ្នកពេញចិត្តបំផុត</Text>
 
         <View>
           <CheckboxGroup

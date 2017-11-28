@@ -84,28 +84,32 @@ export default class RecommendationScreen extends Component {
     // };
   }
 
-  _renderContent() {
+  _renderContent(job, index) {
     return(
-      <View style={styles.box}>
-        <Text style={styles.subTitle}>វិស្វករ​កសិកម្ម</Text>
+      <View style={styles.box} key={index}>
+        <Text style={styles.subTitle}>{job.name}</Text>
 
         <View>
-          <Text>
-            យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។
-          </Text>
+          <Text> {job.comment} </Text>
         </View>
       </View>
     )
   }
 
   render() {
+    let jobs = [
+      { name: 'វិស្វករ​កសិកម្ម', comment: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។' },
+      { name: 'អ្នករចនាគេហទំព័រ', comment: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។' }
+    ];
+
     return(
       <ThemeProvider uiTheme={{}}>
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
-              { this._renderContent() }
-              { this._renderContent() }
+              { jobs.map((job, i) => {
+                return (this._renderContent(job, i))
+              }) }
             </View>
 
           </ScrollView>
