@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  TouchableOpacity,
   Dimensions,
 } from 'react-native';
 
@@ -13,15 +12,10 @@ import {
   Toolbar,
 } from 'react-native-material-ui';
 
-import CheckboxGroup from 'react-native-checkbox-group';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import headerStyles from '../assets/style_sheets/header';
-
 import Thumbnail from 'react-native-thumbnail-video';
 import videoList from '../data/json/videos';
-
-let careers = [];
+import headerStyles from '../assets/style_sheets/header';
 
 export default class VideoScreen extends Component {
   static navigationOptions = {
@@ -43,8 +37,9 @@ export default class VideoScreen extends Component {
   }
 
   render() {
-    let {width} = Dimensions.get('window');
+    let { width } = Dimensions.get('window');
     let videos = this._formatData(videoList);
+    let imageWidth = width/2-24;
 
     return(
       <ThemeProvider uiTheme={{}}>
@@ -54,18 +49,19 @@ export default class VideoScreen extends Component {
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}
             onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
           />
+
           <ScrollView style={{flex: 1}}>
             { videos.map((row, i) => {
               return (
-                <View style={{margin: 8, marginBottom: 0, flex: 1, flexDirection: 'row'}} key={i}>
+                <View style={styles.row} key={i}>
                   { row.map((obj, j) => {
                     return(
-                      <View style={{margin: 8}} key={j}>
+                      <View style={styles.column} key={j}>
                         <Thumbnail
                           url={obj.url}
-                          imageWidth={width/2-24}
+                          imageWidth={imageWidth}
                         />
-                        <Text style={{padding: 8, backgroundColor: '#fff'}}>{obj.title}</Text>
+                        <Text numberOfLines={1} style={styles.title}>{obj.title}</Text>
                       </View>
                     )
                   })}
@@ -87,4 +83,18 @@ const styles = StyleSheet.create({
   scrollContainer: {
     padding: 16
   },
+  row: {
+    margin: 8,
+    marginBottom: 0,
+    flex: 1,
+    flexDirection: 'row'
+  },
+  column: {
+    margin: 8,
+    flex: 1
+  },
+  title: {
+    padding: 8,
+    backgroundColor: '#fff'
+  }
 });

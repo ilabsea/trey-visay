@@ -64,7 +64,7 @@ export default class Dashboard extends Component {
   _renderBtnVideo() {
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('Video')}
+        onPress={() => this.props.navigation.navigate('VideoScreen')}
         style={[styles.btnBox, {backgroundColor: '#673ab7', marginLeft: 8}]}>
         <AwesomeIcon name='play-circle-o' size={60} color='#fff' />
         <Text style={styles.btnLabel}>វីដេអូមុខរបរ</Text>
