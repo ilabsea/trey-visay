@@ -16,7 +16,7 @@ import {
 } from 'react-native-material-ui';
 
 import Sound from 'react-native-sound';
-import {AudioRecorder, AudioUtils} from 'react-native-audio';
+import { AudioRecorder, AudioUtils } from 'react-native-audio';
 
 import labelStyles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -25,9 +25,6 @@ import shareStyles from './style';
 import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
-import personalityJobs from '../../data/json/personality_jobs';
-
-let careers = [];
 
 export default class GoalScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -260,8 +257,8 @@ export default class GoalScreen extends Component {
             <View style={styles.container}>
               <View style={styles.controls}>
                 {this._renderButton("RECORD", () => {this._record()}, this.state.recording )}
-                {this._renderButton("PLAY", () => {this._play()} )}
                 {this._renderButton("STOP", () => {this._stop()} )}
+                {this._renderButton("PLAY", () => {this._play()} )}
 
                 <Text style={styles.progressText}>{this.state.currentTime}s</Text>
               </View>
@@ -273,7 +270,6 @@ export default class GoalScreen extends Component {
     );
   };
 }
-
 
 var styles = StyleSheet.create({
   container: {
@@ -305,5 +301,4 @@ var styles = StyleSheet.create({
     fontSize: 20,
     color: "#B81F00"
   }
-
 });
