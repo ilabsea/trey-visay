@@ -47,11 +47,12 @@ export default class ContactScreen extends Component {
   }
 
   _goNext() {
-    // this._handleSubmit();
+    this._handleSubmit();
   }
 
   _handleSubmit() {
-    this.props.navigation.navigate('ContactScreen');
+    // this.props.navigation.goBack('PersonalUnderstandingFormScreen');
+    this.props.navigation.goBack();
   }
 
   _renderContent() {
@@ -90,7 +91,6 @@ export default class ContactScreen extends Component {
                 <Text style={{marginLeft: 8}}>{school.website}</Text>
               </View>
             </View>
-
           </View>
         )
       })}
@@ -106,7 +106,6 @@ export default class ContactScreen extends Component {
             <View style={{margin: 16, flex: 1}}>
               { this._renderContent() }
             </View>
-
           </ScrollView>
 
           { this._renderFooter() }

@@ -21,7 +21,6 @@ import shareStyles from './style';
 import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
-import personalityJobs from '../../data/json/personality_jobs';
 import RadioGroup from '../../components/radio_group';
 
 let careers = [];
@@ -87,12 +86,11 @@ export default class RecommendationScreen extends Component {
 
     return (
       <View style={styles.box}>
-
         <RadioForm formHorizontal={false} animation={true}>
           { options.map((obj, i) => {
             return (
               <View key={i} style={{borderBottomWidth: 0.5, paddingHorizontal: 16, marginBottom: 16}}>
-                <Text style={[styles.subTitle]}>{obj.value}</Text>
+                <Text style={styles.subTitle}>{obj.value}</Text>
 
                 <RadioButton labelHorizontal={true}>
                   <RadioButtonInput
@@ -115,7 +113,7 @@ export default class RecommendationScreen extends Component {
                   />
                 </RadioButton>
               </View>
-              )
+            )
           })}
         </RadioForm>
       </View>
@@ -130,8 +128,8 @@ export default class RecommendationScreen extends Component {
             <View style={{margin: 16, flex: 1}}>
               { this._renderRadioGroups() }
             </View>
-
           </ScrollView>
+
           { this._renderFooter() }
         </View>
       </ThemeProvider>
