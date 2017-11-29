@@ -12,7 +12,7 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
-import CheckboxGroup from 'react-native-checkbox-group';
+import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -22,6 +22,7 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import personalityJobs from '../../data/json/personality_jobs';
+import RadioGroup from '../../components/radio_group';
 
 let careers = [];
 
@@ -41,14 +42,8 @@ export default class RecommendationScreen extends Component {
     }
   };
 
-  _formatDataForCheckbox(id) {
-    let jobs = personalityJobs[id].careers;
-    let arr = [];
-
-    for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].id, label: jobs[i].title })
-    }
-    return arr;
+  state = {
+    currentJob: ''
   }
 
   _renderFooter() {
@@ -71,7 +66,7 @@ export default class RecommendationScreen extends Component {
     //   realm.create('Career', this._buildData(), true);
     //   this.props.navigation.navigate('SubjectScreen');
     // });
-    this.props.navigation.navigate('GoalScreen');
+    this.props.navigation.navigate('GoalScreen', {career: this.state.currentJob});
   }
 
   _buildData() {
@@ -84,32 +79,56 @@ export default class RecommendationScreen extends Component {
     // };
   }
 
-  _renderContent(job, index) {
-    return(
-      <View style={styles.box} key={index}>
-        <Text style={styles.subTitle}>{job.name}</Text>
+  _renderRadioGroups() {
+    let options = [
+      { value: 'វិស្វករ​កសិកម្ម', label: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។' },
+      { value: 'អ្នករចនាគេហទំព័រ', label: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។' }
+    ];
 
-        <View>
-          <Text> {job.comment} </Text>
-        </View>
+    return (
+      <View style={styles.box}>
+
+        <RadioForm formHorizontal={false} animation={true}>
+          { options.map((obj, i) => {
+            return (
+              <View key={i} style={{borderBottomWidth: 0.5, paddingHorizontal: 16, marginBottom: 16}}>
+                <Text style={[styles.subTitle]}>{obj.value}</Text>
+
+                <RadioButton labelHorizontal={true}>
+                  <RadioButtonInput
+                    obj={obj}
+                    index={i}
+                    isSelected={this.state.currentJob == obj.value}
+                    onPress={(text) => this.setState({currentJob: text})}
+                    buttonSize={10}
+                    buttonOuterSize={20}
+                    buttonColor={'#4caf50'}
+                  />
+
+                  <RadioButtonLabel
+                    obj={obj}
+                    index={i}
+                    labelHorizontal={true}
+                    onPress={(text) => this.setState({currentJob: text})}
+                    labelStyle={{fontSize: 16, lineHeight: 25, fontFamily: 'Kantumruy',}}
+                    labelWrapStyle={{marginRight: 20, paddingVertical: 10}}
+                  />
+                </RadioButton>
+              </View>
+              )
+          })}
+        </RadioForm>
       </View>
     )
   }
 
   render() {
-    let jobs = [
-      { name: 'វិស្វករ​កសិកម្ម', comment: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។' },
-      { name: 'អ្នករចនាគេហទំព័រ', comment: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។' }
-    ];
-
     return(
       <ThemeProvider uiTheme={{}}>
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
-              { jobs.map((job, i) => {
-                return (this._renderContent(job, i))
-              }) }
+              { this._renderRadioGroups() }
             </View>
 
           </ScrollView>

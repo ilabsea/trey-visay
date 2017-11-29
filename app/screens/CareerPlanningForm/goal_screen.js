@@ -77,7 +77,7 @@ export default class GoalScreen extends Component {
   _renderContent() {
     return(
       <View style={styles.box}>
-        <Text style={styles.subTitle}>តើអ្នកនឹងកំណត់គោលដៅបែបណាដើម្បីក្លាយជាវិស្វករ​កសិកម្ម? មូលហេតុអ្វី?</Text>
+        <Text style={styles.subTitle}>តើអ្នកនឹងកំណត់គោលដៅបែបណាដើម្បីក្លាយជា{this.props.navigation.state.params.career}? មូលហេតុអ្វី?</Text>
 
         <View>
           <Text>
@@ -94,7 +94,6 @@ export default class GoalScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
-              { this._renderContent() }
               { this._renderContent() }
             </View>
 
