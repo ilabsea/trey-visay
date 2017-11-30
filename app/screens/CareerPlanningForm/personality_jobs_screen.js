@@ -69,7 +69,10 @@ export default class PersonalityJobsScreen extends Component {
               marginLeft: 10
             }}
             rowStyle={{
-              flexDirection: 'row'
+              flexDirection: 'row',
+              borderTopWidth: 0.5,
+              borderColor: '#ccc',
+              paddingVertical: 8,
             }}
             rowDirection={"column"}
           />
@@ -125,15 +128,6 @@ export default class PersonalityJobsScreen extends Component {
     this.props.navigation.navigate('SummaryScreen');
   }
 
-  _buildData() {
-    // let career_ids = this._totalSelected() + '';
-    // return {
-    //   uuid: '123',
-    //   // uuid: uuidv4(),
-    //   userUuid: User.getID(),
-    //   careerByFavorite: career_ids
-    // };
-  }
 
   render() {
     return(

@@ -68,16 +68,6 @@ export default class RecommendationScreen extends Component {
     this.props.navigation.navigate('GoalScreen', {career: this.state.currentJob});
   }
 
-  _buildData() {
-    // let career_ids = this._totalSelected() + '';
-    // return {
-    //   uuid: '123',
-    //   // uuid: uuidv4(),
-    //   userUuid: User.getID(),
-    //   careerByFavorite: career_ids
-    // };
-  }
-
   _renderRadioGroups() {
     let options = [
       { value: 'វិស្វករ​កសិកម្ម', label: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។' },
@@ -88,8 +78,10 @@ export default class RecommendationScreen extends Component {
       <View style={styles.box}>
         <RadioForm formHorizontal={false} animation={true}>
           { options.map((obj, i) => {
+            let myStyle = (i == options.length - 1) ? {} : { borderBottomWidth: 0.5, marginBottom: 16 }
+
             return (
-              <View key={i} style={{borderBottomWidth: 0.5, paddingHorizontal: 16, marginBottom: 16}}>
+              <View key={i} style={[{paddingHorizontal: 16}, myStyle]}>
                 <Text style={styles.subTitle}>{obj.value}</Text>
 
                 <RadioButton labelHorizontal={true}>
@@ -126,6 +118,7 @@ export default class RecommendationScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
+              <Text style={{marginBottom: 8}}>ចូរអានការណែនាំ និងជ្រើសរើសមុខរបរមួយក្នុងចំណោម២មុខរបរខាងក្រោម</Text>
               { this._renderRadioGroups() }
             </View>
           </ScrollView>

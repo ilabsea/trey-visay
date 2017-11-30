@@ -44,10 +44,6 @@ export default class ValueJobsScreen extends Component {
     }
   };
 
-  // state = {
-  //   careers: []
-  // }
-
   _renderCheckBoxes() {
     let value = valueJobs[0];
     let title = value.text;
@@ -73,7 +69,10 @@ export default class ValueJobsScreen extends Component {
               marginLeft: 10
             }}
             rowStyle={{
-              flexDirection: 'row'
+              flexDirection: 'row',
+              borderTopWidth: 0.5,
+              borderColor: '#ccc',
+              paddingVertical: 8,
             }}
             rowDirection={"column"}
           />
@@ -127,16 +126,6 @@ export default class ValueJobsScreen extends Component {
     //   this.props.navigation.navigate('SubjectScreen');
     // });
     this.props.navigation.navigate('PersonalityScreen');
-  }
-
-  _buildData() {
-    // let career_ids = this._totalSelected() + '';
-    // return {
-    //   uuid: '123',
-    //   // uuid: uuidv4(),
-    //   userUuid: User.getID(),
-    //   careerByFavorite: career_ids
-    // };
   }
 
   render() {

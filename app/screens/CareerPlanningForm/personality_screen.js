@@ -70,7 +70,10 @@ export default class PersonalityScreen extends Component {
               marginLeft: 10
             }}
             rowStyle={{
-              flexDirection: 'row'
+              flexDirection: 'row',
+              borderTopWidth: 0.5,
+              borderColor: '#ccc',
+              paddingVertical: 8,
             }}
             rowDirection={"column"}
           />
