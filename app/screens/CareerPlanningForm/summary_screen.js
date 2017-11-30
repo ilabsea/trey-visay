@@ -91,16 +91,6 @@ export default class PersonalityJobsScreen extends Component {
     this.props.navigation.navigate('RecommendationScreen');
   }
 
-  _buildData() {
-    // let career_ids = this._totalSelected() + '';
-    // return {
-    //   uuid: '123',
-    //   // uuid: uuidv4(),
-    //   userUuid: User.getID(),
-    //   careerByFavorite: career_ids
-    // };
-  }
-
   _renderContent() {
     let checkboxes = [
       { value: '1', label: 'វិស្វករ​កសិកម្ម' },
@@ -128,7 +118,7 @@ export default class PersonalityJobsScreen extends Component {
             checkboxes={checkboxes}
             labelStyle={{
               color: '#333',
-              fontSize: 20,
+              fontSize: 16,
               marginLeft: 10
             }}
             rowStyle={{

@@ -23,14 +23,7 @@ import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import personalityGroup from '../../data/json/personalities';
 
-let groups = {
-  group1: [],
-  group2: [],
-  group3: [],
-  group4: [],
-  group5: [],
-  group6: [],
-}
+let groups = {};
 
 export default class PersonalityScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -47,6 +40,17 @@ export default class PersonalityScreen extends Component {
                   </ThemeProvider>,
     }
   };
+
+  componentWillMount() {
+    groups = {
+      group1: [],
+      group2: [],
+      group3: [],
+      group4: [],
+      group5: [],
+      group6: [],
+    }
+  }
 
   _renderCheckBoxes(group) {
     let title = "ខ្ញុំគិតថា ខ្លួនខ្ញុំគឺជាមនុស្ស……";
@@ -66,7 +70,7 @@ export default class PersonalityScreen extends Component {
             checkboxes={checkboxes}
             labelStyle={{
               color: '#333',
-              fontSize: 20,
+              fontSize: 16,
               marginLeft: 10
             }}
             rowStyle={{

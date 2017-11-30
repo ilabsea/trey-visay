@@ -65,7 +65,7 @@ export default class ValueJobsScreen extends Component {
             checkboxes={checkboxes}
             labelStyle={{
               color: '#333',
-              fontSize: 20,
+              fontSize: 16,
               marginLeft: 10
             }}
             rowStyle={{

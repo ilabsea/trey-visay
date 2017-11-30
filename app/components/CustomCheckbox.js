@@ -28,11 +28,14 @@ export default function CustomCheckbox(props) {
                                 }
                     labelStyle={{
                       color: '#333',
-                      fontSize: 20,
+                      fontSize: 16,
                       marginLeft: 10
                     }}
                     rowStyle={{
-                      flexDirection: 'row'
+                      flexDirection: 'row',
+                      borderTopWidth: 0.5,
+                      borderColor: '#ccc',
+                      paddingVertical: 8,
                     }}
                     rowDirection={"column"}
                   />

@@ -6,7 +6,7 @@ export default StyleSheet.create({
     padding: 16,
   },
   subTitle: {
-    fontSize: 24,
+    fontSize: 20,
     fontFamily: 'KhmerOureang',
   },
   inputContainer: {

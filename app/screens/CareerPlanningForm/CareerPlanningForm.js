@@ -24,24 +24,7 @@ import uuidv4 from '../../utils/uuidv4';
 
 import careers from '../../data/json/careers.json';
 
-let groups = {
-  group1: [],
-  group2: [],
-  group3: [],
-  group4: [],
-  group5: [],
-  group6: [],
-  group7: [],
-  group8: [],
-  group9: [],
-  group10: [],
-  group11: [],
-  group12: [],
-  group13: [],
-  group14: [],
-  group15: [],
-  group16: [],
-}
+let groups = {};
 
 export default class CareerPlanningForm extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -61,6 +44,27 @@ export default class CareerPlanningForm extends Component {
                     </TouchableOpacity>),
     }
   };
+
+  componentWillMount() {
+    groups = {
+      group1: [],
+      group2: [],
+      group3: [],
+      group4: [],
+      group5: [],
+      group6: [],
+      group7: [],
+      group8: [],
+      group9: [],
+      group10: [],
+      group11: [],
+      group12: [],
+      group13: [],
+      group14: [],
+      group15: [],
+      group16: [],
+    }
+  }
 
   _renderCheckBoxes(index, group) {
     let title = careers[index].name;
@@ -85,7 +89,7 @@ export default class CareerPlanningForm extends Component {
             checkboxes={checkboxes}
             labelStyle={{
               color: '#333',
-              fontSize: 20,
+              fontSize: 16,
               marginLeft: 10
             }}
             rowStyle={{

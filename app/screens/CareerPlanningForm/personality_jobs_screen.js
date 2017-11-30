@@ -65,7 +65,7 @@ export default class PersonalityJobsScreen extends Component {
             checkboxes={checkboxes}
             labelStyle={{
               color: '#333',
-              fontSize: 20,
+              fontSize: 16,
               marginLeft: 10
             }}
             rowStyle={{
@@ -127,7 +127,6 @@ export default class PersonalityJobsScreen extends Component {
     // });
     this.props.navigation.navigate('SummaryScreen');
   }
-
 
   render() {
     return(
