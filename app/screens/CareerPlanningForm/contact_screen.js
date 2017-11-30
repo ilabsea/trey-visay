@@ -38,7 +38,7 @@ export default class ContactScreen extends Component {
   _renderFooter() {
     return(
       <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
+        <TouchableOpacity onPress={ this._goNext.bind(this) } style={shareStyles.btnNext}>
           <Text style={shareStyles.btnText}>បន្តទៀត</Text>
           <Icon name='keyboard-arrow-right' color='#fff' size={24} />
         </TouchableOpacity>
@@ -51,8 +51,7 @@ export default class ContactScreen extends Component {
   }
 
   _handleSubmit() {
-    // this.props.navigation.goBack('PersonalUnderstandingFormScreen');
-    this.props.navigation.goBack();
+    this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
   }
 
   _renderContent() {

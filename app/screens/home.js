@@ -34,6 +34,7 @@ const careerCounsellorStack = StackNavigator(
     CareerCounsellorScreen: { screen: CareerCounsellor },
     PersonalUnderstandingFormScreen: { screen: PersonalUnderstandingForm },
     CareerPlanningFormScreen: { screen: CareerPlanningForm },
+    CareerDetailScreen: { screen: CareerDetailScreen },
     SubjectScreen: { screen: SubjectScreen },
     ValueScreen: { screen: ValueScreen },
     ValueJobsScreen: { screen: ValueJobsScreen },
@@ -43,7 +44,6 @@ const careerCounsellorStack = StackNavigator(
     RecommendationScreen: { screen: RecommendationScreen },
     GoalScreen: { screen: GoalScreen },
     ContactScreen: { screen: ContactScreen },
-    CareerDetailScreen: { screen: CareerDetailScreen },
   }, {
     initialRouteName: 'CareerCounsellorScreen',
   }
@@ -77,15 +77,6 @@ const HomeScreen = DrawerNavigator(
     // initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
     contentComponent: SideMenu,
-    order: [
-      'Dashboard',
-      'PersonalUnderstandingForm',
-      'CareerCounsellorScreen',
-      'Institution',
-      'VideoScreen',
-      'About',
-      'ProfileStack',
-    ],
     contentOptions: {
       activeTintColor: '#1976d2',
     },
