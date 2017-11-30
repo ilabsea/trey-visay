@@ -177,31 +177,33 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   _renderPassTest() {
-    <View>
-      <View style={styles.paragraph}>
-        <Text>
-          សូមអបអរសាទរ ពិន្ទុរបស់ប្អូននៅលើសពី 50% ហើយ ដូចនេះប្អូនអាចបន្តទៅវគ្គបន្ត។
-        </Text>
-      </View>
-
+    return (
       <View>
-        <TouchableOpacity
-          onPress={() => {
-            this.props.navigation.navigate('CareerPlanningFormScreen');
-            this.setModalVisible(!this.state.modalVisible)
-          }}
-          style={styles.button}>
-          <Text style={styles.btnText}>ចូលទៅកាន់វគ្គបន្ត</Text>
-        </TouchableOpacity>
+        <View style={styles.paragraph}>
+          <Text>
+            សូមអបអរសាទរ ពិន្ទុរបស់ប្អូននៅលើសពី 50% ហើយ ដូចនេះប្អូនអាចបន្តទៅវគ្គបន្ត។
+          </Text>
+        </View>
+
+        <View>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('CareerPlanningFormScreen');
+              this.setModalVisible(!this.state.modalVisible)
+            }}
+            style={styles.button}>
+            <Text style={styles.btnText}>ចូលទៅកាន់វគ្គបន្ត</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    )
   }
 
   parseFormValue(values){
     if(values){
       values['uuid'] = uuidv4();
       if(values['everTalkedWithAnyoneAboutCareer']) {
-        values['everTalkedWithAnyoneAboutCareer'] = values['everTalkedWithAnyoneAboutCareer'].map(function(i){ return {value: i }; } );
+        values['everTalkedWithAnyoneAboutCareer'] = values['everTalkedWithAnyoneAboutCareer'].map(function(i){ return i; } );
       }
     }
     return values;
@@ -229,7 +231,7 @@ export default class PersonalUnderstandingForm extends Component {
                 </View>
 
                 { this.state.score < 12 && this._renderFailTest() }
-                { !(this.state.score < 12) && this._renderPassTest() }
+                { this.state.score >= 12 && this._renderPassTest() }
 
               </View>
             </ScrollView>

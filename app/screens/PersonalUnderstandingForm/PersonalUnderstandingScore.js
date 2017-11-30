@@ -62,7 +62,6 @@ export default class PersonalUnderstandingScore {
       for(var i=1; i<=value.length; i++) {
         score = score + questions[key]['rate'][i];
       }
-
     } else if(type == 'text') {
       if(value.length > 0) {
         score = questions[key]['rate'];
