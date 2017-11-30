@@ -8,6 +8,7 @@ import {
   TouchableHighlight,
   Platform,
   PermissionsAndroid,
+  Image,
 } from 'react-native';
 
 import {
@@ -245,6 +246,30 @@ export default class GoalScreen extends Component {
     console.log(`Finished recording of duration ${this.state.currentTime} seconds at path: ${filePath}`);
   }
 
+  _renderRecordSound() {
+    return (
+      <View style={styles.container}>
+        <View style={{alignItems: 'center'}}>
+          <Text style={labelStyles.subTitle}>សូមធ្វើការថតសម្លេង</Text>
+        </View>
+
+        <View style={{flexDirection: 'row', justifyContent: 'center', padding: 20}}>
+          <Image
+            style={{width: 150, height: 150}}
+            source={require('../../assets/images/microphone.png')}/>
+        </View>
+
+        <View style={styles.controls}>
+          {this._renderButton("RECORD", () => {this._record()}, this.state.recording )}
+          {this._renderButton("STOP", () => {this._stop()} )}
+          {this._renderButton("PLAY", () => {this._play()} )}
+
+          <Text style={styles.progressText}>{this.state.currentTime}s</Text>
+        </View>
+      </View>
+    )
+  }
+
   render() {
     return(
       <ThemeProvider uiTheme={{}}>
@@ -254,16 +279,9 @@ export default class GoalScreen extends Component {
               { this._renderContent() }
             </View>
 
-            <View style={styles.container}>
-              <View style={styles.controls}>
-                {this._renderButton("RECORD", () => {this._record()}, this.state.recording )}
-                {this._renderButton("STOP", () => {this._stop()} )}
-                {this._renderButton("PLAY", () => {this._play()} )}
-
-                <Text style={styles.progressText}>{this.state.currentTime}s</Text>
-              </View>
-            </View>
+            { this._renderRecordSound() }
           </ScrollView>
+
           { this._renderFooter() }
         </View>
       </ThemeProvider>
@@ -274,7 +292,7 @@ export default class GoalScreen extends Component {
 var styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#2b608a",
+    backgroundColor: "#21C9E0",
   },
   controls: {
     justifyContent: 'center',
