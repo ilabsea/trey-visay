@@ -40,7 +40,8 @@ User.schema = {
     isAlcoholic: { type: 'bool', default: false },
     isDrug: {type: 'bool', default: false},
     houseType: { type: 'string', optional: true },
-    collectiveIncome: { type: 'string', optional: true }
+    collectiveIncome: { type: 'string', optional: true },
+    game: 'Game'
   }
 }
 

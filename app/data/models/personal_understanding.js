@@ -21,6 +21,7 @@ PersonalUnderstanding.schema = {
     everTalkedWithAnyoneAboutCareer: {type: 'int[]', optional: true},
     howToReachJobVacancy: {type: 'string', optional: true},
     whoToReachJobVacancy: {type: 'string', optional: true},
-    score: {type: 'string', optional: true}
+    score: {type: 'string', optional: true},
+    games: { type: 'linkingObjects', objectType: 'Game', property: 'personalUnderstandings' }
   }
 }
