@@ -15,6 +15,7 @@ import {
   ThemeProvider,
   Icon,
 } from 'react-native-material-ui';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import Sound from 'react-native-sound';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
@@ -78,15 +79,15 @@ export default class GoalScreen extends Component {
   _renderContent() {
     return(
       <View style={labelStyles.box}>
-        <Text style={labelStyles.subTitle}>តើអ្នកនឹងកំណត់គោលដៅបែបណាដើម្បីក្លាយជា{this.props.navigation.state.params.career}? មូលហេតុអ្វី?</Text>
+        <Text style={labelStyles.subTitle}>តើអ្នកនឹងកំណត់គោលដៅបែបណាដើម្បីក្លាយជា{!!this.props.navigation.state.params && this.props.navigation.state.params.career}? មូលហេតុអ្វី?</Text>
 
         <View>
           <Text>
-            ខ្ញុំនឹងខិតខំរៀន....................... ដោយសារតែ……………
+            ឧទាហរណ៍: ខ្ញុំនឹងខិតខំរៀន....................... ដោយសារតែ.......................
           </Text>
         </View>
 
-
+        { this._renderRecordSound() }
       </View>
     )
   }
@@ -139,16 +140,38 @@ export default class GoalScreen extends Component {
       });
   }
 
-  _renderButton(title, onPress, active) {
-    var style = (active) ? styles.activeButtonText : styles.buttonText;
+  _renderButtonMicrophone() {
+    let btn = { width: 74, height: 74, borderRadius: 37, borderWidth: 0, backgroundColor: '#e94b35' };
 
     return (
-      <TouchableHighlight style={styles.button} onPress={onPress}>
-        <Text style={style}>
-          {title}
-        </Text>
+      <TouchableHighlight style={[styles.button, btn]} onPress={this._record.bind(this)}>
+        <View>
+          { !this.state.recording && <AwesomeIcon name='microphone' color='#fff' size={24} /> }
+          { this.state.recording && <AwesomeIcon name='pause' color='#fff' size={24} /> }
+        </View>
       </TouchableHighlight>
     );
+  }
+
+  _renderButtonPlay() {
+    let isActive = this.state.currentTime > 0 && !this.state.recording
+
+    return this._renderButton('play', () => {this._play()}, isActive)
+  }
+
+  _renderButtonStop() {
+    return this._renderButton('stop', () => {this._stop()}, this.state.recording)
+  }
+
+  _renderButton(name, onPress, isActive) {
+    let style = isActive ? styles.activeButtonText : styles.disabledButtonText;
+    let iconColor = isActive ? '#000' : '#bdbdbd';
+
+   return (
+     <TouchableHighlight style={[styles.button, style]} onPress={onPress}>
+       <AwesomeIcon name={name} size={16} color={iconColor} />
+     </TouchableHighlight>
+   );
   }
 
   async _pause() {
@@ -247,6 +270,10 @@ export default class GoalScreen extends Component {
   }
 
   _renderRecordSound() {
+    let date = new Date(null);
+    date.setSeconds(this.state.currentTime);
+    let time = date.toISOString().substr(11, 8);
+
     return (
       <View style={styles.container}>
         <View style={{alignItems: 'center'}}>
@@ -259,12 +286,14 @@ export default class GoalScreen extends Component {
             source={require('../../assets/images/microphone.png')}/>
         </View>
 
-        <View style={styles.controls}>
-          {this._renderButton("RECORD", () => {this._record()}, this.state.recording )}
-          {this._renderButton("STOP", () => {this._stop()} )}
-          {this._renderButton("PLAY", () => {this._play()} )}
+        <View style={{flexDirection: 'row', justifyContent: 'center'}}>
+          <Text style={styles.progressText}>{time}</Text>
+        </View>
 
-          <Text style={styles.progressText}>{this.state.currentTime}s</Text>
+        <View style={styles.controls}>
+          {this._renderButtonPlay()}
+          {this._renderButtonMicrophone() }
+          {this._renderButtonStop() }
         </View>
       </View>
     )
@@ -278,8 +307,6 @@ export default class GoalScreen extends Component {
             <View style={{margin: 16, flex: 1}}>
               { this._renderContent() }
             </View>
-
-            { this._renderRecordSound() }
           </ScrollView>
 
           { this._renderFooter() }
@@ -291,8 +318,7 @@ export default class GoalScreen extends Component {
 
 var styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#21C9E0",
+    paddingVertical: 20
   },
   controls: {
     justifyContent: 'center',
@@ -303,20 +329,22 @@ var styles = StyleSheet.create({
   progressText: {
     paddingTop: 50,
     fontSize: 50,
-    color: "#fff"
   },
   button: {
-    padding: 20
+    padding: 20,
+    borderWidth: 1,
+    borderRadius: 28,
+    width: 56,
+    height: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 24,
+    borderWidth: 2,
   },
   disabledButtonText: {
-    color: '#eee'
-  },
-  buttonText: {
-    fontSize: 20,
-    color: "#fff"
+    borderColor: '#bdbdbd'
   },
   activeButtonText: {
-    fontSize: 20,
-    color: "#B81F00"
+    borderColor: "#000"
   }
 });
