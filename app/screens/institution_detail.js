@@ -28,7 +28,7 @@ export default class InstitutionDetail extends Component {
 
   componentWillMount() {
     this.state = {
-      school: schoolList.filter((school) => school.id == '1')[0]
+      school: schoolList.filter((school) => school.id == this.props.navigation.state.params.id)[0]
     }
   }
 
