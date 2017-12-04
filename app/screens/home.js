@@ -73,6 +73,7 @@ const HomeScreen = DrawerNavigator(
   },
   {
     initialRouteName: 'Dashboard',
+    // initialRouteName: 'Institution',
     // initialRouteName: 'VideoScreen',
     // initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',

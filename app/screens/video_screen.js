@@ -48,6 +48,7 @@ export default class VideoScreen extends Component {
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}
             onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+            searchable={{ placeholder: 'Search' }}
           />
 
           <ScrollView style={{flex: 1}}>

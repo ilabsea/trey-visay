@@ -122,6 +122,7 @@ export default class Register extends Component {
                   value={this.state.password}
                   ref={(input) => this.passwordInput = input}
                   onSubmitEditing={() => this.passwordConfirmationInput.focus()}
+                  underlineColorAndroid='transparent'
                   returnKeyType='next' />
 
                 <Text style={styles.whiteLabel}>វាយលេខសម្ងាត់ម្តងទៀត</Text>
@@ -131,6 +132,7 @@ export default class Register extends Component {
                   onChangeText={(text) => this.setState({passwordConfirmation: text})}
                   value={this.state.passwordConfirmation}
                   ref={(input) => this.passwordConfirmationInput = input}
+                  underlineColorAndroid='transparent'
                   returnKeyType='done' />
               </View>
 
