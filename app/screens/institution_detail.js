@@ -1,0 +1,180 @@
+import React, {Component} from 'react';
+import {
+  Image,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+} from 'react-native';
+
+import {
+  ThemeProvider,
+  Toolbar,
+} from 'react-native-material-ui';
+
+// Components
+import ScrollableHeader from '../components/scrollable_header';
+import shareStyles from '../assets/style_sheets/profile_form';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import schoolList from '../data/json/schools';
+
+const PROFILE_SIZE = 120;
+
+export default class InstitutionDetail extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    header: null,
+    title: '',
+  });
+
+  componentWillMount() {
+    this.state = {
+      school: schoolList.filter((school) => school.id == '1')[0]
+    }
+  }
+
+  _renderContact() {
+    return (
+      <View style={[shareStyles.box]}>
+        <Text style={shareStyles.subTitle}>ទំនាក់ទំនង</Text>
+
+        <View style={{flex: 1, marginLeft: 16}}>
+          <View style={{flexDirection: 'row'}}>
+            <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
+            <Text style={{marginLeft: 8}}>{this.state.school.address}</Text>
+          </View>
+
+          <View style={{flexDirection: 'row'}}>
+            <AwesomeIcon name='phone' color='#1976d2' size={24} />
+            <Text style={{marginLeft: 8}}>{this.state.school.phoneNumbers.join('; ')}</Text>
+          </View>
+
+          { this.state.school.websiteOrFacebook.length && <View style={{flexDirection: 'row'}}>
+            <AwesomeIcon name='globe' color='#1976d2' size={24} />
+            <Text style={{marginLeft: 8}}>{this.state.school.websiteOrFacebook.join('; ')}</Text>
+          </View> }
+        </View>
+      </View>
+    )
+  }
+
+  _renderMajor() {
+    return (
+      <View style={[shareStyles.box]}>
+        <Text style={shareStyles.subTitle}>ជំនាញ</Text>
+
+        { this.state.school.departments.map((department, i) => {
+          return (
+            <View key={i} style={{marginBottom: 20}}>
+              <Text style={{fontWeight: 'bold', fontSize: 18}}> ដេប៉ាតេម៉ង់: {department.name}</Text>
+              <View style={{paddingLeft: 16}}>
+                { department.majors.map((major, j) => {
+                  return (
+                    <View style={{flexDirection: 'row'}} key={j}>
+                      <AwesomeIcon name='check-circle' color='#1976d2' size={24} />
+                      <Text style={{marginLeft: 8}}>{major}</Text>
+                    </View>
+                  )
+                })}
+              </View>
+            </View>
+          )
+        }) }
+
+      </View>
+    )
+  }
+
+  _renderScrollViewContent() {
+    let photo = require('../assets/images/schools/default.png');
+
+    // if (!!this.state.user.photo) {
+    //   photo = {uri: this.state.user.photo};
+    // }
+    return (
+      <View style={{paddingBottom: 40}}>
+        <View style={styles.avataContainer}>
+          <Image
+            style={styles.avata}
+            source={photo}
+          />
+        </View>
+
+        <View style={{marginTop: 60, marginHorizontal: 16}}>
+          { this._renderContact() }
+          { this._renderMajor() }
+        </View>
+      </View>
+    )
+  }
+
+  _renderHeader() {
+    return(
+      <Toolbar
+        leftElement="arrow-back"
+        centerElement=""
+        onLeftElementPress={() => this.props.navigation.goBack()}
+        style={{
+          container: {backgroundColor: 'transparent'}
+        }}
+      />
+    )
+  }
+
+  render() {
+    let photo = require('../assets/images/schools/default.png');
+    let cover = require('../assets/images/header_bg.jpg');
+
+    return (
+      <ThemeProvider uiTheme={{}}>
+        <ScrollableHeader
+          customView={ this._renderScrollViewContent.bind(this) }
+          imageBgSrc={ cover }
+          customHeader={ this._renderHeader.bind(this) }
+          profile={ photo }
+          profileSize={ PROFILE_SIZE }
+          title={this.state.school.universityName}
+        />
+      </ThemeProvider>
+    )
+  }
+}
+
+const styles = StyleSheet.create({
+  box: {
+    marginTop: 10,
+    marginHorizontal: 16,
+    borderWidth: 1,
+    borderColor: '#eee',
+    backgroundColor: '#fff'
+  },
+  item: {
+    flexDirection: 'row',
+    padding: 16
+  },
+  itemTitle: {
+    flex: 1,
+    fontSize: 20,
+    fontFamily: 'KhmerOureang',
+    color: '#111'
+  },
+  itemLabel: {
+    flex: 1,
+  },
+  itemValue: {
+    flex: 2,
+    fontSize: 16,
+    fontFamily: 'KantumruyBold',
+    color: '#111'
+  },
+  avataContainer: {
+    position: 'absolute',
+    left: 24,
+    top: -PROFILE_SIZE*2/3,
+    zIndex: 1
+  },
+  avata: {
+    width: PROFILE_SIZE,
+    height: PROFILE_SIZE,
+    borderRadius: 0,
+  }
+});

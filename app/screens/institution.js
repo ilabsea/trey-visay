@@ -6,6 +6,7 @@ import {
   ScrollView,
   StyleSheet,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
 import {
@@ -27,6 +28,7 @@ const uiTheme = {
 
 export default class Institution extends Component {
   static navigationOptions = {
+    header: null,
     drawerLabel: 'គ្រឹះស្ថានសិក្សា',
     drawerIcon: ({ tintColor }) => (
       <AwesomeIcon name='graduation-cap' size={18} color={tintColor} />
@@ -46,30 +48,32 @@ export default class Institution extends Component {
     }
 
     return (
-      <View style={[shareStyles.box, {flexDirection: 'row'}]} key={i}>
-        <View>
-          <Image source={logo} style={{width: 100, height: 100}} />
-        </View>
-
-        <View style={{flex: 1, marginLeft: 16}}>
-          <Text style={shareStyles.subTitle}>{school.universityName}</Text>
-
-          <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
-            <Text style={{marginLeft: 8}}>{school.address}</Text>
+      <TouchableOpacity onPress={() => this.props.navigation.navigate('InstitutionDetail', {id: school.id})} key={i}>
+        <View style={[shareStyles.box, {flexDirection: 'row'}]}>
+          <View>
+            <Image source={logo} style={{width: 100, height: 100}} />
           </View>
 
-          <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='phone' color='#1976d2' size={24} />
-            <Text style={{marginLeft: 8}}>{school.phoneNumbers.join('; ')}</Text>
-          </View>
+          <View style={{flex: 1, marginLeft: 16}}>
+            <Text style={shareStyles.subTitle}>{school.universityName}</Text>
 
-          { school.websiteOrFacebook.length && <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='globe' color='#1976d2' size={24} />
-            <Text style={{marginLeft: 8}}>{school.websiteOrFacebook.join('; ')}</Text>
-          </View> }
+            <View style={{flexDirection: 'row'}}>
+              <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
+              <Text style={{marginLeft: 8}}>{school.address}</Text>
+            </View>
+
+            <View style={{flexDirection: 'row'}}>
+              <AwesomeIcon name='phone' color='#1976d2' size={24} />
+              <Text style={{marginLeft: 8}}>{school.phoneNumbers.join('; ')}</Text>
+            </View>
+
+            { school.websiteOrFacebook.length && <View style={{flexDirection: 'row'}}>
+              <AwesomeIcon name='globe' color='#1976d2' size={24} />
+              <Text style={{marginLeft: 8}}>{school.websiteOrFacebook.join('; ')}</Text>
+            </View> }
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     )
   }
 

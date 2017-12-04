@@ -27,6 +27,7 @@ import EditPersonalInfo from './edit_personal_info';
 import EditFamilyInfo from './edit_family_info';
 import EditFamilySituation from './edit_family_situation';
 import Institution from './institution';
+import InstitutionDetail from './institution_detail';
 import VideoScreen from './video_screen';
 
 const careerCounsellorStack = StackNavigator(
@@ -58,6 +59,15 @@ const profileStack = StackNavigator(
     EditFamilySituation: {screen: EditFamilySituation},
   });
 
+const InstitutionStack = StackNavigator(
+  {
+    Institution: {screen: Institution},
+    InstitutionDetail: {screen: InstitutionDetail},
+  }, {
+    initialRouteName: 'Institution',
+  }
+);
+
 const HomeScreen = DrawerNavigator(
   {
     Dashboard: { screen: Dashboard },
@@ -68,12 +78,12 @@ const HomeScreen = DrawerNavigator(
       name: 'CareerCounsellorStack',
       screen: careerCounsellorStack
     },
-    Institution: { screen: Institution },
+    InstitutionScreen: { screen: InstitutionStack },
     VideoScreen: { screen: VideoScreen },
   },
   {
     initialRouteName: 'Dashboard',
-    // initialRouteName: 'Institution',
+    // initialRouteName: 'InstitutionScreen',
     // initialRouteName: 'VideoScreen',
     // initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
