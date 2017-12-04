@@ -126,10 +126,10 @@ class SideMenu extends Component {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => this.navigateToScreen('Institution')}>
-              <View style={this.getWrapperStyle('Institution')}>
-                <AwesomeIcon name='graduation-cap' size={16} style={this.getIconStyle('Institution')} />
-                <Text style={this.getMenuTextStyle('Institution')}>គ្រឹះស្ថានសិក្សា</Text>
+            <TouchableOpacity onPress={() => this.navigateToScreen('InstitutionStack')}>
+              <View style={this.getWrapperStyle('InstitutionStack')}>
+                <AwesomeIcon name='graduation-cap' size={16} style={this.getIconStyle('InstitutionStack')} />
+                <Text style={this.getMenuTextStyle('InstitutionStack')}>គ្រឹះស្ថានសិក្សា</Text>
               </View>
             </TouchableOpacity>
 

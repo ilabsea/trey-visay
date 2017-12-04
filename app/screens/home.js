@@ -78,12 +78,12 @@ const HomeScreen = DrawerNavigator(
       name: 'CareerCounsellorStack',
       screen: careerCounsellorStack
     },
-    InstitutionScreen: { screen: InstitutionStack },
+    InstitutionStack: { screen: InstitutionStack },
     VideoScreen: { screen: VideoScreen },
   },
   {
     initialRouteName: 'Dashboard',
-    // initialRouteName: 'InstitutionScreen',
+    // initialRouteName: 'InstitutionStack',
     // initialRouteName: 'VideoScreen',
     // initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
