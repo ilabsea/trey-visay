@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 
 import CheckboxGroup from 'react-native-checkbox-group';
+// import CheckboxGroup from '../../components/checkbox_group';
 
 import {
   ThemeProvider,
@@ -44,6 +45,10 @@ export default class CareerPlanningForm extends Component {
                     </TouchableOpacity>),
     }
   };
+
+  state = {
+    test: []
+  }
 
   componentWillMount() {
     groups = {
@@ -100,6 +105,80 @@ export default class CareerPlanningForm extends Component {
             }}
             rowDirection={"column"}
           />
+        </View>
+      </View>
+    )
+  }
+
+  _rrenderCheckBoxes(index, group) {
+    let title = careers[index].name;
+    let checkboxes = this._formatDataForCheckbox(index);
+
+    return (
+      <View style={styles.box}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={[styles.subTitle, {flex: 1}]}>{index + 1}) {title}</Text>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('CareerDetailScreen', {title: title, careerId: index + 1})}>
+            <AwesomeIcon name='question-circle' color='#1976d2' size={24} />
+          </TouchableOpacity>
+        </View>
+
+        <View>
+          <CheckboxGroup
+            onSelect={(selected) => {this._handleChecked(group, selected)}}
+            items={checkboxes}
+            style={{
+              label: {
+                color: '#333',
+                fontSize: 16,
+                marginLeft: 10
+              },
+              icon: {
+                color: "#4caf50"
+              },
+              container: {
+                borderTopWidth: 0.5,
+                borderColor: '#ccc',
+              }
+            }}
+          />
+        </View>
+      </View>
+    )
+  }
+
+  _renderTest() {
+    let title = 'test';
+    let checkboxes = [
+      {value: 'a', label: 'aaកក'},
+      {value: 'b', label: 'bb'},
+      {value: 'c', label: 'cc'},
+
+    ]
+
+    return(
+      <View style={styles.box}>
+        <View>
+          <CheckboxGroup
+            onSelect={(selected) => {this.setState({test: selected})}}
+            items={checkboxes}
+            style={{
+              label: {
+                color: '#333',
+                fontSize: 16,
+                marginLeft: 10
+              },
+              icon: {
+                color: "#4caf50"
+              },
+              container: {
+                borderTopWidth: 0.5,
+                borderColor: '#ccc',
+              }
+
+            }}
+          />
+          <Text>{JSON.stringify(this.state.test)}</Text>
         </View>
       </View>
     )

@@ -17,7 +17,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
-
+import InstitutionTab from './institution_tab';
 import schoolList from '../data/json/schools';
 
 const uiTheme = {
@@ -78,13 +78,15 @@ export default class Institution extends Component {
   }
 
   _renderContent() {
-    return (
-      <View>
-        { this.state.schools.map((school, i) => {
-          { return (this._renderSchool(school, i)) }
-        })}
-      </View>
-    )
+    // return (
+    //   <View>
+    //     { this.state.schools.map((school, i) => {
+    //       { return (this._renderSchool(school, i)) }
+    //     })}
+    //   </View>
+    // )
+
+    return ( <InstitutionTab></InstitutionTab> );
   }
 
   _onChangeText(val) {
@@ -119,11 +121,9 @@ export default class Institution extends Component {
             }}
           />
 
-          <ScrollView>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderContent() }
-            </View>
-          </ScrollView>
+          <View style={{flex: 1}}>
+            { this._renderContent() }
+          </View>
         </View>
       </ThemeProvider>
     )

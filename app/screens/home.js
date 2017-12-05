@@ -2,6 +2,7 @@ import React from 'react';
 import {
   DrawerNavigator,
   StackNavigator,
+  TabNavigator,
 } from 'react-navigation';
 
 // Screens
@@ -28,6 +29,7 @@ import EditFamilyInfo from './edit_family_info';
 import EditFamilySituation from './edit_family_situation';
 import Institution from './institution';
 import InstitutionDetail from './institution_detail';
+import SkillScreen from './skill_screen';
 import VideoScreen from './video_screen';
 
 const careerCounsellorStack = StackNavigator(
@@ -61,8 +63,8 @@ const profileStack = StackNavigator(
 
 const InstitutionStack = StackNavigator(
   {
-    Institution: {screen: Institution},
-    InstitutionDetail: {screen: InstitutionDetail},
+    Institution: { screen: Institution },
+    InstitutionDetail: { screen: InstitutionDetail },
   }, {
     initialRouteName: 'Institution',
   }
