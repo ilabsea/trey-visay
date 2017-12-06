@@ -38,8 +38,9 @@ export default StyleSheet.create({
     fontFamily: 'KantumruyBold',
   },
   submitText: {
-    fontWeight: 'bold',
     fontFamily: 'KantumruyBold',
+    fontSize: 20,
+    lineHeight: 32,
   },
   btnLogin: {
     marginTop: 24,

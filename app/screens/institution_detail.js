@@ -54,7 +54,7 @@ export default class InstitutionDetail extends Component {
     let iconSize = com.iconSize || 24;
     let data = com.data;
 
-    if (data instanceof Array) {
+    if (Array.isArray(data)) {
       data = data.join('; ');
     }
 

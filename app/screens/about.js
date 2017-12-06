@@ -14,6 +14,7 @@ import {
 } from 'react-native-material-ui';
 
 import headerStyles from '../assets/style_sheets/header';
+import shareStyles from '../assets/style_sheets/profile_form';
 
 const uiTheme = {
   palette: {
@@ -43,7 +44,17 @@ export default class About extends Component {
 
           <ScrollView>
             <View style={styles.scrollContainer}>
-              <Text>អំពីកម្មវិធី</Text>
+              <View style={shareStyles.box}>
+                <Text style={styles.paragraph}>
+                  កម្មវិធី
+                  <Text style={styles.textBold}> ត្រីវិស័យ </Text>
+                  គឺជាកម្មវិធីទូរស័ព្ទមួយដែលអនុញ្ញាតឱ្យសិស្សថ្នាក់ទី 9 ដល់ ទី12 អាចធ្វើការស្វែងយល់អំពីខ្លួនឯង បង្កើនជំនាញទន់ និងជំនាញរឹង ហើយអ្នកអាចប្រើប្រាស់វាដើម្បីស្វែងរកទំនាក់ទំនងនៃអាជីព។
+                </Text>
+
+                <Text style={styles.paragraph}>
+                  កម្មវិធី ត្រីវិស័យ ត្រូវបានងបង្កើតឡើងដោយអង្គការ Kape សហការជាមួយនឹងអង្គការ InSTEDD iLabSEA ដោយទទួលបានមូលនិធិគាំទ្រពី SPIDER។
+                </Text>
+              </View>
             </View>
           </ScrollView>
         </View>
@@ -60,4 +71,10 @@ const styles = StyleSheet.create({
   scrollContainer: {
     padding: 16
   },
+  paragraph: {
+    marginBottom: 16
+  },
+  textBold: {
+    fontFamily: 'KantumruyBold'
+  }
 });

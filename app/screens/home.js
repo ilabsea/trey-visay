@@ -89,6 +89,7 @@ const HomeScreen = DrawerNavigator(
     // initialRouteName: 'VideoScreen',
     // initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
+    // initialRouteName: 'About',
     contentComponent: SideMenu,
     contentOptions: {
       activeTintColor: '#1976d2',
