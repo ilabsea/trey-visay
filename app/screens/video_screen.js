@@ -25,6 +25,12 @@ export default class VideoScreen extends Component {
     ),
   };
 
+  componentWillMount() {
+    this.state = {
+      videos: this._formatData(videoList)
+    }
+  }
+
   _formatData(list) {
     let data = [];
     let myList = list.slice(0);
@@ -36,9 +42,25 @@ export default class VideoScreen extends Component {
     return data;
   }
 
+  _onChangeText(val) {
+    let list = videoList;
+
+    if (!!val) {
+      list = videoList.filter((video) => {
+        return video.title.toLowerCase().indexOf(val.toLowerCase()) > -1
+      })
+    }
+
+    this.setState({videos: this._formatData(list)})
+  }
+
+  _onSearchClosed() {
+    this.setState({videos: this._formatData(videoList)});
+  }
+
   render() {
     let { width } = Dimensions.get('window');
-    let videos = this._formatData(videoList);
+    // let videos = this._formatData(videoList);
     let imageWidth = width/2-24;
 
     return(
@@ -48,11 +70,16 @@ export default class VideoScreen extends Component {
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}
             onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-            searchable={{ placeholder: 'Search' }}
+            searchable={{
+              autoFocus: true,
+              placeholder: 'Search',
+              onChangeText: this._onChangeText.bind(this),
+              onSearchClosed: this._onSearchClosed.bind(this)
+            }}
           />
 
           <ScrollView style={{flex: 1}}>
-            { videos.map((row, i) => {
+            { this.state.videos.map((row, i) => {
               return (
                 <View style={styles.row} key={i}>
                   { row.map((obj, j) => {

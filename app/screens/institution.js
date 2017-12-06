@@ -94,7 +94,7 @@ export default class Institution extends Component {
 
     if (!!val) {
       list = schoolList.filter((school) => {
-        return school.universityName.indexOf(val) > -1
+        return school.universityName.toLowerCase().indexOf(val.toLowerCase()) > -1
       })
     }
 
