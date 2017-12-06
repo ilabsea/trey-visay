@@ -5,8 +5,8 @@
     "address": "មហាវិថីសហព័ន្ធរុស្សី សង្កាត់ទឹកល្អក់ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": ["០២៣ ៨៨៣ ៦៤០", "០២៣ ៨៨៤ ១៥៤", "០២៣ ៨៨៥៤១៩"],
-    "fax": ["០២៣ ៨៨០ ១១៦", "០២៣ ៨៨៤ ១៥៤"],
-    "email": ["secretary@rupp.edu.kh"],
+    "faxes": ["០២៣ ៨៨០ ១១៦", "០២៣ ៨៨៤ ១៥៤"],
+    "emails": ["secretary@rupp.edu.kh"],
     "websiteOrFacebook": ["www.rupp.edu.kh", "www.facebook.com/rupp.edu.kh"],
     "mailbox": "",
     "departments": [

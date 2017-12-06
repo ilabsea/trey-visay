@@ -16,6 +16,7 @@ import {
 import ScrollableHeader from '../components/scrollable_header';
 import shareStyles from '../assets/style_sheets/profile_form';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import schoolList from '../data/json/schools';
 
 const PROFILE_SIZE = 120;
@@ -38,21 +39,40 @@ export default class InstitutionDetail extends Component {
         <Text style={shareStyles.subTitle}>ទំនាក់ទំនង</Text>
 
         <View style={{flex: 1, marginLeft: 16}}>
-          <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
-            <Text style={{marginLeft: 8}}>{this.state.school.address}</Text>
-          </View>
-
-          <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='phone' color='#1976d2' size={24} />
-            <Text style={{marginLeft: 8}}>{this.state.school.phoneNumbers.join('; ')}</Text>
-          </View>
-
-          { this.state.school.websiteOrFacebook.length && <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='globe' color='#1976d2' size={24} />
-            <Text style={{marginLeft: 8}}>{this.state.school.websiteOrFacebook.join('; ')}</Text>
-          </View> }
+          { this._renderCommunication({data: this.state.school.address, icon: 'map-marker'}) }
+          { this._renderCommunication({data: this.state.school.phoneNumbers, icon: 'phone'}) }
+          { this._renderCommunication({data: this.state.school.faxes, icon: 'fax', iconSize: 20}) }
+          { this._renderCommunication({data: this.state.school.emails, icon: 'envelope', iconSize: 20}) }
+          { this._renderCommunication({data: this.state.school.mailbox, icon: 'markunread-mailbox'}) }
+          { this._renderCommunication({data: this.state.school.websiteOrFacebook, icon: 'globe'}) }
         </View>
+      </View>
+    )
+  }
+
+  _renderCommunication(com) {
+    let iconSize = com.iconSize || 24;
+    let data = com.data;
+
+    if (data instanceof Array) {
+      data = data.join('; ');
+    }
+
+    return (
+      <View>
+        { !!data.length &&
+          <View style={styles.communicationWrapper}>
+            <View style={styles.iconWrapper}>
+              { com.icon != 'markunread-mailbox' &&
+                <AwesomeIcon name={com.icon} color='#1976d2' size={iconSize} />
+              }
+              { com.icon == 'markunread-mailbox' &&
+                <MaterialIcon name={com.icon} color='#1976d2' size={iconSize} />
+              }
+            </View>
+            <Text>{data}</Text>
+          </View>
+        }
       </View>
     )
   }
@@ -65,12 +85,12 @@ export default class InstitutionDetail extends Component {
         { this.state.school.departments.map((department, i) => {
           return (
             <View key={i} style={{marginBottom: 20}}>
-              <Text style={{fontWeight: 'bold', fontSize: 18}}> ដេប៉ាតេម៉ង់: {department.name}</Text>
+              <Text style={styles.departmentName}>{department.name}</Text>
               <View style={{paddingLeft: 16}}>
                 { department.majors.map((major, j) => {
                   return (
-                    <View style={{flexDirection: 'row'}} key={j}>
-                      <AwesomeIcon name='check-circle' color='#1976d2' size={24} />
+                    <View style={styles.majorWrapper} key={j}>
+                      <AwesomeIcon name='graduation-cap' color='#1976d2' size={20} />
                       <Text style={{marginLeft: 8}}>{major}</Text>
                     </View>
                   )
@@ -176,5 +196,23 @@ const styles = StyleSheet.create({
     width: PROFILE_SIZE,
     height: PROFILE_SIZE,
     borderRadius: 0,
+  },
+  iconWrapper: {
+    width: 24,
+    alignItems: 'center',
+    marginRight: 10
+  },
+  communicationWrapper: {
+    flexDirection: 'row'
+  },
+  departmentName: {
+    fontFamily: 'KantumruyBold',
+    fontSize: 16,
+    marginBottom: 8
+  },
+  majorWrapper: {
+    flexDirection: 'row',
+    paddingVertical: 4,
+    alignItems: 'center'
   }
 });

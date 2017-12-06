@@ -78,15 +78,15 @@ export default class Institution extends Component {
   }
 
   _renderContent() {
-    // return (
-    //   <View>
-    //     { this.state.schools.map((school, i) => {
-    //       { return (this._renderSchool(school, i)) }
-    //     })}
-    //   </View>
-    // )
+    return (
+      <View>
+        { this.state.schools.map((school, i) => {
+          { return (this._renderSchool(school, i)) }
+        })}
+      </View>
+    )
 
-    return ( <InstitutionTab></InstitutionTab> );
+    // return ( <InstitutionTab></InstitutionTab> );
   }
 
   _onChangeText(val) {
@@ -121,9 +121,11 @@ export default class Institution extends Component {
             }}
           />
 
-          <View style={{flex: 1}}>
-            { this._renderContent() }
-          </View>
+          <ScrollView>
+            <View style={{margin: 16, flex: 1}}>
+              { this._renderContent() }
+            </View>
+          </ScrollView>
         </View>
       </ThemeProvider>
     )
