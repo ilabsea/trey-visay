@@ -32,8 +32,8 @@ export default class CareerPlanningForm extends Component {
     const { goBack, state } = navigation;
 
     return {
-      title: 'ជ្រើសរើស៣មុខរបរ',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើស៣មុខរបរ</Text>,
+      title: 'ជ្រើសរើស៣មុខរបរតាមចំណូលចិត្ត',
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើស៣មុខរបរតាមចំណូលចិត្ត</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>

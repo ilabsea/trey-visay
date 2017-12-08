@@ -51,7 +51,7 @@ export default class CareerCounsellor extends Component {
             </View>
 
             <View style={{alignItems: 'center'}}>
-              <Text style={styles.title}>វាយតម្លៃមុខរបរ</Text>
+              <Text style={styles.title}>ស្វែងយល់អំពីខ្លួនឯង</Text>
             </View>
 
             <View style={{marginTop: 20, marginBottom: 30}}>

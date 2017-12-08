@@ -35,8 +35,8 @@ const uiTheme = {
 export default class PersonalUnderstandingForm extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: 'វាយតម្លៃមុខរបរ',
-    headerTitle: <Text style={headerStyles.headerTitleStyle}>វាយតម្លៃមុខរបរ</Text>,
+    title: 'ស្វែងយល់អំពីខ្លួនឯង',
+    headerTitle: <Text style={headerStyles.headerTitleStyle}>ស្វែងយល់អំពីខ្លួនឯង</Text>,
     headerStyle: headerStyles.headerStyle,
     headerLeft: <ThemeProvider uiTheme={{}}>
                   <TouchableOpacity onPress={() => navigation.goBack()} style={{marginHorizontal: 16}}>
@@ -227,7 +227,7 @@ export default class PersonalUnderstandingForm extends Component {
             <ScrollView>
               <View style={{margin: 16, padding: 16, backgroundColor: '#fff'}}>
                 <View>
-                  <Text style={styles.subTitle}>លទ្ធផលនៃការវាយតម្លៃមុខរបរ</Text>
+                  <Text style={styles.subTitle}>លទ្ធផលនៃការស្វែងយល់អំពីខ្លួនឯង</Text>
                 </View>
 
                 { this.state.score < 12 && this._renderFailTest() }
