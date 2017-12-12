@@ -44,9 +44,11 @@ export default class Dashboard extends Component {
     return (
       <TouchableOpacity
         onPress={() => this.props.navigation.navigate('CareerCounsellorScreen')}
-        style={[styles.btnBox, {backgroundColor: '#f4511e'}]}>
-        <AwesomeIcon name='briefcase' size={60} color='#fff' />
-        <Text style={styles.btnLabel}>មុខរបរ និង អាជីព</Text>
+        style={[styles.btnBox]}>
+        <View style={[styles.btnFab, {backgroundColor: '#3f51b5'}]}>
+          <AwesomeIcon name='briefcase' size={30} color='#fff' />
+        </View>
+        <Text style={styles.btnLabel}>វាយតម្លៃមុខរបរ និង អាជីព</Text>
       </TouchableOpacity>
     )
   }
@@ -55,8 +57,10 @@ export default class Dashboard extends Component {
     return (
       <TouchableOpacity
         onPress={() => this.props.navigation.navigate('Institution')}
-        style={[styles.btnBox, {backgroundColor: '#00a185', marginRight: 8}]}>
-        <AwesomeIcon name='graduation-cap' size={60} color='#fff' />
+        style={[styles.btnBox]}>
+        <View style={[styles.btnFab, {backgroundColor: '#009688'}]}>
+          <AwesomeIcon name='graduation-cap' size={30} color='#fff' />
+        </View>
         <Text style={styles.btnLabel}>គ្រឹះស្ថានសិក្សា</Text>
       </TouchableOpacity>
     )
@@ -66,9 +70,24 @@ export default class Dashboard extends Component {
     return (
       <TouchableOpacity
         onPress={() => this.props.navigation.navigate('VideoScreen')}
-        style={[styles.btnBox, {backgroundColor: '#673ab7', marginLeft: 8}]}>
-        <AwesomeIcon name='play-circle-o' size={60} color='#fff' />
+        style={[styles.btnBox]}>
+        <View style={[styles.btnFab, {backgroundColor: '#f44336'}]}>
+          <AwesomeIcon name='video-camera' size={30} color='#fff' />
+        </View>
         <Text style={styles.btnLabel}>វីដេអូមុខរបរ</Text>
+      </TouchableOpacity>
+    )
+  }
+
+  _renderAbout() {
+    return (
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate('About')}
+        style={[styles.btnBox]}>
+        <View style={[styles.btnFab, {backgroundColor: '#607d8b'}]}>
+          <AwesomeIcon name='list' size={30} color='#fff' />
+        </View>
+        <Text style={styles.btnLabel}>អំពីយើង</Text>
       </TouchableOpacity>
     )
   }
@@ -87,14 +106,10 @@ export default class Dashboard extends Component {
 
           <ScrollView>
             <View style={styles.scrollContainer}>
-              <View style={{flexDirection: 'row'}}>
-                {this._renderBtnCareer()}
-              </View>
-
-              <View style={{flexDirection: 'row'}}>
-                {this._renderBtnSchool()}
-                {this._renderBtnVideo()}
-              </View>
+              {this._renderBtnCareer()}
+              {this._renderBtnSchool()}
+              {this._renderBtnVideo()}
+              {this._renderAbout()}
             </View>
           </ScrollView>
         </View>
@@ -112,15 +127,24 @@ const styles = StyleSheet.create({
   },
   btnBox: {
     flex: 1,
-    height: 290,
-    justifyContent: 'center',
+    height: 108,
     alignItems: 'center',
     marginBottom: 16,
+    backgroundColor: '#fff',
+    flexDirection: 'row'
   },
   btnLabel: {
     fontFamily: 'KhmerOureang',
     fontSize: 24,
     lineHeight: 40,
-    color: '#fff',
+
+  },
+  btnFab: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 24
   }
 });
