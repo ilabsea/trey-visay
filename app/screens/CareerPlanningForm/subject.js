@@ -229,7 +229,7 @@ export default class Subject extends Component {
 
   _handleSubmit() {
     realm.write(() => {
-      realm.create('GeneralSubject', this._buildData(), true);
+      // realm.create('GeneralSubject', this._buildData(), true);
       // alert(JSON.stringify(realm.objects('GeneralSubject')[realm.objects('GeneralSubject').length -1]));
       this.props.navigation.navigate('ValueScreen');
     });

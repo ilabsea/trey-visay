@@ -11,10 +11,10 @@ Game.schema = {
     uuid: 'string',
     users: { type: 'linkingObjects', objectType: 'User', property: 'game' },
     isDone: { type: 'bool', default: false },
-    personalUnderstandings: { type: 'list', objectType: 'PersonalUnderstanding' },
-    careerPlanning: { type: 'CareerPlanning' },
-    gameSubject: { type: 'GameSubject', optional:  true },
-    gameValue: { type: 'GameValue', optional:  true },
-    gamePersonality: { type: 'GamePersonality', optional:  true }
+    // personalUnderstandings: { type: 'list', objectType: 'PersonalUnderstanding' },
+    // careerPlanning: { type: 'CareerPlanning' },
+    // gameSubject: { type: 'GameSubject', optional:  true },
+    // gameValue: { type: 'GameValue', optional:  true },
+    // gamePersonality: { type: 'GamePersonality', optional:  true }
   }
 }

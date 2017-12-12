@@ -165,7 +165,7 @@ export default class PersonalUnderstandingForm extends Component {
 
           { this.state.testCount > 1 &&
             <TouchableOpacity onPress={() => {
-              this.props.navigation.navigate('CareerPlanningFormScreen');
+              this.props.navigation.navigate('CareersScreen');
               this.setModalVisible(!this.state.modalVisible)
             }} style={[styles.button, {marginLeft: 20}]}>
               <Text style={styles.btnText}>ចូលទៅកាន់វគ្គបន្ត</Text>
@@ -188,7 +188,7 @@ export default class PersonalUnderstandingForm extends Component {
         <View>
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('CareerPlanningFormScreen');
+              this.props.navigation.navigate('CareersScreen');
               this.setModalVisible(!this.state.modalVisible)
             }}
             style={styles.button}>

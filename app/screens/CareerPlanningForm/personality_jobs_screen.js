@@ -45,10 +45,11 @@ export default class PersonalityJobsScreen extends Component {
   };
 
   _renderCheckBoxes() {
-    let value = personalityJobs[0];
+    let groupNumber = this.props.navigation.state.params.groupNumber;
+    let value = personalityJobs[groupNumber];
     let title = value.text;
     let description = value.description;
-    let checkboxes = this._formatDataForCheckbox(0);
+    let checkboxes = this._formatDataForCheckbox(groupNumber);
 
     return(
       <View style={styles.box}>
@@ -137,8 +138,6 @@ export default class PersonalityJobsScreen extends Component {
               { this._renderCheckBoxes() }
             </View>
           </ScrollView>
-
-          { this._renderFooter() }
         </View>
       </ThemeProvider>
     );

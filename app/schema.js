@@ -20,12 +20,12 @@ export default new Realm({schema: [
   User,
   PersonalUnderstanding,
   arrayInt,
-  Career,
-  GeneralSubject,
+  // Career,
+  // GeneralSubject,
   Game,
-  CareerPlanning,
-  GamePersonality,
-  GameSubject,
-  GameValue,
-  Recommendation
+  // CareerPlanning,
+  // GamePersonality,
+  // GameSubject,
+  // GameValue,
+  // Recommendation
 ]});

@@ -31,6 +31,7 @@ import Institution from './institution';
 import InstitutionDetail from './institution_detail';
 import SkillScreen from './skill_screen';
 import VideoScreen from './video_screen';
+import CareersScreen from './CareerPlanningForm/careers_screen';
 
 const careerCounsellorStack = StackNavigator(
   {
@@ -47,6 +48,7 @@ const careerCounsellorStack = StackNavigator(
     RecommendationScreen: { screen: RecommendationScreen },
     GoalScreen: { screen: GoalScreen },
     ContactScreen: { screen: ContactScreen },
+    CareersScreen: { screen: CareersScreen },
   }, {
     initialRouteName: 'CareerCounsellorScreen',
   }
