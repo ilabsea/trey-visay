@@ -23,8 +23,6 @@ import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import personalityJobs from '../../data/json/personality_jobs';
 
-let groups = {};
-
 export default class PersonalityScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
@@ -42,64 +40,6 @@ export default class PersonalityScreen extends Component {
   };
 
   componentWillMount() {
-    groups = {
-      group1: [],
-      group2: [],
-      group3: [],
-      group4: [],
-      group5: [],
-      group6: [],
-    }
-  }
-
-  _renderCheckBoxes(group) {
-    let title = "ខ្ញុំគិតថា ខ្លួនខ្ញុំគឺជាមនុស្ស……";
-    let checkboxes = personalityGroup[group];
-
-    return(
-      <View style={styles.box}>
-        <Text style={styles.subTitle}>{title}</Text>
-
-        <View>
-          <CheckboxGroup
-            callback={(selected) => this._handleChecked(group, selected)}
-            iconColor={"#4caf50"}r
-            iconSize={30}
-            checkedIcon="ios-checkbox-outline"
-            uncheckedIcon="ios-square-outline"
-            checkboxes={checkboxes}
-            labelStyle={{
-              color: '#333',
-              fontSize: 16,
-              marginLeft: 10
-            }}
-            rowStyle={{
-              flexDirection: 'row',
-              borderTopWidth: 0.5,
-              borderColor: '#ccc',
-              paddingVertical: 8,
-            }}
-            rowDirection={"column"}
-          />
-        </View>
-      </View>
-    )
-  }
-
-  _handleSetState(groupNumber, value) {
-    let group = {...this.state[groupNumber]};
-    group[stateName] = value;
-
-    let obj = {...this.state};
-    obj[groupNumber] = group;
-
-    this.setState(obj);
-  }
-
-  _handleChecked(group, value) {
-    let obj = {};
-    obj[group] = value;
-    groups[group] = value;
   }
 
   _renderFooter() {

@@ -2,9 +2,7 @@
 
 import Realm from 'realm';
 
-export default class PersonalUnderstanding extends Realm.Object {
-
-}
+export default class PersonalUnderstanding extends Realm.Object {}
 
 PersonalUnderstanding.schema = {
   name: 'PersonalUnderstanding',
@@ -22,6 +20,6 @@ PersonalUnderstanding.schema = {
     howToReachJobVacancy: {type: 'string', optional: true},
     whoToReachJobVacancy: {type: 'string', optional: true},
     score: {type: 'string', optional: true},
-    // games: { type: 'linkingObjects', objectType: 'Game', property: 'personalUnderstandings' }
+    games: { type: 'linkingObjects', objectType: 'Game', property: 'personalUnderstandings' }
   }
 }

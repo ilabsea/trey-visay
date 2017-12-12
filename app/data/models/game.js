@@ -11,10 +11,13 @@ Game.schema = {
     uuid: 'string',
     users: { type: 'linkingObjects', objectType: 'User', property: 'game' },
     isDone: { type: 'bool', default: false },
-    // personalUnderstandings: { type: 'list', objectType: 'PersonalUnderstanding' },
-    // careerPlanning: { type: 'CareerPlanning' },
-    // gameSubject: { type: 'GameSubject', optional:  true },
-    // gameValue: { type: 'GameValue', optional:  true },
-    // gamePersonality: { type: 'GamePersonality', optional:  true }
+    step: { type: 'string', optional: true },
+    valueCareers: { type: 'list', objectType: 'arrayString' },
+    personalityCareers: { type: 'list', objectType: 'arrayString' },
+    recommendation: { type: 'list', objectType: 'Recommendation' },
+    goalCareer: 'string',
+    reason: 'string',
+    personalUnderstandings: { type: 'list', objectType: 'PersonalUnderstanding' },
+    gameSubject: { type: 'GameSubject', optional:  true },
   }
 }
