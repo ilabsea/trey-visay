@@ -203,7 +203,7 @@ export default class PersonalUnderstandingForm extends Component {
     if(values){
       values['uuid'] = uuidv4();
       if(values['everTalkedWithAnyoneAboutCareer']) {
-        values['everTalkedWithAnyoneAboutCareer'] = values['everTalkedWithAnyoneAboutCareer'].map(function(i){ return i; } );
+        values['everTalkedWithAnyoneAboutCareer'] = values['everTalkedWithAnyoneAboutCareer'].map(function(i){ return {value: i }; } );
       }
     }
     return values;
