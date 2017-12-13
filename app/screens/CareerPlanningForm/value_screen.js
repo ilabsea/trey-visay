@@ -12,8 +12,6 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
-import RadioGroup from '../../components/radio_group';
-
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
@@ -22,7 +20,6 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import valueJobs from '../../data/json/value_jobs';
-
 
 let group = {
   group0: [],
