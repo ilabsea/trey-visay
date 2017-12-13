@@ -12,18 +12,13 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
-import CheckboxGroup from 'react-native-checkbox-group';
+// import CheckboxGroup from 'react-native-checkbox-group';
+import CheckboxGroup from '../../components/checkbox_group';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
-
-import realm from '../../schema';
-import User from '../../utils/user';
-import uuidv4 from '../../utils/uuidv4';
 import valueJobs from '../../data/json/value_jobs';
-
-let careers = [];
 
 export default class ValueJobsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -38,12 +33,66 @@ export default class ValueJobsScreen extends Component {
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
-      headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
+      headerRight: (<View style={headerStyles.actionWrapper}>
                       <Text style={headerStyles.saveText}>{state.params && state.params.total || 0} / 3</Text>
-                    </TouchableOpacity>),
+                      <TouchableOpacity onPress={() => { state.params.refresh(careers); goBack()} } style={{marginHorizontal: 16}}>
+                        <Text>Done</Text>
+                      </TouchableOpacity>
+                    </View>),
     }
   };
 
+  careers = [];
+
+  componentWillMount() {
+    this._handleSetSelectCareer();
+  }
+
+  _handleSetSelectCareer() {
+    let groupNumber = this.props.navigation.state.params.groupNumber;
+    let jobs = valueJobs[groupNumber].careers;
+    let selectedJobs = this.props.navigation.state.params.selectedCareers;
+    let arr = jobs.filter(function (item, pos) { return selectedJobs.includes(item.id) });
+    careers = arr.map((obj) => obj.id);
+  }
+
+  // _renderCheckBoxes() {
+  //   let groupNumber = this.props.navigation.state.params.groupNumber;
+  //   let value = valueJobs[groupNumber];
+  //   let title = value.text;
+  //   let description = value.description;
+  //   let checkboxes = this._formatDataForCheckbox(groupNumber);
+
+  //   return(
+  //     <View style={styles.box}>
+  //       <Text style={styles.subTitle}>{title}</Text>
+  //       <Text>{description}</Text>
+
+  //       <View>
+  //         <CheckboxGroup
+  //           callback={(selected) => {this._handleChecked(selected)}}
+  //           iconColor={"#4caf50"}
+  //           iconSize={30}
+  //           checkedIcon="ios-checkbox-outline"
+  //           uncheckedIcon="ios-square-outline"
+  //           checkboxes={checkboxes}
+  //           labelStyle={{
+  //             color: '#333',
+  //             fontSize: 16,
+  //             marginLeft: 10
+  //           }}
+  //           rowStyle={{
+  //             flexDirection: 'row',
+  //             borderTopWidth: 0.5,
+  //             borderColor: '#ccc',
+  //             paddingVertical: 8,
+  //           }}
+  //           rowDirection={"column"}
+  //         />
+  //       </View>
+  //     </View>
+  //   )
+  // }
   _renderCheckBoxes() {
     let groupNumber = this.props.navigation.state.params.groupNumber;
     let value = valueJobs[groupNumber];
@@ -58,24 +107,26 @@ export default class ValueJobsScreen extends Component {
 
         <View>
           <CheckboxGroup
-            callback={(selected) => {this._handleChecked(selected)}}
-            iconColor={"#4caf50"}
-            iconSize={30}
-            checkedIcon="ios-checkbox-outline"
-            uncheckedIcon="ios-square-outline"
-            checkboxes={checkboxes}
-            labelStyle={{
-              color: '#333',
-              fontSize: 16,
-              marginLeft: 10
+            onSelect={(selected) => {this._handleChecked(selected)}}
+            items={checkboxes}
+            checked={careers}
+            style={{
+              icon: {
+                color: '#4caf50',
+                size: 30
+              },
+              container: {
+                flexDirection: 'row',
+                borderTopWidth: 0.5,
+                borderColor: '#ccc',
+                paddingVertical: 8,
+              },
+              label: {
+                color: '#333',
+                fontSize: 16,
+                marginLeft: 10
+              }
             }}
-            rowStyle={{
-              flexDirection: 'row',
-              borderTopWidth: 0.5,
-              borderColor: '#ccc',
-              paddingVertical: 8,
-            }}
-            rowDirection={"column"}
           />
         </View>
       </View>
@@ -99,34 +150,6 @@ export default class ValueJobsScreen extends Component {
     if (careers.length > 3) {
       return alert('You must select 3 careers only!');
     }
-  }
-
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
-  _goNext() {
-    let total = careers.length;
-    if (total != 3) {
-      return alert('You must select 3 careers only!');
-    }
-
-    this._handleSubmit();
-  }
-
-  _handleSubmit() {
-    // realm.write(() => {
-    //   realm.create('Career', this._buildData(), true);
-    //   this.props.navigation.navigate('SubjectScreen');
-    // });
-    this.props.navigation.navigate('PersonalityScreen');
   }
 
   render() {

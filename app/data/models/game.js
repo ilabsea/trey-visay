@@ -15,8 +15,8 @@ Game.schema = {
     valueCareers: { type: 'list', objectType: 'arrayString' },
     personalityCareers: { type: 'list', objectType: 'arrayString' },
     recommendation: { type: 'list', objectType: 'Recommendation' },
-    goalCareer: 'string',
-    reason: 'string',
+    goalCareer: { type: 'string', optional: true },
+    reason: { type: 'string', optional: true },
     personalUnderstandings: { type: 'list', objectType: 'PersonalUnderstanding' },
     gameSubject: { type: 'GameSubject', optional:  true },
   }

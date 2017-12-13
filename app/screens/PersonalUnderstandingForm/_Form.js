@@ -24,6 +24,7 @@ function Form(props) {
       style={styles.scrollContainer}>
 
       <View>
+        <Text style={{fontFamily: 'KantumruyBold', color: '#212121'}}>ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។ ករណីសិស្ស ទទួលបានពិន្ទុក្រោម ៥០% សិស្សត្រូវតម្រូវឲ្យធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។</Text>
         <Text style={styles.hintLable}>ចូរជ្រើសរើសចម្លើយខាងក្រោម៖</Text>
       </View>
 

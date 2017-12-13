@@ -95,5 +95,6 @@ export default class CheckboxGroup extends Component {
 
       const { onSelect } = this.props;
       onSelect && onSelect(value);
+      return
     }
 }
