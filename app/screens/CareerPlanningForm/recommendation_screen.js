@@ -42,7 +42,7 @@ export default class RecommendationScreen extends Component {
   };
 
   state = {
-    currentJob: ''
+    currentJob: '',
   }
 
   _renderFooter() {
@@ -60,19 +60,35 @@ export default class RecommendationScreen extends Component {
     this._handleSubmit();
   }
 
+  _buildData() {
+    let obj = Object.assign({}, this.state, {
+      // uuid: uuidv4()
+      uuid: '123',
+      goalCareer: this.state.currentJob
+    })
+
+    return obj;
+  }
+
   _handleSubmit() {
-    // realm.write(() => {
-    //   realm.create('Career', this._buildData(), true);
-    //   this.props.navigation.navigate('SubjectScreen');
-    // });
-    this.props.navigation.navigate('GoalScreen', {career: this.state.currentJob});
+    realm.write(() => {
+      realm.create('Game', this._buildData(), true);
+      this.props.navigation.navigate('GoalScreen', {career: this.state.currentJob});
+    });
+  }
+
+  _formatDataForCheckbox(jobs) {
+    let arr = [];
+
+    for(let i = 0; i < jobs.length; i++) {
+      arr.push({ value: jobs[i].careerName, label: jobs[i].recommendation })
+    }
+    return arr;
   }
 
   _renderRadioGroups() {
-    let options = [
-      { value: 'វិស្វករ​កសិកម្ម', label: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។' },
-      { value: 'អ្នករចនាគេហទំព័រ', label: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។' }
-    ];
+    let game = realm.objects('Game').filtered('uuid="' + 123 + '"')[0];
+    let options = this._formatDataForCheckbox(game.recommendations);
 
     return (
       <View style={styles.box}>
