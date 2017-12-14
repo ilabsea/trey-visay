@@ -96,12 +96,16 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   submitForm(values) {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+    let list = game.personalUnderstandings;
+
     realm.write(() => {
-      realm.create('PersonalUnderstanding', values);
+      // realm.create('PersonalUnderstanding', values);
+      // let testCount = realm.objects('PersonalUnderstanding').filtered('userUuid="' + User.getID() + '"').length;
+      list.push(values);
 
-      let testCount = realm.objects('PersonalUnderstanding').filtered('userUuid="' + User.getID() + '"').length;
-
-      this.setState({testCount: testCount});
+      this.setState({testCount: list.length});
       this.setState({score: values.score});
       this.setModalVisible(!this.state.modalVisible);
     });

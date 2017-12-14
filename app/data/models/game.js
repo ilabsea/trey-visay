@@ -9,7 +9,7 @@ Game.schema = {
   primaryKey: 'uuid',
   properties: {
     uuid: 'string',
-    users: { type: 'linkingObjects', objectType: 'User', property: 'game' },
+    users: { type: 'linkingObjects', objectType: 'User', property: 'games' },
     isDone: { type: 'bool', default: false },
     step: { type: 'string', optional: true },
     valueCareers: { type: 'list', objectType: 'arrayString' },

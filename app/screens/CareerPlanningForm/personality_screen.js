@@ -104,12 +104,12 @@ export default class PersonalityScreen extends Component {
     })
 
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    let obj = Object.assign({}, this.state, {
+    let obj =  {
       // uuid: uuidv4()
       uuid: '123',
-      user: user,
-      personalityCareers: data
-    })
+      personalityCareers: data,
+      step: 'SummaryScreen'
+    }
 
     return obj;
   }
