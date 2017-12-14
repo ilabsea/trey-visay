@@ -30,7 +30,7 @@ export default class ValueJobsScreen extends Component {
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
+                      <Icon name='arrow-back' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
       headerRight: (<View style={headerStyles.actionWrapper}>

@@ -12,7 +12,8 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
-import CheckboxGroup from 'react-native-checkbox-group';
+// import CheckboxGroup from 'react-native-checkbox-group';
+import CheckboxGroup from '../../components/checkbox_group';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -21,6 +22,7 @@ import shareStyles from './style';
 import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
+import valueJobs from '../../data/json/value_jobs';
 import personalityJobs from '../../data/json/personality_jobs';
 
 let careers = [];
@@ -44,8 +46,27 @@ export default class PersonalityJobsScreen extends Component {
     }
   };
 
-  _formatDataForCheckbox(id) {
-    let jobs = personalityJobs[id].careers;
+  allCareers = [];
+
+  componentWillMount() {
+    let c1 = valueJobs.map((v) => { return v.careers; });
+    let c2 = personalityJobs.map((v) => { return v.careers; });
+
+    allCareers = c1.concat(c2);
+    allCareers = allCareers.reduce((a, b) => { return a.concat(b); });
+
+    let game = realm.objects('Game').filtered('uuid="' + 123 + '"')[0];
+    let arr = game.valueCareers.map((obj) => obj.value)
+    arr = arr.concat(game.personalityCareers.map((obj) => obj.value))
+    let selectedCareers = allCareers.filter((item, pos) => { return arr.includes(item.id) });
+
+    this.state = {
+      selectedCareers: this._formatDataForCheckbox(selectedCareers),
+      game: game
+    }
+  }
+
+  _formatDataForCheckbox(jobs) {
     let arr = [];
 
     for(let i = 0; i < jobs.length; i++) {
@@ -84,50 +105,41 @@ export default class PersonalityJobsScreen extends Component {
   }
 
   _handleSubmit() {
-    // realm.write(() => {
-    //   realm.create('Career', this._buildData(), true);
-    //   this.props.navigation.navigate('SubjectScreen');
-    // });
-    this.props.navigation.navigate('RecommendationScreen');
+    let recommendations = allCareers.filter((item, pos) => { return careers.includes(item.id) });
+
+    realm.write(() => {
+      this.state.game.recommendation = { career1: recommendations[0].title, recommendation1: 'test1', career2: recommendations[1].title, recommendation2: 'test2' };
+      // alert(JSON.stringify(this.state.game));
+      this.props.navigation.navigate('RecommendationScreen');
+    });
   }
 
   _renderContent() {
-    let checkboxes = [
-      { value: '1', label: 'វិស្វករ​កសិកម្ម' },
-      { value: '2', label: 'វិស្វករបរិស្ថាន' },
-      { value: '3', label: 'ទន្តពេទ្យ' },
-      { value: '4', label: 'អ្នកសម្តែងសិល្បៈឬតារាសម្តែង' },
-      { value: '5', label: 'អ្នកនិពន្ធ' },
-      { value: '6', label: 'អ្នករចនាគេហទំព័រ' },
-      { value: '7', label: 'អ្នកបើយន្តហោះ' },
-      { value: '8', label: 'វិស្វករ' },
-      { value: '9', label: 'អ្នកគ្រប់គ្រងកន្លែងកម្សាន្ត' },
-    ];
-
     return(
       <View style={styles.box}>
         <Text style={styles.subTitle}>ចូរជ្រើសរើស ២មុខរបរដែលអ្នកពេញចិត្តបំផុត</Text>
 
         <View>
           <CheckboxGroup
-            callback={(selected) => {this._handleChecked(selected)}}
-            iconColor={"#4caf50"}
-            iconSize={30}
-            checkedIcon="ios-checkbox-outline"
-            uncheckedIcon="ios-square-outline"
-            checkboxes={checkboxes}
-            labelStyle={{
-              color: '#333',
-              fontSize: 16,
-              marginLeft: 10
+            onSelect={(selected) => {this._handleChecked(selected)}}
+            items={this.state.selectedCareers}
+            style={{
+              icon: {
+                color: '#4caf50',
+                size: 30
+              },
+              container: {
+                flexDirection: 'row',
+                borderTopWidth: 0.5,
+                borderColor: '#ccc',
+                paddingVertical: 8,
+              },
+              label: {
+                color: '#333',
+                fontSize: 16,
+                marginLeft: 10
+              }
             }}
-            rowStyle={{
-              flexDirection: 'row',
-              borderTopWidth: 0.5,
-              borderColor: '#ccc',
-              paddingVertical: 8,
-            }}
-            rowDirection={"column"}
           />
         </View>
       </View>
