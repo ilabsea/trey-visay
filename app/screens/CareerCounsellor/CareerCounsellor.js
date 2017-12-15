@@ -148,8 +148,6 @@ export default class CareerCounsellor extends Component {
       realm.delete(allGame);
 
       this.state.user.games.push(this._buildData());
-      // realm.create('Game', this._buildData(), true);
-      // alert(JSON.stringify(realm.objects('Game')[realm.objects('Game').length -1]));
       this.props.navigation.navigate('PersonalUnderstandingFormScreen');
     });
   }

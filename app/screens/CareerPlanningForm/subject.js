@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 
 import {
@@ -13,7 +14,7 @@ import {
 } from 'react-native-material-ui';
 
 import RadioGroup from '../../components/radio_group';
-import { ConfirmDialog } from 'react-native-simple-dialogs';
+import BackConfirmDialog from '../../components/back_confirm_dialog';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -77,7 +78,26 @@ export default class Subject extends Component {
 
   componentDidMount() {
     this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this._initState();
+    this._backHandler();
+  }
 
+  _backHandler() {
+    let self = this;
+
+    BackHandler.addEventListener('hardwareBackPress', function() {
+      if (self._isValid()) {
+        self.setState({confirmDialogVisible: true});
+        return true;
+      }
+
+      self.props.navigation.goBack();
+      return false;
+    });
+
+  }
+
+  _initState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
 
@@ -304,19 +324,11 @@ export default class Subject extends Component {
 
           { this._renderFooter() }
 
-          <ConfirmDialog
-            title="ការអះអាង"
-            message="តើអ្នកចង់រក្សាទុកតេស្តរបស់អ្នកដែរឬទេ?"
+          <BackConfirmDialog
             visible={this.state.confirmDialogVisible}
             onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            positiveButton={{
-              title: "បាទ/ចាស",
-              onPress: () => this._onYes()
-            }}
-            negativeButton={{
-              title: "ទេ",
-              onPress: () => this._onNo()
-            }}
+            onPressYes={() => this._onYes()}
+            onPressNo={() => this._onNo()}
           />
         </View>
       </ThemeProvider>
