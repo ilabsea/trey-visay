@@ -97,7 +97,11 @@ export default class Subject extends Component {
   }
 
   _handleBack() {
-    this.setState({confirmDialogVisible: true})
+    if (this._isValid()) {
+      this.setState({confirmDialogVisible: true});
+    } else {
+      this.props.navigation.goBack();
+    }
   }
 
   _renderRadioGroups(obj) {
@@ -230,29 +234,21 @@ export default class Subject extends Component {
   }
 
   _goNext() {
-    this._checkValidation();
+    if (this._isValid()) {
+      this._handleSubmit();
+    }
   }
 
-  _checkValidation() {
-    // var arr = [];
-    // alert(generalSubject.length);
+  _isValid() {
+    var arr = [];
 
-    // for (let key in this.state) {
-    //   // check if the property/key is defined in the object itself, not in parent
-    //   if (!this.state[key]) {
-    //     arr.push(generalSubject.find((obj) => obj.en == key ));
-    //   }
-    // }
-    // arr = arr.map((o)=> o.km)
+    for (let key in this.state) {
+      if (this.state[key] && !['user', 'game'].includes(key)) {
+        arr.push(key);
+      }
+    }
 
-    // if (arr.length > 5) {
-    //   alert('សូមបំពេញសំណួរទាំងអស់ខាងក្រោម')
-    // } else if(arr.length > 0) {
-    //   alert('សូមបំពេញសំណួរ ' + arr)
-    // } else {
-    //   this._handleSubmit();
-    // }
-    this._handleSubmit();
+    return !!arr.length;
   }
 
   _handleSubmit() {
@@ -299,12 +295,11 @@ export default class Subject extends Component {
             <View style={{margin: 16}}>
               { this._renderKhmer() }
               { this._renderEnglish() }
-              { this._renderMath() }
-              { this._renderSocialStudies() }
-              { this._renderScience() }
-              { this._renderSoftSkill() }
+              { false && this._renderMath() }
+              { false && this._renderSocialStudies() }
+              { false && this._renderScience() }
+              { false && this._renderSoftSkill() }
             </View>
-
           </ScrollView>
 
           { this._renderFooter() }
