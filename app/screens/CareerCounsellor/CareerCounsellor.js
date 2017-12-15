@@ -93,7 +93,7 @@ export default class CareerCounsellor extends Component {
                   </Text>
                 </Button>
 
-                { this.state.game && !this.state.game.isDone &&
+                { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
                   <Button
                     style={[myStyles.btnSubmit, {paddingHorizontal: 20}]}
                     onPress={this._handleGoingNextStep.bind(this)}

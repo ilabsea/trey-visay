@@ -103,7 +103,6 @@ export default class ValueScreen extends Component {
       return { value: value };
     })
 
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let obj = {
       // uuid: uuidv4()
       uuid: '123',

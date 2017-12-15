@@ -13,6 +13,7 @@ import {
 } from 'react-native-material-ui';
 
 import RadioGroup from '../../components/radio_group';
+import { ConfirmDialog } from 'react-native-simple-dialogs';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -32,7 +33,7 @@ export default class Subject extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញមុខវិជ្ជា</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => navigation.state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
@@ -69,6 +70,34 @@ export default class Subject extends Component {
     SoftSkillTeamwork: '',
     SoftSkillRespect: '',
     SoftSkillProblemSolving: '',
+    confirmDialogVisible: false,
+    user: '',
+    game: ''
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+
+    if (!!game.gameSubject) {
+      this._handleAssignGameSubject(game.gameSubject);
+    }
+
+    this.setState({user: user, game: game});
+  }
+
+  _handleAssignGameSubject(gameSubject) {
+    let obj = {};
+    for (var key in gameSubject) {
+      obj[key] = gameSubject[key];
+    }
+    this.setState(obj);
+  }
+
+  _handleBack() {
+    this.setState({confirmDialogVisible: true})
   }
 
   _renderRadioGroups(obj) {
@@ -202,20 +231,19 @@ export default class Subject extends Component {
 
   _goNext() {
     this._checkValidation();
-
   }
 
   _checkValidation() {
-    var arr = [];
+    // var arr = [];
     // alert(generalSubject.length);
 
-    for (let key in this.state) {
-      // check if the property/key is defined in the object itself, not in parent
-      if (!this.state[key]) {
-        arr.push(generalSubject.find((obj) => obj.en == key ));
-      }
-    }
-    arr = arr.map((o)=> o.km)
+    // for (let key in this.state) {
+    //   // check if the property/key is defined in the object itself, not in parent
+    //   if (!this.state[key]) {
+    //     arr.push(generalSubject.find((obj) => obj.en == key ));
+    //   }
+    // }
+    // arr = arr.map((o)=> o.km)
 
     // if (arr.length > 5) {
     //   alert('សូមបំពេញសំណួរទាំងអស់ខាងក្រោម')
@@ -229,22 +257,38 @@ export default class Subject extends Component {
 
   _handleSubmit() {
     realm.write(() => {
-      realm.create('Game', this._buildData(), true);
+      realm.create('Game', this._buildData('ValueScreen'), true);
       // alert(JSON.stringify(realm.objects('GeneralSubject')[realm.objects('GeneralSubject').length -1]));
       this.props.navigation.navigate('ValueScreen');
     });
   }
 
-  _buildData() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    let obj = {
-      // uuid: uuidv4()
-      uuid: '123',
-      user: user,
-      step: 'ValueScreen'
+  _buildData(step) {
+    let data = {
+      uuid: this.state.game.uuid,
+      step: step || 'ValueScreen',
+      gameSubject: Object.assign({}, this.state, { uuid: uuidv4() })
     }
 
-    return obj;
+    return data;
+  }
+
+  _onYes() {
+    realm.write(() => {
+      realm.create('Game', this._buildData('SubjectScreen'), true);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.goBack();
+    });
+  }
+
+  _onNo() {
+    realm.write(() => {
+      realm.delete(this.state.game);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
   }
 
   render() {
@@ -264,6 +308,21 @@ export default class Subject extends Component {
           </ScrollView>
 
           { this._renderFooter() }
+
+          <ConfirmDialog
+            title="ការអះអាង"
+            message="តើអ្នកចង់រក្សាទុកតេស្តរបស់អ្នកដែរឬទេ?"
+            visible={this.state.confirmDialogVisible}
+            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+            positiveButton={{
+              title: "បាទ/ចាស",
+              onPress: () => this._onYes()
+            }}
+            negativeButton={{
+              title: "ទេ",
+              onPress: () => this._onNo()
+            }}
+          />
         </View>
       </ThemeProvider>
     );
