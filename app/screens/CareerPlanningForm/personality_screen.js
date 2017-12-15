@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 
 import {
@@ -12,13 +13,14 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
+import BackConfirmDialog from '../../components/back_confirm_dialog';
+
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 
 import realm from '../../schema';
 import User from '../../utils/user';
-import uuidv4 from '../../utils/uuidv4';
 import personalityJobs from '../../data/json/personality_jobs';
 
 let group = {
@@ -36,7 +38,7 @@ export default class PersonalityScreen extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញបុគ្គលិកលក្ខណៈ</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => navigation.state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
@@ -49,6 +51,67 @@ export default class PersonalityScreen extends Component {
   state = {
     jobs: [],
     currentGroup: '',
+    confirmDialogVisible: false,
+    user: '',
+    game: ''
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this._initState();
+    this._backHandler();
+  }
+
+  _handleBack() {
+    if (this.state.jobs.length > 0) {
+      this.setState({confirmDialogVisible: true});
+    } else {
+      this.props.navigation.goBack();
+    }
+  }
+
+  _backHandler() {
+    let self = this;
+
+    BackHandler.addEventListener('hardwareBackPress', function() {
+      if (self.state.jobs.length > 0) {
+        self.setState({confirmDialogVisible: true});
+        return true;
+      }
+
+      self.props.navigation.goBack();
+      return false;
+    });
+  }
+
+  _initState() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+
+    if (!!game.personalityCareers.length) {
+      let arr = game.personalityCareers.map((obj)=> obj.value);
+      this.setState({jobs: arr});
+    }
+
+    this.setState({user: user, game: game});
+  }
+
+  _onYes() {
+    realm.write(() => {
+      realm.create('Game', this._buildData('PersonalityScreen'), true);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.goBack();
+    });
+  }
+
+  _onNo() {
+    realm.write(() => {
+      realm.delete(this.state.game);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
   }
 
   _refreshState(jobs) {
@@ -92,23 +155,21 @@ export default class PersonalityScreen extends Component {
 
   _handleSubmit() {
     realm.write(() => {
-      realm.create('Game', this._buildData(), true);
-      // alert(JSON.stringify(realm.objects('Game')[realm.objects('Game').length -1]));
+      realm.create('Game', this._buildData('SummaryScreen'), true);
       this.props.navigation.navigate('SummaryScreen');
     });
   }
 
-  _buildData() {
+  _buildData(step) {
     let data = this.state.jobs.map((value) => {
       return { value: value };
     })
 
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let obj =  {
-      // uuid: uuidv4()
-      uuid: '123',
+      uuid: this.state.game.uuid,
       personalityCareers: data,
-      step: 'SummaryScreen'
+      step: step || 'SummaryScreen'
     }
 
     return obj;
@@ -144,9 +205,16 @@ export default class PersonalityScreen extends Component {
               { this._renderPersonality(1) }
               { this._renderPersonality(2) }
             </View>
-
           </ScrollView>
+
           { this._renderFooter() }
+
+          <BackConfirmDialog
+            visible={this.state.confirmDialogVisible}
+            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+            onPressYes={() => this._onYes()}
+            onPressNo={() => this._onNo()}
+          />
         </View>
       </ThemeProvider>
     );

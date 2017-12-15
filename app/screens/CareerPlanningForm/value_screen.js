@@ -21,7 +21,6 @@ import shareStyles from './style';
 
 import realm from '../../schema';
 import User from '../../utils/user';
-import uuidv4 from '../../utils/uuidv4';
 import valueJobs from '../../data/json/value_jobs';
 
 let group = {
@@ -90,7 +89,7 @@ export default class ValueScreen extends Component {
     let game = user.games[user.games.length - 1];
 
     if (!!game.valueCareers.length) {
-      let arr = game.valueCareers.map((obj)=> obj.value)
+      let arr = game.valueCareers.map((obj)=> obj.value);
       this.setState({jobs: arr});
     }
 
