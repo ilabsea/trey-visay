@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 
 import {
@@ -12,8 +13,8 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
-// import CheckboxGroup from 'react-native-checkbox-group';
 import CheckboxGroup from '../../components/checkbox_group';
+import BackConfirmDialog from '../../components/back_confirm_dialog';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -26,6 +27,7 @@ import valueJobs from '../../data/json/value_jobs';
 import personalityJobs from '../../data/json/personality_jobs';
 
 let careers = [];
+let allCareers = [];
 
 export default class PersonalityJobsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -36,7 +38,7 @@ export default class PersonalityJobsScreen extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើស២មុខរបរចេញពីតារាងសង្ខេបលទ្ធផល</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => navigation.state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
@@ -46,24 +48,89 @@ export default class PersonalityJobsScreen extends Component {
     }
   };
 
-  allCareers = [];
+
 
   componentWillMount() {
+    careers = [];
+    allCareers = [];
+
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this._initState();
+    this._backHandler();
+  }
+
+  _initState() {
     let c1 = valueJobs.map((v) => { return v.careers; });
     let c2 = personalityJobs.map((v) => { return v.careers; });
 
     allCareers = c1.concat(c2);
     allCareers = allCareers.reduce((a, b) => { return a.concat(b); });
 
-    let game = realm.objects('Game').filtered('uuid="' + 123 + '"')[0];
-    let arr = game.valueCareers.map((obj) => obj.value)
-    arr = arr.concat(game.personalityCareers.map((obj) => obj.value))
-    let selectedCareers = allCareers.filter((item, pos) => { return arr.includes(item.id) });
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+
+    let userCareerIds = game.valueCareers.map((obj) => obj.value);
+    userCareerIds = userCareerIds.concat(game.personalityCareers.map((obj) => obj.value));
+    let userCareers = allCareers.filter((item, pos) => { return userCareerIds.includes(item.id) });
+
+    game.recommendations.map((obj) => {
+      careers.push(obj.careerUuid);
+    })
 
     this.state = {
-      selectedCareers: this._formatDataForCheckbox(selectedCareers),
-      game: game
+      userCareers: userCareers,
+      user: user,
+      game: game,
+      confirmDialogVisible: false,
     }
+  }
+
+  _handleBack() {
+    if (careers.length > 0) {
+      this.setState({confirmDialogVisible: true});
+    } else {
+      this.props.navigation.goBack();
+    }
+  }
+
+  _backHandler() {
+    let self = this;
+
+    BackHandler.addEventListener('hardwareBackPress', function() {
+      if (careers.length > 0) {
+        self.setState({confirmDialogVisible: true});
+        return true;
+      }
+
+      self.props.navigation.goBack();
+      return false;
+    });
+  }
+
+  _onYes() {
+    let list = this.state.game.recommendations;
+    let recommendations = allCareers.filter((item, pos) => { return careers.includes(item.id) });
+
+    realm.write(() => {
+      realm.delete(list);
+      this.state.game.step = 'SummaryScreen';
+
+      recommendations.map((job, pos) => {
+        list.push({ careerUuid: recommendations[pos].id, careerName: recommendations[0].title});
+      })
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.goBack();
+    });
+  }
+
+  _onNo() {
+    realm.write(() => {
+      realm.delete(this.state.game);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
   }
 
   _formatDataForCheckbox(jobs) {
@@ -127,7 +194,8 @@ export default class PersonalityJobsScreen extends Component {
         <View>
           <CheckboxGroup
             onSelect={(selected) => {this._handleChecked(selected)}}
-            items={this.state.selectedCareers}
+            items={this._formatDataForCheckbox(this.state.userCareers)}
+            checked={careers}
             style={{
               icon: {
                 color: '#4caf50',
@@ -159,9 +227,16 @@ export default class PersonalityJobsScreen extends Component {
             <View style={{margin: 16, flex: 1}}>
               { this._renderContent() }
             </View>
-
           </ScrollView>
+
           { this._renderFooter() }
+
+          <BackConfirmDialog
+            visible={this.state.confirmDialogVisible}
+            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+            onPressYes={() => this._onYes()}
+            onPressNo={() => this._onNo()}
+          />
         </View>
       </ThemeProvider>
     );

@@ -51,7 +51,6 @@ export default class CareerCounsellor extends Component {
       game: game,
       canContinueToTest2: canContinueToTest2
     }
-    // alert(canContinueToTest2);
   }
 
   render() {

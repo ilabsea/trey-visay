@@ -9,6 +9,6 @@ Recommendation.schema = {
   properties: {
     careerUuid: 'string',
     careerName: 'string',
-    recommendation: 'string',
+    recommendation: { type: 'string', optional: true }
   }
 }
