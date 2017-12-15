@@ -5,12 +5,15 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 
 import {
   ThemeProvider,
   Icon,
 } from 'react-native-material-ui';
+
+import BackConfirmDialog from '../../components/back_confirm_dialog';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -36,7 +39,7 @@ export default class ValueScreen extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញគុណតម្លៃ</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => navigation.state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
@@ -49,6 +52,67 @@ export default class ValueScreen extends Component {
   state = {
     jobs: [],
     currentGroup: '',
+    confirmDialogVisible: false,
+    user: '',
+    game: ''
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this._initState();
+    this._backHandler();
+  }
+
+  _handleBack() {
+    if (this.state.jobs.length > 0) {
+      this.setState({confirmDialogVisible: true});
+    } else {
+      this.props.navigation.goBack();
+    }
+  }
+
+  _backHandler() {
+    let self = this;
+
+    BackHandler.addEventListener('hardwareBackPress', function() {
+      if (self.state.jobs.length > 0) {
+        self.setState({confirmDialogVisible: true});
+        return true;
+      }
+
+      self.props.navigation.goBack();
+      return false;
+    });
+  }
+
+  _initState() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+
+    if (!!game.valueCareers.length) {
+      let arr = game.valueCareers.map((obj)=> obj.value)
+      this.setState({jobs: arr});
+    }
+
+    this.setState({user: user, game: game});
+  }
+
+  _onYes() {
+    realm.write(() => {
+      realm.create('Game', this._buildData('ValueScreen'), true);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.goBack();
+    });
+  }
+
+  _onNo() {
+    realm.write(() => {
+      realm.delete(this.state.game);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
   }
 
   _refreshState(jobs) {
@@ -92,22 +156,21 @@ export default class ValueScreen extends Component {
 
   _handleSubmit() {
     realm.write(() => {
-      realm.create('Game', this._buildData(), true);
+      realm.create('Game', this._buildData('PersonalityScreen'), true);
       // alert(JSON.stringify(realm.objects('Game')[realm.objects('Game').length -1]));
       this.props.navigation.navigate('PersonalityScreen');
     });
   }
 
-  _buildData() {
+  _buildData(step) {
     let data = this.state.jobs.map((value) => {
       return { value: value };
     })
 
     let obj = {
-      // uuid: uuidv4()
-      uuid: '123',
+      uuid: this.state.game.uuid,
       valueCareers: data,
-      step: 'PersonalityScreen'
+      step: step || 'PersonalityScreen'
     };
 
     return obj;
@@ -143,9 +206,16 @@ export default class ValueScreen extends Component {
               { this._renderValue(1) }
               { this._renderValue(2) }
             </View>
-
           </ScrollView>
+
           { this._renderFooter() }
+
+          <BackConfirmDialog
+            visible={this.state.confirmDialogVisible}
+            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+            onPressYes={() => this._onYes()}
+            onPressNo={() => this._onNo()}
+          />
         </View>
       </ThemeProvider>
     );

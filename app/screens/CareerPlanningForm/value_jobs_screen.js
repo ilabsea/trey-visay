@@ -12,7 +12,6 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
-// import CheckboxGroup from 'react-native-checkbox-group';
 import CheckboxGroup from '../../components/checkbox_group';
 
 import styles from '../../assets/style_sheets/profile_form';
@@ -36,7 +35,7 @@ export default class ValueJobsScreen extends Component {
       headerRight: (<View style={headerStyles.actionWrapper}>
                       <Text style={headerStyles.saveText}>{state.params && state.params.total || 0} / 3</Text>
                       <TouchableOpacity onPress={() => { state.params.refresh(careers); goBack()} } style={{marginHorizontal: 16}}>
-                        <Text>Done</Text>
+                        <Text style={headerStyles.saveText}>Done</Text>
                       </TouchableOpacity>
                     </View>),
     }
@@ -56,43 +55,6 @@ export default class ValueJobsScreen extends Component {
     careers = arr.map((obj) => obj.id);
   }
 
-  // _renderCheckBoxes() {
-  //   let groupNumber = this.props.navigation.state.params.groupNumber;
-  //   let value = valueJobs[groupNumber];
-  //   let title = value.text;
-  //   let description = value.description;
-  //   let checkboxes = this._formatDataForCheckbox(groupNumber);
-
-  //   return(
-  //     <View style={styles.box}>
-  //       <Text style={styles.subTitle}>{title}</Text>
-  //       <Text>{description}</Text>
-
-  //       <View>
-  //         <CheckboxGroup
-  //           callback={(selected) => {this._handleChecked(selected)}}
-  //           iconColor={"#4caf50"}
-  //           iconSize={30}
-  //           checkedIcon="ios-checkbox-outline"
-  //           uncheckedIcon="ios-square-outline"
-  //           checkboxes={checkboxes}
-  //           labelStyle={{
-  //             color: '#333',
-  //             fontSize: 16,
-  //             marginLeft: 10
-  //           }}
-  //           rowStyle={{
-  //             flexDirection: 'row',
-  //             borderTopWidth: 0.5,
-  //             borderColor: '#ccc',
-  //             paddingVertical: 8,
-  //           }}
-  //           rowDirection={"column"}
-  //         />
-  //       </View>
-  //     </View>
-  //   )
-  // }
   _renderCheckBoxes() {
     let groupNumber = this.props.navigation.state.params.groupNumber;
     let value = valueJobs[groupNumber];
