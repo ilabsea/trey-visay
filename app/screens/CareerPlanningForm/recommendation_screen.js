@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 
 import {
@@ -13,6 +14,7 @@ import {
 } from 'react-native-material-ui';
 
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+import BackConfirmDialog from '../../components/back_confirm_dialog';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -41,8 +43,21 @@ export default class RecommendationScreen extends Component {
     }
   };
 
-  state = {
-    currentJob: '',
+
+
+  componentWillMount() {
+    this._initState();
+  }
+
+  _initState() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+
+    this.state = {
+      currentJob: '',
+      user: user,
+      game: game
+    }
   }
 
   _renderFooter() {
@@ -62,9 +77,9 @@ export default class RecommendationScreen extends Component {
 
   _buildData() {
     let obj = Object.assign({}, this.state, {
-      // uuid: uuidv4()
-      uuid: '123',
-      goalCareer: this.state.currentJob
+      uuid: this.state.game.uuid,
+      goalCareer: this.state.currentJob,
+      step: 'GoalScreen'
     })
 
     return obj;
