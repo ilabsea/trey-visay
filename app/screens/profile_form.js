@@ -234,12 +234,15 @@ export default class ProfileForm extends Component {
           onChangeText={((text) => this._setUserState('nationality', text)).bind(this)}
           label='សញ្ជាតិ'
           value={this.state.user.nationality}
+          onSubmitEditing={() => this.phoneNumberInput.focus()}
           errors={this.state.errors.nationality} />
 
         <InputTextContainer
           onChangeText={((text) => this._setUserState('phoneNumber', text)).bind(this)}
           label='លេខទូរស័ព្ទ'
           value={this.state.user.phoneNumber}
+          inputRef={(input) => this.phoneNumberInput = input}
+          onSubmitEditing={() => this.addressInput.focus()}
           keyboardType='phone-pad' />
 
         <View style={styles.inputContainer}>
@@ -269,6 +272,7 @@ export default class ProfileForm extends Component {
             onChangeText={((text) => this._setUserState('address', text)).bind(this)}
             label='អាស័យដ្ឋានបច្ចុប្បន្ន'
             value={this.state.user.address}
+            inputRef={(input) => this.addressInput = input}
             errors={this.state.errors.address} />
         </View>
       </View>
