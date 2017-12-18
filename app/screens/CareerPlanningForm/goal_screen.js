@@ -96,7 +96,6 @@ export default class GoalScreen extends Component {
       reason: this.state.reasonText,
       voiceRecord: this.state.voiceRecord,
       step: 'ContactScreen',
-      isDone: true
     };
 
     return obj;

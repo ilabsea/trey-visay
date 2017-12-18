@@ -14,17 +14,22 @@ import {
 } from 'react-native-material-ui';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Sound from 'react-native-sound';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
+
+import realm from '../../schema';
+import User from '../../utils/user';
 
 export default class ContactScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
 
     return {
-      title: 'ពត៍មានសាលា លេខទំនាក់ទំនង',
+      title: 'ពត៍មានសាលា និងទំនាក់ទំនង',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ពត៍មានសាលា លេខទំនាក់ទំនង</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
@@ -34,6 +39,22 @@ export default class ContactScreen extends Component {
                   </ThemeProvider>,
     }
   };
+
+  componentWillMount() {
+    this._initState();
+  }
+
+  _initState() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+
+    this.state = {
+      user: user,
+      game: game,
+      time: '',
+      isPlaying: false,
+    };
+  }
 
   _renderFooter() {
     return(
@@ -50,8 +71,20 @@ export default class ContactScreen extends Component {
     this._handleSubmit();
   }
 
+  _buildData() {
+    return {
+      uuid: this.state.game.uuid,
+      step: 'ContactScreen',
+      isDone: true
+    };
+  }
+
   _handleSubmit() {
-    this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    realm.write(() => {
+      realm.create('Game', this._buildData(), true);
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
+
   }
 
   _renderContent() {
@@ -64,35 +97,94 @@ export default class ContactScreen extends Component {
     ]
 
     return (
+      <View style={{marginTop: 20}}>
+        <Text>ពត៌មានសាលា និង ទំនាក់ទំនង</Text>
+        { schools.map((school, i) => {
+          return (
+            <View style={[styles.box, {flexDirection: 'row'}]} key={i}>
+              <View>
+                <Image source={school.logo} style={{width: 100, height: 100}} />
+              </View>
+
+              <View style={{flex: 1, marginLeft: 16}}>
+                <Text style={styles.subTitle}>{school.name}</Text>
+
+                <View style={{flexDirection: 'row'}}>
+                  <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
+                  <Text style={{marginLeft: 8}}>{school.address}</Text>
+                </View>
+
+                <View style={{flexDirection: 'row'}}>
+                  <AwesomeIcon name='phone' color='#1976d2' size={24} />
+                  <Text style={{marginLeft: 8}}>{school.phoneNumber}</Text>
+                </View>
+
+                <View style={{flexDirection: 'row'}}>
+                  <AwesomeIcon name='globe' color='#1976d2' size={24} />
+                  <Text style={{marginLeft: 8}}>{school.website}</Text>
+                </View>
+              </View>
+            </View>
+          )
+        })}
+      </View>
+    )
+  }
+
+  _renderVoiceRecord() {
+    var sound = new Sound(this.state.game.voiceRecord, '', (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+      }
+
+      let date = new Date(null);
+      date.setSeconds(Math.ceil(sound.getDuration()));
+      let time = date.toISOString().substr(11, 8);
+      this.setState({time: time});
+    });
+
+    return (
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{marginRight: 16}}>
+          { !this.state.isPlaying &&
+            <TouchableOpacity onPress={() => {}}>
+              <MaterialIcon name='play-circle-outline' size={40} color='#4caf50'/>
+            </TouchableOpacity>
+          }
+
+          { this.state.isPlaying &&
+            <TouchableOpacity onPress={() => {}}>
+              <MaterialIcon name='pause-circle-outline' size={40} color='#e94b35'/>
+            </TouchableOpacity>
+          }
+        </View>
+
+        <Text style={{fontSize: 34}}>{this.state.time}</Text>
+      </View>
+    )
+  }
+
+  _renderReason() {
+    return (
       <View>
-      { schools.map((school, i) => {
-        return (
-          <View style={[styles.box, {flexDirection: 'row'}]} key={i}>
-            <View>
-              <Image source={school.logo} style={{width: 100, height: 100}} />
-            </View>
+        <Text>{this.state.game.reason}</Text>
+      </View>
+    )
+  }
 
-            <View style={{flex: 1, marginLeft: 16}}>
-              <Text style={styles.subTitle}>{school.name}</Text>
+  _renderGoal() {
+    return (
+      <View>
+        <Text>មុខរបរដែលបានជ្រើសរើស</Text>
 
-              <View style={{flexDirection: 'row'}}>
-                <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
-                <Text style={{marginLeft: 8}}>{school.address}</Text>
-              </View>
+        <View style={styles.box}>
+          <Text style={styles.subTitle}>{this.state.game.goalCareer}</Text>
+          <Text>ការដាក់គោលដៅ និងមូលហេតុ</Text>
 
-              <View style={{flexDirection: 'row'}}>
-                <AwesomeIcon name='phone' color='#1976d2' size={24} />
-                <Text style={{marginLeft: 8}}>{school.phoneNumber}</Text>
-              </View>
+          { !!this.state.game.reason && this._renderReason()}
+          { !!this.state.game.voiceRecord && this._renderVoiceRecord()}
 
-              <View style={{flexDirection: 'row'}}>
-                <AwesomeIcon name='globe' color='#1976d2' size={24} />
-                <Text style={{marginLeft: 8}}>{school.website}</Text>
-              </View>
-            </View>
-          </View>
-        )
-      })}
+        </View>
       </View>
     )
   }
@@ -103,6 +195,7 @@ export default class ContactScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
+              { this._renderGoal() }
               { this._renderContent() }
             </View>
           </ScrollView>
