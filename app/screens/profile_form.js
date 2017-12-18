@@ -42,7 +42,7 @@ const SCHOOL_NAMES = [
   "វិទ្យាល័យហ៊ុនសែនកំពង់ចាម", "អនុវិទ្យាល័យគោកព្រីង", "វិទ្យាល័យសម្តេចតេជោហ៊ុនសែនសណ្តែក",
   "វិទ្យាល័យហោណាំហុងព្រៃញា", "វិទ្យាល័យល្វា", "វិទ្យាល័យហ.សពាមជីកង",
   "អនុវិទ្យាល័យហ.សទួលសុភី", "វិទ្យាល័យហ.សក្រូចឆ្មារ", "វិទ្យាល័យសម្តេចហ៊ុនសែនប៉ើសពីរ",
-  "វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក", "វិទ្យាល័យជីហែ", "វិទ្យាល័យក្រុមព្រះមហាលាភ"];
+  "វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក", "វិទ្យាល័យជីហែ", "វិទ្យាល័យក្រុមព្រះមហាលាភ", "ផ្សេងៗ"];
 
 export default class ProfileForm extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -251,6 +251,7 @@ export default class ProfileForm extends Component {
             <Picker.Item label="ថ្នាក់ទី10" value="10" />
             <Picker.Item label="ថ្នាក់ទី11" value="11" />
             <Picker.Item label="ថ្នាក់ទី12" value="12" />
+            <Picker.Item label="ផ្សេងៗ" value="ផ្សេងៗ" />
           </Picker>
         </View>
 
@@ -283,6 +284,8 @@ export default class ProfileForm extends Component {
             label='ឈ្មោះឪពុក'
             value={this.state.user.fatherName}
             errors={this.state.errors.fatherName}
+            onSubmitEditing={() => this.fatherOccupationInput.focus()}
+            returnKeyType='next'
             style={{flex: 1}}/>
 
           <InputTextContainer
@@ -290,6 +293,9 @@ export default class ProfileForm extends Component {
             label='មុខរបរ'
             value={this.state.user.fatherOccupation}
             errors={this.state.errors.fatherOccupation}
+            inputRef={(input) => this.fatherOccupationInput = input}
+            onSubmitEditing={() => this.motherNameInput.focus()}
+            returnKeyType='next'
             style={{flex: 1}}/>
         </View>
 
@@ -299,6 +305,9 @@ export default class ProfileForm extends Component {
             label='ម្តាយឈ្មោះ'
             value={this.state.user.motherName}
             errors={this.state.errors.motherName}
+            inputRef={(input) => this.motherNameInput = input}
+            onSubmitEditing={() => this.motherOccupationInput.focus()}
+            returnKeyType='next'
             style={{flex: 1}}/>
 
           <InputTextContainer
@@ -306,6 +315,9 @@ export default class ProfileForm extends Component {
             label='មុខរបរ'
             value={this.state.user.motherOccupation}
             errors={this.state.errors.motherOccupation}
+            inputRef={(input) => this.motherOccupationInput = input}
+            onSubmitEditing={() => this.guidanceInput.focus()}
+            returnKeyType='next'
             style={{flex: 1}}/>
         </View>
 
@@ -313,12 +325,18 @@ export default class ProfileForm extends Component {
           onChangeText={((text) => this._setUserState('guidance', text)).bind(this)}
           label='អាណាព្យាបាល'
           value={this.state.user.guidance}
+          inputRef={(input) => this.guidanceInput = input}
+          onSubmitEditing={() => this.parentContactNumberInput.focus()}
+          returnKeyType='next'
           errors={this.state.errors.guidance}/>
 
         <InputTextContainer
           onChangeText={((text) => this._setUserState('parentContactNumber', text)).bind(this)}
           label='លេខទូរស័ព្ទឪពុកម្តាយ'
           value={this.state.user.parentContactNumber}
+          inputRef={(input) => this.parentContactNumberInput = input}
+          onSubmitEditing={() => this.numberOfFamilyMemberInput.focus()}
+          returnKeyType='next'
           keyboardType='phone-pad'/>
 
         <View style={{flexDirection: 'row'}}>
@@ -328,6 +346,9 @@ export default class ProfileForm extends Component {
             value={this.state.user.numberOfFamilyMember}
             errors={this.state.errors.numberOfFamilyMember}
             keyboardType='numeric'
+            inputRef={(input) => this.numberOfFamilyMemberInput = input}
+            onSubmitEditing={() => this.numberOfSistersInput.focus()}
+            returnKeyType='next'
             style={{flex: 1}}/>
 
           <InputTextContainer
@@ -336,6 +357,9 @@ export default class ProfileForm extends Component {
             value={this.state.user.numberOfSisters}
             errors={this.state.errors.numberOfSisters}
             keyboardType='numeric'
+            inputRef={(input) => this.numberOfSistersInput = input}
+            onSubmitEditing={() => this.numberOfBrothersInput.focus()}
+            returnKeyType='next'
             style={{flex: 1}}/>
 
           <InputTextContainer
@@ -344,6 +368,8 @@ export default class ProfileForm extends Component {
             value={this.state.user.numberOfBrothers}
             errors={this.state.errors.numberOfBrothers}
             keyboardType='numeric'
+            inputRef={(input) => this.numberOfBrothersInput = input}
+            returnKeyType='next'
             style={{flex: 1}}/>
         </View>
       </View>
@@ -395,6 +421,7 @@ export default class ProfileForm extends Component {
             selectedValue={this.state.user.houseType}
             onValueChange={(itemValue, itemIndex) => this._setUserState('houseType', itemValue)}>
             <Picker.Item label="ផ្ទះឈើ" value="ផ្ទះឈើ" />
+            <Picker.Item label="ផ្ទះឈើលើថ្មក្រោម" value="ផ្ទះឈើលើថ្មក្រោម" />
             <Picker.Item label="ផ្ទះថ្ម" value="ផ្ទះថ្ម" />
             <Picker.Item label="ផ្ទះស័ង្កសី" value="ផ្ទះស័ង្កសី" />
             <Picker.Item label="ផ្ទះស្លឹក" value="ផ្ទះស្លឹក" />
@@ -402,7 +429,7 @@ export default class ProfileForm extends Component {
         </View>
 
         <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>តើគ្រួសារប្អូនមានចំណូលប្រចាំខែប៉ុន្មាន? (គិតជារៀល)</Text>
+          <Text style={styles.inputLabel}>តើគ្រួសារប្អូនមានចំណូលប្រចាំខប្រហែលែប៉ុន្មាន? (គិតជារៀល)</Text>
           <Picker
             selectedValue={this.state.user.collectiveIncome}
             onValueChange={(itemValue, itemIndex) => this._setUserState('collectiveIncome', itemValue)}>

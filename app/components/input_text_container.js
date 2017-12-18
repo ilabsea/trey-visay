@@ -27,6 +27,8 @@ class InputTextContainer extends Component {
           onChangeText={ this.props.onChangeText }
           keyboardType={ this.props.keyboardType || 'default'}
           value={ this.props.value }
+          ref={this.props.inputRef}
+          {...props}
         />
         {errorElements}
       </View>
