@@ -17,7 +17,9 @@ Game.schema = {
     recommendations: { type: 'list', objectType: 'Recommendation' },
     goalCareer: { type: 'string', optional: true },
     reason: { type: 'string', optional: true },
+    voiceRecord: { type: 'string', optional: true },
     personalUnderstandings: { type: 'list', objectType: 'PersonalUnderstanding' },
     gameSubject: { type: 'GameSubject', optional:  true },
+    createdAt: 'string'
   }
 }

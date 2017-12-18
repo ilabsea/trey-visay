@@ -43,8 +43,6 @@ export default class RecommendationScreen extends Component {
     }
   };
 
-
-
   componentWillMount() {
     this._initState();
   }

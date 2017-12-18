@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  TextInput,
   StyleSheet,
   ScrollView,
   TouchableOpacity,
@@ -16,6 +17,7 @@ import {
   Icon,
 } from 'react-native-material-ui';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import Sound from 'react-native-sound';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
@@ -44,14 +46,29 @@ export default class GoalScreen extends Component {
     }
   };
 
-  state = {
-    currentTime: 0.0,
-    recording: false,
-    stoppedRecording: false,
-    finished: false,
-    audioPath: AudioUtils.DocumentDirectoryPath + '/test.aac',
-    hasPermission: undefined,
-  };
+  componentWillMount() {
+    this._initState();
+  }
+
+  _initState() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+
+    this.state = {
+      currentTime: 0.0,
+      recording: false,
+      stoppedRecording: false,
+      finished: false,
+      audioPath: AudioUtils.DocumentDirectoryPath + '/' + uuidv4() + '.aac',
+      hasPermission: undefined,
+      showRecordVoiceSection: false,
+      showButton: true,
+      user: user,
+      game: game,
+      reasonText: '',
+      voiceRecord: ''
+    };
+  }
 
   _renderFooter() {
     return(
@@ -65,29 +82,64 @@ export default class GoalScreen extends Component {
   }
 
   _goNext() {
+    if (!this.state.reasonText && !this.state.voiceRecord) {
+      alert('Please fill in reason either text or voice record!');
+      return;
+    }
+
     this._handleSubmit();
   }
 
+  _buildData() {
+    let obj = {
+      uuid: this.state.game.uuid,
+      reason: this.state.reasonText,
+      voiceRecord: this.state.voiceRecord,
+      step: 'ContactScreen',
+      isDone: true
+    };
+
+    return obj;
+  }
+
   _handleSubmit() {
-    // realm.write(() => {
-    //   realm.create('Career', this._buildData(), true);
-    //   this.props.navigation.navigate('SubjectScreen');
-    // });
-    this.props.navigation.navigate('ContactScreen');
+    realm.write(() => {
+      realm.create('Game', this._buildData(), true);
+      this.props.navigation.navigate('ContactScreen');
+    });
   }
 
   _renderContent() {
-    return(
-      <View style={labelStyles.box}>
-        <Text style={labelStyles.subTitle}>តើអ្នកនឹងកំណត់គោលដៅបែបណាដើម្បីក្លាយជា{!!this.props.navigation.state.params && this.props.navigation.state.params.career}? មូលហេតុអ្វី?</Text>
+    let btn = { borderWidth: 0, backgroundColor: '#e94b35' };
 
-        <View>
-          <Text>
-            ឧទាហរណ៍: ខ្ញុំនឹងខិតខំរៀន....................... ដោយសារតែ.......................
-          </Text>
+    return(
+      <View>
+        <View style={{flexDirection: 'row', marginVertical: 16}}>
+          <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+          <Text>អ្នកអាចដាក់គោលដៅ និងមូលហេតុដោយការសរសេរ ឬក៏ថតជាសំលេង!</Text>
         </View>
 
-        { this._renderRecordSound() }
+        <View style={labelStyles.box}>
+          <Text style={labelStyles.subTitle}>តើអ្នកនឹងកំណត់គោលដៅបែបណាដើម្បីក្លាយជា{this.state.game.goalCareer}? មូលហេតុអ្វី?</Text>
+
+          <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+            <TextInput
+              style={[styles.inputText, {flex: 1}]}
+              onChangeText={(text) => this.setState({reasonText: text})}
+              placeholder='ខ្ញុំនឹងខិតខំរៀន....................... ដោយសារតែ.......................'
+              placeholderTextColor='rgba(0,0,0,0.7)'
+              autoFocus={true}
+            />
+
+            { this.state.showButton &&
+              <TouchableHighlight style={[styles.button, btn]} onPress={() => {this.setState({showRecordVoiceSection: true, showButton: false})}}>
+                { <AwesomeIcon name='microphone' color='#fff' size={24} /> }
+              </TouchableHighlight>
+            }
+          </View>
+
+          { this.state.showRecordVoiceSection && this._renderRecordSound() }
+        </View>
       </View>
     )
   }
@@ -200,7 +252,7 @@ export default class GoalScreen extends Component {
       return;
     }
 
-    this.setState({stoppedRecording: true, recording: false});
+    this.setState({stoppedRecording: true, recording: false, voiceRecord: this.state.audioPath});
 
     try {
       const filePath = await AudioRecorder.stopRecording();
