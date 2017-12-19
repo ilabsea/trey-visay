@@ -1,6 +1,7 @@
 [
   {
     "id": "1",
+    "logoName": "agriculture_and_natural_resource",
     "name": "ផ្នែកកសិកម្ម និងធនធានធម្មជាតិ",
     "icon": null,
     "short_description": "",
@@ -116,6 +117,7 @@
   },
   {
     "id": "2",
+    "logoName": "architect_andengineer",
     "name": "ផ្នែកស្ថាបត្យកម្ម និងសំណង់",
     "icon": null,
     "short_description": "",
@@ -246,6 +248,7 @@
   },
   {
     "id": "3",
+    "logoName": "art_and_communication",
     "name": "ផ្នែកសិល្បៈ​ និងការទំនាក់ទំនង",
     "icon": null,
     "short_description": "",
@@ -376,6 +379,7 @@
   },
   {
     "id": "4",
+    "logoName": "business_and_admin",
     "name": "ផ្នែកពាណិជ្ជកម្ម និងរដ្ឋបាល",
     "icon": null,
     "short_description": "",
@@ -506,6 +510,7 @@
   },
   {
     "id": "5",
+    "logoName": "education_and_training",
     "name": "ផ្នែកអប់រំ និងបណ្តុះបណ្តាល",
     "icon": null,
     "short_description": "",
@@ -636,6 +641,7 @@
   },
   {
     "id": "6",
+    "logoName": "finance_and_insurance",
     "name": "ផ្នែកហិរញ្ញវត្ថុ និងធានារ៉ាប់រង",
     "icon": null,
     "short_description": "",
@@ -766,6 +772,7 @@
   },
   {
     "id": "7",
+    "logoName": "admin_and_public_admin",
     "name": "ផ្នែករដ្ឋបាល និងរដ្ឋបាលសាធារណៈ",
     "icon": null,
     "short_description": "",
@@ -896,6 +903,7 @@
   },
   {
     "id": "8",
+    "logoName": "health_science",
     "name": "ផ្នែកវិទ្យាសាស្រ្តសុខាភិបាល",
     "icon": null,
     "short_description": "",
@@ -1026,6 +1034,7 @@
   },
   {
     "id": "9",
+    "logoName": "hospitality_and_tourism",
     "name": "ផ្នែកបដិសណ្ឋារកិច្ច,ទេសចរណ៍ និងកម្សាន្ត",
     "icon": null,
     "short_description": "",
@@ -1132,6 +1141,7 @@
   },
   {
     "id": "10",
+    "logoName": "service_for_public",
     "name": "ផ្នែកសេវាកម្មសម្រាប់សាធារណៈជន",
     "icon": null,
     "short_description": "",
@@ -1206,6 +1216,7 @@
   },
   {
     "id": "11",
+    "logoName": "information",
     "name": "ផ្នែកព័ត៌មានវិទ្យា",
     "icon": null,
     "short_description": "",
@@ -1312,6 +1323,7 @@
   },
   {
     "id": "12",
+    "logoName": "legal_and_public_safty",
     "name": "ផ្នែកច្បាប់ និងសុវត្ថិភាពសាធារណៈ",
     "icon": null,
     "short_description": "",
@@ -1394,6 +1406,7 @@
   },
   {
     "id": "13",
+    "logoName": "manufacturing",
     "name": "ផ្នែកកម្មន្តសាល",
     "icon": null,
     "short_description": "",
@@ -1476,6 +1489,7 @@
   },
   {
     "id": "14",
+    "logoName": "sale_and_service",
     "name": "ផ្នែកលក់រាយ​ លក់ដុំ និងសេវាកម្ម",
     "icon": null,
     "short_description": "",
@@ -1574,6 +1588,7 @@
   },
   {
     "id": "15",
+    "logoName": "science_research_engineering_and_mathematics",
     "name": "ផ្នែកវិទ្យាសាស្ត្រស្រាវជ្រាវ,វិស្វកម្ម និងគណិតសាស្រ្ត",
     "icon": null,
     "short_description": "",
@@ -1680,6 +1695,7 @@
   },
   {
     "id": "16",
+    "logoName": "logistic",
     "name": "ផ្នែកដឹកជញ្ជូន ការចែកចាយ និងការគ្រប់គ្រងចាត់ចែង",
     "icon": null,
     "short_description": "",

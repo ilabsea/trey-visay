@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  Image
 } from 'react-native';
 
 import {
@@ -15,6 +16,9 @@ import {
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
+import Images from '../../assets/images';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import careerList from '../../data/json/careers';
 
 import realm from '../../schema';
 import User from '../../utils/user';
@@ -25,8 +29,8 @@ export default class CareersScreen extends Component {
     const { goBack, state } = navigation;
 
     return {
-      title: 'សិក្សាពីមុខរបរ',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>សិក្សាពីមុខរបរ</Text>,
+      title: 'យល់ដឹងអំពីមុខរបរ',
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>យល់ដឹងអំពីមុខរបរ</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
@@ -51,10 +55,26 @@ export default class CareersScreen extends Component {
     this.props.navigation.navigate('SubjectScreen');
   }
 
+  _renderCareer(career, i) {
+    return (
+      <TouchableOpacity
+        key={i}
+        style={{flexDirection: 'row', alignItems: 'center', padding: 16, borderColor: '#ccc', borderBottomWidth: 0.5}}
+        onPress={() => {this.props.navigation.navigate('CareerDetailScreen',{careerId: career.id})}}
+      >
+        <Image source={Images[career.logoName]} style={{width: 80, height: 80, marginRight: 16}} />
+        <Text style={[styles.subTitle, {flex: 1}]}>{career.name}</Text>
+        <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+      </TouchableOpacity>
+    )
+  }
+
   _renderContent() {
     return (
-      <View>
-        <Text>សិក្សាពីមុខរបរ</Text>
+      <View style={[styles.box, {padding: 0}]}>
+        { careerList.map((career, i) => {
+          { return (this._renderCareer(career, i))}
+        })}
       </View>
     )
   }
