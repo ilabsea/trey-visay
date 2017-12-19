@@ -93,55 +93,57 @@ export default class Login extends Component {
     return (
       <LinearGradient style={styles.container} colors={['#4B8FD3', '#1976d2']}>
         <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
-          <ScrollView style={{padding: 24}}>
-            <View style={{flex: 1, alignItems: 'center'}}>
-              <Image
-                source={require('../assets/images/logo.png')}
-                style={{width: 120, height: 120}}
-              />
+          <ScrollView>
+            <View style={{margin: 24}}>
+              <View style={{flex: 1, alignItems: 'center'}}>
+                <Image
+                  source={require('../assets/images/logo.png')}
+                  style={{width: 120, height: 120}}
+                />
 
-              <Text style={styles.title}>ត្រីវិស័យ</Text>
-              <Text style={styles.subTitle}>បញ្ចូលគណនី</Text>
-            </View>
+                <Text style={styles.title}>ត្រីវិស័យ</Text>
+                <Text style={styles.subTitle}>បញ្ចូលគណនី</Text>
+              </View>
 
-            <View>
-              <TextInput
-                style={styles.inputText}
-                onChangeText={this.handleUsernameChange.bind(this)}
-                returnKeyType='next'
-                placeholder='ឈ្មោះគណនី'
-                placeholderTextColor='rgba(0,0,0,0.7)'
-                autoCorrect={false}
-                underlineColorAndroid='transparent'
-                onSubmitEditing={() => this.passwordInput.focus()}
-              />
+              <View>
+                <TextInput
+                  style={styles.inputText}
+                  onChangeText={this.handleUsernameChange.bind(this)}
+                  returnKeyType='next'
+                  placeholder='ឈ្មោះគណនី'
+                  placeholderTextColor='rgba(0,0,0,0.7)'
+                  autoCorrect={false}
+                  underlineColorAndroid='transparent'
+                  onSubmitEditing={() => this.passwordInput.focus()}
+                />
 
-              <TextInput
-                style={styles.inputText}
-                secureTextEntry={true}
-                returnKeyType='go'
-                placeholder='លេខសម្ងាត់'
-                placeholderTextColor='rgba(0,0,0,0.7)'
-                onChangeText={this.handlePasswordChange.bind(this)}
-                underlineColorAndroid='transparent'
-                ref={(input) => this.passwordInput = input}
-              />
+                <TextInput
+                  style={styles.inputText}
+                  secureTextEntry={true}
+                  returnKeyType='go'
+                  placeholder='លេខសម្ងាត់'
+                  placeholderTextColor='rgba(0,0,0,0.7)'
+                  onChangeText={this.handlePasswordChange.bind(this)}
+                  underlineColorAndroid='transparent'
+                  ref={(input) => this.passwordInput = input}
+                />
 
-              <Button
-                onPress={this.handleSubmit.bind(this)}
-                disabled={!isEnabled}
-                style={styles.btnLogin}>
+                <Button
+                  onPress={this.handleSubmit.bind(this)}
+                  disabled={!isEnabled}
+                  style={styles.btnLogin}>
 
-                <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>ចូលគណនី</Text>
-              </Button>
-            </View>
+                  <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>ចូលគណនី</Text>
+                </Button>
+              </View>
 
-            <View style={styles.row}>
-              <Text style={styles.whiteLabel}>មិនទាន់មានគណនីមែនទេ?</Text>
-              <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Register')}>
-                <Text style={styles.linkText}>បង្កើតគណនី</Text>
-              </TouchableOpacity>
+              <View style={styles.row}>
+                <Text style={styles.whiteLabel}>មិនទាន់មានគណនីមែនទេ?</Text>
+                <TouchableOpacity
+                  onPress={() => this.props.navigation.navigate('Register')}>
+                  <Text style={styles.linkText}>បង្កើតគណនី</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </ScrollView>
         </BackgroundImage>
