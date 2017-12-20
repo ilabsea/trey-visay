@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
+  Image,
 } from 'react-native';
 
 import {
@@ -18,6 +19,9 @@ import BackConfirmDialog from '../../components/back_confirm_dialog';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Images from '../../assets/images';
 
 import realm from '../../schema';
 import User from '../../utils/user';
@@ -183,9 +187,21 @@ export default class PersonalityScreen extends Component {
     return (
       <TouchableOpacity
         onPress={() => this._goToPersonalityJobsScreen(groupNumber)}
-        style={styles.box}>
-        <Text style={styles.subTitle}>{title}</Text>
-        <Text>{description}</Text>
+        style={[styles.box, {marginBottom: 0, borderBottomWidth: 0.5, borderColor: '#ccc'}]}>
+
+        <View style={{flexDirection: 'row'}}>
+          <View>
+            <Image source={Images[group.logoName]} style={{width: 80, height: 80, marginRight: 16}} />
+          </View>
+
+          <View style={{flex: 1}}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Text style={[styles.subTitle, {flex: 1}]}>{title}</Text>
+              <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+            </View>
+            <Text style={{paddingRight: 16}}>{description}</Text>
+          </View>
+        </View>
       </TouchableOpacity>
     )
   }
@@ -201,6 +217,11 @@ export default class PersonalityScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16}}>
+              <View style={{flexDirection: 'row', marginVertical: 16}}>
+                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+                <Text>ចូរជ្រើសរើសមុខរបរឲ្យបាន<Text style={{fontFamily: 'KantumruyBold'}}>៣យ៉ាងតិច</Text> ដោយផ្អែកលើគុណតម្លៃរបស់អ្នក!</Text>
+              </View>
+
               { this._renderPersonality(0) }
               { this._renderPersonality(1) }
               { this._renderPersonality(2) }

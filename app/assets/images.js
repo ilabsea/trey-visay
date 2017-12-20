@@ -23,6 +23,11 @@ const images = {
   artistic_or_creativity: require('./images/values/artistic_or_creativity.png'),
   logical_or_factual: require('./images/values/logical_or_factual.png'),
   social_or_relationship: require('./images/values/social_or_relationship.png'),
+
+  // personality icons
+  realistic:require('./images/personalities/realistic.png'),
+  survey:require('./images/personalities/survey.png'),
+  artistic:require('./images/personalities/artistic.png'),
 };
 
 export default images;

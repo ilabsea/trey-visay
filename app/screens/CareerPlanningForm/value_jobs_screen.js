@@ -13,6 +13,7 @@ import {
 } from 'react-native-material-ui';
 
 import CheckboxGroup from '../../components/checkbox_group';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -25,7 +26,7 @@ export default class ValueJobsScreen extends Component {
 
     return {
       title: 'ជ្រើសរើស៣មុខរបរចេញពីគុណតម្លៃរបស់អ្នក',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើស៣មុខរបរចេញពីគុណតម្លៃរបស់អ្នក</Text>,
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>{state.params.title}</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
@@ -57,15 +58,11 @@ export default class ValueJobsScreen extends Component {
 
   _renderCheckBoxes() {
     let groupNumber = this.props.navigation.state.params.groupNumber;
-    let value = valueJobs[groupNumber];
-    let title = value.text;
-    let description = value.description;
     let checkboxes = this._formatDataForCheckbox(groupNumber);
 
     return(
       <View style={styles.box}>
-        <Text style={styles.subTitle}>{title}</Text>
-        <Text>{description}</Text>
+        <Text style={styles.subTitle}>មុខរបរ</Text>
 
         <View>
           <CheckboxGroup
@@ -120,6 +117,11 @@ export default class ValueJobsScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16}}>
+              <View style={{flexDirection: 'row', marginVertical: 16}}>
+                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+                <Text>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
+              </View>
+
               { this._renderCheckBoxes() }
             </View>
           </ScrollView>

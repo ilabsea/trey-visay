@@ -186,7 +186,7 @@ export default class ValueScreen extends Component {
 
     return (
       <TouchableOpacity
-        onPress={() => this._goToValueJobsScreen(groupNumber)}
+        onPress={() => this._goToValueJobsScreen(groupNumber, title)}
         style={[styles.box, {marginBottom: 0, borderBottomWidth: 0.5, borderColor: '#ccc'}]}>
         <View style={{flexDirection: 'row'}}>
           <View>
@@ -205,9 +205,9 @@ export default class ValueScreen extends Component {
     )
   }
 
-  _goToValueJobsScreen(groupNumber) {
+  _goToValueJobsScreen(groupNumber, title) {
     this.setState({currentGroup: groupNumber})
-    this.props.navigation.navigate('ValueJobsScreen', { groupNumber: groupNumber, refresh: this._refreshState.bind(this), selectedCareers: this.state.jobs})
+    this.props.navigation.navigate('ValueJobsScreen', { title: title, groupNumber: groupNumber, refresh: this._refreshState.bind(this), selectedCareers: this.state.jobs})
   }
 
   render() {
