@@ -49,6 +49,7 @@ const careerCounsellorStack = StackNavigator(
     GoalScreen: { screen: GoalScreen },
     ContactScreen: { screen: ContactScreen },
     CareersScreen: { screen: CareersScreen },
+    InstitutionDetail: { screen: InstitutionDetail },
   }, {
     initialRouteName: 'CareerCounsellorScreen',
   }
