@@ -61,8 +61,8 @@ export default class ContactScreen extends Component {
     return(
       <View style={shareStyles.footerWrapper}>
         <TouchableOpacity onPress={ this._goNext.bind(this) } style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បញ្ចប់</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
+          <Text style={[shareStyles.btnText, {marginRight: 10}]}>រួចរាល់</Text>
+          <Icon name='done' color='#fff' size={24} />
         </TouchableOpacity>
       </View>
     )
@@ -89,13 +89,6 @@ export default class ContactScreen extends Component {
   }
 
   _renderContent() {
-    // let schools = [
-    //   { name: 'សកលវិទ្យាល័យ បញ្ញាសាស្រ្តកម្ពុជា', logo: require('../../assets/images/schools/1.png'), address: 'ផ្លូវលេខ ១៨៤, មហាវិថី ព្រះនរត្តម ក្រុងភ្នំពេញ', phoneNumber: '087 777 970', website: 'www.puc.edu.kh' },
-    //   { name: 'សកលវិទ្យាល័យកម្ពុជា', logo: require('../../assets/images/schools/2.png'), address: 'វិថីណ័រប្រីត (១០១៩) សង្កាត់ទឹកថ្លា ខ័ណ្ឌសែនសុខ រាជធានីភ្នំពេញ', phoneNumber: '023 993 276 / 060 3333 46 / 093 777 576 / 069 521 111', website: 'www.uc.edu.kh' },
-    //   { name: 'សកលវិទ្យាល័យវិទ្យាសាស្រ្តសុខាភិបាល', logo: require('../../assets/images/schools/3.png'), address: 'ផ្លូវលេខ ១៨៤, មហាវិថី ព្រះនរត្តម ក្រុងភ្នំពេញ', phoneNumber: '093 278 899', website: 'www.uhs.edu.kh' },
-    //   { name: 'សាកលវិទ្យាល័យចំរើនពហុបច្ចេកវិទ្យា', logo: require('../../assets/images/schools/4.png'), address: 'អគា១៥៤, ផ្លូវ១៣២, សង្កាត់ ទឹកល្អក់១ ខ័ណ្ឌទួលគោក រាជធានីភ្នំពេញ', phoneNumber: '061 800 023', website: 'www.cup.edu.kh' },
-    //   { name: 'សាកលវិទ្យាល័យសេដ្ឋកិច្ចនិងហិរញ្ញវត្ថុ', logo: require('../../assets/images/schools/5.png'), address: 'អគា៦៨, ផ្លូវ ៥២៨,២៩១, សង្កាត់ បឹងកក់១, ខ័ណ្ឌទួលគោក, ភ្នំពេញ', phoneNumber: '010 516 887', website: 'www.uef.edu.kh' },
-    // ]
     let schools = schoolList.slice(0, 3);
 
     return (
@@ -181,8 +174,12 @@ export default class ContactScreen extends Component {
 
   _renderReason() {
     return (
-      <View>
-        <Text>{this.state.game.reason}</Text>
+      <View style={{flexDirection: 'row'}}>
+        <Text style={{flex: 1}}>
+          <AwesomeIcon name='quote-left' color='#1976d2' size={14} />
+          <Text> {this.state.game.reason} </Text>
+          <AwesomeIcon name='quote-right' color='#1976d2' size={14} />
+        </Text>
       </View>
     )
   }
@@ -194,7 +191,7 @@ export default class ContactScreen extends Component {
 
         <View style={styles.box}>
           <Text style={styles.subTitle}>{this.state.game.goalCareer}</Text>
-          <Text>ការដាក់គោលដៅ និងមូលហេតុ</Text>
+          <Text style={{fontSize: 14, color: '#bdbdbd'}}>ការដាក់គោលដៅ និងមូលហេតុ</Text>
 
           { !!this.state.game.reason && this._renderReason()}
           { !!this.state.game.voiceRecord && this._renderVoiceRecord()}
