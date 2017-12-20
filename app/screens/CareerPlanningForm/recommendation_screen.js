@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  TouchableNativeFeedback,
   BackHandler,
 } from 'react-native';
 
@@ -19,11 +20,11 @@ import BackConfirmDialog from '../../components/back_confirm_dialog';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
-import RadioGroup from '../../components/radio_group';
 
 let careers = [];
 
@@ -94,7 +95,7 @@ export default class RecommendationScreen extends Component {
     let arr = [];
 
     for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].careerName, label: jobs[i].recommendation })
+      arr.push({ value: jobs[i].careerName, label: jobs[i].careerName, description: jobs[i].recommendation })
     }
     return arr;
   }
@@ -104,40 +105,39 @@ export default class RecommendationScreen extends Component {
     let options = this._formatDataForCheckbox(game.recommendations);
 
     return (
-      <View style={styles.box}>
-        <RadioForm formHorizontal={false} animation={true}>
-          { options.map((obj, i) => {
-            let myStyle = (i == options.length - 1) ? {} : { borderBottomWidth: 0.5, marginBottom: 16 }
+      <RadioForm formHorizontal={false} animation={true}>
+        { options.map((obj, i) => {
+          return (
+            <View key={i} style={[styles.box, {paddingHorizontal: 16, flexDirection: 'column', alignItems: 'flex-start'}]}>
+              <RadioButton labelHorizontal={true}>
+                <RadioButtonInput
+                  obj={obj}
+                  index={i}
+                  isSelected={this.state.currentJob == obj.value}
+                  onPress={(text) => this.setState({currentJob: text})}
+                  buttonSize={10}
+                  buttonOuterSize={20}
+                  buttonColor={'#4caf50'}
+                />
 
-            return (
-              <View key={i} style={[{paddingHorizontal: 16}, myStyle]}>
-                <Text style={styles.subTitle}>{obj.value}</Text>
+                <RadioButtonLabel
+                  obj={obj}
+                  index={i}
+                  labelHorizontal={true}
+                  onPress={(text) => this.setState({currentJob: text})}
+                  labelStyle={[styles.subTitle, {lineHeight: 36, color: '#212121'}]}
+                  labelWrapStyle={{paddingVertical: 10}}
+                />
+              </RadioButton>
 
-                <RadioButton labelHorizontal={true}>
-                  <RadioButtonInput
-                    obj={obj}
-                    index={i}
-                    isSelected={this.state.currentJob == obj.value}
-                    onPress={(text) => this.setState({currentJob: text})}
-                    buttonSize={10}
-                    buttonOuterSize={20}
-                    buttonColor={'#4caf50'}
-                  />
+              <TouchableNativeFeedback onPress={() => this.setState({currentJob: obj.value})}>
+                <Text style={{marginLeft: 32}}>{obj.description}</Text>
+              </TouchableNativeFeedback>
 
-                  <RadioButtonLabel
-                    obj={obj}
-                    index={i}
-                    labelHorizontal={true}
-                    onPress={(text) => this.setState({currentJob: text})}
-                    labelStyle={{fontSize: 16, lineHeight: 25, fontFamily: 'Kantumruy',}}
-                    labelWrapStyle={{marginRight: 20, paddingVertical: 10}}
-                  />
-                </RadioButton>
-              </View>
-            )
-          })}
-        </RadioForm>
-      </View>
+            </View>
+          )
+        })}
+      </RadioForm>
     )
   }
 
@@ -147,7 +147,11 @@ export default class RecommendationScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
-              <Text style={{marginBottom: 8}}>ចូរអានការណែនាំ និងជ្រើសរើសមុខរបរមួយក្នុងចំណោម២មុខរបរខាងក្រោម</Text>
+              <View style={{flexDirection: 'row', marginVertical: 16}}>
+                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+                <Text>ចូរអានពត៌មានលំអិត និងជ្រើសរើស១ក្នុងចំណោម២មុខរបរខាងក្រោម៖</Text>
+              </View>
+
               { this._renderRadioGroups() }
             </View>
           </ScrollView>
