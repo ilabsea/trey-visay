@@ -12,8 +12,8 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
-// import CheckboxGroup from 'react-native-checkbox-group';
 import CheckboxGroup from '../../components/checkbox_group';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -28,7 +28,7 @@ export default class PersonalityJobsScreen extends Component {
 
     return {
       title: 'ជ្រើសរើស៣មុខរបរចេញពីបុគ្គលិកលក្ខណៈរបស់អ្នក',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើស៣មុខរបរចេញពីបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>,
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>{state.params.title}</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
@@ -58,55 +58,13 @@ export default class PersonalityJobsScreen extends Component {
     careers = arr.map((obj) => obj.id);
   }
 
-  // _renderCheckBoxes() {
-  //   let groupNumber = this.props.navigation.state.params.groupNumber;
-  //   let value = personalityJobs[groupNumber];
-  //   let title = value.text;
-  //   let description = value.description;
-  //   let checkboxes = this._formatDataForCheckbox(groupNumber);
-
-  //   return(
-  //     <View style={styles.box}>
-  //       <Text style={styles.subTitle}>{title}</Text>
-  //       <Text>{description}</Text>
-
-  //       <View>
-  //         <CheckboxGroup
-  //           callback={(selected) => {this._handleChecked(selected)}}
-  //           iconColor={"#4caf50"}
-  //           iconSize={30}
-  //           checkedIcon="ios-checkbox-outline"
-  //           uncheckedIcon="ios-square-outline"
-  //           checkboxes={checkboxes}
-  //           labelStyle={{
-  //             color: '#333',
-  //             fontSize: 16,
-  //             marginLeft: 10
-  //           }}
-  //           rowStyle={{
-  //             flexDirection: 'row',
-  //             borderTopWidth: 0.5,
-  //             borderColor: '#ccc',
-  //             paddingVertical: 8,
-  //           }}
-  //           rowDirection={"column"}
-  //         />
-  //       </View>
-  //     </View>
-  //   )
-  // }
-
   _renderCheckBoxes() {
     let groupNumber = this.props.navigation.state.params.groupNumber;
-    let value = personalityJobs[groupNumber];
-    let title = value.text;
-    let description = value.description;
     let checkboxes = this._formatDataForCheckbox(groupNumber);
 
     return(
       <View style={styles.box}>
-        <Text style={styles.subTitle}>{title}</Text>
-        <Text>{description}</Text>
+        <Text style={styles.subTitle}>មុខរបរ</Text>
 
         <View>
           <CheckboxGroup
@@ -161,6 +119,11 @@ export default class PersonalityJobsScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16}}>
+              <View style={{flexDirection: 'row', marginVertical: 16}}>
+                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+                <Text>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
+              </View>
+
               { this._renderCheckBoxes() }
             </View>
           </ScrollView>

@@ -186,7 +186,7 @@ export default class PersonalityScreen extends Component {
 
     return (
       <TouchableOpacity
-        onPress={() => this._goToPersonalityJobsScreen(groupNumber)}
+        onPress={() => this._goToPersonalityJobsScreen(groupNumber, title)}
         style={[styles.box, {marginBottom: 0, borderBottomWidth: 0.5, borderColor: '#ccc'}]}>
 
         <View style={{flexDirection: 'row'}}>
@@ -206,9 +206,9 @@ export default class PersonalityScreen extends Component {
     )
   }
 
-  _goToPersonalityJobsScreen(groupNumber) {
+  _goToPersonalityJobsScreen(groupNumber, title) {
     this.setState({currentGroup: groupNumber})
-    this.props.navigation.navigate('PersonalityJobsScreen', { groupNumber: groupNumber, refresh: this._refreshState.bind(this), selectedCareers: this.state.jobs})
+    this.props.navigation.navigate('PersonalityJobsScreen', { title: title, groupNumber: groupNumber, refresh: this._refreshState.bind(this), selectedCareers: this.state.jobs})
   }
 
   render() {
