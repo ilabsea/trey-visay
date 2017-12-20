@@ -24,6 +24,7 @@ import shareStyles from './style';
 import realm from '../../schema';
 import User from '../../utils/user';
 import schoolList from '../../data/json/schools';
+import Images from '../../assets/images';
 
 export default class ContactScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -103,8 +104,8 @@ export default class ContactScreen extends Component {
 
   _renderSchool(school, i) {
     let logo = require('../../assets/images/schools/default.png');
-    if (school.logo) {
-      logo = { uri: school.logo };
+    if (school.logoName) {
+      logo = Images[school.logoName];
     }
 
     return (
@@ -123,16 +124,6 @@ export default class ContactScreen extends Component {
           <View style={{flexDirection: 'row'}}>
             <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
             <Text style={{marginLeft: 8}}>{school.address}</Text>
-          </View>
-
-          <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='phone' color='#1976d2' size={24} />
-            <Text style={{marginLeft: 8}}>{school.phoneNumbers.join('; ')}</Text>
-          </View>
-
-          <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='globe' color='#1976d2' size={24} />
-            <Text style={{marginLeft: 8}}>{school.websiteOrFacebook.join('; ')}</Text>
           </View>
         </View>
       </TouchableOpacity>

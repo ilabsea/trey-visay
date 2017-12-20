@@ -18,6 +18,7 @@ import shareStyles from '../assets/style_sheets/profile_form';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import schoolList from '../data/json/schools';
+import Images from '../assets/images';
 
 const PROFILE_SIZE = 120;
 
@@ -107,9 +108,10 @@ export default class InstitutionDetail extends Component {
   _renderScrollViewContent() {
     let photo = require('../assets/images/schools/default.png');
 
-    // if (!!this.state.user.photo) {
-    //   photo = {uri: this.state.user.photo};
-    // }
+    if (!!this.state.school.logoName) {
+      photo = Images[this.state.school.logoName];
+    }
+
     return (
       <View style={{paddingBottom: 40}}>
         <View style={styles.avataContainer}>
@@ -142,6 +144,9 @@ export default class InstitutionDetail extends Component {
 
   render() {
     let photo = require('../assets/images/schools/default.png');
+    if (!!this.state.school.logoName) {
+      photo = Images[this.state.school.logoName];
+    }
     let cover = require('../assets/images/header_bg.jpg');
 
     return (
