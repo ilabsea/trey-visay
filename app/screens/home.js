@@ -23,6 +23,7 @@ import GoalScreen from './CareerPlanningForm/goal_screen';
 import ContactScreen from './CareerPlanningForm/contact_screen';
 import CareerDetailScreen from './CareerPlanningForm/career_detail_screen';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
+import CareersScreen from './CareerPlanningForm/careers_screen';
 import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
 import EditFamilyInfo from './edit_family_info';
@@ -31,7 +32,7 @@ import Institution from './institution';
 import InstitutionDetail from './institution_detail';
 import SkillScreen from './skill_screen';
 import VideoScreen from './video_screen';
-import CareersScreen from './CareerPlanningForm/careers_screen';
+import ChangePasswordScreen from './change_password_screen';
 
 const careerCounsellorStack = StackNavigator(
   {
@@ -85,6 +86,7 @@ const HomeScreen = DrawerNavigator(
     },
     InstitutionStack: { screen: InstitutionStack },
     VideoScreen: { screen: VideoScreen },
+    ChangePasswordScreen: { screen: ChangePasswordScreen },
   },
   {
     initialRouteName: 'Dashboard',
@@ -93,6 +95,7 @@ const HomeScreen = DrawerNavigator(
     // initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
     // initialRouteName: 'About',
+    // initialRouteName: 'ChangePasswordScreen',
     contentComponent: SideMenu,
     contentOptions: {
       activeTintColor: '#1976d2',

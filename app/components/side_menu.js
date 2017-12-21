@@ -161,10 +161,10 @@ class SideMenu extends Component {
               </View>
             </TouchableOpacity>
 
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => this.navigateToScreen('ChangePasswordScreen')}>
               <View style={styles.row}>
-                <AwesomeIcon name='key' size={18} style={styles.icon} />
-                <Text style={styles.menuLabel}>ប្តូរលេខសម្ងាត់</Text>
+                <AwesomeIcon name='key' size={18} style={this.getIconStyle('ChangePasswordScreen')} />
+                <Text style={this.getMenuTextStyle('ChangePasswordScreen')}>ប្តូរលេខសម្ងាត់</Text>
               </View>
             </TouchableOpacity>
 
