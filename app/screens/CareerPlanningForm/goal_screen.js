@@ -50,6 +50,11 @@ export default class GoalScreen extends Component {
     this._initState();
   }
 
+  componentWillUnmount() {
+    this.sound.stop();
+    this.sound.release();
+  }
+
   _initState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
@@ -273,14 +278,14 @@ export default class GoalScreen extends Component {
     // These timeouts are a hacky workaround for some issues with react-native-sound.
     // See https://github.com/zmxv/react-native-sound/issues/89.
     setTimeout(() => {
-      var sound = new Sound(this.state.audioPath, '', (error) => {
+      this.sound = new Sound(this.state.audioPath, '', (error) => {
         if (error) {
           console.log('failed to load the sound', error);
         }
       });
 
       setTimeout(() => {
-        sound.play((success) => {
+        this.sound.play((success) => {
           if (success) {
             console.log('successfully finished playing');
           } else {

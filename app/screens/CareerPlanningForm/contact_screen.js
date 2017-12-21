@@ -46,6 +46,11 @@ export default class ContactScreen extends Component {
     this._initState();
   }
 
+  componentWillUnmount() {
+    this.sound.stop();
+    this.sound.release();
+  }
+
   _initState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
@@ -56,6 +61,17 @@ export default class ContactScreen extends Component {
       time: '',
       isPlaying: false,
     };
+
+    this.sound = new Sound(this.state.game.voiceRecord, '', (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+      }
+
+      let date = new Date(null);
+      date.setSeconds(Math.ceil(this.sound.getDuration()));
+      let time = date.toISOString().substr(11, 8);
+      this.setState({time: time});
+    });
   }
 
   _renderFooter() {
@@ -130,29 +146,41 @@ export default class ContactScreen extends Component {
     )
   }
 
+  async _play() {
+    // These timeouts are a hacky workaround for some issues with react-native-sound.
+    // See https://github.com/zmxv/react-native-sound/issues/89.
+    this.setState({isPlaying: true});
+
+    setTimeout(() => {
+      this.sound.play((success) => {
+        if (success) {
+          console.log('successfully finished playing');
+          this.setState({isPlaying: false});
+        } else {
+          console.log('playback failed due to audio decoding errors');
+          this.sound.reset();
+        }
+      });
+    }, 100);
+  }
+
+  async _stop() {
+    this.sound.stop();
+    this.setState({isPlaying: false});
+  }
+
   _renderVoiceRecord() {
-    var sound = new Sound(this.state.game.voiceRecord, '', (error) => {
-      if (error) {
-        console.log('failed to load the sound', error);
-      }
-
-      let date = new Date(null);
-      date.setSeconds(Math.ceil(sound.getDuration()));
-      let time = date.toISOString().substr(11, 8);
-      this.setState({time: time});
-    });
-
     return (
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
         <View style={{marginRight: 16}}>
           { !this.state.isPlaying &&
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => this._play()}>
               <MaterialIcon name='play-circle-outline' size={40} color='#4caf50'/>
             </TouchableOpacity>
           }
 
           { this.state.isPlaying &&
-            <TouchableOpacity onPress={() => {}}>
+            <TouchableOpacity onPress={() => this._stop()}>
               <MaterialIcon name='pause-circle-outline' size={40} color='#e94b35'/>
             </TouchableOpacity>
           }
