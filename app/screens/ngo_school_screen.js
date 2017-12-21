@@ -39,7 +39,7 @@ export default class NgoSchoolScreen extends Component {
             onLeftElementPress={() => screenProps.drawerNavigation.navigate('DrawerOpen') }
           />
         </ThemeProvider>,
-      tabBarLabel: 'សាលារដ្ឋ',
+      tabBarLabel: 'អង្គការ',
     }
   };
 
