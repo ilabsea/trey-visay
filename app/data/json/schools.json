@@ -10,6 +10,7 @@
     "emails": ["secretary@rupp.edu.kh"],
     "websiteOrFacebook": ["www.rupp.edu.kh", "www.facebook.com/rupp.edu.kh"],
     "mailbox": "",
+    "category": "សាលារដ្ឋ",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យ​សង្គមសាស្រ្ត និងមនុស្សសាស្រ្ត",
@@ -81,6 +82,7 @@
     "emails": ["RUA@forum.org.kh", "rua@camnet.com.kh"],
     "websiteOrFacebook": ["www.rupp.edu.kh"],
     "mailbox": "2696",
+    "category": "សាលារដ្ឋ",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យវិទ្យាសាស្ត្រកសិកម្ម",
@@ -139,6 +141,7 @@
     "emails": ["rector@rule.edu.kh"],
     "websiteOrFacebook": ["www.rule.edu.kh"],
     "mailbox": "",
+    "category": "សាលារដ្ឋ",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យនិតិសាស្ត្រ",
@@ -172,6 +175,7 @@
     "emails": ["sengbunthoeun@num.edu.kh"],
     "websiteOrFacebook": ["www.num.edu.kh", "https://facebook.com/num.edu.kh"],
     "mailbox": "",
+    "category": "សាលារដ្ឋ",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យគ្រប់គ្រង",
@@ -217,6 +221,7 @@
     "emails": ["uhsc@univ-sante.edu.kh"],
     "websiteOrFacebook": ["www.univ-sante.edu.kh"],
     "mailbox": "",
+    "category": "សាលារដ្ឋ",
     "departments": [
       {
         "name": "មហាវិជ្ជសាស្ត្រ",
@@ -250,6 +255,7 @@
     "emails": ["rufa@camnet.com.kh"],
     "websiteOrFacebook": ["www.rufa.edu.kh"],
     "mailbox": "",
+    "category": "សាលារដ្ឋ",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យបុរាណវិទ្យា",
@@ -287,6 +293,7 @@
     "emails": ["sbu@yahoo.com"],
     "websiteOrFacebook": ["www.sbu.edu.kh"],
     "mailbox": "",
+    "category": "សាលាឯកជន",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យ ទស្សនវិជ្ជា និង សាសនា",
@@ -324,6 +331,7 @@
     "emails": ["info@ubb.edu.kh"],
     "websiteOrFacebook": ["www.ubb,edu.kh"],
     "mailbox": "",
+    "category": "សាលារដ្ឋ",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យយគ្រប់គ្រងពាណិជ្ជកម្ម",
@@ -365,6 +373,7 @@
     "emails": ["oryarath@yahoo.com", "sokmadynov@yahoo.com"],
     "websiteOrFacebook": ["www.mcu.edu.kh"],
     "mailbox": "",
+    "category": "សាលាឯកជន",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យសិល្បះ​ មនុស្សសាស្ដ្រ នឹងភាសា",
@@ -402,6 +411,7 @@
     "emails": ["info@sru.edu.kh"],
     "websiteOrFacebook": ["www.sru.edu.kh"],
     "mailbox": "",
+    "category": "សាលារដ្ឋ",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យគ្រប់គ្រងពាណិជ្ជកម្ម",
@@ -439,6 +449,7 @@
     "emails": ["info@csuk.edu.kh"],
     "websiteOrFacebook": ["www.csuk.edu.kh"],
     "mailbox": "",
+    "category": "សាលារដ្ឋ",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យសិល្បះ មនុស្សសាស្ត្រ និងភាសា",
@@ -480,6 +491,7 @@
     "emails": ["vannaro@gmail.com", "pintara30@gmail.com", "uhstpintara@gmail.com"],
     "websiteOrFacebook": ["www.uhst.edu.kh"],
     "mailbox": "",
+    "category": "សាលារដ្ឋ",
     "departments": [
       {
         "name": "មហាវិទ្យាល័យកសិកម្ម",
@@ -509,5 +521,24 @@
     "schoolFeeForBachelor": "",
     "futureProfessionAvilability": "",
     "recruitmentAgency": ""
-  }
+  },
+  {
+    "id": 13,
+    "universityName": "វិទ្យាស្ថាននៃក្ដីញញឹម",
+    "logoName": "",
+    "address": "ស្រុកកំពង់សៀម ខេត្តកំពង់ចាម",
+    "province": "កំពង់ចាម",
+    "phoneNumbers": ["០១២ ៧៨៨ ៩៧៣"],
+    "faxes": [],
+    "emails": ["vannaro@gmail.com", "pintara30@gmail.com", "uhstpintara@gmail.com"],
+    "websiteOrFacebook": ["bsda-cambodia.org"],
+    "mailbox": "",
+    "category": "អង្គការ",
+    "departments": [
+    ],
+    "schoolFeeForBachelor": "",
+    "futureProfessionAvilability": "",
+    "recruitmentAgency": ""
+  },
+
 ]

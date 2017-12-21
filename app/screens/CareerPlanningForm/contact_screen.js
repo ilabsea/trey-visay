@@ -138,6 +138,11 @@ export default class ContactScreen extends Component {
           <Text style={styles.subTitle}>{school.universityName}</Text>
 
           <View style={{flexDirection: 'row'}}>
+            <AwesomeIcon name='building-o' color='#1976d2' size={20} />
+            <Text style={{marginLeft: 8}}>{school.category}</Text>
+          </View>
+
+          <View style={{flexDirection: 'row'}}>
             <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
             <Text style={{marginLeft: 8}}>{school.address}</Text>
           </View>

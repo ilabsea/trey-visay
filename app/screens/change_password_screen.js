@@ -71,7 +71,7 @@ export default class ChangePasswordScreen extends Component {
           />
 
           <ScrollView>
-            <View style={styles.scrollContainer}>
+            <View style={[styles.scrollContainer, {margin: 16}]}>
               <View style={shareStyles.box}>
                 <Text style={{}}>លេខសម្ងាត់ថ្មី</Text>
 
