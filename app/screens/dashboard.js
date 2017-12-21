@@ -63,7 +63,7 @@ export default class Dashboard extends Component {
   _renderBtnSchool() {
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('Institution')}
+        onPress={() => this.props.navigation.navigate('InstitutionStack')}
         style={[styles.btnBox]}>
         <View style={[styles.btnFab, {backgroundColor: '#009688'}]}>
           <AwesomeIcon name='graduation-cap' size={30} color='#fff' />

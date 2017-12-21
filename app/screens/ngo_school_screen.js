@@ -18,7 +18,9 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
 
+// import schoolList from '../data/json/skill_schools';
 import schoolList from '../data/json/schools';
+import Images from '../assets/images';
 
 const uiTheme = {
   palette: {
@@ -26,22 +28,31 @@ const uiTheme = {
   }
 };
 
-export default class UniversityScreen extends Component {
-  static navigationOptions = {
-    header: null,
-    tabBarLabel: 'សាកលវិទ្យាល័យ',
+export default class NgoSchoolScreen extends Component {
+  static navigationOptions = ({ navigation, screenProps }) => {
+    return {
+      header:
+        <ThemeProvider uiTheme={{}}>
+          <Toolbar
+            leftElement="menu"
+            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>គ្រឹះស្ថានសិក្សា</Text>}
+            onLeftElementPress={() => screenProps.drawerNavigation.navigate('DrawerOpen') }
+          />
+        </ThemeProvider>,
+      tabBarLabel: 'សាលារដ្ឋ',
+    }
   };
 
   componentWillMount() {
     this.state = {
-      schools: schoolList
+      schools: schoolList.filter(school => school.category == 'អង្គការ')
     }
   }
 
   _renderSchool(school, i) {
     let logo = require('../assets/images/schools/default.png');
-    if (school.logo) {
-      logo = { uri: school.logo };
+    if (!!school.logoName) {
+      logo = Images[school.logoName];
     }
 
     return (
@@ -58,16 +69,6 @@ export default class UniversityScreen extends Component {
               <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
               <Text style={{marginLeft: 8}}>{school.address}</Text>
             </View>
-
-            <View style={{flexDirection: 'row'}}>
-              <AwesomeIcon name='phone' color='#1976d2' size={24} />
-              <Text style={{marginLeft: 8}}>{school.phoneNumbers.join('; ')}</Text>
-            </View>
-
-            { school.websiteOrFacebook.length && <View style={{flexDirection: 'row'}}>
-              <AwesomeIcon name='globe' color='#1976d2' size={24} />
-              <Text style={{marginLeft: 8}}>{school.websiteOrFacebook.join('; ')}</Text>
-            </View> }
           </View>
         </View>
       </TouchableOpacity>
