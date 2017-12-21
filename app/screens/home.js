@@ -12,7 +12,7 @@ import Profile from './profile'
 import SideMenu from '../components/side_menu';
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 import CareerPlanningForm from './CareerPlanningForm/CareerPlanningForm';
-import SubjectScreen from './CareerPlanningForm/subject';
+import SubjectScreen from './CareerPlanningForm/subject_screen';
 import ValueScreen from './CareerPlanningForm/value_screen';
 import ValueJobsScreen from './CareerPlanningForm/value_jobs_screen';
 import PersonalityScreen from './CareerPlanningForm/personality_screen';

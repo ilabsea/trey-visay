@@ -25,7 +25,7 @@ import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import generalSubject from '../../data/translates/general_subject';
 
-export default class Subject extends Component {
+export default class SubjectScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
 
