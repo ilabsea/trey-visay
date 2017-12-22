@@ -18,6 +18,13 @@ const InstitutionTab = TabNavigator({
   animationEnabled: true,
   tabBarOptions: {
     activeTintColor: '#fff',
+    labelStyle: {
+      fontFamily: 'KantumruyBold',
+      fontSize: 14,
+    },
+    style: {
+      backgroundColor: '#1976d2'
+    }
   },
 });
 
