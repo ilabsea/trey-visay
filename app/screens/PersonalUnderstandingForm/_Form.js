@@ -7,6 +7,7 @@ import { ScrollView, View, Text, TouchableOpacity, Button, StyleSheet } from 're
 import CustomTextInput from '../../components/CustomTextInput'
 import CustomRadioGroup from '../../components/CustomRadioGroup'
 import CustomCheckbox from '../../components/CustomCheckbox'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import submit from './submit'
 
@@ -24,8 +25,12 @@ function Form(props) {
       style={styles.scrollContainer}>
 
       <View>
-        <Text style={{fontFamily: 'KantumruyBold', color: '#212121'}}>ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។ ករណីសិស្ស ទទួលបានពិន្ទុក្រោម ៥០% សិស្សត្រូវតម្រូវឲ្យធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។</Text>
-        <Text style={styles.hintLable}>ចូរជ្រើសរើសចម្លើយខាងក្រោម៖</Text>
+        <View style={{flexDirection: 'row', marginVertical: 16}}>
+          <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+          <Text style={{fontFamily: 'KantumruyBold', color: '#212121'}}>ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។ ករណីសិស្ស ទទួលបានពិន្ទុក្រោម ៥០% សិស្សត្រូវតម្រូវឲ្យធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។</Text>
+        </View>
+
+        <Text style={styles.hintLable}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
       </View>
 
       <View style={styles.formGroup}>
