@@ -213,7 +213,6 @@ export default class Profile extends Component {
     return(
       <Toolbar
         leftElement="menu"
-        centerElement="My Profile"
         rightElement='edit'
         onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
         onRightElementPress={() => this.props.navigation.navigate('EditProfilePhoto', { refresh: this.refreshState.bind(this) })}
@@ -243,6 +242,7 @@ export default class Profile extends Component {
           customHeader={ this._renderHeader.bind(this) }
           profile={ photo }
           profileSize={ PROFILE_SIZE }
+          title={this.state.user.fullName}
         />
       </ThemeProvider>
     )

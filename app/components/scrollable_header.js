@@ -9,6 +9,7 @@ import {
   View,
   Image,
 } from 'react-native';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 const HEADER_MAX_HEIGHT = 300;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
@@ -64,6 +65,7 @@ export default class ScrollableHeader extends Component {
 
     {/*custom Header goes here*/}
     let bgColor = this.props.backgroundColor || '#1976d2';
+    let titleBottom = !!this.props.subTitle ? 30 : 0;
 
     return (
       <View style={styles.fill}>
@@ -105,8 +107,15 @@ export default class ScrollableHeader extends Component {
           />}
 
           { this.props.title &&
-            <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), bottom: 0}}>
+            <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), bottom: titleBottom}}>
               <Text style={{fontSize: 20, color: '#fff', fontFamily: 'KhmerOureang'}}>{this.props.title}</Text>
+            </View>
+          }
+
+          { this.props.subTitle &&
+            <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), bottom: 0, flexDirection: 'row'}}>
+              <AwesomeIcon name='building-o' color='#fff' size={20} />
+              <Text style={{marginLeft: 8, fontSize: 16, color: '#fff', fontFamily: 'Kantumruy'}}>{this.props.subTitle}</Text>
             </View>
           }
 

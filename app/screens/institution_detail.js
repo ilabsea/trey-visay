@@ -79,6 +79,10 @@ export default class InstitutionDetail extends Component {
   }
 
   _renderMajor() {
+    if (!this.state.school.departments.length) {
+      return (null);
+    }
+
     return (
       <View style={[shareStyles.box]}>
         <Text style={shareStyles.subTitle}>ជំនាញ</Text>
@@ -158,6 +162,7 @@ export default class InstitutionDetail extends Component {
           profile={ photo }
           profileSize={ PROFILE_SIZE }
           title={this.state.school.universityName}
+          subTitle={this.state.school.category}
         />
       </ThemeProvider>
     )
