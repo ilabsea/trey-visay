@@ -110,7 +110,8 @@ export default class ValueScreen extends Component {
       realm.create('Game', this._buildData('ValueScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.goBack();
+      // this.props.navigation.goBack();
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ValueScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 

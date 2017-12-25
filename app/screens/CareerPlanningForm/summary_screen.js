@@ -28,7 +28,7 @@ import personalityJobs from '../../data/json/personality_jobs';
 let careers = [];
 let allCareers = [];
 
-export default class PersonalityJobsScreen extends Component {
+export default class SummaryScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
 
@@ -119,7 +119,8 @@ export default class PersonalityJobsScreen extends Component {
       })
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.goBack();
+      // this.props.navigation.goBack();
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'SummaryScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 

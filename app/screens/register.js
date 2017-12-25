@@ -22,7 +22,7 @@ import styles from '../assets/style_sheets/login_form';
 import BackgroundImage from '../components/image_background';
 import Button from '../components/button';
 
-export default class Register extends Component {
+export default class RegisterScreen extends Component {
   static navigationOptions = {
     header: null
   };
@@ -56,7 +56,7 @@ export default class Register extends Component {
       realm.write(() => {
         realm.create('User', this.buildData());
         User.setLogin(this.state.uuid, ()=> {
-          this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
+          this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'RegisterScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
         });
 
       });

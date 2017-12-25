@@ -110,7 +110,8 @@ export default class PersonalityScreen extends Component {
       realm.create('Game', this._buildData('PersonalityScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.goBack();
+      // this.props.navigation.goBack();
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'PersonalityScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
