@@ -540,5 +540,28 @@
     "futureProfessionAvilability": "",
     "recruitmentAgency": ""
   },
+  {
+    "id": 14,
+    "universityName": "អង្គការប៉ាសឺរ៉ែល នុយមឺរិកកម្ពុជា",
+    "logoName": "",
+    "address": "ផ្លូវ ៣៧១ ភូមិត្រពាំងឈូក សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
+    "province": "រាជធានីភ្នំពេញ",
+    "phoneNumbers": ["០២៣ ៩៩៥ ៥០០"],
+    "faxes": [],
+    "emails": ["info.cambodia@passerellesnumeriques.org"],
+    "websiteOrFacebook": ["www.passerellesnumeriques.org"],
+    "mailbox": "",
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "កុំព្យូទ័រ",
+        "majors": ["រដ្ឋបាលប្រព័ន្ឋ និងបណ្ដាញ", "កម្មវិធី វេប"]
+      }
+    ],
+    "schoolFeeForBachelor": "",
+    "futureProfessionAvilability": "",
+    "recruitmentAgency": ""
+  },
+
 
 ]

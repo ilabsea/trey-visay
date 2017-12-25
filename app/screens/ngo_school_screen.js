@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
+  Picker,
 } from 'react-native';
 
 import {
@@ -18,7 +19,6 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
 
-// import schoolList from '../data/json/skill_schools';
 import schoolList from '../data/json/schools';
 import Images from '../assets/images';
 
@@ -43,10 +43,30 @@ export default class NgoSchoolScreen extends Component {
     }
   };
 
+  ngoSchools = [];
+  provinceSchools = [];
+
   componentWillMount() {
+    this.ngoSchools = schoolList.filter(school => school.category == 'អង្គការ');
+
     this.state = {
-      schools: schoolList.filter(school => school.category == 'អង្គការ')
+      schools: this.ngoSchools,
+      location: '',
+      major: '',
+      majors: [],
+      provinces: [...new Set(this.ngoSchools.map(school => school.province))],
     }
+  }
+
+  _getMajors(schools) {
+    let departments = schools.map(school => school.departments);
+    departments = [].concat.apply([], departments);
+
+    let majors = departments.map(department => department.majors);
+    majors = [].concat.apply([], majors);
+    majors = [...new Set(majors)]
+
+    return majors;
   }
 
   _renderSchool(school, i) {
@@ -85,20 +105,70 @@ export default class NgoSchoolScreen extends Component {
     )
   }
 
-  _onChangeText(val) {
-    let list = schoolList;
+  _onChangeProvince(province) {
+    this.setState({location: province, major: ''});
+    let schools = this.ngoSchools;
+    let majors = [];
 
-    if (!!val) {
-      list = schoolList.filter((school) => {
-        return school.universityName.indexOf(val) > -1
-      })
+    if (!!province) {
+      schools = this.ngoSchools.filter(school => school.province == province);
+      majors = this._getMajors(schools);
     }
 
-    this.setState({schools: list})
+    this.provinceSchools = schools;
+    this.setState({majors: majors});
+    this.setState({schools: schools});
   }
 
-  _onSearchClosed() {
-    this.setState({schools: schoolList});
+  _onChangeMajor(major) {
+    this.setState({major: major});
+    let schools = this.provinceSchools;
+
+    if (!!major) {
+      schools = schools.filter((school) => {
+        let departments = school.departments.filter((department) => department.majors.includes(major));
+        return !!departments.length;
+      });
+    }
+
+    this.setState({schools: schools});
+  }
+
+  _renderFilters() {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <View style={{width: 200}}>
+          <Picker
+            selectedValue={this.state.location}
+            onValueChange={(itemValue, itemIndex) => this._onChangeProvince(itemValue)}
+            mode='dialog'
+            prompt='ជ្រើសរើសទីតាំង'
+            itemStyle={{fontFamily: 'Kantumruy', fontSize: 16}}
+          >
+            <Picker.Item label="គ្រប់ទីកន្លែង" value="" />
+            { this.state.provinces.map((province, i) => {
+              return (<Picker.Item key={i} label={province} value={province} />)
+            })}
+
+          </Picker>
+        </View>
+
+        <View style={{width: 200}}>
+          <Picker
+            selectedValue={this.state.major}
+            onValueChange={(itemValue, itemIndex) => this._onChangeMajor(itemValue)}
+            mode='dialog'
+            prompt='ជ្រើសរើសជំនាញ'
+          >
+            <Picker.Item label="គ្រប់ជំនាញ" value="" />
+
+            { this.state.majors.map((major, i) => {
+              return (<Picker.Item key={i} label={major} value={major} />)
+            })}
+          </Picker>
+        </View>
+      </View>
+    )
   }
 
   render() {
@@ -106,16 +176,15 @@ export default class NgoSchoolScreen extends Component {
       <ThemeProvider uiTheme={uiTheme}>
         <ScrollView>
           <View style={{margin: 16, flex: 1}}>
+            <View>
+              { this._renderFilters()}
+            </View>
+
             { this._renderContent() }
+
           </View>
         </ScrollView>
       </ThemeProvider>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
