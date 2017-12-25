@@ -51,8 +51,10 @@ export default class GoalScreen extends Component {
   }
 
   componentWillUnmount() {
-    this.sound.stop();
-    this.sound.release();
+    if (!!this.sound) {
+      this.sound.stop();
+      this.sound.release();
+    }
   }
 
   _initState() {
