@@ -7,8 +7,13 @@ import {
 
 export default class MyStatusBar extends Component {
   render() {
+    const {...props} = this.props;
+
     return (
-      <StatusBar backgroundColor="#176bc1" />
+      <StatusBar
+        backgroundColor="#176bc1"
+        { ...props }
+      />
     )
   }
 }

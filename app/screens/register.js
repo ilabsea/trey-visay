@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import StatusBar from '../components/status_bar';
 
 // Utils
 import realm from '../schema';
@@ -55,7 +56,7 @@ export default class Register extends Component {
       realm.write(() => {
         realm.create('User', this.buildData());
         User.setLogin(this.state.uuid, ()=> {
-          this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigate', routeName:'ProfileForm'}]})
+          this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
         });
 
       });
@@ -83,6 +84,8 @@ export default class Register extends Component {
     return (
       <LinearGradient style={styles.container} colors={['#4B8FD3', '#1976d2']}>
         <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
+          <StatusBar hidden={true} />
+
           <ScrollView>
             <View style={{padding: 24}}>
               <View style={{flex: 1, alignItems: 'center'}}>
@@ -92,7 +95,7 @@ export default class Register extends Component {
                 />
 
                 <Text style={styles.title}>ត្រីវិស័យ</Text>
-                <Text style={styles.subTitle}>បញ្ចូលគណនី</Text>
+                <Text style={styles.subTitle}>បង្កើតគណនី</Text>
               </View>
 
               <View>

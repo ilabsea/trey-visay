@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import SplashScreen from 'react-native-splash-screen'
+import StatusBar from '../components/status_bar';
 
 // Utils
 import realm from '../schema';
@@ -93,6 +94,8 @@ export default class Login extends Component {
     return (
       <LinearGradient style={styles.container} colors={['#4B8FD3', '#1976d2']}>
         <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
+          <StatusBar hidden={true} />
+
           <ScrollView>
             <View style={{margin: 24}}>
               <View style={{flex: 1, alignItems: 'center'}}>
