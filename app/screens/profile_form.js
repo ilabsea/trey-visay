@@ -139,7 +139,7 @@ export default class ProfileForm extends Component {
   checkRequire(field) {
     let value = this.state.user[field];
     if ( value == null || !value.length) {
-      formError[field] = ["can't be blank"];
+      formError[field] = ["មិនអាចទទេបានទេ"];
     } else {
       delete formError[field];
     }
