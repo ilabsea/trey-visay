@@ -46,9 +46,6 @@ export default class ValueScreen extends Component {
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
-      headerRight: (<View style={headerStyles.actionWrapper}>
-                      <Text style={headerStyles.saveText}>Total Jobs: {state.params && state.params.total || 0}</Text>
-                    </View>)
     }
   };
 
@@ -57,7 +54,10 @@ export default class ValueScreen extends Component {
     currentGroup: '',
     confirmDialogVisible: false,
     user: '',
-    game: ''
+    game: '',
+    careers0: [],
+    careers1: [],
+    careers2: []
   }
 
   componentDidMount() {
@@ -93,8 +93,13 @@ export default class ValueScreen extends Component {
     let game = user.games[user.games.length - 1];
 
     if (!!game.valueCareers.length) {
-      let arr = game.valueCareers.map((obj)=> obj.value);
-      this.setState({jobs: arr});
+      let obj = { jobs: game.valueCareers.map((obj)=> obj.value) };
+
+      for(let i=0; i<3; i++) {
+        obj['careers' + i] = valueJobs[i].careers.filter(career => obj.jobs.includes(career.id));
+      }
+
+      this.setState(obj);
     }
 
     this.setState({user: user, game: game});
@@ -118,8 +123,15 @@ export default class ValueScreen extends Component {
     });
   }
 
-  _refreshState(jobs) {
+  _handleSetEachCareers(jobs) {
+    let careers = {};
+    careers['careers' + this.state.currentGroup] = valueJobs[this.state.currentGroup].careers.filter(obj => jobs.includes(obj.id));
+    this.setState(careers);
+  }
+
+  refreshState(jobs) {
     group['group' + this.state.currentGroup] = jobs
+    this._handleSetEachCareers(jobs);
     this._refreshTotalJobs();
   }
 
@@ -131,14 +143,13 @@ export default class ValueScreen extends Component {
     }
 
     this.setState({jobs: arr});
-    // this.props.navigation.setParams({total: arr.length});
   }
 
   _renderFooter() {
     return(
       <View style={shareStyles.footerWrapper}>
         <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>Total jobs: {this.state.jobs.length} បន្តទៀត</Text>
+          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
           <Icon name='keyboard-arrow-right' color='#fff' size={24} />
         </TouchableOpacity>
       </View>
@@ -199,6 +210,12 @@ export default class ValueScreen extends Component {
               <AwesomeIcon name='angle-right' size={24} color='#bbb' />
             </View>
             <Text style={{paddingRight: 16}}>{description}</Text>
+            <View style={{flexDirection: 'row', marginTop: 8}}>
+              {this.state['careers' + groupNumber].map((career, i) => {
+                { return (<Text key={i} style={shareStyles.tagLabel}>{career.title}</Text>) }
+              })}
+            </View>
+
           </View>
         </View>
       </TouchableOpacity>
@@ -207,7 +224,7 @@ export default class ValueScreen extends Component {
 
   _goToValueJobsScreen(groupNumber, title) {
     this.setState({currentGroup: groupNumber})
-    this.props.navigation.navigate('ValueJobsScreen', { title: title, groupNumber: groupNumber, refresh: this._refreshState.bind(this), selectedCareers: this.state.jobs})
+    this.props.navigation.navigate('ValueJobsScreen', { title: title, groupNumber: groupNumber, refresh: this.refreshState.bind(this), selectedCareers: this.state.jobs})
   }
 
   render() {
