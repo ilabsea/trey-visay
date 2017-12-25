@@ -16,6 +16,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Thumbnail from 'react-native-thumbnail-video';
 import videoList from '../data/json/videos';
 import headerStyles from '../assets/style_sheets/header';
+import StatusBar from '../components/status_bar';
 
 export default class VideoScreen extends Component {
   static navigationOptions = {
@@ -66,6 +67,7 @@ export default class VideoScreen extends Component {
     return(
       <ThemeProvider uiTheme={{}}>
         <View style={styles.container}>
+          <StatusBar />
           <Toolbar
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}

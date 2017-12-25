@@ -18,6 +18,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
+import StatusBar from '../components/status_bar';
 
 import schoolList from '../data/json/schools';
 import Images from '../assets/images';
@@ -175,6 +176,7 @@ export default class GovernmentSchoolScreen extends Component {
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <ScrollView>
+          <StatusBar />
           <View style={{margin: 16, flex: 1}}>
             <View>
               { this._renderFilters()}

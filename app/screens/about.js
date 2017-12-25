@@ -15,6 +15,7 @@ import {
 
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
+import StatusBar from '../components/status_bar';
 
 const uiTheme = {
   palette: {
@@ -36,6 +37,8 @@ export default class About extends Component {
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
+          <StatusBar />
+
           <Toolbar
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>អំពីកម្មវិធី</Text>}

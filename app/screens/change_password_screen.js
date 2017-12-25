@@ -17,6 +17,7 @@ import Button from '../components/button';
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
 import styles from '../assets/style_sheets/login_form';
+import StatusBar from '../components/status_bar';
 
 import realm from '../schema';
 import User from '../utils/user';
@@ -64,6 +65,7 @@ export default class ChangePasswordScreen extends Component {
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
+          <StatusBar />
           <Toolbar
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ប្តូរលេខសម្ងាត់</Text>}

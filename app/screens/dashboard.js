@@ -6,7 +6,6 @@ import {
   Button,
   StyleSheet,
   TouchableOpacity,
-  StatusBar,
 } from 'react-native';
 
 import {
@@ -21,6 +20,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import realm from '../schema';
 import User from '../utils/user';
 import headerStyles from '../assets/style_sheets/header';
+import StatusBar from '../components/status_bar';
 
 const uiTheme = {
   palette: {
@@ -159,7 +159,7 @@ export default class Dashboard extends Component {
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
-          <StatusBar backgroundColor="#176bc1" />
+          <StatusBar />
 
           <ScrollView>
             <Toolbar

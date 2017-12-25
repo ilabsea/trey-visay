@@ -18,6 +18,7 @@ import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 
 import Button from '../../components/button';
+import StatusBar from '../../components/status_bar';
 import myStyles from '../../assets/style_sheets/login_form';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -57,6 +58,8 @@ export default class CareerCounsellor extends Component {
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.wrapper}>
+          <StatusBar />
+
           <Toolbar
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វាយតម្លៃមុខរបរ និង អាជីព</Text>}
