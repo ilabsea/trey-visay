@@ -108,25 +108,32 @@ export default class CareerCounsellor extends Component {
     return "ថ្ងៃ" + days[time.getDay()] + ' ទី' + time.getDate() + ' ខែ' + months[time.getMonth()] + ' ឆ្នាំ' + time.getFullYear();
   }
 
-  _renderTestHistory() {
+  _renderGameHistory() {
     let count = this.state.completedGames.length;
 
     return (
       <View >
-        <Text style={{fontFamily: 'KantumruyBold', marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
+        { !!this.state.completedGames.length &&
+          <Text style={{fontFamily: 'KantumruyBold', marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
+        }
 
         { this.state.completedGames.map((game, i) => {
           return (
             <TouchableOpacity
               key={i}
-              style={[styles.box, {marginTop: 0, marginBottom: 8, flexDirection: 'row'}]}
+              style={[styles.box, {marginTop: 0, marginBottom: 8, flexDirection: 'row', alignItems: 'center'}]}
               onPress={() => this.props.navigation.navigate('GameHistoryScreen', {num: (count - i), gameUuid: game.uuid})}
               >
-              <Image source={require('../../assets/images/checklist.png')} style={{width: 60, height: 60, marginRight: 16}} />
-              <View>
-                <Text style={shareStyles.subTitle}>តេស្តលើកទី {count - i}</Text>
-                <Text>ធ្វើនៅ: {this._getFullDate(game.createdAt)}</Text>
+              <View style={{flexDirection: 'row', flex: 1}}>
+                <Image source={require('../../assets/images/checklist.png')} style={{width: 60, height: 60, marginRight: 16}} />
+                <View>
+                  <Text style={shareStyles.subTitle}>តេស្តលើកទី {count - i}</Text>
+                  <Text>ធ្វើនៅ: {this._getFullDate(game.createdAt)}</Text>
+                </View>
               </View>
+
+              <AwesomeIcon name='angle-right' size={24}/>
+
             </TouchableOpacity>
           )
         })}
@@ -148,7 +155,7 @@ export default class CareerCounsellor extends Component {
           />
 
           { this._renderInstruction() }
-          { this._renderTestHistory() }
+          { this._renderGameHistory() }
         </View>
       </ThemeProvider>
     );

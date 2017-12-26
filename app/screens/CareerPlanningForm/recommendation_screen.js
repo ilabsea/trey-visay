@@ -101,8 +101,7 @@ export default class RecommendationScreen extends Component {
   }
 
   _renderRadioGroups() {
-    let game = realm.objects('Game').filtered('uuid="' + 123 + '"')[0];
-    let options = this._formatDataForCheckbox(game.recommendations);
+    let options = this._formatDataForCheckbox(this.state.game.recommendations);
 
     return (
       <RadioForm formHorizontal={false} animation={true}>
