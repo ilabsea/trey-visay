@@ -23,6 +23,7 @@ import myStyles from '../../assets/style_sheets/login_form';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
+import shareStyles from '../../assets/style_sheets/profile_form';
 
 const uiTheme = {
   palette: {
@@ -50,8 +51,88 @@ export default class CareerCounsellor extends Component {
     this.state = {
       user: user,
       game: game,
+      completedGames: user.games.filtered('isDone = true').sorted('createdAt', true),
       canContinueToTest2: canContinueToTest2
     }
+  }
+
+  _renderInstruction() {
+    return (
+      <View style={[styles.box, {flexDirection: 'row'}]}>
+        <View style={styles.logoWrapper}>
+          <Image source={require('../../assets/images/list.png')} style={styles.logo} />
+        </View>
+
+        <View style={{flex: 1}}>
+          <Text style={styles.title}>ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព</Text>
+
+          <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
+            ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
+          </Text>
+
+          <View style={{marginBottom: 30}}>
+            <Text style={styles.text}>មាន២ជំហានៈ</Text>
+            <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
+            <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
+          </View>
+
+          <View style={{height: 50, flexDirection: 'row'}}>
+            <Button
+              style={[myStyles.btnSubmit, {paddingHorizontal: 20, marginRight: 20}]}
+              onPress={this._goToPersonalUnderstandingForm.bind(this)}
+              >
+              <Text style={[myStyles.submitText, {color: '#fff', fontSize: 20}]}>
+                ចាប់ផ្តើមថ្មី
+              </Text>
+            </Button>
+
+            { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
+              <Button
+                style={[myStyles.btnSubmit, {paddingHorizontal: 20}]}
+                onPress={this._handleGoingNextStep.bind(this)}
+                >
+                <Text style={[myStyles.submitText, {color: '#fff', fontSize: 20}]}>បន្តទៅវគ្គមុន</Text>
+              </Button>
+            }
+
+          </View>
+        </View>
+      </View>
+    )
+  }
+
+  _getFullDate(createdAt) {
+    let days = ['អាទិត្យ', 'ច័ន្ទ', 'អង្គារ', 'ពុធ', 'ព្រហស្បតិ៍', 'សុក្រ', 'សៅរ៍'];
+    let months = ['មករា', 'កុមភៈ', 'មិនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្តដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆកា', 'ធ្នូ'];
+    let time = new Date(createdAt);
+    return "ថ្ងៃ" + days[time.getDay()] + ' ទី' + time.getDate() + ' ខែ' + months[time.getMonth()] + ' ឆ្នាំ' + time.getFullYear();
+  }
+
+  _renderTestHistory() {
+    let count = this.state.completedGames.length;
+
+    return (
+      <View >
+        <Text style={{fontFamily: 'KantumruyBold', marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
+
+        { this.state.completedGames.map((game, i) => {
+          return (
+            <TouchableOpacity
+              key={i}
+              style={[styles.box, {marginTop: 0, marginBottom: 8, flexDirection: 'row'}]}
+              onPress={() => this.props.navigation.navigate('GameHistoryScreen', {num: (count - i), gameUuid: game.uuid})}
+              >
+              <Image source={require('../../assets/images/checklist.png')} style={{width: 60, height: 60, marginRight: 16}} />
+              <View>
+                <Text style={shareStyles.subTitle}>តេស្តលើកទី {count - i}</Text>
+                <Text>ធ្វើនៅ: {this._getFullDate(game.createdAt)}</Text>
+              </View>
+            </TouchableOpacity>
+          )
+        })}
+
+      </View>
+    )
   }
 
   render() {
@@ -66,50 +147,8 @@ export default class CareerCounsellor extends Component {
             onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
           />
 
-          <View style={[styles.box, {flexDirection: 'row'}]}>
-            <View style={styles.logoWrapper}>
-              <Image source={require('../../assets/images/list.png')} style={styles.logo} />
-            </View>
-
-            <View style={{flex: 1}}>
-
-              <Text style={styles.title}>ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព</Text>
-
-              <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
-                ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
-              </Text>
-
-              <View style={{marginBottom: 30}}>
-                <Text style={styles.text}>មាន២ជំហានៈ</Text>
-                <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
-                <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
-              </View>
-
-              <View style={{height: 50, flexDirection: 'row'}}>
-                <Button
-                  style={[myStyles.btnSubmit, {paddingHorizontal: 20, marginRight: 20}]}
-                  onPress={this._goToPersonalUnderstandingForm.bind(this)}
-                  >
-                  <Text style={[myStyles.submitText, {color: '#fff', fontSize: 20}]}>
-                    ចាប់ផ្តើមថ្មី
-                  </Text>
-                </Button>
-
-                { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
-                  <Button
-                    style={[myStyles.btnSubmit, {paddingHorizontal: 20}]}
-                    onPress={this._handleGoingNextStep.bind(this)}
-                    >
-                    <Text style={[myStyles.submitText, {color: '#fff', fontSize: 20}]}>បន្តទៅវគ្គមុន</Text>
-                  </Button>
-                }
-
-              </View>
-
-            </View>
-
-          </View>
-
+          { this._renderInstruction() }
+          { this._renderTestHistory() }
         </View>
       </ThemeProvider>
     );
@@ -130,8 +169,8 @@ export default class CareerCounsellor extends Component {
 
   _buildData() {
     let obj = {
-      // uuid: uuidv4()
-      uuid: '123',
+      uuid: uuidv4(),
+      // uuid: '123',
       user: this.state.user,
       createdAt: Date()
     };
@@ -148,7 +187,7 @@ export default class CareerCounsellor extends Component {
     realm.write(() => {
       // Todo: handle it again
       let allGame = realm.objects('Game');
-      realm.delete(allGame);
+      // realm.delete(allGame);
 
       this.state.user.games.push(this._buildData());
       this.props.navigation.navigate('PersonalUnderstandingFormScreen');

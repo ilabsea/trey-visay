@@ -24,15 +24,14 @@ import ContactScreen from './CareerPlanningForm/contact_screen';
 import CareerDetailScreen from './CareerPlanningForm/career_detail_screen';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
 import CareersScreen from './CareerPlanningForm/careers_screen';
+import GameHistoryScreen from './CareerPlanningForm/game_history_screen';
 import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
 import EditFamilyInfo from './edit_family_info';
 import EditFamilySituation from './edit_family_situation';
-// import Institution from './institution';
 import InstitutionDetail from './institution_detail';
 import VideoScreen from './video_screen';
 import ChangePasswordScreen from './change_password_screen';
-
 import InstitutionStack from './institution_stack';
 
 const careerCounsellorStack = StackNavigator(
@@ -52,6 +51,7 @@ const careerCounsellorStack = StackNavigator(
     ContactScreen: { screen: ContactScreen },
     CareersScreen: { screen: CareersScreen },
     InstitutionDetail: { screen: InstitutionDetail },
+    GameHistoryScreen: { screen: GameHistoryScreen },
   }, {
     initialRouteName: 'CareerCounsellorScreen',
   }
