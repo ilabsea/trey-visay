@@ -8,7 +8,7 @@ import {
 // Screens
 import Dashboard from './dashboard';
 import About from './about';
-import Profile from './profile'
+import Profile from './profile';
 import SideMenu from '../components/side_menu';
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 import CareerPlanningForm from './CareerPlanningForm/CareerPlanningForm';

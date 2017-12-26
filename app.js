@@ -8,6 +8,7 @@ import ProfileForm from './app/screens/profile_form';
 import HomeNavigator from './app/screens/home';
 import Login from './app/screens/login';
 import Register from './app/screens/register';
+import AdminHomeNavigator from './app/screens/admin/home';
 
 const AppNavigator = StackNavigator({
   Login: { screen: Login },
@@ -19,6 +20,12 @@ const AppNavigator = StackNavigator({
       header: null
     }),
   },
+  AdminHome: {
+    screen: ({ navigation }) => <AdminHomeNavigator screenProps={{ rootNavigation: navigation }} />,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    }),
+  }
 }, {
   initialRouteName: 'Login',
 });
