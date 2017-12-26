@@ -78,17 +78,6 @@ export default class GameHistoryScreen extends Component {
     });
   }
 
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={ this._goNext.bind(this) } style={shareStyles.btnNext}>
-          <Text style={[shareStyles.btnText, {marginRight: 10}]}>រួចរាល់</Text>
-          <Icon name='done' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   _goNext() {
     this._handleSubmit();
   }
@@ -238,8 +227,6 @@ export default class GameHistoryScreen extends Component {
               { this._renderContent() }
             </View>
           </ScrollView>
-
-          { this._renderFooter() }
         </View>
       </ThemeProvider>
     );
