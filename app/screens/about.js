@@ -16,6 +16,7 @@ import {
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
 import StatusBar from '../components/status_bar';
+import DeviceInfo from 'react-native-device-info';
 
 const uiTheme = {
   palette: {
@@ -75,6 +76,11 @@ export default class About extends Component {
                   កម្មវិធីសម្រាប់អប់រំកុមារជនជាតិ និង សមភាពយេនឌ័រជាដើម។​
                   ព័ត៌មានលម្អិត៖ ចូលទៅកាន់គេហទំព័រ។
                 </Text>
+
+                <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
+                  <Text>ជំនាន់: </Text>
+                  <Text>{DeviceInfo.getVersion()}</Text>
+                </View>
               </View>
             </View>
           </ScrollView>
