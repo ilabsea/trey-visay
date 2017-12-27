@@ -2,16 +2,11 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  Button,
   ScrollView,
-  StyleSheet,
-  TouchableOpacity,
 } from 'react-native';
 
 import {
   ThemeProvider,
-  Toolbar,
-  Icon,
 } from 'react-native-material-ui';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
