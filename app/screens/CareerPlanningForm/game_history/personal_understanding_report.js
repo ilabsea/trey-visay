@@ -14,6 +14,11 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+
+import realm from '../../../schema';
+import User from '../../../utils/user';
+
 import headerStyles from '../../../assets/style_sheets/header';
 import shareStyles from '../../../assets/style_sheets/profile_form';
 import StatusBar from '../../../components/status_bar';
@@ -26,33 +31,158 @@ export default class PersonalUnderstandingReport extends Component {
       title: 'ស្វែងយល់អំពីខ្លួនឯង',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ស្វែងយល់អំពីខ្លួនឯង</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      headerTintColor: '#fff'
     }
   };
 
+  componentWillMount() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games.filtered('uuid=="' + this.props.navigation.state.params.gameUuid + '"')[0];
+
+    this.state = {
+      user: user,
+      game: game,
+    }
+  }
+
+  yesNoValue = { Yes: 'បាទ/ចាស', No: 'ទេ', Don_Know: 'មិនដឹង' };
+
+  _renderQuestion1(personalUnderstanding) {
+    if (!personalUnderstanding.areYouGoingToStudyTillGrade12) {
+      return (null);
+    }
+
+    return (
+      <View style={shareStyles.box}>
+        <Text style={shareStyles.subTitle}>១) តើអ្នកនឹងបន្តការសិក្សារហូតដល់ថ្នាក់ទី១២ដែរឬទេ?</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
+          <Text>{this.yesNoValue[personalUnderstanding.areYouGoingToStudyTillGrade12]}</Text>
+        </View>
+      </View>
+    );
+  }
+
+  _renderQuestion2(personalUnderstanding) {
+    if (!personalUnderstanding.areYourParentsAllowYouToStudyTillGrade12) {
+      return (null);
+    }
+
+    return (
+      <View style={shareStyles.box}>
+        <Text style={shareStyles.subTitle}>២) តើឪពុកម្តាយរបស់ប្អូននឹងអនុញ្ញាតឲ្យប្អូនបន្តការសិក្សា រហូតដល់ថ្នាក់ទី១២ដែរឬទេ?</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
+          <Text>{this.yesNoValue[personalUnderstanding.areYourParentsAllowYouToStudyTillGrade12]}</Text>
+        </View>
+      </View>
+    );
+  }
+
+  _renderQuestion3(personalUnderstanding) {
+    if (!personalUnderstanding.haveYouEverThoughtOfCareer) {
+      return (null);
+    }
+
+    return (
+      <View style={shareStyles.box}>
+        <Text style={shareStyles.subTitle}>៣) តើប្អូនធ្លាប់គិតពីការងារមួយណាដែលប្អូនចង់ធ្វើក្រោយពេលបញ្ចប់ការសិក្សាដែរឬទេ?</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
+          <Text>{this.yesNoValue[personalUnderstanding.haveYouEverThoughtOfCareer]}</Text>
+        </View>
+
+        <Text style={shareStyles.subTitle}>តើការងារនោះជាការងារអ្វី</Text>
+        <Text>{personalUnderstanding.careerName}</Text>
+
+        <Text style={shareStyles.subTitle}>ចំពោះការងារដែលអ្នកបានជ្រើសរើសហើយ។​ តើអ្នកធ្វើដូចម្តេចដើម្បីឲ្យសម្រេចការងារដែលអ្នកជ្រើសរើសនោះ?</Text>
+        <Text>{personalUnderstanding.howToReachCarreerGoal}</Text>
+
+        <Text style={shareStyles.subTitle}>តើឪពុកម្តាយអ្នកយល់ស្របជាមួយគំនិតរបស់អ្នកដែរឬទេ?</Text>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
+          <Text>{this.yesNoValue[personalUnderstanding.doesParentsAgreeWith]}</Text>
+        </View>
+      </View>
+    );
+  }
+
+  _renderQuestion4(personalUnderstanding) {
+    if (!personalUnderstanding.haveYouEverThoughtOfCareer) {
+      return (null);
+    }
+
+    let arr = { 1: 'ឳពុកម្តាយ', 2: 'បងប្អូន', 3: 'ក្រុមប្រឹក្សាកុមារ', 4: 'នាយកសាលា', 5: 'គ្រូ', 6: 'មិត្តភក្តិ' };
+
+    return (
+      <View style={shareStyles.box}>
+        <Text style={shareStyles.subTitle}>៤) តើអ្នកធ្លាប់និយាយជាមួយនរណាម្នាក់ពីការងារអនាគតរបស់អ្នកដែរឬទេ?</Text>
+        { personalUnderstanding.everTalkedWithAnyoneAboutCareer.map((obj, i) => {
+          return (
+            <View key={i} style={{flexDirection: 'row', alignItems: 'center'}}>
+              <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
+              <Text>{arr[obj.value]}</Text>
+            </View>
+          )
+        })}
+      </View>
+    );
+  }
+
+  _renderQuestion5(personalUnderstanding) {
+    if (!personalUnderstanding.howToReachJobVacancy) {
+      return (null);
+    }
+
+    return (
+      <View style={shareStyles.box}>
+        <Text style={shareStyles.subTitle}>៥) តើអ្នកអាចស្វែងរកការងារឬស្រាវជ្រាវរកមុខរបរតាមរយៈអ្វីខ្លះ?</Text>
+        <Text>{personalUnderstanding.howToReachJobVacancy}</Text>
+      </View>
+    );
+  }
+
+  _renderQuestion6(personalUnderstanding) {
+    if (!personalUnderstanding.whoToReachJobVacancy) {
+      return (null);
+    }
+
+    return (
+      <View style={shareStyles.box}>
+        <Text style={shareStyles.subTitle}>៦) តើអ្នកអាចស្វែងរកការងារឬស្រាវជ្រាវរកមុខរបរតាមរយៈអ្នកណា?</Text>
+        <Text>{personalUnderstanding.whoToReachJobVacancy}</Text>
+      </View>
+    );
+  }
+
+  _renderContent(obj, i) {
+    return (
+      <View key={i} style={{marginBottom: 20}}>
+        <Text>ការស្វែងយល់អំពីខ្លួនឯងលើកទី { i + 1 }</Text>
+
+        { this._renderQuestion1(obj) }
+        { this._renderQuestion2(obj) }
+        { this._renderQuestion3(obj) }
+        { this._renderQuestion4(obj) }
+        { this._renderQuestion5(obj) }
+        { this._renderQuestion6(obj) }
+      </View>
+    )
+  }
+
   render() {
     return (
-      null
+      <ThemeProvider uiTheme={{}}>
+        <View style={{flex: 1}}>
+          <ScrollView style={{flex: 1}}>
+            <View style={{margin: 16, flex: 1}}>
+              { this.state.game.personalUnderstandings.map((obj, i) => {
+                { return (this._renderContent(obj, i)) }
+              })}
+            </View>
+          </ScrollView>
+        </View>
+      </ThemeProvider>
     )
   }
 }
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  scrollContainer: {
-    padding: 16
-  },
-  paragraph: {
-    marginBottom: 16
-  },
-  textBold: {
-    fontFamily: 'KantumruyBold'
-  }
-});

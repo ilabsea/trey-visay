@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ScrollView,
   TouchableOpacity,
   Image,
@@ -62,6 +61,7 @@ export default class GameHistoryScreen extends Component {
       game: game,
       time: '',
       isPlaying: false,
+      gameUuid: this.props.navigation.state.params.gameUuid,
     };
 
     if (!game.voiceRecord) { return }
@@ -221,7 +221,7 @@ export default class GameHistoryScreen extends Component {
     return (
       <TouchableOpacity
         style={[styles.box, {marginTop: 0, marginBottom: 8, flexDirection: 'row', alignItems: 'center'}]}
-        onPress={() => this.props.navigation.navigate(screenName)}
+        onPress={() => this.props.navigation.navigate(screenName, {gameUuid: this.state.gameUuid})}
         >
         <Image source={require('../../assets/images/list.png')} style={{width: 60, height: 60, marginRight: 16}} />
         <Text style={[styles.subTitle, {flex: 1}]}>{label}</Text>
