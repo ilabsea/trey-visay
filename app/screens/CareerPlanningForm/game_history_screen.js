@@ -217,12 +217,49 @@ export default class GameHistoryScreen extends Component {
     )
   }
 
+  _renderButton(label, screenName) {
+    return (
+      <TouchableOpacity
+        style={[styles.box, {marginTop: 0, marginBottom: 8, flexDirection: 'row', alignItems: 'center'}]}
+        onPress={() => this.props.navigation.navigate(screenName)}
+        >
+        <Image source={require('../../assets/images/list.png')} style={{width: 60, height: 60, marginRight: 16}} />
+        <Text style={[styles.subTitle, {flex: 1}]}>{label}</Text>
+        <AwesomeIcon name='angle-right' size={24}/>
+      </TouchableOpacity>
+    )
+  }
+
+  _renderTest1Trigger() {
+    return (
+      <View style={{marginBottom: 16}}>
+        <Text>ធ្វើតេស្តដំណាក់កាលទី 1</Text>
+
+        { this._renderButton('ស្វែងយល់អំពីខ្លួនឯង', 'PersonalUnderstandingReport') }
+      </View>
+    )
+  }
+
+  _renderTest2Trigger() {
+    return (
+      <View style={{marginBottom: 16}}>
+        <Text>ធ្វើតេស្តដំណាក់កាលទី 2</Text>
+
+        { this._renderButton('បំពេញមុខវិជ្ជា', 'SubjectReport') }
+        { this._renderButton('ជ្រើសរើសមុខរបរផ្អែកលើគុណតម្លៃ', 'ValueReport') }
+        { this._renderButton('ជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណះ', 'PersonalityReport') }
+      </View>
+    )
+  }
+
   render() {
     return(
       <ThemeProvider uiTheme={{}}>
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
+              { this._renderTest1Trigger() }
+              { this._renderTest2Trigger() }
               { this._renderGoal() }
               { this._renderContent() }
             </View>

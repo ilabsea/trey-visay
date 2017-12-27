@@ -10,7 +10,9 @@ import Dashboard from './dashboard';
 import About from './about';
 import Profile from './profile';
 import SideMenu from '../components/side_menu';
+
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
+
 import CareerPlanningForm from './CareerPlanningForm/CareerPlanningForm';
 import SubjectScreen from './CareerPlanningForm/subject_screen';
 import ValueScreen from './CareerPlanningForm/value_screen';
@@ -25,6 +27,12 @@ import CareerDetailScreen from './CareerPlanningForm/career_detail_screen';
 import CareerCounsellor from './CareerCounsellor/CareerCounsellor';
 import CareersScreen from './CareerPlanningForm/careers_screen';
 import GameHistoryScreen from './CareerPlanningForm/game_history_screen';
+
+import PersonalUnderstandingReport from './CareerPlanningForm/game_history/personal_understanding_report';
+import SubjectReport from './CareerPlanningForm/game_history/subject_report';
+import ValueReport from './CareerPlanningForm/game_history/value_report';
+import PersonalityReport from './CareerPlanningForm/game_history/personality_report';
+
 import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
 import EditFamilyInfo from './edit_family_info';
@@ -52,6 +60,11 @@ const careerCounsellorStack = StackNavigator(
     CareersScreen: { screen: CareersScreen },
     InstitutionDetail: { screen: InstitutionDetail },
     GameHistoryScreen: { screen: GameHistoryScreen },
+
+    PersonalUnderstandingReport: { screen: PersonalUnderstandingReport },
+    SubjectReport: { screen: SubjectReport },
+    ValueReport: { screen: ValueReport },
+    PersonalityReport: { screen: PersonalityReport },
   }, {
     initialRouteName: 'CareerCounsellorScreen',
   }
@@ -65,15 +78,6 @@ const profileStack = StackNavigator(
     EditFamilyInfo: {screen: EditFamilyInfo},
     EditFamilySituation: {screen: EditFamilySituation},
   });
-
-// const InstitutionStack = StackNavigator(
-//   {
-//     Institution: { screen: Institution },
-//     InstitutionDetail: { screen: InstitutionDetail },
-//   }, {
-//     initialRouteName: 'Institution',
-//   }
-// );
 
 const HomeScreen = DrawerNavigator(
   {
