@@ -13,6 +13,8 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
+import { Divider } from 'react-native-elements';
+
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
@@ -57,15 +59,17 @@ export default class CareersScreen extends Component {
 
   _renderCareer(career, i) {
     return (
-      <TouchableOpacity
-        key={i}
-        style={{flexDirection: 'row', alignItems: 'center', padding: 16, borderColor: '#ccc', borderBottomWidth: 0.5}}
-        onPress={() => {this.props.navigation.navigate('CareerDetailScreen',{careerId: career.id})}}
-      >
-        <Image source={Images[career.logoName]} style={{width: 80, height: 80, marginRight: 16}} />
-        <Text style={[styles.subTitle, {flex: 1}]}>{career.name}</Text>
-        <AwesomeIcon name='angle-right' size={24} color='#bbb' />
-      </TouchableOpacity>
+      <View key={i}>
+        <TouchableOpacity
+          style={{flexDirection: 'row', alignItems: 'center', padding: 16}}
+          onPress={() => {this.props.navigation.navigate('CareerDetailScreen',{careerId: career.id})}}
+        >
+          <Image source={Images[career.logoName]} style={{width: 80, height: 80, marginRight: 16}} />
+          <Text style={[styles.subTitle, {flex: 1}]}>{career.name}</Text>
+          <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+        </TouchableOpacity>
+        <Divider/>
+      </View>
     )
   }
 

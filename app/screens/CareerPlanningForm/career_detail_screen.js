@@ -19,6 +19,7 @@ import careers from '../../data/json/careers';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Accordion from 'react-native-collapsible/Accordion';
+import { Divider } from 'react-native-elements';
 
 let job;
 export default class CareerDetailScreen extends Component {
@@ -57,15 +58,16 @@ export default class CareerDetailScreen extends Component {
           { isActive && <AwesomeIcon name='caret-up' size={24} color='#1976d2' /> }
         </View>
 
-        <View style={[myStyle, { marginLeft: 34, borderColor: '#ccc' }]}></View>
+        { !isActive && <Divider style={{marginLeft: 34}}/>}
       </View>
     );
   }
 
   _renderContent(career) {
     return (
-      <View style={{borderBottomWidth: 0.5, borderColor: '#ccc', marginLeft: 34, paddingBottom: 10}}>
+      <View>
         <Text>{career.long_description || 'content is not available'}</Text>
+        <Divider style={{marginLeft: 34, marginVertical: 10}}/>
       </View>
     );
   }
