@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
+import { Divider } from 'react-native-elements';
 
 var RadioButtonGroup = React.createClass({
 
@@ -15,26 +16,29 @@ var RadioButtonGroup = React.createClass({
         >
         { this.props.radio_props.map((obj, i) => {
           return(
-            <View key={i} style={{alignItems: 'flex-start', borderTopWidth: 0.5, borderColor: '#ccc', paddingVertical: 8}}>
-              <RadioButton labelHorizontal={true} key={i}>
-                <RadioButtonInput
-                  obj={obj}
-                  index={i}
-                  isSelected={this.props.value == obj.value}
-                  onPress={this.props.onPress}
-                  buttonSize={15}
-                  circleSize={10}
-                  buttonColor={buttonColor}
-                />
-                <RadioButtonLabel
-                  obj={obj}
-                  index={i}
-                  labelHorizontal={true}
-                  onPress={this.props.onPress}
-                  labelStyle={[labelStyle, {marginLeft: 0, marginRight: 40, fontSize: 16}]}
-                  labelWrapStyle={{marginRight: 20, paddingVertical: 10}}
-                />
-              </RadioButton>
+            <View key={i}>
+              <Divider/>
+              <View  style={{alignItems: 'flex-start', paddingVertical: 8}}>
+                <RadioButton labelHorizontal={true} key={i}>
+                  <RadioButtonInput
+                    obj={obj}
+                    index={i}
+                    isSelected={this.props.value == obj.value}
+                    onPress={this.props.onPress}
+                    buttonSize={15}
+                    circleSize={10}
+                    buttonColor={buttonColor}
+                  />
+                  <RadioButtonLabel
+                    obj={obj}
+                    index={i}
+                    labelHorizontal={true}
+                    onPress={this.props.onPress}
+                    labelStyle={[labelStyle, {marginLeft: 0, marginRight: 40, fontSize: 16}]}
+                    labelWrapStyle={{marginRight: 20, paddingVertical: 10}}
+                  />
+                </RadioButton>
+              </View>
             </View>
           )
         })}

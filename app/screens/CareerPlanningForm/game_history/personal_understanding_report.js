@@ -15,6 +15,7 @@ import {
 } from 'react-native-material-ui';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Divider } from 'react-native-elements';
 
 import realm from '../../../schema';
 import User from '../../../utils/user';
@@ -55,6 +56,7 @@ export default class PersonalUnderstandingReport extends Component {
     return (
       <View style={shareStyles.box}>
         <Text style={shareStyles.subTitle}>១) តើអ្នកនឹងបន្តការសិក្សារហូតដល់ថ្នាក់ទី១២ដែរឬទេ?</Text>
+        <Divider style={{marginBottom: 8}}/>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
           <Text>{this.yesNoValue[personalUnderstanding.areYouGoingToStudyTillGrade12]}</Text>
@@ -71,6 +73,7 @@ export default class PersonalUnderstandingReport extends Component {
     return (
       <View style={shareStyles.box}>
         <Text style={shareStyles.subTitle}>២) តើឪពុកម្តាយរបស់ប្អូននឹងអនុញ្ញាតឲ្យប្អូនបន្តការសិក្សា រហូតដល់ថ្នាក់ទី១២ដែរឬទេ?</Text>
+        <Divider style={{marginBottom: 8}}/>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
           <Text>{this.yesNoValue[personalUnderstanding.areYourParentsAllowYouToStudyTillGrade12]}</Text>
@@ -87,18 +90,22 @@ export default class PersonalUnderstandingReport extends Component {
     return (
       <View style={shareStyles.box}>
         <Text style={shareStyles.subTitle}>៣) តើប្អូនធ្លាប់គិតពីការងារមួយណាដែលប្អូនចង់ធ្វើក្រោយពេលបញ្ចប់ការសិក្សាដែរឬទេ?</Text>
+        <Divider style={{marginBottom: 8}}/>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
           <Text>{this.yesNoValue[personalUnderstanding.haveYouEverThoughtOfCareer]}</Text>
         </View>
 
-        <Text style={shareStyles.subTitle}>តើការងារនោះជាការងារអ្វី</Text>
+        <Text style={[shareStyles.subTitle, {marginTop: 12}]}>តើការងារនោះជាការងារអ្វី</Text>
+        <Divider style={{marginBottom: 8}}/>
         <Text>{personalUnderstanding.careerName}</Text>
 
-        <Text style={shareStyles.subTitle}>ចំពោះការងារដែលអ្នកបានជ្រើសរើសហើយ។​ តើអ្នកធ្វើដូចម្តេចដើម្បីឲ្យសម្រេចការងារដែលអ្នកជ្រើសរើសនោះ?</Text>
+        <Text style={[shareStyles.subTitle, {marginTop: 12}]}>ចំពោះការងារដែលអ្នកបានជ្រើសរើសហើយ។​ តើអ្នកធ្វើដូចម្តេចដើម្បីឲ្យសម្រេចការងារដែលអ្នកជ្រើសរើសនោះ?</Text>
+        <Divider style={{marginBottom: 8}}/>
         <Text>{personalUnderstanding.howToReachCarreerGoal}</Text>
 
-        <Text style={shareStyles.subTitle}>តើឪពុកម្តាយអ្នកយល់ស្របជាមួយគំនិតរបស់អ្នកដែរឬទេ?</Text>
+        <Text style={[shareStyles.subTitle, {marginTop: 12}]}>តើឪពុកម្តាយអ្នកយល់ស្របជាមួយគំនិតរបស់អ្នកដែរឬទេ?</Text>
+        <Divider style={{marginBottom: 8}}/>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
           <Text>{this.yesNoValue[personalUnderstanding.doesParentsAgreeWith]}</Text>
@@ -119,9 +126,12 @@ export default class PersonalUnderstandingReport extends Component {
         <Text style={shareStyles.subTitle}>៤) តើអ្នកធ្លាប់និយាយជាមួយនរណាម្នាក់ពីការងារអនាគតរបស់អ្នកដែរឬទេ?</Text>
         { personalUnderstanding.everTalkedWithAnyoneAboutCareer.map((obj, i) => {
           return (
-            <View key={i} style={{flexDirection: 'row', alignItems: 'center'}}>
-              <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-              <Text>{arr[obj.value]}</Text>
+            <View key={i}>
+              <Divider style={{marginBottom: 8}}/>
+              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8}}>
+                <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
+                <Text>{arr[obj.value]}</Text>
+              </View>
             </View>
           )
         })}
@@ -174,6 +184,7 @@ export default class PersonalUnderstandingReport extends Component {
     return (
       <ThemeProvider uiTheme={{}}>
         <View style={{flex: 1}}>
+          <StatusBar />
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
               { this.state.game.personalUnderstandings.map((obj, i) => {
