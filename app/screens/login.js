@@ -40,10 +40,8 @@ export default class Login extends Component {
     User.isLoggedin(this.handleUser.bind(this));
   }
 
-  isUserInfoCompleted() {
-    let users = realm.objects('User').filtered('uuid="' + User.getID() + '"');
-
-    return !!users.length && !!users[0].dateOfBirth;
+  isUserInfoCompleted(user) {
+    return !!user && !!user.dateOfBirth;
   }
 
   handleUser(userId) {
@@ -51,7 +49,18 @@ export default class Login extends Component {
       return this.setState({loaded: true});
     }
 
-    if (this.isUserInfoCompleted()) {
+    let user = realm.objects('User').filtered('uuid="' + userId + '"')[0];
+
+    if (!user) {
+      User.logout();
+      return this.setState({loaded: true});
+    }
+
+    if (user.role == 'admin') {
+      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}]})
+    }
+
+    if (this.isUserInfoCompleted(user)) {
       return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
     }
 
