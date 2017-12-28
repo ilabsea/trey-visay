@@ -62,7 +62,7 @@ export default class AdminDashboardScreen extends Component {
     alert('upload to server!');
   }
 
-  _renderDataToUpload() {
+  _renderDataToUpload(users) {
     return (
       <View style={[styles.btnBox]}>
         <View style={[styles.btnFab, {backgroundColor: '#f44336'}]}>
@@ -70,7 +70,7 @@ export default class AdminDashboardScreen extends Component {
         </View>
 
         <View style={{marginVertical: 24}}>
-          <Text style={styles.btnLabel}>៥២១ ទិន្នន័យ</Text>
+          <Text style={styles.btnLabel}>{users.length} ទិន្នន័យ</Text>
 
           <Button
             style={[shareStyles.btnSubmit, {paddingHorizontal: 16, marginTop: 24}]}
@@ -84,6 +84,8 @@ export default class AdminDashboardScreen extends Component {
   }
 
   render() {
+    let users = realm.objects('User').filtered('role = "student"');
+
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
@@ -96,8 +98,8 @@ export default class AdminDashboardScreen extends Component {
           />
 
           <ScrollView>
-            { false && this._renderNoData() }
-            { this._renderDataToUpload() }
+            { !users.length && this._renderNoData() }
+            { !!users.length && this._renderDataToUpload(users) }
           </ScrollView>
         </View>
       </ThemeProvider>

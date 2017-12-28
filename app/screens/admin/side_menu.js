@@ -131,11 +131,11 @@ class SideMenu extends Component {
         {
           !this.state.isOpen &&
           <View>
-            <TouchableOpacity onPress={() => this.navigateToScreen('ProfileStack')}>
-              <View style={this.getWrapperStyle('ProfileStack')}>
+            <TouchableOpacity onPress={() => this.navigateToScreen('Profile')}>
+              <View style={this.getWrapperStyle('Profile')}>
 
-                <AwesomeIcon name='user' size={18} style={this.getIconStyle('ProfileStack')} />
-                <Text style={this.getMenuTextStyle('ProfileStack')}>ប្រវត្តិរូបសង្ខេប</Text>
+                <AwesomeIcon name='user' size={18} style={this.getIconStyle('Profile')} />
+                <Text style={this.getMenuTextStyle('Profile')}>ប្រវត្តិរូបសង្ខេប</Text>
 
               </View>
             </TouchableOpacity>

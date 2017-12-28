@@ -7,14 +7,16 @@ import {
 // Screens
 import Dashboard from './dashboard_screen';
 import About from '../about';
-import Profile from '../profile';
+import Profile from './profile';
 import SideMenu from './side_menu';
+import ChangePasswordScreen from '../change_password_screen';
 
 const AdminHomeScreen = DrawerNavigator(
   {
     Dashboard: { screen: Dashboard },
     About: { screen: About },
-
+    ChangePasswordScreen: { screen: ChangePasswordScreen },
+    Profile: { screen: Profile },
   },
   {
     initialRouteName: 'Dashboard',
