@@ -48,6 +48,10 @@ export default class SubjectReport extends Component {
         <Text style={shareStyles.subTitle}>{obj.title}</Text>
 
         { obj.groups.map((group, i) => {
+          if (!this.state.gameSubject[group.stateName]) {
+            return (null)
+          }
+
           return (
             <View key={i} style={{marginBottom: 16}}>
               <Divider style={{ marginBottom: 10 }}/>

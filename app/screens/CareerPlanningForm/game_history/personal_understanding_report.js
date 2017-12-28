@@ -96,20 +96,32 @@ export default class PersonalUnderstandingReport extends Component {
           <Text>{this.yesNoValue[personalUnderstanding.haveYouEverThoughtOfCareer]}</Text>
         </View>
 
-        <Text style={[shareStyles.subTitle, {marginTop: 12}]}>តើការងារនោះជាការងារអ្វី</Text>
-        <Divider style={{marginBottom: 8}}/>
-        <Text>{personalUnderstanding.careerName}</Text>
+        { !!personalUnderstanding.careerName &&
+          <View>
+            <Text style={[shareStyles.subTitle, {marginTop: 12}]}>តើការងារនោះជាការងារអ្វី</Text>
+            <Divider style={{marginBottom: 8}}/>
+            <Text>{personalUnderstanding.careerName}</Text>
+          </View>
+        }
 
-        <Text style={[shareStyles.subTitle, {marginTop: 12}]}>ចំពោះការងារដែលអ្នកបានជ្រើសរើសហើយ។​ តើអ្នកធ្វើដូចម្តេចដើម្បីឲ្យសម្រេចការងារដែលអ្នកជ្រើសរើសនោះ?</Text>
-        <Divider style={{marginBottom: 8}}/>
-        <Text>{personalUnderstanding.howToReachCarreerGoal}</Text>
+        { !!personalUnderstanding.howToReachCarreerGoal &&
+          <View>
+            <Text style={[shareStyles.subTitle, {marginTop: 12}]}>ចំពោះការងារដែលអ្នកបានជ្រើសរើសហើយ។​ តើអ្នកធ្វើដូចម្តេចដើម្បីឲ្យសម្រេចការងារដែលអ្នកជ្រើសរើសនោះ?</Text>
+            <Divider style={{marginBottom: 8}}/>
+            <Text>{personalUnderstanding.howToReachCarreerGoal}</Text>
+          </View>
+        }
 
-        <Text style={[shareStyles.subTitle, {marginTop: 12}]}>តើឪពុកម្តាយអ្នកយល់ស្របជាមួយគំនិតរបស់អ្នកដែរឬទេ?</Text>
-        <Divider style={{marginBottom: 8}}/>
-        <View style={{flexDirection: 'row', alignItems: 'center'}}>
-          <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-          <Text>{this.yesNoValue[personalUnderstanding.doesParentsAgreeWith]}</Text>
-        </View>
+        { !!personalUnderstanding.doesParentsAgreeWith &&
+          <View>
+            <Text style={[shareStyles.subTitle, {marginTop: 12}]}>តើឪពុកម្តាយអ្នកយល់ស្របជាមួយគំនិតរបស់អ្នកដែរឬទេ?</Text>
+            <Divider style={{marginBottom: 8}}/>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
+              <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
+              <Text>{this.yesNoValue[personalUnderstanding.doesParentsAgreeWith]}</Text>
+            </View>
+          </View>
+        }
       </View>
     );
   }
