@@ -15,7 +15,8 @@ import {
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
-import careers from '../../data/json/careers';
+// import careers from '../../data/json/careers';
+import careers from '../../data/json/characteristic_jobs';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Accordion from 'react-native-collapsible/Accordion';
@@ -66,7 +67,7 @@ export default class CareerDetailScreen extends Component {
   _renderContent(career) {
     return (
       <View>
-        <Text>{career.long_description || 'content is not available'}</Text>
+        <Text>{career.description || 'content is not available'}</Text>
         <Divider style={{marginLeft: 34, marginVertical: 10}}/>
       </View>
     );
@@ -79,7 +80,7 @@ export default class CareerDetailScreen extends Component {
           <View style={{margin: 16}}>
             <View style={styles.box}>
               <Accordion
-                sections={job.children}
+                sections={job.careers}
                 renderHeader={this._renderHeader}
                 renderContent={this._renderContent}
               />

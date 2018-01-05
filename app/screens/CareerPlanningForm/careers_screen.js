@@ -20,7 +20,8 @@ import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import Images from '../../assets/images';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import careerList from '../../data/json/careers';
+// import careerList from '../../data/json/careers';
+import careerList from '../../data/json/characteristic_jobs';
 
 import realm from '../../schema';
 import User from '../../utils/user';
@@ -65,7 +66,7 @@ export default class CareersScreen extends Component {
           onPress={() => {this.props.navigation.navigate('CareerDetailScreen',{careerId: career.id})}}
         >
           <Image source={Images[career.logoName]} style={{width: 80, height: 80, marginRight: 16}} />
-          <Text style={[styles.subTitle, {flex: 1}]}>{career.name}</Text>
+          <Text style={[styles.subTitle, {flex: 1}]}>{career.careeer_title}</Text>
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </TouchableOpacity>
         <Divider/>
