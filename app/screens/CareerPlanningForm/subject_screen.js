@@ -42,35 +42,21 @@ export default class SubjectScreen extends Component {
   };
 
   state = {
-    khmerSpeaking: '',
-    khmerListening: '',
     khmerReading: '',
     khmerWriting: '',
-    englishSpeaking: '',
-    englishListening: '',
-    englishReading: '',
-    englishWriting: '',
-    mathNumber: '',
-    mathGauge: '',
-    mathGeometry: '',
-    mathStatistics: '',
-    mathAlgebra: '',
-    SocialStudyEthicsAndCitizenship: '',
-    SocialStudyGeography: '',
-    SocialStudyHistory: '',
-    SocialStudyHousework: '',
-    SciencePhysics: '',
-    ScienceChemistry: '',
-    ScienceBiology: '',
-    ScienceEarthAndEnvironment: '',
-    SoftSkillCommunication: '',
-    SoftSkillBehavior: '',
-    SoftSkillBrave: '',
-    SoftSkillConfidence: '',
-    SoftSkillPunctuality: '',
-    SoftSkillTeamwork: '',
-    SoftSkillRespect: '',
-    SoftSkillProblemSolving: '',
+    english: '',
+    math: '',
+    socialStudyEthicsAndCitizenship: '',
+    socialStudyGeography: '',
+    socialStudyHistory: '',
+    sciencePhysics: '',
+    scienceChemistry: '',
+    scienceBiology: '',
+    softSkillCommunication: '',
+    softSkillBrave: '',
+    softSkillTeamwork: '',
+    softSkillProblemSolving: '',
+    softSkillPublicSpeaking: '',
     confirmDialogVisible: false,
     user: '',
     game: ''
@@ -157,8 +143,6 @@ export default class SubjectScreen extends Component {
     let obj = {
       title: 'ភាសាខ្មែរ',
       groups: [
-        { stateName: 'khmerSpeaking', label: 'ការនិយាយ' },
-        { stateName: 'khmerListening', label: 'ការស្តាប់' },
         { stateName: 'khmerReading', label: 'ការអាន' },
         { stateName: 'khmerWriting', label: 'ការសរសេរ' },
       ]
@@ -169,27 +153,9 @@ export default class SubjectScreen extends Component {
 
   _renderEnglish() {
     let obj = {
-      title: 'ភាសាអង់គ្លេស',
+      title: 'ភាសាបរទេស',
       groups: [
-        { stateName: 'englishSpeaking', label: 'ការនិយាយ' },
-        { stateName: 'englishListening', label: 'ការស្តាប់' },
-        { stateName: 'englishReading', label: 'ការអាន' },
-        { stateName: 'englishWriting', label: 'ការសរសេរ' },
-      ]
-    }
-
-    return this._renderRadioGroups(obj);
-  }
-
-  _renderMath() {
-    let obj = {
-      title: 'គណិតវិទ្យា',
-      groups: [
-        { stateName: 'mathNumber', label: 'លេខ' },
-        { stateName: 'mathGauge', label: 'រង្វាស់' },
-        { stateName: 'mathGeometry', label: 'ធរណីមាត្រ' },
-        { stateName: 'mathStatistics', label: 'ស្ថិតិ' },
-        { stateName: 'mathAlgebra', label: 'ពិជគណិត' },
+        { stateName: 'english', label: 'ភាសាអង់គ្លេស/ភាសាបារាំង' },
       ]
     }
 
@@ -200,10 +166,9 @@ export default class SubjectScreen extends Component {
     let obj = {
       title: 'សិក្សាសង្គម',
       groups: [
-        { stateName: 'SocialStudyEthicsAndCitizenship', label: 'សីលធម៌ និង ពលរដ្ឋ' },
-        { stateName: 'SocialStudyGeography', label: 'ភូមិវិទ្យា' },
-        { stateName: 'SocialStudyHistory', label: 'ប្រវត្តិវិទ្យា' },
-        { stateName: 'SocialStudyHousework', label: 'គេហវិជ្ជា' },
+        { stateName: 'socialStudyEthicsAndCitizenship', label: 'សីលធម៌ និង ពលរដ្ឋ' },
+        { stateName: 'socialStudyGeography', label: 'ភូមិវិទ្យា' },
+        { stateName: 'socialStudyHistory', label: 'ប្រវត្តិវិទ្យា' },
       ]
     }
 
@@ -214,10 +179,10 @@ export default class SubjectScreen extends Component {
     let obj = {
       title: 'វិទ្យាសាស្ត្រ',
       groups: [
-        { stateName: 'SciencePhysics', label: 'រូបវិទ្យា' },
-        { stateName: 'ScienceChemistry', label: 'គីមីវិទ្យា' },
-        { stateName: 'ScienceBiology', label: 'ជីវៈវិទ្យា' },
-        { stateName: 'ScienceEarthAndEnvironment', label: 'ផែនដី និង បរិស្ថាន' },
+        { stateName: 'math', label: 'គណិតវិទ្យា' },
+        { stateName: 'sciencePhysics', label: 'រូបវិទ្យា' },
+        { stateName: 'scienceChemistry', label: 'គីមីវិទ្យា' },
+        { stateName: 'scienceBiology', label: 'ជីវៈវិទ្យា' },
       ]
     }
 
@@ -228,14 +193,11 @@ export default class SubjectScreen extends Component {
     let obj = {
       title: 'ជំនាញទន់',
       groups: [
-        { stateName: 'SoftSkillCommunication', label: 'ទំនាក់ទំនង' },
-        { stateName: 'SoftSkillBehavior', label: 'ឥរិយាបថ' },
-        { stateName: 'SoftSkillBrave', label: 'ក្លាហាន' },
-        { stateName: 'SoftSkillConfidence', label: 'ទំនុកចិត្ត' },
-        { stateName: 'SoftSkillPunctuality', label: 'គោរពពេលវេលា' },
-        { stateName: 'SoftSkillTeamwork', label: 'ក្រុមការងារ' },
-        { stateName: 'SoftSkillRespect', label: 'គោរព' },
-        { stateName: 'SoftSkillProblemSolving', label: 'ដោះស្រាយបញ្ហា' },
+        { stateName: 'softSkillCommunication', label: 'ទំនាក់ទំនង' },
+        { stateName: 'softSkillBrave', label: 'ក្លាហាន' },
+        { stateName: 'softSkillTeamwork', label: 'ក្រុមការងារ' },
+        { stateName: 'softSkillProblemSolving', label: 'ដោះស្រាយបញ្ហា' },
+        { stateName: 'softSkillPublicSpeaking', label: 'ការនិយាយជាសាធារណៈ' },
       ]
     }
 
@@ -315,10 +277,9 @@ export default class SubjectScreen extends Component {
             <View style={{margin: 16}}>
               { this._renderKhmer() }
               { this._renderEnglish() }
-              { false && this._renderMath() }
-              { false && this._renderSocialStudies() }
-              { false && this._renderScience() }
-              { false && this._renderSoftSkill() }
+              { this._renderSocialStudies() }
+              { this._renderScience() }
+              { this._renderSoftSkill() }
             </View>
           </ScrollView>
 
