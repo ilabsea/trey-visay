@@ -18,7 +18,9 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
-import personalityJobs from '../../data/json/personality_jobs';
+// import personalityJobs from '../../data/json/personality_jobs';
+import personalityJobs from '../../data/json/characteristic_jobs';
+// import characteristicList from '../../data/json/characteristic_jobs';
 
 let careers = [];
 
@@ -52,8 +54,8 @@ export default class PersonalityJobsScreen extends Component {
 
   _handleSetSelectCareer() {
     let groupNumber = this.props.navigation.state.params.groupNumber;
-    let jobs = personalityJobs[groupNumber].careers;
-    let selectedJobs = this.props.navigation.state.params.selectedCareers;
+    let jobs = personalityJobs.find((obj) => obj.id == groupNumber).careers;
+    let selectedJobs = this.props.navigation.state.params.selectedCareers || [];
     let arr = jobs.filter(function (item, pos) { return selectedJobs.includes(item.id) });
     careers = arr.map((obj) => obj.id);
   }
@@ -95,11 +97,11 @@ export default class PersonalityJobsScreen extends Component {
   }
 
   _formatDataForCheckbox(id) {
-    let jobs = personalityJobs[id].careers;
+    let jobs = personalityJobs.find((obj) => obj.id == id).careers;
     let arr = [];
 
     for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].id, label: jobs[i].title })
+      arr.push({ value: jobs[i].id, label: jobs[i].name })
     }
     return arr;
   }

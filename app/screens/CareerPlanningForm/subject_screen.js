@@ -62,10 +62,14 @@ export default class SubjectScreen extends Component {
     game: ''
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
     this._initState();
     this._backHandler();
+  }
+
+  componentWillLeave() {
+    BackHandler.removeEventListener('hardwareBackPress');
   }
 
   _backHandler() {
@@ -235,16 +239,16 @@ export default class SubjectScreen extends Component {
 
   _handleSubmit() {
     realm.write(() => {
-      realm.create('Game', this._buildData('ValueScreen'), true);
+      realm.create('Game', this._buildData('PersonalityScreen'), true);
       // alert(JSON.stringify(realm.objects('GeneralSubject')[realm.objects('GeneralSubject').length -1]));
-      this.props.navigation.navigate('ValueScreen');
+      this.props.navigation.navigate('PersonalityScreen');
     });
   }
 
   _buildData(step) {
     let data = {
       uuid: this.state.game.uuid,
-      step: step || 'ValueScreen',
+      step: step || 'PersonalityScreen',
       gameSubject: Object.assign({}, this.state, { uuid: uuidv4() })
     }
 
