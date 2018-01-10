@@ -17,6 +17,7 @@ import {
 import CheckboxGroup from '../../components/checkbox_group';
 import RadioGroup from '../../components/radio_group';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -24,7 +25,6 @@ import shareStyles from './style';
 
 import realm from '../../schema';
 import User from '../../utils/user';
-import valueJobs from '../../data/json/value_jobs';
 import characteristicList from '../../data/json/characteristic_jobs';
 
 let careers = [];
@@ -99,8 +99,8 @@ export default class SummaryScreen extends Component {
   }
 
   _onYes() {
-    let list = this.state.game.recommendations;
-    let recommendations = allCareers.filter((item, pos) => { return careers.includes(item.id) });
+    // let list = this.state.game.recommendations;
+    // let recommendations = allCareers.filter((item, pos) => { return careers.includes(item.id) });
 
     realm.write(() => {
       // realm.delete(list);
@@ -205,6 +205,11 @@ export default class SummaryScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
+              <View style={{flexDirection: 'row', marginVertical: 16}}>
+                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+                <Text>ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!</Text>
+              </View>
+
               { this._renderRadioGroups() }
             </View>
           </ScrollView>

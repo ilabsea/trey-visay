@@ -14,24 +14,20 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
-import BackConfirmDialog from '../../components/back_confirm_dialog';
-
-import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
-import shareStyles from './style';
+import styles from '../../../assets/style_sheets/profile_form';
+import headerStyles from '../../../assets/style_sheets/header';
+import shareStyles from '../style';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import realm from '../../schema';
-import User from '../../utils/user';
-import uuidv4 from '../../utils/uuidv4';
-import subjectList from '../../data/json/subject';
-import characteristicList from '../../data/json/characteristic_jobs';
-import subjectTe from '../../data/translates/subject';
+import realm from '../../../schema';
+import User from '../../../utils/user';
+import subjectList from '../../../data/json/subject';
+import characteristicList from '../../../data/json/characteristic_jobs';
+import subjectTe from '../../../data/translates/subject';
 
 let careers = [];
 
-export default class RecommendationScreen extends Component {
+export default class RecommendationReport extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
 
@@ -93,7 +89,6 @@ export default class RecommendationScreen extends Component {
 
   _handleSubmit() {
     realm.write(() => {
-    //   realm.create('Game', this._buildData(), true);
       this.state.game.step = 'GoalScreen';
       this.props.navigation.navigate('GoalScreen', {career: this.state.currentJob.name});
     });
@@ -210,8 +205,6 @@ export default class RecommendationScreen extends Component {
               { this._renderContent() }
             </View>
           </ScrollView>
-
-          { this._renderFooter() }
         </View>
       </ThemeProvider>
     );

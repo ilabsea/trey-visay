@@ -246,8 +246,8 @@ export default class GameHistoryScreen extends Component {
         <Text>ធ្វើតេស្តដំណាក់កាលទី 2</Text>
 
         { this._renderButton('បំពេញមុខវិជ្ជា', 'SubjectReport') }
-        { this._renderButton('ជ្រើសរើសមុខរបរផ្អែកលើគុណតម្លៃ', 'ValueReport') }
         { this._renderButton('ជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណះ', 'PersonalityReport') }
+        { this._renderButton('ការផ្តល់អនុសាសន៍', 'RecommendationReport') }
       </View>
     )
   }
