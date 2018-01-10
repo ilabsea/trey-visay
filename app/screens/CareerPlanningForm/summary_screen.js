@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -14,6 +15,7 @@ import {
 } from 'react-native-material-ui';
 
 import CheckboxGroup from '../../components/checkbox_group';
+import RadioGroup from '../../components/radio_group';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 
 import styles from '../../assets/style_sheets/profile_form';
@@ -23,7 +25,7 @@ import shareStyles from './style';
 import realm from '../../schema';
 import User from '../../utils/user';
 import valueJobs from '../../data/json/value_jobs';
-import personalityJobs from '../../data/json/personality_jobs';
+import characteristicList from '../../data/json/characteristic_jobs';
 
 let careers = [];
 let allCareers = [];
@@ -33,21 +35,16 @@ export default class SummaryScreen extends Component {
     const { goBack, state } = navigation;
 
     return {
-      title: 'ជ្រើសរើស២មុខរបរចេញពីតារាងសង្ខេបលទ្ធផល',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើស២មុខរបរចេញពីតារាងសង្ខេបលទ្ធផល</Text>,
+      title: 'ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល',
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => navigation.state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
-      headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
-                      <Text style={headerStyles.saveText}>{state.params && state.params.total || 0} / 2</Text>
-                    </TouchableOpacity>),
     }
   };
-
-
 
   componentWillMount() {
     careers = [];
@@ -59,33 +56,28 @@ export default class SummaryScreen extends Component {
   }
 
   _initState() {
-    let c1 = valueJobs.map((v) => { return v.careers; });
-    let c2 = personalityJobs.map((v) => { return v.careers; });
-
-    allCareers = c1.concat(c2);
-    allCareers = allCareers.reduce((a, b) => { return a.concat(b); });
-
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
+    let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
 
-    let userCareerIds = game.valueCareers.map((obj) => obj.value);
-    userCareerIds = userCareerIds.concat(game.personalityCareers.map((obj) => obj.value));
-    let userCareers = allCareers.filter((item, pos) => { return userCareerIds.includes(item.id) });
+    careerIds = game.personalityCareers.map((obj) => obj.value);
+    let userCareers = currentGroup.careers.filter((item, pos) => { return careerIds.includes(item.id) });
 
-    game.recommendations.map((obj) => {
-      careers.push(obj.careerUuid);
-    })
+    // game.recommendations.map((obj) => {
+    //   careers.push(obj.careerUuid);
+    // })
 
     this.state = {
       userCareers: userCareers,
       user: user,
       game: game,
       confirmDialogVisible: false,
+      mostFavorableJob: game.mostFavorableJobId,
     }
   }
 
   _handleBack() {
-    if (careers.length > 0) {
+    if (!!this.state.mostFavorableJob) {
       this.setState({confirmDialogVisible: true});
     } else {
       this.props.navigation.goBack();
@@ -96,7 +88,7 @@ export default class SummaryScreen extends Component {
     let self = this;
 
     BackHandler.addEventListener('hardwareBackPress', function() {
-      if (careers.length > 0) {
+      if (!!this.state.mostFavorableJob) {
         self.setState({confirmDialogVisible: true});
         return true;
       }
@@ -111,12 +103,14 @@ export default class SummaryScreen extends Component {
     let recommendations = allCareers.filter((item, pos) => { return careers.includes(item.id) });
 
     realm.write(() => {
-      realm.delete(list);
-      this.state.game.step = 'SummaryScreen';
+      // realm.delete(list);
+      // this.state.game.step = 'SummaryScreen';
 
-      recommendations.map((job, pos) => {
-        list.push({ careerUuid: recommendations[pos].id, careerName: recommendations[0].title});
-      })
+      // recommendations.map((job, pos) => {
+      //   list.push({ careerUuid: recommendations[pos].id, careerName: recommendations[0].title});
+      // })
+
+      realm.create('Game', this._buildData('SummaryScreen'), true);
 
       this.setState({confirmDialogVisible: false});
       // this.props.navigation.goBack();
@@ -133,22 +127,24 @@ export default class SummaryScreen extends Component {
     });
   }
 
+  _buildData(step) {
+    let obj =  {
+      uuid: this.state.game.uuid,
+      mostFavorableJobId: this.state.mostFavorableJob,
+      step: step || 'RecommendationScreen'
+    }
+
+    return obj;
+  }
+
+
   _formatDataForCheckbox(jobs) {
     let arr = [];
 
     for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].id, label: jobs[i].title })
+      arr.push({ value: jobs[i].id, label: jobs[i].name })
     }
     return arr;
-  }
-
-  _handleChecked(value) {
-    careers = value
-    this.props.navigation.setParams({total: careers.length});
-
-    if (careers.length > 2) {
-      return alert('You must select 2 careers only!');
-    }
   }
 
   _renderFooter() {
@@ -163,57 +159,41 @@ export default class SummaryScreen extends Component {
   }
 
   _goNext() {
-    let total = careers.length;
-    if (total != 2) {
-      return alert('You must select 2 careers only!');
+    if (!this.state.mostFavorableJob) {
+      return ToastAndroid.show('Please select 1 job!', ToastAndroid.SHORT);
     }
 
     this._handleSubmit();
   }
 
   _handleSubmit() {
-    let list = this.state.game.recommendations;
-    let recommendations = allCareers.filter((item, pos) => { return careers.includes(item.id) });
+    // let list = this.state.game.recommendations;
+    // let recommendations = allCareers.filter((item, pos) => { return careers.includes(item.id) });
 
     realm.write(() => {
-      realm.delete(this.state.game.recommendations);
-      this.state.game.step = 'RecommendationScreen';
-      list.push({ careerUuid: recommendations[0].id, careerName: recommendations[0].title, recommendation: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។'});
-      list.push({ careerUuid: recommendations[1].id, careerName: recommendations[1].title, recommendation: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។'});
+      // realm.delete(this.state.game.recommendations);
+      // this.state.game.step = 'RecommendationScreen';
+      // list.push({ careerUuid: recommendations[0].id, careerName: recommendations[0].title, recommendation: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។'});
+      // list.push({ careerUuid: recommendations[1].id, careerName: recommendations[1].title, recommendation: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។'});
 
-      // alert(JSON.stringify(this.state.game));
+      realm.create('Game', this._buildData('RecommendationScreen'), true);
       this.props.navigation.navigate('RecommendationScreen');
     });
   }
 
-  _renderContent() {
+  _renderRadioGroups() {
     return(
       <View style={styles.box}>
-        <Text style={styles.subTitle}>ចូរជ្រើសរើស ២មុខរបរដែលអ្នកពេញចិត្តបំផុត</Text>
+        <Text style={styles.subTitle}>ចូរជ្រើសរើស មុខរបរតែមួយគត់ដែលអ្នកពេញចិត្តបំផុត</Text>
 
-        <View>
-          <CheckboxGroup
-            onSelect={(selected) => {this._handleChecked(selected)}}
-            items={this._formatDataForCheckbox(this.state.userCareers)}
-            checked={careers}
-            style={{
-              icon: {
-                color: '#4caf50',
-                size: 30
-              },
-              container: {
-                flexDirection: 'row',
-                borderTopWidth: 0.5,
-                borderColor: '#ccc',
-                paddingVertical: 8,
-              },
-              label: {
-                color: '#333',
-                fontSize: 16,
-                marginLeft: 10
-              }
-            }}
-          />
+        <View style={{borderTopWidth: 1, borderTopColor: '#ccc', paddingVertical: 16}}>
+          <RadioGroup
+            style={{alignItems: 'flex-start'}}
+            formVertical={true}
+            options={this._formatDataForCheckbox(this.state.userCareers)}
+            onPress={(text) => this.setState({ mostFavorableJob: text })}
+            value={this.state.mostFavorableJob} >
+          </RadioGroup>
         </View>
       </View>
     )
@@ -225,7 +205,7 @@ export default class SummaryScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
-              { this._renderContent() }
+              { this._renderRadioGroups() }
             </View>
           </ScrollView>
 

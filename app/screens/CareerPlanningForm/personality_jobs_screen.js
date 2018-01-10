@@ -5,6 +5,8 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
+  BackHandler,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -12,36 +14,35 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
+import BackConfirmDialog from '../../components/back_confirm_dialog';
 import CheckboxGroup from '../../components/checkbox_group';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
-// import personalityJobs from '../../data/json/personality_jobs';
-import personalityJobs from '../../data/json/characteristic_jobs';
-// import characteristicList from '../../data/json/characteristic_jobs';
+import realm from '../../schema';
+import User from '../../utils/user';
+import characteristicList from '../../data/json/characteristic_jobs';
 
 let careers = [];
 
 export default class PersonalityJobsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
+    let highlighStyle = (state.params && state.params.total > 3) ? {color: '#e94b35'} : {color: '#fff'};
 
     return {
       title: 'ជ្រើសរើស៣មុខរបរចេញពីបុគ្គលិកលក្ខណៈរបស់អ្នក',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>{state.params.title}</Text>,
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>{state.params && state.params.title}</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='arrow-back' color='#fff' size={24} />
+                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
+                      <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
       headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
-                      <Text style={headerStyles.saveText}>{state.params && state.params.total || 0} / 3</Text>
-                      <TouchableOpacity onPress={() => { state.params.refresh(careers); goBack()} } style={{marginHorizontal: 16}}>
-                        <Text style={headerStyles.saveText}>Done</Text>
-                      </TouchableOpacity>
+                      <Text style={headerStyles.saveText}><Text style={highlighStyle}>{state.params && state.params.total || 0} </Text> / 3</Text>
                     </TouchableOpacity>),
     }
   };
@@ -49,20 +50,93 @@ export default class PersonalityJobsScreen extends Component {
   careers = [];
 
   componentWillMount() {
+    this._initState();
     this._handleSetSelectCareer();
+    this._backHandler();
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this), title: this.state.currentGroup.title, total: careers.length});
+  }
+
+  _initState() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+    let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
+
+    this.state = {
+      user: user,
+      game: game,
+      currentGroup: currentGroup,
+      jobs: [],
+    }
+  }
+
+  _handleBack() {
+    if (this.state.jobs.length > 0) {
+      this.setState({confirmDialogVisible: true});
+    } else {
+      this.props.navigation.goBack();
+    }
+  }
+
+  _backHandler() {
+    let self = this;
+
+    BackHandler.addEventListener('hardwareBackPress', function() {
+      if (self.state.jobs.length > 0) {
+        self.setState({confirmDialogVisible: true});
+        return true;
+      }
+
+      self.props.navigation.goBack();
+      return false;
+    });
+  }
+
+  _buildData(step) {
+    let data = this.state.jobs.map((value) => {
+      return { value: value };
+    })
+
+    let obj =  {
+      uuid: this.state.game.uuid,
+      personalityCareers: data,
+      step: step || 'SummaryScreen'
+    }
+
+    return obj;
+  }
+
+  _onYes() {
+    realm.write(() => {
+      realm.create('Game', this._buildData('PersonalityJobsScreen'), true);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'PersonalityScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
+  }
+
+  _onNo() {
+    realm.write(() => {
+      realm.delete(this.state.game);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
   }
 
   _handleSetSelectCareer() {
-    let groupNumber = this.props.navigation.state.params.groupNumber;
-    let jobs = personalityJobs.find((obj) => obj.id == groupNumber).careers;
-    let selectedJobs = this.props.navigation.state.params.selectedCareers || [];
-    let arr = jobs.filter(function (item, pos) { return selectedJobs.includes(item.id) });
+    let jobs = this.state.currentGroup.careers;
+    let selectedJobIds = this.state.game.personalityCareers.map((obj) => obj.value) || [];
+    let arr = jobs.filter(function (item, pos) { return selectedJobIds.includes(item.id) });
     careers = arr.map((obj) => obj.id);
+
+    this.setState({jobs: careers});
   }
 
   _renderCheckBoxes() {
-    let groupNumber = this.props.navigation.state.params.groupNumber;
-    let checkboxes = this._formatDataForCheckbox(groupNumber);
+    let checkboxes = this._formatDataForCheckbox(this.state.currentGroup.id);
 
     return(
       <View style={styles.box}>
@@ -72,7 +146,7 @@ export default class PersonalityJobsScreen extends Component {
           <CheckboxGroup
             onSelect={(selected) => {this._handleChecked(selected)}}
             items={checkboxes}
-            checked={careers}
+            checked={this.state.jobs}
             style={{
               icon: {
                 color: '#4caf50',
@@ -97,7 +171,7 @@ export default class PersonalityJobsScreen extends Component {
   }
 
   _formatDataForCheckbox(id) {
-    let jobs = personalityJobs.find((obj) => obj.id == id).careers;
+    let jobs = characteristicList.find((obj) => obj.id == id).careers;
     let arr = [];
 
     for(let i = 0; i < jobs.length; i++) {
@@ -111,8 +185,37 @@ export default class PersonalityJobsScreen extends Component {
     this.props.navigation.setParams({total: careers.length});
 
     if (careers.length > 3) {
-      return alert('You must select 3 careers only!');
+      ToastAndroid.show('You must select 3 careers only!', ToastAndroid.SHORT);
+      return
     }
+
+    this.setState({jobs: value});
+  }
+
+  _renderFooter() {
+    return(
+      <View style={shareStyles.footerWrapper}>
+        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
+          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
+          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+  _goNext() {
+    if (this.state.jobs.length != 3) {
+      return ToastAndroid.show('You must select 3 careers only!', ToastAndroid.SHORT);
+    }
+
+    this._handleSubmit();
+  }
+
+  _handleSubmit() {
+    realm.write(() => {
+      realm.create('Game', this._buildData('SummaryScreen'), true);
+      this.props.navigation.navigate('SummaryScreen');
+    });
   }
 
   render() {
@@ -127,8 +230,17 @@ export default class PersonalityJobsScreen extends Component {
               </View>
 
               { this._renderCheckBoxes() }
+
+              <BackConfirmDialog
+                visible={this.state.confirmDialogVisible}
+                onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+                onPressYes={() => this._onYes()}
+                onPressNo={() => this._onNo()}
+              />
             </View>
           </ScrollView>
+
+          { this._renderFooter() }
         </View>
       </ThemeProvider>
     );

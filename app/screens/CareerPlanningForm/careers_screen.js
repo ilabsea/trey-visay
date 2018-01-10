@@ -66,7 +66,7 @@ export default class CareersScreen extends Component {
           onPress={() => {this.props.navigation.navigate('CareerDetailScreen',{careerId: career.id})}}
         >
           <Image source={Images[career.logoName]} style={{width: 80, height: 80, marginRight: 16}} />
-          <Text style={[styles.subTitle, {flex: 1}]}>{career.careeer_title}</Text>
+          <Text style={[styles.subTitle, {flex: 1}]}>{career.career_title}</Text>
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </TouchableOpacity>
         <Divider/>

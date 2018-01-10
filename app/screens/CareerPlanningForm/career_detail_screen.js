@@ -28,7 +28,7 @@ export default class CareerDetailScreen extends Component {
     const { goBack, state } = navigation;
 
     return {
-      title: 'ព័ត៌មានលម្អិតអំពីមុខរបរ',
+      title: '',
       headerTitle: !!state.params && state.params.title,
       headerStyle: headerStyles.headerStyle,
       headerTitleStyle: headerStyles.headerTitleStyle,
@@ -39,7 +39,7 @@ export default class CareerDetailScreen extends Component {
   componentWillMount() {
     let id = this.props.navigation.state.params.careerId || '1';
     job = careers.find((obj) => obj.id == id);
-    this.props.navigation.setParams({title: job.name});
+    this.props.navigation.setParams({title: job.career_title});
   }
 
   _renderHeader(career, index, isActive) {

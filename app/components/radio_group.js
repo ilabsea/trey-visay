@@ -8,8 +8,10 @@ class RadioGroup extends Component {
   }
 
   render() {
+    const {style, formVertical, ...props} = this.props;
+
     return (
-      <RadioForm formHorizontal={true} animation={true}>
+      <RadioForm formHorizontal={!formVertical} animation={true} style={style}>
         { this.props.options.map((obj, i) => {
           return(
             <RadioButton labelHorizontal={true} key={i}>
