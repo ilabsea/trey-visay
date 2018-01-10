@@ -59,16 +59,12 @@ export default class SummaryScreen extends Component {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-
-    careerIds = game.personalityCareers.map((obj) => obj.value);
+    let careerIds = game.personalityCareers.map((obj) => obj.value);
     let userCareers = currentGroup.careers.filter((item, pos) => { return careerIds.includes(item.id) });
-
-    // game.recommendations.map((obj) => {
-    //   careers.push(obj.careerUuid);
-    // })
 
     this.state = {
       userCareers: userCareers,
+      currentGroup: currentGroup,
       user: user,
       game: game,
       confirmDialogVisible: false,
@@ -99,21 +95,10 @@ export default class SummaryScreen extends Component {
   }
 
   _onYes() {
-    // let list = this.state.game.recommendations;
-    // let recommendations = allCareers.filter((item, pos) => { return careers.includes(item.id) });
-
     realm.write(() => {
-      // realm.delete(list);
-      // this.state.game.step = 'SummaryScreen';
-
-      // recommendations.map((job, pos) => {
-      //   list.push({ careerUuid: recommendations[pos].id, careerName: recommendations[0].title});
-      // })
-
       realm.create('Game', this._buildData('SummaryScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      // this.props.navigation.goBack();
       this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'SummaryScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
@@ -131,12 +116,12 @@ export default class SummaryScreen extends Component {
     let obj =  {
       uuid: this.state.game.uuid,
       mostFavorableJobId: this.state.mostFavorableJob,
+      goalCareer: this.state.currentGroup.careers.find((obj) => obj.id == this.state.mostFavorableJob).name,
       step: step || 'RecommendationScreen'
     }
 
     return obj;
   }
-
 
   _formatDataForCheckbox(jobs) {
     let arr = [];
@@ -167,15 +152,7 @@ export default class SummaryScreen extends Component {
   }
 
   _handleSubmit() {
-    // let list = this.state.game.recommendations;
-    // let recommendations = allCareers.filter((item, pos) => { return careers.includes(item.id) });
-
     realm.write(() => {
-      // realm.delete(this.state.game.recommendations);
-      // this.state.game.step = 'RecommendationScreen';
-      // list.push({ careerUuid: recommendations[0].id, careerName: recommendations[0].title, recommendation: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។'});
-      // list.push({ careerUuid: recommendations[1].id, careerName: recommendations[1].title, recommendation: 'យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់ និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។ ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយនិងវែងឆ្ងាយ ប្រសើរជាងបុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។'});
-
       realm.create('Game', this._buildData('RecommendationScreen'), true);
       this.props.navigation.navigate('RecommendationScreen');
     });

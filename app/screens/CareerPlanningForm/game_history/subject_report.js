@@ -72,8 +72,6 @@ export default class SubjectReport extends Component {
     let obj = {
       title: 'ភាសាខ្មែរ',
       groups: [
-        { stateName: 'khmerSpeaking', label: 'ការនិយាយ' },
-        { stateName: 'khmerListening', label: 'ការស្តាប់' },
         { stateName: 'khmerReading', label: 'ការអាន' },
         { stateName: 'khmerWriting', label: 'ការសរសេរ' },
       ]
@@ -85,17 +83,57 @@ export default class SubjectReport extends Component {
 
   _renderEnglish() {
     let obj = {
-      title: 'ភាសាអង់គ្លេស',
+      title: 'ភាសាបរទេស',
       groups: [
-        { stateName: 'englishSpeaking', label: 'ការនិយាយ' },
-        { stateName: 'englishListening', label: 'ការស្តាប់' },
-        { stateName: 'englishReading', label: 'ការអាន' },
-        { stateName: 'englishWriting', label: 'ការសរសេរ' },
+        { stateName: 'english', label: 'ភាសាអង់គ្លេស/បារាំង' },
       ]
     }
 
     return this._renderGroups(obj);
   }
+
+  _renderSocialStudies() {
+    let obj = {
+      title: 'សិក្សាសង្គម',
+      groups: [
+        { stateName: 'socialStudyEthicsAndCitizenship', label: 'សីលធម៌ និង ពលរដ្ឋ' },
+        { stateName: 'socialStudyGeography', label: 'ភូមិវិទ្យា' },
+        { stateName: 'socialStudyHistory', label: 'ប្រវត្តិវិទ្យា' },
+      ]
+    }
+
+    return this._renderGroups(obj);
+  }
+
+  _renderScience() {
+    let obj = {
+      title: 'វិទ្យាសាស្ត្រ',
+      groups: [
+        { stateName: 'math', label: 'គណិតវិទ្យា' },
+        { stateName: 'sciencePhysics', label: 'រូបវិទ្យា' },
+        { stateName: 'scienceChemistry', label: 'គីមីវិទ្យា' },
+        { stateName: 'scienceBiology', label: 'ជីវៈវិទ្យា' },
+      ]
+    }
+
+    return this._renderGroups(obj);
+  }
+
+  _renderSoftSkill() {
+    let obj = {
+      title: 'ជំនាញទន់',
+      groups: [
+        { stateName: 'softSkillCommunication', label: 'ទំនាក់ទំនង' },
+        { stateName: 'softSkillBrave', label: 'ក្លាហាន' },
+        { stateName: 'softSkillTeamwork', label: 'ក្រុមការងារ' },
+        { stateName: 'softSkillProblemSolving', label: 'ដោះស្រាយបញ្ហា' },
+        { stateName: 'softSkillPublicSpeaking', label: 'ការនិយាយជាសាធារណៈ' },
+      ]
+    }
+
+    return this._renderGroups(obj);
+  }
+
 
   render() {
     return (
@@ -107,6 +145,9 @@ export default class SubjectReport extends Component {
             <View style={{margin: 16, flex: 1}}>
               { this._renderKhmer() }
               { this._renderEnglish() }
+              { this._renderSocialStudies() }
+              { this._renderScience() }
+              { this._renderSoftSkill() }
             </View>
           </ScrollView>
         </View>

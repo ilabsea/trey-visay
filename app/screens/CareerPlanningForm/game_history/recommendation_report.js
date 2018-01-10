@@ -35,11 +35,7 @@ export default class RecommendationReport extends Component {
       title: 'ការណែនាំ',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ការណែនាំ</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      headerTintColor: '#fff'
     }
   };
 

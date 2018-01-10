@@ -14,7 +14,8 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../../assets/style_sheets/header';
 import shareStyles from '../../../assets/style_sheets/profile_form';
 import StatusBar from '../../../components/status_bar';
-import personalityJobs from '../../../data/json/personality_jobs';
+// import characteristicList from '../../../data/json/personality_jobs';
+import characteristicList from '../../../data/json/characteristic_jobs';
 import realm from '../../../schema';
 import User from '../../../utils/user';
 
@@ -33,14 +34,9 @@ export default class PersonalityReport extends Component {
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games.filtered('uuid=="' + this.props.navigation.state.params.gameUuid + '"')[0];
-    let allCareers = [];
     let personalityCareers = game.personalityCareers.map(career => career.value);
-
-    for (let i=0; i<personalityJobs.length; i++) {
-      allCareers = allCareers.concat(personalityJobs[i].careers);
-    }
-
-    let jobs = allCareers.filter(career => personalityCareers.includes(career.id));
+    let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
+    let jobs = currentGroup.careers.filter(career => personalityCareers.includes(career.id));
 
     this.state = {
       user: user,
@@ -58,7 +54,7 @@ export default class PersonalityReport extends Component {
           return (
             <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 8}}>
               <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-              <Text style={{fontFamily: 'KantumruyBold'}}>{job.title}</Text>
+              <Text style={{fontFamily: 'KantumruyBold'}}>{job.name}</Text>
             </View>
           )
         })}
