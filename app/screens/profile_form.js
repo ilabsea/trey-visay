@@ -127,7 +127,7 @@ export default class ProfileForm extends Component {
 
   logout() {
     User.logout();
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}], key: null});
   }
 
   _toggleExpanded(collapsedIndex) {

@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  Button,
   StyleSheet,
   ScrollView,
   Dimensions,
+  NetInfo,
+  ToastAndroid,
+  Linking,
+  ActivityIndicator,
 } from 'react-native';
 
 import {
@@ -13,6 +18,7 @@ import {
 } from 'react-native-material-ui';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Thumbnail from 'react-native-thumbnail-video';
 import videoList from '../data/json/videos';
 import headerStyles from '../assets/style_sheets/header';
@@ -27,9 +33,59 @@ export default class VideoScreen extends Component {
   };
 
   componentWillMount() {
+    let self = this;
+
     this.state = {
       videos: this._formatData(videoList)
     }
+  }
+
+  // _checkConnection();
+
+  componentDidMount() {
+    let self = this;
+    NetInfo.isConnected.fetch().then(isConnected => {
+      this.setState({isConnected: isConnected, isOnline: isConnected, isLoaded: true, showLoading: false});
+    });
+
+    function handleFirstConnectivityChange(isConnected) {
+      self.setState({isOnline: isConnected});
+
+      NetInfo.isConnected.removeEventListener(
+        'connectionChange',
+        handleFirstConnectivityChange
+      );
+    }
+
+    NetInfo.isConnected.addEventListener(
+      'connectionChange',
+      handleFirstConnectivityChange
+    );
+  }
+
+  // handleFirstConnectivityChange(isConnected) {
+  //   this.setState({isOnline: isConnected});
+
+  //   NetInfo.isConnected.removeEventListener(
+  //     'connectionChange',
+  //     handleFirstConnectivityChange
+  //   );
+  // }
+
+  componentWillLeave() {
+    ToastAndroid.show('leave!', ToastAndroid.SHORT);
+    console.log('----------------------leave me');
+    // NetInfo.isConnected.removeEventListener(
+    //   'connectionChange',
+    //   handleFirstConnectivityChange
+    // );
+  }
+
+  _checkConnection() {
+    this.setState({showLoading: true})
+    NetInfo.isConnected.fetch().then(isConnected => {
+      this.setState({isConnected: isConnected, isOnline: isConnected, isLoaded: true, showLoading: false});
+    });
   }
 
   _formatData(list) {
@@ -59,11 +115,69 @@ export default class VideoScreen extends Component {
     this.setState({videos: this._formatData(videoList)});
   }
 
-  render() {
+  _onOpenUrl(url) {
+    if (this.state.isOnline) {
+      Linking.canOpenURL(url).then((supported) => {
+        if (!supported) {
+          return;
+        }
+
+        return Linking.openURL(url);
+      }).catch(onPressError);
+
+      return;
+    }
+
+    ToastAndroid.show('Not available while offline!', ToastAndroid.SHORT);
+  }
+
+  _renderNoInternetConnection() {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}}>
+        <View style={{flexDirection: 'row'}}>
+          <MaterialIcon name='info-outline' color='#111' size={24} style={{marginRight: 8}} />
+          <Text>There's no network connection right now. Try again later</Text>
+        </View>
+
+        { this.state.showLoading && <ActivityIndicator size="small" /> }
+
+        <View style={{marginTop: 20}}>
+          <Button title='Retry' onPress={() => this._checkConnection()}/>
+        </View>
+      </View>
+    )
+  }
+
+  _renderhaveInternetConnection() {
     let { width } = Dimensions.get('window');
     // let videos = this._formatData(videoList);
     let imageWidth = width/2-24;
 
+    return (
+      <ScrollView style={{flex: 1}}>
+        { this.state.videos.map((row, i) => {
+          return (
+            <View style={styles.row} key={i}>
+              { row.map((obj, j) => {
+                return(
+                  <View style={styles.column} key={j}>
+                    <Thumbnail
+                      url={obj.url}
+                      imageWidth={imageWidth}
+                      onPress={ () => this._onOpenUrl(obj.url) }
+                    />
+                    <Text numberOfLines={1} style={styles.title}>{obj.title}</Text>
+                  </View>
+                )
+              })}
+            </View>
+          )
+        })}
+      </ScrollView>
+    )
+  }
+
+  render() {
     return(
       <ThemeProvider uiTheme={{}}>
         <View style={styles.container}>
@@ -80,26 +194,8 @@ export default class VideoScreen extends Component {
             }}
           />
 
-          <ScrollView style={{flex: 1}}>
-            { this.state.videos.map((row, i) => {
-              return (
-                <View style={styles.row} key={i}>
-                  { row.map((obj, j) => {
-                    return(
-                      <View style={styles.column} key={j}>
-                        <Thumbnail
-                          url={obj.url}
-                          imageWidth={imageWidth}
-                        />
-                        <Text numberOfLines={1} style={styles.title}>{obj.title}</Text>
-                      </View>
-                    )
-                  })}
-                </View>
-              )
-            })}
-
-          </ScrollView>
+          { this.state.isLoaded && this.state.isConnected && this._renderhaveInternetConnection() }
+          { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
         </View>
       </ThemeProvider>
     );

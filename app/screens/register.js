@@ -56,7 +56,7 @@ export default class RegisterScreen extends Component {
       realm.write(() => {
         realm.create('User', this.buildData());
         User.setLogin(this.state.uuid, ()=> {
-          this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'RegisterScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
+          this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'RegisterScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}], key: null})
         });
 
       });

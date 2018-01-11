@@ -57,7 +57,7 @@ export default class Login extends Component {
     }
 
     if (user.role == 'admin') {
-      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}]})
+      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}], key: null})
     }
 
     if (this.isUserInfoCompleted(user)) {

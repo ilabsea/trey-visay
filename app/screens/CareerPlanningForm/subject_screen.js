@@ -23,7 +23,6 @@ import shareStyles from './style';
 import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
-import generalSubject from '../../data/translates/general_subject';
 
 export default class SubjectScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -240,7 +239,6 @@ export default class SubjectScreen extends Component {
   _handleSubmit() {
     realm.write(() => {
       realm.create('Game', this._buildData('PersonalityScreen'), true);
-      // alert(JSON.stringify(realm.objects('GeneralSubject')[realm.objects('GeneralSubject').length -1]));
       this.props.navigation.navigate('PersonalityScreen');
     });
   }
