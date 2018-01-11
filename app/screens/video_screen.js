@@ -24,6 +24,7 @@ import videoList from '../data/json/videos';
 import headerStyles from '../assets/style_sheets/header';
 import StatusBar from '../components/status_bar';
 
+// https://github.com/CodeLinkIO/ReactNative-Endless-Scrolling
 export default class VideoScreen extends Component {
   static navigationOptions = {
     drawerLabel: 'វីដេអូមុខរបរ',

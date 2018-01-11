@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -219,21 +220,23 @@ export default class SubjectScreen extends Component {
   }
 
   _goNext() {
-    if (this._isValid()) {
-      this._handleSubmit();
+    if (!this._isValid()) {
+      return ToastAndroid.show('សូមបំពេញមុខវិជ្ជាទាំងអស់!', ToastAndroid.SHORT);
     }
+
+    this._handleSubmit();
   }
 
   _isValid() {
     var arr = [];
 
     for (let key in this.state) {
-      if (this.state[key] && !['user', 'game'].includes(key)) {
+      if (this.state[key] && !['user', 'game', 'confirmDialogVisible', 'uuid'].includes(key)) {
         arr.push(key);
       }
     }
 
-    return !!arr.length;
+    return arr.length == 15;
   }
 
   _handleSubmit() {

@@ -52,12 +52,10 @@ export default class PersonalityScreen extends Component {
 
   state = {
     jobs: [],
-    currentGroup: '',
     confirmDialogVisible: false,
     user: '',
     game: '',
-    // personalities: MathUtil.shuffle(entries),
-    personalities: entries,
+    personalities: MathUtil.shuffle(entries),
     characteristicEntries: [],
   }
 
@@ -143,8 +141,7 @@ export default class PersonalityScreen extends Component {
     })
 
     let max = MathUtil.findMaxObjBy(arr, 'score');
-    currentGroup = max
-    this.setState({currentGroup: max});
+    this.currentGroup = max
   }
 
   _goNext() {
@@ -159,8 +156,8 @@ export default class PersonalityScreen extends Component {
   _handleSubmit() {
     realm.write(() => {
       realm.create('Game', this._buildData('PersonalityJobsScreen'), true);
-      let title = characteristicList.find((obj) => obj.id == currentGroup.id).career_title;
-      this._goToPersonalityJobsScreen(currentGroup.id, title);
+      let title = characteristicList.find((obj) => obj.id == this.currentGroup.id).career_title;
+      this._goToPersonalityJobsScreen(this.currentGroup.id, title);
     });
   }
 
@@ -172,7 +169,7 @@ export default class PersonalityScreen extends Component {
     let obj =  {
       uuid: this.state.game.uuid,
       characteristicEntries: data,
-      characteristicId: currentGroup && currentGroup.id || '',
+      characteristicId: this.currentGroup && this.currentGroup.id || null,
       step: step || 'PersonalityJobsScreen'
     }
 
@@ -226,7 +223,7 @@ export default class PersonalityScreen extends Component {
   }
 
   _goToPersonalityJobsScreen(groupNumber, title) {
-    this.setState({currentGroup: groupNumber})
+    this.currentGroup = groupNumber;
     this.props.navigation.navigate('PersonalityJobsScreen', { title: title, groupNumber: groupNumber})
   }
 
