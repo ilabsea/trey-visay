@@ -38,47 +38,29 @@ export default class VideoScreen extends Component {
     this.state = {
       videos: this._formatData(videoList)
     }
+
+    this._handleInternetConnection();
   }
 
-  // _checkConnection();
-
-  componentDidMount() {
+  _handleInternetConnection() {
     let self = this;
+
     NetInfo.isConnected.fetch().then(isConnected => {
       this.setState({isConnected: isConnected, isOnline: isConnected, isLoaded: true, showLoading: false});
     });
 
     function handleFirstConnectivityChange(isConnected) {
-      self.setState({isOnline: isConnected});
+      // https://stackoverflow.com/questions/34544314/setstate-can-only-update-a-mounted-or-mounting-component-this-usually-mea
 
-      NetInfo.isConnected.removeEventListener(
-        'connectionChange',
-        handleFirstConnectivityChange
-      );
+      if (self.refs.myRef) {
+        self.setState({isOnline: isConnected});
+      }
     }
 
     NetInfo.isConnected.addEventListener(
       'connectionChange',
       handleFirstConnectivityChange
     );
-  }
-
-  // handleFirstConnectivityChange(isConnected) {
-  //   this.setState({isOnline: isConnected});
-
-  //   NetInfo.isConnected.removeEventListener(
-  //     'connectionChange',
-  //     handleFirstConnectivityChange
-  //   );
-  // }
-
-  componentWillLeave() {
-    ToastAndroid.show('leave!', ToastAndroid.SHORT);
-    console.log('----------------------leave me');
-    // NetInfo.isConnected.removeEventListener(
-    //   'connectionChange',
-    //   handleFirstConnectivityChange
-    // );
   }
 
   _checkConnection() {
@@ -180,7 +162,7 @@ export default class VideoScreen extends Component {
   render() {
     return(
       <ThemeProvider uiTheme={{}}>
-        <View style={styles.container}>
+        <View style={styles.container} ref="myRef">
           <StatusBar />
           <Toolbar
             leftElement="menu"
