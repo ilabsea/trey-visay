@@ -39,7 +39,7 @@ export default class SummaryScreen extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => navigation.state.params._handleBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
@@ -73,25 +73,18 @@ export default class SummaryScreen extends Component {
   }
 
   _handleBack() {
-    if (!!this.state.mostFavorableJob) {
-      this.setState({confirmDialogVisible: true});
-    } else {
-      this.props.navigation.goBack();
-    }
+    this.setState({confirmDialogVisible: true});
   }
 
   _backHandler() {
-    let self = this;
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
 
-    BackHandler.addEventListener('hardwareBackPress', function() {
-      if (!!this.state.mostFavorableJob) {
-        self.setState({confirmDialogVisible: true});
-        return true;
-      }
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
 
-      self.props.navigation.goBack();
-      return false;
-    });
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    return true
   }
 
   _onYes() {
@@ -99,7 +92,7 @@ export default class SummaryScreen extends Component {
       realm.create('Game', this._buildData('SummaryScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'SummaryScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
@@ -108,15 +101,15 @@ export default class SummaryScreen extends Component {
       realm.delete(this.state.game);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
   _buildData(step) {
     let obj =  {
       uuid: this.state.game.uuid,
-      mostFavorableJobId: this.state.mostFavorableJob,
-      goalCareer: this.state.currentGroup.careers.find((obj) => obj.id == this.state.mostFavorableJob).name,
+      mostFavorableJobId: this.state.mostFavorableJob || null,
+      goalCareer: this.state.mostFavorableJob && this.state.currentGroup.careers.find((obj) => obj.id == this.state.mostFavorableJob).name || null,
       step: step || 'RecommendationScreen'
     }
 
@@ -145,9 +138,10 @@ export default class SummaryScreen extends Component {
 
   _goNext() {
     if (!this.state.mostFavorableJob) {
-      return ToastAndroid.show('Please select 1 job!', ToastAndroid.SHORT);
+      return ToastAndroid.show('សូមជ្រើសរើសមុខរបរចំនួន 1!', ToastAndroid.SHORT);
     }
 
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
     this._handleSubmit();
   }
 
