@@ -73,25 +73,18 @@ export default class PersonalityJobsScreen extends Component {
   }
 
   _handleBack() {
-    if (this.state.jobs.length > 0) {
-      this.setState({confirmDialogVisible: true});
-    } else {
-      this.props.navigation.goBack();
-    }
+    this.setState({confirmDialogVisible: true});
   }
 
   _backHandler() {
-    let self = this;
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
 
-    BackHandler.addEventListener('hardwareBackPress', function() {
-      if (self.state.jobs.length > 0) {
-        self.setState({confirmDialogVisible: true});
-        return true;
-      }
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
 
-      self.props.navigation.goBack();
-      return false;
-    });
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    return true
   }
 
   _buildData(step) {
@@ -113,7 +106,7 @@ export default class PersonalityJobsScreen extends Component {
       realm.create('Game', this._buildData('PersonalityJobsScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'PersonalityScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
@@ -122,7 +115,7 @@ export default class PersonalityJobsScreen extends Component {
       realm.delete(this.state.game);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
@@ -185,7 +178,7 @@ export default class PersonalityJobsScreen extends Component {
     this.props.navigation.setParams({total: careers.length});
 
     if (careers.length > 3) {
-      ToastAndroid.show('You must select 3 careers only!', ToastAndroid.SHORT);
+      ToastAndroid.show('សូមជ្រើសរើសមុខរបរចំនួន 3 ប៉ុណ្ណោះ!', ToastAndroid.SHORT);
       return
     }
 
@@ -205,9 +198,10 @@ export default class PersonalityJobsScreen extends Component {
 
   _goNext() {
     if (this.state.jobs.length != 3) {
-      return ToastAndroid.show('You must select 3 careers only!', ToastAndroid.SHORT);
+      return ToastAndroid.show('សូមជ្រើសរើសមុខរបរចំនួន 3គត់!', ToastAndroid.SHORT);
     }
 
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
     this._handleSubmit();
   }
 
