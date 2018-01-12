@@ -24,7 +24,6 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import realm from '../../schema';
 import User from '../../utils/user';
-import uuidv4 from '../../utils/uuidv4';
 import subjectList from '../../data/json/subject';
 import characteristicList from '../../data/json/characteristic_jobs';
 import subjectTe from '../../data/translates/subject';
@@ -38,7 +37,7 @@ export default class RecommendationScreen extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ការផ្តល់អនុសាសន៍</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
@@ -47,6 +46,7 @@ export default class RecommendationScreen extends Component {
 
   componentWillMount() {
     this._initState();
+    this._backHandler();
   }
 
   _initState() {
@@ -62,6 +62,37 @@ export default class RecommendationScreen extends Component {
       gameSubject: game.gameSubject,
       currentGroup: currentGroup,
     }
+
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+  }
+
+  _handleBack() {
+    this.setState({confirmDialogVisible: true});
+  }
+
+  _backHandler() {
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
+
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
+
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    return true
+  }
+
+  _onYes() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+  }
+
+  _onNo() {
+    realm.write(() => {
+      realm.delete(this.state.game);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
   }
 
   _renderFooter() {
@@ -76,6 +107,8 @@ export default class RecommendationScreen extends Component {
   }
 
   _goNext() {
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+
     this._handleSubmit();
   }
 
@@ -91,7 +124,6 @@ export default class RecommendationScreen extends Component {
 
   _handleSubmit() {
     realm.write(() => {
-    //   realm.create('Game', this._buildData(), true);
       this.state.game.step = 'GoalScreen';
       this.props.navigation.navigate('GoalScreen', {career: this.state.currentJob.name});
     });
@@ -213,6 +245,13 @@ export default class RecommendationScreen extends Component {
           </ScrollView>
 
           { this._renderFooter() }
+
+          <BackConfirmDialog
+            visible={this.state.confirmDialogVisible}
+            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+            onPressYes={() => this._onYes()}
+            onPressNo={() => this._onNo()}
+          />
         </View>
       </ThemeProvider>
     );
