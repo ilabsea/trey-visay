@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Image,
+  BackHandler,
 } from 'react-native';
 
 import {
@@ -20,6 +21,7 @@ import Sound from 'react-native-sound';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
+import BackConfirmDialog from '../../components/back_confirm_dialog';
 
 import realm from '../../schema';
 import User from '../../utils/user';
@@ -35,7 +37,7 @@ export default class ContactScreen extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ព័ត៌មានសាលា លេខទំនាក់ទំនង</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
@@ -44,6 +46,7 @@ export default class ContactScreen extends Component {
 
   componentWillMount() {
     this._initState();
+    this._backHandler();
   }
 
   componentWillUnmount() {
@@ -74,6 +77,33 @@ export default class ContactScreen extends Component {
       let time = date.toISOString().substr(11, 8);
       this.setState({time: time});
     });
+
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+  }
+
+  _handleBack() {
+    this.setState({confirmDialogVisible: true});
+  }
+
+  _backHandler() {
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
+
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
+
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    return true
+  }
+
+  _onYes() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+  }
+
+  _onNo() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
   }
 
   _renderFooter() {
@@ -238,6 +268,13 @@ export default class ContactScreen extends Component {
           </ScrollView>
 
           { this._renderFooter() }
+
+          <BackConfirmDialog
+            visible={this.state.confirmDialogVisible}
+            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+            onPressYes={() => this._onYes()}
+            onPressNo={() => this._onNo()}
+          />
         </View>
       </ThemeProvider>
     );
