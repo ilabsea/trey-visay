@@ -188,10 +188,12 @@ export default class GoalScreen extends Component {
 
           <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
             <TextInput
-              style={[styles.inputText, {flex: 1}]}
+              style={[styles.inputText, {flex: 1, textAlignVertical: "top", height: 100}]}
               onChangeText={(text) => this.setState({reasonText: text})}
-              placeholder='ខ្ញុំនឹងខិតខំរៀន....................... ដោយសារតែ.......................'
+              placeholder='ខ្ញុំនឹងធ្វើជា.......................ដ៏ពូកែម្នាក់។ ក្នុងក្រុមហ៊ុនឯកជនមួយនៅ......................... ពេលខ្ញុំបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រក្នុងឆ្នាំ២០.....។'
               placeholderTextColor='rgba(0,0,0,0.7)'
+              multiline={true}
+              numberOfLines={4}
               autoFocus={true}
             />
 
