@@ -59,6 +59,7 @@ export default class CareersScreen extends Component {
 
   _onClickBackHandler = () => {
     this.setState({confirmDialogVisible: true});
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
     return true
   }
 

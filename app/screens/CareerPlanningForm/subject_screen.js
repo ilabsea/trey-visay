@@ -72,19 +72,19 @@ export default class SubjectScreen extends Component {
     BackHandler.removeEventListener('hardwareBackPress');
   }
 
+  _handleBack() {
+    this.setState({confirmDialogVisible: true});
+  }
+
   _backHandler() {
-    let self = this;
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
 
-    BackHandler.addEventListener('hardwareBackPress', function() {
-      if (self._isValid()) {
-        self.setState({confirmDialogVisible: true});
-        return true;
-      }
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
 
-      self.props.navigation.goBack();
-      return false;
-    });
-
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    return true
   }
 
   _initState() {
@@ -104,14 +104,6 @@ export default class SubjectScreen extends Component {
       obj[key] = gameSubject[key];
     }
     this.setState(obj);
-  }
-
-  _handleBack() {
-    if (this._isValid()) {
-      this.setState({confirmDialogVisible: true});
-    } else {
-      this.props.navigation.goBack();
-    }
   }
 
   _renderRadioGroups(obj) {
@@ -224,6 +216,7 @@ export default class SubjectScreen extends Component {
       return ToastAndroid.show('សូមបំពេញមុខវិជ្ជាទាំងអស់!', ToastAndroid.SHORT);
     }
 
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
     this._handleSubmit();
   }
 
@@ -261,7 +254,7 @@ export default class SubjectScreen extends Component {
       realm.create('Game', this._buildData('SubjectScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.goBack();
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
@@ -270,7 +263,7 @@ export default class SubjectScreen extends Component {
       realm.delete(this.state.game);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
