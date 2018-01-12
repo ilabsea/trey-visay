@@ -68,10 +68,6 @@ export default class SubjectScreen extends Component {
     this._backHandler();
   }
 
-  componentWillLeave() {
-    BackHandler.removeEventListener('hardwareBackPress');
-  }
-
   _handleBack() {
     this.setState({confirmDialogVisible: true});
   }

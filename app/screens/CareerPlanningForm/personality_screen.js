@@ -41,7 +41,7 @@ export default class PersonalityScreen extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញបុគ្គលិកលក្ខណៈ</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => navigation.state.params._handleBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
@@ -66,25 +66,18 @@ export default class PersonalityScreen extends Component {
   }
 
   _handleBack() {
-    if (this.state.characteristicEntries.length > 0) {
-      this.setState({confirmDialogVisible: true});
-    } else {
-      this.props.navigation.goBack();
-    }
+    this.setState({confirmDialogVisible: true});
   }
 
   _backHandler() {
-    let self = this;
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
 
-    BackHandler.addEventListener('hardwareBackPress', function() {
-      if (self.state.characteristicEntries.length > 0) {
-        self.setState({confirmDialogVisible: true});
-        return true;
-      }
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
 
-      self.props.navigation.goBack();
-      return false;
-    });
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    return true
   }
 
   _initState() {
@@ -104,8 +97,7 @@ export default class PersonalityScreen extends Component {
       realm.create('Game', this._buildData('PersonalityScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      // this.props.navigation.goBack();
-      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'PersonalityScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
@@ -114,7 +106,7 @@ export default class PersonalityScreen extends Component {
       realm.delete(this.state.game);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
@@ -148,7 +140,7 @@ export default class PersonalityScreen extends Component {
     if (this.state.characteristicEntries.length < 5) {
       return alert('Please select characteristic at least 5!');
     }
-
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
     this._findAndSetMaximumScoreGroup();
     this._handleSubmit();
   }
