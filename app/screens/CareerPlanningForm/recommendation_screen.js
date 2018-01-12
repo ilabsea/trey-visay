@@ -29,15 +29,13 @@ import subjectList from '../../data/json/subject';
 import characteristicList from '../../data/json/characteristic_jobs';
 import subjectTe from '../../data/translates/subject';
 
-let careers = [];
-
 export default class RecommendationScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
 
     return {
-      title: 'ការណែនាំ',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ការណែនាំ</Text>,
+      title: 'ការផ្តល់អនុសាសន៍',
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>ការផ្តល់អនុសាសន៍</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
@@ -128,22 +126,22 @@ export default class RecommendationScreen extends Component {
   _renderSubject() {
     return (
       <View>
-        <Text style={[styles.subTitle, localStyle.paragraph]}>មុខវិជ្ជា</Text>
+        <Text style={[styles.subTitle, localStyle.paragraph, {color: '#1976d2'}]}>មុខវិជ្ជា</Text>
         <Text>ជា{this.state.currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖ </Text>
         <View>
           { this.state.currentGroup.concern_subjects.map((subject, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>- {subject}</Text>)
+            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subject}`}</Text>)
           })}
         </View>
 
-        <Text style={localStyle.paragraph}>ចម្លើយរបស់អ្នក</Text>
+        <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>ចម្លើយរបស់អ្នក</Text>
         <View>
           { this.state.currentGroup.concern_subject_codes.map((code, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>- {subjectTe[code]} <Text style={localStyle.boldText}>({this.state.gameSubject[code]})</Text></Text>)
+            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`} <Text style={localStyle.boldText}>({this.state.gameSubject[code]})</Text></Text>)
           })}
         </View>
 
-        <Text style={localStyle.paragraph}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
+        <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
         { this.state.currentGroup.concern_subject_codes.map((code, i) => {
            { return (this._renderSubjectToImproveTip(code, i)) }
         })}
@@ -154,18 +152,18 @@ export default class RecommendationScreen extends Component {
   _renderCharacteristic() {
     return (
       <View>
-        <Text style={[styles.subTitle, localStyle.paragraph]}>បុគ្គលិកលក្ខណៈ</Text>
+        <Text style={[styles.subTitle, localStyle.paragraph, {color: '#1976d2'}]}>បុគ្គលិកលក្ខណៈ</Text>
         <Text>ជា{this.state.currentJob.name} អ្នកគួរមានបុគ្គលិកលក្ខណៈជាមនុស្ស៖</Text>
         <View>
           { this.state.currentGroup.concern_entries.map((character, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>- {character}</Text>)
+            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${character}`}</Text>)
           })}
         </View>
 
-        <Text style={localStyle.paragraph}>ចម្លើយរបស់អ្នក</Text>
+        <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>ចម្លើយរបស់អ្នក</Text>
         <View>
           { this.state.game.characteristicEntries.map((entry, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>- {entry.value}</Text>)
+            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${entry.value}`}</Text>)
           })}
         </View>
 
@@ -180,13 +178,17 @@ export default class RecommendationScreen extends Component {
     return (
       <View style={styles.box}>
         <Text>
-          {this.state.user.fullName}! អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ
+          <Text style={localStyle.boldText}>{this.state.user.fullName}</Text>! អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ
           <Text style={localStyle.boldText}> “{this.state.currentJob.name}” </Text>
           ដែលមុខរបរនេះជា
           <Text style={localStyle.boldText}> {this.state.currentGroup.career_title}។ </Text>
         </Text>
 
         <Text style={localStyle.paragraph}>{this.state.currentGroup.recommendation}</Text>
+        <Text style={localStyle.paragraph}>
+          <Text style={[localStyle.boldText, {color: '#d0021b'}]}>បញ្ជាក់៖ </Text>
+          សិស្សានុសិស្សត្រូវប្រឡងជាប់ថ្នាក់ទី ១២ និងរៀនឲ្យពូកែ ទើបអាចសម្រេចបានគោលបំណង ឬគោលដៅ ។
+        </Text>
         <Text style={localStyle.paragraph}>ដូចនេះសូមអ្នកផ្ទៀងផ្ទាត់យ៉ាងលម្អិតរវាង ការវាយតម្លៃលើមុខវិជ្ជាដែលអ្នកបានរៀន និង បុគ្គលិកលក្ខណៈរបស់អ្នកជា មួយនឹងមុខរបរដែលអ្នកពេញចិត្តដូចខាងក្រោម៖</Text>
 
         { this._renderSubject() }
@@ -202,11 +204,6 @@ export default class RecommendationScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
-              <View style={{flexDirection: 'row', marginVertical: 16}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>ចូរអានពត៌មានលំអិតអំពីអនុសាសន៍ខាងក្រោម៖</Text>
-              </View>
-
               { this._renderContent() }
             </View>
           </ScrollView>
@@ -224,5 +221,9 @@ const localStyle = StyleSheet.create({
   },
   paragraph: {
     marginTop: 16,
+  },
+  highlightBlue: {
+    fontFamily: 'KantumruyBold',
+    color: '#1976d2'
   }
 });
