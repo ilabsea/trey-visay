@@ -5,7 +5,8 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  Image
+  Image,
+  BackHandler,
 } from 'react-native';
 
 import {
@@ -20,12 +21,11 @@ import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import Images from '../../assets/images';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-// import careerList from '../../data/json/careers';
 import careerList from '../../data/json/characteristic_jobs';
+import BackConfirmDialog from '../../components/back_confirm_dialog';
 
 import realm from '../../schema';
 import User from '../../utils/user';
-import uuidv4 from '../../utils/uuidv4';
 
 export default class CareersScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -36,12 +36,31 @@ export default class CareersScreen extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>យល់ដឹងអំពីមុខរបរ</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>
     }
   };
+
+  componentWillMount() {
+    this.state = { confirmDialogVisible: false };
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this._backHandler();
+  }
+
+  _handleBack() {
+    this.setState({confirmDialogVisible: true});
+  }
+
+  _backHandler() {
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
+
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
+    return true
+  }
 
   _renderFooter() {
     return(
@@ -55,7 +74,22 @@ export default class CareersScreen extends Component {
   }
 
   _goNext() {
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
     this.props.navigation.navigate('SubjectScreen');
+  }
+
+  _onYes() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+  }
+
+  _onNo() {
+    realm.write(() => {
+      realm.delete(this.state.game);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
   }
 
   _renderCareer(career, i) {
@@ -95,6 +129,13 @@ export default class CareersScreen extends Component {
 
           </ScrollView>
           { this._renderFooter() }
+
+          <BackConfirmDialog
+            visible={this.state.confirmDialogVisible}
+            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+            onPressYes={() => this._onYes()}
+            onPressNo={() => this._onNo()}
+          />
         </View>
       </ThemeProvider>
     );

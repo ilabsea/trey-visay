@@ -34,7 +34,7 @@ export default class SubjectScreen extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញមុខវិជ្ជា</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => navigation.state.params._handleBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
