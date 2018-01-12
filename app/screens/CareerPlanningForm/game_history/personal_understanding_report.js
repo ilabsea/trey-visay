@@ -127,7 +127,7 @@ export default class PersonalUnderstandingReport extends Component {
   }
 
   _renderQuestion4(personalUnderstanding) {
-    if (!personalUnderstanding.haveYouEverThoughtOfCareer) {
+    if (!personalUnderstanding.everTalkedWithAnyoneAboutCareer.length) {
       return (null);
     }
 
