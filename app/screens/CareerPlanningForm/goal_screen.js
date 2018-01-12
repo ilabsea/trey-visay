@@ -10,6 +10,8 @@ import {
   Platform,
   PermissionsAndroid,
   Image,
+  BackHandler,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -18,10 +20,10 @@ import {
 } from 'react-native-material-ui';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-
 import Sound from 'react-native-sound';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 
+import BackConfirmDialog from '../../components/back_confirm_dialog';
 import labelStyles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
@@ -39,7 +41,7 @@ export default class GoalScreen extends Component {
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ដាក់គោលដៅមួយ និងមូលហេតុ</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
                   </ThemeProvider>,
@@ -48,6 +50,7 @@ export default class GoalScreen extends Component {
 
   componentWillMount() {
     this._initState();
+    this._backHandler();
   }
 
   componentWillUnmount() {
@@ -55,6 +58,27 @@ export default class GoalScreen extends Component {
       this.sound.stop();
       this.sound.release();
     }
+  }
+
+  componentDidMount() {
+    this._checkPermission().then((hasPermission) => {
+      this.setState({ hasPermission });
+
+      if (!hasPermission) return;
+
+      this.prepareRecordingPath(this.state.audioPath);
+
+      AudioRecorder.onProgress = (data) => {
+        this.setState({currentTime: Math.floor(data.currentTime)});
+      };
+
+      AudioRecorder.onFinished = (data) => {
+        // Android callback comes in the form of a promise instead.
+        if (Platform.OS === 'ios') {
+          this._finishRecording(data.status === "OK", data.audioFileURL);
+        }
+      };
+    });
   }
 
   _initState() {
@@ -75,6 +99,41 @@ export default class GoalScreen extends Component {
       reasonText: '',
       voiceRecord: ''
     };
+
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+  }
+
+  _handleBack() {
+    this.setState({confirmDialogVisible: true});
+  }
+
+  _backHandler() {
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
+
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
+
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    return true
+  }
+
+  _onYes() {
+    realm.write(() => {
+      realm.create('Game', this._buildData('GoalScreen'), true);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
+  }
+
+  _onNo() {
+    realm.write(() => {
+      realm.delete(this.state.game);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
   }
 
   _renderFooter() {
@@ -90,19 +149,18 @@ export default class GoalScreen extends Component {
 
   _goNext() {
     if (!this.state.reasonText && !this.state.voiceRecord) {
-      alert('Please fill in reason either text or voice record!');
-      return;
+      return ToastAndroid.show('សូមបំពេញការដាក់គោលដៅរបស់អ្នកជាអក្សរ ឬក៏ថតជាសំលេង!', ToastAndroid.SHORT);
     }
 
     this._handleSubmit();
   }
 
-  _buildData() {
+  _buildData(step) {
     let obj = {
       uuid: this.state.game.uuid,
       reason: this.state.reasonText,
       voiceRecord: this.state.voiceRecord,
-      step: 'ContactScreen',
+      step: step || 'ContactScreen',
     };
 
     return obj;
@@ -160,26 +218,6 @@ export default class GoalScreen extends Component {
     });
   }
 
-  componentDidMount() {
-    this._checkPermission().then((hasPermission) => {
-      this.setState({ hasPermission });
-
-      if (!hasPermission) return;
-
-      this.prepareRecordingPath(this.state.audioPath);
-
-      AudioRecorder.onProgress = (data) => {
-        this.setState({currentTime: Math.floor(data.currentTime)});
-      };
-
-      AudioRecorder.onFinished = (data) => {
-        // Android callback comes in the form of a promise instead.
-        if (Platform.OS === 'ios') {
-          this._finishRecording(data.status === "OK", data.audioFileURL);
-        }
-      };
-    });
-  }
 
   _checkPermission() {
     if (Platform.OS !== 'android') {
@@ -368,6 +406,13 @@ export default class GoalScreen extends Component {
           </ScrollView>
 
           { this._renderFooter() }
+
+          <BackConfirmDialog
+            visible={this.state.confirmDialogVisible}
+            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+            onPressYes={() => this._onYes()}
+            onPressNo={() => this._onNo()}
+          />
         </View>
       </ThemeProvider>
     );
