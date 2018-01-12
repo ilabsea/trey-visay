@@ -203,11 +203,10 @@ export default class GameHistoryScreen extends Component {
   _renderGoal() {
     return (
       <View>
-        <Text>មុខរបរដែលបានជ្រើសរើស</Text>
+        <Text>ការដាក់គោលដៅ និងមូលហេតុ</Text>
 
         <View style={styles.box}>
           <Text style={styles.subTitle}>{this.state.game.goalCareer}</Text>
-          <Text style={{fontSize: 14, color: '#bdbdbd'}}>ការដាក់គោលដៅ និងមូលហេតុ</Text>
 
           { !!this.state.game.reason && this._renderReason() }
           { !!this.state.game.voiceRecord && this._renderVoiceRecord() }
@@ -245,8 +244,9 @@ export default class GameHistoryScreen extends Component {
       <View style={{marginBottom: 16}}>
         <Text>ធ្វើតេស្តដំណាក់កាលទី 2</Text>
 
-        { this._renderButton('បំពេញមុខវិជ្ជា', 'SubjectReport') }
-        { this._renderButton('ជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណះ', 'PersonalityReport') }
+        { this._renderButton('ការបំពេញមុខវិជ្ជា', 'SubjectReport') }
+        { this._renderButton('ការបំពេញបុគ្គលិកលក្ខណៈ', 'StudentPersonalityReport') }
+        { this._renderButton('ការជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណៈ', 'PersonalityReport') }
         { this._renderButton('ការផ្តល់អនុសាសន៍', 'RecommendationReport') }
       </View>
     )

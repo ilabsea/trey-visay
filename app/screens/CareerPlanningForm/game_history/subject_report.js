@@ -24,8 +24,8 @@ export default class SubjectReport extends Component {
     const { goBack, state } = navigation;
 
     return {
-      title: 'បំពេញមុខវិជ្ជា',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញមុខវិជ្ជា</Text>,
+      title: 'ការបំពេញមុខវិជ្ជា',
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>ការបំពេញមុខវិជ្ជា</Text>,
       headerStyle: headerStyles.headerStyle,
       headerTintColor: '#fff'
     }

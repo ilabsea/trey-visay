@@ -31,8 +31,8 @@ export default class ContactScreen extends Component {
     const { goBack, state } = navigation;
 
     return {
-      title: 'ពត៍មានសាលា និងទំនាក់ទំនង',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ពត៍មានសាលា លេខទំនាក់ទំនង</Text>,
+      title: 'ព័ត៌មានសាលា និងទំនាក់ទំនង',
+      headerTitle: <Text style={headerStyles.headerTitleStyle}>ព័ត៌មានសាលា លេខទំនាក់ទំនង</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>
                     <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
@@ -112,7 +112,7 @@ export default class ContactScreen extends Component {
 
     return (
       <View style={{marginTop: 20}}>
-        <Text>ពត៌មានសាលា និង ទំនាក់ទំនង</Text>
+        <Text>ព័ត៌មានសាលា និង ទំនាក់ទំនង</Text>
         { schools.map((school, i) => {
           { return(this._renderSchool(school, i)) }
         })}
@@ -213,11 +213,10 @@ export default class ContactScreen extends Component {
   _renderGoal() {
     return (
       <View>
-        <Text>មុខរបរដែលបានជ្រើសរើស</Text>
+        <Text>ដាក់គោលដៅមួយ និងមូលហេតុ</Text>
 
         <View style={styles.box}>
           <Text style={styles.subTitle}>{this.state.game.goalCareer}</Text>
-          <Text style={{fontSize: 14, color: '#bdbdbd'}}>ការដាក់គោលដៅ និងមូលហេតុ</Text>
 
           { !!this.state.game.reason && this._renderReason()}
           { !!this.state.game.voiceRecord && this._renderVoiceRecord()}

@@ -204,6 +204,10 @@ export default class RecommendationScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
+              <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
+                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+                <Text>ចូរប្អូនអានអនុសាសន៍ខាងក្រោម៖</Text>
+              </View>
               { this._renderContent() }
             </View>
           </ScrollView>

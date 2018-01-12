@@ -32,6 +32,7 @@ import PersonalUnderstandingReport from './CareerPlanningForm/game_history/perso
 import SubjectReport from './CareerPlanningForm/game_history/subject_report';
 import ValueReport from './CareerPlanningForm/game_history/value_report';
 import PersonalityReport from './CareerPlanningForm/game_history/personality_report';
+import StudentPersonalityReport from './CareerPlanningForm/game_history/student_personality_report';
 import RecommendationReport from './CareerPlanningForm/game_history/recommendation_report';
 
 import EditProfilePhoto from './edit_profile_photo';
@@ -66,6 +67,7 @@ const careerCounsellorStack = StackNavigator(
     SubjectReport: { screen: SubjectReport },
     ValueReport: { screen: ValueReport },
     PersonalityReport: { screen: PersonalityReport },
+    StudentPersonalityReport: { screen: StudentPersonalityReport },
     RecommendationReport: { screen: RecommendationReport },
   }, {
     initialRouteName: 'CareerCounsellorScreen',
