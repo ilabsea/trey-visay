@@ -33,9 +33,6 @@ const uiTheme = {
   }
 };
 
-myProvince='';
-myMajor='';
-
 export default class GovernmentSchoolScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     return {
@@ -50,6 +47,10 @@ export default class GovernmentSchoolScreen extends Component {
       tabBarLabel: 'សាលារដ្ឋ',
     }
   };
+
+  myProvince = '';
+  myMajor = '';
+  myCategory = 'សាលារដ្ឋ';
 
   constructor(props) {
     super(props)
@@ -72,7 +73,7 @@ export default class GovernmentSchoolScreen extends Component {
 
   _getProvinces() {
     API
-      .getProvinces('សាលារដ្ឋ')
+      .getProvinces(this.myCategory)
       .then(result => this.setState({provinces: result.provinces}))
       .catch(error => {console.log(error)})
   }
@@ -97,9 +98,9 @@ export default class GovernmentSchoolScreen extends Component {
 
   _getSchools(page, options={}) {
     this._getSchoolsRequest()
-    options.category = 'សាលារដ្ឋ';
-    options.province = myProvince;
-    options.major = myMajor;
+    options.category = this.myCategory;
+    options.province = this.myProvince;
+    options.major = this.myMajor;
 
     API
       .getSchools(page, options)
@@ -188,8 +189,8 @@ export default class GovernmentSchoolScreen extends Component {
   }
 
   _onChangeProvince(province) {
-    myProvince = province;
-    myMajor = '';
+    this.myProvince = province;
+    this.myMajor = '';
 
     let obj = { currentProvince: province, currentMajor: '' };
     let params = { callback: this._getMajors };
@@ -214,7 +215,7 @@ export default class GovernmentSchoolScreen extends Component {
   }
 
   _onChangeMajor(major) {
-    myMajor = major;
+    this.myMajor = major;
     this.setState({currentMajor: major});
     this._getSchools(1);
   }
