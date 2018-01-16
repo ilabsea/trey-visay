@@ -180,12 +180,21 @@ export default class VideoScreen extends Component {
     )
   }
 
-  _onChangeText() {
+  _onChangeText(val) {
+    if (!val) {
+      this._onRefresh();
+    }
 
+    if (val.length > 1) {
+      API
+        .getVideosByName(val, 1)
+        .then(result => this._getVideosSuccess(result))
+        .catch(error => this._getVideosFailure(error))
+    }
   }
 
   _onSearchClosed() {
-
+    this._onRefresh();
   }
 
   _renderNoInternetConnection() {
