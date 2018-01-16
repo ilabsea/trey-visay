@@ -13,10 +13,7 @@ import SideMenu from '../components/side_menu';
 
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 
-import CareerPlanningForm from './CareerPlanningForm/CareerPlanningForm';
 import SubjectScreen from './CareerPlanningForm/subject_screen';
-import ValueScreen from './CareerPlanningForm/value_screen';
-import ValueJobsScreen from './CareerPlanningForm/value_jobs_screen';
 import PersonalityScreen from './CareerPlanningForm/personality_screen';
 import PersonalityJobsScreen from './CareerPlanningForm/personality_jobs_screen';
 import SummaryScreen from './CareerPlanningForm/summary_screen';
@@ -30,7 +27,6 @@ import GameHistoryScreen from './CareerPlanningForm/game_history_screen';
 
 import PersonalUnderstandingReport from './CareerPlanningForm/game_history/personal_understanding_report';
 import SubjectReport from './CareerPlanningForm/game_history/subject_report';
-import ValueReport from './CareerPlanningForm/game_history/value_report';
 import PersonalityReport from './CareerPlanningForm/game_history/personality_report';
 import StudentPersonalityReport from './CareerPlanningForm/game_history/student_personality_report';
 import RecommendationReport from './CareerPlanningForm/game_history/recommendation_report';
@@ -48,11 +44,8 @@ const careerCounsellorStack = StackNavigator(
   {
     CareerCounsellorScreen: { screen: CareerCounsellor },
     PersonalUnderstandingFormScreen: { screen: PersonalUnderstandingForm },
-    CareerPlanningFormScreen: { screen: CareerPlanningForm },
     CareerDetailScreen: { screen: CareerDetailScreen },
     SubjectScreen: { screen: SubjectScreen },
-    ValueScreen: { screen: ValueScreen },
-    ValueJobsScreen: { screen: ValueJobsScreen },
     PersonalityScreen: { screen: PersonalityScreen },
     PersonalityJobsScreen: { screen: PersonalityJobsScreen },
     SummaryScreen: { screen: SummaryScreen },
@@ -65,7 +58,6 @@ const careerCounsellorStack = StackNavigator(
 
     PersonalUnderstandingReport: { screen: PersonalUnderstandingReport },
     SubjectReport: { screen: SubjectReport },
-    ValueReport: { screen: ValueReport },
     PersonalityReport: { screen: PersonalityReport },
     StudentPersonalityReport: { screen: StudentPersonalityReport },
     RecommendationReport: { screen: RecommendationReport },
