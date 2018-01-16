@@ -10,6 +10,8 @@ import {
   ToastAndroid,
   Linking,
   ActivityIndicator,
+  ListView,
+  RefreshControl,
 } from 'react-native';
 
 import {
@@ -17,10 +19,11 @@ import {
   Toolbar,
 } from 'react-native-material-ui';
 
+import API from '../api/videos';
+import LoadingIndicator from '../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Thumbnail from 'react-native-thumbnail-video';
-import videoList from '../data/json/videos';
 import headerStyles from '../assets/style_sheets/header';
 import StatusBar from '../components/status_bar';
 
@@ -33,69 +36,99 @@ export default class VideoScreen extends Component {
     ),
   };
 
-  componentWillMount() {
-    let self = this;
+  constructor(props) {
+    super(props)
 
     this.state = {
-      videos: this._formatData(videoList)
+      pagination: {},
+      videos: [],
+      ds: new ListView.DataSource({ rowHasChanged: this._rowHasChanged })
     }
+  }
 
+  componentWillMount() {
     this._handleInternetConnection();
   }
 
   _handleInternetConnection() {
-    let self = this;
-
     NetInfo.isConnected.fetch().then(isConnected => {
+      this._getVideos(1);
       this.setState({isConnected: isConnected, isOnline: isConnected, isLoaded: true, showLoading: false});
     });
-
-    function handleFirstConnectivityChange(isConnected) {
-      // https://stackoverflow.com/questions/34544314/setstate-can-only-update-a-mounted-or-mounting-component-this-usually-mea
-
-      if (self.refs.myRef) {
-        self.setState({isOnline: isConnected});
-      }
-    }
 
     NetInfo.isConnected.addEventListener(
       'connectionChange',
-      handleFirstConnectivityChange
+      this._handleFirstConnectivityChange
     );
   }
 
-  _checkConnection() {
-    this.setState({showLoading: true})
-    NetInfo.isConnected.fetch().then(isConnected => {
-      this.setState({isConnected: isConnected, isOnline: isConnected, isLoaded: true, showLoading: false});
-    });
+  _handleFirstConnectivityChange = (isConnected) => {
+    if (this.refs.myRef) {
+      this.setState({isOnline: isConnected});
+    }
   }
 
-  _formatData(list) {
-    let data = [];
-    let myList = list.slice(0);
+  _getVideosRequest() {
+    const pagination = { ...this.state.pagination, loading: true }
+    this._update(pagination, this.state.videos)
+  }
 
-    while (myList.length > 0) {
-      data.push(myList.splice(0, 2));
+  _getVideosSuccess(result) {
+    const pagination = { ...result.pagination, loading: false }
+    const videos = pagination.page === 1 ? result.records : [ ...this.state.videos, ...result.records ]
+
+    this._update(pagination, videos)
+  }
+
+  _getVideosFailure(error) {
+    const pagination = { ...this.state.pagination, loading: false }
+    this._update(pagination, this.state.videos)
+    console.error(error)
+  }
+
+  _getVideos(page) {
+    this._getVideosRequest()
+
+    API
+      .getVideos(page)
+      .then(result => this._getVideosSuccess(result))
+      .catch(error => this._getVideosFailure(error))
+  }
+
+  _rowHasChanged(r1, r2) {
+    return r1 !== r2
+  }
+
+  _update(pagination, videos) {
+    const loading = {
+      type: 'Loading',
+      loading: pagination.loading
+    }
+    this.setState({
+      pagination: pagination,
+      videos: videos,
+      ds: this.state.ds.cloneWithRows([ ...videos, loading ])
+    })
+  }
+
+  _renderRow(row) {
+    if (row.type === 'Loading') {
+      return <LoadingIndicator loading={ row.loading } />
     }
 
-    return data;
-  }
+    let { width } = Dimensions.get('window');
+    let imageWidth = width/2-24;
 
-  _onChangeText(val) {
-    let list = videoList;
-
-    if (!!val) {
-      list = videoList.filter((video) => {
-        return video.title.toLowerCase().indexOf(val.toLowerCase()) > -1
-      })
-    }
-
-    this.setState({videos: this._formatData(list)})
-  }
-
-  _onSearchClosed() {
-    this.setState({videos: this._formatData(videoList)});
+    return (
+      <View style={styles.row}>
+        <Thumbnail
+          url={row.url}
+          imageWidth={imageWidth}
+          onPress={ () => this._onOpenUrl(row.url) }
+        />
+        <Text style={ [styles.title, {flex: 1}] }>{ row.title }</Text>
+      </View>
+    )
   }
 
   _onOpenUrl(url) {
@@ -114,6 +147,47 @@ export default class VideoScreen extends Component {
     ToastAndroid.show('Not available while offline!', ToastAndroid.SHORT);
   }
 
+  _onRefresh() {
+    this._getVideos(1)
+  }
+
+  _onEndReached() {
+    const { pagination } = this.state
+    const { page, perPage, pageCount, totalCount } = pagination
+    const lastPage = totalCount <= (page - 1) * perPage + pageCount
+
+    if (!pagination.loading && !lastPage) {
+      this._getVideos(page + 1)
+    }
+  }
+
+  _renderContent() {
+    return (
+      <ListView
+        style={ styles.container }
+        enableEmptySections={ true }
+        automaticallyAdjustContentInsets={ false }
+        dataSource={ this.state.ds }
+        renderRow={ row => this._renderRow(row) }
+        refreshControl={
+          <RefreshControl
+            refreshing={ false }
+            onRefresh={ () => this._onRefresh() }
+          />
+        }
+        onEndReached={ () => this._onEndReached() }
+      />
+    )
+  }
+
+  _onChangeText() {
+
+  }
+
+  _onSearchClosed() {
+
+  }
+
   _renderNoInternetConnection() {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}}>
@@ -125,39 +199,17 @@ export default class VideoScreen extends Component {
         { this.state.showLoading && <ActivityIndicator size="small" /> }
 
         <View style={{marginTop: 20}}>
-          <Button title='Retry' onPress={() => this._checkConnection()}/>
+          <Button title='Retry' onPress={() => this._retryConnection()}/>
         </View>
       </View>
     )
   }
 
-  _renderhaveInternetConnection() {
-    let { width } = Dimensions.get('window');
-    // let videos = this._formatData(videoList);
-    let imageWidth = width/2-24;
-
-    return (
-      <ScrollView style={{flex: 1}}>
-        { this.state.videos.map((row, i) => {
-          return (
-            <View style={styles.row} key={i}>
-              { row.map((obj, j) => {
-                return(
-                  <View style={styles.column} key={j}>
-                    <Thumbnail
-                      url={obj.url}
-                      imageWidth={imageWidth}
-                      onPress={ () => this._onOpenUrl(obj.url) }
-                    />
-                    <Text numberOfLines={1} style={styles.title}>{obj.title}</Text>
-                  </View>
-                )
-              })}
-            </View>
-          )
-        })}
-      </ScrollView>
-    )
+  _retryConnection() {
+    this.setState({showLoading: true})
+    NetInfo.isConnected.fetch().then(isConnected => {
+      this.setState({isConnected: isConnected, isOnline: isConnected, isLoaded: true, showLoading: false});
+    });
   }
 
   render() {
@@ -177,7 +229,7 @@ export default class VideoScreen extends Component {
             }}
           />
 
-          { this.state.isLoaded && this.state.isConnected && this._renderhaveInternetConnection() }
+          { this.state.isLoaded && this.state.isConnected && this._renderContent() }
           { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
         </View>
       </ThemeProvider>
@@ -187,7 +239,8 @@ export default class VideoScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    paddingBottom: 8,
   },
   scrollContainer: {
     padding: 16
@@ -203,7 +256,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   title: {
-    padding: 8,
+    padding: 10,
     backgroundColor: '#fff'
   }
 });
