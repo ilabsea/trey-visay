@@ -14,6 +14,9 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
+import { Divider } from 'react-native-elements';
+import LinearGradient from 'react-native-linear-gradient';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import RadioGroup from '../../components/radio_group';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 
@@ -102,23 +105,41 @@ export default class SubjectScreen extends Component {
     this.setState(obj);
   }
 
+  _renderRadioItem(group, i) {
+    let gradientColor = 'transparent';
+    let borderStyle = {};
+
+    if (this.state.submit && !this.state[group.stateName]) {
+      gradientColor = 'rgba(233,75,53,0.12)';
+      borderStyle = { backgroundColor: '#e94b35', height: 2 };
+    }
+
+    return(
+      <View key={i} style={{paddingVertical: 16}}>
+        <Text style={shareStyles.label}>{group.label}</Text>
+
+        <LinearGradient style={styles.container} colors={['transparent', gradientColor]}>
+          <RadioGroup
+            options={[{ label: 'ខ្លាំង', value: 'ខ្លាំង' }, { label: 'មធ្យម', value: 'មធ្យម' }, { label: 'ខ្សោយ', value: 'ខ្សោយ' }]}
+            onPress={(text) => this._handleSetState(group.stateName, text)}
+            value={this.state[group.stateName]} >
+          </RadioGroup>
+        </LinearGradient>
+
+        <Divider style={borderStyle}/>
+      </View>
+    )
+  }
+
   _renderRadioGroups(obj) {
     return(
       <View style={styles.box}>
         <Text style={styles.subTitle}>{obj.title}</Text>
 
-        { obj.groups.map((group, i) => {
-          return(
-            <View key={i} style={{borderTopWidth: 1, borderTopColor: '#ccc', paddingVertical: 16}}>
-              <Text style={shareStyles.label}>{group.label}</Text>
+        <Divider/>
 
-              <RadioGroup
-                options={[{ label: 'ខ្លាំង', value: 'ខ្លាំង' }, { label: 'មធ្យម', value: 'មធ្យម' }, { label: 'ខ្សោយ', value: 'ខ្សោយ' }]}
-                onPress={(text) => this._handleSetState(group.stateName, text)}
-                value={this.state[group.stateName]} >
-              </RadioGroup>
-            </View>
-          )
+        { obj.groups.map((group, i) => {
+          { return(this._renderRadioItem(group, i)) }
         })}
       </View>
     )
@@ -209,6 +230,7 @@ export default class SubjectScreen extends Component {
 
   _goNext() {
     if (!this._isValid()) {
+      this.setState({submit: true});
       return ToastAndroid.show('សូមបំពេញមុខវិជ្ជាទាំងអស់!', ToastAndroid.SHORT);
     }
 
@@ -217,15 +239,10 @@ export default class SubjectScreen extends Component {
   }
 
   _isValid() {
-    var arr = [];
+    let keys = ['khmerReading', 'khmerWriting', 'english', 'math', 'socialStudyEthicsAndCitizenship', 'socialStudyGeography', 'socialStudyHistory', 'sciencePhysics', 'scienceChemistry', 'scienceBiology', 'softSkillCommunication', 'softSkillBrave', 'softSkillTeamwork', 'softSkillProblemSolving', 'softSkillPublicSpeaking'];
+    let arr = keys.filter((key) => !!this.state[key]);
 
-    for (let key in this.state) {
-      if (this.state[key] && !['user', 'game', 'confirmDialogVisible', 'uuid'].includes(key)) {
-        arr.push(key);
-      }
-    }
-
-    return arr.length == 15;
+    return arr.length == keys.length;
   }
 
   _handleSubmit() {
@@ -269,6 +286,11 @@ export default class SubjectScreen extends Component {
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16}}>
+              <View style={{flexDirection: 'row', marginVertical: 16}}>
+                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+                <Text>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
+              </View>
+
               { this._renderKhmer() }
               { this._renderEnglish() }
               { this._renderSocialStudies() }
