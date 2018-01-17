@@ -231,7 +231,7 @@ export default class SubjectScreen extends Component {
   _goNext() {
     if (!this._isValid()) {
       this.setState({submit: true});
-      return ToastAndroid.show('សូមបំពេញមុខវិជ្ជាទាំងអស់!', ToastAndroid.SHORT);
+      return ToastAndroid.show('សូមបំពេញមុខវិជ្ជាទាំងអស់ជាមុនសិន...!', ToastAndroid.SHORT);
     }
 
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
