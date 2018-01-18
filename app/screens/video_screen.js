@@ -202,13 +202,13 @@ export default class VideoScreen extends Component {
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}}>
         <View style={{flexDirection: 'row'}}>
           <MaterialIcon name='info-outline' color='#111' size={24} style={{marginRight: 8}} />
-          <Text>There's no network connection right now. Try again later</Text>
+          <Text>មិនមានការតភ្ជាប់បណ្តាញទេឥឡូវនេះ។ សូមព្យាយាម​ម្តង​ទៀត​</Text>
         </View>
 
         { this.state.showLoading && <ActivityIndicator size="small" /> }
 
         <View style={{marginTop: 20}}>
-          <Button title='Retry' onPress={() => this._retryConnection()}/>
+          <Button title='ព្យាយាមម្តងទៀត' onPress={() => this._retryConnection()}/>
         </View>
       </View>
     )
