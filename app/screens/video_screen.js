@@ -4,7 +4,6 @@ import {
   Text,
   Button,
   StyleSheet,
-  ScrollView,
   Dimensions,
   NetInfo,
   ToastAndroid,

@@ -155,6 +155,11 @@ export default class RecommendationScreen extends Component {
     )
   }
 
+  _isStrongForAllSubject() {
+    let arr = this.state.currentGroup.concern_subject_codes.filter((code) => this.state.gameSubject[code] != 'ខ្លាំង')
+    return !!arr.length;
+  }
+
   _renderSubject() {
     return (
       <View>
@@ -173,10 +178,18 @@ export default class RecommendationScreen extends Component {
           })}
         </View>
 
-        <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
-        { this.state.currentGroup.concern_subject_codes.map((code, i) => {
-           { return (this._renderSubjectToImproveTip(code, i)) }
-        })}
+        { this._isStrongForAllSubject() &&
+          <Text style={[localStyle.paragraph]}>សូមអបអរសាទរ ការជ្រើសរើសរបស់ប្អូនសាកសមទៅនឹងសមត្ថភាពរបស់ប្អូនហើយ។</Text>
+        }
+
+        { !this._isStrongForAllSubject() &&
+          <View>
+            <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
+            { this.state.currentGroup.concern_subject_codes.map((code, i) => {
+               { return (this._renderSubjectToImproveTip(code, i)) }
+            })}
+          </View>
+        }
       </View>
     )
   }

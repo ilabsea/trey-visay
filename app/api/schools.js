@@ -5,8 +5,6 @@ import { random, min, times } from 'lodash';
 import schoolList from '../data/json/schools';
 
 const perPage = 7;
-const majors = schoolList
-
 
 export default {
   getSchools(page, option={}) {

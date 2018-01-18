@@ -6,7 +6,6 @@ import videoList from '../data/json/videos';
 
 const perPage = 10
 
-
 export default {
   getVideos(page) {
     return new Promise(resolve => {
@@ -20,7 +19,7 @@ export default {
         const records = videoList.slice(offset, endPoint);
 
         resolve({ pagination, records });
-      }, random(500, 1000))
+      }, random(100, 500))
     })
   },
   getVideosByName(name, page) {
@@ -42,7 +41,7 @@ export default {
         const records = list.slice(offset, endPoint);
 
         resolve({ pagination, records });
-      }, random(500, 1000))
+      }, random(100, 500))
     })
   }
 }

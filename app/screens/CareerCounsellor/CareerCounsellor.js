@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
+  ScrollView,
 } from 'react-native';
 
 import {
@@ -126,7 +127,7 @@ export default class CareerCounsellor extends Component {
               >
               <View style={{flexDirection: 'row', flex: 1}}>
                 <Image source={require('../../assets/images/checklist.png')} style={{width: 60, height: 60, marginRight: 16}} />
-                <View>
+                <View style={{flex: 1}}>
                   <Text style={shareStyles.subTitle}>តេស្តលើកទី {count - i}</Text>
                   <Text>ធ្វើនៅ: {this._getFullDate(game.createdAt)}</Text>
                 </View>
@@ -145,17 +146,20 @@ export default class CareerCounsellor extends Component {
   render() {
     return (
       <ThemeProvider uiTheme={uiTheme}>
-        <View style={styles.wrapper}>
+        <View style={{flex: 1}}>
           <StatusBar />
-
           <Toolbar
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វាយតម្លៃមុខរបរ និង អាជីព</Text>}
             onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
           />
 
-          { this._renderInstruction() }
-          { this._renderGameHistory() }
+          <ScrollView style={{flex: 1}}>
+            <View style={{margin: 16}}>
+              { this._renderInstruction() }
+              { this._renderGameHistory() }
+            </View>
+          </ScrollView>
         </View>
       </ThemeProvider>
     );
@@ -186,16 +190,7 @@ export default class CareerCounsellor extends Component {
   }
 
   _goToPersonalUnderstandingForm() {
-    // if (!!this.state.game && !this.state.game.isDone) {
-    //   this.props.navigation.navigate('PersonalUnderstandingFormScreen');
-    //   return;
-    // }
-
     realm.write(() => {
-      // Todo: handle it again
-      let allGame = realm.objects('Game');
-      // realm.delete(allGame);
-
       this.state.user.games.push(this._buildData());
       this.props.navigation.navigate('PersonalUnderstandingFormScreen');
     });
@@ -203,19 +198,8 @@ export default class CareerCounsellor extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  wrapper: {
-    flex: 1
-  },
-  icon: {
-    width: 24,
-    height: 24,
-  },
   box: {
     backgroundColor: '#fff',
-    margin: 16,
     padding: 24
   },
   title: {

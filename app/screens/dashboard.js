@@ -47,54 +47,15 @@ export default class Dashboard extends Component {
     };
   }
 
-  _renderBtnCareer() {
+  _renderButton(options) {
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('CareerCounsellorScreen')}
+        onPress={() => this.props.navigation.navigate(options.url)}
         style={[styles.btnBox]}>
-        <View style={[styles.btnFab, {backgroundColor: '#3f51b5'}]}>
-          <AwesomeIcon name='briefcase' size={30} color='#fff' />
+        <View style={[styles.btnFab, {backgroundColor: options.icon_bg_color}]}>
+          <AwesomeIcon name={options.icon_name} size={30} color='#fff' />
         </View>
-        <Text style={styles.btnLabel}>វាយតម្លៃមុខរបរ និង អាជីព</Text>
-      </TouchableOpacity>
-    )
-  }
-
-  _renderBtnSchool() {
-    return (
-      <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('InstitutionStack')}
-        style={[styles.btnBox]}>
-        <View style={[styles.btnFab, {backgroundColor: '#009688'}]}>
-          <AwesomeIcon name='graduation-cap' size={30} color='#fff' />
-        </View>
-        <Text style={styles.btnLabel}>គ្រឹះស្ថានសិក្សា</Text>
-      </TouchableOpacity>
-    )
-  }
-
-  _renderBtnVideo() {
-    return (
-      <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('VideoScreen')}
-        style={[styles.btnBox]}>
-        <View style={[styles.btnFab, {backgroundColor: '#f44336'}]}>
-          <AwesomeIcon name='video-camera' size={30} color='#fff' />
-        </View>
-        <Text style={styles.btnLabel}>វីដេអូមុខរបរ</Text>
-      </TouchableOpacity>
-    )
-  }
-
-  _renderAbout() {
-    return (
-      <TouchableOpacity
-        onPress={() => this.props.navigation.navigate('About')}
-        style={[styles.btnBox]}>
-        <View style={[styles.btnFab, {backgroundColor: '#607d8b'}]}>
-          <AwesomeIcon name='list' size={30} color='#fff' />
-        </View>
-        <Text style={styles.btnLabel}>អំពីយើង</Text>
+        <Text style={styles.btnLabel}>{options.title}</Text>
       </TouchableOpacity>
     )
   }
@@ -158,7 +119,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <ThemeProvider uiTheme={uiTheme}>
-        <View style={styles.container}>
+        <View style={{flex: 1}}>
           <StatusBar />
 
           <ScrollView>
@@ -169,10 +130,10 @@ export default class Dashboard extends Component {
             />
 
             <View style={styles.scrollContainer}>
-              {this._renderBtnCareer()}
-              {this._renderBtnSchool()}
-              {this._renderBtnVideo()}
-              {this._renderAbout()}
+              { this._renderButton({ title: 'វាយតម្លៃមុខរបរ និង អាជីព', url: 'CareerCounsellorScreen', icon_bg_color: '#3f51b5', icon_name: 'briefcase' }) }
+              { this._renderButton({ title: 'គ្រឹះស្ថានសិក្សា', url: 'InstitutionStack', icon_bg_color: '#009688', icon_name: 'graduation-cap' }) }
+              { this._renderButton({ title: 'វីដេអូមុខរបរ', url: 'VideoScreen', icon_bg_color: '#f44336', icon_name: 'video-camera' }) }
+              { this._renderButton({ title: 'អំពីយើង', url: 'About', icon_bg_color: '#607d8b', icon_name: 'list' }) }
             </View>
           </ScrollView>
 
@@ -185,9 +146,6 @@ export default class Dashboard extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
   scrollContainer: {
     padding: 16
   },
@@ -197,7 +155,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 16,
     backgroundColor: '#fff',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    paddingRight: 16,
   },
   btnLabel: {
     fontFamily: 'KhmerOureang',
