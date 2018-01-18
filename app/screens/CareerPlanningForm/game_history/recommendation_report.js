@@ -60,17 +60,6 @@ export default class RecommendationReport extends Component {
     }
   }
 
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   _goNext() {
     this._handleSubmit();
   }
@@ -216,8 +205,6 @@ export default class RecommendationReport extends Component {
               { this._renderContent() }
             </View>
           </ScrollView>
-
-          { this._renderFooter() }
         </View>
       </ThemeProvider>
     );
