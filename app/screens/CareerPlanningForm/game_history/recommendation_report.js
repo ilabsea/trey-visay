@@ -109,8 +109,8 @@ export default class RecommendationReport extends Component {
   }
 
   _isStrongForAllSubject() {
-    let arr = this.state.currentGroup.concern_subject_codes.filter((code) => this.state.gameSubject[code] != 'ខ្លាំង')
-    return !!arr.length;
+    let arr = this.state.currentGroup.concern_subject_codes.filter((code) => this.state.gameSubject[code] == 'ខ្លាំង')
+    return arr.length == this.state.currentGroup.concern_subject_codes.length;
   }
 
   _renderSubject() {
@@ -166,7 +166,7 @@ export default class RecommendationReport extends Component {
         </View>
 
         <Text style={localStyle.paragraph}>
-          បុគ្គលិកលក្ខណៈឆ្លុះបញ្ចាំងពីអត្តចរិករបស់មនុស្ស ដូចគ្នានេះដែរការងារនិមួយៗក៏ត្រូវការមនុស្សដែលមានបុគ្គលិកលក្ខណៈអោយស៊ីនឹងវាផងដែរ ទើបយើងបំពេញការងារនោះបានប្រសើរ និងរីកចម្រើនចំពោះខ្លួនឯង ដូចនេះសូម អ្នកផ្ទៀងផ្ទាត់ពីបុគ្គលិកលក្ខណៈរបស់ប្អូន ថាតើវាសាកសមសម្រាប់អ្នកហើយឬនៅ។
+          បុគ្គលិកលក្ខណៈឆ្លុះបញ្ចាំងពីអត្តចរិករបស់មនុស្ស ដូចគ្នានេះដែរការងារនិមួយៗក៏ត្រូវការមនុស្សដែលមានបុគ្គលិកលក្ខណៈឲ្យស៊ីនឹងវាផងដែរ ទើបយើងបំពេញការងារនោះបានប្រសើរ និងរីកចម្រើនចំពោះខ្លួនឯង ដូចនេះសូម អ្នកផ្ទៀងផ្ទាត់ពីបុគ្គលិកលក្ខណៈរបស់ប្អូន ថាតើវាសាកសមសម្រាប់អ្នកហើយឬនៅ។
         </Text>
       </View>
     )

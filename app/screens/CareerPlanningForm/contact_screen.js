@@ -142,7 +142,7 @@ export default class ContactScreen extends Component {
 
     return (
       <View style={{marginTop: 20}}>
-        <Text>ព័ត៌មានសាលា និង ទំនាក់ទំនង</Text>
+        <Text>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
         { schools.map((school, i) => {
           { return(this._renderSchool(school, i)) }
         })}

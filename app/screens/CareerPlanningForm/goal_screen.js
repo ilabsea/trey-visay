@@ -184,7 +184,7 @@ export default class GoalScreen extends Component {
         </View>
 
         <View style={labelStyles.box}>
-          <Text style={labelStyles.subTitle}>តើអ្នកនឹងកំណត់គោលដៅបែបណាដើម្បីក្លាយជា{this.state.game.goalCareer}? មូលហេតុអ្វី?</Text>
+          <Text style={labelStyles.subTitle}>តើអ្នកនឹងប្រកបមុខរបរអ្វីនាពេលអនាគត? មូលហេតុអ្វី?</Text>
 
           <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
             <TextInput
