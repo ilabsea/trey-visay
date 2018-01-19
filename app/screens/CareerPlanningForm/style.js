@@ -26,5 +26,5 @@ export default StyleSheet.create({
     paddingHorizontal: 5,
     backgroundColor: '#4caf50',
     color: '#fff'
-  }
+  },
 });

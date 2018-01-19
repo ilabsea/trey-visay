@@ -102,7 +102,7 @@ export default class GameHistoryScreen extends Component {
 
     return (
       <View style={{marginTop: 20}}>
-        <Text>ពត៌មានសាលា និង ទំនាក់ទំនង</Text>
+        <Text style={headerStyles.body2}>ព័ត៌មានសាលា និង ទំនាក់ទំនង</Text>
         { schools.map((school, i) => {
           { return(this._renderSchool(school, i)) }
         })}
@@ -203,7 +203,7 @@ export default class GameHistoryScreen extends Component {
   _renderGoal() {
     return (
       <View>
-        <Text>ការដាក់គោលដៅ និងមូលហេតុ</Text>
+        <Text style={headerStyles.body2}>ការដាក់គោលដៅ និងមូលហេតុ</Text>
 
         <View style={styles.box}>
           <Text style={styles.subTitle}>{this.state.game.goalCareer}</Text>
@@ -232,7 +232,7 @@ export default class GameHistoryScreen extends Component {
   _renderTest1Trigger() {
     return (
       <View style={{marginBottom: 16}}>
-        <Text>ធ្វើតេស្តដំណាក់កាលទី 1</Text>
+        <Text style={headerStyles.body2}>ធ្វើតេស្តដំណាក់កាលទី 1</Text>
 
         { this._renderButton('ស្វែងយល់អំពីខ្លួនឯង', 'PersonalUnderstandingReport') }
       </View>
@@ -242,7 +242,7 @@ export default class GameHistoryScreen extends Component {
   _renderTest2Trigger() {
     return (
       <View style={{marginBottom: 16}}>
-        <Text>ធ្វើតេស្តដំណាក់កាលទី 2</Text>
+        <Text style={headerStyles.body2}>ធ្វើតេស្តដំណាក់កាលទី 2</Text>
 
         { this._renderButton('ការបំពេញមុខវិជ្ជា', 'SubjectReport') }
         { this._renderButton('ការបំពេញបុគ្គលិកលក្ខណៈ', 'StudentPersonalityReport') }

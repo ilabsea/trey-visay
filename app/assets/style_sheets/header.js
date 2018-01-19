@@ -21,5 +21,9 @@ export default StyleSheet.create({
   actionWrapper: {
     flexDirection: 'row',
     alignItems: 'center'
+  },
+  body2: {
+    fontFamily: 'KantumruyBold',
+    fontSize: 14
   }
 })

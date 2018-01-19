@@ -129,7 +129,7 @@ export default class CareerCounsellor extends Component {
                 <Image source={require('../../assets/images/checklist.png')} style={{width: 60, height: 60, marginRight: 16}} />
                 <View style={{flex: 1}}>
                   <Text style={shareStyles.subTitle}>តេស្តលើកទី {count - i}</Text>
-                  <Text>ធ្វើនៅ: {this._getFullDate(game.createdAt)}</Text>
+                  <Text style={styles.text}>ធ្វើនៅ: {this._getFullDate(game.createdAt)}</Text>
                 </View>
               </View>
 
