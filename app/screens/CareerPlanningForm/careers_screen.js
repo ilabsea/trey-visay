@@ -112,7 +112,7 @@ export default class CareersScreen extends Component {
   _renderContent() {
     return (
       <View style={[styles.box, {padding: 0}]}>
-        { careerList.map((career, i) => {
+        { careerList.slice(0, 3).map((career, i) => {
           { return (this._renderCareer(career, i))}
         })}
       </View>
