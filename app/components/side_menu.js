@@ -21,7 +21,7 @@ import headerStyles from '../assets/style_sheets/header';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-class SideMenu extends Component {
+export default class SideMenu extends Component {
   state = {user: '', photo: '', cover: '', isOpen: true}
 
   componentWillMount() {
@@ -36,13 +36,11 @@ class SideMenu extends Component {
       cover = {uri: user.cover};
     }
 
-    this.setState({user: user});
-    this.setState({photo: photo});
-    this.setState({cover: cover});
+    this.setState({user: user, photo: photo, cover: cover});
   }
 
   toggleScreen() {
-    this.setState({isOpen: !this.state.isOpen})
+    this.setState({isOpen: !this.state.isOpen});
   }
 
   isActive(routeName) {
@@ -84,6 +82,17 @@ class SideMenu extends Component {
     this.props.screenProps.rootNavigation.dispatch({type: 'Navigation/RESET', routeName: 'Home', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]})
   }
 
+  _renderMenuItem(options={}) {
+    return (
+      <TouchableOpacity onPress={() => this.navigateToScreen(options.screenName)} style={this.isActive}>
+        <View style={this.getWrapperStyle(options.screenName)}>
+          <AwesomeIcon name={ options.iconName } size={ options.iconSize || 16 } style={this.getIconStyle(options.screenName)} />
+          <Text style={this.getMenuTextStyle(options.screenName)}>{options.title}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  }
+
   render() {
     return (
       <ScrollView>
@@ -109,64 +118,21 @@ class SideMenu extends Component {
           </View>
         </TouchableNativeFeedback>
 
-        {
-          this.state.isOpen &&
+        { this.state.isOpen &&
           <View>
-            <TouchableOpacity onPress={() => this.navigateToScreen('Dashboard')} style={this.isActive}>
-              <View style={this.getWrapperStyle('Dashboard')}>
-                <AwesomeIcon name='home' size={18} style={this.getIconStyle('Dashboard')} />
-                <Text style={this.getMenuTextStyle('Dashboard')}>ទំព័រដើម</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => this.navigateToScreen('CareerCounsellorScreen')}>
-              <View style={this.getWrapperStyle('CareerCounsellorScreen')}>
-                <AwesomeIcon name='briefcase' size={16} style={this.getIconStyle('CareerCounsellorScreen')} />
-                <Text style={this.getMenuTextStyle('CareerCounsellorScreen')}>វាយតម្លៃមុខរបរ និង អាជីព</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => this.navigateToScreen('InstitutionStack')}>
-              <View style={this.getWrapperStyle('InstitutionStack')}>
-                <AwesomeIcon name='graduation-cap' size={16} style={this.getIconStyle('InstitutionStack')} />
-                <Text style={this.getMenuTextStyle('InstitutionStack')}>គ្រឹះស្ថានសិក្សា</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => this.navigateToScreen('VideoScreen')}>
-              <View style={this.getWrapperStyle('VideoScreen')}>
-                <AwesomeIcon name='play-circle-o' size={16} style={this.getIconStyle('VideoScreen')} />
-                <Text style={this.getMenuTextStyle('VideoScreen')}>វីដេអូមុខរបរ</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => this.navigateToScreen('About')}>
-              <View style={this.getWrapperStyle('About')}>
-                <AwesomeIcon name='list' size={16} style={this.getIconStyle('About')} />
-                <Text style={this.getMenuTextStyle('About')}>អំពីកម្មវិធី</Text>
-              </View>
-            </TouchableOpacity>
+            { this._renderMenuItem({title: 'ទំព័រដើម', screenName: 'Dashboard', iconName: 'home', iconSize: 18}) }
+            { this._renderMenuItem({title: 'វាយតម្លៃមុខរបរ និង អាជីព', screenName: 'CareerCounsellorScreen', iconName: 'briefcase'}) }
+            { this._renderMenuItem({title: 'គ្រឹះស្ថានសិក្សា', screenName: 'InstitutionStack', iconName: 'graduation-cap'}) }
+            { this._renderMenuItem({title: 'វីដេអូមុខរបរ', screenName: 'VideoScreen', iconName: 'play-circle-o'}) }
+            { this._renderMenuItem({title: 'ជំនាញវិជ្ជាជីវៈ', screenName: 'VocationalJobScreen', iconName: 'play-circle-o'}) }
+            { this._renderMenuItem({title: 'អំពីកម្មវិធី', screenName: 'About', iconName: 'list'}) }
           </View>
         }
 
-        {
-          !this.state.isOpen &&
+        { !this.state.isOpen &&
           <View>
-            <TouchableOpacity onPress={() => this.navigateToScreen('ProfileStack')}>
-              <View style={this.getWrapperStyle('ProfileStack')}>
-
-                <AwesomeIcon name='user' size={18} style={this.getIconStyle('ProfileStack')} />
-                <Text style={this.getMenuTextStyle('ProfileStack')}>ប្រវត្តិរូបសង្ខេប</Text>
-
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity onPress={() => this.navigateToScreen('ChangePasswordScreen')}>
-              <View style={styles.row}>
-                <AwesomeIcon name='key' size={18} style={this.getIconStyle('ChangePasswordScreen')} />
-                <Text style={this.getMenuTextStyle('ChangePasswordScreen')}>ប្តូរលេខសម្ងាត់</Text>
-              </View>
-            </TouchableOpacity>
+            { this._renderMenuItem({title: 'ប្រវត្តិរូបសង្ខេប', screenName: 'ProfileStack', iconName: 'user', iconSize: 18}) }
+            { this._renderMenuItem({title: 'ប្តូរលេខសម្ងាត់', screenName: 'ChangePasswordScreen', iconName: 'key', iconSize: 18}) }
 
             <TouchableOpacity onPress={this.logout.bind(this)}>
               <View style={styles.row}>
@@ -180,8 +146,6 @@ class SideMenu extends Component {
     )
   }
 };
-
-export default SideMenu;
 
 const styles = StyleSheet.create({
   name: {

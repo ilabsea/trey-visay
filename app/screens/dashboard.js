@@ -73,7 +73,7 @@ export default class Dashboard extends Component {
 
             <Text style={styles.paragraph}>
               ត្រីវិស័យ គឺជាកម្មវិធីប្រឹក្សាតាមប្រព័ន្ធអេឡិចត្រូនិចដែលតម្រង់ទិសសិស្សានុសិស្ស
-              ជ្រើសរើសជំនាញដោយផ្អែកលើ គុណតម្លៃ និងបគ្គលិកលក្ខណៈរបស់ខ្លួន។
+              ជ្រើសរើសជំនាញដោយផ្អែកលើ មុខវិជ្ជាដែលខ្លួនពូកែ និងបគ្គលិកលក្ខណៈរបស់ខ្លួន។
               សិស្សានុសិស្សអាចមើលពត៌មានអំពីសាលា និងលេខទំនាក់ទំនងរបស់សាលា
               នីមួយៗបានយ៉ាងងាយស្រួល។
             </Text>
@@ -133,7 +133,7 @@ export default class Dashboard extends Component {
               { this._renderButton({ title: 'វាយតម្លៃមុខរបរ និង អាជីព', url: 'CareerCounsellorScreen', icon_bg_color: '#3f51b5', icon_name: 'briefcase' }) }
               { this._renderButton({ title: 'គ្រឹះស្ថានសិក្សា', url: 'InstitutionStack', icon_bg_color: '#009688', icon_name: 'graduation-cap' }) }
               { this._renderButton({ title: 'វីដេអូមុខរបរ', url: 'VideoScreen', icon_bg_color: '#f44336', icon_name: 'video-camera' }) }
-              { this._renderButton({ title: 'អំពីយើង', url: 'About', icon_bg_color: '#607d8b', icon_name: 'list' }) }
+              { this._renderButton({ title: 'ជំនាញវិជ្ជាជីវៈ', url: 'VocationalJobScreen', icon_bg_color: '#1aaf5d', icon_name: 'list' }) }
             </View>
           </ScrollView>
 

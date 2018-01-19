@@ -10,6 +10,7 @@ import Dashboard from './dashboard';
 import About from './about';
 import Profile from './profile';
 import SideMenu from '../components/side_menu';
+import VocationalJobScreen from './vocational_job_screen';
 
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 
@@ -87,6 +88,7 @@ const HomeScreen = DrawerNavigator(
     },
     InstitutionStack: { screen: ({ navigation }) => <InstitutionStack screenProps={{ drawerNavigation: navigation }} /> },
     VideoScreen: { screen: VideoScreen },
+    VocationalJobScreen: { screen: VocationalJobScreen },
     ChangePasswordScreen: { screen: ChangePasswordScreen },
   },
   {
