@@ -48,11 +48,7 @@ export default class Dashboard extends Component {
     };
   }
 
-  _renderTourtip(isVisited) {
-    if (isVisited) {
-      return (null);
-    }
-
+  _renderTourtip() {
     return (
       <View style={styles.overlay}>
         <ScrollView style={{flex: 1}}>
@@ -130,13 +126,23 @@ export default class Dashboard extends Component {
         <View style={{flex: 1}}>
           <StatusBar />
 
-          <Toolbar
-            leftElement="menu"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
-            onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-          />
+          { !this.state.showTourTip &&
+            <Toolbar
+              leftElement="menu"
+              centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
+              onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+            />
+          }
 
           <ScrollView>
+            { this.state.showTourTip &&
+              <Toolbar
+                leftElement="menu"
+                centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
+                onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+              />
+            }
+
             <View style={styles.scrollContainer}>
               <View style={{flexDirection: 'row'}}>
                 { this._renderButton({ title: 'វាយតម្លៃមុខរបរ', url: 'CareerCounsellorScreen', icon_bg_color: '#3f51b5', icon_name: 'briefcase', description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក។' }) }

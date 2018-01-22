@@ -9,7 +9,7 @@ export default class BackConfirmDialog extends Component {
   render() {
     return (
       <ConfirmDialog
-        title="ការអះអាង"
+        title="រក្សាទុកតេស្ត"
         message="តើអ្នកចង់រក្សាទុកតេស្តរបស់អ្នកដែរឬទេ?"
         visible={this.props.visible}
         onTouchOutside={this.props.onTouchOutside}
