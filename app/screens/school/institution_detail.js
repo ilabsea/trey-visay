@@ -13,12 +13,12 @@ import {
 } from 'react-native-material-ui';
 
 // Components
-import ScrollableHeader from '../components/scrollable_header';
-import shareStyles from '../assets/style_sheets/profile_form';
+import ScrollableHeader from '../../components/scrollable_header';
+import shareStyles from '../../assets/style_sheets/profile_form';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import schoolList from '../data/json/schools';
-import Images from '../assets/images';
+import schoolList from '../../data/json/schools';
+import Images from '../../assets/images';
 
 const PROFILE_SIZE = 120;
 
@@ -110,7 +110,7 @@ export default class InstitutionDetail extends Component {
   }
 
   _renderScrollViewContent() {
-    let photo = require('../assets/images/schools/default.png');
+    let photo = require('../../assets/images/schools/default.png');
 
     if (!!this.state.school.logoName) {
       photo = Images[this.state.school.logoName];
@@ -147,11 +147,11 @@ export default class InstitutionDetail extends Component {
   }
 
   render() {
-    let photo = require('../assets/images/schools/default.png');
+    let photo = require('../../assets/images/schools/default.png');
     if (!!this.state.school.logoName) {
       photo = Images[this.state.school.logoName];
     }
-    let cover = require('../assets/images/header_bg.jpg');
+    let cover = require('../../assets/images/header_bg.jpg');
 
     return (
       <ThemeProvider uiTheme={{}}>

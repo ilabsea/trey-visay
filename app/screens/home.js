@@ -37,10 +37,10 @@ import EditProfilePhoto from './edit_profile_photo';
 import EditPersonalInfo from './edit_personal_info';
 import EditFamilyInfo from './edit_family_info';
 import EditFamilySituation from './edit_family_situation';
-import InstitutionDetail from './institution_detail';
+import InstitutionDetail from './school/institution_detail';
 import VideoScreen from './video_screen';
 import ChangePasswordScreen from './change_password_screen';
-import InstitutionStack from './institution_stack';
+import InstitutionStack from './school/institution_stack';
 
 const careerCounsellorStack = StackNavigator(
   {

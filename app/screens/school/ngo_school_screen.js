@@ -17,15 +17,15 @@ import {
   Toolbar,
 } from 'react-native-material-ui';
 
-import API from '../api/schools';
-import LoadingIndicator from '../components/loading_indicator';
+import API from '../../api/schools';
+import LoadingIndicator from '../../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import headerStyles from '../assets/style_sheets/header';
-import shareStyles from '../assets/style_sheets/profile_form';
-import StatusBar from '../components/status_bar';
+import headerStyles from '../../assets/style_sheets/header';
+import shareStyles from '../../assets/style_sheets/profile_form';
+import StatusBar from '../../components/status_bar';
 
-import schoolList from '../data/json/schools';
-import Images from '../assets/images';
+import schoolList from '../../data/json/schools';
+import Images from '../../assets/images';
 
 const uiTheme = {
   palette: {
@@ -37,7 +37,7 @@ export default class NgoSchoolScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     return {
       header:
-        <ThemeProvider uiTheme={{}}>
+        <ThemeProvider uiTheme={uiTheme}>
           <Toolbar
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>គ្រឹះស្ថានសិក្សា</Text>}
@@ -132,7 +132,7 @@ export default class NgoSchoolScreen extends Component {
       return <LoadingIndicator loading={ school.loading } />
     }
 
-    let logo = require('../assets/images/schools/default.png');
+    let logo = require('../../assets/images/schools/default.png');
     if (!!school.logoName) {
       logo = Images[school.logoName];
     }
