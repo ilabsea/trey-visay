@@ -4,8 +4,6 @@ import {
   View,
   ScrollView,
   TextInput,
-  StyleSheet,
-  Button,
   Picker,
   TouchableOpacity,
   TouchableHighlight,
@@ -64,18 +62,6 @@ export default class ProfileForm extends Component {
     }
   };
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      user: '',
-      errors: {},
-      collapsed0: false,
-      collapsed1: true,
-      collapsed2: true,
-      confirmDialogVisible: false,
-    }
-  }
-
   componentWillMount() {
     this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
 
@@ -83,7 +69,14 @@ export default class ProfileForm extends Component {
     user = Object.assign({}, user, {sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9',
                                     schoolName: 'សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ',
                                     houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន'})
-    this.setState({user: user});
+    this.state = {
+      user: user,
+      errors: {},
+      collapsed0: false,
+      collapsed1: true,
+      collapsed2: true,
+      confirmDialogVisible: false,
+    }
   }
 
   _renderContent() {
@@ -228,32 +221,25 @@ export default class ProfileForm extends Component {
   }
 
   _renderPersonalInfo() {
+    let schoolNames = SCHOOL_NAMES.map((name) => { return {label: name, value: name}});
+    let grades = [
+      { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
+      { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
+      { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
+
     return (
       <View>
-        <InputTextContainer
-          onChangeText={((text) => this._setUserState('fullName', text)).bind(this)}
-          label='ឈ្មោះពេញ'
-          value={this.state.user.fullName}
-          errors={this.state.errors.fullName} />
+        { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>ឈ្មោះគណនី</Text>
           <TextInput
             style={styles.inputText}
-            value={this.state.user.username}
+            value={ this.state.user.username }
             editable={false} />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>ភេទ</Text>
-          <Picker
-            selectedValue={this.state.user.sex}
-            onValueChange={(itemValue, itemIndex) => this._setUserState('sex', itemValue)}>
-            <Picker.Item label="ស្រី" value="ស្រី" />
-            <Picker.Item label="ប្រុស" value="ប្រុស" />
-            <Picker.Item label="ផ្សេងៗ" value="ផ្សេងៗ" />
-          </Picker>
-        </View>
+        { this._renderPicker({label: 'ភេទ', stateName: 'sex', options: [{label: 'ស្រី', value: 'ស្រី'}, {label: 'ប្រុស', value: 'ប្រុស'}, {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ'}]}) }
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
@@ -268,51 +254,11 @@ export default class ProfileForm extends Component {
           <Text style={styles.errorText}>{this.state.errors.dateOfBirth}</Text>
         </View>
 
-        <InputTextContainer
-          onChangeText={((text) => this._setUserState('nationality', text)).bind(this)}
-          label='សញ្ជាតិ'
-          value={this.state.user.nationality}
-          onSubmitEditing={() => this.phoneNumberInput.focus()}
-          errors={this.state.errors.nationality} />
-
-        <InputTextContainer
-          onChangeText={((text) => this._setUserState('phoneNumber', text)).bind(this)}
-          label='លេខទូរស័ព្ទ'
-          value={this.state.user.phoneNumber}
-          inputRef={(input) => this.phoneNumberInput = input}
-          onSubmitEditing={() => this.addressInput.focus()}
-          keyboardType='phone-pad' />
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>រៀនថ្នាក់ទី</Text>
-          <Picker
-            selectedValue={this.state.user.grade}
-            onValueChange={(itemValue, itemIndex) => this._setUserState('grade', itemValue)}>
-            <Picker.Item label="ថ្នាក់ទី9" value="9" />
-            <Picker.Item label="ថ្នាក់ទី10" value="10" />
-            <Picker.Item label="ថ្នាក់ទី11" value="11" />
-            <Picker.Item label="ថ្នាក់ទី12" value="12" />
-            <Picker.Item label="ផ្សេងៗ" value="ផ្សេងៗ" />
-          </Picker>
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>រៀននៅសាលា</Text>
-          <Picker
-            selectedValue={this.state.user.schoolName}
-            onValueChange={(itemValue, itemIndex) => this._setUserState('schoolName', itemValue)}>
-            { SCHOOL_NAMES.map((name, i) => (
-              <Picker.Item key={i} label={name} value={name} />
-            ))}
-          </Picker>
-
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('address', text)).bind(this)}
-            label='អាស័យដ្ឋានបច្ចុប្បន្ន'
-            value={this.state.user.address}
-            inputRef={(input) => this.addressInput = input}
-            errors={this.state.errors.address} />
-        </View>
+        { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
+        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'addressInput', keyboardType: 'phone-pad'}) }
+        { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
+        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'schoolName', options: schoolNames})}
+        { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន', nextFocusInput: 'fatherNameInput'}) }
       </View>
     )
   }
@@ -321,167 +267,91 @@ export default class ProfileForm extends Component {
     return (
       <View>
         <View style={{flexDirection: 'row'}}>
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('fatherName', text)).bind(this)}
-            label='ឈ្មោះឪពុក'
-            value={this.state.user.fatherName}
-            errors={this.state.errors.fatherName}
-            onSubmitEditing={() => this.fatherOccupationInput.focus()}
-            returnKeyType='next'
-            style={{flex: 1}}/>
-
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('fatherOccupation', text)).bind(this)}
-            label='មុខរបរ'
-            value={this.state.user.fatherOccupation}
-            errors={this.state.errors.fatherOccupation}
-            inputRef={(input) => this.fatherOccupationInput = input}
-            onSubmitEditing={() => this.motherNameInput.focus()}
-            returnKeyType='next'
-            style={{flex: 1}}/>
+          { this._renderInputTextContainer({stateName: 'fatherName', label: 'ឈ្មោះឪពុក', nextFocusInput: 'fatherOccupationInput', style: {flex: 1}}) }
+          { this._renderInputTextContainer({stateName: 'fatherOccupation', label: 'មុខរបរ', nextFocusInput: 'motherNameInput', style: {flex: 1}}) }
         </View>
 
         <View style={{flexDirection: 'row'}}>
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('motherName', text)).bind(this)}
-            label='ម្តាយឈ្មោះ'
-            value={this.state.user.motherName}
-            errors={this.state.errors.motherName}
-            inputRef={(input) => this.motherNameInput = input}
-            onSubmitEditing={() => this.motherOccupationInput.focus()}
-            returnKeyType='next'
-            style={{flex: 1}}/>
-
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('motherOccupation', text)).bind(this)}
-            label='មុខរបរ'
-            value={this.state.user.motherOccupation}
-            errors={this.state.errors.motherOccupation}
-            inputRef={(input) => this.motherOccupationInput = input}
-            onSubmitEditing={() => this.guidanceInput.focus()}
-            returnKeyType='next'
-            style={{flex: 1}}/>
+          { this._renderInputTextContainer({stateName: 'motherName', label: 'ម្តាយឈ្មោះ', nextFocusInput: 'motherOccupationInput', style: {flex: 1}}) }
+          { this._renderInputTextContainer({stateName: 'motherOccupation', label: 'មុខរបរ', nextFocusInput: 'guidanceInput', style: {flex: 1}}) }
         </View>
 
-        <InputTextContainer
-          onChangeText={((text) => this._setUserState('guidance', text)).bind(this)}
-          label='អាណាព្យាបាល'
-          value={this.state.user.guidance}
-          inputRef={(input) => this.guidanceInput = input}
-          onSubmitEditing={() => this.parentContactNumberInput.focus()}
-          returnKeyType='next'
-          errors={this.state.errors.guidance}/>
-
-        <InputTextContainer
-          onChangeText={((text) => this._setUserState('parentContactNumber', text)).bind(this)}
-          label='លេខទូរស័ព្ទឪពុកម្តាយ'
-          value={this.state.user.parentContactNumber}
-          inputRef={(input) => this.parentContactNumberInput = input}
-          onSubmitEditing={() => this.numberOfFamilyMemberInput.focus()}
-          returnKeyType='next'
-          keyboardType='phone-pad'/>
+        { this._renderInputTextContainer({stateName: 'guidance', label: 'អាណាព្យាបាល', nextFocusInput: 'parentContactNumberInput'}) }
+        { this._renderInputTextContainer({stateName: 'parentContactNumber', label: 'លេខទូរស័ព្ទឪពុកម្តាយ', nextFocusInput: 'numberOfFamilyMemberInput', keyboardType: 'phone-pad'}) }
 
         <View style={{flexDirection: 'row'}}>
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('numberOfFamilyMember', text)).bind(this)}
-            label='ចំនួនសមាជិកគ្រួសារ'
-            value={this.state.user.numberOfFamilyMember}
-            errors={this.state.errors.numberOfFamilyMember}
-            keyboardType='numeric'
-            inputRef={(input) => this.numberOfFamilyMemberInput = input}
-            onSubmitEditing={() => this.numberOfSistersInput.focus()}
-            returnKeyType='next'
-            style={{flex: 1}}/>
-
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('numberOfSisters', text)).bind(this)}
-            label='ចំនួនបងប្អូនស្រី'
-            value={this.state.user.numberOfSisters}
-            errors={this.state.errors.numberOfSisters}
-            keyboardType='numeric'
-            inputRef={(input) => this.numberOfSistersInput = input}
-            onSubmitEditing={() => this.numberOfBrothersInput.focus()}
-            returnKeyType='next'
-            style={{flex: 1}}/>
-
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('numberOfBrothers', text)).bind(this)}
-            label='ចំនួនបងប្អូនប្រុស'
-            value={this.state.user.numberOfBrothers}
-            errors={this.state.errors.numberOfBrothers}
-            keyboardType='numeric'
-            inputRef={(input) => this.numberOfBrothersInput = input}
-            returnKeyType='next'
-            style={{flex: 1}}/>
+          { this._renderInputTextContainer({stateName: 'numberOfFamilyMember', label: 'ចំនួនសមាជិកគ្រួសារ', nextFocusInput: 'numberOfSistersInput', keyboardType: 'numeric', style: {flex: 1}}) }
+          { this._renderInputTextContainer({stateName: 'numberOfSisters', label: 'ចំនួនបងប្អូនស្រី', nextFocusInput: 'numberOfBrothersInput', keyboardType: 'numeric', style: {flex: 1}}) }
+          { this._renderInputTextContainer({stateName: 'numberOfBrothers', label: 'ចំនួនបងប្អូនប្រុស', keyboardType: 'numeric', style: {flex: 1}}) }
         </View>
       </View>
     )
   }
 
   _renderFamilySituation() {
+    let houseTypes = [
+      { label: 'ផ្ទះឈើ', value: 'ផ្ទះឈើ' },
+      { label: 'ផ្ទះឈើលើថ្មក្រោម', value: 'ផ្ទះឈើលើថ្មក្រោម' },
+      { label: 'ផ្ទះថ្ម', value: 'ផ្ទះថ្ម' },
+      { label: 'ផ្ទះស័ង្កសី', value: 'ផ្ទះស័ង្កសី' },
+      { label: 'ផ្ទះស្លឹក', value: 'ផ្ទះស្លឹក' },
+    ];
+
+    let collectiveIncomes = [
+      { label: 'ក្រោម 25ម៉ឺន', value: '0-25ម៉ឺន' }, { label: 'ចន្លោះ 25ម៉ឺន-50ម៉ឺន', value: '25ម៉ឺន-50ម៉ឺន' },
+      { label: 'ចន្លោះ 50ម៉ឺន-75ម៉ឺន', value: '50ម៉ឺន-75ម៉ឺន' }, { label: 'ចន្លោះ 75ម៉ឺន-1លាន', value: '75ម៉ឺន-1លាន' },
+      { label: 'លើស1លាន', value: 'លើស1លាន' }];
+
     return (
       <View>
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}
-          onPress={((text) => this._setUserState('isDivorce', text)).bind(this)}
-          value={this.state.user.isDivorce}
-          label='តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?' />
+        { this._renderRadioGroup({stateName: 'isDivorce', label: 'តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?', options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
+        { this._renderRadioGroup({stateName: 'isDisable', label: 'តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: 'តើក្នុងគ្រួសាររបស់សិស្សមានការប្រើប្រាស់នូវអពើហិង្សាដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isSmoking', label: 'តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានជក់បារីដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isAlcoholic', label: 'តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនសុរាទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isDrug', label: 'តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនគ្រឿងញៀនដែរឬទេ?'}) }
+        { this._renderPicker({label: 'តើប្អូនមានប្រភេទផ្ទះបែបណា?', stateName: 'houseType', options: houseTypes}) }
+        { this._renderPicker({label: 'តើគ្រួសារប្អូនមានចំណូលប្រចាំខប្រហែលែប៉ុន្មាន?', stateName: 'collectiveIncome', options: collectiveIncomes}) }
+      </View>
+    )
+  }
 
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this._setUserState('isDisable', text)).bind(this)}
-          value={this.state.user.isDisable}
-          label='តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?' />
+  _renderInputTextContainer(params={}) {
+    return (
+      <InputTextContainer
+        onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
+        label={params.label}
+        value={this.state.user[params.stateName]}
+        errors={this.state.errors[params.stateName]}
+        keyboardType={params.keyboardType || 'default' }
+        inputRef={(input) => this[params.stateName + 'Input'] = input}
+        onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
+        returnKeyType='next'
+        style={ params.style || {} }/>
+    )
+  }
 
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this._setUserState('isDomesticViolence', text)).bind(this)}
-          value={this.state.user.isDomesticViolence}
-          label='តើក្នុងគ្រួសាររបស់សិស្សមានការប្រើប្រាស់នូវអពើហិង្សាដែរឬទេ?' />
+  _renderRadioGroup(params = {}) {
+    return (
+      <RadioGroupContainer
+        options={ params.options || [{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
+        onPress={((text) => this._setUserState(params.stateName, text)).bind(this)}
+        value={this.state.user[params.stateName]}
+        label={params.label} />
+    )
+  }
 
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this._setUserState('isSmoking', text)).bind(this)}
-          value={this.state.user.isSmoking}
-          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានជក់បារីដែរឬទេ?' />
-
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this._setUserState('isAlcoholic', text)).bind(this)}
-          value={this.state.user.isAlcoholic}
-          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនសុរាទេ?' />
-
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this._setUserState('isDrug', text)).bind(this)}
-          value={this.state.user.isDrug}
-          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនគ្រឿងញៀនដែរឬទេ?' />
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>តើប្អូនមានប្រភេទផ្ទះបែបណា?</Text>
-          <Picker
-            selectedValue={this.state.user.houseType}
-            onValueChange={(itemValue, itemIndex) => this._setUserState('houseType', itemValue)}>
-            <Picker.Item label="ផ្ទះឈើ" value="ផ្ទះឈើ" />
-            <Picker.Item label="ផ្ទះឈើលើថ្មក្រោម" value="ផ្ទះឈើលើថ្មក្រោម" />
-            <Picker.Item label="ផ្ទះថ្ម" value="ផ្ទះថ្ម" />
-            <Picker.Item label="ផ្ទះស័ង្កសី" value="ផ្ទះស័ង្កសី" />
-            <Picker.Item label="ផ្ទះស្លឹក" value="ផ្ទះស្លឹក" />
-          </Picker>
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>តើគ្រួសារប្អូនមានចំណូលប្រចាំខប្រហែលែប៉ុន្មាន? (គិតជារៀល)</Text>
-          <Picker
-            selectedValue={this.state.user.collectiveIncome}
-            onValueChange={(itemValue, itemIndex) => this._setUserState('collectiveIncome', itemValue)}>
-            <Picker.Item label="ក្រោម 25ម៉ឺន" value="0-25ម៉ឺន" />
-            <Picker.Item label="ចន្លោះ 25ម៉ឺន-50ម៉ឺន" value="25ម៉ឺន-50ម៉ឺន" />
-            <Picker.Item label="ចន្លោះ 50ម៉ឺន-75ម៉ឺន" value="50ម៉ឺន-75ម៉ឺន" />
-            <Picker.Item label="ចន្លោះ 75ម៉ឺន-1លាន" value="75ម៉ឺន-1លាន" />
-            <Picker.Item label="លើស1លាន" value="លើស1លាន" />
-          </Picker>
-        </View>
+  _renderPicker(params={}) {
+    return (
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputLabel}>{params.label}</Text>
+        <Picker
+          selectedValue={this.state.user[params.stateName]}
+          onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
+          { params.options.map((obj, i) => {
+            { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
+          }) }
+        </Picker>
       </View>
     )
   }
