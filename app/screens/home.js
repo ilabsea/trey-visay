@@ -9,7 +9,10 @@ import {
 import Dashboard from './dashboard';
 import About from './about';
 import Profile from './profile/profile';
+import VideoScreen from './video_screen';
+import ChangePasswordScreen from './change_password_screen';
 import SideMenu from '../components/side_menu';
+
 import VocationalJobIndexScreen from './vocational_job/index_screen';
 import VocationalJobShowScreen from './vocational_job/show_screen';
 
@@ -37,9 +40,8 @@ import EditProfilePhoto from './profile/edit_profile_photo';
 import EditPersonalInfo from './profile/edit_personal_info';
 import EditFamilyInfo from './profile/edit_family_info';
 import EditFamilySituation from './profile/edit_family_situation';
+
 import InstitutionDetail from './school/institution_detail';
-import VideoScreen from './video_screen';
-import ChangePasswordScreen from './change_password_screen';
 import InstitutionStack from './school/institution_stack';
 
 const careerCounsellorStack = StackNavigator(
