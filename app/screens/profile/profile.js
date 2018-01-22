@@ -14,11 +14,11 @@ import {
 } from 'react-native-material-ui';
 
 // Utils
-import realm from '../schema';
-import User from '../utils/user';
+import realm from '../../schema';
+import User from '../../utils/user';
 
 // Components
-import ScrollableHeader from '../components/scrollable_header';
+import ScrollableHeader from '../../components/scrollable_header';
 
 const PROFILE_SIZE = 120;
 
@@ -48,7 +48,7 @@ export default class Profile extends Component {
   }
 
   _renderScrollViewContent() {
-    let photo = require('../assets/images/default_profile.png');
+    let photo = require('../../assets/images/default_profile.png');
 
     if (!!this.state.user.photo) {
       photo = {uri: this.state.user.photo};
@@ -224,8 +224,8 @@ export default class Profile extends Component {
   }
 
   render() {
-    let photo = require('../assets/images/default_profile.png');
-    let cover = require('../assets/images/header_bg.jpg');
+    let photo = require('../../assets/images/default_profile.png');
+    let cover = require('../../assets/images/header_bg.jpg');
 
     if (!!this.state.user.photo) {
       photo = {uri: this.state.user.photo};

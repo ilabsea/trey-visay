@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import { StackNavigator } from 'react-navigation';
 
 // Screens
-import ProfileForm from './app/screens/profile_form';
+import ProfileForm from './app/screens/profile/profile_form';
 import HomeNavigator from './app/screens/home';
 import Login from './app/screens/login';
 import Register from './app/screens/register';

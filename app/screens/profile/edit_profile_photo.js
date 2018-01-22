@@ -21,10 +21,10 @@ import { Dialog } from 'react-native-simple-dialogs';
 import ImagePicker from 'react-native-image-crop-picker';
 
 // Utils
-import realm from '../schema';
-import User from '../utils/user';
-import styles from '../assets/style_sheets/profile_form';
-import headerStyles from '../assets/style_sheets/header';
+import realm from '../../schema';
+import User from '../../utils/user';
+import styles from '../../assets/style_sheets/profile_form';
+import headerStyles from '../../assets/style_sheets/header';
 
 export default class EditProfilePhoto extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -134,8 +134,8 @@ export default class EditProfilePhoto extends Component {
   }
 
   render() {
-    let photo = require('../assets/images/default_profile.png');
-    let cover = require('../assets/images/header_bg.jpg');
+    let photo = require('../../assets/images/default_profile.png');
+    let cover = require('../../assets/images/header_bg.jpg');
 
     if (!!this.state.user.photo) {
       photo = {uri: this.state.user.photo};

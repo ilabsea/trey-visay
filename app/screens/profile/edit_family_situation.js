@@ -14,12 +14,12 @@ import {
 } from 'react-native-material-ui';
 
 // Utils
-import realm from '../schema';
-import User from '../utils/user';
-import styles from '../assets/style_sheets/profile_form';
-import headerStyles from '../assets/style_sheets/header';
+import realm from '../../schema';
+import User from '../../utils/user';
+import styles from '../../assets/style_sheets/profile_form';
+import headerStyles from '../../assets/style_sheets/header';
 
-import RadioGroupContainer from '../components/radio_group_container';
+import RadioGroupContainer from '../../components/radio_group_container';
 
 let formError = {};
 

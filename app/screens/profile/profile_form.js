@@ -22,15 +22,15 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 
 // Utils
-import realm from '../schema';
-import User from '../utils/user';
-import styles from '../assets/style_sheets/profile_form';
-import headerStyles from '../assets/style_sheets/header';
-import StatusBar from '../components/status_bar';
+import realm from '../../schema';
+import User from '../../utils/user';
+import styles from '../../assets/style_sheets/profile_form';
+import headerStyles from '../../assets/style_sheets/header';
+import StatusBar from '../../components/status_bar';
 
 // Components
-import RadioGroupContainer from '../components/radio_group_container';
-import InputTextContainer from '../components/input_text_container';
+import RadioGroupContainer from '../../components/radio_group_container';
+import InputTextContainer from '../../components/input_text_container';
 
 let formError = {};
 

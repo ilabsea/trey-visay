@@ -15,13 +15,13 @@ import {
 } from 'react-native-material-ui';
 
 // Utils
-import realm from '../schema';
-import User from '../utils/user';
-import styles from '../assets/style_sheets/profile_form';
-import headerStyles from '../assets/style_sheets/header';
+import realm from '../../schema';
+import User from '../../utils/user';
+import styles from '../../assets/style_sheets/profile_form';
+import headerStyles from '../../assets/style_sheets/header';
 
 import DatePicker from 'react-native-datepicker';
-import InputTextContainer from '../components/input_text_container';
+import InputTextContainer from '../../components/input_text_container';
 
 const SCHOOL_NAMES = [
   "សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ", "វិទ្យាល័យជាស៊ីមព្រែកអញ្ចាញ", "វិទ្យាល័យព្រែកលៀប",

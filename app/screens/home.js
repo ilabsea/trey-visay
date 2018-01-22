@@ -8,7 +8,7 @@ import {
 // Screens
 import Dashboard from './dashboard';
 import About from './about';
-import Profile from './profile';
+import Profile from './profile/profile';
 import SideMenu from '../components/side_menu';
 import VocationalJobIndexScreen from './vocational_job/index_screen';
 import VocationalJobShowScreen from './vocational_job/show_screen';
@@ -33,10 +33,10 @@ import PersonalityReport from './CareerPlanningForm/game_history/personality_rep
 import StudentPersonalityReport from './CareerPlanningForm/game_history/student_personality_report';
 import RecommendationReport from './CareerPlanningForm/game_history/recommendation_report';
 
-import EditProfilePhoto from './edit_profile_photo';
-import EditPersonalInfo from './edit_personal_info';
-import EditFamilyInfo from './edit_family_info';
-import EditFamilySituation from './edit_family_situation';
+import EditProfilePhoto from './profile/edit_profile_photo';
+import EditPersonalInfo from './profile/edit_personal_info';
+import EditFamilyInfo from './profile/edit_family_info';
+import EditFamilySituation from './profile/edit_family_situation';
 import InstitutionDetail from './school/institution_detail';
 import VideoScreen from './video_screen';
 import ChangePasswordScreen from './change_password_screen';
