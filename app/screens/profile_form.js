@@ -20,12 +20,15 @@ import {
 
 import DatePicker from 'react-native-datepicker';
 import Collapsible from 'react-native-collapsible';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import { ConfirmDialog } from 'react-native-simple-dialogs';
 
 // Utils
 import realm from '../schema';
 import User from '../utils/user';
 import styles from '../assets/style_sheets/profile_form';
 import headerStyles from '../assets/style_sheets/header';
+import StatusBar from '../components/status_bar';
 
 // Components
 import RadioGroupContainer from '../components/radio_group_container';
@@ -34,9 +37,10 @@ import InputTextContainer from '../components/input_text_container';
 let formError = {};
 
 const CONTENTS = [
-  {header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo'},
-  {header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo'},
-  {header: 'ស្ថានភាពគ្រួសារ', body: '_renderFamilySituation'}];
+  { header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo' },
+  { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' },
+  { header: 'ស្ថានភាពគ្រួសារ', body: '_renderFamilySituation' }
+];
 
 const SCHOOL_NAMES = [
   "សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ", "វិទ្យាល័យជាស៊ីមព្រែកអញ្ចាញ", "វិទ្យាល័យព្រែកលៀប",
@@ -68,10 +72,11 @@ export default class ProfileForm extends Component {
       collapsed0: false,
       collapsed1: true,
       collapsed2: true,
+      confirmDialogVisible: false,
     }
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
 
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
@@ -81,26 +86,64 @@ export default class ProfileForm extends Component {
     this.setState({user: user});
   }
 
+  _renderContent() {
+    return (
+      <View style={styles.container}>
+        <View style={{flexDirection: 'row', marginVertical: 16}}>
+          <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+          <View style={{flex: 1}}>
+            <Text>អ្នកត្រូវបំពេញពត៌មានផ្ទាល់ខ្លួនខាងក្រោមដើម្បីប្រើប្រាស់កម្មវិធី។ </Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text>ឬអ្នកចង់បំពេញនៅពេលក្រោយ? </Text>
+              <TouchableOpacity onPress={() => this.setState({confirmDialogVisible: true})}>
+                <Text style={{color: '#4caf50', fontFamily: 'KantumruyBold'}}>ចាកចេញពីគណនី</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+
+        { !!this.state.user && CONTENTS.map((obj, i) => {
+          return( <View key={i}>{this._renderSection(obj, i)}</View>)
+        })}
+
+      </View>
+    )
+  }
+
+  _onYes() {
+    User.logout();
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}], key: null});
+  }
+
+  _onNo() {
+    this.setState({confirmDialogVisible: false});
+  }
+
   render() {
     return (
       <ThemeProvider uiTheme={{}}>
-        <ScrollView>
-          {!!this.state.user &&
-            <View>
-              <View style={styles.container}>
-                { CONTENTS.map((obj, i) => {
-                  return( <View key={i}>{this._renderSection(obj, i)}</View>)
-                })}
+        <View style={{flex: 1}}>
+          <StatusBar />
+          <ScrollView style={{flex: 1}}>
+            { this._renderContent() }
+          </ScrollView>
 
-                <Button
-                  title="ចាកចេញ"
-                  color='red'
-                  onPress={this.logout.bind(this)}
-                />
-              </View>
-            </View>
-          }
-        </ScrollView>
+          <ConfirmDialog
+            title="អ្នកពិតជាចង់ចាកចេញមែនទេ?"
+            message="បើអ្នកចាកចេញពត័មានដែលអ្នកបានបំពេញនឹងមិនត្រូវបានរក្សារទុកឡើយ!"
+            visible={this.state.confirmDialogVisible}
+            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+            positiveButton={{
+              title: "ចាកចេញ",
+              onPress: this._onYes.bind(this)
+            }}
+            negativeButton={{
+              title: "អត់ទេ",
+              onPress: this._onNo.bind(this)
+            }}
+          />
+
+        </View>
       </ThemeProvider>
     )
   }
@@ -124,11 +167,6 @@ export default class ProfileForm extends Component {
         </Collapsible>
       </View>
     )
-  }
-
-  logout() {
-    User.logout();
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}], key: null});
   }
 
   _toggleExpanded(collapsedIndex) {
@@ -183,7 +221,6 @@ export default class ProfileForm extends Component {
       realm.write(() => {
         realm.create('User', this.state.user, true);
         this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
-        // alert(JSON.stringify(realm.objects('User')[realm.objects('User').length - 1]));
       });
     } catch (e) {
       alert(e);
