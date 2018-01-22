@@ -3,7 +3,6 @@ import { DrawerItems } from 'react-navigation';
 import {
   Text,
   View,
-  Button,
   ScrollView,
   StyleSheet,
   TouchableNativeFeedback,
@@ -20,6 +19,7 @@ import User from '../utils/user';
 import headerStyles from '../assets/style_sheets/header';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 export default class SideMenu extends Component {
   state = {user: '', photo: '', cover: '', isOpen: true}
@@ -93,6 +93,17 @@ export default class SideMenu extends Component {
     )
   }
 
+  _renderMenuItemWithMaterialIcon(options={}) {
+    return (
+      <TouchableOpacity onPress={() => this.navigateToScreen(options.screenName)} style={this.isActive}>
+        <View style={this.getWrapperStyle(options.screenName)}>
+          <MaterialIcon name={ options.iconName } size={ options.iconSize || 18 } style={this.getIconStyle(options.screenName)} />
+          <Text style={this.getMenuTextStyle(options.screenName)}>{options.title}</Text>
+        </View>
+      </TouchableOpacity>
+    )
+  }
+
   render() {
     return (
       <ScrollView>
@@ -123,8 +134,8 @@ export default class SideMenu extends Component {
             { this._renderMenuItem({title: 'ទំព័រដើម', screenName: 'Dashboard', iconName: 'home', iconSize: 18}) }
             { this._renderMenuItem({title: 'វាយតម្លៃមុខរបរ និង អាជីព', screenName: 'CareerCounsellorScreen', iconName: 'briefcase'}) }
             { this._renderMenuItem({title: 'គ្រឹះស្ថានសិក្សា', screenName: 'InstitutionStack', iconName: 'graduation-cap'}) }
-            { this._renderMenuItem({title: 'វីដេអូមុខរបរ', screenName: 'VideoScreen', iconName: 'play-circle-o'}) }
-            { this._renderMenuItem({title: 'ជំនាញវិជ្ជាជីវៈ', screenName: 'VocationalJobScreen', iconName: 'play-circle-o'}) }
+            { this._renderMenuItem({title: 'វីដេអូមុខរបរ', screenName: 'VideoScreen', iconName: 'play-circle-o', iconSize: 18}) }
+            { this._renderMenuItemWithMaterialIcon({title: 'ជំនាញវិជ្ជាជីវៈ', screenName: 'VocationalJobStack', iconName: 'photo-filter'}) }
             { this._renderMenuItem({title: 'អំពីកម្មវិធី', screenName: 'About', iconName: 'list'}) }
           </View>
         }

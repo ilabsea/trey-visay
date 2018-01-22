@@ -15,6 +15,7 @@ import {
 } from 'react-native-material-ui';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Utils
 import realm from '../schema';
@@ -54,6 +55,19 @@ export default class Dashboard extends Component {
         style={[styles.btnBox]}>
         <View style={[styles.btnFab, {backgroundColor: options.icon_bg_color}]}>
           <AwesomeIcon name={options.icon_name} size={30} color='#fff' />
+        </View>
+        <Text style={styles.btnLabel}>{options.title}</Text>
+      </TouchableOpacity>
+    )
+  }
+
+  _renderButtonWithMaterialIcon(options) {
+    return (
+      <TouchableOpacity
+        onPress={() => this.props.navigation.navigate(options.url)}
+        style={[styles.btnBox]}>
+        <View style={[styles.btnFab, {backgroundColor: options.icon_bg_color}]}>
+          <MaterialIcon name={options.icon_name} size={36} color='#fff' />
         </View>
         <Text style={styles.btnLabel}>{options.title}</Text>
       </TouchableOpacity>
@@ -133,7 +147,7 @@ export default class Dashboard extends Component {
               { this._renderButton({ title: 'វាយតម្លៃមុខរបរ និង អាជីព', url: 'CareerCounsellorScreen', icon_bg_color: '#3f51b5', icon_name: 'briefcase' }) }
               { this._renderButton({ title: 'គ្រឹះស្ថានសិក្សា', url: 'InstitutionStack', icon_bg_color: '#009688', icon_name: 'graduation-cap' }) }
               { this._renderButton({ title: 'វីដេអូមុខរបរ', url: 'VideoScreen', icon_bg_color: '#f44336', icon_name: 'video-camera' }) }
-              { this._renderButton({ title: 'ជំនាញវិជ្ជាជីវៈ', url: 'VocationalJobScreen', icon_bg_color: '#1aaf5d', icon_name: 'list' }) }
+              { this._renderButtonWithMaterialIcon({ title: 'ជំនាញវិជ្ជាជីវៈ', url: 'VocationalJobStack', icon_bg_color: '#1aaf5d', icon_name: 'photo-filter' }) }
             </View>
           </ScrollView>
 

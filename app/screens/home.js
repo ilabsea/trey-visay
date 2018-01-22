@@ -10,7 +10,8 @@ import Dashboard from './dashboard';
 import About from './about';
 import Profile from './profile';
 import SideMenu from '../components/side_menu';
-import VocationalJobScreen from './vocational_job_screen';
+import VocationalJobIndexScreen from './vocational_job/index_screen';
+import VocationalJobShowScreen from './vocational_job/show_screen';
 
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 
@@ -76,6 +77,13 @@ const profileStack = StackNavigator(
     EditFamilySituation: {screen: EditFamilySituation},
   });
 
+const VocationalJobStack = StackNavigator(
+  {
+    VocationalJobIndexScreen: { screen: VocationalJobIndexScreen },
+    VocationalJobShowScreen: { screen: VocationalJobShowScreen },
+    InstitutionDetail: { screen: InstitutionDetail },
+  });
+
 const HomeScreen = DrawerNavigator(
   {
     Dashboard: { screen: Dashboard },
@@ -88,7 +96,7 @@ const HomeScreen = DrawerNavigator(
     },
     InstitutionStack: { screen: ({ navigation }) => <InstitutionStack screenProps={{ drawerNavigation: navigation }} /> },
     VideoScreen: { screen: VideoScreen },
-    VocationalJobScreen: { screen: VocationalJobScreen },
+    VocationalJobStack: { screen: VocationalJobStack },
     ChangePasswordScreen: { screen: ChangePasswordScreen },
   },
   {
