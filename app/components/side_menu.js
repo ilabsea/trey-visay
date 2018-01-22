@@ -133,7 +133,7 @@ export default class SideMenu extends Component {
           <View>
             { this._renderMenuItem({title: 'ទំព័រដើម', screenName: 'Dashboard', iconName: 'home', iconSize: 18}) }
             { this._renderMenuItem({title: 'វាយតម្លៃមុខរបរ និង អាជីព', screenName: 'CareerCounsellorScreen', iconName: 'briefcase'}) }
-            { this._renderMenuItem({title: 'គ្រឹះស្ថានសិក្សា', screenName: 'InstitutionStack', iconName: 'graduation-cap'}) }
+            { this._renderMenuItemWithMaterialIcon({title: 'គ្រឹះស្ថានសិក្សា', screenName: 'InstitutionStack', iconName: 'business'}) }
             { this._renderMenuItem({title: 'វីដេអូមុខរបរ', screenName: 'VideoScreen', iconName: 'play-circle-o', iconSize: 18}) }
             { this._renderMenuItemWithMaterialIcon({title: 'ជំនាញវិជ្ជាជីវៈ', screenName: 'VocationalJobStack', iconName: 'photo-filter'}) }
             { this._renderMenuItem({title: 'អំពីកម្មវិធី', screenName: 'About', iconName: 'list'}) }
