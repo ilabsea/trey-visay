@@ -9,6 +9,7 @@ import {
   Picker,
   TouchableOpacity,
   TouchableHighlight,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -175,7 +176,7 @@ export default class ProfileForm extends Component {
   handleSubmit() {
     if (!this.isValidForm()) {
       this._openErrorCollapsed();
-      return;
+      return ToastAndroid.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', ToastAndroid.SHORT);
     }
 
     try {

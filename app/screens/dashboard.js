@@ -119,7 +119,7 @@ export default class Dashboard extends Component {
           }
         </View>
         <Text style={styles.btnLabel}>{options.title}</Text>
-        <Text style={{marginTop: 16, padding: 16, textAlign: 'center'}}>{options.description}</Text>
+        <Text style={styles.btnDescription}>{options.description}</Text>
       </TouchableOpacity>
     )
   }
@@ -130,13 +130,13 @@ export default class Dashboard extends Component {
         <View style={{flex: 1}}>
           <StatusBar />
 
-          <ScrollView>
-            <Toolbar
-              leftElement="menu"
-              centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
-              onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-            />
+          <Toolbar
+            leftElement="menu"
+            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
+            onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+          />
 
+          <ScrollView>
             <View style={styles.scrollContainer}>
               <View style={{flexDirection: 'row'}}>
                 { this._renderButton({ title: 'វាយតម្លៃមុខរបរ', url: 'CareerCounsellorScreen', icon_bg_color: '#3f51b5', icon_name: 'briefcase', description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក។' }) }
@@ -175,6 +175,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     lineHeight: 40,
     color: '#1976d2',
+    textAlign: 'center',
+  },
+  btnDescription: {
+    marginTop: 16,
+    padding: 8,
+    textAlign: 'center',
   },
   btnFab: {
     width: 100,
