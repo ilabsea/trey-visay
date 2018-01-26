@@ -173,6 +173,18 @@ export default class GoalScreen extends Component {
     });
   }
 
+  _renderInstruction() {
+    return (
+      <Text style={labelStyles.box}>
+        បន្ទាប់ពីប្អូនជ្រើសរើសមុខរបរមួយរួចហើយ។ ចូរប្អូនរៀបរាប់បន្ថែមពី
+        មូលហេតុដែលប្អូនបានជ្រើសរើសមុខរបរនោះ ដោយគិតអំពី៖ ចំនុចខ្លាំងដែល
+        ប្អូនបានជ្រើសរើសចេញពីបុគ្គលិកលក្ខណៈ ដើម្បីឆ្លុះបញ្ចាំងពីគោលបំណងមួយដែលមានន័យពេញលេញ។
+        វាកាន់តែប្រសើរ ប្រសិនបើប្អូនសរសេរពីសារប្រយោជន៍នៃគោលបំណងនោះ ដែលបង្ហាញពី
+        ការជួយ ផ្តល់ឲ្យ ចែករំលែក ឬស្ម័គ្រចិត្ត ដែលបំរើឲ្យ ប្រយោជន៍រួម (សហគមន៍/សង្គម យុវជន កុមារ ឬគ្រួសារជាដើម) ជាជាងប្រយោជន៍បុគ្គល ។
+      </Text>
+    )
+  }
+
   _renderContent() {
     let btn = { borderWidth: 0, backgroundColor: '#e94b35' };
 
@@ -183,17 +195,20 @@ export default class GoalScreen extends Component {
           <Text>អ្នកអាចដាក់គោលដៅ និងមូលហេតុដោយការសរសេរ ឬក៏ថតជាសំលេង!</Text>
         </View>
 
+        { this._renderInstruction() }
+
         <View style={labelStyles.box}>
           <Text style={labelStyles.subTitle}>តើអ្នកនឹងប្រកបមុខរបរអ្វីនាពេលអនាគត? មូលហេតុអ្វី?</Text>
-
-          <View style={{flexDirection: 'row', alignItems: 'flex-end'}}>
+          <Text>
+            ឧទាហរណ៍៖ ខ្ញុំនឹងធ្វើជា.......................ដ៏ពូកែម្នាក់។ ក្នុងក្រុមហ៊ុនឯកជនមួយនៅ......................... ពេលខ្ញុំបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រក្នុងឆ្នាំ២០.....។
+          </Text>
+          <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 24}}>
             <TextInput
-              style={[styles.inputText, {flex: 1, textAlignVertical: "top", height: 100}]}
+              style={[styles.inputText, {flex: 1}]}
               onChangeText={(text) => this.setState({reasonText: text})}
-              placeholder='ខ្ញុំនឹងធ្វើជា.......................ដ៏ពូកែម្នាក់។ ក្នុងក្រុមហ៊ុនឯកជនមួយនៅ......................... ពេលខ្ញុំបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រក្នុងឆ្នាំ២០.....។'
+              placeholder='សរសេរចម្លើយ...'
               placeholderTextColor='rgba(0,0,0,0.7)'
               multiline={true}
-              numberOfLines={4}
               autoFocus={true}
             />
 
@@ -373,7 +388,7 @@ export default class GoalScreen extends Component {
     let time = date.toISOString().substr(11, 8);
 
     return (
-      <View style={styles.container}>
+      <View>
         <View style={{alignItems: 'center'}}>
           <Text style={labelStyles.subTitle}>សូមធ្វើការថតសម្លេង</Text>
         </View>
@@ -422,9 +437,6 @@ export default class GoalScreen extends Component {
 }
 
 var styles = StyleSheet.create({
-  container: {
-    paddingVertical: 20
-  },
   controls: {
     justifyContent: 'center',
     alignItems: 'center',
