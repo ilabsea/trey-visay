@@ -32,6 +32,12 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 
+const uiTheme = {
+  palette: {
+    primaryColor: '#1976d2',
+  }
+};
+
 export default class GoalScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
@@ -200,15 +206,17 @@ export default class GoalScreen extends Component {
         <View style={labelStyles.box}>
           <Text style={labelStyles.subTitle}>តើអ្នកនឹងប្រកបមុខរបរអ្វីនាពេលអនាគត? មូលហេតុអ្វី?</Text>
           <Text>
-            ឧទាហរណ៍៖ ខ្ញុំនឹងធ្វើជា.......................ដ៏ពូកែម្នាក់។ ក្នុងក្រុមហ៊ុនឯកជនមួយនៅ......................... ពេលខ្ញុំបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រក្នុងឆ្នាំ២០.....។
+            <Text style={{fontFamily: 'KantumruyBold'}}>ឧទាហរណ៍៖ </Text>
+            ខ្ញុំនឹងធ្វើជាស្ថបត្យករក៏ពូកែម្នាក់ ក្នុងក្រុមហ៊ុនឯកជនមួយនៅទីក្រុងភ្នំពេញ ពេលខ្ញំបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រក្នុងឆ្នាំ២០២២។
           </Text>
           <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 24}}>
             <TextInput
-              style={[styles.inputText, {flex: 1}]}
+              style={[styles.inputText, {flex: 1, textAlignVertical: 'top', height: 100}]}
               onChangeText={(text) => this.setState({reasonText: text})}
               placeholder='សរសេរចម្លើយ...'
-              placeholderTextColor='rgba(0,0,0,0.7)'
+              placeholderTextColor='rgba(0,0,0,0.6)'
               multiline={true}
+              numberOfLines={4}
               autoFocus={true}
             />
 
@@ -414,7 +422,7 @@ export default class GoalScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
+      <ThemeProvider uiTheme={uiTheme}>
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
