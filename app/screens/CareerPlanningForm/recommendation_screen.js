@@ -156,7 +156,7 @@ export default class RecommendationScreen extends Component {
   }
 
   _isStrongForAllSubject() {
-    let arr = this.state.currentGroup.concern_subject_codes.filter((code) => this.state.gameSubject[code] != 'ខ្លាំង')
+    let arr = this.state.currentGroup.concern_subject_codes.filter((code) => this.state.gameSubject[code] == 'ខ្លាំង')
     return arr.length == this.state.currentGroup.concern_subject_codes.length;
   }
 
