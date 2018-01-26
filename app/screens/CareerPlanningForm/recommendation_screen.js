@@ -156,8 +156,8 @@ export default class RecommendationScreen extends Component {
   }
 
   _isStrongForAllSubject() {
-    let arr = this.state.currentGroup.concern_subject_codes.filter((code) => this.state.gameSubject[code] == 'ខ្លាំង')
-    return arr.length == this.state.currentGroup.concern_subject_codes.length;
+    let arr = this.state.currentGroup.concern_subjects.filter((code) => this.state.gameSubject[code] == 'ខ្លាំង')
+    return arr.length == this.state.currentGroup.concern_subjects.length;
   }
 
   _renderSubject() {
@@ -166,14 +166,14 @@ export default class RecommendationScreen extends Component {
         <Text style={[styles.subTitle, localStyle.paragraph, {color: '#1976d2'}]}>មុខវិជ្ជា</Text>
         <Text>ជា{this.state.currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖ </Text>
         <View>
-          { this.state.currentGroup.concern_subjects.map((subject, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subject}`}</Text>)
+          { this.state.currentGroup.concern_subjects.map((code, i) => {
+            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`}</Text>)
           })}
         </View>
 
         <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>ចម្លើយរបស់អ្នក</Text>
         <View>
-          { this.state.currentGroup.concern_subject_codes.map((code, i) => {
+          { this.state.currentGroup.concern_subjects.map((code, i) => {
             return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`} <Text style={localStyle.boldText}>({this.state.gameSubject[code]})</Text></Text>)
           })}
         </View>
@@ -185,7 +185,7 @@ export default class RecommendationScreen extends Component {
         { !this._isStrongForAllSubject() &&
           <View>
             <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
-            { this.state.currentGroup.concern_subject_codes.map((code, i) => {
+            { this.state.currentGroup.concern_subjects.map((code, i) => {
                { return (this._renderSubjectToImproveTip(code, i)) }
             })}
           </View>
