@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  Button,
   ScrollView,
   TouchableOpacity,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -66,7 +66,7 @@ export default class EditFamilyInfo extends Component {
   checkRequire(field) {
     let value = this.state.user[field];
     if ( value == null || !value.length) {
-      formError[field] = ["can't be blank"];
+      formError[field] = ["មិនអាចទទេបានទេ"];
     } else {
       delete formError[field];
     }
@@ -84,12 +84,13 @@ export default class EditFamilyInfo extends Component {
 
   handleSubmit() {
     if (!this.isValidForm()) {
-      return;
+      return ToastAndroid.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', ToastAndroid.SHORT);
     }
 
     try {
       realm.write(() => {
         realm.create('User', this.state.user, true);
+        realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });
@@ -104,77 +105,41 @@ export default class EditFamilyInfo extends Component {
     this.setState({...this.state, user: user});
   }
 
+  _renderInputTextContainer(params={}) {
+    return (
+      <InputTextContainer
+        onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
+        label={params.label}
+        value={this.state.user[params.stateName]}
+        errors={this.state.errors[params.stateName]}
+        keyboardType={params.keyboardType || 'default' }
+        inputRef={(input) => this[params.stateName + 'Input'] = input}
+        onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
+        returnKeyType='next'
+        style={ params.style || {} }/>
+    )
+  }
+
   _renderFamilyInfo() {
     return (
       <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
         <View style={{flexDirection: 'row'}}>
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('fatherName', text)).bind(this)}
-            label='ឈ្មោះឪពុក'
-            value={this.state.user.fatherName}
-            errors={this.state.errors.fatherName}
-            style={{flex: 1}}/>
-
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('fatherOccupation', text)).bind(this)}
-            label='មុខរបរ'
-            value={this.state.user.fatherOccupation}
-            errors={this.state.errors.fatherOccupation}
-            style={{flex: 1}}/>
+          { this._renderInputTextContainer({stateName: 'fatherName', label: 'ឈ្មោះឪពុក', nextFocusInput: 'fatherOccupationInput', style: {flex: 1}}) }
+          { this._renderInputTextContainer({stateName: 'fatherOccupation', label: 'មុខរបរ', nextFocusInput: 'motherNameInput', style: {flex: 1}}) }
         </View>
 
         <View style={{flexDirection: 'row'}}>
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('motherName', text)).bind(this)}
-            label='ម្តាយឈ្មោះ'
-            value={this.state.user.motherName}
-            errors={this.state.errors.motherName}
-            style={{flex: 1}}/>
-
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('motherOccupation', text)).bind(this)}
-            label='មុខរបរ'
-            value={this.state.user.motherOccupation}
-            errors={this.state.errors.motherOccupation}
-            style={{flex: 1}}/>
+          { this._renderInputTextContainer({stateName: 'motherName', label: 'ម្តាយឈ្មោះ', nextFocusInput: 'motherOccupationInput', style: {flex: 1}}) }
+          { this._renderInputTextContainer({stateName: 'motherOccupation', label: 'មុខរបរ', nextFocusInput: 'guidanceInput', style: {flex: 1}}) }
         </View>
 
-        <InputTextContainer
-          onChangeText={((text) => this._setUserState('guidance', text)).bind(this)}
-          label='អាណាព្យាបាល'
-          value={this.state.user.guidance}
-          errors={this.state.errors.guidance}/>
-
-        <InputTextContainer
-          onChangeText={((text) => this._setUserState('parentContactNumber', text)).bind(this)}
-          label='លេខទូរស័ព្ទឪពុកម្តាយ'
-          value={this.state.user.parentContactNumber}
-          keyboardType='phone-pad'/>
+        { this._renderInputTextContainer({stateName: 'guidance', label: 'អាណាព្យាបាល', nextFocusInput: 'parentContactNumberInput'}) }
+        { this._renderInputTextContainer({stateName: 'parentContactNumber', label: 'លេខទូរស័ព្ទឪពុកម្តាយ', nextFocusInput: 'numberOfFamilyMemberInput', keyboardType: 'phone-pad'}) }
 
         <View style={{flexDirection: 'row'}}>
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('numberOfFamilyMember', text)).bind(this)}
-            label='ចំនួនសមាជិកគ្រួសារ'
-            value={this.state.user.numberOfFamilyMember + ''}
-            errors={this.state.errors.numberOfFamilyMember}
-            keyboardType='numeric'
-            style={{flex: 1}}/>
-
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('numberOfSisters', text)).bind(this)}
-            label='ចំនួនបងប្អូនស្រី'
-            value={this.state.user.numberOfSisters + ''}
-            errors={this.state.errors.numberOfSisters}
-            keyboardType='numeric'
-            style={{flex: 1}}/>
-
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('numberOfBrothers', text)).bind(this)}
-            label='ចំនួនបងប្អូនប្រុស'
-            value={this.state.user.numberOfBrothers + ''}
-            errors={this.state.errors.numberOfBrothers}
-            keyboardType='numeric'
-            style={{flex: 1}}/>
+          { this._renderInputTextContainer({stateName: 'numberOfFamilyMember', label: 'ចំនួនសមាជិកគ្រួសារ', nextFocusInput: 'numberOfSistersInput', keyboardType: 'numeric', style: {flex: 1}}) }
+          { this._renderInputTextContainer({stateName: 'numberOfSisters', label: 'ចំនួនបងប្អូនស្រី', nextFocusInput: 'numberOfBrothersInput', keyboardType: 'numeric', style: {flex: 1}}) }
+          { this._renderInputTextContainer({stateName: 'numberOfBrothers', label: 'ចំនួនបងប្អូនប្រុស', keyboardType: 'numeric', style: {flex: 1}}) }
         </View>
       </View>
     )

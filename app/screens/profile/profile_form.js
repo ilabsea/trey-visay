@@ -12,7 +12,6 @@ import {
 
 import {
   ThemeProvider,
-  Toolbar,
   Icon
 } from 'react-native-material-ui';
 
@@ -213,6 +212,7 @@ export default class ProfileForm extends Component {
     try {
       realm.write(() => {
         realm.create('User', this.state.user, true);
+        realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
         this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
       });
     } catch (e) {

@@ -43,7 +43,6 @@ User.schema = {
     collectiveIncome: { type: 'string', optional: true },
     games: { type: 'list', objectType: 'Game' },
     isVisited: { type: 'bool', default: false },
-    uploadedUuid: { type: 'string', optional: true },
   }
 }
 

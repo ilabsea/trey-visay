@@ -4,9 +4,9 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  StyleSheet,
   TextInput,
   Picker,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -28,7 +28,7 @@ const SCHOOL_NAMES = [
   "វិទ្យាល័យហ៊ុនសែនកំពង់ចាម", "អនុវិទ្យាល័យគោកព្រីង", "វិទ្យាល័យសម្តេចតេជោហ៊ុនសែនសណ្តែក",
   "វិទ្យាល័យហោណាំហុងព្រៃញា", "វិទ្យាល័យល្វា", "វិទ្យាល័យហ.សពាមជីកង",
   "អនុវិទ្យាល័យហ.សទួលសុភី", "វិទ្យាល័យហ.សក្រូចឆ្មារ", "វិទ្យាល័យសម្តេចហ៊ុនសែនប៉ើសពីរ",
-  "វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក", "វិទ្យាល័យជីហែ", "វិទ្យាល័យក្រុមព្រះមហាលាភ"];
+  "វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក", "វិទ្យាល័យជីហែ", "វិទ្យាល័យក្រុមព្រះមហាលាភ", "ផ្សេងៗ"];
 
 let formError = {};
 
@@ -76,7 +76,7 @@ export default class EditPersonalInfo extends Component {
   checkRequire(field) {
     let value = this.state.user[field];
     if ( value == null || !value.length) {
-      formError[field] = ["can't be blank"];
+      formError[field] = ["មិនអាចទទេបានទេ"];
     } else {
       delete formError[field];
     }
@@ -94,12 +94,13 @@ export default class EditPersonalInfo extends Component {
 
   handleSubmit() {
     if (!this.isValidForm()) {
-      return;
+      return ToastAndroid.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', ToastAndroid.SHORT);
     }
 
     try {
       realm.write(() => {
         realm.create('User', this.state.user, true);
+        realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });
@@ -115,32 +116,25 @@ export default class EditPersonalInfo extends Component {
   }
 
   _renderPersonalInfo() {
+    let schoolNames = SCHOOL_NAMES.map((name) => { return {label: name, value: name}});
+    let grades = [
+      { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
+      { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
+      { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
+
     return (
       <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
-        <InputTextContainer
-          onChangeText={((text) => this._setUserState('fullName', text)).bind(this)}
-          label='ឈ្មោះពេញ'
-          value={this.state.user.fullName}
-          errors={this.state.errors.fullName} />
+        { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>ឈ្មោះគណនី</Text>
           <TextInput
             style={styles.inputText}
-            value={this.state.user.username}
+            value={ this.state.user.username }
             editable={false} />
         </View>
 
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>ភេទ</Text>
-          <Picker
-            selectedValue={this.state.user.sex}
-            onValueChange={(itemValue, itemIndex) => this._setUserState('sex', itemValue)}>
-            <Picker.Item label="ស្រី" value="ស្រី" />
-            <Picker.Item label="ប្រុស" value="ប្រុស" />
-            <Picker.Item label="ផ្សេងៗ" value="ផ្សេងៗ" />
-          </Picker>
-        </View>
+        { this._renderPicker({label: 'ភេទ', stateName: 'sex', options: [{label: 'ស្រី', value: 'ស្រី'}, {label: 'ប្រុស', value: 'ប្រុស'}, {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ'}]}) }
 
         <View style={styles.inputContainer}>
           <Text style={styles.inputLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
@@ -155,46 +149,41 @@ export default class EditPersonalInfo extends Component {
           <Text style={styles.errorText}>{this.state.errors.dateOfBirth}</Text>
         </View>
 
-        <InputTextContainer
-          onChangeText={((text) => this._setUserState('nationality', text)).bind(this)}
-          label='សញ្ជាតិ'
-          value={this.state.user.nationality}
-          errors={this.state.errors.nationality} />
+        { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
+        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'addressInput', keyboardType: 'phone-pad'}) }
+        { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
+        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'schoolName', options: schoolNames})}
+        { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន'}) }
+      </View>
+    )
+  }
 
-        <InputTextContainer
-          onChangeText={((text) => this._setUserState('phoneNumber', text)).bind(this)}
-          label='លេខទូរស័ព្ទ'
-          value={this.state.user.phoneNumber}
-          keyboardType='phone-pad' />
+  _renderInputTextContainer(params={}) {
+    return (
+      <InputTextContainer
+        onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
+        label={params.label}
+        value={this.state.user[params.stateName]}
+        errors={this.state.errors[params.stateName]}
+        keyboardType={params.keyboardType || 'default' }
+        inputRef={(input) => this[params.stateName + 'Input'] = input}
+        onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
+        returnKeyType='next'
+        style={ params.style || {} }/>
+    )
+  }
 
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>រៀនថ្នាក់ទី</Text>
-          <Picker
-            selectedValue={this.state.user.grade}
-            onValueChange={(itemValue, itemIndex) => this._setUserState('grade', itemValue)}>
-            <Picker.Item label="ថ្នាក់ទី9" value="9" />
-            <Picker.Item label="ថ្នាក់ទី10" value="10" />
-            <Picker.Item label="ថ្នាក់ទី11" value="11" />
-            <Picker.Item label="ថ្នាក់ទី12" value="12" />
-          </Picker>
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>រៀននៅសាលា</Text>
-          <Picker
-            selectedValue={this.state.user.schoolName}
-            onValueChange={(itemValue, itemIndex) => this._setUserState('schoolName', itemValue)}>
-            { SCHOOL_NAMES.map((name, i) => (
-              <Picker.Item key={i} label={name} value={name} />
-            ))}
-          </Picker>
-
-          <InputTextContainer
-            onChangeText={((text) => this._setUserState('address', text)).bind(this)}
-            label='អាស័យដ្ឋានបច្ចុប្បន្ន'
-            value={this.state.user.address}
-            errors={this.state.errors.address} />
-        </View>
+  _renderPicker(params={}) {
+    return (
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputLabel}>{params.label}</Text>
+        <Picker
+          selectedValue={this.state.user[params.stateName]}
+          onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
+          { params.options.map((obj, i) => {
+            { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
+          }) }
+        </Picker>
       </View>
     )
   }

@@ -11,6 +11,7 @@ import arrayString from './data/models/arrayString';
 import Game from './data/models/game';
 import GameSubject from './data/models/game_subject';
 import Recommendation from './data/models/recommendation';
+import Sidekiq from './data/models/sidekiq';
 
 export default new Realm({schema: [
   User,
@@ -19,5 +20,6 @@ export default new Realm({schema: [
   arrayString,
   Game,
   GameSubject,
-  Recommendation
+  Recommendation,
+  Sidekiq
 ]});

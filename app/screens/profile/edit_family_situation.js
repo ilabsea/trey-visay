@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  Button,
   ScrollView,
   TouchableOpacity,
   Picker,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -67,7 +67,7 @@ export default class EditFamilySituation extends Component {
   checkRequire(field) {
     let value = this.state.user[field];
     if ( value == null || !value.length) {
-      formError[field] = ["can't be blank"];
+      formError[field] = ["មិនអាចទទេបានទេ"];
     } else {
       delete formError[field];
     }
@@ -85,12 +85,13 @@ export default class EditFamilySituation extends Component {
 
   handleSubmit() {
     if (!this.isValidForm()) {
-      return;
+      return ToastAndroid.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', ToastAndroid.SHORT);
     }
 
     try {
       realm.write(() => {
         realm.create('User', this.state.user, true);
+        realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });
@@ -105,69 +106,55 @@ export default class EditFamilySituation extends Component {
     this.setState({...this.state, user: user});
   }
 
+  _renderRadioGroup(params = {}) {
+    return (
+      <RadioGroupContainer
+        options={ params.options || [{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
+        onPress={((text) => this._setUserState(params.stateName, text)).bind(this)}
+        value={this.state.user[params.stateName]}
+        label={params.label} />
+    )
+  }
+
+  _renderPicker(params={}) {
+    return (
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputLabel}>{params.label}</Text>
+        <Picker
+          selectedValue={this.state.user[params.stateName]}
+          onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
+          { params.options.map((obj, i) => {
+            { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
+          }) }
+        </Picker>
+      </View>
+    )
+  }
+
   _renderFamilySituation() {
+    let houseTypes = [
+      { label: 'ផ្ទះឈើ', value: 'ផ្ទះឈើ' },
+      { label: 'ផ្ទះឈើលើថ្មក្រោម', value: 'ផ្ទះឈើលើថ្មក្រោម' },
+      { label: 'ផ្ទះថ្ម', value: 'ផ្ទះថ្ម' },
+      { label: 'ផ្ទះស័ង្កសី', value: 'ផ្ទះស័ង្កសី' },
+      { label: 'ផ្ទះស្លឹក', value: 'ផ្ទះស្លឹក' },
+    ];
+
+    let collectiveIncomes = [
+      { label: 'ក្រោម 25ម៉ឺន', value: '0-25ម៉ឺន' }, { label: 'ចន្លោះ 25ម៉ឺន-50ម៉ឺន', value: '25ម៉ឺន-50ម៉ឺន' },
+      { label: 'ចន្លោះ 50ម៉ឺន-75ម៉ឺន', value: '50ម៉ឺន-75ម៉ឺន' }, { label: 'ចន្លោះ 75ម៉ឺន-1លាន', value: '75ម៉ឺន-1លាន' },
+      { label: 'លើស1លាន', value: 'លើស1លាន' }];
+
     return (
       <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}
-          onPress={((text) => this._setUserState('isDivorce', text)).bind(this)}
-          value={this.state.user.isDivorce}
-          label='តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?' />
-
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this._setUserState('isDisable', text)).bind(this)}
-          value={this.state.user.isDisable}
-          label='តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?' />
-
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this._setUserState('isDomesticViolence', text)).bind(this)}
-          value={this.state.user.isDomesticViolence}
-          label='តើក្នុងគ្រួសាររបស់សិស្សមានការប្រើប្រាស់នូវអពើហិង្សាដែរឬទេ?' />
-
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this._setUserState('isSmoking', text)).bind(this)}
-          value={this.state.user.isSmoking}
-          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានជក់បារីដែរឬទេ?' />
-
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this._setUserState('isAlcoholic', text)).bind(this)}
-          value={this.state.user.isAlcoholic}
-          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនសុរាទេ?' />
-
-        <RadioGroupContainer
-          options={[{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-          onPress={((text) => this._setUserState('isDrug', text)).bind(this)}
-          value={this.state.user.isDrug}
-          label='តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនគ្រឿងញៀនដែរឬទេ?' />
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>តើប្អូនមានប្រភេទផ្ទះបែបណា?</Text>
-          <Picker
-            selectedValue={this.state.user.houseType}
-            onValueChange={(itemValue, itemIndex) => this._setUserState('houseType', itemValue)}>
-            <Picker.Item label="ផ្ទះឈើ" value="ផ្ទះឈើ" />
-            <Picker.Item label="ផ្ទះថ្ម" value="ផ្ទះថ្ម" />
-            <Picker.Item label="ផ្ទះស័ង្កសី" value="ផ្ទះស័ង្កសី" />
-            <Picker.Item label="ផ្ទះស្លឹក" value="ផ្ទះស្លឹក" />
-          </Picker>
-        </View>
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>តើគ្រួសារប្អូនមានចំណូលប្រចាំខែប៉ុន្មាន? (គិតជារៀល)</Text>
-          <Picker
-            selectedValue={this.state.user.collectiveIncome}
-            onValueChange={(itemValue, itemIndex) => this._setUserState('collectiveIncome', itemValue)}>
-            <Picker.Item label="ក្រោម 25ម៉ឺន" value="0-25ម៉ឺន" />
-            <Picker.Item label="ចន្លោះ 25ម៉ឺន-50ម៉ឺន" value="25ម៉ឺន-50ម៉ឺន" />
-            <Picker.Item label="ចន្លោះ 50ម៉ឺន-75ម៉ឺន" value="50ម៉ឺន-75ម៉ឺន" />
-            <Picker.Item label="ចន្លោះ 75ម៉ឺន-1លាន" value="75ម៉ឺន-1លាន" />
-            <Picker.Item label="លើស1លាន" value="លើស1លាន" />
-          </Picker>
-        </View>
+        { this._renderRadioGroup({stateName: 'isDivorce', label: 'តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?', options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
+        { this._renderRadioGroup({stateName: 'isDisable', label: 'តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: 'តើក្នុងគ្រួសាររបស់សិស្សមានការប្រើប្រាស់នូវអពើហិង្សាដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isSmoking', label: 'តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានជក់បារីដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isAlcoholic', label: 'តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនសុរាទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isDrug', label: 'តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនគ្រឿងញៀនដែរឬទេ?'}) }
+        { this._renderPicker({label: 'តើប្អូនមានប្រភេទផ្ទះបែបណា?', stateName: 'houseType', options: houseTypes}) }
+        { this._renderPicker({label: 'តើគ្រួសារប្អូនមានចំណូលប្រចាំខប្រហែលែប៉ុន្មាន?', stateName: 'collectiveIncome', options: collectiveIncomes}) }
       </View>
     )
   }

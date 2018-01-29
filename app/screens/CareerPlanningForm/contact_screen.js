@@ -132,6 +132,7 @@ export default class ContactScreen extends Component {
   _handleSubmit() {
     realm.write(() => {
       realm.create('Game', this._buildData(), true);
+      realm.create('Sidekiq', { paramUuid: this.state.game.uuid, tableName: 'Game' }, true)
       this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
 
