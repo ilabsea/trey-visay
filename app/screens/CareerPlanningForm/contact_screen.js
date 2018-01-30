@@ -135,7 +135,6 @@ export default class ContactScreen extends Component {
       realm.create('Sidekiq', { paramUuid: this.state.game.uuid, tableName: 'Game' }, true)
       this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
-
   }
 
   _renderContent() {

@@ -5,6 +5,8 @@ import {
   View,
   StyleSheet,
   TouchableOpacity,
+  NetInfo,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -23,11 +25,17 @@ import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';
 import shareStyles from '../../assets/style_sheets/login_form';
 
+import { create } from 'apisauce'
+
 const uiTheme = {
   palette: {
     primaryColor: '#1976d2',
   }
 };
+
+const api = create({
+  baseURL: 'http:192.168.1.118:3000/api/v1',
+})
 
 export default class AdminDashboardScreen extends Component {
   static navigationOptions = {
@@ -41,15 +49,112 @@ export default class AdminDashboardScreen extends Component {
 
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let data = realm.objects('Sidekiq');
+
+    // let games = realm.objects('Game').filtered('uuid="' + data[1].paramUuid + '"');
+    // alert(JSON.stringify(games[0].users));
 
     this.state = {
-      user: user
+      user: user,
+      data: data
     };
+
+    this._handleInternetConnection();
+  }
+
+  _deleteSidekiq = (sidekiq) => {
+    realm.write(() => {
+      realm.delete(sidekiq);
+    });
+  }
+
+  _uploadUser(sidekiq) {
+    let user = realm.objects('User').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
+
+    if (!user) {
+      this._deleteSidekiq(sidekiq);
+      return;
+    }
+
+    let data = new FormData();
+    data.append('data', JSON.stringify(this._buildUser(user))); // you can append anyone.
+    data.append('photo', {
+      uri: user.photo,
+      type: 'image/jpeg',
+      name: 'testPhotoName'
+    });
+
+    api.post('/users', data, {
+      onUploadProgress: (e) => {
+        // console.log(e)
+        // const progress = e.loaded / e.total;
+        // console.log('==============progress', progress);
+        // this.setState({
+        //   progress: progress
+        // });
+      }
+    })
+    .then((res) => console.log('-----------------res',res.config.data))
+  }
+
+  _buildUser(user) {
+    let attributes = {};
+
+    for (var key in user) {
+      let newKey = key.split(/(?=[A-Z])/).map(k => k.toLowerCase()).join('_');;
+      attributes[newKey] = user[key];
+    }
+
+    return { attributes: attributes }
+  }
+
+  _uploadGame(sidekiq) {
+    let game = realm.objects('Game').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
+
+    if (!game || !game.users.length) {
+      this._deleteSidekiq(sidekiq);
+      return;
+    }
+  }
+
+  _buildGame(game) {
+    return game;
+  }
+
+  _uploadData() {
+    this.state.data.map((sidekiq) => {
+      this['_upload' + sidekiq.tableName](sidekiq);
+    })
+  }
+
+  _handleSubmit() {
+    if (!this.state.isOnline) {
+      return ToastAndroid.show('មិនមានការតភ្ជាប់បណ្តាញទេឥឡូវនេះ។ សូមព្យាយាម​ម្តង​ទៀត​!', ToastAndroid.SHORT);
+    }
+
+    this._uploadData();
+  }
+
+  _handleInternetConnection() {
+    NetInfo.isConnected.fetch().then(isConnected => {
+      this.setState({isOnline: isConnected});
+    });
+
+    NetInfo.isConnected.addEventListener(
+      'connectionChange',
+      this._handleFirstConnectivityChange
+    );
+  }
+
+  _handleFirstConnectivityChange = (isConnected) => {
+    if (this.refs.adminDashboard) {
+      this.setState({isOnline: isConnected});
+    }
   }
 
   _renderNoData() {
     return (
-      <View style={[styles.scrollContainer, {alignItems: 'center', marginVertical: 100}]}>
+      <View style={{padding: 16, alignItems: 'center', marginVertical: 100}}>
         <View style={{width: 130, height: 130, borderRadius: 64, backgroundColor: '#bdbdbd', justifyContent: 'center', alignItems: 'center'}}>
           <AwesomeIcon name='folder-open' size={60} />
         </View>
@@ -58,11 +163,7 @@ export default class AdminDashboardScreen extends Component {
     )
   }
 
-  _handleSubmit() {
-    alert('upload to server!');
-  }
-
-  _renderDataToUpload(users) {
+  _renderDataToUpload() {
     return (
       <View style={[styles.btnBox]}>
         <View style={[styles.btnFab, {backgroundColor: '#f44336'}]}>
@@ -70,7 +171,7 @@ export default class AdminDashboardScreen extends Component {
         </View>
 
         <View style={{marginVertical: 24}}>
-          <Text style={styles.btnLabel}>{users.length} ទិន្នន័យ</Text>
+          <Text style={styles.btnLabel}>{this.state.data.length} ទិន្នន័យ</Text>
 
           <Button
             style={[shareStyles.btnSubmit, {paddingHorizontal: 16, marginTop: 24}]}
@@ -84,11 +185,9 @@ export default class AdminDashboardScreen extends Component {
   }
 
   render() {
-    let users = realm.objects('User').filtered('role = "student"');
-
     return (
       <ThemeProvider uiTheme={uiTheme}>
-        <View style={styles.container}>
+        <View style={{flex: 1}} ref="adminDashboard">
           <StatusBar />
 
           <Toolbar
@@ -98,8 +197,8 @@ export default class AdminDashboardScreen extends Component {
           />
 
           <ScrollView>
-            { !users.length && this._renderNoData() }
-            { !!users.length && this._renderDataToUpload(users) }
+            { !this.state.data.length && this._renderNoData() }
+            { !!this.state.data.length && this._renderDataToUpload() }
           </ScrollView>
         </View>
       </ThemeProvider>
@@ -108,12 +207,6 @@ export default class AdminDashboardScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  scrollContainer: {
-    padding: 16
-  },
   btnBox: {
     flex: 1,
     alignItems: 'center',

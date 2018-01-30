@@ -33,7 +33,7 @@ export default class PersonalityJobsScreen extends Component {
     let highlighStyle = (state.params && state.params.total > 3) ? {color: '#e94b35'} : {color: '#fff'};
 
     return {
-      title: 'ជ្រើសរើស៣មុខរបរចេញពីបុគ្គលិកលក្ខណៈរបស់អ្នក',
+      title: '',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>{state.params && state.params.title}</Text>,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <ThemeProvider uiTheme={{}}>

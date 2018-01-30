@@ -104,11 +104,11 @@ export default class PersonalUnderstandingReport extends Component {
           </View>
         }
 
-        { !!personalUnderstanding.howToReachCarreerGoal &&
+        { !!personalUnderstanding.howToReachCareerGoal &&
           <View>
             <Text style={[shareStyles.subTitle, {marginTop: 12}]}>ចំពោះការងារដែលអ្នកបានជ្រើសរើសហើយ។​ តើអ្នកធ្វើដូចម្តេចដើម្បីឲ្យសម្រេចការងារដែលអ្នកជ្រើសរើសនោះ?</Text>
             <Divider style={{marginBottom: 8}}/>
-            <Text>{personalUnderstanding.howToReachCarreerGoal}</Text>
+            <Text>{personalUnderstanding.howToReachCareerGoal}</Text>
           </View>
         }
 

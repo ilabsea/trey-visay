@@ -91,7 +91,7 @@ function Form(props) {
         <View style={styles.formSubGroup3}>
           <Text style={getTextColor}>ចំពោះការងារដែលអ្នកបានជ្រើសរើសហើយ។​ តើអ្នកធ្វើដូចម្តេចដើម្បីឲ្យសម្រេចការងារដែលអ្នកជ្រើសរើសនោះ?</Text>
           <Field
-            name={'howToReachCarreerGoal'}
+            name={'howToReachCareerGoal'}
             component={CustomTextInput}
             multiline={true}
             numberOfLines={3}
