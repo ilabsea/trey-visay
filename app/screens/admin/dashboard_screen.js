@@ -7,7 +7,10 @@ import {
   TouchableOpacity,
   NetInfo,
   ToastAndroid,
+  Alert,
 } from 'react-native';
+
+import * as Progress from 'react-native-progress';
 
 import {
   ThemeProvider,
@@ -25,7 +28,7 @@ import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';
 import shareStyles from '../../assets/style_sheets/login_form';
 
-import { create } from 'apisauce'
+import { create } from 'apisauce';
 
 const uiTheme = {
   palette: {
@@ -48,15 +51,15 @@ export default class AdminDashboardScreen extends Component {
   };
 
   componentWillMount() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let data = realm.objects('Sidekiq');
-
-    // let games = realm.objects('Game').filtered('uuid="' + data[1].paramUuid + '"');
-    // alert(JSON.stringify(games[0].users));
-
+    this.successCount = 0;
+    this.failCount = 0;
+    this.count = 0;
     this.state = {
-      user: user,
-      data: data
+      data: data,
+      progress: 0,
+      totalCount: data.length,
+      showLoading: false
     };
 
     this._handleInternetConnection();
@@ -72,66 +75,97 @@ export default class AdminDashboardScreen extends Component {
     let user = realm.objects('User').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
 
     if (!user) {
-      this._deleteSidekiq(sidekiq);
-      return;
+      return this._deleteSidekiq(sidekiq);
     }
 
-    let data = new FormData();
-    data.append('data', JSON.stringify(this._buildUser(user))); // you can append anyone.
-    data.append('photo', {
-      uri: user.photo,
-      type: 'image/jpeg',
-      name: 'testPhotoName'
-    });
-
-    api.post('/users', data, {
-      onUploadProgress: (e) => {
-        // console.log(e)
-        // const progress = e.loaded / e.total;
-        // console.log('==============progress', progress);
-        // this.setState({
-        //   progress: progress
-        // });
-      }
+    api.post('/users', this._buildUser(user), {
+      onUploadProgress: (e) => {}
     })
-    .then((res) => console.log('-----------------res',res.config.data))
+    .then((res) => {
+      if (res.ok) {
+        // this._deleteSidekiq(sidekiq);
+        this.successCount++;
+      } else {
+        this.failCount++;
+      }
+      this._next();
+    })
   }
 
   _buildUser(user) {
-    let attributes = {};
+    let data = new FormData();
+    data.append('data', JSON.stringify(this._buildAttributes(user)));
 
-    for (var key in user) {
-      let newKey = key.split(/(?=[A-Z])/).map(k => k.toLowerCase()).join('_');;
-      attributes[newKey] = user[key];
+    if (user.photo) {
+      data.append('photo', {
+        uri: user.photo,
+        type: 'image/jpeg',
+        name: ''
+      });
     }
 
-    return { attributes: attributes }
+    return data;
+  }
+
+  _buildAttributes(obj) {
+    let attributes = {};
+
+    for (var key in obj) {
+      let newKey = key.split(/(?=[A-Z])/).map(k => k.toLowerCase()).join('_');;
+      attributes[newKey] = obj[key];
+    }
+
+    return attributes;
+  }
+
+  _next = () => {
+    let progress = (this.count + 1) / this.state.totalCount;
+    this.setState({progress: progress})
+
+    this.count++;
+    this._uploadData();
   }
 
   _uploadGame(sidekiq) {
-    let game = realm.objects('Game').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
+    // let game = realm.objects('Game').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
 
-    if (!game || !game.users.length) {
-      this._deleteSidekiq(sidekiq);
-      return;
-    }
+    // if (!game || !game.users.length) {
+    //   this._deleteSidekiq(sidekiq);
+    //   return;
+    // }
+    // this._uploadUser(sidekiq);
+
+    this._next();
   }
 
   _buildGame(game) {
     return game;
   }
 
-  _uploadData() {
-    this.state.data.map((sidekiq) => {
+  _uploadData = () => {
+    if (this.count < this.state.totalCount) {
+      let sidekiq = this.state.data[this.count];
       this['_upload' + sidekiq.tableName](sidekiq);
-    })
+      return;
+    }
+
+    Alert.alert(
+      'Upload Finish',
+      'Upload success is ' + this.successCount + '; Upload fail is ' + this.failCount,
+      [
+        { text: 'OK', onPress: () => this.setState({ showLoading: false }) },
+      ]
+    )
   }
 
   _handleSubmit() {
     if (!this.state.isOnline) {
-      return ToastAndroid.show('មិនមានការតភ្ជាប់បណ្តាញទេឥឡូវនេះ។ សូមព្យាយាម​ម្តង​ទៀត​!', ToastAndroid.SHORT);
+      return Alert.alert(
+        'អ៊ីនធឺណេតមិនដំណើរការ',
+        'ដើម្បីបញ្ជូនទិន្នន័យទៅលើបាន តម្រូវឲ្យអ្នកភ្ជាប់អុីនធឺណេតជាមុនសិន។');
     }
-
+    this.count = 0;
+    this.setState({showLoading: true});
     this._uploadData();
   }
 
@@ -165,21 +199,29 @@ export default class AdminDashboardScreen extends Component {
 
   _renderDataToUpload() {
     return (
-      <View style={[styles.btnBox]}>
-        <View style={[styles.btnFab, {backgroundColor: '#f44336'}]}>
-          <AwesomeIcon name='cloud-upload' size={30} color='#fff' />
+      <View style={styles.btnBox}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <View style={[styles.btnFab, {backgroundColor: '#f44336'}]}>
+            <AwesomeIcon name='cloud-upload' size={30} color='#fff' />
+          </View>
+
+          <View style={{marginVertical: 24}}>
+            <Text style={styles.btnLabel}>{this.state.data.length} ទិន្នន័យ</Text>
+
+            <Button
+              style={[shareStyles.btnSubmit, {paddingHorizontal: 16, marginTop: 24}]}
+              onPress={this._handleSubmit.bind(this)}>
+
+              <Text style={[shareStyles.submitText, {color: '#fff'}]}>បញ្ចូនទិន្នន័យទៅលើ</Text>
+            </Button>
+          </View>
         </View>
 
-        <View style={{marginVertical: 24}}>
-          <Text style={styles.btnLabel}>{this.state.data.length} ទិន្នន័យ</Text>
-
-          <Button
-            style={[shareStyles.btnSubmit, {paddingHorizontal: 16, marginTop: 24}]}
-            onPress={this._handleSubmit.bind(this)}>
-
-            <Text style={[shareStyles.submitText, {color: '#fff'}]}>បញ្ចូនទិន្នន័យទៅលើ</Text>
-          </Button>
-        </View>
+        { this.state.showLoading &&
+          <View>
+            <Progress.Bar progress={this.state.progress} width={null}/>
+          </View>
+        }
       </View>
     )
   }
@@ -209,10 +251,8 @@ export default class AdminDashboardScreen extends Component {
 const styles = StyleSheet.create({
   btnBox: {
     flex: 1,
-    alignItems: 'center',
     margin: 16,
     backgroundColor: '#fff',
-    flexDirection: 'row'
   },
   btnLabel: {
     fontFamily: 'KhmerOureang',
