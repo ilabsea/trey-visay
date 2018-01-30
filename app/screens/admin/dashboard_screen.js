@@ -38,7 +38,7 @@ const uiTheme = {
 };
 
 const api = create({
-  baseURL: 'http:192.168.1.118:3000/api/v1',
+  baseURL: 'http://192.168.1.118:3000/api/v1',
 })
 
 export default class AdminDashboardScreen extends Component {
@@ -83,12 +83,10 @@ export default class AdminDashboardScreen extends Component {
       return this._deleteSidekiq(sidekiq);
     }
 
-    api.post('/users', this._buildUser(user), {
-      onUploadProgress: (e) => {}
-    })
+    api.post('/users', this._buildUser(user))
     .then((res) => {
       if (res.ok) {
-        // this._deleteSidekiq(sidekiq);
+        this._deleteSidekiq(sidekiq);
         this.successCount++;
       } else {
         this.failCount++;
@@ -105,7 +103,7 @@ export default class AdminDashboardScreen extends Component {
       data.append('photo', {
         uri: user.photo,
         type: 'image/jpeg',
-        name: ''
+        name: 'userPhoto'
       });
     }
 
@@ -139,12 +137,10 @@ export default class AdminDashboardScreen extends Component {
       return;
     }
 
-    api.post('/games', this._buildGame(game), {
-      onUploadProgress: (e) => {}
-    })
+    api.post('/games', this._buildGame(game))
     .then((res) => {
       if (res.ok) {
-        // this._deleteSidekiq(sidekiq);
+        this._deleteSidekiq(sidekiq);
         this.successCount++;
       } else {
         this.failCount++;
@@ -183,11 +179,11 @@ export default class AdminDashboardScreen extends Component {
     let data = new FormData();
     data.append('data', JSON.stringify(attributes));
 
-    if (game.audio) {
+    if (game.voiceRecord) {
       data.append('audio', {
-        uri: game.voiceRecord,
+        uri: 'file://'+ game.voiceRecord,
         type: 'audio/aac',
-        name: ''
+        name: 'voiceRecord.aac'
       });
     }
 
