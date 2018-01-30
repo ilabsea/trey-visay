@@ -27,6 +27,7 @@ import User from '../../utils/user';
 import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';
 import shareStyles from '../../assets/style_sheets/login_form';
+import characteristicList from '../../data/json/characteristic_jobs';
 
 import { create } from 'apisauce';
 
@@ -51,18 +52,22 @@ export default class AdminDashboardScreen extends Component {
   };
 
   componentWillMount() {
+    this._refreshState();
+    this._handleInternetConnection();
+  }
+
+  _refreshState() {
     let data = realm.objects('Sidekiq');
     this.successCount = 0;
     this.failCount = 0;
     this.count = 0;
-    this.state = {
+
+    this.setState({
       data: data,
       progress: 0,
       totalCount: data.length,
       showLoading: false
-    };
-
-    this._handleInternetConnection();
+    });
   }
 
   _deleteSidekiq = (sidekiq) => {
@@ -127,19 +132,66 @@ export default class AdminDashboardScreen extends Component {
   }
 
   _uploadGame(sidekiq) {
-    // let game = realm.objects('Game').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
+    let game = realm.objects('Game').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
 
-    // if (!game || !game.users.length) {
-    //   this._deleteSidekiq(sidekiq);
-    //   return;
-    // }
-    // this._uploadUser(sidekiq);
+    if (!game || !game.users.length) {
+      this._deleteSidekiq(sidekiq);
+      return;
+    }
 
-    this._next();
+    api.post('/games', this._buildGame(game), {
+      onUploadProgress: (e) => {}
+    })
+    .then((res) => {
+      if (res.ok) {
+        // this._deleteSidekiq(sidekiq);
+        this.successCount++;
+      } else {
+        this.failCount++;
+      }
+      this._next();
+    })
   }
 
   _buildGame(game) {
-    return game;
+    let attributes = this._buildAttributes(game);
+
+    attributes.characteristic_entries = game.characteristicEntries.map(obj => obj.value);
+    attributes.game_subject = this._buildAttributes(game.gameSubject);
+    attributes.personal_understandings = [];
+
+    delete attributes.personality_careers;
+    delete attributes.step;
+    delete attributes.is_done;
+    delete attributes.goal_career;
+
+    let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
+    let careerIds = game.personalityCareers.map((obj) => obj.value);
+    game.personalityCareers.map((obj) => {
+      attributes.careers = currentGroup.careers.filter((item, pos) => { return careerIds.includes(item.id) });
+    });
+
+    attributes.careers = attributes.careers.map((obj) => {
+      obj.is_goal = (obj.id == game.mostFavorableJobId);
+      return obj;
+    })
+
+    game.personalUnderstandings.map((obj) => {
+      attributes.personal_understandings.push(this._buildAttributes(obj));
+    })
+
+    let data = new FormData();
+    data.append('data', JSON.stringify(attributes));
+
+    if (game.audio) {
+      data.append('audio', {
+        uri: game.voiceRecord,
+        type: 'audio/aac',
+        name: ''
+      });
+    }
+
+    return data;
   }
 
   _uploadData = () => {
@@ -153,7 +205,7 @@ export default class AdminDashboardScreen extends Component {
       'Upload Finish',
       'Upload success is ' + this.successCount + '; Upload fail is ' + this.failCount,
       [
-        { text: 'OK', onPress: () => this.setState({ showLoading: false }) },
+        { text: 'OK', onPress: () => this._refreshState() }
       ]
     )
   }
