@@ -4,7 +4,6 @@ import {
   View,
   ScrollView,
   TextInput,
-  StyleSheet,
   Alert,
   Image,
   TouchableOpacity,
@@ -40,15 +39,11 @@ export default class RegisterScreen extends Component {
     this.buildData = this.buildData.bind(this);
   }
 
-  componentWillMount() {
-    // alert(JSON.stringify(realm.objects('User')));
-  }
-
   handleSubmit() {
     if (this.state.password !== this.state.passwordConfirmation) {
       Alert.alert(
-        'Incorrect password',
-        "Password confirm doesn't match password.")
+        'ការបញ្ចូលពាក្យសម្ងាត់មិនត្រឹមត្រូវ',
+        "ការបញ្ជាក់ពាក្យសម្ងាត់មិនត្រូវគ្នានឹងពាក្យសម្ងាត់ទេ។")
       return;
     }
 
@@ -61,7 +56,7 @@ export default class RegisterScreen extends Component {
 
       });
     } catch (e) {
-      console.log("Error on creation");
+      console.log('===========Error on creation', e);
       alert('Fail to create user!');
     }
   }
@@ -69,16 +64,14 @@ export default class RegisterScreen extends Component {
   buildData() {
     return {
       uuid: this.state.uuid,
-      fullName: this.state.fullName,
+      fullName: this.state.username,
       username: this.state.username,
       password: this.state.password
     };
   }
 
   render() {
-    const isEnabled = this.state.fullName.length &&
-                      this.state.password.length &&
-                      this.state.passwordConfirmation.length;
+    const isEnabled = this.state.password.length && this.state.passwordConfirmation.length;
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
 
     return (
@@ -99,20 +92,11 @@ export default class RegisterScreen extends Component {
               </View>
 
               <View>
-                <Text style={styles.whiteLabel}>ឈ្មោះពេញ</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({fullName: text, username: text.split(' ').join('_')})}
-                  value={this.state.fullName}
-                  underlineColorAndroid='transparent'
-                  onSubmitEditing={() => this.passwordInput.focus()}
-                  returnKeyType='next' />
-
                 <Text style={styles.whiteLabel}>ឈ្មោះគណនី</Text>
                 <TextInput
-                  style={[styles.inputText, {backgroundColor: 'rgba(255,255,255,0.2)', color: '#fff'}]}
+                  style={styles.inputText}
+                  onChangeText={(text) => this.setState({username: text})}
                   value={this.state.username}
-                  editable={false}
                   underlineColorAndroid='transparent'
                   onSubmitEditing={() => this.passwordInput.focus()}
                   returnKeyType='next' />

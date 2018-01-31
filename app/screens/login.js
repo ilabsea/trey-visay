@@ -66,7 +66,7 @@ export default class Login extends Component {
   }
 
   handleSubmit(event) {
-    let users = realm.objects('User').filtered('fullName="' + this.state.username + '" AND password="' + this.state.password + '"');
+    let users = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"');
     if (!users.length) {
       return Alert.alert(
         'ការបញ្ចូលមិនត្រឹមត្រូវ',

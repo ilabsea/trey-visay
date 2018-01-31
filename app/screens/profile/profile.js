@@ -85,6 +85,11 @@ export default class Profile extends Component {
         </View>
 
         <View style={styles.item}>
+          <Text style={styles.itemLabel}>ឈ្មោះគណនី</Text>
+          <Text style={styles.itemValue}>: {this.state.user.username}</Text>
+        </View>
+
+        <View style={styles.item}>
           <Text style={styles.itemLabel}>ភេទ</Text>
           <Text style={styles.itemValue}>: {this.state.user.sex}</Text>
         </View>

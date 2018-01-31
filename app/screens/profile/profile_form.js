@@ -68,6 +68,7 @@ export default class ProfileForm extends Component {
     user = Object.assign({}, user, {sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9',
                                     schoolName: 'សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ',
                                     houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន'})
+
     this.state = {
       user: user,
       errors: {},
@@ -230,15 +231,7 @@ export default class ProfileForm extends Component {
     return (
       <View>
         { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>ឈ្មោះគណនី</Text>
-          <TextInput
-            style={styles.inputText}
-            value={ this.state.user.username }
-            editable={false} />
-        </View>
-
+        { this._renderInputTextContainer({stateName: 'username', label: 'ឈ្មោះគណនី'}) }
         { this._renderPicker({label: 'ភេទ', stateName: 'sex', options: [{label: 'ស្រី', value: 'ស្រី'}, {label: 'ប្រុស', value: 'ប្រុស'}, {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ'}]}) }
 
         <View style={styles.inputContainer}>
