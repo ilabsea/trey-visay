@@ -4,14 +4,12 @@ import {
   View,
   ScrollView,
   TextInput,
-  StyleSheet,
   Alert,
   TouchableOpacity,
-  AsyncStorage,
   Image,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import SplashScreen from 'react-native-splash-screen'
+import SplashScreen from 'react-native-splash-screen';
 import StatusBar from '../components/status_bar';
 
 // Utils
@@ -67,20 +65,12 @@ export default class Login extends Component {
     this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
   }
 
-  handleUsernameChange(text) {
-    this.setState({username: text});
-  }
-
-  handlePasswordChange(text) {
-    this.setState({password: text});
-  }
-
   handleSubmit(event) {
     let users = realm.objects('User').filtered('fullName="' + this.state.username + '" AND password="' + this.state.password + '"');
     if (!users.length) {
       return Alert.alert(
-        'Incorrect username or password',
-        'The username or passwrod you entered is incorrect. Please try atain.');
+        'ការបញ្ចូលមិនត្រឹមត្រូវ',
+        'ឈ្មោះគណនី ឬលេខសម្ងាត់ដែលអ្នកបានបញ្ចូលមិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត។');
     }
 
     User.setLogin(users[0].uuid, ()=>{
@@ -120,7 +110,7 @@ export default class Login extends Component {
               <View>
                 <TextInput
                   style={styles.inputText}
-                  onChangeText={this.handleUsernameChange.bind(this)}
+                  onChangeText={(text) => this.setState({username: text})}
                   returnKeyType='next'
                   placeholder='ឈ្មោះគណនី'
                   placeholderTextColor='rgba(0,0,0,0.7)'
@@ -135,7 +125,7 @@ export default class Login extends Component {
                   returnKeyType='go'
                   placeholder='លេខសម្ងាត់'
                   placeholderTextColor='rgba(0,0,0,0.7)'
-                  onChangeText={this.handlePasswordChange.bind(this)}
+                  onChangeText={(text) => this.setState({password: text})}
                   underlineColorAndroid='transparent'
                   ref={(input) => this.passwordInput = input}
                 />
