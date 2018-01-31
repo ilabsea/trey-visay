@@ -11,13 +11,11 @@ import {
 
 import {
   ThemeProvider,
-  Icon,
 } from 'react-native-material-ui';
 
 import styles from '../../../assets/style_sheets/profile_form';
 import headerStyles from '../../../assets/style_sheets/header';
 import shareStyles from '../style';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import realm from '../../../schema';
 import User from '../../../utils/user';
@@ -33,11 +31,7 @@ export default class RecommendationReport extends Component {
       title: 'ការផ្តល់អនុសាសន៍',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ការផ្តល់អនុសាសន៍</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      headerTintColor: '#fff'
     }
   };
 
