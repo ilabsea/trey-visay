@@ -56,7 +56,7 @@ export default class PersonalityJobsScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this), title: this.state.currentGroup.title, total: careers.length});
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this), title: this.state.currentGroup.career_title, total: careers.length});
   }
 
   _initState() {
