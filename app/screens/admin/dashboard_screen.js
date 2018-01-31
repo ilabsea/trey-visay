@@ -160,9 +160,8 @@ export default class AdminDashboardScreen extends Component {
       this.failCount++;
     }
 
-    if (this.cancel || !this.state.showLoading) {
-      this._alertResult();
-      return;
+    if (this.cancel || !this.state.showLoading || !this.isOnline) {
+      return this._alertResult();
     }
 
     this._next();
