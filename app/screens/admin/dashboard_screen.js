@@ -4,13 +4,10 @@ import {
   ScrollView,
   View,
   StyleSheet,
-  TouchableOpacity,
   NetInfo,
   ToastAndroid,
   Alert,
 } from 'react-native';
-
-import * as Progress from 'react-native-progress';
 
 import {
   ThemeProvider,
@@ -18,8 +15,9 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
-import Button from '../../components/button';
+import * as Progress from 'react-native-progress';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Button from '../../components/button';
 
 // Utils
 import realm from '../../schema';
@@ -61,18 +59,37 @@ export default class AdminDashboardScreen extends Component {
     this.successCount = 0;
     this.failCount = 0;
     this.count = 0;
+    this.cancel = false;
 
     this.setState({
-      data: data,
+      data: data.map((sidekiq) => ({paramUuid: sidekiq.paramUuid, tableName: sidekiq.tableName})),
       progress: 0,
       totalCount: data.length,
       showLoading: false
     });
   }
 
+  _handleInternetConnection() {
+    NetInfo.isConnected.fetch().then(isConnected => {
+      this.setState({isOnline: isConnected});
+    });
+
+    NetInfo.isConnected.addEventListener(
+      'connectionChange',
+      this._handleFirstConnectivityChange
+    );
+  }
+
+  _handleFirstConnectivityChange = (isConnected) => {
+    if (this.refs.adminDashboard) {
+      this.setState({isOnline: isConnected});
+    }
+  }
+
   _deleteSidekiq = (sidekiq) => {
+    let sk = realm.objects('Sidekiq').filtered('paramUuid="' + sidekiq.paramUuid + '"')[0];
     realm.write(() => {
-      realm.delete(sidekiq);
+      realm.delete(sk);
     });
   }
 
@@ -85,13 +102,7 @@ export default class AdminDashboardScreen extends Component {
 
     api.post('/users', this._buildUser(user))
     .then((res) => {
-      if (res.ok) {
-        this._deleteSidekiq(sidekiq);
-        this.successCount++;
-      } else {
-        this.failCount++;
-      }
-      this._next();
+      this._handleResponse(res, sidekiq);
     })
   }
 
@@ -124,7 +135,6 @@ export default class AdminDashboardScreen extends Component {
   _next = () => {
     let progress = (this.count + 1) / this.state.totalCount;
     this.setState({progress: progress})
-
     this.count++;
     this._uploadData();
   }
@@ -133,20 +143,29 @@ export default class AdminDashboardScreen extends Component {
     let game = realm.objects('Game').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
 
     if (!game || !game.users.length) {
-      this._deleteSidekiq(sidekiq);
-      return;
+      return this._deleteSidekiq(sidekiq);
     }
 
     api.post('/games', this._buildGame(game))
     .then((res) => {
-      if (res.ok) {
-        this._deleteSidekiq(sidekiq);
-        this.successCount++;
-      } else {
-        this.failCount++;
-      }
-      this._next();
+      this._handleResponse(res, sidekiq);
     })
+  }
+
+  _handleResponse(res, sidekiq) {
+    if (res.ok) {
+      this._deleteSidekiq(sidekiq);
+      this.successCount++;
+    } else {
+      this.failCount++;
+    }
+
+    if (this.cancel || !this.state.showLoading) {
+      this._alertResult();
+      return;
+    }
+
+    this._next();
   }
 
   _buildGame(game) {
@@ -176,6 +195,7 @@ export default class AdminDashboardScreen extends Component {
       attributes.personal_understandings.push(this._buildAttributes(obj));
     })
 
+    // Form data
     let data = new FormData();
     data.append('data', JSON.stringify(attributes));
 
@@ -197,12 +217,15 @@ export default class AdminDashboardScreen extends Component {
       return;
     }
 
+    this._alertResult();
+  }
+
+  _alertResult() {
     Alert.alert(
-      'Upload Finish',
-      'Upload success is ' + this.successCount + '; Upload fail is ' + this.failCount,
-      [
-        { text: 'OK', onPress: () => this._refreshState() }
-      ]
+      'ការបញ្ចូនទិន្នន័យទៅលើសរុបគឺ ' + this.state.totalCount,
+      'ជោគជ័យចំនួន ' + this.successCount + '; ហើយបរាជ័យចំនួន ' + this.failCount,
+      [{ text: 'OK', onPress: () => this._refreshState() }],
+      { cancelable: false }
     )
   }
 
@@ -212,26 +235,15 @@ export default class AdminDashboardScreen extends Component {
         'អ៊ីនធឺណេតមិនដំណើរការ',
         'ដើម្បីបញ្ជូនទិន្នន័យទៅលើបាន តម្រូវឲ្យអ្នកភ្ជាប់អុីនធឺណេតជាមុនសិន។');
     }
+
+    if (this.state.showLoading) {
+      this.cancel = true;
+      return;
+    }
+
     this.count = 0;
     this.setState({showLoading: true});
     this._uploadData();
-  }
-
-  _handleInternetConnection() {
-    NetInfo.isConnected.fetch().then(isConnected => {
-      this.setState({isOnline: isConnected});
-    });
-
-    NetInfo.isConnected.addEventListener(
-      'connectionChange',
-      this._handleFirstConnectivityChange
-    );
-  }
-
-  _handleFirstConnectivityChange = (isConnected) => {
-    if (this.refs.adminDashboard) {
-      this.setState({isOnline: isConnected});
-    }
   }
 
   _renderNoData() {
@@ -245,7 +257,7 @@ export default class AdminDashboardScreen extends Component {
     )
   }
 
-  _renderDataToUpload() {
+  _renderHaveData() {
     return (
       <View style={styles.btnBox}>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -254,13 +266,19 @@ export default class AdminDashboardScreen extends Component {
           </View>
 
           <View style={{marginVertical: 24}}>
-            <Text style={styles.btnLabel}>{this.state.data.length} ទិន្នន័យ</Text>
+            <Text style={styles.btnLabel}>
+              { !this.state.showLoading && this.state.data.length + ' ទិន្នន័យ' }
+              { this.state.showLoading && 'កំពុងបញ្ជូនទិន្នន័យទៅលើ...' }
+            </Text>
 
             <Button
               style={[shareStyles.btnSubmit, {paddingHorizontal: 16, marginTop: 24}]}
               onPress={this._handleSubmit.bind(this)}>
 
-              <Text style={[shareStyles.submitText, {color: '#fff'}]}>បញ្ចូនទិន្នន័យទៅលើ</Text>
+              <Text style={[shareStyles.submitText, {color: '#fff'}]}>
+                { !this.state.showLoading && 'បញ្ចូនទិន្នន័យទៅលើ' }
+                { this.state.showLoading && 'បោះបង់' }
+              </Text>
             </Button>
           </View>
         </View>
@@ -288,7 +306,7 @@ export default class AdminDashboardScreen extends Component {
 
           <ScrollView>
             { !this.state.data.length && this._renderNoData() }
-            { !!this.state.data.length && this._renderDataToUpload() }
+            { !!this.state.data.length && this._renderHaveData() }
           </ScrollView>
         </View>
       </ThemeProvider>

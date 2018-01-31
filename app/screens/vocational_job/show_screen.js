@@ -23,6 +23,12 @@ import characteristicList from '../../data/json/characteristic_jobs';
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';
 
+const uiTheme = {
+  palette: {
+    primaryColor: '#1976d2',
+  }
+};
+
 export default class VocationalJobShowScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
@@ -99,7 +105,7 @@ export default class VocationalJobShowScreen extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={{}}>
+      <ThemeProvider uiTheme={uiTheme}>
         <View style={{flex: 1}}>
           <StatusBar />
           <ScrollView style={{flex: 1}}>
