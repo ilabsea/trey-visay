@@ -220,8 +220,10 @@ export default class AdminDashboardScreen extends Component {
   }
 
   _alertResult() {
+    let total = this.successCount + this.failCount;
+
     Alert.alert(
-      'ការបញ្ចូនទិន្នន័យទៅលើសរុបគឺ ' + this.state.totalCount,
+      'ការបញ្ចូនទិន្នន័យទៅលើសរុបគឺ ' + total + ' លើ ' + this.state.totalCount,
       'ជោគជ័យចំនួន ' + this.successCount + '; ហើយបរាជ័យចំនួន ' + this.failCount,
       [{ text: 'OK', onPress: () => this._refreshState() }],
       { cancelable: false }
