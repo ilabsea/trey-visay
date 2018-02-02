@@ -97,7 +97,7 @@ export default class AdminDashboardScreen extends Component {
     let user = realm.objects('User').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
 
     if (!user) {
-      return this._deleteSidekiq(sidekiq);
+      _handleResponse({ok: true}, sidekiq)
     }
 
     api.post('/users', this._buildUser(user))
@@ -160,7 +160,7 @@ export default class AdminDashboardScreen extends Component {
       this.failCount++;
     }
 
-    if (this.cancel || !this.state.showLoading || !this.isOnline) {
+    if (this.cancel || !this.state.showLoading || !this.state.isOnline) {
       return this._alertResult();
     }
 
