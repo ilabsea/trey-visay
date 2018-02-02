@@ -200,12 +200,12 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 24,
     top: -PROFILE_SIZE*2/3,
-    zIndex: 1
+    zIndex: 1,
   },
   avata: {
     width: PROFILE_SIZE,
     height: PROFILE_SIZE,
-    borderRadius: 0,
+    borderRadius: PROFILE_SIZE/2,
   },
   iconWrapper: {
     width: 24,
