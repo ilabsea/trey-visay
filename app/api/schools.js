@@ -4,7 +4,7 @@
 import { random, min, times } from 'lodash';
 import schoolList from '../data/json/schools';
 
-const perPage = 7;
+const perPage = 15;
 
 export default {
   getSchools(page, option={}) {
@@ -47,6 +47,7 @@ export default {
       }
 
       let provinces = [...new Set(list.map(school => school.province))];
+      provinces = provinces.filter(v => v);
 
       resolve({ provinces });
     })

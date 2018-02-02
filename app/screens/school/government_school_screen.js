@@ -145,10 +145,12 @@ export default class GovernmentSchoolScreen extends Component {
           <View style={{flex: 1, marginLeft: 16}}>
             <Text style={shareStyles.subTitle}>{school.universityName}</Text>
 
-            <View style={{flexDirection: 'row'}}>
-              <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
-              <Text style={{marginLeft: 8}}>{school.address}</Text>
-            </View>
+            { !!school.address &&
+              <View style={{flexDirection: 'row'}}>
+                <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
+                <Text style={{marginLeft: 8}}>{school.address}</Text>
+              </View>
+            }
           </View>
         </View>
       </TouchableOpacity>

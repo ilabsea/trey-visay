@@ -61,7 +61,7 @@ export default class InstitutionDetail extends Component {
 
     return (
       <View>
-        { !!data.length &&
+        { !!data && !!data.length &&
           <View style={styles.communicationWrapper}>
             <View style={styles.iconWrapper}>
               { com.icon != 'markunread-mailbox' &&
