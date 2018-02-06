@@ -101,12 +101,9 @@ export default class PersonalUnderstandingForm extends Component {
     let list = game.personalUnderstandings;
 
     realm.write(() => {
-      // realm.create('PersonalUnderstanding', values);
-      // let testCount = realm.objects('PersonalUnderstanding').filtered('userUuid="' + User.getID() + '"').length;
       list.push(values);
 
-      this.setState({testCount: list.length});
-      this.setState({score: values.score});
+      this.setState({testCount: list.length, score: values.score});
       this.setModalVisible(!this.state.modalVisible);
     });
   };

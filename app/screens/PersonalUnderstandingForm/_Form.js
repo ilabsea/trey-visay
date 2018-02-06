@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field, formValueSelector, getFormValues, reset } from 'redux-form';
@@ -27,7 +26,10 @@ function Form(props) {
       <View>
         <View style={{flexDirection: 'row', marginVertical: 16}}>
           <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-          <Text style={{fontFamily: 'KantumruyBold', color: '#212121'}}>ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។ ករណីសិស្ស ទទួលបានពិន្ទុក្រោម ៥០% សិស្សត្រូវតម្រូវឲ្យធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។</Text>
+          <Text style={{fontFamily: 'KantumruyBold', color: '#212121', flex: 1}}>
+            ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។
+            ករណីសិស្ស ទទួលបានពិន្ទុក្រោម ៥០% សិស្សត្រូវតម្រូវឲ្យធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។
+          </Text>
         </View>
 
         <Text style={styles.hintLable}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
@@ -151,8 +153,6 @@ function Form(props) {
 
     </ScrollView>
   );
-
-
 }
 
 const styles = StyleSheet.create({
@@ -162,7 +162,6 @@ const styles = StyleSheet.create({
     margin: 16,
   },
   formGroup: {
-    // marginTop: 0,
     padding: 16,
     marginBottom: 16,
     backgroundColor: '#fff',
@@ -201,6 +200,5 @@ Form = connect(
     }
   }
 )(Form);
-
 
 export default Form;
