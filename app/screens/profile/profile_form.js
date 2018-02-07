@@ -291,9 +291,9 @@ export default class ProfileForm extends Component {
     ];
 
     let collectiveIncomes = [
-      { label: 'ក្រោម 25ម៉ឺន', value: '0-25ម៉ឺន' }, { label: 'ចន្លោះ 25ម៉ឺន-50ម៉ឺន', value: '25ម៉ឺន-50ម៉ឺន' },
-      { label: 'ចន្លោះ 50ម៉ឺន-75ម៉ឺន', value: '50ម៉ឺន-75ម៉ឺន' }, { label: 'ចន្លោះ 75ម៉ឺន-1លាន', value: '75ម៉ឺន-1លាន' },
-      { label: 'លើស1លាន', value: 'លើស1លាន' }];
+      { label: 'ក្រោម 25ម៉ឺនរៀល', value: '0-25ម៉ឺន' }, { label: 'ចន្លោះ 25ម៉ឺន-50ម៉ឺនរៀល', value: '25ម៉ឺន-50ម៉ឺន' },
+      { label: 'ចន្លោះ 50ម៉ឺន-75ម៉ឺនរៀល', value: '50ម៉ឺន-75ម៉ឺន' }, { label: 'ចន្លោះ 75ម៉ឺន-1លានរៀល', value: '75ម៉ឺន-1លាន' },
+      { label: 'លើស1លានរៀល', value: 'លើស1លាន' }];
 
     return (
       <View>
