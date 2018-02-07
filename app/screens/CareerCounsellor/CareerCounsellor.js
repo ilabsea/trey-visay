@@ -55,6 +55,8 @@ export default class CareerCounsellor extends Component {
       completedGames: user.games.filtered('isDone = true').sorted('createdAt', true),
       canContinueToTest2: canContinueToTest2
     }
+
+    // alert(JSON.stringify(this.state.completedGames[0]));
   }
 
   _renderInstruction() {
@@ -181,7 +183,6 @@ export default class CareerCounsellor extends Component {
   _buildData() {
     let obj = {
       uuid: uuidv4(),
-      // uuid: '123',
       user: this.state.user,
       createdAt: Date()
     };
@@ -190,8 +191,13 @@ export default class CareerCounsellor extends Component {
   }
 
   _goToPersonalUnderstandingForm() {
+    let uncompletedGames = this.state.user.games.filtered('isDone = false');
+
     realm.write(() => {
+      realm.delete(uncompletedGames);
+
       this.state.user.games.push(this._buildData());
+      this.setState({game: this.state.user.games[this.state.user.games.length-1]});
       this.props.navigation.navigate('PersonalUnderstandingFormScreen');
     });
   }

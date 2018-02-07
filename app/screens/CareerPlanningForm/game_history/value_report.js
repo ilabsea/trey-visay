@@ -32,7 +32,7 @@ export default class ValueReport extends Component {
 
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    let game = user.games.filtered('uuid=="' + this.props.navigation.state.params.gameUuid + '"')[0];
+    let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
     let allCareers = [];
     let valueCareers = game.valueCareers.map(career => career.value);
 
