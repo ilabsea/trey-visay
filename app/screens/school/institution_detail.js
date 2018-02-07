@@ -5,6 +5,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Linking,
 } from 'react-native';
 
 import {
@@ -45,8 +46,32 @@ export default class InstitutionDetail extends Component {
           { this._renderCommunication({data: this.state.school.faxes, icon: 'fax', iconSize: 20}) }
           { this._renderCommunication({data: this.state.school.emails, icon: 'envelope', iconSize: 20}) }
           { this._renderCommunication({data: this.state.school.mailbox, icon: 'markunread-mailbox'}) }
-          { this._renderCommunication({data: this.state.school.websiteOrFacebook, icon: 'globe'}) }
+          { this._renderWebsiteOrFacebook({data: this.state.school.websiteOrFacebook, icon: 'globe'}) }
         </View>
+      </View>
+    )
+  }
+
+  _openLink(url) {
+    Linking.openURL('http://' + url);
+  }
+
+  _renderWebsiteOrFacebook(com) {
+    return (
+      <View style={styles.communicationWrapper}>
+        <View style={styles.iconWrapper}>
+          <AwesomeIcon name={com.icon} color='#1976d2' size={24} />
+        </View>
+
+        {
+          com.data.map((data, i) => {
+            return (
+              <TouchableOpacity key={i} onPress={() => this._openLink(data)}>
+                <Text style={[shareStyles.link, {marginRight: 10}]}>{data}</Text>
+              </TouchableOpacity>
+            )
+          })
+        }
       </View>
     )
   }

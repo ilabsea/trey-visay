@@ -10,8 +10,6 @@ import {
   DialogDefaultActions,
 } from 'react-native-material-ui';
 
-import PopupDialog from 'react-native-popup-dialog';
-
 export default class ResultDialog extends React.Component{
 
     render(){

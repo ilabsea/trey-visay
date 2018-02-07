@@ -40,5 +40,8 @@ export default StyleSheet.create({
   listItem: {
     fontSize: 20,
     flex: 1
+  },
+  link: {
+    color: '#1976d2'
   }
 });
