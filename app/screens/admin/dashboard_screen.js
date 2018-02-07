@@ -97,7 +97,7 @@ export default class AdminDashboardScreen extends Component {
     let user = realm.objects('User').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
 
     if (!user) {
-      _handleResponse({ok: true}, sidekiq)
+      return this._handleResponse({ok: true}, sidekiq);
     }
 
     api.post('/users', this._buildUser(user))
@@ -143,7 +143,7 @@ export default class AdminDashboardScreen extends Component {
     let game = realm.objects('Game').filtered('uuid="' + sidekiq.paramUuid + '"')[0];
 
     if (!game || !game.users.length) {
-      return this._deleteSidekiq(sidekiq);
+      return this._handleResponse({ok: true}, sidekiq);
     }
 
     api.post('/games', this._buildGame(game))
