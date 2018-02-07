@@ -14,7 +14,6 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../../assets/style_sheets/header';
 import shareStyles from '../../../assets/style_sheets/profile_form';
 import StatusBar from '../../../components/status_bar';
-// import characteristicList from '../../../data/json/personality_jobs';
 import characteristicList from '../../../data/json/characteristic_jobs';
 import realm from '../../../schema';
 import User from '../../../utils/user';

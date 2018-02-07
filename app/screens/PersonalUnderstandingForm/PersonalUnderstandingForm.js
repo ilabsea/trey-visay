@@ -39,7 +39,7 @@ export default class PersonalUnderstandingForm extends Component {
     headerTitle: <Text style={headerStyles.headerTitleStyle}>ស្វែងយល់អំពីខ្លួនឯង</Text>,
     headerStyle: headerStyles.headerStyle,
     headerLeft: <ThemeProvider uiTheme={{}}>
-                  <TouchableOpacity onPress={() => navigation.goBack()} style={{marginHorizontal: 16}}>
+                  <TouchableOpacity onPress={() => { navigation.state.params.refresh(); navigation.goBack()}} style={{marginHorizontal: 16}}>
                     <Icon name='close' color='#fff' size={24} />
                   </TouchableOpacity>
                 </ThemeProvider>,

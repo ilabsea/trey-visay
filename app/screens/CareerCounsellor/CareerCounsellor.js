@@ -42,6 +42,10 @@ export default class CareerCounsellor extends Component {
   };
 
   componentWillMount() {
+    this.refreshState();
+  }
+
+  refreshState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
     let canContinueToTest2 = !!game && !game.isDone &&
@@ -49,14 +53,12 @@ export default class CareerCounsellor extends Component {
                                     game.personalUnderstandings[0].score > 11
                                     || game.personalUnderstandings.length > 1);
 
-    this.state = {
+    this.setState({
       user: user,
       game: game,
       completedGames: user.games.filtered('isDone = true').sorted('createdAt', true),
       canContinueToTest2: canContinueToTest2
-    }
-
-    // alert(JSON.stringify(this.state.completedGames[0]));
+    });
   }
 
   _renderInstruction() {
@@ -169,7 +171,7 @@ export default class CareerCounsellor extends Component {
 
   _handleGoingNextStep() {
     if (!this.state.canContinueToTest2) {
-      this.props.navigation.navigate('PersonalUnderstandingFormScreen');
+      this.props.navigation.navigate('PersonalUnderstandingFormScreen', { refresh: this.refreshState.bind(this) });
       return
     }
 
@@ -198,7 +200,7 @@ export default class CareerCounsellor extends Component {
 
       this.state.user.games.push(this._buildData());
       this.setState({game: this.state.user.games[this.state.user.games.length-1]});
-      this.props.navigation.navigate('PersonalUnderstandingFormScreen');
+      this.props.navigation.navigate('PersonalUnderstandingFormScreen', { refresh: this.refreshState.bind(this) });
     });
   }
 }

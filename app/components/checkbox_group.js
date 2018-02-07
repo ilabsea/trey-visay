@@ -11,6 +11,8 @@ export default class CheckboxGroup extends Component {
       };
     }
 
+    // https://stackoverflow.com/questions/26402534/how-to-listen-state-changes-in-react-js
+    // https://developmentarc.gitbooks.io/react-indepth/content/life_cycle/the_life_cycle_recap.html
     componentWillReceiveProps(props) {
       if (props.checkedVip) {
         this.setState({
