@@ -44,7 +44,9 @@ export default class CareersScreen extends Component {
   };
 
   componentWillMount() {
-    this.state = { confirmDialogVisible: false };
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+    this.state = { confirmDialogVisible: false, game: game };
     this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
     this._backHandler();
   }
@@ -88,8 +90,7 @@ export default class CareersScreen extends Component {
     realm.write(() => {
       realm.delete(this.state.game);
 
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._onYes();
     });
   }
 

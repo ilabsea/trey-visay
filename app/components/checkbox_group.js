@@ -11,6 +11,14 @@ export default class CheckboxGroup extends Component {
       };
     }
 
+    componentWillReceiveProps(props) {
+      if (props.checkedVip) {
+        this.setState({
+          selected: props.checkedVip
+        });
+      }
+    }
+
     static propTypes = {
       onSelect: PropTypes.func,
       checked: PropTypes.array,
