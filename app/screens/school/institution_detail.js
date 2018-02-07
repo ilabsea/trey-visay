@@ -67,7 +67,10 @@ export default class InstitutionDetail extends Component {
           com.data.map((data, i) => {
             return (
               <TouchableOpacity key={i} onPress={() => this._openLink(data)}>
-                <Text style={[shareStyles.link, {marginRight: 10}]}>{data}</Text>
+                <Text>
+                  <Text style={[shareStyles.link]}>{data}</Text>
+                  { (i < com.data.length - 1) && <Text>; </Text> }
+                </Text>
               </TouchableOpacity>
             )
           })
@@ -195,32 +198,6 @@ export default class InstitutionDetail extends Component {
 }
 
 const styles = StyleSheet.create({
-  box: {
-    marginTop: 10,
-    marginHorizontal: 16,
-    borderWidth: 1,
-    borderColor: '#eee',
-    backgroundColor: '#fff'
-  },
-  item: {
-    flexDirection: 'row',
-    padding: 16
-  },
-  itemTitle: {
-    flex: 1,
-    fontSize: 20,
-    fontFamily: 'KhmerOureang',
-    color: '#111'
-  },
-  itemLabel: {
-    flex: 1,
-  },
-  itemValue: {
-    flex: 2,
-    fontSize: 16,
-    fontFamily: 'KantumruyBold',
-    color: '#111'
-  },
   avataContainer: {
     position: 'absolute',
     left: 24,
