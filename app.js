@@ -12,7 +12,6 @@ import Register from './app/screens/register';
 import AdminHomeNavigator from './app/screens/admin/home';
 
 import User from './app/utils/user';
-import adminList from './app/data/json/admin';
 import uuidv4 from './app/utils/uuidv4';
 import realm from './app/schema';
 
@@ -38,36 +37,6 @@ const AppNavigator = StackNavigator({
 });
 
 export default class App extends Component {
-  adminMigration() {
-    realm.write(() => {
-      for (let i = 0; i < adminList.length; i++) {
-        let user = adminList[i];
-        let obj = {
-                    uuid: uuidv4(),
-                    fullName: user.fullName,
-                    password: user.password,
-                    username: user.username,
-                    schoolName: user.schoolName,
-                    role: user.role
-                  };
-
-        realm.create('User', obj);
-      }
-
-      User.setAdminExisted();
-    });
-  }
-
-  handleMigration(result) {
-    if (!!result) { return }
-
-    this.adminMigration();
-  }
-
-  componentWillMount() {
-    User.isAdminExisted(this.handleMigration.bind(this));
-  }
-
   render() {
     return ( <AppNavigator/> );
   }
