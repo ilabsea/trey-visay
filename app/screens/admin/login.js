@@ -18,6 +18,7 @@ import { create } from 'apisauce';
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
+import uuidv4 from '../../utils/uuidv4';
 import styles from '../../assets/style_sheets/login_form';
 
 // Components
@@ -75,13 +76,35 @@ export default class AdminLogin extends Component {
 
   _handleResponse(res) {
     if (res.ok) {
-      User.setToken(res.data.auth_token);
-      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}], key: null})
+      realm.write(() => {
+        let user = realm.create('User', this.buildData(res), true);
+        User.setLogin(user.uuid, () => {
+          this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}], key: null})
+        });
+      });
+
+      return;
     }
 
     Alert.alert(
       'ការបញ្ចូលមិនត្រឹមត្រូវ',
       'អុីមែល ឬលេខសម្ងាត់ដែលអ្នកបានបញ្ចូលមិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត។');
+  }
+
+  buildData(res) {
+    let data = JSON.parse(res.config.data);
+    let email = data.user.email;
+    let password = data.user.password;
+    let user = realm.objects('User').filtered('username="' + email + '"')[0];
+
+    return {
+      uuid: user && user.uuid || uuidv4(),
+      fullName: email,
+      username: email,
+      password: password,
+      token: res.data.auth_token,
+      role: 'admin'
+    };
   }
 
   _renderContent() {

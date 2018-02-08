@@ -37,19 +37,12 @@ export default class Login extends Component {
 
   componentWillMount() {
     SplashScreen.hide();
-    User.isAdminLoggedin(this.handleAccount.bind(this));
+
+    User.isLoggedin(this.handleUser.bind(this));
   }
 
   isUserInfoCompleted(user) {
     return !!user && !!user.dateOfBirth;
-  }
-
-  handleAccount(token) {
-    if (token) {
-      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}], key: null})
-    }
-
-    User.isLoggedin(this.handleUser.bind(this));
   }
 
   handleUser(userId) {
@@ -62,6 +55,11 @@ export default class Login extends Component {
     if (!user) {
       User.logout();
       return this.setState({loaded: true});
+    }
+
+    // Only admin user has token
+    if (!!user.token) {
+      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}], key: null})
     }
 
     if (this.isUserInfoCompleted(user)) {

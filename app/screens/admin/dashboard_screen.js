@@ -35,11 +35,6 @@ const uiTheme = {
   }
 };
 
-const api = create({
-  baseURL: 'http://192.168.1.118:3000/api/v1',
-  headers: { 'Authorization': 'token ' + User.getToken() }
-})
-
 export default class AdminDashboardScreen extends Component {
   static navigationOptions = {
     drawerLabel: 'ទំព័រដើម',
@@ -51,6 +46,11 @@ export default class AdminDashboardScreen extends Component {
   };
 
   componentWillMount() {
+    let currentUser = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    this.api = create({
+      baseURL: 'http://192.168.1.118:3000/api/v1',
+      headers: { 'Authorization': 'token ' + currentUser.token }
+    })
     this._refreshState();
     this._handleInternetConnection();
   }
@@ -101,7 +101,7 @@ export default class AdminDashboardScreen extends Component {
       return this._handleResponse({ok: true}, sidekiq);
     }
 
-    api.post('/users', this._buildUser(user))
+    this.api.post('/users', this._buildUser(user))
     .then((res) => {
       this._handleResponse(res, sidekiq);
     })
@@ -147,7 +147,7 @@ export default class AdminDashboardScreen extends Component {
       return this._handleResponse({ok: true}, sidekiq);
     }
 
-    api.post('/games', this._buildGame(game))
+    this.api.post('/games', this._buildGame(game))
     .then((res) => {
       this._handleResponse(res, sidekiq);
     })
