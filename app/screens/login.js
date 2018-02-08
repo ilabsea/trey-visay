@@ -12,6 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import SplashScreen from 'react-native-splash-screen';
 import DeviceInfo from 'react-native-device-info';
 import StatusBar from '../components/status_bar';
+import SettingsList from 'react-native-settings-list';
 
 // Utils
 import realm from '../schema';
@@ -36,11 +37,19 @@ export default class Login extends Component {
 
   componentWillMount() {
     SplashScreen.hide();
-    User.isLoggedin(this.handleUser.bind(this));
+    User.isAdminLoggedin(this.handleAccount.bind(this));
   }
 
   isUserInfoCompleted(user) {
     return !!user && !!user.dateOfBirth;
+  }
+
+  handleAccount(token) {
+    if (token) {
+      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}], key: null})
+    }
+
+    User.isLoggedin(this.handleUser.bind(this));
   }
 
   handleUser(userId) {
@@ -53,10 +62,6 @@ export default class Login extends Component {
     if (!user) {
       User.logout();
       return this.setState({loaded: true});
-    }
-
-    if (user.role == 'admin') {
-      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}], key: null})
     }
 
     if (this.isUserInfoCompleted(user)) {
@@ -83,10 +88,88 @@ export default class Login extends Component {
     });
   }
 
-  render() {
+  _renderContent() {
     const isEnabled = this.state.username.length && this.state.password.length;
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
 
+    return (
+      <View style={{flexDirection: 'column', flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 24}}>
+            <View style={{flex: 1, alignItems: 'center'}}>
+              <Image
+                source={require('../assets/images/logo.png')}
+                style={{width: 120, height: 120}}
+              />
+
+              <Text style={styles.title}>ត្រីវិស័យ</Text>
+              <Text style={styles.subTitle}>បញ្ចូលគណនី</Text>
+            </View>
+
+            <View>
+              <TextInput
+                style={styles.inputText}
+                onChangeText={(text) => this.setState({username: text})}
+                returnKeyType='next'
+                placeholder='ឈ្មោះគណនី'
+                placeholderTextColor='rgba(0,0,0,0.7)'
+                autoCorrect={false}
+                underlineColorAndroid='transparent'
+                onSubmitEditing={() => this.passwordInput.focus()}
+              />
+
+              <TextInput
+                style={styles.inputText}
+                secureTextEntry={true}
+                returnKeyType='go'
+                placeholder='លេខសម្ងាត់'
+                placeholderTextColor='rgba(0,0,0,0.7)'
+                onChangeText={(text) => this.setState({password: text})}
+                underlineColorAndroid='transparent'
+                ref={(input) => this.passwordInput = input}
+              />
+
+              <Button
+                onPress={ () => isEnabled && this.handleSubmit() }
+                disabled={!isEnabled}
+                style={styles.btnLogin}>
+
+                <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>ចូលគណនី</Text>
+              </Button>
+            </View>
+
+            <View style={styles.row}>
+              <Text style={styles.whiteLabel}>មិនទាន់មានគណនីមែនទេ?</Text>
+              <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('Register')}>
+                <Text style={styles.linkText}>បង្កើតគណនី</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </ScrollView>
+
+        <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginRight: 24, marginBottom: 16}}>
+          <Text style={styles.whiteLabel}>ជំនាន់: </Text>
+          <Text style={styles.whiteLabel}>{DeviceInfo.getVersion()}</Text>
+        </View>
+      </View>
+    )
+  }
+
+  _renderSetting() {
+    return (
+      <View style={{backgroundColor:'gray'}}>
+        <View style={{}}>
+          <SettingsList>
+            <SettingsList.Header headerText='គណនី' headerStyle={{color:'white'}}/>
+            <SettingsList.Item title='គណនីអ្នកគ្រប់គ្រង' onPress={() => this.props.navigation.navigate('AdminLogin')}/>
+          </SettingsList>
+        </View>
+      </View>
+    )
+  }
+
+  render() {
     if (!this.state.loaded) {
       return (null)
     }
@@ -96,66 +179,8 @@ export default class Login extends Component {
         <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
           <StatusBar hidden={true} />
 
-          <View style={{flexDirection: 'column', flex: 1}}>
-            <ScrollView style={{flex: 1}}>
-              <View style={{margin: 24}}>
-                <View style={{flex: 1, alignItems: 'center'}}>
-                  <Image
-                    source={require('../assets/images/logo.png')}
-                    style={{width: 120, height: 120}}
-                  />
-
-                  <Text style={styles.title}>ត្រីវិស័យ</Text>
-                  <Text style={styles.subTitle}>បញ្ចូលគណនី</Text>
-                </View>
-
-                <View>
-                  <TextInput
-                    style={styles.inputText}
-                    onChangeText={(text) => this.setState({username: text})}
-                    returnKeyType='next'
-                    placeholder='ឈ្មោះគណនី'
-                    placeholderTextColor='rgba(0,0,0,0.7)'
-                    autoCorrect={false}
-                    underlineColorAndroid='transparent'
-                    onSubmitEditing={() => this.passwordInput.focus()}
-                  />
-
-                  <TextInput
-                    style={styles.inputText}
-                    secureTextEntry={true}
-                    returnKeyType='go'
-                    placeholder='លេខសម្ងាត់'
-                    placeholderTextColor='rgba(0,0,0,0.7)'
-                    onChangeText={(text) => this.setState({password: text})}
-                    underlineColorAndroid='transparent'
-                    ref={(input) => this.passwordInput = input}
-                  />
-
-                  <Button
-                    onPress={this.handleSubmit.bind(this)}
-                    disabled={!isEnabled}
-                    style={styles.btnLogin}>
-
-                    <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>ចូលគណនី</Text>
-                  </Button>
-                </View>
-
-                <View style={styles.row}>
-                  <Text style={styles.whiteLabel}>មិនទាន់មានគណនីមែនទេ?</Text>
-                  <TouchableOpacity
-                    onPress={() => this.props.navigation.navigate('Register')}>
-                    <Text style={styles.linkText}>បង្កើតគណនី</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            </ScrollView>
-
-            <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginRight: 24, marginBottom: 16}}>
-              <Text style={styles.whiteLabel}>ជំនាន់: </Text>
-              <Text style={styles.whiteLabel}>{DeviceInfo.getVersion()}</Text>
-            </View>
-          </View>
+          { this._renderContent() }
+          { false && this._renderSetting() }
         </BackgroundImage>
       </LinearGradient>
     )

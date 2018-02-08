@@ -7,6 +7,7 @@ import { StackNavigator } from 'react-navigation';
 import ProfileForm from './app/screens/profile/profile_form';
 import HomeNavigator from './app/screens/home';
 import Login from './app/screens/login';
+import AdminLogin from './app/screens/admin/login';
 import Register from './app/screens/register';
 import AdminHomeNavigator from './app/screens/admin/home';
 
@@ -17,6 +18,7 @@ import realm from './app/schema';
 
 const AppNavigator = StackNavigator({
   Login: { screen: Login },
+  AdminLogin: { screen: AdminLogin },
   Register: { screen: Register },
   ProfileForm: { screen: ProfileForm },
   Home: {

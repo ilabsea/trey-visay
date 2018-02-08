@@ -37,6 +37,7 @@ const uiTheme = {
 
 const api = create({
   baseURL: 'http://192.168.1.118:3000/api/v1',
+  headers: { 'Authorization': 'token ' + User.getToken() }
 })
 
 export default class AdminDashboardScreen extends Component {

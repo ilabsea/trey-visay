@@ -80,6 +80,7 @@ class SideMenu extends Component {
   }
 
   logout() {
+    User.removeToken();
     User.logout();
     this.props.screenProps.rootNavigation.dispatch({type: 'Navigation/RESET', routeName: 'Home', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]})
   }
