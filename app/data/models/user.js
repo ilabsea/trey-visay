@@ -41,8 +41,10 @@ User.schema = {
     isDrug: {type: 'bool', default: false},
     houseType: { type: 'string', optional: true },
     collectiveIncome: { type: 'string', optional: true },
+    // * Other
     games: { type: 'list', objectType: 'Game' },
     isVisited: { type: 'bool', default: false },
+    token: { type: 'string', optional: true },
   }
 }
 
