@@ -26,7 +26,7 @@ import BackgroundImage from '../../components/image_background';
 import Button from '../../components/button';
 
 const api = create({
-  baseURL: 'http://192.168.1.118:3000/api/v1',
+  baseURL: 'http://192.168.1.118:3000/api/v1'
 })
 
 export default class AdminLogin extends Component {
@@ -68,7 +68,7 @@ export default class AdminLogin extends Component {
       return;
     }
 
-    api.post('/accounts/sign_in', { user: { email: this.state.email, password: this.state.password } })
+    api.post('/accounts/sign_in', { account: { email: this.state.email, password: this.state.password } })
     .then((res) => {
       this._handleResponse(res);
     })
@@ -93,8 +93,8 @@ export default class AdminLogin extends Component {
 
   buildData(res) {
     let data = JSON.parse(res.config.data);
-    let email = data.user.email;
-    let password = data.user.password;
+    let email = data.account.email;
+    let password = data.account.password;
     let user = realm.objects('User').filtered('username="' + email + '"')[0];
 
     return {

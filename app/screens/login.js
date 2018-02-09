@@ -70,15 +70,15 @@ export default class Login extends Component {
   }
 
   handleSubmit(event) {
-    let users = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"');
-    if (!users.length) {
+    let user = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"')[0];
+    if (!user || user.role == 'admin') {
       return Alert.alert(
         'ការបញ្ចូលមិនត្រឹមត្រូវ',
         'ឈ្មោះគណនី ឬលេខសម្ងាត់ដែលអ្នកបានបញ្ចូលមិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត។');
     }
 
-    User.setLogin(users[0].uuid, ()=>{
-      if (!!users[0].dateOfBirth) {
+    User.setLogin(user.uuid, ()=>{
+      if (!!user.dateOfBirth) {
         return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
       }
 

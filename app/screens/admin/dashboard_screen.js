@@ -47,9 +47,13 @@ export default class AdminDashboardScreen extends Component {
 
   componentWillMount() {
     let currentUser = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+
+    this.state = {
+      currentUser: currentUser
+    };
+
     this.api = create({
-      baseURL: 'http://192.168.1.118:3000/api/v1',
-      headers: { 'Authorization': 'token ' + currentUser.token }
+      baseURL: 'http://192.168.1.118:3000/api/v1'
     })
     this._refreshState();
     this._handleInternetConnection();
@@ -110,6 +114,7 @@ export default class AdminDashboardScreen extends Component {
   _buildUser(user) {
     let data = new FormData();
     data.append('data', JSON.stringify(this._buildAttributes(user)));
+    data.append('auth_token', this.state.currentUser.token);
 
     if (user.photo) {
       data.append('photo', {
@@ -198,6 +203,7 @@ export default class AdminDashboardScreen extends Component {
     // Form data
     let data = new FormData();
     data.append('data', JSON.stringify(attributes));
+    data.append('auth_token', this.state.currentUser.token);
 
     if (game.voiceRecord) {
       data.append('audio', {
