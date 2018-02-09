@@ -12,7 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import SplashScreen from 'react-native-splash-screen';
 import DeviceInfo from 'react-native-device-info';
 import StatusBar from '../components/status_bar';
-import SettingsList from 'react-native-settings-list';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Utils
 import realm from '../schema';
@@ -93,6 +93,8 @@ export default class Login extends Component {
     return (
       <View style={{flexDirection: 'column', flex: 1}}>
         <ScrollView style={{flex: 1}}>
+          { this._renderAdminTrigger() }
+
           <View style={{margin: 24}}>
             <View style={{flex: 1, alignItems: 'center'}}>
               <Image
@@ -154,16 +156,11 @@ export default class Login extends Component {
     )
   }
 
-  _renderSetting() {
+  _renderAdminTrigger() {
     return (
-      <View style={{backgroundColor:'gray'}}>
-        <View style={{}}>
-          <SettingsList>
-            <SettingsList.Header headerText='គណនី' headerStyle={{color:'white'}}/>
-            <SettingsList.Item title='គណនីអ្នកគ្រប់គ្រង' onPress={() => this.props.navigation.navigate('AdminLogin')}/>
-          </SettingsList>
-        </View>
-      </View>
+      <TouchableOpacity style={styles.iconWrapper} onPress={ () => this.props.navigation.navigate('AdminLogin') } >
+        <MaterialIcon name='person' color='#1976d2' size={16}/>
+      </TouchableOpacity>
     )
   }
 
@@ -173,12 +170,11 @@ export default class Login extends Component {
     }
 
     return (
-      <LinearGradient style={styles.container} colors={['#4B8FD3', '#1976d2']}>
+      <LinearGradient style={styles.container} colors={['#80d0c7', '#0093e8']}>
         <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
           <StatusBar hidden={true} />
 
           { this._renderContent() }
-          { false && this._renderSetting() }
         </BackgroundImage>
       </LinearGradient>
     )

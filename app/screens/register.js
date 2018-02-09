@@ -75,7 +75,7 @@ export default class RegisterScreen extends Component {
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
 
     return (
-      <LinearGradient style={styles.container} colors={['#4B8FD3', '#1976d2']}>
+      <LinearGradient style={styles.container} colors={['#80d0c7', '#0093e8']}>
         <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
           <StatusBar hidden={true} />
 

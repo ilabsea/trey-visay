@@ -48,4 +48,16 @@ export default StyleSheet.create({
   submitWrapper: {
     marginTop: 24
   },
+  iconWrapper: {
+    width: 36,
+    height: 36,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 18,
+    borderWidth: 1,
+    borderColor: '#1976d2',
+    position: 'absolute',
+    right: 16,
+    top: 16
+  }
 })

@@ -12,7 +12,7 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import DeviceInfo from 'react-native-device-info';
 import StatusBar from '../../components/status_bar';
-import SettingsList from 'react-native-settings-list';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { create } from 'apisauce';
 
 // Utils
@@ -114,6 +114,8 @@ export default class AdminLogin extends Component {
     return (
       <View style={{flex: 1}} ref='adminLogin'>
         <ScrollView style={{flex: 1}}>
+          { this._renderBackTrigger() }
+
           <View style={{margin: 24}}>
             <View style={{flex: 1, alignItems: 'center'}}>
               <Image
@@ -167,27 +169,21 @@ export default class AdminLogin extends Component {
     )
   }
 
-  _renderSetting() {
+  _renderBackTrigger() {
     return (
-      <View style={{backgroundColor:'gray'}}>
-        <View style={{}}>
-          <SettingsList>
-            <SettingsList.Header headerText='គណនី' headerStyle={{color:'white'}}/>
-            <SettingsList.Item title='គណនីទូទៅ' onPress={() => this.props.navigation.goBack()}/>
-          </SettingsList>
-        </View>
-      </View>
+      <TouchableOpacity style={styles.iconWrapper} onPress={ () => this.props.navigation.goBack() } >
+        <MaterialIcon name='close' color='#1976d2' size={16}/>
+      </TouchableOpacity>
     )
   }
 
   render() {
     return (
-      <LinearGradient style={styles.container} colors={['#4B8FD3', '#1976d2']}>
+      <LinearGradient style={styles.container} colors={['#80d0c7', '#0093e8']}>
         <BackgroundImage source={require('../../assets/images/sign_in_bg.png')}>
           <StatusBar hidden={true} />
 
           { this._renderContent() }
-          { false && this._renderSetting() }
         </BackgroundImage>
       </LinearGradient>
     )
