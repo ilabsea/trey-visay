@@ -176,6 +176,7 @@ export default class AdminDashboardScreen extends Component {
   _buildGame(game) {
     let attributes = this._buildAttributes(game);
 
+    attributes.user_uuid = game.users[0].uuid
     attributes.characteristic_entries = game.characteristicEntries.map(obj => obj.value);
     attributes.game_subject = this._buildAttributes(game.gameSubject);
     attributes.personal_understandings = [];
