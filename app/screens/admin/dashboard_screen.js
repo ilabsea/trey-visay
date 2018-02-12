@@ -54,6 +54,7 @@ export default class AdminDashboardScreen extends Component {
 
     this.api = create({
       baseURL: 'http://192.168.1.118:3000/api/v1'
+      // baseURL: 'http://110.74.204.121:8090/api/v1'
     })
     this._refreshState();
     this._handleInternetConnection();

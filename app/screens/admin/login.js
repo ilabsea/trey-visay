@@ -27,6 +27,7 @@ import Button from '../../components/button';
 
 const api = create({
   baseURL: 'http://192.168.1.118:3000/api/v1'
+  // baseURL: 'http://110.74.204.121:8090/api/v1'
 })
 
 export default class AdminLogin extends Component {
