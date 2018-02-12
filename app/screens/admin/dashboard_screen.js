@@ -198,8 +198,17 @@ export default class AdminDashboardScreen extends Component {
       return obj;
     })
 
-    game.personalUnderstandings.map((obj) => {
-      attributes.personal_understandings.push(this._buildAttributes(obj));
+    game.personalUnderstandings.map((pu) => {
+      let obj = this._buildAttributes(pu);
+      let myArr = [];
+      let myObj = { 1: 'ឳពុកម្តាយ', 2: 'បងប្អូន', 3: 'ក្រុមប្រឹក្សាកុមារ', 4: 'នាយកសាលា', 5: 'គ្រូ', 6: 'មិត្តភក្តិ' };
+
+      if (!!obj['ever_talked_with_anyone_about_career']) {
+        obj['ever_talked_with_anyone_about_career'].map((o) => myArr.push(myObj[o.value]))
+      }
+      obj['ever_talked_with_anyone_about_career'] = myArr
+
+      attributes.personal_understandings.push(obj);
     })
 
     // Form data
