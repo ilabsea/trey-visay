@@ -21,6 +21,6 @@ Game.schema = {
     voiceRecord: { type: 'string', optional: true },
     personalUnderstandings: { type: 'list', objectType: 'PersonalUnderstanding' },
     gameSubject: { type: 'GameSubject', optional:  true },
-    createdAt: 'string'
+    createdAt: 'date'
   }
 }
