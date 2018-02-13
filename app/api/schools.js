@@ -3,6 +3,7 @@
 
 import { random, min, times } from 'lodash';
 import schoolList from '../data/json/schools';
+import util from '../utils/math';
 
 const perPage = 15;
 
@@ -10,7 +11,7 @@ export default {
   getSchools(page, option={}) {
     return new Promise(resolve => {
       setTimeout(() => {
-        let list = schoolList;
+        let list = util.sortByName(schoolList, 'universityName');
         if (!!option.category) {
           list = list.filter(school => school.category == option.category);
         }
@@ -48,7 +49,7 @@ export default {
 
       let provinces = [...new Set(list.map(school => school.province))];
       provinces = provinces.filter(v => v);
-
+      provinces.sort();
       resolve({ provinces });
     })
   }

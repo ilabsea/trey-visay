@@ -13,4 +13,21 @@ export default class MathUtil {
     })
   }
 
+  static sortByName(arr, property) {
+    arr.sort(function(a, b) {
+      var nameA = a[property].toUpperCase(); // ignore upper and lowercase
+      var nameB = b[property].toUpperCase(); // ignore upper and lowercase
+      if (nameA < nameB) {
+        return -1;
+      }
+      if (nameA > nameB) {
+        return 1;
+      }
+
+      // names must be equal
+      return 0;
+    });
+
+    return arr;
+  }
 }

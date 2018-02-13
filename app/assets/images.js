@@ -7,6 +7,7 @@ const images = {
   social: require('./images/careers/social.png'),
 
   // school icons
+  acleda: require('./images/schools/acleda.png'),
   angkor_khemara: require('./images/schools/angkor_khemara.jpg'),
   asia_europ: require('./images/schools/asia_europ.png'),
   asia_science: require('./images/schools/asia_science.jpg'),
@@ -22,6 +23,7 @@ const images = {
   cambodia_specialty: require('./images/schools/cambodia_specialty.jpg'),
   chenla: require('./images/schools/chenla.png'),
   chhir_teal: require('./images/schools/chhir_teal.jpg'),
+  cici: require('./images/schools/cici.gif'),
   clew: require('./images/schools/clew.png'),
   dewey: require('./images/schools/dewey.jpg'),
   don_bosco: require('./images/schools/don_bosco.png'),
