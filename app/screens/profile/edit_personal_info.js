@@ -23,6 +23,8 @@ import headerStyles from '../../assets/style_sheets/header';
 import DatePicker from 'react-native-datepicker';
 import InputTextContainer from '../../components/input_text_container';
 
+import highSchoolList from '../../data/json/high_schools';
+
 const SCHOOL_NAMES = [
   "សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ", "វិទ្យាល័យជាស៊ីមព្រែកអញ្ចាញ", "វិទ្យាល័យព្រែកលៀប",
   "វិទ្យាល័យហ៊ុនសែនកំពង់ចាម", "អនុវិទ្យាល័យគោកព្រីង", "វិទ្យាល័យសម្តេចតេជោហ៊ុនសែនសណ្តែក",
@@ -116,7 +118,7 @@ export default class EditPersonalInfo extends Component {
   }
 
   _renderPersonalInfo() {
-    let schoolNames = SCHOOL_NAMES.map((name) => { return {label: name, value: name}});
+    let schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
     let grades = [
       { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
       { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
@@ -144,7 +146,7 @@ export default class EditPersonalInfo extends Component {
         { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
         { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'addressInput', keyboardType: 'phone-pad'}) }
         { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
-        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'schoolName', options: schoolNames})}
+        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolId', options: schools})}
         { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន'}) }
       </View>
     )

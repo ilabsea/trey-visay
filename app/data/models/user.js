@@ -18,7 +18,7 @@ User.schema = {
     dateOfBirth: { type: 'string', optional: true },
     phoneNumber: { type: 'string', optional: true },
     nationality: { type: 'string', optional: true },
-    schoolName: { type: 'string', optional: true },
+    highSchoolId: { type: 'string', optional: true },
     grade: { type: 'string', optional: true },
     address: { type: 'string', optional: true },
     role: { type: 'string', default: 'student' },

@@ -20,6 +20,8 @@ import User from '../../utils/user';
 // Components
 import ScrollableHeader from '../../components/scrollable_header';
 
+import highSchoolList from '../../data/json/high_schools';
+
 const PROFILE_SIZE = 120;
 
 export default class Profile extends Component {
@@ -44,7 +46,9 @@ export default class Profile extends Component {
 
   refreshState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    this.setState({user: user});
+    let school = highSchoolList.find((school) => school.id == user.highSchoolId);
+
+    this.setState({user: user, schoolName: school.name});
   }
 
   _renderScrollViewContent() {
@@ -116,7 +120,7 @@ export default class Profile extends Component {
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>រៀននៅសាលា</Text>
-          <Text style={styles.itemValue}>: {this.state.user.schoolName}</Text>
+          <Text style={styles.itemValue}>: {this.state.schoolName}</Text>
         </View>
 
         <View style={styles.item}>

@@ -95,7 +95,7 @@ export default class AdminDashboardScreen extends Component {
   _deleteSidekiq = (sidekiq) => {
     let sk = realm.objects('Sidekiq').filtered('paramUuid="' + sidekiq.paramUuid + '"')[0];
     realm.write(() => {
-      realm.delete(sk);
+      // realm.delete(sk);
     });
   }
 
@@ -113,8 +113,15 @@ export default class AdminDashboardScreen extends Component {
   }
 
   _buildUser(user) {
+    let attributes = this._buildAttributes(user);
+    delete attributes.cover;
+    delete attributes.role;
+    delete attributes.games;
+    delete attributes.is_visited;
+    delete attributes.token;
+
     let data = new FormData();
-    data.append('data', JSON.stringify(this._buildAttributes(user)));
+    data.append('data', JSON.stringify(attributes));
     data.append('auth_token', this.state.currentUser.token);
 
     if (user.photo) {

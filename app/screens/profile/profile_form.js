@@ -31,6 +31,8 @@ import StatusBar from '../../components/status_bar';
 import RadioGroupContainer from '../../components/radio_group_container';
 import InputTextContainer from '../../components/input_text_container';
 
+import highSchoolList from '../../data/json/high_schools';
+
 let formError = {};
 
 const CONTENTS = [
@@ -38,13 +40,6 @@ const CONTENTS = [
   { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' },
   { header: 'ស្ថានភាពគ្រួសារ', body: '_renderFamilySituation' }
 ];
-
-const SCHOOL_NAMES = [
-  "សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ", "វិទ្យាល័យជាស៊ីមព្រែកអញ្ចាញ", "វិទ្យាល័យព្រែកលៀប",
-  "វិទ្យាល័យហ៊ុនសែនកំពង់ចាម", "អនុវិទ្យាល័យគោកព្រីង", "វិទ្យាល័យសម្តេចតេជោហ៊ុនសែនសណ្តែក",
-  "វិទ្យាល័យហោណាំហុងព្រៃញា", "វិទ្យាល័យល្វា", "វិទ្យាល័យហ.សពាមជីកង",
-  "អនុវិទ្យាល័យហ.សទួលសុភី", "វិទ្យាល័យហ.សក្រូចឆ្មារ", "វិទ្យាល័យសម្តេចហ៊ុនសែនប៉ើសពីរ",
-  "វិទ្យាល័យប៊ុនរ៉ានីហ៊ុនសែនអម្ពវ័នជំនីក", "វិទ្យាល័យជីហែ", "វិទ្យាល័យក្រុមព្រះមហាលាភ", "ផ្សេងៗ"];
 
 export default class ProfileForm extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -66,7 +61,7 @@ export default class ProfileForm extends Component {
 
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     user = Object.assign({}, user, {sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9',
-                                    schoolName: 'សាលាជំនាន់ថ្មីវិទ្យាល័យព្រះស៊ីសុវត្ថិ',
+                                    highSchoolId: '1',
                                     houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន'})
 
     this.state = {
@@ -222,7 +217,7 @@ export default class ProfileForm extends Component {
   }
 
   _renderPersonalInfo() {
-    let schoolNames = SCHOOL_NAMES.map((name) => { return {label: name, value: name}});
+    let schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
     let grades = [
       { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
       { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
@@ -250,7 +245,7 @@ export default class ProfileForm extends Component {
         { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
         { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'addressInput', keyboardType: 'phone-pad'}) }
         { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
-        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'schoolName', options: schoolNames})}
+        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolId', options: schools})}
         { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន', nextFocusInput: 'fatherNameInput'}) }
       </View>
     )
