@@ -44,10 +44,12 @@ export default class VocationalJobShowScreen extends Component {
   componentWillMount() {
     let currentGroup = characteristicList.find((obj) => obj.id == 4);
     let currentJob = currentGroup.careers.find((obj) => obj.id == this.props.navigation.state.params.id)
+    let schools = schoolList.filter((school, pos) => { return currentJob.schools.includes(school.id) });
 
     this.state = {
       currentGroup: currentGroup,
-      currentJob: currentJob
+      currentJob: currentJob,
+      schools: schools
     };
   }
 
@@ -58,12 +60,14 @@ export default class VocationalJobShowScreen extends Component {
   }
 
   _renderSchoolList() {
-    let schools = schoolList.slice(0, 3);
+    if (!this.state.schools.length) {
+      return (null)
+    }
 
     return (
       <View style={{marginTop: 20}}>
         <Text style={headerStyles.body2}>សាលាខាងក្រោមនេះមានបង្រៀនជំនាញ “{this.state.currentJob.name}”</Text>
-        { schools.map((school, i) => {
+        { this.state.schools.map((school, i) => {
           { return(this._renderSchool(school, i)) }
         })}
       </View>

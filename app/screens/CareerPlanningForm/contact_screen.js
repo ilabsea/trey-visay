@@ -27,6 +27,7 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';
+import characteristicList from '../../data/json/characteristic_jobs';
 
 export default class ContactScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -59,12 +60,16 @@ export default class ContactScreen extends Component {
   _initState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
+    let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
+    let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);
+    let schools = schoolList.filter((school, pos) => { return currentJob.schools.includes(school.id) });
 
     this.state = {
       user: user,
       game: game,
       time: '',
       isPlaying: false,
+      schools: schools
     };
 
     this.sound = new Sound(this.state.game.voiceRecord, '', (error) => {
@@ -138,12 +143,14 @@ export default class ContactScreen extends Component {
   }
 
   _renderContent() {
-    let schools = schoolList.slice(0, 3);
+    if (!this.state.schools.length) {
+      return (null)
+    }
 
     return (
       <View style={{marginTop: 20}}>
         <Text>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
-        { schools.map((school, i) => {
+        { this.state.schools.map((school, i) => {
           { return(this._renderSchool(school, i)) }
         })}
       </View>
