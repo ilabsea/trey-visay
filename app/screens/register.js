@@ -41,12 +41,17 @@ export default class RegisterScreen extends Component {
 
   handleSubmit() {
     if (this.state.password !== this.state.passwordConfirmation) {
-      Alert.alert(
+      return Alert.alert(
         'ការបញ្ចូលពាក្យសម្ងាត់មិនត្រឹមត្រូវ',
-        "ការបញ្ជាក់ពាក្យសម្ងាត់មិនត្រូវគ្នានឹងពាក្យសម្ងាត់ទេ។")
-      return;
+        "ការបញ្ជាក់ពាក្យសម្ងាត់មិនត្រូវគ្នានឹងពាក្យសម្ងាត់ទេ។");
     }
 
+    let user = realm.objects('User').filtered('username="' + this.state.username + '"')[0];
+    if (!!user) {
+      return Alert.alert(
+        'គណនីមានរួចហើយ',
+        "ឈ្មោះគណនីធ្លាប់មានរួចមកហើយ សូមប្តូរឈ្មោះគណនីម្តងទៀត។");
+    }
     try {
       realm.write(() => {
         realm.create('User', this.buildData());

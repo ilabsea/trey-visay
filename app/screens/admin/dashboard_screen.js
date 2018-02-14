@@ -95,7 +95,7 @@ export default class AdminDashboardScreen extends Component {
   _deleteSidekiq = (sidekiq) => {
     let sk = realm.objects('Sidekiq').filtered('paramUuid="' + sidekiq.paramUuid + '"')[0];
     realm.write(() => {
-      // realm.delete(sk);
+      realm.delete(sk);
     });
   }
 

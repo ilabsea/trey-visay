@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
+  Alert,
 } from 'react-native';
 
 import {
@@ -79,7 +80,9 @@ export default class PersonalUnderstandingForm extends Component {
     let formValues = this.parseFormValue(this.refs.form.selector.props.values);
 
     if (!formValues) {
-      return alert('សូមបំពេញសំណួរដូចខាងក្រោម');
+      return Alert.alert(
+              'ការបញ្ចូលមិនត្រឹមត្រូវ',
+              'សូមបំពេញសំណួរដូចខាងក្រោម');
     }
 
     this.submitForm(this._buildData(formValues));
