@@ -134,64 +134,80 @@ export default class EditProfilePhoto extends Component {
     this.openDialog(true);
   }
 
-  render() {
-    let photo = require('../../assets/images/default_profile.png');
-    let cover = require('../../assets/images/header_bg.jpg');
+  _renderDialog() {
+    return (
+      <Dialog
+        visible={this.state.showDialog}
+        onTouchOutside={() => this.openDialog(false)}
+        contentStyle={{ alignItems: 'flex-start' }} >
 
-    if (!!this.state.user.photo) {
-      photo = {uri: this.state.user.photo};
-    }
+        <TouchableOpacity
+          onPress={this.takePhoto.bind(this)}
+          style={{padding: 10, flexDirection: 'row'}}>
+          <Text style={styles.listItem}>Take Picture</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={this.selectPhoto.bind(this)}
+          style={{padding: 10, flexDirection: 'row'}}>
+          <Text style={styles.listItem}>Select Picture</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={this.deletePhoto.bind(this)}
+          style={{padding: 10, flexDirection: 'row'}}>
+
+          <Text style={styles.listItem}>Delete</Text>
+        </TouchableOpacity>
+      </Dialog>
+    )
+  }
+
+  _renderCover() {
+    let cover = require('../../assets/images/header_bg.jpg');
     if (!!this.state.user.cover) {
       cover = {uri: this.state.user.cover};
     }
 
     return (
+      <TouchableOpacity
+        onPress={() => this.handleOpenDialog('cover')}
+        style={{position: 'relative', backgroundColor:'pink'}}>
+        <Image
+          source={cover}
+          style={{width: null, height: 300}}/>
+
+        <Avatar icon='camera-alt' size={54} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.4)', position: 'absolute', top: -60, right: 10, zIndex: 10}}} />
+      </TouchableOpacity>
+    )
+  }
+
+  _renderProfile() {
+    let photo = require('../../assets/images/default_profile.png');
+    if (!!this.state.user.photo) {
+      photo = {uri: this.state.user.photo};
+    }
+
+    return (
+      <TouchableOpacity
+        onPress={() => this.handleOpenDialog('photo')}
+        style={{position: 'absolute', top: 220, left: 24}}>
+        <Image
+          source={photo}
+          style={{borderRadius: 60, width: 120, height: 120 }}/>
+
+        <Avatar icon='camera-alt' size={54} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.4)', position: 'absolute', top: -87, right: 30, zIndex: 10}}} />
+      </TouchableOpacity>
+    )
+  }
+
+  render() {
+    return (
       <ThemeProvider uiTheme={{}}>
         <View style={{position: 'relative', flex: 1}}>
-          <TouchableOpacity
-            onPress={() => this.handleOpenDialog('cover')}
-            style={{position: 'relative', backgroundColor:'pink'}}>
-            <Image
-              source={cover}
-              style={{width: null, height: 300}}/>
-
-            <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -60, right: 10, zIndex: 10}}} />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => this.handleOpenDialog('photo')}
-            style={{position: 'absolute', top: 220, left: 24}}>
-            <Image
-              source={photo}
-              style={{borderRadius: 60, width: 120, height: 120 }}/>
-
-            <Avatar icon='camera-alt' size={54} style={{container: {opacity: 0.7, position: 'absolute', top: -87, right: 30, zIndex: 10}}} />
-          </TouchableOpacity>
-
-          <Dialog
-            visible={this.state.showDialog}
-            onTouchOutside={() => this.openDialog(false)}
-            contentStyle={{ alignItems: 'flex-start' }} >
-
-            <TouchableOpacity
-              onPress={this.takePhoto.bind(this)}
-              style={{padding: 10, flexDirection: 'row'}}>
-              <Text style={styles.listItem}>Take Picture</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={this.selectPhoto.bind(this)}
-              style={{padding: 10, flexDirection: 'row'}}>
-              <Text style={styles.listItem}>Select Picture</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              onPress={this.deletePhoto.bind(this)}
-              style={{padding: 10, flexDirection: 'row'}}>
-
-              <Text style={styles.listItem}>Delete</Text>
-            </TouchableOpacity>
-          </Dialog>
+          { this._renderCover() }
+          { this._renderProfile() }
+          { this._renderDialog() }
         </View>
       </ThemeProvider>
     )

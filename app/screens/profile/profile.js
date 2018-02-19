@@ -11,6 +11,7 @@ import {
   ThemeProvider,
   Toolbar,
   Icon,
+  Avatar,
 } from 'react-native-material-ui';
 
 // Utils
@@ -222,9 +223,12 @@ export default class Profile extends Component {
     return(
       <Toolbar
         leftElement="menu"
-        rightElement='edit'
+        rightElement={
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditProfilePhoto', { refresh: this.refreshState.bind(this) })} >
+            <Avatar icon='edit' size={30} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.4)'}}} />
+          </TouchableOpacity>
+        }
         onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-        onRightElementPress={() => this.props.navigation.navigate('EditProfilePhoto', { refresh: this.refreshState.bind(this) })}
         style={{
           container: {backgroundColor: 'transparent'}
         }}
