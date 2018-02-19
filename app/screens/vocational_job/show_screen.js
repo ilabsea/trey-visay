@@ -59,6 +59,19 @@ export default class VocationalJobShowScreen extends Component {
     )
   }
 
+  _renderPlacesForWork() {
+    if (!this.state.currentJob.places_for_work) {
+      return (null)
+    }
+
+    return (
+      <View style={{marginTop: 20}}>
+        <Text style={headerStyles.body2}>ទីកន្លែងការងារមានដូចជា៖</Text>
+        <Text style={styles.box}>{this.state.currentJob.places_for_work}</Text>
+      </View>
+    )
+  }
+
   _renderSchoolList() {
     if (!this.state.schools.length) {
       return (null)
@@ -115,6 +128,7 @@ export default class VocationalJobShowScreen extends Component {
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
               { this._renderDescription() }
+              { this._renderPlacesForWork() }
               { this._renderSchoolList() }
             </View>
           </ScrollView>
