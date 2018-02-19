@@ -186,7 +186,7 @@ export default class CareerCounsellor extends Component {
     let obj = {
       uuid: uuidv4(),
       user: this.state.user,
-      createdAt: new Date(Date())
+      createdAt: new Date()
     };
 
     return obj;
