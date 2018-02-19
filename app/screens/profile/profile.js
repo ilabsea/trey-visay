@@ -225,7 +225,7 @@ export default class Profile extends Component {
         leftElement="menu"
         rightElement={
           <TouchableOpacity onPress={() => this.props.navigation.navigate('EditProfilePhoto', { refresh: this.refreshState.bind(this) })} >
-            <Avatar icon='edit' size={30} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.4)'}}} />
+            <Avatar icon='edit' size={30} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.26)'}}} />
           </TouchableOpacity>
         }
         onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}

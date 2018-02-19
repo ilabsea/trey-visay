@@ -83,7 +83,8 @@ export default class EditProfilePhoto extends Component {
     ImagePicker.openCamera({
       width: 200,
       height: 200,
-      cropping: true
+      cropping: true,
+      compressImageQuality: 1
     }).then(image => {
       this.handleSelectedPhoto(image);
     }).catch((e) => {})
@@ -95,7 +96,8 @@ export default class EditProfilePhoto extends Component {
     ImagePicker.openPicker({
       width: 200,
       height: 200,
-      cropping: true
+      cropping: true,
+      compressImageQuality: 1
     }).then(image => {
       this.handleSelectedPhoto(image);
     }).catch((e) => {});
@@ -177,7 +179,7 @@ export default class EditProfilePhoto extends Component {
           source={cover}
           style={{width: null, height: 300}}/>
 
-        <Avatar icon='camera-alt' size={54} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.4)', position: 'absolute', top: -60, right: 10, zIndex: 10}}} />
+        <Avatar icon='camera-alt' size={54} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.26)', position: 'absolute', top: -60, right: 10, zIndex: 10}}} />
       </TouchableOpacity>
     )
   }
@@ -196,7 +198,7 @@ export default class EditProfilePhoto extends Component {
           source={photo}
           style={{borderRadius: 60, width: 120, height: 120 }}/>
 
-        <Avatar icon='camera-alt' size={54} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.4)', position: 'absolute', top: -87, right: 30, zIndex: 10}}} />
+        <Avatar icon='camera-alt' size={54} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.26)', position: 'absolute', top: -87, right: 30, zIndex: 10}}} />
       </TouchableOpacity>
     )
   }
