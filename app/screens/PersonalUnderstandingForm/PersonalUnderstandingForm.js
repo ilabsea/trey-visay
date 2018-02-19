@@ -5,7 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
-  Alert,
+  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -80,9 +80,7 @@ export default class PersonalUnderstandingForm extends Component {
     let formValues = this.parseFormValue(this.refs.form.selector.props.values);
 
     if (!formValues) {
-      return Alert.alert(
-              'ការបញ្ចូលមិនត្រឹមត្រូវ',
-              'សូមបំពេញសំណួរដូចខាងក្រោម');
+      return ToastAndroid.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', ToastAndroid.SHORT);
     }
 
     this.submitForm(this._buildData(formValues));
@@ -220,7 +218,7 @@ export default class PersonalUnderstandingForm extends Component {
             animationType="slide"
             transparent={false}
             visible={this.state.modalVisible}
-            onRequestClose={() => { alert("សូមចុចលើប៊ូតុង")} }>
+            onRequestClose={() => { ToastAndroid.show('សូមចុចលើប៊ូតុង...!', ToastAndroid.SHORT) } }>
 
             <Toolbar
               centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វាយតម្លៃមុខរបរ និង អាជីព</Text>}
