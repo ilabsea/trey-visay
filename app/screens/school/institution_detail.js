@@ -57,6 +57,10 @@ export default class InstitutionDetail extends Component {
   }
 
   _renderWebsiteOrFacebook(com) {
+    if (!com.data.length) {
+      return (null)
+    }
+
     return (
       <View style={styles.communicationWrapper}>
         <View style={styles.iconWrapper}>
