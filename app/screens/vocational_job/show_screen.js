@@ -73,13 +73,20 @@ export default class VocationalJobShowScreen extends Component {
   }
 
   _renderSchoolList() {
-    if (!this.state.schools.length) {
+    if (!this.state.schools.length && !this.state.currentJob.unknown_schools) {
       return (null)
     }
 
     return (
       <View style={{marginTop: 20}}>
         <Text style={headerStyles.body2}>សាលាខាងក្រោមនេះមានបង្រៀនជំនាញ “{this.state.currentJob.name}”</Text>
+
+        { !!this.state.currentJob.unknown_schools &&
+          <View style={styles.box}>
+            <Text style={styles.subTitle}>{this.state.currentJob.unknown_schools}</Text>
+          </View>
+        }
+
         { this.state.schools.map((school, i) => {
           { return(this._renderSchool(school, i)) }
         })}
@@ -115,6 +122,10 @@ export default class VocationalJobShowScreen extends Component {
             <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
             <Text style={{marginLeft: 8}}>{school.address}</Text>
           </View>
+        </View>
+
+        <View style={{justifyContent: 'center'}}>
+          <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </View>
       </TouchableOpacity>
     )

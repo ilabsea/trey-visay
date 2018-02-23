@@ -69,7 +69,8 @@ export default class ContactScreen extends Component {
       game: game,
       time: '',
       isPlaying: false,
-      schools: schools
+      schools: schools,
+      currentJob: currentJob
     };
 
     this.sound = new Sound(this.state.game.voiceRecord, '', (error) => {
@@ -143,13 +144,20 @@ export default class ContactScreen extends Component {
   }
 
   _renderContent() {
-    if (!this.state.schools.length) {
+    if (!this.state.schools.length && !this.state.currentJob.unknown_schools) {
       return (null)
     }
 
     return (
       <View style={{marginTop: 20}}>
         <Text>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
+
+        { !!this.state.currentJob.unknown_schools &&
+          <View style={styles.box}>
+            <Text style={styles.subTitle}>{this.state.currentJob.unknown_schools}</Text>
+          </View>
+        }
+
         { this.state.schools.map((school, i) => {
           { return(this._renderSchool(school, i)) }
         })}
@@ -185,6 +193,10 @@ export default class ContactScreen extends Component {
             <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
             <Text style={{marginLeft: 8}}>{school.address}</Text>
           </View>
+        </View>
+
+        <View style={{justifyContent: 'center'}}>
+          <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </View>
       </TouchableOpacity>
     )
