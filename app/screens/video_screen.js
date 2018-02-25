@@ -138,7 +138,7 @@ export default class VideoScreen extends Component {
         }
 
         return Linking.openURL(url);
-      }).catch(onPressError);
+      }).catch(()=>{});
 
       return;
     }

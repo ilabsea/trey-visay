@@ -38,7 +38,6 @@ export default class Profile extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { user: {} };
   }
 
   componentWillMount() {
@@ -148,8 +147,18 @@ export default class Profile extends Component {
         </View>
 
         <View style={styles.item}>
+          <Text style={styles.itemLabel}>មុខរបរ</Text>
+          <Text style={styles.itemValue}>: {this.state.user.fatherOccupation}</Text>
+        </View>
+
+        <View style={styles.item}>
           <Text style={styles.itemLabel}>ម្តាយឈ្មោះ</Text>
           <Text style={styles.itemValue}>: {this.state.user.motherName}</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>មុខរបរ</Text>
+          <Text style={styles.itemValue}>: {this.state.user.motherOccupation}</Text>
         </View>
 
         <View style={styles.item}>

@@ -94,13 +94,30 @@ export default class EditPersonalInfo extends Component {
 
     try {
       realm.write(() => {
-        realm.create('User', this.state.user, true);
+        realm.create('User', this._buildData(), true);
         realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });
     } catch (e) {
       alert(e);
+    }
+  }
+
+  _buildData() {
+    return {
+      uuid: this.state.user.uuid,
+      fullName: this.state.user.fullName,
+      username: this.state.user.username,
+      sex: this.state.user.sex,
+      photo: this.state.user.photo,
+      cover: this.state.user.cover,
+      dateOfBirth: this.state.user.dateOfBirth,
+      phoneNumber: this.state.user.phoneNumber,
+      nationality: this.state.user.nationality,
+      highSchoolId: this.state.user.highSchoolId,
+      grade: this.state.user.grade,
+      address: this.state.user.address
     }
   }
 

@@ -89,13 +89,28 @@ export default class EditFamilyInfo extends Component {
 
     try {
       realm.write(() => {
-        realm.create('User', this.state.user, true);
+        realm.create('User', this._buildData(), true);
         realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });
     } catch (e) {
       alert(e);
+    }
+  }
+
+  _buildData() {
+    return {
+      uuid: this.state.user.uuid,
+      fatherName: this.state.user.fatherName,
+      fatherOccupation: this.state.user.fatherOccupation,
+      motherName: this.state.user.motherName,
+      motherOccupation: this.state.user.motherOccupation,
+      guidance: this.state.user.guidance,
+      parentContactNumber: this.state.user.parentContactNumber,
+      numberOfFamilyMember: this.state.user.numberOfFamilyMember,
+      numberOfSisters: this.state.user.numberOfSisters,
+      numberOfBrothers: this.state.user.numberOfBrothers
     }
   }
 

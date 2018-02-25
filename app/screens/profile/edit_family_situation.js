@@ -90,13 +90,27 @@ export default class EditFamilySituation extends Component {
 
     try {
       realm.write(() => {
-        realm.create('User', this.state.user, true);
+        realm.create('User', this._buildData(), true);
         realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });
     } catch (e) {
       alert(e);
+    }
+  }
+
+  _buildData() {
+    return {
+      uuid: this.state.user.uuid,
+      isDivorce: this.state.user.isDivorce,
+      isDisable: this.state.user.isDisable,
+      isDomesticViolence: this.state.user.isDomesticViolence,
+      isSmoking: this.state.user.isSmoking,
+      isAlcoholic: this.state.user.isAlcoholic,
+      isDrug: this.state.user.isDrug,
+      houseType: this.state.user.houseType,
+      collectiveIncome: this.state.user.collectiveIncome
     }
   }
 

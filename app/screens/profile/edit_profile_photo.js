@@ -58,13 +58,21 @@ export default class EditProfilePhoto extends Component {
   handleSubmit() {
     try {
       realm.write(() => {
-        realm.create('User', this.state.user, true);
+        realm.create('User', this._buildData(), true);
         realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });
     } catch (e) {
       alert(e);
+    }
+  }
+
+  _buildData() {
+    return {
+      uuid: this.state.user.uuid,
+      photo: this.state.user.photo,
+      cover: this.state.user.cover
     }
   }
 
