@@ -3,6 +3,13 @@ package com.treyvisay;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
+import com.zmxv.RNSound.RNSoundPackage;
+import com.rnim.rn.audio.ReactNativeAudioPackage;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
+import com.oblador.vectoricons.VectorIconsPackage;
 import io.realm.react.RealmReactPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -24,6 +31,13 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNDeviceInfo(),
+            new RNSoundPackage(),
+            new ReactNativeAudioPackage(),
+            new SplashScreenReactPackage(),
+            new PickerPackage(),
+            new LinearGradientPackage(),
+            new VectorIconsPackage(),
             new RealmReactPackage()
       );
     }
