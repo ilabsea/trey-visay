@@ -74,6 +74,18 @@ export default class ProfileForm extends Component {
     }
   }
 
+  _skip() {
+    try {
+      realm.write(() => {
+        realm.create('User', { uuid: this.state.user.uuid, highSchoolId: '14', grade: 'ផ្សេងៗ' }, true);
+        realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
+        this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+      });
+    } catch (e) {
+      alert(e);
+    }
+  }
+
   _renderContent() {
     return (
       <View style={styles.container}>
@@ -81,8 +93,13 @@ export default class ProfileForm extends Component {
           <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
           <View style={{flex: 1}}>
             <Text>អ្នកត្រូវបំពេញពត៌មានផ្ទាល់ខ្លួនខាងក្រោមដើម្បីប្រើប្រាស់កម្មវិធី។ </Text>
-            <View style={{flexDirection: 'row'}}>
+            <View style={styles.inlineBlock}>
               <Text>ឬអ្នកចង់បំពេញនៅពេលក្រោយ? </Text>
+              <TouchableOpacity onPress={() => this._skip()}>
+                <Text style={{color: '#4caf50', fontFamily: 'KantumruyBold'}}>រំលង</Text>
+              </TouchableOpacity>
+
+              <Text> ឬ </Text>
               <TouchableOpacity onPress={() => this.setState({confirmDialogVisible: true})}>
                 <Text style={{color: '#4caf50', fontFamily: 'KantumruyBold'}}>ចាកចេញពីគណនី</Text>
               </TouchableOpacity>

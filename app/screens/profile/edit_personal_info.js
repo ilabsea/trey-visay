@@ -57,6 +57,9 @@ export default class EditPersonalInfo extends Component {
   componentDidMount() {
     this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    user = Object.assign({}, user, {sex: user.sex || 'ស្រី', nationality: user.nationality || 'ខ្មែរ', grade: user.grade || '9',
+                                    highSchoolId: user.highSchoolId || '1', houseType: user.houseType || 'ផ្ទះឈើ',
+                                    collectiveIncome: user.collectiveIncome || '0-25ម៉ឺន'})
     this.setState({user: user});
   }
 

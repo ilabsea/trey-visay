@@ -48,7 +48,7 @@ export default class Profile extends Component {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let school = highSchoolList.find((school) => school.id == user.highSchoolId);
 
-    this.setState({user: user, schoolName: school.name});
+    this.setState({user: user, schoolName: !!school && school.name || ''});
   }
 
   _renderScrollViewContent() {

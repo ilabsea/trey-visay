@@ -43,5 +43,10 @@ export default StyleSheet.create({
   },
   link: {
     color: '#1976d2'
-  }
+  },
+  inlineBlock: {
+    flexWrap: 'wrap',
+    alignItems: 'flex-start',
+    flexDirection:'row',
+  },
 });

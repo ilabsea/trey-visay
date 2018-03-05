@@ -81,7 +81,7 @@ export default class CareerCounsellor extends Component {
             <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
           </View>
 
-          <View style={styles.footerWrapper}>
+          <View style={shareStyles.inlineBlock}>
             <Button
               style={[myStyles.btnSubmit, {paddingHorizontal: 20, marginRight: 20, marginBottom: 10}]}
               onPress={this._goToPersonalUnderstandingForm.bind(this)}
@@ -227,10 +227,5 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'KantumruyBold',
     fontSize: 14
-  },
-  footerWrapper: {
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    flexDirection:'row',
-  },
+  }
 });
