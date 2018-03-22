@@ -195,11 +195,11 @@ export default class Profile extends Component {
         </View>
 
         <View style={styles.item}>
-          <Text style={[styles.itemLabel, {flex: 2}]}>មានពិការភាពក្នុងគ្រួសារ</Text>
+          <Text style={[styles.itemLabel, {flex: 2}]}>ពិការភាពក្នុងគ្រួសារ</Text>
           <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDisable ? 'មាន' : 'គ្មានទេ'}</Text>
         </View>
         <View style={styles.item}>
-          <Text style={[styles.itemLabel, {flex: 2}]}>មានអំពើហិង្សាក្នុងគ្រួសារ</Text>
+          <Text style={[styles.itemLabel, {flex: 2}]}>អំពើហិង្សាក្នុងគ្រួសារ</Text>
           <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDomesticViolence ? 'មាន' : 'គ្មានទេ'}</Text>
         </View>
 

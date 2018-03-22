@@ -163,12 +163,12 @@ export default class EditFamilySituation extends Component {
       <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
         { this._renderRadioGroup({stateName: 'isDivorce', label: 'តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?', options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
         { this._renderRadioGroup({stateName: 'isDisable', label: 'តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: 'តើក្នុងគ្រួសាររបស់សិស្សមានការប្រើប្រាស់នូវអពើហិង្សាដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isSmoking', label: 'តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានជក់បារីដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isAlcoholic', label: 'តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនសុរាទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isDrug', label: 'តើមានសមាជិកណាមួយក្នុងគ្រួសារសិស្សមានញៀនគ្រឿងញៀនដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: 'តើក្នុងគ្រួសាររបស់ប្អូន មានអំពើហឹង្សាដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isSmoking', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ជក់បារីដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isAlcoholic', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ញៀនសុរាដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isDrug', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ប្រើប្រាស់គ្រឿងញៀនដែរឬទេ?'}) }
         { this._renderPicker({label: 'តើប្អូនមានប្រភេទផ្ទះបែបណា?', stateName: 'houseType', options: houseTypes}) }
-        { this._renderPicker({label: 'តើគ្រួសារប្អូនមានចំណូលប្រចាំខប្រហែលែប៉ុន្មាន?', stateName: 'collectiveIncome', options: collectiveIncomes}) }
+        { this._renderPicker({label: 'តើគ្រួសាររបស់ប្អូនរកប្រាក់ចំណូលជាមធ្យមប្រហែលប៉ុន្មាន ក្នុង១ខែ?', stateName: 'collectiveIncome', options: collectiveIncomes}) }
       </View>
     )
   }
