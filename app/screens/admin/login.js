@@ -14,6 +14,7 @@ import DeviceInfo from 'react-native-device-info';
 import StatusBar from '../../components/status_bar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { create } from 'apisauce';
+import { environment } from '../../config/environment';
 
 // Utils
 import realm from '../../schema';
@@ -28,7 +29,8 @@ import Button from '../../components/button';
 const api = create({
   // baseURL: 'http://192.168.1.119:3000/api/v1'
   // baseURL: 'http://110.74.204.121:8090/api/v1'
-  baseURL: 'http://54.169.137.147/api/v1'
+  // baseURL: 'http://54.169.137.147/api/v1'
+  baseURL: environment.apiUrl
 })
 
 export default class AdminLogin extends Component {

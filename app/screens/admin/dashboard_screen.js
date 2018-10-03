@@ -26,6 +26,7 @@ import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';
 import shareStyles from '../../assets/style_sheets/login_form';
 import characteristicList from '../../data/json/characteristic_jobs';
+import { environment } from '../../config/environment';
 
 import { create } from 'apisauce';
 
@@ -55,7 +56,8 @@ export default class AdminDashboardScreen extends Component {
     this.api = create({
       // baseURL: 'http://192.168.1.119:3000/api/v1'
       // baseURL: 'http://110.74.204.121:8090/api/v1'
-      baseURL: 'http://54.169.137.147/api/v1'
+      // baseURL: 'http://54.169.137.147/api/v1'
+      baseURL: environment.apiUrl
     })
     this._refreshState();
     this._handleInternetConnection();
