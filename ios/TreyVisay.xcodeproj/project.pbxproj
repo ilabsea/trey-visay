@@ -52,14 +52,15 @@
 		7C0F96730FBC47C7B3DE32C8 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4A01BCA6C4E14C279AC83F1B /* SimpleLineIcons.ttf */; };
 		AA040C3AC80B442D9EE567EA /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E142F19ADF114542BAD43E4A /* Zocial.ttf */; };
 		E17116B3AACA4F879C97E7EA /* libRNAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 258739F015CF49E889097278 /* libRNAudio.a */; };
-		26A3355C324B446C8C7FB53F /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A678402ED074F9499D27271 /* libRNDeviceInfo.a */; };
-		58294FDBCD6A47AB9A21C2F8 /* libRNDeviceInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 766153BFA37E4F649F099BD0 /* libRNDeviceInfo-tvOS.a */; };
 		943B3043C2094A2B9A622FFE /* libimageCropPicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B519ED4AE7F48E4892677FB /* libimageCropPicker.a */; };
 		A1B90C0EFA7B4945AA643C42 /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B68AD068D2F4E3C8158A3B7 /* libRNSound.a */; };
 		C533C3A563524AF29A3B1596 /* Kantumruy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8F68D2A3469C4FA590B0DA17 /* Kantumruy.ttf */; };
 		1A95F27F8CC2489AB3A5EF92 /* KantumruyBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 58B9F5F1DF7D45C1BB399AD7 /* KantumruyBold.ttf */; };
 		B1F736BB61F14382A027324A /* KhmerOureang.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 216DDC6F67B041A59F6F80AB /* KhmerOureang.ttf */; };
-		F5E26C4CB43843068675D16C /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F8F8E4731AE64919AFEC9C38 /* libBVLinearGradient.a */; };
+		21468603CCAB461FA89CB7F5 /* libRNDeviceInfo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A000A9EE3D4245B8E936D0 /* libRNDeviceInfo.a */; };
+		01BE764AE8E54CCB833610B5 /* libRNDeviceInfo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C034E965275C4699BB185C97 /* libRNDeviceInfo-tvOS.a */; };
+		6B564DF8142B4188A93D3D40 /* libBVLinearGradient.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E2BE0836AE28469EB8AF0CB8 /* libBVLinearGradient.a */; };
+		70FCC59C78684F9EAD3E35B7 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6397E174C26642DBAA281CEC /* libSplashScreen.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -306,9 +307,6 @@
 		E142F19ADF114542BAD43E4A /* Zocial.ttf */ = {isa = PBXFileReference; name = "Zocial.ttf"; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8C9DB6098BE5482180FCDB5A /* RNAudio.xcodeproj */ = {isa = PBXFileReference; name = "RNAudio.xcodeproj"; path = "../node_modules/react-native-audio/ios/RNAudio.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		258739F015CF49E889097278 /* libRNAudio.a */ = {isa = PBXFileReference; name = "libRNAudio.a"; path = "libRNAudio.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		CB4FACEB7B984FD4A7DF9CAC /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceInfo.xcodeproj"; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		2A678402ED074F9499D27271 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo.a"; path = "libRNDeviceInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		766153BFA37E4F649F099BD0 /* libRNDeviceInfo-tvOS.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo-tvOS.a"; path = "libRNDeviceInfo-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		1183D44391114EBF8B27F1AC /* imageCropPicker.xcodeproj */ = {isa = PBXFileReference; name = "imageCropPicker.xcodeproj"; path = "../node_modules/react-native-image-crop-picker/ios/imageCropPicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		6B519ED4AE7F48E4892677FB /* libimageCropPicker.a */ = {isa = PBXFileReference; name = "libimageCropPicker.a"; path = "libimageCropPicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		1027E4C948F749DD94510964 /* RNSound.xcodeproj */ = {isa = PBXFileReference; name = "RNSound.xcodeproj"; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
@@ -316,8 +314,13 @@
 		8F68D2A3469C4FA590B0DA17 /* Kantumruy.ttf */ = {isa = PBXFileReference; name = "Kantumruy.ttf"; path = "../app/assets/fonts/Kantumruy.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		58B9F5F1DF7D45C1BB399AD7 /* KantumruyBold.ttf */ = {isa = PBXFileReference; name = "KantumruyBold.ttf"; path = "../app/assets/fonts/KantumruyBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		216DDC6F67B041A59F6F80AB /* KhmerOureang.ttf */ = {isa = PBXFileReference; name = "KhmerOureang.ttf"; path = "../app/assets/fonts/KhmerOureang.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9F0EF01743674A1BBDBA12F8 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		F8F8E4731AE64919AFEC9C38 /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		ACB014CAF07D41D7BB0D099A /* RNDeviceInfo.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceInfo.xcodeproj"; path = "../node_modules/react-native-device-info/RNDeviceInfo.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		14A000A9EE3D4245B8E936D0 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo.a"; path = "libRNDeviceInfo.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		C034E965275C4699BB185C97 /* libRNDeviceInfo-tvOS.a */ = {isa = PBXFileReference; name = "libRNDeviceInfo-tvOS.a"; path = "libRNDeviceInfo-tvOS.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		BE9E7061074F4A2D86EC68C8 /* BVLinearGradient.xcodeproj */ = {isa = PBXFileReference; name = "BVLinearGradient.xcodeproj"; path = "../node_modules/react-native-linear-gradient/BVLinearGradient.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		E2BE0836AE28469EB8AF0CB8 /* libBVLinearGradient.a */ = {isa = PBXFileReference; name = "libBVLinearGradient.a"; path = "libBVLinearGradient.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		532509FA3B36444E841FCE38 /* SplashScreen.xcodeproj */ = {isa = PBXFileReference; name = "SplashScreen.xcodeproj"; path = "../node_modules/react-native-splash-screen/ios/SplashScreen.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		6397E174C26642DBAA281CEC /* libSplashScreen.a */ = {isa = PBXFileReference; name = "libSplashScreen.a"; path = "libSplashScreen.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,11 +354,12 @@
 				C75917EE292640FB829646C3 /* libz.tbd in Frameworks */,
 				B0D62BEB648648CA8B7B9A49 /* libRNVectorIcons.a in Frameworks */,
 				E17116B3AACA4F879C97E7EA /* libRNAudio.a in Frameworks */,
-				26A3355C324B446C8C7FB53F /* libRNDeviceInfo.a in Frameworks */,
-				58294FDBCD6A47AB9A21C2F8 /* libRNDeviceInfo-tvOS.a in Frameworks */,
 				943B3043C2094A2B9A622FFE /* libimageCropPicker.a in Frameworks */,
 				A1B90C0EFA7B4945AA643C42 /* libRNSound.a in Frameworks */,
-				F5E26C4CB43843068675D16C /* libBVLinearGradient.a in Frameworks */,
+				21468603CCAB461FA89CB7F5 /* libRNDeviceInfo.a in Frameworks */,
+				01BE764AE8E54CCB833610B5 /* libRNDeviceInfo-tvOS.a in Frameworks */,
+				6B564DF8142B4188A93D3D40 /* libBVLinearGradient.a in Frameworks */,
+				70FCC59C78684F9EAD3E35B7 /* libSplashScreen.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -527,10 +531,11 @@
 				8483950F1A124B4E80BD1A3D /* RealmReact.xcodeproj */,
 				ECB2E7E47FAE46F2AB748B74 /* RNVectorIcons.xcodeproj */,
 				8C9DB6098BE5482180FCDB5A /* RNAudio.xcodeproj */,
-				CB4FACEB7B984FD4A7DF9CAC /* RNDeviceInfo.xcodeproj */,
 				1183D44391114EBF8B27F1AC /* imageCropPicker.xcodeproj */,
 				1027E4C948F749DD94510964 /* RNSound.xcodeproj */,
-				9F0EF01743674A1BBDBA12F8 /* BVLinearGradient.xcodeproj */,
+				ACB014CAF07D41D7BB0D099A /* RNDeviceInfo.xcodeproj */,
+				BE9E7061074F4A2D86EC68C8 /* BVLinearGradient.xcodeproj */,
+				532509FA3B36444E841FCE38 /* SplashScreen.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1133,10 +1138,11 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-audio/ios",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 			};
 			name = Debug;
@@ -1164,10 +1170,11 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-audio/ios",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 			};
 			name = Release;
@@ -1192,10 +1199,11 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-audio/ios",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 			};
 			name = Debug;
@@ -1219,10 +1227,11 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-audio/ios",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 			};
 			name = Release;
@@ -1259,10 +1268,11 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-audio/ios",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 			};
 			name = Debug;
@@ -1299,10 +1309,11 @@
 					"$(SRCROOT)/../node_modules/realm/src/**",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
 					"$(SRCROOT)/../node_modules/react-native-audio/ios",
-					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-image-crop-picker/ios/**",
 					"$(SRCROOT)/../node_modules/react-native-sound/RNSound",
+					"$(SRCROOT)/../node_modules/react-native-device-info/RNDeviceInfo",
 					"$(SRCROOT)/../node_modules/react-native-linear-gradient/BVLinearGradient",
+					"$(SRCROOT)/../node_modules/react-native-splash-screen/ios",
 				);
 			};
 			name = Release;
