@@ -8,6 +8,8 @@ import CustomRadioGroup from '../../components/CustomRadioGroup'
 import CustomCheckbox from '../../components/CustomCheckbox'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
+import AppStyles from '../../assets/style_sheets/app_styles';
+
 import submit from './submit'
 
 function Form(props) {
@@ -26,7 +28,7 @@ function Form(props) {
       <View>
         <View style={{flexDirection: 'row', marginVertical: 16}}>
           <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-          <Text style={{fontFamily: 'KantumruyBold', color: '#212121', flex: 1}}>
+          <Text style={{fontFamily: AppStyles.fonts.mainBold, color: '#212121', flex: 1}}>
             ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។
             ករណីសិស្ស ទទួលបានពិន្ទុក្រោម ៥០% សិស្សត្រូវតម្រូវឲ្យធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។
           </Text>
@@ -169,11 +171,11 @@ const styles = StyleSheet.create({
   labelGroup: {
     marginBottom: 10,
     fontSize: 20,
-    fontFamily: 'KhmerOureang'
+    fontFamily: AppStyles.fonts.second
   },
   hintLable: {
     fontSize: 16,
-    fontFamily: 'KantumruyBold',
+    fontFamily: AppStyles.fonts.mainBold,
     color: 'rgba(0,0,0,0.54)',
     marginBottom: 8
   },

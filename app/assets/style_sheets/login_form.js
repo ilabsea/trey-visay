@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { AppStyles } from './app_styles';
 
 export default StyleSheet.create({
   container: {
@@ -8,13 +9,13 @@ export default StyleSheet.create({
     fontSize: 30,
     color: '#fff',
     marginTop: 20,
-    fontFamily: 'KhmerOureang',
+    fontFamily: AppStyles.fonts.second,
   },
   subTitle: {
     fontSize: 24,
     color: '#fff',
     marginVertical: 30,
-    fontFamily: 'KhmerOureang',
+    fontFamily: AppStyles.fonts.second,
   },
   inputText: {
     backgroundColor: '#fff',
@@ -35,10 +36,10 @@ export default StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     color: '#fff',
-    fontFamily: 'KantumruyBold',
+    fontFamily: AppStyles.fonts.mainBold,
   },
   submitText: {
-    fontFamily: 'KantumruyBold',
+    fontFamily: AppStyles.fonts.mainBold,
     fontSize: 20,
     lineHeight: 32,
   },

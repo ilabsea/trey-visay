@@ -13,6 +13,8 @@ import {
   Icon,
 } from 'react-native-material-ui';
 
+import AppStyles from '../../assets/style_sheets/app_styles';
+
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
@@ -155,7 +157,7 @@ const styles = StyleSheet.create({
   itemTitle: {
     flex: 1,
     fontSize: 20,
-    fontFamily: 'KhmerOureang',
+    fontFamily: AppStyles.fonts.second,
     color: '#111'
   },
   itemLabel: {
@@ -164,7 +166,7 @@ const styles = StyleSheet.create({
   itemValue: {
     flex: 2,
     fontSize: 16,
-    fontFamily: 'KantumruyBold',
+    fontFamily: AppStyles.fonts.mainBold,
     color: '#111'
   },
   avataContainer: {

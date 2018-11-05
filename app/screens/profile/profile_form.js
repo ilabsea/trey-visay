@@ -25,6 +25,7 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
+import AppStyles from '../../assets/style_sheets/app_styles';
 import StatusBar from '../../components/status_bar';
 
 // Components
@@ -42,19 +43,19 @@ const CONTENTS = [
 ];
 
 export default class ProfileForm extends Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: 'បំពេញប្រវត្តិរូបសង្ខេប',
-      headerStyle: headerStyles.headerStyle,
-      headerTitleStyle: headerStyles.headerTitleStyle,
-      headerRight: (<ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <Icon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>
-                   </ThemeProvider>),
-    }
-  };
+  // static navigationOptions = ({ navigation }) => {
+  //   return {
+  //     title: 'បំពេញប្រវត្តិរូបសង្ខេប',
+  //     headerStyle: headerStyles.headerStyle,
+  //     headerTitleStyle: headerStyles.headerTitleStyle,
+  //     headerRight: (<ThemeProvider uiTheme={{}}>
+  //                   <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
+  //                     <Icon name="done" color='#fff' size={24} />
+  //                     <Text style={headerStyles.saveText}>រក្សាទុក</Text>
+  //                   </TouchableOpacity>
+  //                  </ThemeProvider>),
+  //   }
+  // };
 
   componentWillMount() {
     this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
@@ -96,12 +97,12 @@ export default class ProfileForm extends Component {
             <View style={styles.inlineBlock}>
               <Text>ឬអ្នកចង់បំពេញនៅពេលក្រោយ? </Text>
               <TouchableOpacity onPress={() => this._skip()}>
-                <Text style={{color: '#4caf50', fontFamily: 'KantumruyBold'}}>រំលង</Text>
+                <Text style={{color: '#4caf50', fontFamily: AppStyles.fonts.mainBold}}>រំលង</Text>
               </TouchableOpacity>
 
               <Text> ឬ </Text>
               <TouchableOpacity onPress={() => this.setState({confirmDialogVisible: true})}>
-                <Text style={{color: '#4caf50', fontFamily: 'KantumruyBold'}}>ចាកចេញពីគណនី</Text>
+                <Text style={{color: '#4caf50', fontFamily: AppStyles.fonts.mainBold}}>ចាកចេញពីគណនី</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -126,30 +127,33 @@ export default class ProfileForm extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <StatusBar />
-          <ScrollView style={{flex: 1}}>
-            { this._renderContent() }
-          </ScrollView>
-
-          <ConfirmDialog
-            title="អ្នកពិតជាចង់ចាកចេញមែនទេ?"
-            message="បើអ្នកចាកចេញពត័មានដែលអ្នកបានបំពេញនឹងមិនត្រូវបានរក្សារទុកឡើយ!"
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            positiveButton={{
-              title: "ចាកចេញ",
-              onPress: this._onYes.bind(this)
-            }}
-            negativeButton={{
-              title: "អត់ទេ",
-              onPress: this._onNo.bind(this)
-            }}
-          />
-
-        </View>
-      </ThemeProvider>
+      <View>
+        <Text>Profile Form</Text>
+      </View>
+      // <ThemeProvider uiTheme={{}}>
+      //   <View style={{flex: 1}}>
+      //     <StatusBar />
+      //     <ScrollView style={{flex: 1}}>
+      //       { this._renderContent() }
+      //     </ScrollView>
+      //
+      //     <ConfirmDialog
+      //       title="អ្នកពិតជាចង់ចាកចេញមែនទេ?"
+      //       message="បើអ្នកចាកចេញពត័មានដែលអ្នកបានបំពេញនឹងមិនត្រូវបានរក្សារទុកឡើយ!"
+      //       visible={this.state.confirmDialogVisible}
+      //       onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+      //       positiveButton={{
+      //         title: "ចាកចេញ",
+      //         onPress: this._onYes.bind(this)
+      //       }}
+      //       negativeButton={{
+      //         title: "អត់ទេ",
+      //         onPress: this._onNo.bind(this)
+      //       }}
+      //     />
+      //
+      //   </View>
+      // </ThemeProvider>
     )
   }
 

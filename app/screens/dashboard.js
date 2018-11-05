@@ -21,6 +21,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import realm from '../schema';
 import User from '../utils/user';
 import headerStyles from '../assets/style_sheets/header';
+import { AppStyles } from '../assets/style_sheets/app_styles';
 import StatusBar from '../components/status_bar';
 
 const uiTheme = {
@@ -53,7 +54,7 @@ export default class Dashboard extends Component {
       <View style={styles.overlay}>
         <ScrollView style={{flex: 1}}>
           <View style={{margin: 16}}>
-            <Text style={[styles.paragraph, {fontSize: 24, fontFamily: 'KhmerOureang', textAlign: 'center'}]}>ស្វាគមន៍មកកាន់ “ត្រីវិស័យ”</Text>
+            <Text style={[styles.paragraph, {fontSize: 24, fontFamily: AppStyles.fonts.second, textAlign: 'center'}]}>ស្វាគមន៍មកកាន់ “ត្រីវិស័យ”</Text>
 
             <Text style={styles.paragraph}>
               ត្រីវិស័យ គឺជាកម្មវិធីប្រឹក្សាតាមប្រព័ន្ធអេឡិចត្រូនិចដែលតម្រង់ទិសសិស្សានុសិស្ស
@@ -62,7 +63,7 @@ export default class Dashboard extends Component {
               នីមួយៗបានយ៉ាងងាយស្រួល។
             </Text>
 
-            <Text style={[styles.paragraph, {fontSize: 20, fontFamily: 'KhmerOureang', textAlign: 'center'}]}>
+            <Text style={[styles.paragraph, {fontSize: 20, fontFamily: AppStyles.fonts.second, textAlign: 'center'}]}>
               ហេតុអ្វីបានជាយើងត្រូវការប្រឹក្សាយោបល់តាមប្រព័ន្ធអេឡិចត្រូនិច?
             </Text>
 
@@ -84,7 +85,7 @@ export default class Dashboard extends Component {
               <TouchableOpacity
                 onPress={() => this._onClickOk()}
                 style={{paddingHorizontal: 24, paddingVertical: 5, backgroundColor: 'rgba(255,255,255,0.28)'}}>
-                <Text style={{color: '#fff', fontFamily: 'KantumruyBold'}}>យល់ព្រម</Text>
+                <Text style={{color: '#fff', fontFamily: AppStyles.fonts.mainBold}}>យល់ព្រម</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     paddingRight: 16,
   },
   btnLabel: {
-    fontFamily: 'KhmerOureang',
+    fontFamily: AppStyles.fonts.second,
     fontSize: 24,
     lineHeight: 40,
     color: '#1976d2',

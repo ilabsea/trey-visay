@@ -26,6 +26,7 @@ import { AudioRecorder, AudioUtils } from 'react-native-audio';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 import labelStyles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
+import AppStyles from '../../assets/style_sheets/app_styles';
 import shareStyles from './style';
 
 import realm from '../../schema';
@@ -206,7 +207,7 @@ export default class GoalScreen extends Component {
         <View style={labelStyles.box}>
           <Text style={labelStyles.subTitle}>តើអ្នកនឹងប្រកបមុខរបរអ្វីនាពេលអនាគត? មូលហេតុអ្វី?</Text>
           <Text>
-            <Text style={{fontFamily: 'KantumruyBold'}}>ឧទាហរណ៍៖ </Text>
+            <Text style={{fontFamily: AppStyles.fonts.mainBold}}>ឧទាហរណ៍៖ </Text>
             ខ្ញុំនឹងធ្វើជាស្ថបត្យករក៏ពូកែម្នាក់ ក្នុងក្រុមហ៊ុនឯកជនមួយនៅទីក្រុងភ្នំពេញ ពេលខ្ញំបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រក្នុងឆ្នាំ២០២២។
           </Text>
           <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 24}}>

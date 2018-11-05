@@ -13,6 +13,7 @@ import {
   Icon,
   Avatar,
 } from 'react-native-material-ui';
+import AppStyles from '../../assets/style_sheets/app_styles';
 
 // Utils
 import realm from '../../schema';
@@ -295,7 +296,7 @@ const styles = StyleSheet.create({
   itemValue: {
     flex: 2,
     fontSize: 16,
-    fontFamily: 'KantumruyBold',
+    fontFamily: AppStyles.fonts.mainBold,
     color: '#111'
   },
   avataContainer: {

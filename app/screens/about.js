@@ -17,6 +17,7 @@ import {
 
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
+import AppStyles from '../assets/style_sheets/app_styles';
 import StatusBar from '../components/status_bar';
 import DeviceInfo from 'react-native-device-info';
 
@@ -41,6 +42,7 @@ export default class About extends Component {
   }
 
   render() {
+    console.log('app_styles :======================== ', AppStyles)
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
@@ -135,7 +137,7 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   textBold: {
-    fontFamily: 'KantumruyBold'
+    fontFamily: AppStyles.fonts.mainBold
   },
   link: {
     color: '#1976d2',

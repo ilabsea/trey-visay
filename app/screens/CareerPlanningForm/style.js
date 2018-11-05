@@ -15,10 +15,10 @@ export default StyleSheet.create({
   btnText: {
     color: '#fff',
     fontSize: 20,
-    fontFamily: 'KantumruyBold',
+    fontFamily: AppStyles.fonts.mainBold,
   },
   label: {
-    fontFamily: 'KantumruyBold',
+    fontFamily: AppStyles.fonts.mainBold,
   },
   tagLabel: {
     borderRadius: 3,

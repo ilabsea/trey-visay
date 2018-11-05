@@ -22,6 +22,7 @@ import LoadingIndicator from '../../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
+import AppStyles from '../../assets/style_sheets/app_styles';
 import StatusBar from '../../components/status_bar';
 
 import schoolList from '../../data/json/schools';
@@ -231,7 +232,7 @@ export default class PrivateSchoolScreen extends Component {
             onValueChange={(itemValue, itemIndex) => this._onChangeProvince(itemValue)}
             mode='dialog'
             prompt='ជ្រើសរើសទីតាំង'
-            itemStyle={{fontFamily: 'Kantumruy', fontSize: 16}}
+            itemStyle={{fontFamily: AppStyles.fonts.main, fontSize: 16}}
           >
             <Picker.Item label="គ្រប់ទីកន្លែង" value="" />
             { this.state.provinces.map((province, i) => {

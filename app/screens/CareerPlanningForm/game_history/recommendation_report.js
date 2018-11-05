@@ -15,6 +15,7 @@ import {
 
 import styles from '../../../assets/style_sheets/profile_form';
 import headerStyles from '../../../assets/style_sheets/header';
+import AppStyles from '../../../assets/style_sheets/app_styles';
 import shareStyles from '../style';
 
 import realm from '../../../schema';
@@ -207,13 +208,13 @@ export default class RecommendationReport extends Component {
 
 const localStyle = StyleSheet.create({
   boldText: {
-    fontFamily: 'KantumruyBold',
+    fontFamily: AppStyles.fonts.mainBold,
   },
   paragraph: {
     marginTop: 16,
   },
   highlightBlue: {
-    fontFamily: 'KantumruyBold',
+    fontFamily: AppStyles.fonts.mainBold,
     color: '#1976d2'
   }
 });
