@@ -10,14 +10,14 @@ import {
   ToastAndroid,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon
-} from 'react-native-material-ui';
+// import {
+//   ThemeProvider,
+//   Icon
+// } from 'react-native-material-ui';
 
 import DatePicker from 'react-native-datepicker';
 import Collapsible from 'react-native-collapsible';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+// import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 
 // Utils
@@ -91,7 +91,7 @@ export default class ProfileForm extends Component {
     return (
       <View style={styles.container}>
         <View style={{flexDirection: 'row', marginVertical: 16}}>
-          <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+          // <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
           <View style={{flex: 1}}>
             <Text>អ្នកត្រូវបំពេញពត៌មានផ្ទាល់ខ្លួនខាងក្រោមដើម្បីប្រើប្រាស់កម្មវិធី។ </Text>
             <View style={styles.inlineBlock}>

@@ -20,7 +20,7 @@ import headerStyles from '../assets/style_sheets/header';
 import AppStyles from '../assets/style_sheets/app_styles';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+// import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 export default class SideMenu extends Component {
   state = {user: '', photo: '', cover: '', isOpen: true}
@@ -98,7 +98,7 @@ export default class SideMenu extends Component {
     return (
       <TouchableOpacity onPress={() => this.navigateToScreen(options.screenName)} style={this.isActive}>
         <View style={this.getWrapperStyle(options.screenName)}>
-          <MaterialIcon name={ options.iconName } size={ options.iconSize || 18 } style={this.getIconStyle(options.screenName)} />
+          // <MaterialIcon name={ options.iconName } size={ options.iconSize || 18 } style={this.getIconStyle(options.screenName)} />
           <Text style={this.getMenuTextStyle(options.screenName)}>{options.title}</Text>
         </View>
       </TouchableOpacity>
@@ -148,7 +148,7 @@ export default class SideMenu extends Component {
 
             <TouchableOpacity onPress={this.logout.bind(this)}>
               <View style={styles.row}>
-                <AwesomeIcon name='unlock-alt' size={18} style={styles.icon} />
+                // <AwesomeIcon name='unlock-alt' size={18} style={styles.icon} />
                 <Text style={styles.menuLabel}>ចាកចេញពីគណនី</Text>
               </View>
             </TouchableOpacity>
