@@ -7,6 +7,7 @@ import {
   Alert,
   TouchableOpacity,
   Image,
+  ImageBackground
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import SplashScreen from 'react-native-splash-screen';
@@ -20,7 +21,6 @@ import User from '../utils/user';
 import styles from '../assets/style_sheets/login_form';
 
 // Components
-import BackgroundImage from '../components/image_background';
 import Button from '../components/button';
 
 // Source for form
@@ -36,8 +36,8 @@ export default class Login extends Component {
   }
 
   componentWillMount() {
-    // SplashScreen.hide();
-
+      // SplashScreen.hide();
+      console.log('loging page')
     User.isLoggedin(this.handleUser.bind(this));
   }
 
@@ -136,6 +136,7 @@ export default class Login extends Component {
 
                 <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>ចូលគណនី</Text>
               </Button>
+
             </View>
 
             <View style={styles.row}>
@@ -171,11 +172,11 @@ export default class Login extends Component {
 
     return (
       <LinearGradient style={styles.container} colors={['#80d0c7', '#0093e8']}>
-        <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
+        <ImageBackground source={require('../assets/images/sign_in_bg.png')}
+               style={{width: '100%', height: '100%'}}>
           <StatusBar hidden={true} />
-
           { this._renderContent() }
-        </BackgroundImage>
+        </ImageBackground>
       </LinearGradient>
     )
   }

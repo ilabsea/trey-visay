@@ -25,7 +25,7 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
-import AppStyles from '../../assets/style_sheets/app_styles';
+import fontStyles from '../../assets/style_sheets/app_styles';
 import StatusBar from '../../components/status_bar';
 
 // Components
@@ -97,12 +97,12 @@ export default class ProfileForm extends Component {
             <View style={styles.inlineBlock}>
               <Text>ឬអ្នកចង់បំពេញនៅពេលក្រោយ? </Text>
               <TouchableOpacity onPress={() => this._skip()}>
-                <Text style={{color: '#4caf50', fontFamily: AppStyles.fonts.mainBold}}>រំលង</Text>
+                <Text style={{color: '#4caf50', fontFamily: fontStyles.mainBold}}>រំលង</Text>
               </TouchableOpacity>
 
               <Text> ឬ </Text>
               <TouchableOpacity onPress={() => this.setState({confirmDialogVisible: true})}>
-                <Text style={{color: '#4caf50', fontFamily: AppStyles.fonts.mainBold}}>ចាកចេញពីគណនី</Text>
+                <Text style={{color: '#4caf50', fontFamily: fontStyles.mainBold}}>ចាកចេញពីគណនី</Text>
               </TouchableOpacity>
             </View>
           </View>

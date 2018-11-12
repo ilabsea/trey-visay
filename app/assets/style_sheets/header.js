@@ -1,12 +1,12 @@
 import { StyleSheet } from 'react-native';
-import { AppStyles } from './app_styles';
+import { fontStyles } from './app_styles';
 
 export default StyleSheet.create({
   headerTitleStyle: {
     color: '#fff',
     fontSize: 20,
     lineHeight: 30,
-    fontFamily: AppStyles.fonts.second,
+    fontFamily: fontStyles.second,
     marginLeft: 20,
   },
   headerStyle: {
@@ -17,14 +17,14 @@ export default StyleSheet.create({
     marginLeft: 10,
     marginRight: 16,
     fontSize: 16,
-    fontFamily: AppStyles.fonts.second,
+    fontFamily: fontStyles.second,
   },
   actionWrapper: {
     flexDirection: 'row',
     alignItems: 'center'
   },
   body2: {
-    fontFamily: AppStyles.fonts.mainBold,
+    fontFamily: fontStyles.mainBold,
     fontSize: 14
   }
 })

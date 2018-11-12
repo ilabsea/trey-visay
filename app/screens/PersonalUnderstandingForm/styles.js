@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native';
-import { AppStyles } from '../../assets/style_sheets/app_styles';
+import { fontStyles } from '../../assets/style_sheets/app_styles';
 
 export default StyleSheet.create({
   scrollContainer: {
@@ -12,7 +12,7 @@ export default StyleSheet.create({
   },
   subTitle: {
     fontSize: 20,
-    fontFamily: AppStyles.fonts.second,
+    fontFamily: fontStyles.second,
     textAlign: 'center'
   },
   paragraph: {
@@ -25,7 +25,7 @@ export default StyleSheet.create({
     borderRadius: 3
   },
   btnText: {
-    fontFamily: AppStyles.fonts.mainBold,
+    fontFamily: fontStyles.mainBold,
     fontSize: 16,
     color: '#fff',
   }

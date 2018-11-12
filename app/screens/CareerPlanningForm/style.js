@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { fontStyles } from '../../assets/style_sheets/app_styles';
 
 export default StyleSheet.create({
   footerWrapper: {
@@ -15,10 +16,10 @@ export default StyleSheet.create({
   btnText: {
     color: '#fff',
     fontSize: 20,
-    fontFamily: AppStyles.fonts.mainBold,
+    fontFamily: fontStyles.mainBold,
   },
   label: {
-    fontFamily: AppStyles.fonts.mainBold,
+    fontFamily: fontStyles.mainBold,
   },
   tagLabel: {
     borderRadius: 3,

@@ -3,9 +3,9 @@ import { View, Text, StyleSheet } from 'react-native';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import { Divider } from 'react-native-elements';
 
-var RadioButtonGroup = React.createClass({
+class RadioButtonGroup extends React.Component {
 
-  render: function() {
+  render() {
     const { labelStyle } = this.props;
     const buttonColor = this.props.buttonColor || '#4caf50';
     return (
@@ -45,7 +45,7 @@ var RadioButtonGroup = React.createClass({
       </RadioForm>
     );
   }
-});
+}
 
 
 export default function CustomRadioGroup(props) {

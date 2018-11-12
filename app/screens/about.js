@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Linking,
   TouchableOpacity,
+  Platform
 } from 'react-native';
 
 import {
@@ -17,7 +18,7 @@ import {
 
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
-import AppStyles from '../assets/style_sheets/app_styles';
+import fontStyles from '../assets/style_sheets/app_styles';
 import StatusBar from '../components/status_bar';
 import DeviceInfo from 'react-native-device-info';
 
@@ -42,7 +43,7 @@ export default class About extends Component {
   }
 
   render() {
-    console.log('app_styles :======================== ', AppStyles)
+    console.log('app_styles :======================== ', fontStyles)
     return (
       <ThemeProvider uiTheme={uiTheme}>
         <View style={styles.container}>
@@ -125,7 +126,6 @@ export default class About extends Component {
   }
 }
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   textBold: {
-    fontFamily: AppStyles.fonts.mainBold
+    fontFamily: 'KantumruyBold'
   },
   link: {
     color: '#1976d2',

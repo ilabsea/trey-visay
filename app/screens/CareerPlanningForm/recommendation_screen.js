@@ -19,7 +19,7 @@ import BackConfirmDialog from '../../components/back_confirm_dialog';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
-import AppStyles from '../../assets/style_sheets/app_styles';
+import fontStyles from '../../assets/style_sheets/app_styles';
 import shareStyles from './style';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -274,13 +274,13 @@ export default class RecommendationScreen extends Component {
 
 const localStyle = StyleSheet.create({
   boldText: {
-    fontFamily: AppStyles.fonts.mainBold,
+    fontFamily: 'KantumruyBold',
   },
   paragraph: {
     marginTop: 16,
   },
   highlightBlue: {
-    fontFamily: AppStyles.fonts.mainBold,
+    fontFamily: 'KantumruyBold',
     color: '#1976d2'
   }
 });

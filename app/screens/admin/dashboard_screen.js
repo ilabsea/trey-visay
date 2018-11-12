@@ -25,7 +25,7 @@ import User from '../../utils/user';
 import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';
 import shareStyles from '../../assets/style_sheets/login_form';
-import AppStyles from '../../assets/style_sheets/app_styles';
+import fontStyles from '../../assets/style_sheets/app_styles';
 import characteristicList from '../../data/json/characteristic_jobs';
 import { environment } from '../../config/environment';
 
@@ -55,9 +55,6 @@ export default class AdminDashboardScreen extends Component {
     };
 
     this.api = create({
-      // baseURL: 'http://192.168.1.119:3000/api/v1'
-      // baseURL: 'http://110.74.204.121:8090/api/v1'
-      // baseURL: 'http://54.169.137.147/api/v1'
       baseURL: environment.apiUrl
     })
     this._refreshState();
@@ -282,7 +279,7 @@ export default class AdminDashboardScreen extends Component {
         <View style={{width: 130, height: 130, borderRadius: 64, backgroundColor: '#bdbdbd', justifyContent: 'center', alignItems: 'center'}}>
           <AwesomeIcon name='folder-open' size={60} />
         </View>
-        <Text style={{marginTop: 24, fontFamily: AppStyles.fonts.mainBold, fontSize: 24, color: '#757575'}}>គ្មានទិន្នន័យ</Text>
+        <Text style={{marginTop: 24, fontFamily: fontStyles.mainBold, fontSize: 24, color: '#757575'}}>គ្មានទិន្នន័យ</Text>
       </View>
     )
   }
@@ -351,7 +348,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   btnLabel: {
-    fontFamily: AppStyles.fonts.second,
+    fontFamily: 'KhmerOureang',
     fontSize: 24,
     lineHeight: 40,
     flex: 1,

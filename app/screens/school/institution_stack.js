@@ -8,7 +8,7 @@ import PrivateSchoolScreen from './private_school_screen';
 import NGOSchoolScreen from './ngo_school_screen';
 import GovernmentSchoolScreen from './government_school_screen';
 import InstitutionDetail from './institution_detail';
-import AppStyles from '../../assets/style_sheets/app_styles';
+import fontStyles from '../../assets/style_sheets/app_styles';
 
 const InstitutionTab = TabNavigator({
   GovernmentSchoolScreen: { screen: GovernmentSchoolScreen },
@@ -20,7 +20,7 @@ const InstitutionTab = TabNavigator({
   tabBarOptions: {
     activeTintColor: '#fff',
     labelStyle: {
-      fontFamily: AppStyles.fonts.mainBold,
+      fontFamily: 'KantumruyBold',
       fontSize: 14,
     },
     style: {

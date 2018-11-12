@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { TextInput, View, StyleSheet } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
+import PropTypes from 'prop-types';
 
 export default function CustomTextInput(props) {
   const { input, meta, ...inputProps } = props;
@@ -33,31 +33,17 @@ export default function CustomTextInput(props) {
 }
 
 CustomTextInput.propTypes = {
-  input: React.PropTypes.shape({
-    onBlur: React.PropTypes.func.isRequired,
-    onChange: React.PropTypes.func.isRequired,
-    onFocus: React.PropTypes.func.isRequired,
-    value: React.PropTypes.any.isRequired
+  input: PropTypes.shape({
+    onBlur: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
+    onFocus: PropTypes.func.isRequired,
+    value: PropTypes.any.isRequired
   }).isRequired,
-  meta: React.PropTypes.shape({
-    active: React.PropTypes.bool.isRequired,
-    error: React.PropTypes.string,
-    invalid: React.PropTypes.bool.isRequired,
-    pristine: React.PropTypes.bool.isRequired,
-    visited: React.PropTypes.bool.isRequired
+  meta: PropTypes.shape({
+    active: PropTypes.bool.isRequired,
+    error: PropTypes.string,
+    invalid: PropTypes.bool.isRequired,
+    pristine: PropTypes.bool.isRequired,
+    visited: PropTypes.bool.isRequired
   }).isRequired
 };
-
-
-const styles = StyleSheet.create({
-  // valid: {
-  //   borderBottomWidth: 1,
-  //   borderColor: 'green'
-  // },
-  // invalid: {
-  //   borderBottomWidth: 1,
-  //   borderColor: 'red'
-  // },
-  //
-
-});

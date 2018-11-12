@@ -17,7 +17,7 @@ import PropTypes from 'prop-types';
 import realm from '../schema';
 import User from '../utils/user';
 import headerStyles from '../assets/style_sheets/header';
-import AppStyles from '../assets/style_sheets/app_styles';
+import fontStyles from '../assets/style_sheets/app_styles';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 // import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -148,7 +148,7 @@ export default class SideMenu extends Component {
 
             <TouchableOpacity onPress={this.logout.bind(this)}>
               <View style={styles.row}>
-                // <AwesomeIcon name='unlock-alt' size={18} style={styles.icon} />
+                <AwesomeIcon name='unlock-alt' size={18} style={styles.icon} />
                 <Text style={styles.menuLabel}>ចាកចេញពីគណនី</Text>
               </View>
             </TouchableOpacity>
@@ -162,7 +162,7 @@ export default class SideMenu extends Component {
 const styles = StyleSheet.create({
   name: {
     fontSize: 14,
-    fontFamily: AppStyles.fonts.second,
+    fontFamily: 'KhmerOureang',
     color: '#fff',
     flex: 1
   },
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     color: 'rgba(0,0,0,0.54)'
   },
   menuLabel: {
-    fontFamily: AppStyles.fonts.second,
+    fontFamily: 'KhmerOureang',
     fontSize: 14,
   },
 });
