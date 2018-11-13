@@ -7,8 +7,9 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
-  Toolbar,
+  ThemeContext,
+  getTheme,
+  Toolbar
 } from 'react-native-material-ui';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -28,9 +29,7 @@ export default class VocationalJobIndexScreen extends Component {
   componentWillMount() {
     let currentGroup = characteristicList.find((obj) => obj.id == 4);
 
-    this.state = {
-      currentGroup: currentGroup
-    };
+    this.setState({ currentGroup: currentGroup });
   }
 
   _renderCareer(career, i) {
@@ -66,20 +65,13 @@ export default class VocationalJobIndexScreen extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <StatusBar />
-          <Toolbar
-            leftElement="menu"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ជំនាញវិជ្ជាជីវៈ</Text>}
-            onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-          />
+      <View style={{flex: 1}}>
+        <StatusBar />
 
-          <ScrollView>
-            { this._renderContent() }
-          </ScrollView>
-        </View>
-      </ThemeProvider>
+        <ScrollView>
+          { this._renderContent() }
+        </ScrollView>
+      </View>
     );
   }
 }

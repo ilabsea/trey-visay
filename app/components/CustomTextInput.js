@@ -47,3 +47,16 @@ CustomTextInput.propTypes = {
     visited: PropTypes.bool.isRequired
   }).isRequired
 };
+
+const styles = StyleSheet.create({
+  // valid: {
+  //   borderBottomWidth: 1,
+  //   borderColor: 'green'
+  // },
+  // invalid: {
+  //   borderBottomWidth: 1,
+  //   borderColor: 'red'
+  // },
+  //
+
+});

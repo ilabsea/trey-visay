@@ -7,11 +7,6 @@ import {
   Image,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
@@ -34,11 +29,9 @@ export default class GameHistoryScreen extends Component {
       title: 'Game History',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>តេស្តលើកទី {state.params.num}</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='arrow-back' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      headerLeft: <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
+                    <MaterialIcon name='arrow-back' color='#fff' size={24} />
+                  </TouchableOpacity>
     }
   };
 
@@ -273,18 +266,16 @@ export default class GameHistoryScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderTest1Trigger() }
-              { this._renderTest2Trigger() }
-              { this._renderGoal() }
-              { this._renderContent() }
-            </View>
-          </ScrollView>
-        </View>
-      </ThemeProvider>
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderTest1Trigger() }
+            { this._renderTest2Trigger() }
+            { this._renderGoal() }
+            { this._renderContent() }
+          </View>
+        </ScrollView>
+      </View>
     );
   };
 }

@@ -8,11 +8,7 @@ import {
   BackHandler,
   ToastAndroid,
 } from 'react-native';
-
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 import CheckboxGroup from '../../components/checkbox_group';
@@ -36,11 +32,9 @@ export default class PersonalityJobsScreen extends Component {
       title: '',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>{state.params && state.params.title}</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      headerLeft: <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
+                    <MaterialIcon name='close' color='#fff' size={24} />
+                  </TouchableOpacity>,
       headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
                       <Text style={headerStyles.saveText}><Text style={highlighStyle}>{state.params && state.params.total || 0} </Text> / 3</Text>
                     </TouchableOpacity>),
@@ -190,7 +184,7 @@ export default class PersonalityJobsScreen extends Component {
       <View style={shareStyles.footerWrapper}>
         <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
           <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
+          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
         </TouchableOpacity>
       </View>
     )
@@ -198,7 +192,7 @@ export default class PersonalityJobsScreen extends Component {
 
   _goNext() {
     if (this.state.jobs.length != 3) {
-      return ToastAndroid.show('សូមជ្រើសរើសមុខរបរចំនួន 3គត់!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូមជ្រើសរើសមុខរបរចំនួន 3គត់!', DURATION.SHORT);
     }
 
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
@@ -214,29 +208,28 @@ export default class PersonalityJobsScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16}}>
-              <View style={{flexDirection: 'row', marginVertical: 16}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
-              </View>
-
-              { this._renderCheckBoxes() }
-
-              <BackConfirmDialog
-                visible={this.state.confirmDialogVisible}
-                onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-                onPressYes={() => this._onYes()}
-                onPressNo={() => this._onNo()}
-              />
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16}}>
+            <View style={{flexDirection: 'row', marginVertical: 16}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
             </View>
-          </ScrollView>
 
-          { this._renderFooter() }
-        </View>
-      </ThemeProvider>
+            { this._renderCheckBoxes() }
+
+            <BackConfirmDialog
+              visible={this.state.confirmDialogVisible}
+              onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+              onPressYes={() => this._onYes()}
+              onPressNo={() => this._onNo()}
+            />
+          </View>
+        </ScrollView>
+
+        { this._renderFooter() }
+        <Toast ref="toast"/>
+      </View>
     );
   };
 }

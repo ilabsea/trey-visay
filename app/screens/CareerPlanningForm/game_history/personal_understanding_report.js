@@ -8,12 +8,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Toolbar,
-  Icon,
-} from 'react-native-material-ui';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
@@ -194,18 +188,16 @@ export default class PersonalUnderstandingReport extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <StatusBar />
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this.state.game.personalUnderstandings.map((obj, i) => {
-                { return (this._renderContent(obj, i)) }
-              })}
-            </View>
-          </ScrollView>
-        </View>
-      </ThemeProvider>
+      <View style={{flex: 1}}>
+        <StatusBar />
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this.state.game.personalUnderstandings.map((obj, i) => {
+              { return (this._renderContent(obj, i)) }
+            })}
+          </View>
+        </ScrollView>
+      </View>
     )
   }
 }

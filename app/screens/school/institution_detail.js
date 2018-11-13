@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
   Toolbar,
 } from 'react-native-material-ui';
 
@@ -31,9 +30,9 @@ export default class InstitutionDetail extends Component {
   });
 
   componentWillMount() {
-    this.state = {
+    this.setState({
       school: schoolList.filter((school) => school.id == this.props.navigation.state.params.id)[0]
-    }
+    })
   }
 
   _renderContact() {
@@ -187,17 +186,15 @@ export default class InstitutionDetail extends Component {
     let cover = require('../../assets/images/header_bg.jpg');
 
     return (
-      <ThemeProvider uiTheme={{}}>
-        <ScrollableHeader
-          customView={ this._renderScrollViewContent.bind(this) }
-          imageBgSrc={ cover }
-          customHeader={ this._renderHeader.bind(this) }
-          profile={ photo }
-          profileSize={ PROFILE_SIZE }
-          title={this.state.school.universityName}
-          subTitle={this.state.school.category}
-        />
-      </ThemeProvider>
+      <ScrollableHeader
+        customView={ this._renderScrollViewContent.bind(this) }
+        imageBgSrc={ cover }
+        customHeader={ this._renderHeader.bind(this) }
+        profile={ photo }
+        profileSize={ PROFILE_SIZE }
+        title={this.state.school.universityName}
+        subTitle={this.state.school.category}
+      />
     )
   }
 }
@@ -223,7 +220,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   departmentName: {
-    fontFamily: 'KantumruyBold',
+    fontFamily: 'Kantumruy',
+    fontWeight: 'bold',
     fontSize: 16,
     marginBottom: 8
   },

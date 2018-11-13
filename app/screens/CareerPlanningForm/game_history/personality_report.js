@@ -5,10 +5,6 @@ import {
   ScrollView,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-} from 'react-native-material-ui';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import headerStyles from '../../../assets/style_sheets/header';
@@ -64,17 +60,15 @@ export default class PersonalityReport extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <StatusBar />
+      <View style={{flex: 1}}>
+        <StatusBar />
 
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderContent() }
-            </View>
-          </ScrollView>
-        </View>
-      </ThemeProvider>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderContent() }
+          </View>
+        </ScrollView>
+      </View>
     )
   }
 }

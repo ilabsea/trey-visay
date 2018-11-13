@@ -9,12 +9,13 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
+  ThemeContext,
   Toolbar,
-  Icon
+  getTheme
 } from 'react-native-material-ui';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { Provider } from 'react-redux';
 import store from '../../redux/store';
 
@@ -39,19 +40,19 @@ export default class PersonalUnderstandingForm extends Component {
     title: 'ស្វែងយល់អំពីខ្លួនឯង',
     headerTitle: <Text style={headerStyles.headerTitleStyle}>ស្វែងយល់អំពីខ្លួនឯង</Text>,
     headerStyle: headerStyles.headerStyle,
-    headerLeft: <ThemeProvider uiTheme={{}}>
+    headerLeft: <ThemeContext.Provider value={getTheme(uiTheme)}>
                   <TouchableOpacity onPress={() => { navigation.state.params.refresh(); navigation.goBack()}} style={{marginHorizontal: 16}}>
-                    <Icon name='close' color='#fff' size={24} />
+                    <MaterialIcon name='close' color='#fff' size={24} />
                   </TouchableOpacity>
-                </ThemeProvider>,
-    headerRight: <ThemeProvider uiTheme={{}}>
+                </ThemeContext.Provider>,
+    headerRight: <ThemeContext.Provider value={getTheme(uiTheme)}>
                   <Provider store={store}>
                     <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <Icon name="done" color='#fff' size={24} />
+                      <MaterialIcon name="done" color='#fff' size={24} />
                       <Text style={headerStyles.saveText}>រក្សាទុក</Text>
                     </TouchableOpacity>
                   </Provider>
-                 </ThemeProvider>,
+                 </ThemeContext.Provider>,
 
     drawerIcon: ({ tintColor }) => (
       <AwesomeIcon name="briefcase" size={16}  color={tintColor} />
@@ -212,7 +213,7 @@ export default class PersonalUnderstandingForm extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <ScrollView>
           <Modal
             animationType="slide"
@@ -242,7 +243,7 @@ export default class PersonalUnderstandingForm extends Component {
             <Form ref={'form'} />
           </Provider>
         </ScrollView>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     );
   };
 }

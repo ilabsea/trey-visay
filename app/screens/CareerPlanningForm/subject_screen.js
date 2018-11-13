@@ -6,13 +6,10 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
-  ToastAndroid,
+  Platform
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 import { Divider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
@@ -36,11 +33,9 @@ export default class SubjectScreen extends Component {
       title: 'បំពេញមុខវិជ្ជា',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញមុខវិជ្ជា</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      headerLeft: <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
+                    <MaterialIcon name='close' color='#fff' size={24} />
+                  </TouchableOpacity>,
     }
   };
 
@@ -222,7 +217,7 @@ export default class SubjectScreen extends Component {
       <View style={shareStyles.footerWrapper}>
         <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
           <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
+          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
         </TouchableOpacity>
       </View>
     )
@@ -231,7 +226,7 @@ export default class SubjectScreen extends Component {
   _goNext() {
     if (!this._isValid()) {
       this.setState({submit: true});
-      return ToastAndroid.show('សូមបំពេញមុខវិជ្ជាទាំងអស់ជាមុនសិន...!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូមបំពេញមុខវិជ្ជាទាំងអស់ជាមុនសិន...!', DURATION.SHORT);
     }
 
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
@@ -282,33 +277,32 @@ export default class SubjectScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16}}>
-              <View style={{flexDirection: 'row', marginVertical: 16}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
-              </View>
-
-              { this._renderKhmer() }
-              { this._renderEnglish() }
-              { this._renderSocialStudies() }
-              { this._renderScience() }
-              { this._renderSoftSkill() }
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16}}>
+            <View style={{flexDirection: 'row', marginVertical: 16}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
             </View>
-          </ScrollView>
 
-          { this._renderFooter() }
+            { this._renderKhmer() }
+            { this._renderEnglish() }
+            { this._renderSocialStudies() }
+            { this._renderScience() }
+            { this._renderSoftSkill() }
+          </View>
+        </ScrollView>
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        { this._renderFooter() }
+
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+        <Toast ref="toast"/>
+      </View>
     );
   };
 }

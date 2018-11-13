@@ -9,11 +9,6 @@ import {
   BackHandler,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
-
 import { Divider } from 'react-native-elements';
 
 import styles from '../../assets/style_sheets/profile_form';
@@ -21,6 +16,7 @@ import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import Images from '../../assets/images';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import careerList from '../../data/json/characteristic_jobs';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 
@@ -35,18 +31,24 @@ export default class CareersScreen extends Component {
       title: 'យល់ដឹងអំពីមុខរបរ',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>យល់ដឹងអំពីមុខរបរ</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>
+      headerLeft: <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
+                    <MaterialIcon name='close' color='#fff' size={24} />
+                  </TouchableOpacity>
     }
   };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      confirmDialogVisible: false,
+      game: null
+    }
+  }
 
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
-    this.state = { confirmDialogVisible: false, game: game };
+    this.setState({game : game});
     this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
     this._backHandler();
   }
@@ -70,7 +72,7 @@ export default class CareersScreen extends Component {
       <View style={shareStyles.footerWrapper}>
         <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
           <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
+          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
         </TouchableOpacity>
       </View>
     )
@@ -122,24 +124,22 @@ export default class CareersScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderContent() }
-            </View>
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderContent() }
+          </View>
 
-          </ScrollView>
-          { this._renderFooter() }
+        </ScrollView>
+        { this._renderFooter() }
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+      </View>
     );
   };
 }

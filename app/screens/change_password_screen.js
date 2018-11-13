@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
+  ThemeContext, getTheme,
   Toolbar,
   Icon,
 } from 'react-native-material-ui';
@@ -34,9 +34,9 @@ export default class ChangePasswordScreen extends Component {
   static navigationOptions = {
     drawerLabel: 'ប្តូរលេខសម្ងាត់',
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <Icon name="key" color={tintColor} />
-      </ThemeProvider>
+      </ThemeContext.Provider>
     ),
   };
 
@@ -77,7 +77,7 @@ export default class ChangePasswordScreen extends Component {
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
 
     return (
-      <ThemeProvider uiTheme={uiTheme}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={styles.container}>
           <StatusBar />
           <Toolbar
@@ -126,7 +126,7 @@ export default class ChangePasswordScreen extends Component {
             </View>
           </ScrollView>
         </View>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     )
   }
 }

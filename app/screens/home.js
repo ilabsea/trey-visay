@@ -1,8 +1,7 @@
 import React from 'react';
 import {
-  DrawerNavigator,
-  StackNavigator,
-  TabNavigator,
+  createDrawerNavigator,
+  createStackNavigator
 } from 'react-navigation';
 
 // Screens
@@ -44,7 +43,7 @@ import EditFamilySituation from './profile/edit_family_situation';
 import InstitutionDetail from './school/institution_detail';
 import InstitutionStack from './school/institution_stack';
 
-const careerCounsellorStack = StackNavigator(
+const careerCounsellorStack = createStackNavigator(
   {
     CareerCounsellorScreen: { screen: CareerCounsellor },
     PersonalUnderstandingFormScreen: { screen: PersonalUnderstandingForm },
@@ -70,7 +69,7 @@ const careerCounsellorStack = StackNavigator(
   }
 );
 
-const profileStack = StackNavigator(
+const profileStack = createStackNavigator(
   {
     Profile: {screen: Profile},
     EditProfilePhoto: {screen: EditProfilePhoto},
@@ -79,14 +78,14 @@ const profileStack = StackNavigator(
     EditFamilySituation: {screen: EditFamilySituation},
   });
 
-const VocationalJobStack = StackNavigator(
+const VocationalJobStack = createStackNavigator(
   {
     VocationalJobIndexScreen: { screen: VocationalJobIndexScreen },
     VocationalJobShowScreen: { screen: VocationalJobShowScreen },
     InstitutionDetail: { screen: InstitutionDetail },
   });
 
-const HomeScreen = DrawerNavigator(
+const HomeScreen = createDrawerNavigator(
   {
     Dashboard: { screen: Dashboard },
     About: { screen: About },

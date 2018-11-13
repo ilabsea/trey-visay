@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
   Icon,
 } from 'react-native-material-ui';
 
@@ -35,17 +34,13 @@ export default class EditPersonalInfo extends Component {
       title: 'កែសម្រួល',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>កែសម្រួល</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
-      headerRight: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
+      headerLeft: <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
+                    <Icon name='close' color='#fff' size={24} />
+                  </TouchableOpacity>,
+      headerRight: <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
                       <Icon name="done" color='#fff' size={24} />
                       <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>
-                   </ThemeProvider>,
+                    </TouchableOpacity>,
     }
   };
 

@@ -6,17 +6,15 @@ import {
   StyleSheet,
   Dimensions,
   NetInfo,
-  ToastAndroid,
   Linking,
   ActivityIndicator,
   ListView,
   RefreshControl,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Toolbar,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast';
+
+import Toolbar from 'react-native-material-ui';
 
 import API from '../api/videos';
 import LoadingIndicator from '../components/loading_indicator';
@@ -143,7 +141,8 @@ export default class VideoScreen extends Component {
       return;
     }
 
-    ToastAndroid.show('Not available while offline!', ToastAndroid.SHORT);
+    this.refs.toast.show('Not available while offline!', DURATION.SHORT);
+
   }
 
   _onRefresh() {
@@ -176,6 +175,7 @@ export default class VideoScreen extends Component {
         }
         onEndReached={ () => this._onEndReached() }
       />
+
     )
   }
 
@@ -222,25 +222,24 @@ export default class VideoScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={styles.container} ref="myRef">
-          <StatusBar />
-          <Toolbar
-            leftElement="menu"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}
-            onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-            searchable={{
-              autoFocus: true,
-              placeholder: 'Search',
-              onChangeText: this._onChangeText.bind(this),
-              onSearchClosed: this._onSearchClosed.bind(this)
-            }}
-          />
+      <View style={styles.container} ref="myRef">
+        <StatusBar />
+        <Toolbar
+          leftElement="menu"
+          centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}
+          onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+          searchable={{
+            autoFocus: true,
+            placeholder: 'Search',
+            onChangeText: this._onChangeText.bind(this),
+            onSearchClosed: this._onSearchClosed.bind(this)
+          }}
+        />
 
-          { this.state.isLoaded && this.state.isConnected && this._renderContent() }
-          { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
-        </View>
-      </ThemeProvider>
+        { this.state.isLoaded && this.state.isConnected && this._renderContent() }
+        { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
+        <Toast ref="toast"/>
+      </View>
     );
   };
 }

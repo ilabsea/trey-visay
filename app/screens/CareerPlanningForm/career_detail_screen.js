@@ -7,15 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
-
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
-// import careers from '../../data/json/careers';
 import careers from '../../data/json/characteristic_jobs';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -34,6 +28,10 @@ export default class CareerDetailScreen extends Component {
       headerTitleStyle: headerStyles.headerTitleStyle,
       headerTintColor: '#fff',
     }
+  };
+
+  state = {
+    activeSections: []
   };
 
   componentWillMount() {
@@ -73,21 +71,25 @@ export default class CareerDetailScreen extends Component {
     );
   }
 
+  _updateSections = activeSections => {
+    this.setState({ activeSections });
+  };
+
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <ScrollView>
-          <View style={{margin: 16}}>
-            <View style={styles.box}>
-              <Accordion
-                sections={job.careers}
-                renderHeader={this._renderHeader}
-                renderContent={this._renderContent}
-              />
-            </View>
+      <ScrollView>
+        <View style={{margin: 16}}>
+          <View style={styles.box}>
+            <Accordion
+              activeSections={this.state.activeSections}
+              sections={job.careers}
+              renderHeader={this._renderHeader}
+              renderContent={this._renderContent}
+              onChange={this._updateSections}
+            />
           </View>
-        </ScrollView>
-      </ThemeProvider>
+        </View>
+      </ScrollView>
     );
   };
 }

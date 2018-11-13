@@ -9,10 +9,7 @@ import {
   Image,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 
@@ -39,11 +36,9 @@ export default class PersonalityScreen extends Component {
       title: 'បំពេញបុគ្គលិកលក្ខណៈ',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញបុគ្គលិកលក្ខណៈ</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      headerLeft: <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
+                    <MaterialIcon name='close' color='#fff' size={24} />
+                  </TouchableOpacity>
     }
   };
 
@@ -114,7 +109,7 @@ export default class PersonalityScreen extends Component {
       <View style={shareStyles.footerWrapper}>
         <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
           <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
+          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
         </TouchableOpacity>
       </View>
     )
@@ -137,7 +132,7 @@ export default class PersonalityScreen extends Component {
 
   _goNext() {
     if (this.state.characteristicEntries.length < 5) {
-      return alert('Please select characteristic at least 5!');
+      return this.refs.toast.show('សូមជ្រេីសរេីសបុគ្គលិកលក្ខណៈចំនួន ៥!', DURATION.SHORT);
     }
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
     this._findAndSetMaximumScoreGroup();
@@ -220,29 +215,28 @@ export default class PersonalityScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16}}>
-              <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបានយ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់ និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយជាក់លាក់នាពេលអនាគត។</Text>
-              </View>
-
-              { this._renderPersonalities() }
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16}}>
+            <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបានយ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់ និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយជាក់លាក់នាពេលអនាគត។</Text>
             </View>
-          </ScrollView>
 
-          { this._renderFooter() }
+            { this._renderPersonalities() }
+          </View>
+        </ScrollView>
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        { this._renderFooter() }
+
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+        <Toast ref="toast"/>
+      </View>
     );
   };
 }

@@ -36,8 +36,7 @@ export default class Login extends Component {
   }
 
   componentWillMount() {
-      // SplashScreen.hide();
-      console.log('loging page')
+    // SplashScreen.hide();
     User.isLoggedin(this.handleUser.bind(this));
   }
 

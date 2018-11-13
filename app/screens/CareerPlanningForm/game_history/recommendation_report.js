@@ -9,10 +9,6 @@ import {
   BackHandler,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-} from 'react-native-material-ui';
-
 import styles from '../../../assets/style_sheets/profile_form';
 import headerStyles from '../../../assets/style_sheets/header';
 import fontStyles from '../../../assets/style_sheets/app_styles';
@@ -193,28 +189,28 @@ export default class RecommendationReport extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderContent() }
-            </View>
-          </ScrollView>
-        </View>
-      </ThemeProvider>
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderContent() }
+          </View>
+        </ScrollView>
+      </View>
     );
   };
 }
 
 const localStyle = StyleSheet.create({
   boldText: {
-    fontFamily: 'KantumruyBold',
+    fontFamily: 'Kantumruy',
+    fontWeight: 'bold'
   },
   paragraph: {
     marginTop: 16,
   },
   highlightBlue: {
-    fontFamily: 'KantumruyBold',
+    fontFamily: 'Kantumruy',
+    fontWeight: 'bold',
     color: '#1976d2'
   }
 });

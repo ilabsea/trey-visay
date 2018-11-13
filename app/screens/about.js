@@ -11,9 +11,10 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
+  ThemeContext,
+  getTheme,
   Toolbar,
-  Icon,
+  Icon
 } from 'react-native-material-ui';
 
 import headerStyles from '../assets/style_sheets/header';
@@ -32,9 +33,9 @@ export default class About extends Component {
   static navigationOptions = {
     drawerLabel: 'អំពីកម្មវិធី',
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <Icon name="list" color={tintColor} />
-      </ThemeProvider>
+      </ThemeContext.Provider>
     ),
   };
 
@@ -43,9 +44,8 @@ export default class About extends Component {
   }
 
   render() {
-    console.log('app_styles :======================== ', fontStyles)
     return (
-      <ThemeProvider uiTheme={uiTheme}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={styles.container}>
           <StatusBar />
 
@@ -121,7 +121,7 @@ export default class About extends Component {
             </View>
           </ScrollView>
         </View>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     )
   }
 }
@@ -137,7 +137,8 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   textBold: {
-    fontFamily: 'KantumruyBold'
+    fontFamily: 'Kantumruy',
+    fontWeight: 'bold'
   },
   link: {
     color: '#1976d2',

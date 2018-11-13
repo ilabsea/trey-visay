@@ -7,6 +7,7 @@ import {
   Alert,
   Image,
   TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import StatusBar from '../components/status_bar';
@@ -18,7 +19,6 @@ import User from '../utils/user';
 import styles from '../assets/style_sheets/login_form';
 
 // Components
-import BackgroundImage from '../components/image_background';
 import Button from '../components/button';
 
 export default class RegisterScreen extends Component {
@@ -81,7 +81,7 @@ export default class RegisterScreen extends Component {
 
     return (
       <LinearGradient style={styles.container} colors={['#80d0c7', '#0093e8']}>
-        <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
+        <ImageBackground source={require('../assets/images/sign_in_bg.png')} style={{width: '100%', height: '100%'}}>
           <StatusBar hidden={true} />
 
           <ScrollView>
@@ -146,7 +146,7 @@ export default class RegisterScreen extends Component {
               </View>
             </View>
           </ScrollView>
-        </BackgroundImage>
+        </ImageBackground>
       </LinearGradient>
     )
   }

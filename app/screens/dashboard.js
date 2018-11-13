@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   ScrollView,
@@ -10,9 +10,10 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
   Toolbar,
-  Icon,
+  ThemeContext,
+  getTheme,
+  Icon
 } from 'react-native-material-ui';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -35,19 +36,23 @@ export default class Dashboard extends Component {
   static navigationOptions = {
     drawerLabel: 'ទំព័រដើម',
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <Icon name="home" color={tintColor} />
-      </ThemeProvider>
+      </ThemeContext.Provider>
     ),
   };
+
+  constructor(props) {
+    super(props);
+  }
 
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
 
-    this.state = {
+    this.setState({
       showTourTip: !user.isVisited,
       user: user
-    };
+    });
   }
 
   _renderTourtip() {
@@ -124,7 +129,7 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={{flex: 1}}>
           <StatusBar />
 
@@ -161,7 +166,7 @@ export default class Dashboard extends Component {
           { this.state.showTourTip && this._renderTourtip() }
 
         </View>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     );
   }
 }

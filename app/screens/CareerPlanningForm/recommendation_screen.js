@@ -9,11 +9,6 @@ import {
   BackHandler,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
-
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 
@@ -37,11 +32,9 @@ export default class RecommendationScreen extends Component {
       title: 'ការផ្តល់អនុសាសន៍',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ការផ្តល់អនុសាសន៍</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      headerLeft: <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
+                    <MaterialIcon name='close' color='#fff' size={24} />
+                  </TouchableOpacity>,
     }
   };
 
@@ -101,7 +94,7 @@ export default class RecommendationScreen extends Component {
       <View style={shareStyles.footerWrapper}>
         <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
           <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
+          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
         </TouchableOpacity>
       </View>
     )
@@ -246,41 +239,41 @@ export default class RecommendationScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>ចូរប្អូនអានអនុសាសន៍ខាងក្រោម៖</Text>
-              </View>
-              { this._renderContent() }
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>ចូរប្អូនអានអនុសាសន៍ខាងក្រោម៖</Text>
             </View>
-          </ScrollView>
+            { this._renderContent() }
+          </View>
+        </ScrollView>
 
-          { this._renderFooter() }
+        { this._renderFooter() }
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+      </View>
     );
   };
 }
 
 const localStyle = StyleSheet.create({
   boldText: {
-    fontFamily: 'KantumruyBold',
+    fontFamily: 'Kantumruy',
+    fontWeight: 'bold'
   },
   paragraph: {
     marginTop: 16,
   },
   highlightBlue: {
-    fontFamily: 'KantumruyBold',
+    fontFamily: 'Kantumruy',
+    fontWeight: 'bold',
     color: '#1976d2'
   }
 });

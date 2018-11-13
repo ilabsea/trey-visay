@@ -10,14 +10,9 @@ import {
   ToastAndroid,
 } from 'react-native';
 
-// import {
-//   ThemeProvider,
-//   Icon
-// } from 'react-native-material-ui';
-
 import DatePicker from 'react-native-datepicker';
 import Collapsible from 'react-native-collapsible';
-// import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 
 // Utils
@@ -25,7 +20,6 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
-import fontStyles from '../../assets/style_sheets/app_styles';
 import StatusBar from '../../components/status_bar';
 
 // Components
@@ -38,32 +32,32 @@ let formError = {};
 
 const CONTENTS = [
   { header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo' },
-  { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' },
-  { header: 'ស្ថានភាពគ្រួសារ', body: '_renderFamilySituation' }
+  { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' }
 ];
 
 export default class ProfileForm extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   return {
-  //     title: 'បំពេញប្រវត្តិរូបសង្ខេប',
-  //     headerStyle: headerStyles.headerStyle,
-  //     headerTitleStyle: headerStyles.headerTitleStyle,
-  //     headerRight: (<ThemeProvider uiTheme={{}}>
-  //                   <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-  //                     <Icon name="done" color='#fff' size={24} />
-  //                     <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-  //                   </TouchableOpacity>
-  //                  </ThemeProvider>),
-  //   }
-  // };
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'បំពេញប្រវត្តិរូបសង្ខេប',
+      headerStyle: headerStyles.headerStyle,
+      headerTitleStyle: headerStyles.headerTitleStyle,
+      headerRight: (<TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
+                      <MaterialIcon name="done" color='#fff' size={24} />
+                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
+                    </TouchableOpacity>),
+    }
+  }
 
-  componentWillMount() {
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
+  _handleSubmit;
+  state;
 
+  constructor(props) {
+    super(props);
+    this._handleSubmit = this.props.navigation.setParams({ handleSubmit: this.handleSubmit.bind(this) });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    user = Object.assign({}, user, {sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9',
+    user = Object.assign({}, user, { sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9',
                                     highSchoolId: '1',
-                                    houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន'})
+                                    houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន' })
 
     this.state = {
       user: user,
@@ -73,6 +67,10 @@ export default class ProfileForm extends Component {
       collapsed2: true,
       confirmDialogVisible: false,
     }
+  }
+
+  componentWillMount() {
+    this._handleSubmit;
   }
 
   _skip() {
@@ -91,18 +89,18 @@ export default class ProfileForm extends Component {
     return (
       <View style={styles.container}>
         <View style={{flexDirection: 'row', marginVertical: 16}}>
-          // <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+          <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
           <View style={{flex: 1}}>
             <Text>អ្នកត្រូវបំពេញពត៌មានផ្ទាល់ខ្លួនខាងក្រោមដើម្បីប្រើប្រាស់កម្មវិធី។ </Text>
             <View style={styles.inlineBlock}>
               <Text>ឬអ្នកចង់បំពេញនៅពេលក្រោយ? </Text>
               <TouchableOpacity onPress={() => this._skip()}>
-                <Text style={{color: '#4caf50', fontFamily: fontStyles.mainBold}}>រំលង</Text>
+                <Text style={{color: '#4caf50', fontFamily: 'Kantumruy', fontWeight: 'bold'}}>រំលង</Text>
               </TouchableOpacity>
 
               <Text> ឬ </Text>
               <TouchableOpacity onPress={() => this.setState({confirmDialogVisible: true})}>
-                <Text style={{color: '#4caf50', fontFamily: fontStyles.mainBold}}>ចាកចេញពីគណនី</Text>
+                <Text style={{color: '#4caf50', fontFamily: 'Kantumruy', fontWeight: 'bold'}}>ចាកចេញពីគណនី</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -127,33 +125,28 @@ export default class ProfileForm extends Component {
 
   render() {
     return (
-      <View>
-        <Text>Profile Form</Text>
+      <View style={{flex: 1}}>
+        <StatusBar />
+        <ScrollView style={{flex: 1}}>
+          { this._renderContent() }
+        </ScrollView>
+
+        <ConfirmDialog
+          title="អ្នកពិតជាចង់ចាកចេញមែនទេ?"
+          message="បើអ្នកចាកចេញពត័មានដែលអ្នកបានបំពេញនឹងមិនត្រូវបានរក្សារទុកឡើយ!"
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          positiveButton={{
+            title: "ចាកចេញ",
+            onPress: this._onYes.bind(this)
+          }}
+          negativeButton={{
+            title: "អត់ទេ",
+            onPress: this._onNo.bind(this)
+          }}
+        />
+
       </View>
-      // <ThemeProvider uiTheme={{}}>
-      //   <View style={{flex: 1}}>
-      //     <StatusBar />
-      //     <ScrollView style={{flex: 1}}>
-      //       { this._renderContent() }
-      //     </ScrollView>
-      //
-      //     <ConfirmDialog
-      //       title="អ្នកពិតជាចង់ចាកចេញមែនទេ?"
-      //       message="បើអ្នកចាកចេញពត័មានដែលអ្នកបានបំពេញនឹងមិនត្រូវបានរក្សារទុកឡើយ!"
-      //       visible={this.state.confirmDialogVisible}
-      //       onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-      //       positiveButton={{
-      //         title: "ចាកចេញ",
-      //         onPress: this._onYes.bind(this)
-      //       }}
-      //       negativeButton={{
-      //         title: "អត់ទេ",
-      //         onPress: this._onNo.bind(this)
-      //       }}
-      //     />
-      //
-      //   </View>
-      // </ThemeProvider>
     )
   }
 

@@ -10,8 +10,9 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
   Toolbar,
+  ThemeContext,
+  getTheme
 } from 'react-native-material-ui';
 
 import realm from '../../schema';
@@ -21,7 +22,6 @@ import uuidv4 from '../../utils/uuidv4';
 import Button from '../../components/button';
 import StatusBar from '../../components/status_bar';
 import myStyles from '../../assets/style_sheets/login_form';
-import fontStyles from '../../assets/style_sheets/app_styles';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
@@ -120,7 +120,7 @@ export default class CareerCounsellor extends Component {
     return (
       <View >
         { !!this.state.completedGames.length &&
-          <Text style={{fontFamily: fontStyles.mainBold, marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
+          <Text style={{fontFamily: 'Kantumruy', fontWeight: 'bold', marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
         }
 
         { this.state.completedGames.map((game, i) => {
@@ -150,7 +150,7 @@ export default class CareerCounsellor extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={{flex: 1}}>
           <StatusBar />
           <Toolbar
@@ -166,7 +166,7 @@ export default class CareerCounsellor extends Component {
             </View>
           </ScrollView>
         </View>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     );
   }
 
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
     padding: 24
   },
   title: {
-    fontFamily: 'KhmerOureang',
+    // fontFamily: 'KhmerOureang',
     fontSize: 24,
     color: '#1976d2',
   },
@@ -226,7 +226,8 @@ const styles = StyleSheet.create({
     height: 60
   },
   text: {
-    fontFamily: 'KantumruyBold',
+    fontFamily: 'Kantumruy',
+    fontWeight: 'bold',
     fontSize: 14
   }
 });

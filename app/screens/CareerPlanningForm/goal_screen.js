@@ -10,14 +10,17 @@ import {
   Platform,
   PermissionsAndroid,
   Image,
-  BackHandler,
-  ToastAndroid,
+  BackHandler
 } from 'react-native';
 
+import Toast, { DURATION } from 'react-native-easy-toast'
+
 import {
-  ThemeProvider,
+  ThemeContext,
+  getTheme,
   Icon,
 } from 'react-native-material-ui';
+
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
@@ -47,11 +50,11 @@ export default class GoalScreen extends Component {
       title: 'ដាក់គោលដៅមួយ និងមូលហេតុ',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ដាក់គោលដៅមួយ និងមូលហេតុ</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
+      headerLeft: <ThemeContext.Provider value={getTheme(uiTheme)}>
                     <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
                       <Icon name='close' color='#fff' size={24} />
                     </TouchableOpacity>
-                  </ThemeProvider>,
+                  </ThemeContext.Provider>,
     }
   };
 
@@ -156,7 +159,7 @@ export default class GoalScreen extends Component {
 
   _goNext() {
     if (!this.state.reasonText && !this.state.voiceRecord) {
-      return ToastAndroid.show('សូមបំពេញការដាក់គោលដៅរបស់អ្នកជាអក្សរ ឬក៏ថតជាសំលេង!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូូមបំពេញការដាក់គោលដៅរបស់អ្នកជាអក្សរ ឬក៏ថតជាសំលេង!', DURATION.SHORT);
     }
 
     this._handleSubmit();
@@ -207,7 +210,7 @@ export default class GoalScreen extends Component {
         <View style={labelStyles.box}>
           <Text style={labelStyles.subTitle}>តើអ្នកនឹងប្រកបមុខរបរអ្វីនាពេលអនាគត? មូលហេតុអ្វី?</Text>
           <Text>
-            <Text style={{fontFamily: fontStyles.mainBold}}>ឧទាហរណ៍៖ </Text>
+            <Text style={{fontFamily: 'Kantumruy', fontWeight: 'bold'}}>ឧទាហរណ៍៖ </Text>
             ខ្ញុំនឹងធ្វើជាស្ថបត្យករក៏ពូកែម្នាក់ ក្នុងក្រុមហ៊ុនឯកជនមួយនៅទីក្រុងភ្នំពេញ ពេលខ្ញំបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រក្នុងឆ្នាំ២០២២។
           </Text>
           <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 24}}>
@@ -423,7 +426,7 @@ export default class GoalScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={uiTheme}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={{flex: 1}}>
           <ScrollView style={{flex: 1}}>
             <View style={{margin: 16, flex: 1}}>
@@ -439,8 +442,9 @@ export default class GoalScreen extends Component {
             onPressYes={() => this._onYes()}
             onPressNo={() => this._onNo()}
           />
+          <Toast ref="toast"/>
         </View>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     );
   };
 }

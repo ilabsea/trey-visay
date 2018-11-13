@@ -13,7 +13,8 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
+  ThemeContext,
+  getTheme,
   Toolbar,
 } from 'react-native-material-ui';
 
@@ -22,7 +23,6 @@ import LoadingIndicator from '../../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
-import fontStyles from '../../assets/style_sheets/app_styles';
 import StatusBar from '../../components/status_bar';
 
 import schoolList from '../../data/json/schools';
@@ -38,13 +38,13 @@ export default class GovernmentSchoolScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     return {
       header:
-        <ThemeProvider uiTheme={{}}>
+        <ThemeContext.Provider value={getTheme(uiTheme)}>
           <Toolbar
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>គ្រឹះស្ថានសិក្សា</Text>}
             onLeftElementPress={() => screenProps.drawerNavigation.navigate('DrawerOpen') }
           />
-        </ThemeProvider>,
+        </ThemeContext.Provider>,
       tabBarLabel: 'សាលារដ្ឋ',
     }
   };
@@ -232,7 +232,7 @@ export default class GovernmentSchoolScreen extends Component {
             onValueChange={(itemValue, itemIndex) => this._onChangeProvince(itemValue)}
             mode='dialog'
             prompt='ជ្រើសរើសទីតាំង'
-            itemStyle={{fontFamily: fontStyles.main, fontSize: 16}}
+            itemStyle={{fontFamily: 'Kantumruy', fontSize: 16}}
           >
             <Picker.Item label="គ្រប់ទីកន្លែង" value="" />
             { this.state.provinces.map((province, i) => {
@@ -262,7 +262,7 @@ export default class GovernmentSchoolScreen extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={{flex: 1}}>
           <StatusBar />
 
@@ -271,7 +271,7 @@ export default class GovernmentSchoolScreen extends Component {
             { this._renderContent() }
           </View>
         </View>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     )
   }
 }

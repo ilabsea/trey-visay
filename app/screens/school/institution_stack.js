@@ -1,14 +1,15 @@
 import React from 'react';
 import {
   TabNavigator,
-  StackNavigator,
+  createStackNavigator,
 } from 'react-navigation';
+
+import headerStyles from '../../assets/style_sheets/header';
 
 import PrivateSchoolScreen from './private_school_screen';
 import NGOSchoolScreen from './ngo_school_screen';
 import GovernmentSchoolScreen from './government_school_screen';
 import InstitutionDetail from './institution_detail';
-import fontStyles from '../../assets/style_sheets/app_styles';
 
 const InstitutionTab = TabNavigator({
   GovernmentSchoolScreen: { screen: GovernmentSchoolScreen },
@@ -20,7 +21,8 @@ const InstitutionTab = TabNavigator({
   tabBarOptions: {
     activeTintColor: '#fff',
     labelStyle: {
-      fontFamily: 'KantumruyBold',
+      fontFamily: 'Kantumruy',
+      fontWeight: 'bold',
       fontSize: 14,
     },
     style: {
@@ -29,14 +31,13 @@ const InstitutionTab = TabNavigator({
   },
 });
 
-const StacksOverTabs = StackNavigator({
+const StacksOverTabs = createStackNavigator({
   Root: {
-    screen: InstitutionTab,
-    navigationOptions: { title: 'Header title' }
+    screen: InstitutionTab
   },
   InstitutionDetail: {
     screen: InstitutionDetail,
-  },
+  }
 });
 
 export default StacksOverTabs;

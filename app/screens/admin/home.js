@@ -1,7 +1,6 @@
 import React from 'react';
 import {
-  DrawerNavigator,
-  StackNavigator,
+  createDrawerNavigator
 } from 'react-navigation';
 
 // Screens
@@ -11,7 +10,7 @@ import Profile from './profile';
 import SideMenu from './side_menu';
 import ChangePasswordScreen from '../change_password_screen';
 
-const AdminHomeScreen = DrawerNavigator(
+const AdminHomeScreen = createDrawerNavigator(
   {
     Dashboard: { screen: Dashboard },
     About: { screen: About },
@@ -20,7 +19,6 @@ const AdminHomeScreen = DrawerNavigator(
   },
   {
     initialRouteName: 'Dashboard',
-    // initialRouteName: 'About',
     contentComponent: SideMenu,
     contentOptions: {
       activeTintColor: '#1976d2',

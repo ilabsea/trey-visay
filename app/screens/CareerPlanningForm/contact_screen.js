@@ -9,11 +9,6 @@ import {
   BackHandler,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
@@ -37,11 +32,9 @@ export default class ContactScreen extends Component {
       title: 'ព័ត៌មានសាលា និងទំនាក់ទំនង',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ព័ត៌មានសាលា លេខទំនាក់ទំនង</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      headerLeft: <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
+                    <MaterialIcon name='close' color='#fff' size={24} />
+                  </TouchableOpacity>,
     }
   };
 
@@ -117,7 +110,7 @@ export default class ContactScreen extends Component {
       <View style={shareStyles.footerWrapper}>
         <TouchableOpacity onPress={ this._goNext.bind(this) } style={shareStyles.btnNext}>
           <Text style={[shareStyles.btnText, {marginRight: 10}]}>រួចរាល់</Text>
-          <Icon name='done' color='#fff' size={24} />
+          <MaterialIcon name='done' color='#fff' size={24} />
         </TouchableOpacity>
       </View>
     )
@@ -277,25 +270,23 @@ export default class ContactScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderGoal() }
-              { this._renderContent() }
-            </View>
-          </ScrollView>
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderGoal() }
+            { this._renderContent() }
+          </View>
+        </ScrollView>
 
-          { this._renderFooter() }
+        { this._renderFooter() }
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+      </View>
     );
   };
 }

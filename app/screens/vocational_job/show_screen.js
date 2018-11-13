@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
+  ThemeContext, getTheme,
   Toolbar,
 } from 'react-native-material-ui';
 
@@ -46,11 +46,11 @@ export default class VocationalJobShowScreen extends Component {
     let currentJob = currentGroup.careers.find((obj) => obj.id == this.props.navigation.state.params.id)
     let schools = schoolList.filter((school, pos) => { return currentJob.schools.includes(school.id) });
 
-    this.state = {
+    this.setState({
       currentGroup: currentGroup,
       currentJob: currentJob,
       schools: schools
-    };
+    });
   }
 
   _renderDescription() {
@@ -133,7 +133,7 @@ export default class VocationalJobShowScreen extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={{flex: 1}}>
           <StatusBar />
           <ScrollView style={{flex: 1}}>
@@ -144,7 +144,7 @@ export default class VocationalJobShowScreen extends Component {
             </View>
           </ScrollView>
         </View>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     );
   }
 }

@@ -6,13 +6,9 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
-  ToastAndroid,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 import CheckboxGroup from '../../components/checkbox_group';
 import RadioGroup from '../../components/radio_group';
@@ -38,11 +34,9 @@ export default class SummaryScreen extends Component {
       title: 'ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល</Text>,
       headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      headerLeft: <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
+                    <MaterialIcon name='close' color='#fff' size={24} />
+                  </TouchableOpacity>,
     }
   };
 
@@ -130,7 +124,7 @@ export default class SummaryScreen extends Component {
       <View style={shareStyles.footerWrapper}>
         <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
           <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
+          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
         </TouchableOpacity>
       </View>
     )
@@ -138,7 +132,7 @@ export default class SummaryScreen extends Component {
 
   _goNext() {
     if (!this.state.mostFavorableJob) {
-      return ToastAndroid.show('សូមជ្រើសរើសមុខរបរចំនួន 1!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូូមជ្រើសរើសមុខរបរចំនួន 1!', DURATION.SHORT);
     }
 
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
@@ -172,29 +166,28 @@ export default class SummaryScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              <View style={{flexDirection: 'row', marginVertical: 16}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!</Text>
-              </View>
-
-              { this._renderRadioGroups() }
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            <View style={{flexDirection: 'row', marginVertical: 16}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!</Text>
             </View>
-          </ScrollView>
 
-          { this._renderFooter() }
+            { this._renderRadioGroups() }
+          </View>
+        </ScrollView>
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        { this._renderFooter() }
+
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+        <Toast ref="toast"/>
+      </View>
     );
   };
 }

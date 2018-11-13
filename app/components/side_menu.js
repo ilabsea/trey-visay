@@ -20,7 +20,7 @@ import headerStyles from '../assets/style_sheets/header';
 import fontStyles from '../assets/style_sheets/app_styles';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-// import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 export default class SideMenu extends Component {
   state = {user: '', photo: '', cover: '', isOpen: true}
@@ -98,7 +98,7 @@ export default class SideMenu extends Component {
     return (
       <TouchableOpacity onPress={() => this.navigateToScreen(options.screenName)} style={this.isActive}>
         <View style={this.getWrapperStyle(options.screenName)}>
-          // <MaterialIcon name={ options.iconName } size={ options.iconSize || 18 } style={this.getIconStyle(options.screenName)} />
+          <MaterialIcon name={ options.iconName } size={ options.iconSize || 18 } style={this.getIconStyle(options.screenName)} />
           <Text style={this.getMenuTextStyle(options.screenName)}>{options.title}</Text>
         </View>
       </TouchableOpacity>
@@ -162,7 +162,7 @@ export default class SideMenu extends Component {
 const styles = StyleSheet.create({
   name: {
     fontSize: 14,
-    fontFamily: 'KhmerOureang',
+    // fontFamily: 'KhmerOureang',
     color: '#fff',
     flex: 1
   },
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     color: 'rgba(0,0,0,0.54)'
   },
   menuLabel: {
-    fontFamily: 'KhmerOureang',
+    // fontFamily: 'KhmerOureang',
     fontSize: 14,
   },
 });

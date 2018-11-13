@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
   Toolbar,
   Icon,
   Avatar,
@@ -32,9 +31,7 @@ export default class Profile extends Component {
     header: null,
     title: 'ប្រវត្តិរូបសង្ខេប',
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
-        <Icon name="person" color={tintColor} />
-      </ThemeProvider>
+      <Icon name="person" color={tintColor} />
     ),
   });
 
@@ -259,16 +256,14 @@ export default class Profile extends Component {
     }
 
     return (
-      <ThemeProvider uiTheme={{}}>
-        <ScrollableHeader
-          customView={ this._renderScrollViewContent.bind(this) }
-          imageBgSrc={ cover }
-          customHeader={ this._renderHeader.bind(this) }
-          profile={ photo }
-          profileSize={ PROFILE_SIZE }
-          title={this.state.user.fullName}
-        />
-      </ThemeProvider>
+      <ScrollableHeader
+        customView={ this._renderScrollViewContent.bind(this) }
+        imageBgSrc={ cover }
+        customHeader={ this._renderHeader.bind(this) }
+        profile={ photo }
+        profileSize={ PROFILE_SIZE }
+        title={this.state.user.fullName}
+      />
     )
   }
 }
@@ -297,7 +292,8 @@ const styles = StyleSheet.create({
   itemValue: {
     flex: 2,
     fontSize: 16,
-    fontFamily: 'KantumruyBold',
+    fontFamily: 'Kantumruy',
+    fontWeight: 'bold',
     color: '#111'
   },
   avataContainer: {

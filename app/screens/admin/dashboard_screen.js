@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
+  ThemeContext, getTheme,
   Toolbar,
   Icon,
 } from 'react-native-material-ui';
@@ -41,9 +41,9 @@ export default class AdminDashboardScreen extends Component {
   static navigationOptions = {
     drawerLabel: 'ទំព័រដើម',
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <Icon name="home" color={tintColor} />
-      </ThemeProvider>
+      </ThemeContext.Provider>
     ),
   };
 
@@ -321,7 +321,7 @@ export default class AdminDashboardScreen extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={{flex: 1}} ref="adminDashboard">
           <StatusBar />
 
@@ -336,7 +336,7 @@ export default class AdminDashboardScreen extends Component {
             { !!this.state.data.length && this._renderHaveData() }
           </ScrollView>
         </View>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     );
   }
 }
