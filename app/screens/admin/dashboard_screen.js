@@ -328,7 +328,7 @@ export default class AdminDashboardScreen extends Component {
           <Toolbar
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
-            onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+            onLeftElementPress={() => this.props.navigation.openDrawer()}
           />
 
           <ScrollView>

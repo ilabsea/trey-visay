@@ -52,7 +52,7 @@ export default class About extends Component {
           <Toolbar
             leftElement="menu"
             centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>អំពីកម្មវិធី</Text>}
-            onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+            onLeftElementPress={() => this.props.navigation.openDrawer()}
           />
 
           <ScrollView>

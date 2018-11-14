@@ -223,7 +223,7 @@ export default class PersonalUnderstandingForm extends Component {
 
             <Toolbar
               centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វាយតម្លៃមុខរបរ និង អាជីព</Text>}
-              onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+              onLeftElementPress={() => this.props.navigation.openDrawer()}
             />
 
             <ScrollView>

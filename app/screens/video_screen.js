@@ -174,7 +174,7 @@ export default class VideoScreen extends Component {
         <Toolbar
           leftElement="menu"
           centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}
-          onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+          onLeftElementPress={() => this.props.navigation.openDrawer()}
           searchable={{
             autoFocus: true,
             placeholder: 'Search',

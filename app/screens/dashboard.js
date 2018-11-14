@@ -127,6 +127,16 @@ export default class Dashboard extends Component {
     )
   }
 
+  _renderToolbar (){
+    return (
+      <Toolbar
+        leftElement="menu"
+        centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
+        onLeftElementPress={() => this.props.navigation.openDrawer()}
+      />
+    )
+  }
+
   render() {
     return (
       <ThemeContext.Provider value={getTheme(uiTheme)}>
@@ -134,20 +144,12 @@ export default class Dashboard extends Component {
           <StatusBar />
 
           { !this.state.showTourTip &&
-            <Toolbar
-              leftElement="menu"
-              centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
-              onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-            />
+            this._renderToolbar()
           }
 
           <ScrollView>
             { this.state.showTourTip &&
-              <Toolbar
-                leftElement="menu"
-                centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
-                onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-              />
+              this._renderToolbar()
             }
 
             <View style={styles.scrollContainer}>

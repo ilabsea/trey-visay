@@ -105,7 +105,7 @@ export default class Profile extends Component {
     return(
       <Toolbar
         leftElement="menu"
-        onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+        onLeftElementPress={() => this.props.navigation.openDrawer()}
         style={{
           container: {backgroundColor: 'transparent'}
         }}
