@@ -6,8 +6,10 @@ import {
   ScrollView,
   StyleSheet,
   TouchableNativeFeedback,
+  TouchableHighlight,
   TouchableOpacity,
   Image,
+  Platform
 } from 'react-native';
 
 import {NavigationActions} from 'react-navigation';
@@ -105,31 +107,39 @@ export default class SideMenu extends Component {
     )
   }
 
+  _renderMenuHeader() {
+    let TouchablePlatformSpecific = Platform.OS === 'ios' ?
+        TouchableHighlight :
+        TouchableNativeFeedback;
+    return(
+      <TouchablePlatformSpecific onPress={this.toggleScreen.bind(this)}>
+        <View>
+          <View style={{position: 'relative'}}>
+            <Image
+              source={this.state.cover}
+              style={{width: null, height: 180}} />
+          </View>
+
+          <View style={{position: 'absolute', top: 24, left: 24}}>
+            <Image
+              source={this.state.photo}
+              style={{borderRadius: 32, width: 64, height: 64 }} />
+          </View>
+
+          <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={styles.name}>{!!this.state.user && this.state.user.fullName}</Text>
+            { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
+            { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
+          </View>
+        </View>
+      </TouchablePlatformSpecific>
+    )
+  }
+
   render() {
     return (
       <ScrollView>
-        <TouchableNativeFeedback onPress={this.toggleScreen.bind(this)}>
-          <View>
-            <View style={{position: 'relative'}}>
-              <Image
-                source={this.state.cover}
-                style={{width: null, height: 180}} />
-            </View>
-
-            <View style={{position: 'absolute', top: 24, left: 24}}>
-              <Image
-                source={this.state.photo}
-                style={{borderRadius: 32, width: 64, height: 64 }} />
-            </View>
-
-            <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
-              <Text style={styles.name}>{!!this.state.user && this.state.user.fullName}</Text>
-              { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
-              { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
-            </View>
-          </View>
-        </TouchableNativeFeedback>
-
+        { this._renderMenuHeader() }
         { this.state.isOpen &&
           <View>
             { this._renderMenuItem({title: 'ទំព័រដើម', screenName: 'Dashboard', iconName: 'home', iconSize: 18}) }
