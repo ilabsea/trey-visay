@@ -5,7 +5,6 @@ import {
   View,
   StyleSheet,
   NetInfo,
-  ToastAndroid,
   Alert,
 } from 'react-native';
 

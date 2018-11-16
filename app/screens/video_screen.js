@@ -97,7 +97,7 @@ export default class VideoScreen extends Component {
       return;
     }
 
-    ToastAndroid.show('Not available while offline!', ToastAndroid.SHORT);
+    this.refs.toast.show('Not available while offline!', DURATION.SHORT);
   }
 
   _onRefresh() {
@@ -185,6 +185,7 @@ export default class VideoScreen extends Component {
 
         { this.state.isLoaded && this.state.isConnected && this._renderContent() }
         { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
+        <Toast ref='toast'/>
       </View>
     );
   };

@@ -8,7 +8,7 @@ import {
   BackHandler,
 } from 'react-native';
 
-import Toast, { DURATION } from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 import CheckboxGroup from '../../components/checkbox_group';
 import RadioGroup from '../../components/radio_group';

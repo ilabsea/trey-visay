@@ -6,14 +6,14 @@ import {
   TextInput,
   Picker,
   TouchableOpacity,
-  TouchableHighlight,
-  ToastAndroid,
+  TouchableHighlight
 } from 'react-native';
 
 import DatePicker from 'react-native-datepicker';
 import Collapsible from 'react-native-collapsible';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 // Utils
 import realm from '../../schema';
@@ -146,6 +146,8 @@ export default class ProfileForm extends Component {
           }}
         />
 
+        <Toast ref="toast"/>
+
       </View>
     )
   }
@@ -216,7 +218,7 @@ export default class ProfileForm extends Component {
   handleSubmit() {
     if (!this.isValidForm()) {
       this._openErrorCollapsed();
-      return ToastAndroid.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     }
 
     try {

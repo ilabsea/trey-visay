@@ -5,7 +5,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Modal,
-  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -13,6 +12,8 @@ import {
   Toolbar,
   getTheme
 } from 'react-native-material-ui';
+
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -81,7 +82,7 @@ export default class PersonalUnderstandingForm extends Component {
     let formValues = this.parseFormValue(this.refs.form.selector.props.values);
 
     if (!formValues) {
-      return ToastAndroid.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     }
 
     this.submitForm(this._buildData(formValues));
@@ -219,7 +220,7 @@ export default class PersonalUnderstandingForm extends Component {
             animationType="slide"
             transparent={false}
             visible={this.state.modalVisible}
-            onRequestClose={() => { ToastAndroid.show('សូមចុចលើប៊ូតុង...!', ToastAndroid.SHORT) } }>
+            onRequestClose={() => { this.refs.toast.show('សូមចុចលើប៊ូតុង...!', DURATION.SHORT) } }>
 
             <Toolbar
               centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វាយតម្លៃមុខរបរ និង អាជីព</Text>}
@@ -243,6 +244,7 @@ export default class PersonalUnderstandingForm extends Component {
             <Form ref={'form'} />
           </Provider>
         </ScrollView>
+        <Toast ref='toast'/>
       </ThemeContext.Provider>
     );
   };

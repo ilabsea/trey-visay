@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TextInput,
   Alert,
-  ToastAndroid,
 } from 'react-native';
 
 import {
@@ -15,6 +14,8 @@ import {
   Toolbar,
   Icon,
 } from 'react-native-material-ui';
+
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 import Button from '../components/button';
 import headerStyles from '../assets/style_sheets/header';
@@ -66,7 +67,7 @@ export default class ChangePasswordScreen extends Component {
 
     realm.write(() => {
       realm.create('User', { password: this.state.newPassword, uuid: User.getID() }, true);
-      ToastAndroid.show('រក្សាទុកលេខសម្ងាត់ដោយជោគជ័យ!', ToastAndroid.LONG);
+      this.refs.toast.show('រក្សាទុកលេខសម្ងាត់ដោយជោគជ័យ!', DURATION.LONG);
       this.props.navigation.navigate('Dashboard');
     });
   }

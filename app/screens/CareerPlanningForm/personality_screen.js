@@ -9,7 +9,7 @@ import {
   Image,
 } from 'react-native';
 
-import Toast, { DURATION } from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 

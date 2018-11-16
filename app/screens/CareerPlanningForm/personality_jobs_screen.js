@@ -6,7 +6,6 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
-  ToastAndroid,
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast'
 
@@ -172,8 +171,7 @@ export default class PersonalityJobsScreen extends Component {
     this.props.navigation.setParams({total: careers.length});
 
     if (careers.length > 3) {
-      ToastAndroid.show('សូមជ្រើសរើសមុខរបរចំនួន 3 ប៉ុណ្ណោះ!', ToastAndroid.SHORT);
-      return
+      return this.refs.toast.show('សូមជ្រើសរើសមុខរបរចំនួន 3 ប៉ុណ្ណោះ!',  DURATION.SHORT);
     }
 
     this.setState({jobs: value});

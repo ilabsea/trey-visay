@@ -6,12 +6,12 @@ import {
   TouchableOpacity,
   TextInput,
   Picker,
-  ToastAndroid,
 } from 'react-native';
 
 import {
   Icon,
 } from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 // Utils
 import realm from '../../schema';
@@ -62,6 +62,7 @@ export default class EditPersonalInfo extends Component {
     return (
       <ScrollView>
         {this._renderPersonalInfo()}
+        <Toast ref='toast'/>
       </ScrollView>
     )
   }
@@ -87,7 +88,7 @@ export default class EditPersonalInfo extends Component {
 
   handleSubmit() {
     if (!this.isValidForm()) {
-      return ToastAndroid.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     }
 
     try {
