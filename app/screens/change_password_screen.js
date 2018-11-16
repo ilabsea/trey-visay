@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 
 import {
-  ThemeContext, getTheme,
+  ThemeContext,
+  getTheme,
   Toolbar,
   Icon,
 } from 'react-native-material-ui';
@@ -40,15 +41,21 @@ export default class ChangePasswordScreen extends Component {
     ),
   };
 
-  componentWillMount() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+  constructor(props) {
+    super(props);
 
     this.state = {
       oldPassword: '',
       newPassword: '',
       passwordConfirmation: '',
-      user: user
-    };
+      user: null
+    }
+  }
+
+  componentWillMount() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+
+    this.setState({ user: user });
   }
 
   handleSubmit() {

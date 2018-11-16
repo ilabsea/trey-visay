@@ -1,17 +1,15 @@
 import React from 'react';
 import {
-  TabNavigator,
+  createMaterialTopTabNavigator,
   createStackNavigator,
 } from 'react-navigation';
-
-import headerStyles from '../../assets/style_sheets/header';
 
 import PrivateSchoolScreen from './private_school_screen';
 import NGOSchoolScreen from './ngo_school_screen';
 import GovernmentSchoolScreen from './government_school_screen';
 import InstitutionDetail from './institution_detail';
 
-const InstitutionTab = TabNavigator({
+const InstitutionTab = createMaterialTopTabNavigator({
   GovernmentSchoolScreen: { screen: GovernmentSchoolScreen },
   PrivateSchoolScreen: { screen: PrivateSchoolScreen },
   NGOSchoolScreen: { screen: NGOSchoolScreen },
@@ -33,7 +31,8 @@ const InstitutionTab = TabNavigator({
 
 const StacksOverTabs = createStackNavigator({
   Root: {
-    screen: InstitutionTab
+    screen: InstitutionTab,
+    title: 'គ្រឹះស្ថានសិក្សា'
   },
   InstitutionDetail: {
     screen: InstitutionDetail,

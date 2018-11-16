@@ -283,7 +283,7 @@ const styles = StyleSheet.create({
   itemTitle: {
     flex: 1,
     fontSize: 20,
-    fontFamily: 'KhmerOureang',
+    // fontFamily: 'KhmerOureang',
     color: '#111'
   },
   itemLabel: {
