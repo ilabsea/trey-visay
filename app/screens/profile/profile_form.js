@@ -13,7 +13,7 @@ import DatePicker from 'react-native-datepicker';
 import Collapsible from 'react-native-collapsible';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
-import Toast, { DURATION } from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 // Utils
 import realm from '../../schema';
@@ -32,7 +32,8 @@ let formError = {};
 
 const CONTENTS = [
   { header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo' },
-  { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' }
+  { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' },
+  { header: 'ស្ថានភាពគ្រួសារ', body: '_renderFamilySituation' }
 ];
 
 export default class ProfileForm extends Component {
@@ -313,8 +314,8 @@ export default class ProfileForm extends Component {
         { this._renderRadioGroup({stateName: 'isDisable', label: 'តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?'}) }
         { this._renderRadioGroup({stateName: 'isDomesticViolence', label: 'តើក្នុងគ្រួសាររបស់ប្អូន មានអំពើហឹង្សាដែរឬទេ?'}) }
         { this._renderRadioGroup({stateName: 'isSmoking', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ជក់បារីដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isAlcoholic', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ញៀនសុរាដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isDrug', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ប្រើប្រាស់គ្រឿងញៀនដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isAlcoholic', label: 'តេីមានសមាជិកណាមួយក្នុងគ្រួសាររបស់ប្អូន ញៀនសុរាដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isDrug', label: 'តេីមានសមាជិកណាមួយក្នុងគ្រួសាររបស់ប្អូន ប្រេីប្រាស់គ្រឿងញៀនដែរឬទេ?'}) }
         { this._renderPicker({label: 'តើប្អូនមានប្រភេទផ្ទះបែបណា?', stateName: 'houseType', options: houseTypes}) }
         { this._renderPicker({label: 'តើគ្រួសាររបស់ប្អូនរកប្រាក់ចំណូលជាមធ្យមប្រហែលប៉ុន្មាន ក្នុង១ខែ?', stateName: 'collectiveIncome', options: collectiveIncomes}) }
       </View>
