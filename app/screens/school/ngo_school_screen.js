@@ -34,19 +34,6 @@ const uiTheme = {
 };
 
 export default class NgoSchoolScreen extends Component {
-  static navigationOptions = ({ navigation, screenProps }) => {
-    return {
-      header:
-        <ThemeContext.Provider value={getTheme(uiTheme)}>
-          <Toolbar
-            leftElement="menu"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>គ្រឹះស្ថានសិក្សា</Text>}
-            onLeftElementPress={() => screenProps.drawerNavigation.navigate('DrawerOpen') }
-          />
-        </ThemeContext.Provider>,
-      tabBarLabel: 'អង្គការ',
-    }
-  };
 
   myProvince = '';
   myMajor = '';
