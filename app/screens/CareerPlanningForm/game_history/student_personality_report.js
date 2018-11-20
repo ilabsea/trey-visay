@@ -46,7 +46,7 @@ export default class StudentPersonalityReport extends Component {
           return (
             <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 8}}>
               <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-              <Text style={{fontFamily: fontStyles.mainBold}}>{entry.value}</Text>
+              <Text style={{fontFamily: fontStyles.main, fontWeight: 'bold'}}>{entry.value}</Text>
             </View>
           )
         })}

@@ -16,10 +16,12 @@ export default StyleSheet.create({
   btnText: {
     color: '#fff',
     fontSize: 20,
-    fontFamily: fontStyles.mainBold,
+    fontFamily: fontStyles.main,
+    fontWeight: 'bold'
   },
   label: {
-    fontFamily: fontStyles.mainBold,
+    fontFamily: fontStyles.main,
+    fontWeight: 'bold'
   },
   tagLabel: {
     borderRadius: 3,

@@ -6,7 +6,7 @@ export default StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     lineHeight: 30,
-    fontFamily: fontStyles.second,
+    // fontFamily: 'KhmerOureang',
     marginLeft: 20,
   },
   headerStyle: {
@@ -17,14 +17,15 @@ export default StyleSheet.create({
     marginLeft: 10,
     marginRight: 16,
     fontSize: 16,
-    fontFamily: fontStyles.second,
+    // fontFamily: 'KhmerOureang',
   },
   actionWrapper: {
     flexDirection: 'row',
     alignItems: 'center'
   },
   body2: {
-    fontFamily: fontStyles.mainBold,
+    fontFamily: fontStyles.main,
+    fontWeight: 'bold',
     fontSize: 14
   }
 })

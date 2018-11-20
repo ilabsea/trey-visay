@@ -91,7 +91,7 @@ export default class Dashboard extends Component {
               <TouchableOpacity
                 onPress={() => this._onClickOk()}
                 style={{paddingHorizontal: 24, paddingVertical: 5, backgroundColor: 'rgba(255,255,255,0.28)'}}>
-                <Text style={{color: '#fff', fontFamily: fontStyles.mainBold}}>យល់ព្រម</Text>
+                <Text style={{color: '#fff', fontFamily: fontStyles.main, fontWeight: 'bold'}}>យល់ព្រម</Text>
               </TouchableOpacity>
             </View>
           </View>

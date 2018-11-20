@@ -25,7 +25,8 @@ export default StyleSheet.create({
     borderRadius: 3
   },
   btnText: {
-    fontFamily: fontStyles.mainBold,
+    fontFamily: fontStyles.main,
+    fontWeight: 'bold',
     fontSize: 16,
     color: '#fff',
   }

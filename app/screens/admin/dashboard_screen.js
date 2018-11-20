@@ -278,7 +278,7 @@ export default class AdminDashboardScreen extends Component {
         <View style={{width: 130, height: 130, borderRadius: 64, backgroundColor: '#bdbdbd', justifyContent: 'center', alignItems: 'center'}}>
           <AwesomeIcon name='folder-open' size={60} />
         </View>
-        <Text style={{marginTop: 24, fontFamily: fontStyles.mainBold, fontSize: 24, color: '#757575'}}>គ្មានទិន្នន័យ</Text>
+        <Text style={{marginTop: 24, fontFamily: fontStyles.main, fontWeight: 'bold', fontSize: 24, color: '#757575'}}>គ្មានទិន្នន័យ</Text>
       </View>
     )
   }

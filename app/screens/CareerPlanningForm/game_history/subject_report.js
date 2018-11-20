@@ -52,7 +52,7 @@ export default class SubjectReport extends Component {
           return (
             <View key={i} style={{marginBottom: 16}}>
               <Divider style={{ marginBottom: 10 }}/>
-              <Text style={{fontFamily: fontStyles.mainBold}}>{ group.label }</Text>
+              <Text style={{fontFamily: fontStyles.main, fontWeight: 'bold'}}>{ group.label }</Text>
 
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />

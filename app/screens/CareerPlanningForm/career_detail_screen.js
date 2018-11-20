@@ -65,7 +65,7 @@ export default class CareerDetailScreen extends Component {
   _renderContent(career) {
     return (
       <View>
-        <Text>{career.description || 'content is not available'}</Text>
+        <Text style={{fontFamily: 'HelveticaNeue'}}>{career.description || 'content is not available'}</Text>
         <Divider style={{marginLeft: 34, marginVertical: 10}}/>
       </View>
     );

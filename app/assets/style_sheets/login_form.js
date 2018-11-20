@@ -36,10 +36,12 @@ export default StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     color: '#fff',
-    fontFamily: fontStyles.mainBold,
+    fontFamily: fontStyles.main,
+    fontWeight: 'bold'
   },
   submitText: {
-    fontFamily: fontStyles.mainBold,
+    fontFamily: fontStyles.main,
+    fontWeight: 'bold',
     fontSize: 20,
     lineHeight: 32,
   },
