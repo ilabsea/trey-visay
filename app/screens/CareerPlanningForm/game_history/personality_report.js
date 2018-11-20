@@ -9,7 +9,6 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import headerStyles from '../../../assets/style_sheets/header';
 import shareStyles from '../../../assets/style_sheets/profile_form';
-import fontStyles from '../../../assets/style_sheets/app_styles';
 import StatusBar from '../../../components/status_bar';
 import characteristicList from '../../../data/json/characteristic_jobs';
 import realm from '../../../schema';
@@ -50,7 +49,7 @@ export default class PersonalityReport extends Component {
           return (
             <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 8}}>
               <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-              <Text style={{fontFamily: fontStyles.main, fontWeight: 'bold'}}>{job.name}</Text>
+              <Text style={{fontWeight: 'bold'}}>{job.name}</Text>
             </View>
           )
         })}

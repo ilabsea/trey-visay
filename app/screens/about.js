@@ -19,7 +19,6 @@ import {
 
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
-import fontStyles from '../assets/style_sheets/app_styles';
 import StatusBar from '../components/status_bar';
 import DeviceInfo from 'react-native-device-info';
 
@@ -137,7 +136,6 @@ const styles = StyleSheet.create({
     marginBottom: 16
   },
   textBold: {
-    fontFamily: 'Kantumruy',
     fontWeight: 'bold'
   },
   link: {

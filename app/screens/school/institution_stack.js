@@ -19,7 +19,6 @@ const InstitutionTab = createMaterialTopTabNavigator({
   tabBarOptions: {
     activeTintColor: '#fff',
     labelStyle: {
-      fontFamily: 'Kantumruy',
       fontWeight: 'bold',
       fontSize: 14,
     },

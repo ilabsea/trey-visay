@@ -119,7 +119,7 @@ export default class CareerCounsellor extends Component {
     return (
       <View >
         { !!this.state.completedGames.length &&
-          <Text style={{fontFamily: 'Kantumruy', fontWeight: 'bold', marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
+          <Text style={{fontWeight: 'bold', marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
         }
 
         { this.state.completedGames.map((game, i) => {
@@ -211,7 +211,6 @@ const styles = StyleSheet.create({
     padding: 24
   },
   title: {
-    // fontFamily: 'KhmerOureang',
     fontSize: 24,
     color: '#1976d2',
   },
@@ -225,7 +224,6 @@ const styles = StyleSheet.create({
     height: 60
   },
   text: {
-    fontFamily: 'Kantumruy',
     fontWeight: 'bold',
     fontSize: 14
   }

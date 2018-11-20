@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		0064DF69834E4E57AC01F9B2 /* KhmerOureang.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E482187592744B5F99F73221 /* KhmerOureang.ttf */; };
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };

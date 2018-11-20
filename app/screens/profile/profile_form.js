@@ -96,12 +96,12 @@ export default class ProfileForm extends Component {
             <View style={styles.inlineBlock}>
               <Text>ឬអ្នកចង់បំពេញនៅពេលក្រោយ? </Text>
               <TouchableOpacity onPress={() => this._skip()}>
-                <Text style={{color: '#4caf50', fontFamily: 'Kantumruy', fontWeight: 'bold'}}>រំលង</Text>
+                <Text style={{color: '#4caf50', fontWeight: 'bold'}}>រំលង</Text>
               </TouchableOpacity>
 
               <Text> ឬ </Text>
               <TouchableOpacity onPress={() => this.setState({confirmDialogVisible: true})}>
-                <Text style={{color: '#4caf50', fontFamily: 'Kantumruy', fontWeight: 'bold'}}>ចាកចេញពីគណនី</Text>
+                <Text style={{color: '#4caf50', fontWeight: 'bold'}}>ចាកចេញពីគណនី</Text>
               </TouchableOpacity>
             </View>
           </View>

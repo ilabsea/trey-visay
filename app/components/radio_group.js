@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { TextInput } from 'react-native';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
-import fontStyles from '../assets/style_sheets/app_styles';
 
 class RadioGroup extends Component {
   constructor(props) {
@@ -30,7 +29,7 @@ class RadioGroup extends Component {
                 index={i}
                 labelHorizontal={true}
                 onPress={this.props.onPress}
-                labelStyle={{fontSize: 16, lineHeight: 25, fontFamily: 'Kantumruy'}}
+                labelStyle={{fontSize: 16, lineHeight: 25}}
                 labelWrapStyle={{marginRight: 20, paddingVertical: 10}}
               />
             </RadioButton>)

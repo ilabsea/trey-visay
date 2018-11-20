@@ -15,7 +15,6 @@ import {
 // Components
 import ScrollableHeader from '../../components/scrollable_header';
 import shareStyles from '../../assets/style_sheets/profile_form';
-import fontStyles from '../../assets/style_sheets/app_styles';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import schoolList from '../../data/json/schools';
@@ -220,7 +219,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   departmentName: {
-    fontFamily: 'Kantumruy',
     fontWeight: 'bold',
     fontSize: 16,
     marginBottom: 8

@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native';
-import { fontStyles } from './app_styles';
 
 export default StyleSheet.create({
   container: {
@@ -8,7 +7,6 @@ export default StyleSheet.create({
   },
   subTitle: {
     fontSize: 20,
-    // fontFamily: 'KhmerOureang'
   },
   inputContainer: {
     padding: 2,

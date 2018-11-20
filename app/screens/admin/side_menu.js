@@ -19,7 +19,6 @@ import PropTypes from 'prop-types';
 import realm from '../../schema';
 import User from '../../utils/user';
 import headerStyles from '../../assets/style_sheets/header';
-import fontStyles from '../../assets/style_sheets/app_styles';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
@@ -169,7 +168,6 @@ export default SideMenu;
 const styles = StyleSheet.create({
   name: {
     fontSize: 14,
-    fontFamily: 'KhmerOureang',
     color: '#fff',
     flex: 1
   },
@@ -184,7 +182,6 @@ const styles = StyleSheet.create({
     color: 'rgba(0,0,0,0.54)'
   },
   menuLabel: {
-    fontFamily: 'KhmerOureang',
     fontSize: 14,
   },
 });

@@ -13,7 +13,6 @@ import User from '../../../utils/user';
 
 import headerStyles from '../../../assets/style_sheets/header';
 import shareStyles from '../../../assets/style_sheets/profile_form';
-import fontStyles from '../../../assets/style_sheets/app_styles';
 import StatusBar from '../../../components/status_bar';
 
 export default class SubjectReport extends Component {
@@ -52,7 +51,7 @@ export default class SubjectReport extends Component {
           return (
             <View key={i} style={{marginBottom: 16}}>
               <Divider style={{ marginBottom: 10 }}/>
-              <Text style={{fontFamily: fontStyles.main, fontWeight: 'bold'}}>{ group.label }</Text>
+              <Text style={{fontWeight: 'bold'}}>{ group.label }</Text>
 
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
                 <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />

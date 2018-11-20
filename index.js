@@ -19,13 +19,11 @@ import App from './app';
 const customTextProps = {
   style: {
     fontSize: 16,
-    fontFamily: 'Kantumruy',
     color: '#111'
   }
 };
 const customTextInputProps = {
   style: {
-    fontFamily: 'Kantumruy',
     fontSize: 16,
     height: 48,
     lineHeight: 48,

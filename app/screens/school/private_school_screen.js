@@ -232,7 +232,7 @@ export default class PrivateSchoolScreen extends Component {
             onValueChange={(itemValue, itemIndex) => this._onChangeProvince(itemValue)}
             mode='dialog'
             prompt='ជ្រើសរើសទីតាំង'
-            itemStyle={{fontFamily: 'Kantumruy', fontSize: 16}}
+            itemStyle={{fontSize: 16}}
           >
             <Picker.Item label="គ្រប់ទីកន្លែង" value="" />
             { this.state.provinces.map((province, i) => {
