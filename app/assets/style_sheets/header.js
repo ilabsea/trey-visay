@@ -4,7 +4,6 @@ export default StyleSheet.create({
   headerTitleStyle: {
     color: '#fff',
     fontSize: 20,
-    lineHeight: 30,
     marginLeft: 20,
   },
   headerStyle: {

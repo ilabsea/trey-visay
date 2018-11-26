@@ -24,8 +24,6 @@ export default class PersonalUnderstandingReport extends Component {
 
     return {
       title: 'ស្វែងយល់អំពីខ្លួនឯង',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ស្វែងយល់អំពីខ្លួនឯង</Text>,
-      headerStyle: headerStyles.headerStyle,
       headerTintColor: '#fff'
     }
   };

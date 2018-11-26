@@ -8,7 +8,6 @@ import {
   BackHandler,
 } from 'react-native';
 
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 
 import styles from '../../assets/style_sheets/profile_form';

@@ -25,8 +25,8 @@ class RadioButtonGroup extends React.Component {
                     index={i}
                     isSelected={this.props.value == obj.value}
                     onPress={this.props.onPress}
-                    buttonSize={15}
-                    circleSize={10}
+                    buttonSize={10}
+                    buttonOuterSize={20}
                     buttonColor={buttonColor}
                   />
                   <RadioButtonLabel
@@ -34,8 +34,7 @@ class RadioButtonGroup extends React.Component {
                     index={i}
                     labelHorizontal={true}
                     onPress={this.props.onPress}
-                    labelStyle={[labelStyle, {marginLeft: 0, marginRight: 40, fontSize: 16}]}
-                    labelWrapStyle={{marginRight: 20, paddingVertical: 10}}
+                    labelStyle={{fontSize: 16, lineHeight: 28}}
                   />
                 </RadioButton>
               </View>
