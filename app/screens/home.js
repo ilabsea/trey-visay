@@ -101,10 +101,10 @@ const HomeScreen = createDrawerNavigator(
     ChangePasswordScreen: { screen: ChangePasswordScreen },
   },
   {
-    initialRouteName: 'Dashboard',
+    // initialRouteName: 'Dashboard',
     // initialRouteName: 'InstitutionStack',
     // initialRouteName: 'VideoScreen',
-    // initialRouteName: 'CareerCounsellorScreen',
+    initialRouteName: 'CareerCounsellorScreen',
     // initialRouteName: 'ProfileStack',
     // initialRouteName: 'About',
     // initialRouteName: 'ChangePasswordScreen',

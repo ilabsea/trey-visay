@@ -53,7 +53,7 @@ export default class GameHistoryScreen extends Component {
     let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);
     let schools = schoolList.filter((school, pos) => { return currentJob.schools.includes(school.id) });
 
-    this.state = {
+    this.setState({
       user: user,
       game: game,
       time: '',
@@ -61,7 +61,7 @@ export default class GameHistoryScreen extends Component {
       gameUuid: this.props.navigation.state.params.gameUuid,
       schools: schools,
       currentJob: currentJob
-    };
+    });
 
     if (!game.voiceRecord) { return }
 

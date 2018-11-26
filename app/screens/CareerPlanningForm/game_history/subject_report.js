@@ -31,11 +31,11 @@ export default class SubjectReport extends Component {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
 
-    this.state = {
+    this.setState({
       user: user,
       game: game,
       gameSubject: game.gameSubject
-    }
+    })
   }
 
   _renderGroups(obj) {

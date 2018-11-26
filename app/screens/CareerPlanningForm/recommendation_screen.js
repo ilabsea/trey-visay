@@ -46,13 +46,13 @@ export default class RecommendationScreen extends Component {
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((obj) => obj.id == game.mostFavorableJobId);
 
-    this.state = {
+    this.setState({
       currentJob: currentJob,
       user: user,
       game: game,
       gameSubject: game.gameSubject,
       currentGroup: currentGroup,
-    }
+    })
 
     this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
   }

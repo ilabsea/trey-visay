@@ -32,10 +32,10 @@ export default class PersonalUnderstandingReport extends Component {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
 
-    this.state = {
+    this.setState({
       user: user,
       game: game,
-    }
+    })
   }
 
   yesNoValue = { Yes: 'បាទ/ចាស', No: 'ទេ', Don_Know: 'មិនដឹង' };

@@ -56,14 +56,14 @@ export default class SummaryScreen extends Component {
     let careerIds = game.personalityCareers.map((obj) => obj.value);
     let userCareers = currentGroup.careers.filter((item, pos) => { return careerIds.includes(item.id) });
 
-    this.state = {
+    this.setState({
       userCareers: userCareers,
       currentGroup: currentGroup,
       user: user,
       game: game,
       confirmDialogVisible: false,
       mostFavorableJob: game.mostFavorableJobId,
-    }
+    })
   }
 
   _handleBack() {

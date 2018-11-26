@@ -33,11 +33,11 @@ export default class PersonalityReport extends Component {
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let jobs = currentGroup.careers.filter(career => personalityCareers.includes(career.id));
 
-    this.state = {
+    this.setState({
       user: user,
       game: game,
       jobs: jobs,
-    }
+    })
   }
 
   _renderContent() {

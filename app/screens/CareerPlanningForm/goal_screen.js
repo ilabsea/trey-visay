@@ -94,7 +94,7 @@ export default class GoalScreen extends Component {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
 
-    this.state = {
+    this.setState({
       currentTime: 0.0,
       recording: false,
       stoppedRecording: false,
@@ -107,7 +107,7 @@ export default class GoalScreen extends Component {
       game: game,
       reasonText: '',
       voiceRecord: ''
-    };
+    });
 
     this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
   }

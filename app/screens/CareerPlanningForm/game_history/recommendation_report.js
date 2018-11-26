@@ -40,13 +40,13 @@ export default class RecommendationReport extends Component {
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((obj) => obj.id == game.mostFavorableJobId);
 
-    this.state = {
+    this.setState({
       currentJob: currentJob,
       user: user,
       game: game,
       gameSubject: game.gameSubject,
       currentGroup: currentGroup,
-    }
+    })
   }
 
   _goNext() {
