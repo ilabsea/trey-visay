@@ -44,12 +44,6 @@ export default class PersonalityJobsScreen extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      user: null,
-      game: null,
-      currentGroup: null,
-      jobs: []
-    }
   }
 
   componentWillMount() {
@@ -67,7 +61,7 @@ export default class PersonalityJobsScreen extends Component {
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
 
-    this.setState({ user: user, game: game, currentGroup: currentGroup})
+    this.state = { user: user, game: game, currentGroup: currentGroup, jobs: []};
   }
 
   _handleBack() {
