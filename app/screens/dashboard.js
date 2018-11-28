@@ -9,13 +9,6 @@ import {
   Platform
 } from 'react-native';
 
-import {
-  Toolbar,
-  ThemeContext,
-  getTheme,
-  Icon
-} from 'react-native-material-ui';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -25,20 +18,13 @@ import User from '../utils/user';
 import headerStyles from '../assets/style_sheets/header';
 import StatusBar from '../components/status_bar';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
 
 export default class Dashboard extends Component {
   static navigationOptions = {
     drawerLabel: 'ទំព័រដើម',
     drawerIcon: ({ tintColor }) => (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <Icon name="home" color={tintColor} />
-      </ThemeContext.Provider>
-    ),
+      <MaterialIcon name="home" color={tintColor} />
+    )
   };
 
   constructor(props) {
@@ -126,48 +112,32 @@ export default class Dashboard extends Component {
     )
   }
 
-  _renderToolbar (){
-    return (
-      <Toolbar
-        leftElement="menu"
-        centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
-        onLeftElementPress={() => this.props.navigation.openDrawer()}
-      />
-    )
-  }
-
   render() {
     return (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <View style={{flex: 1}}>
-          <StatusBar />
+      <View style={{flex: 1}}>
+        <StatusBar />
 
-          { !this.state.showTourTip &&
-            this._renderToolbar()
-          }
+        { !this.state.showTourTip }
 
-          <ScrollView>
-            { this.state.showTourTip &&
-              this._renderToolbar()
-            }
+        <ScrollView>
+          { this.state.showTourTip }
 
-            <View style={styles.scrollContainer}>
-              <View style={{flexDirection: 'row'}}>
-                { this._renderButton({ title: 'វាយតម្លៃមុខរបរ', url: 'CareerCounsellorScreen', icon_bg_color: '#3f51b5', icon_name: 'briefcase', description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក។' }) }
-                { this._renderButton({ title: 'គ្រឹះស្ថានសិក្សា', url: 'InstitutionStack', icon_bg_color: '#009688', icon_name: 'business', icon_type: 'material', description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជាដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២។' }) }
-              </View>
-
-              <View style={{flexDirection: 'row'}}>
-                { this._renderButton({ title: 'ជំនាញវិជ្ជាជីវៈ', url: 'VocationalJobStack', icon_bg_color: '#1aaf5d', icon_name: 'photo-filter', icon_type: 'material', description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវះរយៈពេលខ្លី។' }) }
-                { this._renderButton({ title: 'វីដេអូមុខរបរ', url: 'VideoScreen', icon_bg_color: '#f44336', icon_name: 'video-camera', description: 'យល់ដឹងអំពីមុខរបរ និងអាជីព តាមរយះវីដេអូ។' }) }
-              </View>
+          <View style={styles.scrollContainer}>
+            <View style={{flexDirection: 'row'}}>
+              { this._renderButton({ title: 'វាយតម្លៃមុខរបរ', url: 'CareerCounsellorScreen', icon_bg_color: '#3f51b5', icon_name: 'briefcase', description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក។' }) }
+              { this._renderButton({ title: 'គ្រឹះស្ថានសិក្សា', url: 'InstitutionStack', icon_bg_color: '#009688', icon_name: 'business', icon_type: 'material', description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជាដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២។' }) }
             </View>
-          </ScrollView>
 
-          { this.state.showTourTip && this._renderTourtip() }
+            <View style={{flexDirection: 'row'}}>
+              { this._renderButton({ title: 'ជំនាញវិជ្ជាជីវៈ', url: 'VocationalJobStack', icon_bg_color: '#1aaf5d', icon_name: 'photo-filter', icon_type: 'material', description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវះរយៈពេលខ្លី។' }) }
+              { this._renderButton({ title: 'វីដេអូមុខរបរ', url: 'VideoScreen', icon_bg_color: '#f44336', icon_name: 'video-camera', description: 'យល់ដឹងអំពីមុខរបរ និងអាជីព តាមរយះវីដេអូ។' }) }
+            </View>
+          </View>
+        </ScrollView>
 
-        </View>
-      </ThemeContext.Provider>
+        { this.state.showTourTip && this._renderTourtip() }
+
+      </View>
     );
   }
 }

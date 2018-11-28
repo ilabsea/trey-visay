@@ -7,12 +7,6 @@ import {
   Modal,
 } from 'react-native';
 
-import {
-  ThemeContext,
-  Toolbar,
-  getTheme
-} from 'react-native-material-ui';
-
 import Toast, { DURATION } from 'react-native-easy-toast'
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -21,6 +15,8 @@ import { Provider } from 'react-redux';
 import store from '../../redux/store';
 
 import PersonalUnderstandingScore from './PersonalUnderstandingScore';
+import CloseButton from '../../components/close_button';
+import SaveButton from '../../components/save_button';
 
 import Form from './_Form';
 import realm from '../../schema';
@@ -29,32 +25,10 @@ import uuidv4 from '../../utils/uuidv4';
 import styles from './styles';
 import headerStyles from '../../assets/style_sheets/header';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
 
 export default class PersonalUnderstandingForm extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: 'ស្វែងយល់អំពីខ្លួនឯង',
-    headerTitle: <Text style={headerStyles.headerTitleStyle}>ស្វែងយល់អំពីខ្លួនឯង</Text>,
-    headerStyle: headerStyles.headerStyle,
-    headerLeft: <ThemeContext.Provider value={getTheme(uiTheme)}>
-                  <TouchableOpacity onPress={() => { navigation.state.params.refresh(); navigation.goBack()}} style={{marginHorizontal: 16}}>
-                    <MaterialIcon name='close' color='#fff' size={24} />
-                  </TouchableOpacity>
-                </ThemeContext.Provider>,
-    headerRight: <ThemeContext.Provider value={getTheme(uiTheme)}>
-                  <Provider store={store}>
-                    <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <MaterialIcon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>
-                  </Provider>
-                 </ThemeContext.Provider>,
-
     drawerIcon: ({ tintColor }) => (
       <AwesomeIcon name="briefcase" size={16}  color={tintColor} />
     ),
@@ -70,12 +44,17 @@ export default class PersonalUnderstandingForm extends Component {
     };
   };
 
+  _handleBack() {
+    this.props.navigation.state.params.refresh();
+    this.props.navigation.goBack();
+  }
+
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit});
+    this.props.navigation.setParams({handleSubmit: this.handleSubmit, _handleBack: this._handleBack.bind(this)});
   }
 
   handleSubmit = () => {
@@ -214,18 +193,13 @@ export default class PersonalUnderstandingForm extends Component {
 
   render() {
     return (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
+      <View>
         <ScrollView>
           <Modal
             animationType="slide"
             transparent={false}
             visible={this.state.modalVisible}
             onRequestClose={() => { this.refs.toast.show('សូមចុចលើប៊ូតុង...!', DURATION.SHORT) } }>
-
-            <Toolbar
-              centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វាយតម្លៃមុខរបរ និង អាជីព</Text>}
-              onLeftElementPress={() => this.props.navigation.openDrawer()}
-            />
 
             <ScrollView>
               <View style={{margin: 16, padding: 16, backgroundColor: '#fff'}}>
@@ -245,7 +219,7 @@ export default class PersonalUnderstandingForm extends Component {
           </Provider>
         </ScrollView>
         <Toast ref='toast'/>
-      </ThemeContext.Provider>
+      </View>
     );
   };
 }

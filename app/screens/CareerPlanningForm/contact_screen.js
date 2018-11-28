@@ -25,19 +25,6 @@ import Images from '../../assets/images';
 import characteristicList from '../../data/json/characteristic_jobs';
 
 export default class ContactScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ព័ត៌មានសាលា និងទំនាក់ទំនង',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ព័ត៌មានសាលា លេខទំនាក់ទំនង</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                    <MaterialIcon name='close' color='#fff' size={24} />
-                  </TouchableOpacity>,
-    }
-  };
-
   componentWillMount() {
     this._initState();
     this._backHandler();

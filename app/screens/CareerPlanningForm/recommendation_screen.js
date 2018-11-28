@@ -22,19 +22,6 @@ import characteristicList from '../../data/json/characteristic_jobs';
 import subjectTe from '../../data/translates/subject';
 
 export default class RecommendationScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ការផ្តល់អនុសាសន៍',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ការផ្តល់អនុសាសន៍</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                    <MaterialIcon name='close' color='#fff' size={24} />
-                  </TouchableOpacity>,
-    }
-  };
-
   componentWillMount() {
     this._initState();
     this._backHandler();

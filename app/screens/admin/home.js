@@ -4,16 +4,17 @@ import {
 } from 'react-navigation';
 
 // Screens
-import Dashboard from './dashboard_screen';
-import About from '../about';
+import AboutStack from '../stackNav/about_stack';
+import DashboardStack from '../stackNav/dashboard_stack';
+
 import Profile from './profile';
 import SideMenu from './side_menu';
 import ChangePasswordScreen from '../change_password_screen';
 
 const AdminHomeScreen = createDrawerNavigator(
   {
-    Dashboard: { screen: Dashboard },
-    About: { screen: About },
+    Dashboard: { screen: DashboardStack },
+    About: { screen: AboutStack },
     ChangePasswordScreen: { screen: ChangePasswordScreen },
     Profile: { screen: Profile },
   },

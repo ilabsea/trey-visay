@@ -168,8 +168,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     marginTop: Platform.OS === 'ios' ? 28 : 38,
     height: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
     position: 'absolute',
     top: 0,
     left: 0,

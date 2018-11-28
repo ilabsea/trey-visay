@@ -19,15 +19,6 @@ import shareStyles from '../../../assets/style_sheets/profile_form';
 import StatusBar from '../../../components/status_bar';
 
 export default class PersonalUnderstandingReport extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ស្វែងយល់អំពីខ្លួនឯង',
-      headerTintColor: '#fff'
-    }
-  };
-
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];

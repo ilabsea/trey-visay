@@ -25,6 +25,7 @@ import StatusBar from '../../components/status_bar';
 // Components
 import RadioGroupContainer from '../../components/radio_group_container';
 import InputTextContainer from '../../components/input_text_container';
+import SaveButton from '../../components/save_button';
 
 import highSchoolList from '../../data/json/high_schools';
 
@@ -42,10 +43,7 @@ export default class ProfileForm extends Component {
       title: 'បំពេញប្រវត្តិរូបសង្ខេប',
       headerStyle: headerStyles.headerStyle,
       headerTitleStyle: headerStyles.headerTitleStyle,
-      headerRight: (<TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <MaterialIcon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>),
+      headerRight: (<SaveButton navigation={navigation}/>),
     }
   }
 

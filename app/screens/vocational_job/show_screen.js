@@ -36,8 +36,6 @@ export default class VocationalJobShowScreen extends Component {
     return {
       title: '',
       headerTitle: <Text style={headerStyles.headerTitleStyle}>{state.params.title}</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerTintColor: '#fff'
     }
   };
 

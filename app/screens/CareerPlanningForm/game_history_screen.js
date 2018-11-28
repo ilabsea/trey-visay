@@ -15,6 +15,8 @@ import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 
+import BackButton from '../../components/back_button';
+
 import realm from '../../schema';
 import User from '../../utils/user';
 import schoolList from '../../data/json/schools';
@@ -22,19 +24,6 @@ import characteristicList from '../../data/json/characteristic_jobs';
 import Images from '../../assets/images';
 
 export default class GameHistoryScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'Game History',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>តេស្តលើកទី {state.params.num}</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
-                    <MaterialIcon name='arrow-back' color='#fff' size={24} />
-                  </TouchableOpacity>
-    }
-  };
-
   componentWillMount() {
     this._initState();
   }
