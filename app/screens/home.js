@@ -16,9 +16,9 @@ import VocationalJobStack from './stackNav/vocational_job_stack';
 import DashboardStack from './stackNav/dashboard_stack';
 import InstitutionStack from './school/institution_stack';
 import AboutStack from './stackNav/about_stack';
+import ChangePasswordStack from './stackNav/change_password_stack';
 
 import VideoScreen from './video_screen';
-import ChangePasswordScreen from './change_password_screen';
 import SideMenu from '../components/side_menu';
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 
@@ -35,7 +35,7 @@ const HomeScreen = createDrawerNavigator(
     InstitutionStack: { screen: ({ navigation }) => <InstitutionStack screenProps={{ drawerNavigation: navigation }} /> },
     VideoScreen: { screen: VideoScreen },
     VocationalJobStack: { screen: VocationalJobStack },
-    ChangePasswordScreen: { screen: ChangePasswordScreen },
+    ChangePasswordStack: { screen: ChangePasswordStack },
   },
   {
     initialRouteName: 'Dashboard',

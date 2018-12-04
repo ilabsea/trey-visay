@@ -153,7 +153,7 @@ export default class SideMenu extends Component {
         { !this.state.isOpen &&
           <View>
             { this._renderMenuItem({title: 'ប្រវត្តិរូបសង្ខេប', screenName: 'ProfileStack', iconName: 'user', iconSize: 18}) }
-            { this._renderMenuItem({title: 'ប្តូរលេខសម្ងាត់', screenName: 'ChangePasswordScreen', iconName: 'key', iconSize: 18}) }
+            { this._renderMenuItem({title: 'ប្តូរលេខសម្ងាត់', screenName: 'ChangePasswordStack', iconName: 'key', iconSize: 18}) }
 
             <TouchableOpacity onPress={this.logout.bind(this)}>
               <View style={styles.row}>

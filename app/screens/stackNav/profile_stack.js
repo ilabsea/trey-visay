@@ -8,6 +8,10 @@ import EditPersonalInfo from '../profile/edit_personal_info';
 import EditFamilyInfo from '../profile/edit_family_info';
 import EditFamilySituation from '../profile/edit_family_situation';
 
+import SaveButton from '../../components/save_button';
+import CloseButton from '../../components/close_button';
+import headerStyles from '../../assets/style_sheets/header';
+
 const ProfileStack = createStackNavigator(
   {
     Profile: {screen: Profile},
@@ -15,6 +19,15 @@ const ProfileStack = createStackNavigator(
     EditPersonalInfo: {screen: EditPersonalInfo},
     EditFamilyInfo: {screen: EditFamilyInfo},
     EditFamilySituation: {screen: EditFamilySituation},
+  },
+  {
+    navigationOptions: ({navigation}) => ({
+      title: 'កែសម្រួល',
+      headerTitleStyle: headerStyles.headerTitleStyle,
+      headerStyle: headerStyles.headerStyle,
+      headerLeft: <CloseButton navigation={navigation}/>,
+      headerRight: <SaveButton navigation={navigation}/>
+    })
   }
 );
 

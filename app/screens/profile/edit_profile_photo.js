@@ -23,31 +23,20 @@ import ImagePicker from 'react-native-image-crop-picker';
 import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
 
 export default class EditProfilePhoto extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack } = navigation;
-
-    return {
-      title: 'កែសម្រួល',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>កែសម្រួល</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
-                    <Icon name='close' color='#fff' size={24} />
-                  </TouchableOpacity>,
-      headerRight: <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <Icon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>,
-    }
-  };
-
   state = {user: '', type: ''};
 
   componentWillMount() {
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
+    this.props.navigation.setParams({
+      handleSubmit: this.handleSubmit.bind(this),
+      _handleBack: this._handleBack.bind(this)
+    });
     this.refreshState();
+  }
+
+  _handleBack(){
+    this.props.navigation.goBack();
   }
 
   handleSubmit() {

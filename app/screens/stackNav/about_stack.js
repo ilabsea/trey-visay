@@ -8,12 +8,12 @@ import About from '../about';
 
 const AboutStack = createStackNavigator(
   {
-    DashboardScreen: {
+    AboutScreen: {
       screen: About,
       navigationOptions: ({navigation}) => ({
         headerTitleStyle: [headerStyles.headerTitleStyle],
         headerStyle: headerStyles.headerStyle,
-        title: 'ត្រីវិស័យ',
+        title: 'អំពីកម្មវិធី',
         headerLeft: <OpenDrawer navigation={navigation}/>
       })
     }

@@ -138,7 +138,8 @@ const CareerCounsellorStack = createStackNavigator(
         title: 'ការផ្តល់អនុសាសន៍'
       })
     },
-  },{
+  },
+  {
     navigationOptions: ({navigation}) => ({
       headerTitleStyle: headerStyles.headerTitleStyle,
       headerStyle: headerStyles.headerStyle,

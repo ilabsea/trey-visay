@@ -13,7 +13,7 @@ const DashboardStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         headerTitleStyle: [headerStyles.headerTitleStyle],
         headerStyle: headerStyles.headerStyle,
-        title: 'អំពីកម្មវិធី',
+        title: 'ត្រីវិស័យ',
         headerLeft: <OpenDrawer navigation={navigation}/>
       })
     }

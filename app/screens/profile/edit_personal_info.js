@@ -7,10 +7,6 @@ import {
   TextInput,
   Picker,
 } from 'react-native';
-
-import {
-  Icon,
-} from 'react-native-material-ui';
 import Toast, { DURATION } from 'react-native-easy-toast';
 
 // Utils
@@ -27,22 +23,6 @@ import highSchoolList from '../../data/json/high_schools';
 let formError = {};
 
 export default class EditPersonalInfo extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack } = navigation;
-
-    return {
-      title: 'កែសម្រួល',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>កែសម្រួល</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
-                    <Icon name='close' color='#fff' size={24} />
-                  </TouchableOpacity>,
-      headerRight: <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <Icon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>,
-    }
-  };
 
   constructor(props) {
     super(props)
@@ -50,13 +30,21 @@ export default class EditPersonalInfo extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
+    this.props.navigation.setParams({
+      handleSubmit: this.handleSubmit.bind(this),
+      _handleBack: this._handleBack.bind(this)
+    });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     user = Object.assign({}, user, {sex: user.sex || 'ស្រី', nationality: user.nationality || 'ខ្មែរ', grade: user.grade || '9',
                                     highSchoolId: user.highSchoolId || '1', houseType: user.houseType || 'ផ្ទះឈើ',
                                     collectiveIncome: user.collectiveIncome || '0-25ម៉ឺន'})
     this.setState({user: user});
   }
+
+  _handleBack() {
+    this.props.navigation.goBack();
+  }
+
 
   render() {
     return (
