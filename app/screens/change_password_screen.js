@@ -9,10 +9,9 @@ import {
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import Button from '../components/button';
-import CloseButton from '../components/close_button';
-import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
 import styles from '../assets/style_sheets/login_form';
 import StatusBar from '../components/status_bar';
@@ -24,7 +23,7 @@ export default class ChangePasswordScreen extends Component {
   static navigationOptions = ({navigation}) => ({
     drawerLabel: 'ប្តូរលេខសម្ងាត់',
     drawerIcon: ({ tintColor }) => (
-      <Icon name="key" color={tintColor} />
+      <MaterialIcon name="key" color={tintColor} />
     )
   });
 
@@ -40,13 +39,16 @@ export default class ChangePasswordScreen extends Component {
   }
 
   componentWillMount() {
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     this.setState({ user: user });
   }
 
+  componentDidMount(){
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+  }
+
   _handleBack(){
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
   }
 
   handleSubmit() {

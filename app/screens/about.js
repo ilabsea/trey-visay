@@ -13,13 +13,15 @@ import {
 import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
 import StatusBar from '../components/status_bar';
+
 import DeviceInfo from 'react-native-device-info';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 export default class About extends Component {
   static navigationOptions = {
     drawerLabel: 'អំពីកម្មវិធី',
     drawerIcon: ({ tintColor }) => (
-        <Icon name="list" color={tintColor} />
+        <MaterialIcon name="list" color={tintColor} />
     ),
   };
 
