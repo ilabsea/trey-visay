@@ -156,12 +156,10 @@ const styles = StyleSheet.create({
   },
   btnLabel: {
     fontSize: 24,
-    lineHeight: 40,
     color: '#1976d2',
     textAlign: 'center',
   },
   btnDescription: {
-    marginTop: 16,
     padding: 8,
     textAlign: 'center',
   },
