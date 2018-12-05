@@ -8,12 +8,6 @@ import {
   ScrollView,
 } from 'react-native';
 
-import {
-  Toolbar,
-  ThemeContext,
-  getTheme
-} from 'react-native-material-ui';
-
 import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';

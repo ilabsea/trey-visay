@@ -12,11 +12,6 @@ import {
   RefreshControl,
 } from 'react-native';
 
-import {
-  ThemeContext, getTheme,
-  Toolbar,
-} from 'react-native-material-ui';
-
 import API from '../../api/schools';
 import LoadingIndicator from '../../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -26,12 +21,6 @@ import StatusBar from '../../components/status_bar';
 
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';
-
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
 
 export default class NgoSchoolScreen extends Component {
 
@@ -248,16 +237,14 @@ export default class NgoSchoolScreen extends Component {
 
   render() {
     return (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <View style={{flex: 1}}>
-          <StatusBar />
+      <View style={{flex: 1}}>
+        <StatusBar />
 
-          <View style={{flex: 1}}>
-            { this._renderFilters() }
-            { this._renderContent() }
-          </View>
+        <View style={{flex: 1}}>
+          { this._renderFilters() }
+          { this._renderContent() }
         </View>
-      </ThemeContext.Provider>
+      </View>
     )
   }
 }
