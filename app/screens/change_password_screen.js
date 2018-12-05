@@ -117,6 +117,7 @@ export default class ChangePasswordScreen extends Component {
             </View>
           </View>
         </ScrollView>
+        <Toast ref='toast'/>
       </View>
     )
   }

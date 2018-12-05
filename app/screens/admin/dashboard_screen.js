@@ -8,12 +8,6 @@ import {
   Alert,
 } from 'react-native';
 
-import {
-  ThemeContext, getTheme,
-  Toolbar,
-  Icon,
-} from 'react-native-material-ui';
-
 import * as Progress from 'react-native-progress';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Button from '../../components/button';
@@ -29,19 +23,11 @@ import { environment } from '../../config/environment';
 
 import { create } from 'apisauce';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
-
 export default class AdminDashboardScreen extends Component {
   static navigationOptions = {
     drawerLabel: 'ទំព័រដើម',
     drawerIcon: ({ tintColor }) => (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <Icon name="home" color={tintColor} />
-      </ThemeContext.Provider>
+      <MaterialIcon name="home" color={tintColor} />
     ),
   };
 
@@ -55,6 +41,9 @@ export default class AdminDashboardScreen extends Component {
     this.api = create({
       baseURL: environment.apiUrl
     })
+  }
+
+  componentDidMount(){
     this._refreshState();
     this._handleInternetConnection();
   }
@@ -297,10 +286,10 @@ export default class AdminDashboardScreen extends Component {
             </Text>
 
             <Button
-              style={[shareStyles.btnSubmit, {paddingHorizontal: 16, marginTop: 24}]}
+              style={{paddingHorizontal: 16, marginTop: 24}}
               onPress={this._handleSubmit.bind(this)}>
 
-              <Text style={[shareStyles.submitText, {color: '#fff'}]}>
+              <Text style={shareStyles.submitText}>
                 { !this.state.showLoading && 'បញ្ចូនទិន្នន័យទៅលើ' }
                 { this.state.showLoading && 'បោះបង់' }
               </Text>
@@ -319,22 +308,13 @@ export default class AdminDashboardScreen extends Component {
 
   render() {
     return (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <View style={{flex: 1}} ref="adminDashboard">
-          <StatusBar />
-
-          <Toolbar
-            leftElement="menu"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
-            onLeftElementPress={() => this.props.navigation.openDrawer()}
-          />
-
-          <ScrollView>
-            { !this.state.data.length && this._renderNoData() }
-            { !!this.state.data.length && this._renderHaveData() }
-          </ScrollView>
-        </View>
-      </ThemeContext.Provider>
+      <View style={{flex: 1}} ref="adminDashboard">
+        <StatusBar />
+        <ScrollView>
+          {this.state.data &&  !this.state.data.length && this._renderNoData() }
+          {this.state.data && !!this.state.data.length && this._renderHaveData() }
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -347,7 +327,6 @@ const styles = StyleSheet.create({
   },
   btnLabel: {
     fontSize: 24,
-    lineHeight: 40,
     flex: 1,
     color: '#1976d2',
   },
