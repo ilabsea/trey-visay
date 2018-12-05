@@ -6,12 +6,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {
-  ThemeContext,
-  getTheme,
-  Toolbar
-} from 'react-native-material-ui';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
@@ -22,10 +16,6 @@ import StatusBar from '../../components/status_bar';
 import characteristicList from '../../data/json/characteristic_jobs';
 
 export default class VocationalJobIndexScreen extends Component {
-  static navigationOptions = {
-    header: null
-  };
-
   componentWillMount() {
     let currentGroup = characteristicList.find((obj) => obj.id == 4);
 
