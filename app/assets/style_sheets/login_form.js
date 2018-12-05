@@ -19,6 +19,7 @@ export default StyleSheet.create({
     marginBottom: 10,
     borderRadius: 5,
     paddingHorizontal: 10,
+    height: 40
   },
   whiteLabel: {
     color: '#fff',
@@ -38,7 +39,6 @@ export default StyleSheet.create({
   submitText: {
     fontWeight: 'bold',
     fontSize: 20,
-    lineHeight: 32,
   },
   btnLogin: {
     marginTop: 24,

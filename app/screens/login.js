@@ -23,8 +23,6 @@ import styles from '../assets/style_sheets/login_form';
 // Components
 import Button from '../components/button';
 
-// Source for form
-// https://facebook.github.io/react/docs/forms.html
 export default class Login extends Component {
   static navigationOptions = {
     header: null
@@ -149,8 +147,7 @@ export default class Login extends Component {
         </ScrollView>
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginRight: 24, marginBottom: 16}}>
-          <Text style={styles.whiteLabel}>ជំនាន់: </Text>
-          <Text style={styles.whiteLabel}>{DeviceInfo.getVersion()}</Text>
+          <Text style={styles.whiteLabel}>ជំនាន់: {DeviceInfo.getVersion()} </Text>
         </View>
       </View>
     )

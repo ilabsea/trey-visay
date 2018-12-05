@@ -163,8 +163,7 @@ export default class AdminLogin extends Component {
         </ScrollView>
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginRight: 24, marginBottom: 16}}>
-          <Text style={styles.whiteLabel}>ជំនាន់: </Text>
-          <Text style={styles.whiteLabel}>{DeviceInfo.getVersion()}</Text>
+          <Text style={styles.whiteLabel}>ជំនាន់: {DeviceInfo.getVersion()} </Text>
         </View>
       </View>
     )
