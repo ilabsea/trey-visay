@@ -51,10 +51,10 @@ export default class GameHistoryScreen extends Component {
       schools: schools,
       currentJob: currentJob
     });
-
     if (!game.voiceRecord) { return }
+    console.log('this.state.game : ', game.voiceRecord);
 
-    this.sound = new Sound(this.state.game.voiceRecord, '', (error) => {
+    this.sound = new Sound(game.voiceRecord, '', (error) => {
       if (error) {
         console.log('failed to load the sound', error);
       }
@@ -145,21 +145,14 @@ export default class GameHistoryScreen extends Component {
   }
 
   async _play() {
-    // These timeouts are a hacky workaround for some issues with react-native-sound.
-    // See https://github.com/zmxv/react-native-sound/issues/89.
     this.setState({isPlaying: true});
-
-    setTimeout(() => {
-      this.sound.play((success) => {
-        if (success) {
-          console.log('successfully finished playing');
-          this.setState({isPlaying: false});
-        } else {
-          console.log('playback failed due to audio decoding errors');
-          this.sound.reset();
-        }
-      });
-    }, 100);
+    this.sound.play((success) => {
+      if (success) {
+        this.setState({isPlaying: false});
+      } else {
+        this.sound.reset();
+      }
+    });
   }
 
   async _stop() {
