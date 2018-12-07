@@ -92,8 +92,7 @@ export default class About extends Component {
               </View>
 
               <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-                <Text>ជំនាន់: </Text>
-                <Text>{DeviceInfo.getVersion()}</Text>
+                <Text>ជំនាន់: {DeviceInfo.getVersion()}</Text>
               </View>
             </View>
           </View>
