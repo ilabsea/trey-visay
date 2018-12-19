@@ -70,8 +70,6 @@ export default class EditProfilePhoto extends Component {
   }
 
   takePhoto() {
-    this.openDialog(false);
-
     ImagePicker.openCamera({
       width: 200,
       height: 200,
@@ -83,8 +81,6 @@ export default class EditProfilePhoto extends Component {
   }
 
   selectPhoto() {
-    this.openDialog(false);
-
     ImagePicker.openPicker({
       width: 200,
       height: 200,
@@ -97,7 +93,8 @@ export default class EditProfilePhoto extends Component {
 
   handleSelectedPhoto(image) {
     let source = { uri: image.path };
-
+    this.openDialog(false);
+    
     if (this.state.type == 'photo') {
       this.setState({ photo: source });
       this._setUserState('photo', image.path);
