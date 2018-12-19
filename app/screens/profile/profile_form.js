@@ -6,7 +6,8 @@ import {
   TextInput,
   Picker,
   TouchableOpacity,
-  TouchableHighlight
+  TouchableHighlight,
+  Platform
 } from 'react-native';
 
 import DatePicker from 'react-native-datepicker';
@@ -14,6 +15,7 @@ import Collapsible from 'react-native-collapsible';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Toast, { DURATION } from 'react-native-easy-toast';
+import IOSPicker from 'react-native-ios-picker';
 
 // Utils
 import realm from '../../schema';
@@ -345,17 +347,22 @@ export default class ProfileForm extends Component {
     )
   }
 
+
   _renderPicker(params={}) {
+    let PickerSpecific = Platform.OS === 'ios' ?
+        IOSPicker :
+        Picker;
     return (
       <View style={styles.inputContainer}>
         <Text style={styles.inputLabel}>{params.label}</Text>
-        <Picker
+        <PickerSpecific
+          mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
           selectedValue={this.state.user[params.stateName]}
           onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
           { params.options.map((obj, i) => {
             { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
           }) }
-        </Picker>
+        </PickerSpecific>
       </View>
     )
   }

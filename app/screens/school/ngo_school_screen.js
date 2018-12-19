@@ -8,9 +8,12 @@ import {
   Image,
   TouchableOpacity,
   Picker,
+  Platform,
   ListView,
   RefreshControl,
 } from 'react-native';
+
+import IOSPicker from 'react-native-ios-picker';
 
 import API from '../../api/schools';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -199,38 +202,39 @@ export default class NgoSchoolScreen extends Component {
   }
 
   _renderFilters() {
+    let PickerSpecific = Platform.OS === 'ios' ?
+        IOSPicker :
+        Picker;
     return (
       <View style={{flexDirection: 'row', marginHorizontal: 16, marginVertical: 8}}>
-        <View style={{width: 200}}>
-          <Picker
-            selectedValue={this.state.currentProvince}
-            onValueChange={(itemValue, itemIndex) => this._onChangeProvince(itemValue)}
-            mode='dialog'
-            prompt='ជ្រើសរើសទីតាំង'
-            itemStyle={{fontSize: 16}}
-          >
-            <Picker.Item label="គ្រប់ទីកន្លែង" value="" />
-            { this.state.provinces.map((province, i) => {
-              return (<Picker.Item key={i} label={province} value={province} />)
-            })}
+        <PickerSpecific
+          selectedValue={this.state.currentProvince ? this.state.currentProvince : 'ជ្រើសរើសទីតាំង'}
+          onValueChange={(itemValue, itemIndex) => this._onChangeProvince(itemValue)}
+          mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
+          prompt='ជ្រើសរើសទីតាំង'
+          style={{width: 165, marginRight: 10, backgroundColor: 'transparent', alignItems: 'center'}}
+          itemStyle={{fontSize: 16}}
+        >
+          <Picker.Item label="គ្រប់ទីកន្លែង" value="" />
+          { this.state.provinces.map((province, i) => {
+            return (<Picker.Item key={i} label={province} value={province} />)
+          })}
 
-          </Picker>
-        </View>
+        </PickerSpecific>
 
-        <View style={{width: 200}}>
-          <Picker
-            selectedValue={this.state.currentMajor}
-            onValueChange={(itemValue, itemIndex) => this._onChangeMajor(itemValue)}
-            mode='dialog'
-            prompt='ជ្រើសរើសជំនាញ'
-          >
-            <Picker.Item label="គ្រប់ជំនាញ" value="" />
+        <PickerSpecific
+          selectedValue={this.state.currentMajor ? this.state.currentMajor : 'ជ្រើសរើសជំនាញ'}
+          onValueChange={(itemValue, itemIndex) => this._onChangeMajor(itemValue)}
+          mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
+          prompt='ជ្រើសរើសជំនាញ'
+          style={{width: 165 , backgroundColor: 'transparent', alignItems: 'center'}}
+        >
+          <Picker.Item label="គ្រប់ជំនាញ" value="" />
 
-            { this.state.majors.map((major, i) => {
-              return (<Picker.Item key={i} label={major} value={major} />)
-            })}
-          </Picker>
-        </View>
+          { this.state.majors.map((major, i) => {
+            return (<Picker.Item key={i} label={major} value={major} />)
+          })}
+        </PickerSpecific>
       </View>
     )
   }
