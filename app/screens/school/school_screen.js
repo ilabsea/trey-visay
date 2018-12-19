@@ -12,7 +12,6 @@ import {
   ListView,
   RefreshControl,
 } from 'react-native';
-
 import IOSPicker from 'react-native-ios-picker';
 
 import API from '../../api/schools';
@@ -22,14 +21,15 @@ import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
 import StatusBar from '../../components/status_bar';
 
+
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';
 
-export default class NgoSchoolScreen extends Component {
+export default class SchoolScreen extends Component {
 
   myProvince = '';
   myMajor = '';
-  myCategory = 'អង្គការ';
+  myCategory = this.props.screenProps.category;
 
   constructor(props) {
     super(props)
@@ -51,6 +51,7 @@ export default class NgoSchoolScreen extends Component {
   }
 
   _getProvinces() {
+    console.log('this.myCategory : ', this.myCategory);
     API
       .getProvinces(this.myCategory)
       .then(result => this.setState({provinces: result.provinces}))
@@ -212,7 +213,7 @@ export default class NgoSchoolScreen extends Component {
           onValueChange={(itemValue, itemIndex) => this._onChangeProvince(itemValue)}
           mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
           prompt='ជ្រើសរើសទីតាំង'
-          style={{width: 165, marginRight: 10, backgroundColor: 'transparent', alignItems: 'center'}}
+          style={{width: 165, marginRight: 10 , backgroundColor: 'transparent', alignItems: 'center'}}
           itemStyle={{fontSize: 16}}
         >
           <Picker.Item label="គ្រប់ទីកន្លែង" value="" />

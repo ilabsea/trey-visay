@@ -12,15 +12,22 @@ import headerStyles from '../../assets/style_sheets/header';
 
 import OpenDrawer from '../../components/open_drawer';
 
-import PrivateSchoolScreen from './private_school_screen';
-import NGOSchoolScreen from './ngo_school_screen';
-import GovernmentSchoolScreen from './government_school_screen';
+import SchoolScreen from './school_screen';
 import InstitutionDetail from './institution_detail';
 
 const InstitutionTab = createMaterialTopTabNavigator({
-  GovernmentSchoolScreen: { screen: GovernmentSchoolScreen , navigationOptions: {tabBarLabel: 'សាលារដ្ឋ'}},
-  PrivateSchoolScreen: { screen: PrivateSchoolScreen , navigationOptions: {tabBarLabel: 'សាលាឯកជន'}},
-  NGOSchoolScreen: { screen: NGOSchoolScreen, navigationOptions: {tabBarLabel: 'អង្គការ'} },
+  GovernmentSchoolScreen: {
+    screen: ({ props }) => <SchoolScreen screenProps={{category: 'សាលារដ្ឋ' }} />,
+    navigationOptions: {tabBarLabel: 'សាលារដ្ឋ'}
+  },
+  PrivateSchoolScreen: {
+    screen: (props) => <SchoolScreen screenProps={{category: 'សាលាឯកជន'}}/> ,
+    navigationOptions: {tabBarLabel: 'សាលាឯកជន'}
+  },
+  NGOSchoolScreen: {
+    screen: (props) => <SchoolScreen screenProps={{category: 'អង្គការ'}}/>,
+    navigationOptions: {tabBarLabel: 'អង្គការ'}
+  },
 }, {
   tabBarPosition: 'top',
   animationEnabled: true,
