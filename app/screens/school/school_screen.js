@@ -118,7 +118,7 @@ export default class SchoolScreen extends Component {
     }
 
     return (
-      <TouchableOpacity onPress={() => this.props.navigation.navigate('InstitutionDetail', {id: school.id})}>
+      <TouchableOpacity onPress={() => this.props.screenProps.navigation.navigate('InstitutionDetail', {id: school.id})}>
         <View style={[shareStyles.box, {flexDirection: 'row', marginHorizontal: 16}]}>
           <Image source={logo} style={{width: 100, height: 100}} />
 

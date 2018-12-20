@@ -17,15 +17,15 @@ import InstitutionDetail from './institution_detail';
 
 const InstitutionTab = createMaterialTopTabNavigator({
   GovernmentSchoolScreen: {
-    screen: ({ props }) => <SchoolScreen screenProps={{category: 'សាលារដ្ឋ' }} />,
+    screen: ({ navigation }) => <SchoolScreen screenProps={{category: 'សាលារដ្ឋ', navigation: navigation }} />,
     navigationOptions: {tabBarLabel: 'សាលារដ្ឋ'}
   },
   PrivateSchoolScreen: {
-    screen: (props) => <SchoolScreen screenProps={{category: 'សាលាឯកជន'}}/> ,
+    screen: ({ navigation }) => <SchoolScreen screenProps={{category: 'សាលាឯកជន', navigation: navigation}}/> ,
     navigationOptions: {tabBarLabel: 'សាលាឯកជន'}
   },
   NGOSchoolScreen: {
-    screen: (props) => <SchoolScreen screenProps={{category: 'អង្គការ'}}/>,
+    screen: ({ navigation }) => <SchoolScreen screenProps={{category: 'អង្គការ', navigation: navigation}}/>,
     navigationOptions: {tabBarLabel: 'អង្គការ'}
   },
 }, {
