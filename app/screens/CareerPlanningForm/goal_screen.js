@@ -437,7 +437,7 @@ var styles = StyleSheet.create({
     fontSize: 50,
   },
   button: {
-    padding: 20,
+    padding: Platform.OS === 'ios' ? 15 : 20,
     borderWidth: 1,
     borderRadius: 28,
     width: 56,
