@@ -23,22 +23,19 @@ import headerStyles from '../assets/style_sheets/header';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
+
 export default class SideMenu extends Component {
-  state = {user: '', photo: '', cover: '', isOpen: true}
+  constructor(props){
+    super(props);
+    this.state = {
+      user: '',
+      isOpen: true
+    }
+  }
 
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    let photo = require('../assets/images/default_profile.png');
-    let cover = require('../assets/images/header_bg.jpg');
-
-    if (!!user && !!user.photo) {
-      photo = {uri: user.photo};
-    }
-    if (!!user && !!user.cover) {
-      cover = {uri: user.cover};
-    }
-
-    this.setState({user: user, photo: photo, cover: cover});
+    this.setState({user: user});
   }
 
   toggleScreen() {
@@ -110,18 +107,29 @@ export default class SideMenu extends Component {
     let TouchablePlatformSpecific = Platform.OS === 'ios' ?
         TouchableHighlight :
         TouchableNativeFeedback;
+    let user = this.state.user;
+    let photo = require('../assets/images/default_profile.png');
+    let cover = require('../assets/images/header_bg.jpg');
+
+    if (!!user && !!this.state.user.photo) {
+      photo = {uri: user.photo, CACHE: 'reload'};
+    }
+    if (!!user && !!user.cover) {
+      cover = {uri: user.cover, CACHE: 'reload'};
+    }
+
     return(
       <TouchablePlatformSpecific onPress={this.toggleScreen.bind(this)}>
         <View>
           <View style={{position: 'relative'}}>
             <Image
-              source={this.state.cover}
+              source={cover}
               style={{width: null, height: 180}} />
           </View>
 
           <View style={{position: 'absolute', top: 24, left: 24}}>
             <Image
-              source={this.state.photo}
+              source={photo}
               style={{borderRadius: 32, width: 64, height: 64 }} />
           </View>
 
