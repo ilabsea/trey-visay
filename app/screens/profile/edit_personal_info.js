@@ -24,6 +24,12 @@ import highSchoolList from '../../data/json/high_schools';
 
 let formError = {};
 
+const schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
+const grades = [
+  { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
+  { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
+  { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
+
 export default class EditPersonalInfo extends Component {
 
   constructor(props) {
@@ -31,7 +37,7 @@ export default class EditPersonalInfo extends Component {
     this.state = { user: '', errors: {} };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.navigation.setParams({
       handleSubmit: this.handleSubmit.bind(this),
       _handleBack: this._handleBack.bind(this)
@@ -46,7 +52,6 @@ export default class EditPersonalInfo extends Component {
   _handleBack() {
     this.props.navigation.goBack();
   }
-
 
   render() {
     return (
@@ -117,12 +122,6 @@ export default class EditPersonalInfo extends Component {
   }
 
   _renderPersonalInfo() {
-    let schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
-    let grades = [
-      { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
-      { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
-      { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
-
     return (
       <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
         { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
@@ -176,7 +175,7 @@ export default class EditPersonalInfo extends Component {
         <Text style={styles.inputLabel}>{params.label}</Text>
         <PickerSpecific
           mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
-          selectedValue={this.state.user[params.stateName]}
+          selectedValue={params.options.find(obj => obj.value === this.state.user[params.stateName]).label}
           onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
           { params.options.map((obj, i) => {
             { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }

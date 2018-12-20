@@ -32,7 +32,12 @@ import SaveButton from '../../components/save_button';
 import highSchoolList from '../../data/json/high_schools';
 
 let formError = {};
-
+const schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
+const grades = [
+  { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
+  { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
+  { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
+  
 const CONTENTS = [
   { header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo' },
   { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' },
@@ -234,12 +239,6 @@ export default class ProfileForm extends Component {
   }
 
   _renderPersonalInfo() {
-    let schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
-    let grades = [
-      { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
-      { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
-      { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
-
     return (
       <View>
         { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
@@ -357,7 +356,7 @@ export default class ProfileForm extends Component {
         <Text style={styles.inputLabel}>{params.label}</Text>
         <PickerSpecific
           mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
-          selectedValue={this.state.user[params.stateName]}
+          selectedValue={params.options.find(obj => obj.value === this.state.user[params.stateName]).label}
           onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
           { params.options.map((obj, i) => {
             { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
