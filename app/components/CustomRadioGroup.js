@@ -34,7 +34,7 @@ class RadioButtonGroup extends React.Component {
                     index={i}
                     labelHorizontal={true}
                     onPress={this.props.onPress}
-                    labelStyle={{fontSize: 16, lineHeight: 28}}
+                    labelStyle={[this.props.labelStyle,{fontSize: 16, lineHeight: 28}]}
                   />
                 </RadioButton>
               </View>

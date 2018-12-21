@@ -105,7 +105,7 @@ const CareerCounsellorStack = createStackNavigator(
     GameHistoryScreen: {
       screen: GameHistoryScreen,
       navigationOptions: ({
-        title: 'Game History'
+        title: 'លទ្ធផលតេស'
       })
     },
     PersonalUnderstandingReport: {
