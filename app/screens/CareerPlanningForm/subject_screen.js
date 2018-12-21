@@ -16,9 +16,9 @@ import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import RadioGroup from '../../components/radio_group';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
+import CloseButton from '../../components/close_button';
 
 import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 
 import realm from '../../schema';
@@ -26,19 +26,6 @@ import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 
 export default class SubjectScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'បំពេញមុខវិជ្ជា',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញមុខវិជ្ជា</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                    <MaterialIcon name='close' color='#fff' size={24} />
-                  </TouchableOpacity>,
-    }
-  };
-
   state = {
     khmerReading: '',
     khmerWriting: '',

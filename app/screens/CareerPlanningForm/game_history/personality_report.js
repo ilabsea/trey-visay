@@ -15,17 +15,6 @@ import realm from '../../../schema';
 import User from '../../../utils/user';
 
 export default class PersonalityReport extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ការជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណៈ',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ការជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណៈ</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerTintColor: '#fff'
-    }
-  };
-
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];

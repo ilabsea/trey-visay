@@ -11,13 +11,13 @@ export default StyleSheet.create({
   },
   saveText: {
     color: '#fff',
-    marginLeft: 10,
     marginRight: 16,
     fontSize: 16,
   },
   actionWrapper: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'flex-start',
+    justifyContent: "flex-start"
   },
   body2: {
     fontWeight: 'bold',

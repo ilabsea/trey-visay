@@ -6,10 +6,11 @@ import {
   Button,
   ScrollView,
   StyleSheet,
-  TouchableHightlight,
+  TouchableHighlight,
   TouchableNativeFeedback,
   TouchableOpacity,
   Image,
+  Platform
 } from 'react-native';
 
 import {NavigationActions} from 'react-navigation';

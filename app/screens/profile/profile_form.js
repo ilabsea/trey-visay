@@ -6,7 +6,8 @@ import {
   TextInput,
   Picker,
   TouchableOpacity,
-  TouchableHighlight
+  TouchableHighlight,
+  Platform
 } from 'react-native';
 
 import DatePicker from 'react-native-datepicker';
@@ -14,6 +15,7 @@ import Collapsible from 'react-native-collapsible';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Toast, { DURATION } from 'react-native-easy-toast';
+import IOSPicker from 'react-native-ios-picker';
 
 // Utils
 import realm from '../../schema';
@@ -25,11 +27,17 @@ import StatusBar from '../../components/status_bar';
 // Components
 import RadioGroupContainer from '../../components/radio_group_container';
 import InputTextContainer from '../../components/input_text_container';
+import SaveButton from '../../components/save_button';
 
 import highSchoolList from '../../data/json/high_schools';
 
 let formError = {};
-
+const schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
+const grades = [
+  { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
+  { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
+  { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
+  
 const CONTENTS = [
   { header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo' },
   { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' },
@@ -42,10 +50,7 @@ export default class ProfileForm extends Component {
       title: 'បំពេញប្រវត្តិរូបសង្ខេប',
       headerStyle: headerStyles.headerStyle,
       headerTitleStyle: headerStyles.headerTitleStyle,
-      headerRight: (<TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <MaterialIcon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>),
+      headerRight: (<SaveButton navigation={navigation}/>),
     }
   }
 
@@ -234,12 +239,6 @@ export default class ProfileForm extends Component {
   }
 
   _renderPersonalInfo() {
-    let schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
-    let grades = [
-      { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
-      { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
-      { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
-
     return (
       <View>
         { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
@@ -347,17 +346,22 @@ export default class ProfileForm extends Component {
     )
   }
 
+
   _renderPicker(params={}) {
+    let PickerSpecific = Platform.OS === 'ios' ?
+        IOSPicker :
+        Picker;
     return (
       <View style={styles.inputContainer}>
         <Text style={styles.inputLabel}>{params.label}</Text>
-        <Picker
-          selectedValue={this.state.user[params.stateName]}
+        <PickerSpecific
+          mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
+          selectedValue={params.options.find(obj => obj.value === this.state.user[params.stateName]).label}
           onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
           { params.options.map((obj, i) => {
             { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
           }) }
-        </Picker>
+        </PickerSpecific>
       </View>
     )
   }

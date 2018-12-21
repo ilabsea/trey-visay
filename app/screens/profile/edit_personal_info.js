@@ -6,12 +6,10 @@ import {
   TouchableOpacity,
   TextInput,
   Picker,
+  Platform
 } from 'react-native';
-
-import {
-  Icon,
-} from 'react-native-material-ui';
 import Toast, { DURATION } from 'react-native-easy-toast';
+import IOSPicker from 'react-native-ios-picker';
 
 // Utils
 import realm from '../../schema';
@@ -26,36 +24,33 @@ import highSchoolList from '../../data/json/high_schools';
 
 let formError = {};
 
-export default class EditPersonalInfo extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack } = navigation;
+const schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
+const grades = [
+  { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
+  { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
+  { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
 
-    return {
-      title: 'កែសម្រួល',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>កែសម្រួល</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
-                    <Icon name='close' color='#fff' size={24} />
-                  </TouchableOpacity>,
-      headerRight: <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <Icon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>,
-    }
-  };
+export default class EditPersonalInfo extends Component {
 
   constructor(props) {
     super(props)
     this.state = { user: '', errors: {} };
   }
 
-  componentDidMount() {
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
+  componentWillMount() {
+    this.props.navigation.setParams({
+      handleSubmit: this.handleSubmit.bind(this),
+      _handleBack: this._handleBack.bind(this)
+    });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     user = Object.assign({}, user, {sex: user.sex || 'ស្រី', nationality: user.nationality || 'ខ្មែរ', grade: user.grade || '9',
                                     highSchoolId: user.highSchoolId || '1', houseType: user.houseType || 'ផ្ទះឈើ',
                                     collectiveIncome: user.collectiveIncome || '0-25ម៉ឺន'})
     this.setState({user: user});
+  }
+
+  _handleBack() {
+    this.props.navigation.goBack();
   }
 
   render() {
@@ -127,12 +122,6 @@ export default class EditPersonalInfo extends Component {
   }
 
   _renderPersonalInfo() {
-    let schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
-    let grades = [
-      { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
-      { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
-      { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
-
     return (
       <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
         { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
@@ -178,16 +167,20 @@ export default class EditPersonalInfo extends Component {
   }
 
   _renderPicker(params={}) {
+    let PickerSpecific = Platform.OS === 'ios' ?
+        IOSPicker :
+        Picker;
     return (
       <View style={styles.inputContainer}>
         <Text style={styles.inputLabel}>{params.label}</Text>
-        <Picker
-          selectedValue={this.state.user[params.stateName]}
+        <PickerSpecific
+          mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
+          selectedValue={params.options.find(obj => obj.value === this.state.user[params.stateName]).label}
           onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
           { params.options.map((obj, i) => {
             { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
           }) }
-        </Picker>
+        </PickerSpecific>
       </View>
     )
   }

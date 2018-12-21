@@ -13,13 +13,7 @@ import {
   BackHandler
 } from 'react-native';
 
-import Toast, { DURATION } from 'react-native-easy-toast'
-
-import {
-  ThemeContext,
-  getTheme,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -42,21 +36,6 @@ const uiTheme = {
 };
 
 export default class GoalScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ដាក់គោលដៅមួយ និងមូលហេតុ',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ដាក់គោលដៅមួយ និងមូលហេតុ</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeContext.Provider value={getTheme(uiTheme)}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeContext.Provider>,
-    }
-  };
-
   componentWillMount() {
     this._initState();
     this._backHandler();
@@ -150,7 +129,7 @@ export default class GoalScreen extends Component {
       <View style={shareStyles.footerWrapper}>
         <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
           <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
+          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
         </TouchableOpacity>
       </View>
     )
@@ -425,25 +404,23 @@ export default class GoalScreen extends Component {
 
   render() {
     return(
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderContent() }
-            </View>
-          </ScrollView>
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderContent() }
+          </View>
+        </ScrollView>
 
-          { this._renderFooter() }
+        { this._renderFooter() }
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-          <Toast ref="toast"/>
-        </View>
-      </ThemeContext.Provider>
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+        <Toast ref="toast"/>
+      </View>
     );
   };
 }
@@ -460,7 +437,7 @@ var styles = StyleSheet.create({
     fontSize: 50,
   },
   button: {
-    padding: 20,
+    padding: Platform.OS === 'ios' ? 15 : 20,
     borderWidth: 1,
     borderRadius: 28,
     width: 56,

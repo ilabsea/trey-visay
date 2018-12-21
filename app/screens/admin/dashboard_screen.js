@@ -8,14 +8,9 @@ import {
   Alert,
 } from 'react-native';
 
-import {
-  ThemeContext, getTheme,
-  Toolbar,
-  Icon,
-} from 'react-native-material-ui';
-
 import * as Progress from 'react-native-progress';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/FontAwesome';
 import Button from '../../components/button';
 
 // Utils
@@ -29,32 +24,27 @@ import { environment } from '../../config/environment';
 
 import { create } from 'apisauce';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
-
 export default class AdminDashboardScreen extends Component {
   static navigationOptions = {
     drawerLabel: 'ទំព័រដើម',
     drawerIcon: ({ tintColor }) => (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <Icon name="home" color={tintColor} />
-      </ThemeContext.Provider>
+      <MaterialIcon name="home" color={tintColor} />
     ),
   };
 
   componentWillMount() {
     let currentUser = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
 
-    this.state = {
+    this.setState({
       currentUser: currentUser
-    };
+    });
 
     this.api = create({
       baseURL: environment.apiUrl
     })
+  }
+
+  componentDidMount(){
     this._refreshState();
     this._handleInternetConnection();
   }
@@ -138,7 +128,7 @@ export default class AdminDashboardScreen extends Component {
     let attributes = {};
 
     for (var key in obj) {
-      let newKey = key.split(/(?=[A-Z])/).map(k => k.toLowerCase()).join('_');;
+      let newKey = key.split(/(?=[A-Z])/).map(k => k.toLowerCase()).join('_');
       attributes[newKey] = obj[key];
     }
 
@@ -158,7 +148,6 @@ export default class AdminDashboardScreen extends Component {
     if (!game || !game.users.length) {
       return this._handleResponse({ok: true}, sidekiq);
     }
-
     this.api.post('/games', this._buildGame(game))
     .then((res) => {
       this._handleResponse(res, sidekiq);
@@ -192,9 +181,12 @@ export default class AdminDashboardScreen extends Component {
     delete attributes.step;
     delete attributes.is_done;
     delete attributes.goal_career;
+    delete attributes.users;
+    delete attributes.game_subject.games;
 
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let careerIds = game.personalityCareers.map((obj) => obj.value);
+
     game.personalityCareers.map((obj) => {
       attributes.careers = currentGroup.careers.filter((item, pos) => { return careerIds.includes(item.id) });
     });
@@ -206,6 +198,8 @@ export default class AdminDashboardScreen extends Component {
 
     game.personalUnderstandings.map((pu) => {
       let obj = this._buildAttributes(pu);
+      delete obj.games;
+
       let myArr = [];
       let myObj = { 1: 'ឳពុកម្តាយ', 2: 'បងប្អូន', 3: 'ក្រុមប្រឹក្សាកុមារ', 4: 'នាយកសាលា', 5: 'គ្រូ', 6: 'មិត្តភក្តិ' };
 
@@ -214,11 +208,13 @@ export default class AdminDashboardScreen extends Component {
       }
       obj['ever_talked_with_anyone_about_career'] = myArr
 
+
       attributes.personal_understandings.push(obj);
     })
 
     // Form data
     let data = new FormData();
+
     data.append('data', JSON.stringify(attributes));
     data.append('auth_token', this.state.currentUser.token);
 
@@ -233,8 +229,8 @@ export default class AdminDashboardScreen extends Component {
     return data;
   }
 
-  _uploadData = () => {
-    if (this.count < this.state.totalCount) {
+  _uploadData() {
+    if ( this.count < this.state.totalCount ) {
       let sidekiq = this.state.data[this.count];
       this['_upload' + sidekiq.tableName](sidekiq);
       return;
@@ -247,7 +243,7 @@ export default class AdminDashboardScreen extends Component {
     let total = this.successCount + this.failCount;
 
     Alert.alert(
-      'ការបញ្ចូនទិន្នន័យទៅលើសរុបគឺ ' + total + ' លើ ' + this.state.totalCount,
+      'ការបញ្ចូនទិន្នន័យទៅលើសរុបគឺ ' + total + ' / ' + this.state.totalCount,
       'ជោគជ័យចំនួន ' + this.successCount + '; ហើយបរាជ័យចំនួន ' + this.failCount,
       [{ text: 'OK', onPress: () => this._refreshState() }],
       { cancelable: false }
@@ -260,7 +256,6 @@ export default class AdminDashboardScreen extends Component {
         'អ៊ីនធឺណេតមិនដំណើរការ',
         'ដើម្បីបញ្ជូនទិន្នន័យទៅលើបាន តម្រូវឲ្យអ្នកភ្ជាប់អុីនធឺណេតជាមុនសិន។');
     }
-
     if (this.state.showLoading) {
       this.cancel = true;
       return;
@@ -297,10 +292,10 @@ export default class AdminDashboardScreen extends Component {
             </Text>
 
             <Button
-              style={[shareStyles.btnSubmit, {paddingHorizontal: 16, marginTop: 24}]}
+              style={{paddingHorizontal: 16, marginTop: 24}}
               onPress={this._handleSubmit.bind(this)}>
 
-              <Text style={[shareStyles.submitText, {color: '#fff'}]}>
+              <Text style={shareStyles.submitText}>
                 { !this.state.showLoading && 'បញ្ចូនទិន្នន័យទៅលើ' }
                 { this.state.showLoading && 'បោះបង់' }
               </Text>
@@ -319,22 +314,14 @@ export default class AdminDashboardScreen extends Component {
 
   render() {
     return (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <View style={{flex: 1}} ref="adminDashboard">
-          <StatusBar />
+      <View style={{flex: 1}} ref="adminDashboard">
+        <StatusBar />
 
-          <Toolbar
-            leftElement="menu"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
-            onLeftElementPress={() => this.props.navigation.openDrawer()}
-          />
-
-          <ScrollView>
-            { !this.state.data.length && this._renderNoData() }
-            { !!this.state.data.length && this._renderHaveData() }
-          </ScrollView>
-        </View>
-      </ThemeContext.Provider>
+        <ScrollView>
+          {this.state.data &&  !this.state.data.length && this._renderNoData() }
+          {this.state.data && !!this.state.data.length && this._renderHaveData() }
+        </ScrollView>
+      </View>
     );
   }
 }
@@ -346,8 +333,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   btnLabel: {
-    fontSize: 24,
-    lineHeight: 40,
+    fontSize: 20,
     flex: 1,
     color: '#1976d2',
   },

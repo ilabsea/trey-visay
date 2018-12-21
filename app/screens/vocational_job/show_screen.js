@@ -7,11 +7,6 @@ import {
   Image,
 } from 'react-native';
 
-import {
-  ThemeContext, getTheme,
-  Toolbar,
-} from 'react-native-material-ui';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
@@ -30,17 +25,6 @@ const uiTheme = {
 };
 
 export default class VocationalJobShowScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: '',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>{state.params.title}</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerTintColor: '#fff'
-    }
-  };
-
   componentWillMount() {
     let currentGroup = characteristicList.find((obj) => obj.id == 4);
     let currentJob = currentGroup.careers.find((obj) => obj.id == this.props.navigation.state.params.id)
@@ -133,18 +117,16 @@ export default class VocationalJobShowScreen extends Component {
 
   render() {
     return (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <View style={{flex: 1}}>
-          <StatusBar />
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderDescription() }
-              { this._renderPlacesForWork() }
-              { this._renderSchoolList() }
-            </View>
-          </ScrollView>
-        </View>
-      </ThemeContext.Provider>
+      <View style={{flex: 1}}>
+        <StatusBar />
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderDescription() }
+            { this._renderPlacesForWork() }
+            { this._renderSchoolList() }
+          </View>
+        </ScrollView>
+      </View>
     );
   }
 }

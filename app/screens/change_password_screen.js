@@ -8,17 +8,10 @@ import {
   Alert,
 } from 'react-native';
 
-import {
-  ThemeContext,
-  getTheme,
-  Toolbar,
-  Icon,
-} from 'react-native-material-ui';
-
 import Toast, { DURATION } from 'react-native-easy-toast'
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import Button from '../components/button';
-import headerStyles from '../assets/style_sheets/header';
 import shareStyles from '../assets/style_sheets/profile_form';
 import styles from '../assets/style_sheets/login_form';
 import StatusBar from '../components/status_bar';
@@ -26,21 +19,13 @@ import StatusBar from '../components/status_bar';
 import realm from '../schema';
 import User from '../utils/user';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
-
 export default class ChangePasswordScreen extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     drawerLabel: 'ប្តូរលេខសម្ងាត់',
     drawerIcon: ({ tintColor }) => (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <Icon name="key" color={tintColor} />
-      </ThemeContext.Provider>
-    ),
-  };
+      <MaterialIcon name="key" color={tintColor} />
+    )
+  });
 
   constructor(props) {
     super(props);
@@ -55,8 +40,15 @@ export default class ChangePasswordScreen extends Component {
 
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-
     this.setState({ user: user });
+  }
+
+  componentDidMount(){
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+  }
+
+  _handleBack(){
+    this.props.navigation.goBack(null);
   }
 
   handleSubmit() {
@@ -85,56 +77,50 @@ export default class ChangePasswordScreen extends Component {
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
 
     return (
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <View style={styles.container}>
-          <StatusBar />
-          <Toolbar
-            leftElement="close"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ប្តូរលេខសម្ងាត់</Text>}
-            onLeftElementPress={() => this.props.navigation.goBack()}
-          />
+      <View style={styles.container}>
+        <StatusBar />
 
-          <ScrollView>
-            <View style={[styles.scrollContainer, {margin: 16}]}>
-              <View style={shareStyles.box}>
-                <Text>វាយបញ្ចូលលេខសម្ងាត់ចាស់</Text>
-                <TextInput
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({oldPassword: text})}
-                  value={this.state.oldPassword}
-                  onSubmitEditing={() => this.passwordInput.focus()}
-                  returnKeyType='next' />
+        <ScrollView>
+          <View style={[styles.scrollContainer, {margin: 16}]}>
+            <View style={shareStyles.box}>
+              <Text>វាយបញ្ចូលលេខសម្ងាត់ចាស់</Text>
+              <TextInput
+                secureTextEntry={true}
+                onChangeText={(text) => this.setState({oldPassword: text})}
+                value={this.state.oldPassword}
+                onSubmitEditing={() => this.passwordInput.focus()}
+                returnKeyType='next' />
 
-                <Text>វាយបញ្ចូលលេខសម្ងាត់ថ្មី</Text>
-                <TextInput
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({newPassword: text})}
-                  value={this.state.newPassword}
-                  ref={(input) => this.passwordInput = input}
-                  onSubmitEditing={() => this.passwordConfirmationInput.focus()}
-                  returnKeyType='next' />
+              <Text>វាយបញ្ចូលលេខសម្ងាត់ថ្មី</Text>
+              <TextInput
+                secureTextEntry={true}
+                onChangeText={(text) => this.setState({newPassword: text})}
+                value={this.state.newPassword}
+                ref={(input) => this.passwordInput = input}
+                onSubmitEditing={() => this.passwordConfirmationInput.focus()}
+                returnKeyType='next' />
 
-                <Text>វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត</Text>
-                <TextInput
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({passwordConfirmation: text})}
-                  value={this.state.passwordConfirmation}
-                  ref={(input) => this.passwordConfirmationInput = input}
-                  returnKeyType='done' />
+              <Text>វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត</Text>
+              <TextInput
+                secureTextEntry={true}
+                onChangeText={(text) => this.setState({passwordConfirmation: text})}
+                value={this.state.passwordConfirmation}
+                ref={(input) => this.passwordConfirmationInput = input}
+                returnKeyType='done' />
 
-                <View style={styles.submitWrapper}>
-                  <Button
-                    style={[styles.btnSubmit, {paddingHorizontal: 16}]}
-                    onPress={this.handleSubmit.bind(this)}
-                    disabled={!isEnabled} >
-                    <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>យល់ព្រម</Text>
-                  </Button>
-                </View>
+              <View style={styles.submitWrapper}>
+                <Button
+                  style={[styles.btnSubmit, {paddingHorizontal: 16}]}
+                  onPress={this.handleSubmit.bind(this)}
+                  disabled={!isEnabled} >
+                  <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>យល់ព្រម</Text>
+                </Button>
               </View>
             </View>
-          </ScrollView>
-        </View>
-      </ThemeContext.Provider>
+          </View>
+        </ScrollView>
+        <Toast ref='toast'/>
+      </View>
     )
   }
 }

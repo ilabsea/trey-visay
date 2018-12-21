@@ -14,6 +14,7 @@ class CustomSubmitButton extends React.Component{
   constructor(props) {
     super(props);
   };
+  
   handleClick = () => {
     this.props.handleSubmit();
   }

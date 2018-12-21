@@ -8,10 +8,6 @@ import {
   Linking,
 } from 'react-native';
 
-import {
-  Toolbar,
-} from 'react-native-material-ui';
-
 // Components
 import ScrollableHeader from '../../components/scrollable_header';
 import shareStyles from '../../assets/style_sheets/profile_form';
@@ -19,15 +15,15 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';
+import BackButton from '../../components/back_button';
 
 const PROFILE_SIZE = 120;
 
 export default class InstitutionDetail extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    header: null,
-    title: '',
-  });
-
+  static navigationOptions = {
+    header: null
+  }
+  
   componentWillMount() {
     this.setState({
       school: schoolList.filter((school) => school.id == this.props.navigation.state.params.id)[0]
@@ -166,14 +162,7 @@ export default class InstitutionDetail extends Component {
 
   _renderHeader() {
     return(
-      <Toolbar
-        leftElement="arrow-back"
-        centerElement=""
-        onLeftElementPress={() => this.props.navigation.goBack()}
-        style={{
-          container: {backgroundColor: 'transparent'}
-        }}
-      />
+      <BackButton navigation={this.props.navigation}/>
     )
   }
 

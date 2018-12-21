@@ -19,17 +19,6 @@ import characteristicList from '../../../data/json/characteristic_jobs';
 import subjectTe from '../../../data/translates/subject';
 
 export default class RecommendationReport extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ការផ្តល់អនុសាសន៍',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ការផ្តល់អនុសាសន៍</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerTintColor: '#fff'
-    }
-  };
-
   componentWillMount() {
     this._initState();
   }
@@ -65,7 +54,6 @@ export default class RecommendationReport extends Component {
 
   _handleSubmit() {
     realm.write(() => {
-    //   realm.create('Game', this._buildData(), true);
       this.state.game.step = 'GoalScreen';
       this.props.navigation.navigate('GoalScreen', {career: this.state.currentJob.name});
     });

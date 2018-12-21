@@ -14,7 +14,7 @@ import {
 
 import Toast, { DURATION } from 'react-native-easy-toast';
 
-import { Toolbar } from 'react-native-material-ui';
+import { ThemeContext, getTheme, Toolbar } from 'react-native-material-ui';
 
 import LoadingIndicator from '../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -23,6 +23,19 @@ import { Thumbnail } from 'react-native-thumbnail-video';
 import headerStyles from '../assets/style_sheets/header';
 import StatusBar from '../components/status_bar';
 import videoList from '../data/json/videos';
+
+const uiTheme = {
+  palette: {
+    primaryColor: '#1976d2',
+  },
+  toolbar: {
+    container: {height: 65},
+    leftElementContainer: {marginTop: 25},
+    centerElementContainer:{marginTop: 25} ,
+    rightElementContainer: {marginTop: 20},
+  },
+};
+
 
 export default class VideoScreen extends Component {
   static navigationOptions = {
@@ -169,24 +182,26 @@ export default class VideoScreen extends Component {
 
   render() {
     return(
-      <View style={styles.container} ref="myRef">
-        <StatusBar />
-        <Toolbar
-          leftElement="menu"
-          centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}
-          onLeftElementPress={() => this.props.navigation.openDrawer()}
-          searchable={{
-            autoFocus: true,
-            placeholder: 'Search',
-            onChangeText: this._onChangeText.bind(this),
-            onSearchClosed: this._onSearchClosed.bind(this)
-          }}
-        />
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
+        <View style={styles.container} ref="myRef">
+          <StatusBar />
+          <Toolbar
+            leftElement="menu"
+            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}
+            onLeftElementPress={() => this.props.navigation.openDrawer()}
+            searchable={{
+              autoFocus: true,
+              placeholder: 'Search',
+              onChangeText: this._onChangeText.bind(this),
+              onSearchClosed: this._onSearchClosed.bind(this)
+            }}
+          />
 
-        { this.state.isLoaded && this.state.isConnected && this._renderContent() }
-        { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
-        <Toast ref='toast'/>
-      </View>
+          { this.state.isLoaded && this.state.isConnected && this._renderContent() }
+          { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
+          <Toast ref='toast'/>
+        </View>
+      </ThemeContext.Provider>
     );
   };
 }

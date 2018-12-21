@@ -45,8 +45,7 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: 'rgb(221,44,0)',
-    fontSize: 12,
-    lineHeight: 14
+    fontSize: 12
   },
   inputLabel: {
     color: 'rgba(0,0,0,0.5)',

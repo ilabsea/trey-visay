@@ -16,17 +16,14 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Accordion from 'react-native-collapsible/Accordion';
 import { Divider } from 'react-native-elements';
 
+import BackButton from '../../components/back_button';
+
 let job;
 export default class CareerDetailScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
-
     return {
-      title: '',
-      headerTitle: !!state.params && state.params.title,
-      headerStyle: headerStyles.headerStyle,
-      headerTitleStyle: headerStyles.headerTitleStyle,
-      headerTintColor: '#fff',
+      headerTitle: !!state.params && state.params.title
     }
   };
 

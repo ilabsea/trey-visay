@@ -4,51 +4,39 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Picker
+  Picker,
+  Platform
 } from 'react-native';
-
-import {
-  Icon,
-} from 'react-native-material-ui';
 import Toast, { DURATION } from 'react-native-easy-toast';
+import IOSPicker from 'react-native-ios-picker';
 
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
 
 import RadioGroupContainer from '../../components/radio_group_container';
+
 
 let formError = {};
 
 export default class EditFamilySituation extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack } = navigation;
-
-    return {
-      title: 'កែសម្រួល',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>កែសម្រួល</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
-                    <Icon name='close' color='#fff' size={24} />
-                  </TouchableOpacity>,
-      headerRight: <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <Icon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>,
-    }
-  };
-
   constructor(props) {
     super(props)
     this.state = { user: '', errors: {} };
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
+    this.props.navigation.setParams({
+      handleSubmit: this.handleSubmit.bind(this),
+      _handleBack: this._handleBack.bind(this)
+    });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     this.setState({user: user});
+  }
+
+  _handleBack() {
+    this.props.navigation.goBack();
   }
 
   render() {
@@ -127,16 +115,20 @@ export default class EditFamilySituation extends Component {
   }
 
   _renderPicker(params={}) {
+    let PickerSpecific = Platform.OS === 'ios' ?
+        IOSPicker :
+        Picker;
     return (
       <View style={styles.inputContainer}>
         <Text style={styles.inputLabel}>{params.label}</Text>
-        <Picker
+        <PickerSpecific
+          mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
           selectedValue={this.state.user[params.stateName]}
           onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
           { params.options.map((obj, i) => {
             { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
           }) }
-        </Picker>
+        </PickerSpecific>
       </View>
     )
   }
