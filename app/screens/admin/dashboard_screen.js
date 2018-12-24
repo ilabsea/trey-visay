@@ -6,6 +6,7 @@ import {
   StyleSheet,
   NetInfo,
   Alert,
+  Platform
 } from 'react-native';
 
 import * as Progress from 'react-native-progress';
@@ -114,8 +115,9 @@ export default class AdminDashboardScreen extends Component {
     data.append('auth_token', this.state.currentUser.token);
 
     if (user.photo) {
+      let uri = Platform.OS == 'ios' ? 'file://' + user.photo : user.photo;
       data.append('photo', {
-        uri: user.photo,
+        uri: uri,
         type: 'image/jpeg',
         name: 'userPhoto'
       });
@@ -225,6 +227,7 @@ export default class AdminDashboardScreen extends Component {
         name: 'voiceRecord.aac'
       });
     }
+    console.log('data in build game : ', data)
 
     return data;
   }

@@ -5,7 +5,7 @@ buildscript {
         buildToolsVersion = "27.0.3"
         minSdkVersion = 16
         compileSdkVersion = 27
-        targetSdkVersion = 26
+        targetSdkVersion = 27
         supportLibVersion = "27.1.1"
     }
     repositories {
@@ -29,6 +29,12 @@ allprojects {
             // All of React Native (JS, Obj-C sources, Android binaries) is installed from npm
             url "$rootDir/../node_modules/react-native/android"
         }
+
+        // ADD THIS
+        maven { url 'https://maven.google.com' }
+
+        // ADD THIS
+        maven { url "https://jitpack.io" }
     }
 }
 
