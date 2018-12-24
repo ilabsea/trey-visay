@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import {
   Text,
-  TextInput,
   View,
   StyleSheet,
+  Platform
 } from 'react-native';
+import InputField from './input_field';
 
 class InputTextContainer extends Component {
   constructor(props) {
@@ -20,15 +21,15 @@ class InputTextContainer extends Component {
 
     return (
       <View style={[styles.inputContainer, style]}>
-        <Text style={styles.inputLabel}>{this.props.label}</Text>
-        <TextInput
+        <Text style={styles.inputLabel}>{this.props.name}</Text>
+        <InputField
           underlineColorAndroid='rgba(0,0,0,0.7)'
           style={ styles.inputText }
           onChangeText={ this.props.onChangeText }
           keyboardType={ this.props.keyboardType || 'default'}
           value={ this.props.value }
-          ref={this.props.inputRef}
-          {...props}
+          ref={ this.props.inputRef }
+          { ...props }
         />
         {errorElements}
       </View>

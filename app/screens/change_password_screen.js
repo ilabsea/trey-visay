@@ -4,15 +4,14 @@ import {
   View,
   ScrollView,
   StyleSheet,
-  TextInput,
   Alert,
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import { TextField } from 'react-native-material-textfield';
 
 import Button from '../components/button';
+import InputField from '../components/input_field';
 import shareStyles from '../assets/style_sheets/profile_form';
 import styles from '../assets/style_sheets/login_form';
 import StatusBar from '../components/status_bar';
@@ -86,7 +85,7 @@ export default class ChangePasswordScreen extends Component {
             <View style={shareStyles.box}>
               <View style={{marginBottom: 24}}>
                 <Text style={{fontSize: 20}}>វាយបញ្ចូលលេខសម្ងាត់ចាស់</Text>
-                <TextField
+                <InputField
                   labelHeight={0}
                   placeholder='វាយបញ្ចូលលេខសម្ងាត់ចាស់នៅទីនេះ'
                   secureTextEntry={true}
@@ -98,7 +97,7 @@ export default class ChangePasswordScreen extends Component {
               </View>
               <View style={{marginBottom: 24, paddingVertical: 10}}>
                 <Text style={{fontSize: 20}}>វាយបញ្ចូលលេខសម្ងាត់ថ្មី</Text>
-                <TextField
+                <InputField
                   labelHeight={0}
                   placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីនៅទីនេះ'
                   secureTextEntry={true}
@@ -108,10 +107,10 @@ export default class ChangePasswordScreen extends Component {
                   onSubmitEditing={() => this.passwordConfirmationInput.focus()}
                   returnKeyType='next' />
               </View>
-              
+
               <View style={{marginBottom: 24, paddingVertical: 10}}>
                 <Text style={{fontSize: 20}}>វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត</Text>
-                <TextField
+                <InputField
                   labelHeight={0}
                   placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀតនៅទីនេះ'
                   secureTextEntry={true}

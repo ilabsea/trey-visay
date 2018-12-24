@@ -103,11 +103,14 @@ export default class EditFamilyInfo extends Component {
   }
 
   _renderInputTextContainer(params={}) {
+    let placeholder='វាយ' + params.label + 'នៅទីនេះ';
+    let value = this.state.user[params.stateName] ? this.state.user[params.stateName]: '';
     return (
       <InputTextContainer
         onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
-        label={params.label}
-        value={this.state.user[params.stateName]}
+        name={params.label}
+        placeholder={placeholder}
+        value={value}
         errors={this.state.errors[params.stateName]}
         keyboardType={params.keyboardType || 'default' }
         inputRef={(input) => this[params.stateName + 'Input'] = input}

@@ -94,7 +94,7 @@ export default class EditProfilePhoto extends Component {
   handleSelectedPhoto(image) {
     let source = { uri: image.path };
     this.openDialog(false);
-    
+
     if (this.state.type == 'photo') {
       this.setState({ photo: source });
       this._setUserState('photo', image.path);

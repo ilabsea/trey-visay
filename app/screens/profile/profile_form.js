@@ -37,7 +37,7 @@ const grades = [
   { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
   { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
   { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
-  
+
 const CONTENTS = [
   { header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo' },
   { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' },
@@ -322,11 +322,14 @@ export default class ProfileForm extends Component {
   }
 
   _renderInputTextContainer(params={}) {
+    let placeholder='វាយ' + params.label + 'នៅទីនេះ';
+    let value = this.state.user[params.stateName] ? this.state.user[params.stateName]: '';
     return (
       <InputTextContainer
         onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
-        label={params.label}
-        value={this.state.user[params.stateName]}
+        name={params.label}
+        placeholder={placeholder}
+        value={value}
         errors={this.state.errors[params.stateName]}
         keyboardType={params.keyboardType || 'default' }
         inputRef={(input) => this[params.stateName + 'Input'] = input}
