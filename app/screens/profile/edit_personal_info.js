@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import IOSPicker from 'react-native-ios-picker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 
 // Utils
 import realm from '../../schema';
@@ -48,7 +50,12 @@ export default class EditPersonalInfo extends Component {
   render() {
     return (
       <ScrollView>
-        {this._renderPersonalInfo()}
+        <KeyboardAwareScrollView
+          resetScrollToCoords={{ x: 0, y: 0 }}
+          contentContainerStyle={{flex: 1}}
+          scrollEnabled={false}>
+          {this._renderPersonalInfo()}
+        </KeyboardAwareScrollView>
         <Toast ref='toast'/>
       </ScrollView>
     )
