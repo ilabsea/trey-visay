@@ -11,6 +11,8 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import StatusBar from '../components/status_bar';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+
 
 // Utils
 import realm from '../schema';
@@ -85,66 +87,71 @@ export default class RegisterScreen extends Component {
           <StatusBar hidden={true} />
 
           <ScrollView>
-            <View style={{padding: 24}}>
-              <View style={{flex: 1, alignItems: 'center'}}>
-                <Image
-                  source={require('../assets/images/logo.png')}
-                  style={{width: 120, height: 120}}
-                />
+            <KeyboardAwareScrollView
+              resetScrollToCoords={{ x: 0, y: 0 }}
+              contentContainerStyle={{flex: 1}}
+              scrollEnabled={false}>
+              <View style={{padding: 24}}>
+                <View style={{flex: 1, alignItems: 'center'}}>
+                  <Image
+                    source={require('../assets/images/logo.png')}
+                    style={{width: 120, height: 120}}
+                  />
 
-                <Text style={styles.title}>ត្រីវិស័យ</Text>
-                <Text style={styles.subTitle}>បង្កើតគណនី</Text>
+                  <Text style={styles.title}>ត្រីវិស័យ</Text>
+                  <Text style={styles.subTitle}>បង្កើតគណនី</Text>
+                </View>
+
+                <View>
+                  <Text style={styles.whiteLabel}>ឈ្មោះគណនី</Text>
+                  <TextInput
+                    style={styles.inputText}
+                    onChangeText={(text) => this.setState({username: text})}
+                    value={this.state.username}
+                    underlineColorAndroid='transparent'
+                    onSubmitEditing={() => this.passwordInput.focus()}
+                    returnKeyType='next' />
+
+                  <Text style={styles.whiteLabel}>លេខសម្ងាត់</Text>
+                  <TextInput
+                    style={styles.inputText}
+                    secureTextEntry={true}
+                    onChangeText={(text) => this.setState({password: text})}
+                    value={this.state.password}
+                    ref={(input) => this.passwordInput = input}
+                    onSubmitEditing={() => this.passwordConfirmationInput.focus()}
+                    underlineColorAndroid='transparent'
+                    returnKeyType='next' />
+
+                  <Text style={styles.whiteLabel}>វាយលេខសម្ងាត់ម្តងទៀត</Text>
+                  <TextInput
+                    style={styles.inputText}
+                    secureTextEntry={true}
+                    onChangeText={(text) => this.setState({passwordConfirmation: text})}
+                    value={this.state.passwordConfirmation}
+                    ref={(input) => this.passwordConfirmationInput = input}
+                    underlineColorAndroid='transparent'
+                    returnKeyType='done' />
+                </View>
+
+                <View style={styles.submitWrapper}>
+                  <Button
+                    style={styles.btnSubmit}
+                    onPress={this.handleSubmit.bind(this)}
+                    disabled={!isEnabled} >
+                    <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>ចុះឈ្មោះ</Text>
+                  </Button>
+                </View>
+
+                <View style={styles.row}>
+                  <Text style={styles.whiteLabel}>មានគណនីរួចហើយមែនទេ?</Text>
+                  <TouchableOpacity
+                    onPress={() => this.props.navigation.goBack()}>
+                    <Text style={styles.linkText}>បញ្ចូលគណនី</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
-
-              <View>
-                <Text style={styles.whiteLabel}>ឈ្មោះគណនី</Text>
-                <TextInput
-                  style={styles.inputText}
-                  onChangeText={(text) => this.setState({username: text})}
-                  value={this.state.username}
-                  underlineColorAndroid='transparent'
-                  onSubmitEditing={() => this.passwordInput.focus()}
-                  returnKeyType='next' />
-
-                <Text style={styles.whiteLabel}>លេខសម្ងាត់</Text>
-                <TextInput
-                  style={styles.inputText}
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({password: text})}
-                  value={this.state.password}
-                  ref={(input) => this.passwordInput = input}
-                  onSubmitEditing={() => this.passwordConfirmationInput.focus()}
-                  underlineColorAndroid='transparent'
-                  returnKeyType='next' />
-
-                <Text style={styles.whiteLabel}>វាយលេខសម្ងាត់ម្តងទៀត</Text>
-                <TextInput
-                  style={styles.inputText}
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({passwordConfirmation: text})}
-                  value={this.state.passwordConfirmation}
-                  ref={(input) => this.passwordConfirmationInput = input}
-                  underlineColorAndroid='transparent'
-                  returnKeyType='done' />
-              </View>
-
-              <View style={styles.submitWrapper}>
-                <Button
-                  style={styles.btnSubmit}
-                  onPress={this.handleSubmit.bind(this)}
-                  disabled={!isEnabled} >
-                  <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>ចុះឈ្មោះ</Text>
-                </Button>
-              </View>
-
-              <View style={styles.row}>
-                <Text style={styles.whiteLabel}>មានគណនីរួចហើយមែនទេ?</Text>
-                <TouchableOpacity
-                  onPress={() => this.props.navigation.goBack()}>
-                  <Text style={styles.linkText}>បញ្ចូលគណនី</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+            </KeyboardAwareScrollView>
           </ScrollView>
         </ImageBackground>
       </LinearGradient>
