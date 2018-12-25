@@ -4,8 +4,10 @@ platform :ios, '9.0'
 target 'TreyVisay' do
   rn_path = '../node_modules/react-native'
   pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
+  pod 'Folly', :podspec => "#{rn_path}/third-party-podspecs/Folly.podspec"
   pod 'React', path: rn_path, subspecs: [
     'Core',
+    'CxxBridge',
     'RCTActionSheet',
     'RCTAnimation',
     'RCTGeolocation',
@@ -21,4 +23,12 @@ target 'TreyVisay' do
   pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
   pod 'Picker', :path => '../node_modules/react-native-picker'
 
+end
+
+post_install do |installer|
+  installer.pods_project.targets.each do |target|
+    if target.name == "React"
+      target.remove_from_project
+    end
+  end
 end
