@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Platform,
   TouchableHighlight
+  KeyboardAvoidingView
 } from 'react-native';
 
 import DatePicker from 'react-native-datepicker';
@@ -16,6 +17,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import IOSPicker from 'react-native-ios-picker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // Utils
 import realm from '../../schema';
@@ -126,7 +128,13 @@ export default class ProfileForm extends Component {
       <View style={{flex: 1}}>
         <StatusBar />
         <ScrollView style={{flex: 1}}>
-          { this._renderContent() }
+          <KeyboardAwareScrollView
+            resetScrollToCoords={{ x: 0, y: 0 }}
+            contentContainerStyle={{flex: 1}}
+            scrollEnabled={false}
+            extraHeight={0}>
+            { this._renderContent() }
+          </KeyboardAwareScrollView>
         </ScrollView>
 
         <ConfirmDialog
@@ -155,18 +163,23 @@ export default class ProfileForm extends Component {
     user[field] = value;
     this.setState({...this.state, user: user});
   }
-
   _renderSection(obj, i) {
     let collapsedSection = 'collapsed' + i;
     return (
       <View style={styles.box}>
+<<<<<<< bf281f3f36e8abb2dc067c1fbf67388582c87729
         <TouchableHighlight onPress={this._toggleExpanded.bind(this, collapsedSection)} underlayColor="#F7FAF7">
+=======
+
+        <TouchableHighlight onPress={this._toggleExpanded.bind(this, collapsedSection)}>
+>>>>>>> fix keyboard overlay on profile and form understanding
           <Text style={styles.subTitle}>{obj.header}</Text>
         </TouchableHighlight>
 
         <Collapsible collapsed={this.state[collapsedSection]}>
-          {this[obj.body]()}
+            {this[obj.body]()}
         </Collapsible>
+
       </View>
     )
   }
@@ -293,16 +306,16 @@ export default class ProfileForm extends Component {
     let value = this.state.user[params.stateName] ? this.state.user[params.stateName]: '';
     return (
       <InputTextContainer
-        onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
-        name={params.label}
-        placeholder={placeholder}
-        value={value}
-        errors={this.state.errors[params.stateName]}
-        keyboardType={params.keyboardType || 'default' }
-        inputRef={(input) => this[params.stateName + 'Input'] = input}
-        onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
-        returnKeyType='next'
-        style={ params.style || {} }/>
+      onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
+      name={params.label}
+      placeholder={placeholder}
+      value={value}
+      errors={this.state.errors[params.stateName]}
+      keyboardType={params.keyboardType || 'default' }
+      inputRef={(input) => this[params.stateName + 'Input'] = input}
+      onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
+      returnKeyType='next'
+      style={ params.style || {} }/>
     )
   }
 
