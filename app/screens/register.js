@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import StatusBar from '../components/status_bar';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 
 // Utils
@@ -63,7 +63,6 @@ export default class RegisterScreen extends Component {
 
       });
     } catch (e) {
-      console.log('===========Error on creation', e);
       alert('Fail to create user!');
     }
   }

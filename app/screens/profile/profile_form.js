@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   Platform,
   TouchableHighlight
-  KeyboardAvoidingView
 } from 'react-native';
 
 import DatePicker from 'react-native-datepicker';
@@ -17,7 +16,6 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import IOSPicker from 'react-native-ios-picker';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // Utils
 import realm from '../../schema';
@@ -25,6 +23,8 @@ import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';
+import KeyboardSpecificScrollView from '../../components/keyboard_specific_scroll_view';
+
 
 // Components
 import RadioGroupContainer from '../../components/radio_group_container';
@@ -128,13 +128,9 @@ export default class ProfileForm extends Component {
       <View style={{flex: 1}}>
         <StatusBar />
         <ScrollView style={{flex: 1}}>
-          <KeyboardAwareScrollView
-            resetScrollToCoords={{ x: 0, y: 0 }}
-            contentContainerStyle={{flex: 1}}
-            scrollEnabled={false}
-            extraHeight={0}>
+          <KeyboardSpecificScrollView>
             { this._renderContent() }
-          </KeyboardAwareScrollView>
+          </KeyboardSpecificScrollView>
         </ScrollView>
 
         <ConfirmDialog
@@ -167,12 +163,7 @@ export default class ProfileForm extends Component {
     let collapsedSection = 'collapsed' + i;
     return (
       <View style={styles.box}>
-<<<<<<< bf281f3f36e8abb2dc067c1fbf67388582c87729
         <TouchableHighlight onPress={this._toggleExpanded.bind(this, collapsedSection)} underlayColor="#F7FAF7">
-=======
-
-        <TouchableHighlight onPress={this._toggleExpanded.bind(this, collapsedSection)}>
->>>>>>> fix keyboard overlay on profile and form understanding
           <Text style={styles.subTitle}>{obj.header}</Text>
         </TouchableHighlight>
 
