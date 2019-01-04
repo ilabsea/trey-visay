@@ -22,16 +22,6 @@ User.schema = {
     grade: { type: 'string', optional: true },
     address: { type: 'string', optional: true },
     role: { type: 'string', default: 'student' },
-    // *family information
-    fatherName: { type: 'string', optional: true },
-    fatherOccupation: { type: 'string', optional: true },
-    motherName: { type: 'string', optional: true },
-    motherOccupation: { type: 'string', optional: true },
-    guidance: { type: 'string', optional: true },
-    parentContactNumber: { type: 'string', optional: true },
-    numberOfFamilyMember: { type: 'string', optional: true },
-    numberOfSisters: { type: 'string', optional: true },
-    numberOfBrothers: { type: 'string', optional: true },
     // * family Situation
     isDivorce: { type: 'bool', default: false },
     isDisable: { type: 'bool', default: false },
@@ -47,13 +37,3 @@ User.schema = {
     token: { type: 'string', optional: true },
   }
 }
-
-// Another snippet
-// class User extends Realm.Object {}
-// User.schema = {
-//   name: 'User',
-//   properties: {
-//     fullName: 'string'
-//   }
-// };
-// export default User;

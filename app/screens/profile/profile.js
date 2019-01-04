@@ -65,7 +65,6 @@ export default class Profile extends Component {
         </View>
 
         { this._renderPersonalInfo() }
-        { this._renderFamilyInfo() }
         { this._renderFamilySituation() }
       </View>
     )
@@ -124,54 +123,6 @@ export default class Profile extends Component {
         <View style={styles.item}>
           <Text style={styles.itemLabel}>អាស័យដ្ឋានបច្ចុប្បន្ន</Text>
           <Text style={styles.itemValue}>: {this.state.user.address}</Text>
-        </View>
-      </View>
-    )
-  }
-
-  _renderFamilyInfo() {
-    return (
-      <View style={styles.box}>
-        <View style={styles.item}>
-          <Text style={styles.itemTitle}>ព័ត៌មានគ្រួសារ</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilyInfo', { refresh: this.refreshState.bind(this) })}>
-            <Icon name="edit" />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ឪពុកឈ្មោះ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.fatherName}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>មុខរបរ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.fatherOccupation}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ម្តាយឈ្មោះ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.motherName}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>មុខរបរ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.motherOccupation}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>អាណាព្យាបាល</Text>
-          <Text style={styles.itemValue}>: {this.state.user.guidance}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>លេខទូរស័ព្ទឪពុកម្តាយ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.parentContactNumber || '-'}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ចំនួនសមាជិកគ្រួសារ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.numberOfFamilyMember} (ស្រី{this.state.user.numberOfSisters} ប្រុស{this.state.user.numberOfBrothers})</Text>
         </View>
       </View>
     )

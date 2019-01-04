@@ -40,7 +40,6 @@ const grades = [
 
 const CONTENTS = [
   { header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo' },
-  { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' },
   { header: 'ស្ថានភាពគ្រួសារ', body: '_renderFamilySituation' }
 ];
 
@@ -70,7 +69,6 @@ export default class ProfileForm extends Component {
       errors: {},
       collapsed0: false,
       collapsed1: true,
-      collapsed2: true,
       confirmDialogVisible: false,
     }
   }
@@ -196,8 +194,7 @@ export default class ProfileForm extends Component {
   }
 
   isValidForm() {
-    fields = [ 'fullName', 'dateOfBirth', 'nationality', 'address', 'fatherName', 'fatherOccupation', 'motherName',
-               'motherOccupation', 'guidance', 'numberOfFamilyMember','numberOfSisters','numberOfBrothers'];
+    fields = [ 'fullName', 'dateOfBirth', 'nationality', 'address'];
     for (var i = 0; i < fields.length; i++) {
       this.checkRequire(fields[i]);
     }
@@ -207,18 +204,13 @@ export default class ProfileForm extends Component {
 
   _openErrorCollapsed() {
     let section1 = ['fullName', 'dateOfBirth', 'nationality', 'address'];
-    let section2 = ['fatherName', 'fatherOccupation', 'motherName', 'motherOccupation', 'guidance', 'numberOfFamilyMember','numberOfSisters','numberOfBrothers'];
     let errors = Object.keys(formError);
     let foundInSection1 = errors.some(r=> section1.includes(r));
-    let foundInSection2 = errors.some(r=> section2.includes(r));
     if (foundInSection1) {
       this.setState({collapsed0: false})
     }
-    if (foundInSection2) {
-      this.setState({collapsed1: false})
-    }
 
-    this.setState({collapsed2: false})
+    this.setState({collapsed1: false})
   }
 
   handleSubmit() {
@@ -264,31 +256,6 @@ export default class ProfileForm extends Component {
         { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
         { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolId', options: schools})}
         { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន', nextFocusInput: 'fatherNameInput'}) }
-      </View>
-    )
-  }
-
-  _renderFamilyInfo() {
-    return (
-      <View>
-        <View style={{flexDirection: 'row'}}>
-          { this._renderInputTextContainer({stateName: 'fatherName', label: 'ឈ្មោះឪពុក', nextFocusInput: 'fatherOccupationInput', style: {flex: 1}}) }
-          { this._renderInputTextContainer({stateName: 'fatherOccupation', label: 'មុខរបរ', nextFocusInput: 'motherNameInput', style: {flex: 1}}) }
-        </View>
-
-        <View style={{flexDirection: 'row'}}>
-          { this._renderInputTextContainer({stateName: 'motherName', label: 'ម្តាយឈ្មោះ', nextFocusInput: 'motherOccupationInput', style: {flex: 1}}) }
-          { this._renderInputTextContainer({stateName: 'motherOccupation', label: 'មុខរបរ', nextFocusInput: 'guidanceInput', style: {flex: 1}}) }
-        </View>
-
-        { this._renderInputTextContainer({stateName: 'guidance', label: 'អាណាព្យាបាល', nextFocusInput: 'parentContactNumberInput'}) }
-        { this._renderInputTextContainer({stateName: 'parentContactNumber', label: 'លេខទូរស័ព្ទឪពុកម្តាយ', nextFocusInput: 'numberOfFamilyMemberInput', keyboardType: 'phone-pad'}) }
-
-        <View style={{flexDirection: 'row'}}>
-          { this._renderInputTextContainer({stateName: 'numberOfFamilyMember', label: 'ចំនួនសមាជិកគ្រួសារ', nextFocusInput: 'numberOfSistersInput', keyboardType: 'numeric', style: {flex: 1}}) }
-          { this._renderInputTextContainer({stateName: 'numberOfSisters', label: 'ចំនួនបងប្អូនស្រី', nextFocusInput: 'numberOfBrothersInput', keyboardType: 'numeric', style: {flex: 1}}) }
-          { this._renderInputTextContainer({stateName: 'numberOfBrothers', label: 'ចំនួនបងប្អូនប្រុស', keyboardType: 'numeric', style: {flex: 1}}) }
-        </View>
       </View>
     )
   }

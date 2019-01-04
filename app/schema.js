@@ -12,7 +12,7 @@ import Game from './data/models/game';
 import GameSubject from './data/models/game_subject';
 import Sidekiq from './data/models/sidekiq';
 
-export default new Realm({schema: [
+const schema = [
   User,
   PersonalUnderstanding,
   arrayInt,
@@ -20,4 +20,20 @@ export default new Realm({schema: [
   Game,
   GameSubject,
   Sidekiq
-]});
+];
+
+
+const schemas = [
+  { schema: schema, schemaVersion: 1 }
+]
+
+// the first schema to update to is the current schema version
+// since the first schema in our array is at
+let nextSchemaIndex = Realm.schemaVersion(Realm.defaultPath);
+while (nextSchemaIndex < schemas.length) {
+  const migratedRealm = new Realm({ ...schemas[nextSchemaIndex] });
+  nextSchemaIndex += 1;
+  migratedRealm.close();
+}
+
+export default new Realm(schemas[schemas.length-1]);
