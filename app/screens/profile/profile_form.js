@@ -271,7 +271,7 @@ export default class ProfileForm extends Component {
         { this._renderRadioGroup({stateName: 'isDivorce', label: 'តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?', options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
         { this._renderRadioGroup({stateName: 'isDisable', label: 'តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?'}) }
         { this._renderRadioGroup({stateName: 'isDomesticViolence', label: 'តើក្នុងគ្រួសាររបស់ប្អូន មានអំពើហឹង្សាដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isSmoking', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ជក់បារីដែរឬទេ?'}) }
+        { this._renderRadioGroup({stateName: 'isSmoking', label: 'តើមានសមាជិកណាមួយក្នុងគ្រួសារប្អូន ជក់បារីដែរឬទេ?'}) }
         { this._renderRadioGroup({stateName: 'isAlcoholic', label: 'តេីមានសមាជិកណាមួយក្នុងគ្រួសាររបស់ប្អូន ញៀនសុរាដែរឬទេ?'}) }
         { this._renderRadioGroup({stateName: 'isDrug', label: 'តេីមានសមាជិកណាមួយក្នុងគ្រួសាររបស់ប្អូន ប្រេីប្រាស់គ្រឿងញៀនដែរឬទេ?'}) }
         { this._renderPicker({label: 'តើប្អូនមានប្រភេទផ្ទះបែបណា?', stateName: 'houseType', options: houseTypes}) }
