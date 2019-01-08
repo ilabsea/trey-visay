@@ -24,7 +24,8 @@ const schema = [
 
 
 const schemas = [
-  { schema: schema, schemaVersion: 1 }
+  { schema: schema, schemaVersion: 1 },
+  { schema: schema, schemaVersion: 2 }
 ]
 
 // the first schema to update to is the current schema version

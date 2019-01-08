@@ -141,21 +141,8 @@ export default class PersonalUnderstandingReport extends Component {
 
     return (
       <View style={shareStyles.box}>
-        <Text style={shareStyles.subTitle}>៥) តើអ្នកអាចស្វែងរកការងារឬស្រាវជ្រាវរកមុខរបរតាមរយៈអ្វីខ្លះ?</Text>
+        <Text style={shareStyles.subTitle}>៥) តើប្អូនអាចស្វែងរកការងារបានដោយវិធីណាខ្លះ?</Text>
         <Text>{personalUnderstanding.howToReachJobVacancy}</Text>
-      </View>
-    );
-  }
-
-  _renderQuestion6(personalUnderstanding) {
-    if (!personalUnderstanding.whoToReachJobVacancy) {
-      return (null);
-    }
-
-    return (
-      <View style={shareStyles.box}>
-        <Text style={shareStyles.subTitle}>៦) តើអ្នកអាចស្វែងរកការងារឬស្រាវជ្រាវរកមុខរបរតាមរយៈអ្នកណា?</Text>
-        <Text>{personalUnderstanding.whoToReachJobVacancy}</Text>
       </View>
     );
   }

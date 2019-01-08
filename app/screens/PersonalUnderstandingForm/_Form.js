@@ -129,20 +129,9 @@ function Form(props) {
       </View>
 
       <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>៥) តើអ្នកអាចស្វែងរកការងារឬស្រាវជ្រាវរកមុខរបរតាមរយៈអ្វីខ្លះ?</Text>
+        <Text style={styles.labelGroup}>៥) តើប្អូនអាចស្វែងរកការងារបានដោយវិធីណាខ្លះ?</Text>
         <Field
           name={'howToReachJobVacancy'}
-          component={CustomTextInput}
-          multiline={true}
-          numberOfLines={2}
-          placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
-        />
-      </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>៦) តើអ្នកអាចស្វែងរកការងារឬស្រាវជ្រាវរកមុខរបរតាមរយៈអ្នកណា?</Text>
-        <Field
-          name={'whoToReachJobVacancy'}
           component={CustomTextInput}
           multiline={true}
           numberOfLines={2}
