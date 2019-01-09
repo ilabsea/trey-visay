@@ -238,6 +238,8 @@ export default class ProfileForm extends Component {
             androidMode='spinner'
             placeholder="select date"
             format="DD-MMM-YYYY"
+            confirmBtnText="យល់ព្រម"
+            cancelBtnText="បោះបង់"
             maxDate={new Date()}
             onDateChange={(date) => {this._setUserState('dateOfBirth', date)}} />
           <Text style={styles.errorText}>{this.state.errors.dateOfBirth}</Text>
