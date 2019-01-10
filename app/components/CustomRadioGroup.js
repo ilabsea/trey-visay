@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet , Platform} from 'react-native';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import { Divider } from 'react-native-elements';
 
@@ -18,16 +18,17 @@ class RadioButtonGroup extends React.Component {
           return(
             <View key={i}>
               <Divider/>
-              <View  style={{alignItems: 'flex-start', paddingVertical: 8}}>
-                <RadioButton labelHorizontal={true} key={i}>
+              <View  style={{alignItems: 'flex-start'}}>
+                <RadioButton labelHorizontal={true} key={i} >
                   <RadioButtonInput
                     obj={obj}
                     index={i}
                     isSelected={this.props.value == obj.value}
                     onPress={this.props.onPress}
-                    buttonSize={10}
-                    buttonOuterSize={20}
+                    buttonSize={15}
+                    circleSize={10}
                     buttonColor={buttonColor}
+                    buttonWrapStyle={{marginTop: 15}}
                   />
                   <RadioButtonLabel
                     obj={obj}
@@ -35,6 +36,7 @@ class RadioButtonGroup extends React.Component {
                     labelHorizontal={true}
                     onPress={this.props.onPress}
                     labelStyle={[this.props.labelStyle,{fontSize: 16, lineHeight: 28}]}
+                    labelWrapStyle={{width: '95%', padding: 15, paddingBottom: Platform.OS == 'ios' ? 5 : 15}}
                   />
                 </RadioButton>
               </View>
