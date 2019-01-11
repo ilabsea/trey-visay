@@ -16,7 +16,7 @@ import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
 
 import RadioGroupContainer from '../../components/radio_group_container';
-
+import FamilySituation from '../../data/json/family_situation.json';
 
 let formError = {};
 
@@ -149,14 +149,14 @@ export default class EditFamilySituation extends Component {
 
     return (
       <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
-        { this._renderRadioGroup({stateName: 'isDivorce', label: 'តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?', options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
-        { this._renderRadioGroup({stateName: 'isDisable', label: 'តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: 'តើក្នុងគ្រួសាររបស់ប្អូន មានអំពើហឹង្សាដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isSmoking', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ជក់បារីដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isAlcoholic', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ញៀនសុរាដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isDrug', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ប្រើប្រាស់គ្រឿងញៀនដែរឬទេ?'}) }
-        { this._renderPicker({label: 'តើប្អូនមានប្រភេទផ្ទះបែបណា?', stateName: 'houseType', options: houseTypes}) }
-        { this._renderPicker({label: 'តើគ្រួសាររបស់ប្អូនរកប្រាក់ចំណូលជាមធ្យមប្រហែលប៉ុន្មាន ក្នុង១ខែ?', stateName: 'collectiveIncome', options: collectiveIncomes}) }
+        { this._renderRadioGroup({stateName: 'isDivorce', label: FamilySituation.isDivorce, options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
+        { this._renderRadioGroup({stateName: 'isDisable', label: FamilySituation.isDisable}) }
+        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: FamilySituation.isDomesticViolence}) }
+        { this._renderRadioGroup({stateName: 'isSmoking', label: FamilySituation.isSmoking }) }
+        { this._renderRadioGroup({stateName: 'isAlcoholic', label: FamilySituation.isAlcoholic }) }
+        { this._renderRadioGroup({stateName: 'isDrug', label: FamilySituation.isDrug }) }
+        { this._renderPicker({label: FamilySituation.houseType, stateName: 'houseType', options: houseTypes}) }
+        { this._renderPicker({label: FamilySituation.collectiveIncome , stateName: 'collectiveIncome', options: collectiveIncomes}) }
       </View>
     )
   }

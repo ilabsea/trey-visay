@@ -20,15 +20,7 @@ import headerStyles from '../../assets/style_sheets/header';
 import DatePicker from 'react-native-datepicker';
 import InputTextContainer from '../../components/input_text_container';
 
-import highSchoolList from '../../data/json/high_schools';
-
 let formError = {};
-
-const schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
-const grades = [
-  { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
-  { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
-  { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
 
 export default class EditPersonalInfo extends Component {
 
@@ -43,8 +35,8 @@ export default class EditPersonalInfo extends Component {
       _handleBack: this._handleBack.bind(this)
     });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    user = Object.assign({}, user, {sex: user.sex || 'ស្រី', nationality: user.nationality || 'ខ្មែរ', grade: user.grade || '9',
-                                    highSchoolId: user.highSchoolId || '1', houseType: user.houseType || 'ផ្ទះឈើ',
+    user = Object.assign({}, user, {sex: user.sex || 'ស្រី', nationality: user.nationality || 'ខ្មែរ',
+                                    houseType: user.houseType || 'ផ្ទះឈើ',
                                     collectiveIncome: user.collectiveIncome || '0-25ម៉ឺន'})
     this.setState({user: user});
   }
@@ -137,15 +129,17 @@ export default class EditPersonalInfo extends Component {
             androidMode='spinner'
             placeholder="select date"
             format="DD-MMM-YYYY"
+            confirmBtnText="យល់ព្រម"
+            cancelBtnText="បោះបង់"
             maxDate={new Date()}
             onDateChange={(date) => {this._setUserState('dateOfBirth', date)}} />
           <Text style={styles.errorText}>{this.state.errors.dateOfBirth}</Text>
         </View>
 
         { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
-        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'addressInput', keyboardType: 'phone-pad'}) }
-        { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
-        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolId', options: schools})}
+        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'gradeInput', keyboardType: 'phone-pad'}) }
+        { this._renderInputTextContainer({stateName: 'grade', label: 'រៀនថ្នាក់ទី', nextFocusInput: 'highSchoolIdInput'}) }
+        { this._renderInputTextContainer({stateName: 'highSchoolId', label: 'រៀននៅសាលា', nextFocusInput: 'addressInput'}) }
         { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន'}) }
       </View>
     )

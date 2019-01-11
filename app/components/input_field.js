@@ -13,11 +13,13 @@ class InputField extends React.Component {
   }
 
   render() {
+    const {...props} = this.props;
     let InputSpecific = Platform.OS === 'ios' ? TextField : TextInput;
     return <InputSpecific
               labelHeight={0}
               label=''
-              {...this.props}/>;
+              ref={this.props.inputRef}
+              {...props}/>;
   }
 }
 

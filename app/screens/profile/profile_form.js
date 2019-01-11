@@ -29,18 +29,12 @@ import RadioGroupContainer from '../../components/radio_group_container';
 import InputTextContainer from '../../components/input_text_container';
 import SaveButton from '../../components/save_button';
 
-import highSchoolList from '../../data/json/high_schools';
+import FamilySituation from '../../data/json/family_situation.json';
 
 let formError = {};
-const schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
-const grades = [
-  { label: 'ថ្នាក់ទី9', value: '9' }, { label: 'ថ្នាក់ទី10', value: '10' },
-  { label: 'ថ្នាក់ទី11', value: '11' }, { label: 'ថ្នាក់ទី12', value: '12' },
-  { label: 'ផ្សេងៗ', value: 'ផ្សេងៗ' }];
 
 const CONTENTS = [
   { header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo' },
-  { header: 'ព័ត៌មានគ្រួសារ', body: '_renderFamilyInfo' },
   { header: 'ស្ថានភាពគ្រួសារ', body: '_renderFamilySituation' }
 ];
 
@@ -61,8 +55,7 @@ export default class ProfileForm extends Component {
     super(props);
     this._handleSubmit = this.props.navigation.setParams({ handleSubmit: this.handleSubmit.bind(this) });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    user = Object.assign({}, user, { sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9',
-                                    highSchoolId: '1',
+    user = Object.assign({}, user, { sex: 'ស្រី', nationality: 'ខ្មែរ',
                                     houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន' })
 
     this.state = {
@@ -70,7 +63,6 @@ export default class ProfileForm extends Component {
       errors: {},
       collapsed0: false,
       collapsed1: true,
-      collapsed2: true,
       confirmDialogVisible: false,
     }
   }
@@ -82,7 +74,7 @@ export default class ProfileForm extends Component {
   _skip() {
     try {
       realm.write(() => {
-        realm.create('User', { uuid: this.state.user.uuid, highSchoolId: '14', grade: 'ផ្សេងៗ' }, true);
+        realm.create('User', { uuid: this.state.user.uuid }, true);
         realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
         this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
       });
@@ -196,8 +188,7 @@ export default class ProfileForm extends Component {
   }
 
   isValidForm() {
-    fields = [ 'fullName', 'dateOfBirth', 'nationality', 'address', 'fatherName', 'fatherOccupation', 'motherName',
-               'motherOccupation', 'guidance', 'numberOfFamilyMember','numberOfSisters','numberOfBrothers'];
+    fields = [ 'fullName', 'dateOfBirth', 'nationality', 'address'];
     for (var i = 0; i < fields.length; i++) {
       this.checkRequire(fields[i]);
     }
@@ -207,18 +198,13 @@ export default class ProfileForm extends Component {
 
   _openErrorCollapsed() {
     let section1 = ['fullName', 'dateOfBirth', 'nationality', 'address'];
-    let section2 = ['fatherName', 'fatherOccupation', 'motherName', 'motherOccupation', 'guidance', 'numberOfFamilyMember','numberOfSisters','numberOfBrothers'];
     let errors = Object.keys(formError);
     let foundInSection1 = errors.some(r=> section1.includes(r));
-    let foundInSection2 = errors.some(r=> section2.includes(r));
     if (foundInSection1) {
       this.setState({collapsed0: false})
     }
-    if (foundInSection2) {
-      this.setState({collapsed1: false})
-    }
 
-    this.setState({collapsed2: false})
+    this.setState({collapsed1: false})
   }
 
   handleSubmit() {
@@ -241,7 +227,7 @@ export default class ProfileForm extends Component {
   _renderPersonalInfo() {
     return (
       <View>
-        { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
+        { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ', nextFocusInput: 'usernameInput'}) }
         { this._renderInputTextContainer({stateName: 'username', label: 'ឈ្មោះគណនី'}) }
         { this._renderPicker({label: 'ភេទ', stateName: 'sex', options: [{label: 'ស្រី', value: 'ស្រី'}, {label: 'ប្រុស', value: 'ប្រុស'}, {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ'}]}) }
 
@@ -254,41 +240,18 @@ export default class ProfileForm extends Component {
             androidMode='spinner'
             placeholder="select date"
             format="DD-MMM-YYYY"
+            confirmBtnText="យល់ព្រម"
+            cancelBtnText="បោះបង់"
             maxDate={new Date()}
             onDateChange={(date) => {this._setUserState('dateOfBirth', date)}} />
           <Text style={styles.errorText}>{this.state.errors.dateOfBirth}</Text>
         </View>
 
         { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
-        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'addressInput', keyboardType: 'phone-pad'}) }
-        { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
-        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolId', options: schools})}
-        { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន', nextFocusInput: 'fatherNameInput'}) }
-      </View>
-    )
-  }
-
-  _renderFamilyInfo() {
-    return (
-      <View>
-        <View style={{flexDirection: 'row'}}>
-          { this._renderInputTextContainer({stateName: 'fatherName', label: 'ឈ្មោះឪពុក', nextFocusInput: 'fatherOccupationInput', style: {flex: 1}}) }
-          { this._renderInputTextContainer({stateName: 'fatherOccupation', label: 'មុខរបរ', nextFocusInput: 'motherNameInput', style: {flex: 1}}) }
-        </View>
-
-        <View style={{flexDirection: 'row'}}>
-          { this._renderInputTextContainer({stateName: 'motherName', label: 'ម្តាយឈ្មោះ', nextFocusInput: 'motherOccupationInput', style: {flex: 1}}) }
-          { this._renderInputTextContainer({stateName: 'motherOccupation', label: 'មុខរបរ', nextFocusInput: 'guidanceInput', style: {flex: 1}}) }
-        </View>
-
-        { this._renderInputTextContainer({stateName: 'guidance', label: 'អាណាព្យាបាល', nextFocusInput: 'parentContactNumberInput'}) }
-        { this._renderInputTextContainer({stateName: 'parentContactNumber', label: 'លេខទូរស័ព្ទឪពុកម្តាយ', nextFocusInput: 'numberOfFamilyMemberInput', keyboardType: 'phone-pad'}) }
-
-        <View style={{flexDirection: 'row'}}>
-          { this._renderInputTextContainer({stateName: 'numberOfFamilyMember', label: 'ចំនួនសមាជិកគ្រួសារ', nextFocusInput: 'numberOfSistersInput', keyboardType: 'numeric', style: {flex: 1}}) }
-          { this._renderInputTextContainer({stateName: 'numberOfSisters', label: 'ចំនួនបងប្អូនស្រី', nextFocusInput: 'numberOfBrothersInput', keyboardType: 'numeric', style: {flex: 1}}) }
-          { this._renderInputTextContainer({stateName: 'numberOfBrothers', label: 'ចំនួនបងប្អូនប្រុស', keyboardType: 'numeric', style: {flex: 1}}) }
-        </View>
+        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'gradeInput', keyboardType: 'phone-pad'}) }
+        { this._renderInputTextContainer({stateName: 'grade', label: 'រៀនថ្នាក់ទី', nextFocusInput: 'highSchoolIdInput'}) }
+        { this._renderInputTextContainer({stateName: 'highSchoolId', label: 'រៀននៅសាលា', nextFocusInput: 'addressInput'}) }
+        { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន'}) }
       </View>
     )
   }
@@ -309,14 +272,14 @@ export default class ProfileForm extends Component {
 
     return (
       <View>
-        { this._renderRadioGroup({stateName: 'isDivorce', label: 'តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?', options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
-        { this._renderRadioGroup({stateName: 'isDisable', label: 'តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: 'តើក្នុងគ្រួសាររបស់ប្អូន មានអំពើហឹង្សាដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isSmoking', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ជក់បារីដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isAlcoholic', label: 'តេីមានសមាជិកណាមួយក្នុងគ្រួសាររបស់ប្អូន ញៀនសុរាដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isDrug', label: 'តេីមានសមាជិកណាមួយក្នុងគ្រួសាររបស់ប្អូន ប្រេីប្រាស់គ្រឿងញៀនដែរឬទេ?'}) }
-        { this._renderPicker({label: 'តើប្អូនមានប្រភេទផ្ទះបែបណា?', stateName: 'houseType', options: houseTypes}) }
-        { this._renderPicker({label: 'តើគ្រួសាររបស់ប្អូនរកប្រាក់ចំណូលជាមធ្យមប្រហែលប៉ុន្មាន ក្នុង១ខែ?', stateName: 'collectiveIncome', options: collectiveIncomes}) }
+        { this._renderRadioGroup({stateName: 'isDivorce', label: FamilySituation.isDivorce, options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
+        { this._renderRadioGroup({stateName: 'isDisable', label: FamilySituation.isDisable }) }
+        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: FamilySituation.isDomesticViolence }) }
+        { this._renderRadioGroup({stateName: 'isSmoking', label: FamilySituation.isSmoking }) }
+        { this._renderRadioGroup({stateName: 'isAlcoholic', label: FamilySituation.isAlcoholic }) }
+        { this._renderRadioGroup({stateName: 'isDrug', label: FamilySituation.isDrug }) }
+        { this._renderPicker({label: FamilySituation.houseType , stateName: 'houseType', options: houseTypes}) }
+        { this._renderPicker({label: FamilySituation.collectiveIncome , stateName: 'collectiveIncome', options: collectiveIncomes}) }
       </View>
     )
   }
