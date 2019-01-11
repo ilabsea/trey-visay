@@ -7,6 +7,7 @@ import CustomTextInput from '../../components/CustomTextInput'
 import CustomRadioGroup from '../../components/CustomRadioGroup'
 import CustomCheckbox from '../../components/CustomCheckbox'
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Question from '../../data/json/personal_understanding.json';
 
 import submit from './submit'
 
@@ -36,7 +37,7 @@ function Form(props) {
       </View>
 
       <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>១) តើប្អូននឹងបន្តការសិក្សារហូតដល់ថ្នាក់ទី១២ដែរឬទេ?</Text>
+        <Text style={styles.labelGroup}>{ Question.areYouGoingToStudyTillGrade12 }</Text>
         <Field
           name={'areYouGoingToStudyTillGrade12'}
           component={CustomRadioGroup}
@@ -51,7 +52,7 @@ function Form(props) {
       </View>
 
       <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>២) តើឪពុកម្តាយរបស់ប្អូននឹងអនុញ្ញាតឲ្យប្អូនបន្តការសិក្សារហូតដល់ថ្នាក់ទី១២ដែរឬទេ?</Text>
+        <Text style={styles.labelGroup}>{ Question.areYourParentsAllowYouToStudyTillGrade12 }</Text>
         <Field
           name={'areYourParentsAllowYouToStudyTillGrade12'}
           component={CustomRadioGroup}
@@ -66,7 +67,7 @@ function Form(props) {
       </View>
 
       <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>៣) តើប្អូនធ្លាប់គិតពីការងារមួយណាដែលប្អូនចង់ធ្វើក្រោយពេលបញ្ចប់ការសិក្សាដែរឬទេ?</Text>
+        <Text style={styles.labelGroup}>{ Question.haveYouEverThoughtOfCareer }</Text>
         <Field
           name={'haveYouEverThoughtOfCareer'}
           component={CustomRadioGroup}
@@ -79,7 +80,7 @@ function Form(props) {
         />
 
         <View style={styles.formSubGroup3}>
-          <Text style={getTextColor}>តើការងារនោះជាការងារអ្វី?</Text>
+          <Text style={getTextColor}>{ Question.careerName }</Text>
           <Field
             name={'careerName'}
             component={CustomTextInput}
@@ -90,7 +91,7 @@ function Form(props) {
         </View>
 
         <View style={styles.formSubGroup3}>
-          <Text style={getTextColor}>ចំពោះការងារដែលប្អូនបានជ្រើសរើសហើយ។​ តើប្អូនធ្វើដូចម្តេចដើម្បីឲ្យសម្រេចការងារដែលប្អូនជ្រើសរើសនោះ?</Text>
+          <Text style={getTextColor}>{ Question.howToReachCareerGoal }</Text>
           <Field
             name={'howToReachCareerGoal'}
             component={CustomTextInput}
@@ -103,7 +104,7 @@ function Form(props) {
 
 
         <View pointerEvents={ props.haveEverThoughtOfCareerIsYes ? "auto" : "none"}>
-          <Text style={getTextColor}>តើឪពុកម្តាយប្អូនយល់ស្របជាមួយគំនិតរបស់ប្អូនដែរឬទេ?</Text>
+          <Text style={getTextColor}>{ Question.doesParentsAgreeWith }</Text>
           <Field
             name={'doesParentsAgreeWith'}
             component={CustomRadioGroup}
@@ -121,7 +122,7 @@ function Form(props) {
       </View>
 
       <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>៤) តើប្អូនធ្លាប់និយាយជាមួយនរណាម្នាក់ពីការងារអនាគតរបស់ប្អូនដែរឬទេ? (ចម្លើយអាចលើសពី១)</Text>
+        <Text style={styles.labelGroup}>{ Question.everTalkedWithAnyoneAboutCareer }</Text>
         <Field
           name={'everTalkedWithAnyoneAboutCareer'}
           component={CustomCheckbox}
@@ -129,7 +130,7 @@ function Form(props) {
       </View>
 
       <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>៥) តើប្អូនអាចស្វែងរកការងារបានដោយវិធីណាខ្លះ?</Text>
+        <Text style={styles.labelGroup}>{ Question.howToReachJobVacancy }</Text>
         <Field
           name={'howToReachJobVacancy'}
           component={CustomTextInput}

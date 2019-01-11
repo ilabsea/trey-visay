@@ -17,6 +17,7 @@ import User from '../../../utils/user';
 import headerStyles from '../../../assets/style_sheets/header';
 import shareStyles from '../../../assets/style_sheets/profile_form';
 import StatusBar from '../../../components/status_bar';
+import Question from '../../../data/json/personal_understanding.json';
 
 export default class PersonalUnderstandingReport extends Component {
   componentWillMount() {
@@ -38,7 +39,7 @@ export default class PersonalUnderstandingReport extends Component {
 
     return (
       <View style={shareStyles.box}>
-        <Text style={shareStyles.subTitle}>១) តើអ្នកនឹងបន្តការសិក្សារហូតដល់ថ្នាក់ទី១២ដែរឬទេ?</Text>
+        <Text style={shareStyles.subTitle}>{Question.areYouGoingToStudyTillGrade12}</Text>
         <Divider style={{marginBottom: 8}}/>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
@@ -55,7 +56,7 @@ export default class PersonalUnderstandingReport extends Component {
 
     return (
       <View style={shareStyles.box}>
-        <Text style={shareStyles.subTitle}>២) តើឪពុកម្តាយរបស់ប្អូននឹងអនុញ្ញាតឲ្យប្អូនបន្តការសិក្សា រហូតដល់ថ្នាក់ទី១២ដែរឬទេ?</Text>
+        <Text style={shareStyles.subTitle}>{Question.areYourParentsAllowYouToStudyTillGrade12}</Text>
         <Divider style={{marginBottom: 8}}/>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
@@ -72,7 +73,7 @@ export default class PersonalUnderstandingReport extends Component {
 
     return (
       <View style={shareStyles.box}>
-        <Text style={shareStyles.subTitle}>៣) តើប្អូនធ្លាប់គិតពីការងារមួយណាដែលប្អូនចង់ធ្វើក្រោយពេលបញ្ចប់ការសិក្សាដែរឬទេ?</Text>
+        <Text style={shareStyles.subTitle}>{Question.haveYouEverThoughtOfCareer}</Text>
         <Divider style={{marginBottom: 8}}/>
         <View style={{flexDirection: 'row', alignItems: 'center'}}>
           <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
@@ -81,7 +82,7 @@ export default class PersonalUnderstandingReport extends Component {
 
         { !!personalUnderstanding.careerName &&
           <View>
-            <Text style={[shareStyles.subTitle, {marginTop: 12}]}>តើការងារនោះជាការងារអ្វី</Text>
+            <Text style={[shareStyles.subTitle, {marginTop: 12}]}>{Question.careerName}</Text>
             <Divider style={{marginBottom: 8}}/>
             <Text>{personalUnderstanding.careerName}</Text>
           </View>
@@ -89,7 +90,7 @@ export default class PersonalUnderstandingReport extends Component {
 
         { !!personalUnderstanding.howToReachCareerGoal &&
           <View>
-            <Text style={[shareStyles.subTitle, {marginTop: 12}]}>ចំពោះការងារដែលប្អូនបានជ្រើសរើសហើយ។​ តើប្អូនធ្វើដូចម្តេចដើម្បីឲ្យសម្រេចការងារដែលប្អូនជ្រើសរើសនោះ?</Text>
+            <Text style={[shareStyles.subTitle, {marginTop: 12}]}>{ Question.howToReachCareerGoal}</Text>
             <Divider style={{marginBottom: 8}}/>
             <Text>{personalUnderstanding.howToReachCareerGoal}</Text>
           </View>
@@ -97,7 +98,7 @@ export default class PersonalUnderstandingReport extends Component {
 
         { !!personalUnderstanding.doesParentsAgreeWith &&
           <View>
-            <Text style={[shareStyles.subTitle, {marginTop: 12}]}>តើឪពុកម្តាយអ្នកយល់ស្របជាមួយគំនិតរបស់អ្នកដែរឬទេ?</Text>
+            <Text style={[shareStyles.subTitle, {marginTop: 12}]}>{ Question.doesParentsAgreeWith }</Text>
             <Divider style={{marginBottom: 8}}/>
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
@@ -118,7 +119,7 @@ export default class PersonalUnderstandingReport extends Component {
 
     return (
       <View style={shareStyles.box}>
-        <Text style={shareStyles.subTitle}>៤) តើអ្នកធ្លាប់និយាយជាមួយនរណាម្នាក់ពីការងារអនាគតរបស់អ្នកដែរឬទេ?</Text>
+        <Text style={shareStyles.subTitle}>{ Question.everTalkedWithAnyoneAboutCareer}</Text>
         { personalUnderstanding.everTalkedWithAnyoneAboutCareer.map((obj, i) => {
           return (
             <View key={i}>
@@ -141,7 +142,7 @@ export default class PersonalUnderstandingReport extends Component {
 
     return (
       <View style={shareStyles.box}>
-        <Text style={shareStyles.subTitle}>៥) តើប្អូនអាចស្វែងរកការងារបានដោយវិធីណាខ្លះ?</Text>
+        <Text style={shareStyles.subTitle}>{ Question.howToReachJobVacancy }</Text>
         <Text>{personalUnderstanding.howToReachJobVacancy}</Text>
       </View>
     );
