@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {
   Text,
+  TextInput,
   View,
   StyleSheet,
-  Platform
 } from 'react-native';
 import InputField from './input_field';
 
@@ -28,8 +28,8 @@ class InputTextContainer extends Component {
           onChangeText={ this.props.onChangeText }
           keyboardType={ this.props.keyboardType || 'default'}
           value={ this.props.value }
-          ref={ this.props.inputRef }
-          { ...props }
+          inputRef={this.props.inputRef}
+          {...props}
         />
         {errorElements}
       </View>
