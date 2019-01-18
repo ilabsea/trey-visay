@@ -158,7 +158,6 @@ export default class PersonalUnderstandingReport extends Component {
         { this._renderQuestion3(obj) }
         { this._renderQuestion4(obj) }
         { this._renderQuestion5(obj) }
-        { this._renderQuestion6(obj) }
       </View>
     )
   }
