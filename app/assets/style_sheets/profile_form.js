@@ -15,7 +15,7 @@ export default StyleSheet.create({
     maxWidth: 500
   },
   inputLabel: {
-    color: 'rgba(0,0,0,0.5)',
+    fontSize: 16
   },
   errorText: {
     color: 'rgb(221,44,0)',

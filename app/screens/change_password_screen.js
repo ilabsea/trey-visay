@@ -12,6 +12,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import Button from '../components/button';
 import InputField from '../components/input_field';
+import InputTextContainer from '../components/input_text_container';
 import shareStyles from '../assets/style_sheets/profile_form';
 import styles from '../assets/style_sheets/login_form';
 import StatusBar from '../components/status_bar';
@@ -83,42 +84,36 @@ export default class ChangePasswordScreen extends Component {
         <ScrollView>
           <View style={[styles.scrollContainer, {margin: 16}]}>
             <View style={shareStyles.box}>
-              <View style={{marginBottom: 24}}>
-                <Text style={{fontSize: 20}}>វាយបញ្ចូលលេខសម្ងាត់ចាស់</Text>
-                <InputField
-                  labelHeight={0}
-                  placeholder='វាយបញ្ចូលលេខសម្ងាត់ចាស់នៅទីនេះ'
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({oldPassword: text})}
-                  value={this.state.oldPassword}
-                  onSubmitEditing={() => this.passwordInput.focus()}
-                  returnKeyType='next'
-                />
-              </View>
-              <View style={{marginBottom: 24, paddingVertical: 10}}>
-                <Text style={{fontSize: 20}}>វាយបញ្ចូលលេខសម្ងាត់ថ្មី</Text>
-                <InputField
-                  labelHeight={0}
-                  placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីនៅទីនេះ'
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({newPassword: text})}
-                  value={this.state.newPassword}
-                  ref={(input) => this.passwordInput = input}
-                  onSubmitEditing={() => this.passwordConfirmationInput.focus()}
-                  returnKeyType='next' />
-              </View>
+              <InputTextContainer
+                name = 'វាយបញ្ចូលលេខសម្ងាត់ចាស់'
+                labelHeight={0}
+                placeholder='វាយបញ្ចូលលេខសម្ងាត់ចាស់នៅទីនេះ'
+                secureTextEntry={true}
+                onChangeText={(text) => this.setState({oldPassword: text})}
+                value={this.state.oldPassword}
+                onSubmitEditing={() => this.passwordInput.focus()}
+                returnKeyType='next'/>
 
-              <View style={{marginBottom: 24, paddingVertical: 10}}>
-                <Text style={{fontSize: 20}}>វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត</Text>
-                <InputField
-                  labelHeight={0}
-                  placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀតនៅទីនេះ'
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({passwordConfirmation: text})}
-                  value={this.state.passwordConfirmation}
-                  ref={(input) => this.passwordConfirmationInput = input}
-                  returnKeyType='done' />
-              </View>
+              <InputTextContainer
+                name = 'វាយបញ្ចូលលេខសម្ងាត់ថ្មី'
+                llabelHeight={0}
+                placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីនៅទីនេះ'
+                secureTextEntry={true}
+                onChangeText={(text) => this.setState({newPassword: text})}
+                value={this.state.newPassword}
+                ref={(input) => this.passwordInput = input}
+                onSubmitEditing={() => this.passwordConfirmationInput.focus()}
+                returnKeyType='next'/>
+
+              <InputTextContainer
+                name = 'វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត'
+                labelHeight={0}
+                placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀតនៅទីនេះ'
+                secureTextEntry={true}
+                onChangeText={(text) => this.setState({passwordConfirmation: text})}
+                value={this.state.passwordConfirmation}
+                ref={(input) => this.passwordConfirmationInput = input}
+                returnKeyType='done'/>
 
               <View style={styles.submitWrapper}>
                 <Button

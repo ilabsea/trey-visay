@@ -6,6 +6,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import InputField from './input_field';
+import styles from '../assets/style_sheets/profile_form';
 
 class InputTextContainer extends Component {
   constructor(props) {
@@ -36,21 +37,5 @@ class InputTextContainer extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  inputContainer: {
-    padding: 2,
-    marginTop: 18,
-    marginBottom: 18,
-    maxWidth: 500
-  },
-  errorText: {
-    color: 'rgb(221,44,0)',
-    fontSize: 12
-  },
-  inputLabel: {
-    color: 'rgba(0,0,0,0.5)',
-  },
-})
 
 export default InputTextContainer;

@@ -230,23 +230,7 @@ export default class ProfileForm extends Component {
         { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ', nextFocusInput: 'usernameInput'}) }
         { this._renderInputTextContainer({stateName: 'username', label: 'ឈ្មោះគណនី'}) }
         { this._renderPicker({label: 'ភេទ', stateName: 'sex', options: [{label: 'ស្រី', value: 'ស្រី'}, {label: 'ប្រុស', value: 'ប្រុស'}, {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ'}]}) }
-
-        <View style={styles.inputContainer}>
-          <Text style={styles.inputLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
-          <DatePicker
-            style={{width: 200}}
-            date={this.state.user.dateOfBirth}
-            mode="date"
-            androidMode='spinner'
-            placeholder="select date"
-            format="DD-MMM-YYYY"
-            confirmBtnText="យល់ព្រម"
-            cancelBtnText="បោះបង់"
-            maxDate={new Date()}
-            onDateChange={(date) => {this._setUserState('dateOfBirth', date)}} />
-          <Text style={styles.errorText}>{this.state.errors.dateOfBirth}</Text>
-        </View>
-
+        { this._renderDatePicker() }
         { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
         { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'gradeInput', keyboardType: 'phone-pad'}) }
         { this._renderInputTextContainer({stateName: 'grade', label: 'រៀនថ្នាក់ទី', nextFocusInput: 'highSchoolIdInput'}) }
@@ -280,6 +264,26 @@ export default class ProfileForm extends Component {
         { this._renderRadioGroup({stateName: 'isDrug', label: FamilySituation.isDrug }) }
         { this._renderPicker({label: FamilySituation.houseType , stateName: 'houseType', options: houseTypes}) }
         { this._renderPicker({label: FamilySituation.collectiveIncome , stateName: 'collectiveIncome', options: collectiveIncomes}) }
+      </View>
+    )
+  }
+
+  _renderDatePicker(){
+    return(
+      <View style={styles.inputContainer}>
+        <Text style={styles.inputLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
+        <DatePicker
+          style={{width: 200}}
+          date={this.state.user.dateOfBirth}
+          mode="date"
+          androidMode='spinner'
+          placeholder="select date"
+          format="DD-MMM-YYYY"
+          confirmBtnText="យល់ព្រម"
+          cancelBtnText="បោះបង់"
+          maxDate={new Date()}
+          onDateChange={(date) => {this._setUserState('dateOfBirth', date)}} />
+        <Text style={styles.errorText}>{this.state.errors.dateOfBirth}</Text>
       </View>
     )
   }
