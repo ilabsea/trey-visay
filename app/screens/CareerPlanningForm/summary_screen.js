@@ -145,8 +145,6 @@ export default class SummaryScreen extends Component {
     return(
       <View style={styles.box}>
         <Text style={styles.subTitle}>ចូរជ្រើសរើស មុខរបរតែមួយគត់ដែលអ្នកពេញចិត្តបំផុត</Text>
-
-        <View style={{borderTopWidth: 1, borderTopColor: '#ccc', paddingVertical: 16}}>
           <RadioGroup
             style={{alignItems: 'flex-start'}}
             formVertical={true}
@@ -154,7 +152,6 @@ export default class SummaryScreen extends Component {
             onPress={(text) => this.setState({ mostFavorableJob: text })}
             value={this.state.mostFavorableJob} >
           </RadioGroup>
-        </View>
       </View>
     )
   }
