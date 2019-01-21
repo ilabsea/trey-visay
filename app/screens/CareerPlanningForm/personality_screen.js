@@ -167,6 +167,8 @@ export default class PersonalityScreen extends Component {
 
     return(
       <View style={styles.box}>
+        <Text style={styles.subTitle}>បុគ្គលិកលក្ខណៈ</Text>
+
         <View>
           <CheckboxGroup
             onSelect={(selected) => {this._handleChecked(selected)}}

@@ -11,7 +11,7 @@ import {
 import Toast, { DURATION } from 'react-native-easy-toast';
 
 import CheckboxGroup from '../../components/checkbox_group';
-import RadioGroup from '../../components/radio_group';
+import RadioButtonGroup from '../../components/radio_button_group';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -145,13 +145,11 @@ export default class SummaryScreen extends Component {
     return(
       <View style={styles.box}>
         <Text style={styles.subTitle}>ចូរជ្រើសរើស មុខរបរតែមួយគត់ដែលអ្នកពេញចិត្តបំផុត</Text>
-          <RadioGroup
-            style={{alignItems: 'flex-start'}}
-            formVertical={true}
-            options={this._formatDataForCheckbox(this.state.userCareers)}
+          <RadioButtonGroup
+            radio_props={this._formatDataForCheckbox(this.state.userCareers)}
             onPress={(text) => this.setState({ mostFavorableJob: text })}
             value={this.state.mostFavorableJob} >
-          </RadioGroup>
+          </RadioButtonGroup>
       </View>
     )
   }

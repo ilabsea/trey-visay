@@ -9,18 +9,13 @@ class RadioGroup extends Component {
   }
 
   render() {
-    const { labelStyle } = this.props;
-    const buttonColor = this.props.buttonColor || '#4caf50';
+    const {style, formVertical, ...props} = this.props;
 
     return (
-      <RadioForm
-        formHorizontal={false}
-        animation={true}
-        >
+      <RadioForm formHorizontal={!formVertical} animation={true} style={style}>
         { this.props.options.map((obj, i) => {
           return(
             <View key={i}>
-              <Divider/>
               <View  style={{alignItems: 'flex-start'}}>
                 <RadioButton labelHorizontal={true} key={i} >
                   <RadioButtonInput
@@ -28,18 +23,16 @@ class RadioGroup extends Component {
                     index={i}
                     isSelected={this.props.value == obj.value}
                     onPress={this.props.onPress}
-                    buttonSize={15}
-                    circleSize={10}
-                    buttonColor={buttonColor}
-                    buttonWrapStyle={{marginTop: 15}}
+                    buttonSize={10}
+                    buttonColor='#4caf50'
                   />
                   <RadioButtonLabel
                     obj={obj}
                     index={i}
                     labelHorizontal={true}
                     onPress={this.props.onPress}
-                    labelStyle={[this.props.labelStyle,{fontSize: 16, lineHeight: 28}]}
-                    labelWrapStyle={{width: '95%', padding: 15, paddingBottom: Platform.OS == 'ios' ? 5 : 15}}
+                    labelStyle={{fontSize: 16, lineHeight: 28}}
+                    labelWrapStyle={{marginRight: 20, paddingVertical: 3}}
                   />
                 </RadioButton>
               </View>
