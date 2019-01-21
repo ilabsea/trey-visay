@@ -16,6 +16,7 @@ const ProfileStack = createStackNavigator(
     Profile: {screen: Profile},
     EditProfilePhoto: {screen: EditProfilePhoto},
     EditPersonalInfo: {screen: EditPersonalInfo},
+    EditFamilySituation: {screen: EditFamilySituation},
   },
   {
     navigationOptions: ({navigation}) => ({
