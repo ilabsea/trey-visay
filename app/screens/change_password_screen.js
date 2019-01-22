@@ -5,6 +5,7 @@ import {
   ScrollView,
   StyleSheet,
   Alert,
+  TouchableOpacity
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -73,9 +74,10 @@ export default class ChangePasswordScreen extends Component {
   }
 
   render() {
-    const isEnabled = this.state.newPassword.length &&
+    const isEnabled = this.state.oldPassword.length && this.state.newPassword.length &&
                       this.state.passwordConfirmation.length;
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
+    const btnSubmitColor = isEnabled ? '#4caf50' : '#d9d9d9';
 
     return (
       <View style={styles.container}>
@@ -96,7 +98,7 @@ export default class ChangePasswordScreen extends Component {
 
               <InputTextContainer
                 name = 'វាយបញ្ចូលលេខសម្ងាត់ថ្មី'
-                llabelHeight={0}
+                labelHeight={0}
                 placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីនៅទីនេះ'
                 secureTextEntry={true}
                 onChangeText={(text) => this.setState({newPassword: text})}
@@ -116,12 +118,12 @@ export default class ChangePasswordScreen extends Component {
                 returnKeyType='done'/>
 
               <View style={styles.submitWrapper}>
-                <Button
-                  style={[styles.btnSubmit, {paddingHorizontal: 16}]}
+                <TouchableOpacity
                   onPress={this.handleSubmit.bind(this)}
-                  disabled={!isEnabled} >
+                  disabled={!isEnabled}
+                  style={[styles.btnSubmit, {backgroundColor: btnSubmitColor}]}>
                   <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>យល់ព្រម</Text>
-                </Button>
+                </TouchableOpacity>
               </View>
             </View>
           </View>

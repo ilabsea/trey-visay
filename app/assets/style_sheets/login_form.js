@@ -58,5 +58,12 @@ export default StyleSheet.create({
     position: 'absolute',
     right: 16,
     top: 16
+  },
+  btnSubmit: {
+    borderRadius: 3,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16
   }
 })
