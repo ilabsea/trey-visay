@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet , Platform} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -47,4 +47,22 @@ export default StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection:'row',
   },
+  icon: {
+    ...Platform.select({
+      ios: {
+        paddingTop: 0
+      },
+      android: {
+        paddingTop: 20
+      },
+    })
+  },
+  textTime: {
+    fontSize: 34,
+    ...Platform.select({
+      android: {
+        lineHeight: 48
+      }
+    })
+  }
 });

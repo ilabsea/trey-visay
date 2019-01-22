@@ -172,8 +172,17 @@ const styles = StyleSheet.create({
     margin: 24
   },
   icon: {
-    padding: Platform.OS == 'ios' ? 0 : 20,
-    marginTop: Platform.OS == 'ios' ? 0 : 20
+    ...Platform.select({
+      android: {
+        padding:  20,
+        marginTop: 20
+      },
+      ios: {
+        padding:  0,
+        marginTop: 0
+      }
+    })
+
   },
   overlay: {
     position: 'absolute',
