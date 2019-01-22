@@ -4,6 +4,7 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  TouchableHighlight,
   Modal,
 } from 'react-native';
 
@@ -135,15 +136,17 @@ export default class PersonalUnderstandingForm extends Component {
         </View>
 
         <View style={[styles.paragraph, {flexDirection: 'row', justifyContent: 'center'}]}>
-          <TouchableOpacity onPress={() => {
-            this.setModalVisible(!this.state.modalVisible)
-            store.dispatch({type: 'RESET'})
-          }} style={styles.button}>
+          <TouchableHighlight onPress={() => {
+              this.setModalVisible(!this.state.modalVisible)
+              store.dispatch({type: 'RESET'})
+            }} style={styles.button}
+            underlayColor="rgba(0, 128, 0, 0.2)"
+          >
             <Text style={styles.btnText}>
               {this.state.testCount < 2 && 'សូម'}
               សាកល្បងធ្វើតេស្តម្តងទៀត
             </Text>
-          </TouchableOpacity>
+          </TouchableHighlight>
 
           { this.state.testCount > 1 &&
             <TouchableOpacity onPress={() => {

@@ -78,6 +78,7 @@ export default class CareerDetailScreen extends Component {
         <View style={{margin: 16}}>
           <View style={styles.box}>
             <Accordion
+              touchableProps={{underlayColor:"#F7FAF7"}}
               sectionContainerStyle={{padding: 10}}
               activeSections={this.state.activeSections}
               sections={job.careers}

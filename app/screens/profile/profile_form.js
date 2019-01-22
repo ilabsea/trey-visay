@@ -6,8 +6,8 @@ import {
   TextInput,
   Picker,
   TouchableOpacity,
-  TouchableHighlight,
-  Platform
+  Platform,
+  TouchableHighlight
 } from 'react-native';
 
 import DatePicker from 'react-native-datepicker';
@@ -160,7 +160,7 @@ export default class ProfileForm extends Component {
     let collapsedSection = 'collapsed' + i;
     return (
       <View style={styles.box}>
-        <TouchableHighlight onPress={this._toggleExpanded.bind(this, collapsedSection)}>
+        <TouchableHighlight onPress={this._toggleExpanded.bind(this, collapsedSection)} underlayColor="#F7FAF7">
           <Text style={styles.subTitle}>{obj.header}</Text>
         </TouchableHighlight>
 
@@ -315,7 +315,6 @@ export default class ProfileForm extends Component {
         label={params.label} />
     )
   }
-
 
   _renderPicker(params={}) {
     let PickerSpecific = Platform.OS === 'ios' ?
