@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import { View, TextInput, Platform } from 'react-native';
+import { View, Platform, StyleSheet } from 'react-native';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
-import { Divider } from 'react-native-elements';
 
 class RadioGroup extends Component {
   constructor(props) {
@@ -31,7 +30,7 @@ class RadioGroup extends Component {
                     index={i}
                     labelHorizontal={true}
                     onPress={this.props.onPress}
-                    labelStyle={{fontSize: 16, lineHeight: 28}}
+                    labelStyle={styles.label}
                     labelWrapStyle={{marginRight: 20, paddingVertical: 3}}
                   />
                 </RadioButton>
@@ -43,5 +42,18 @@ class RadioGroup extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  label: {
+    ...Platform.select({
+      android: {
+        lineHeight: 18
+      },
+      ios: {
+        lineHeight: 28
+      },
+    })
+  }
+})
 
 export default RadioGroup;
