@@ -99,11 +99,11 @@ export default class Dashboard extends Component {
         style={[styles.btnBox]}>
         <View style={[styles.btnFab, {backgroundColor: options.icon_bg_color}]}>
           { !(options.icon_type == 'material') &&
-            <AwesomeIcon name={options.icon_name} size={50} color='#fff' />
+            <AwesomeIcon style={styles.icon} name={options.icon_name} size={50} color='#fff' />
           }
 
           { options.icon_type == 'material' &&
-            <MaterialIcon name={options.icon_name} size={56} color='#fff' />
+            <MaterialIcon style={styles.icon} name={options.icon_name} size={56} color='#fff' />
           }
         </View>
         <Text style={styles.btnLabel}>{options.title}</Text>
@@ -171,6 +171,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 24
   },
+  icon: {
+    ...Platform.select({
+      android: {
+        padding:  20,
+        marginTop: 20
+      },
+      ios: {
+        padding:  0,
+        marginTop: 0
+      }
+    })
+
+  },
   overlay: {
     position: 'absolute',
     backgroundColor: 'rgba(25, 118, 210, 0.9)',
@@ -183,6 +196,5 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginBottom: 10,
     textAlign: 'justify',
-    fontSize: 16,
   }
 });

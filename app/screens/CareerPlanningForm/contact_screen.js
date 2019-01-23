@@ -211,25 +211,25 @@ export default class ContactScreen extends Component {
         <View style={{marginRight: 16}}>
           { !this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._play()}>
-              <MaterialIcon name='play-circle-outline' size={40} color='#4caf50'/>
+              <MaterialIcon style={styles.icon} name='play-circle-outline' size={40} color='#4caf50'/>
             </TouchableOpacity>
           }
 
           { this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._stop()}>
-              <MaterialIcon name='pause-circle-outline' size={40} color='#e94b35'/>
+              <MaterialIcon style={styles.icon} name='pause-circle-outline' size={40} color='#e94b35'/>
             </TouchableOpacity>
           }
         </View>
 
-        <Text style={{fontSize: 34}}>{this.state.time}</Text>
+        <Text style={styles.textTime}>{this.state.time}</Text>
       </View>
     )
   }
 
   _renderReason() {
     return (
-      <View style={{flexDirection: 'row'}}>
+      <View>
         <Text style={{flex: 1}}>
           <AwesomeIcon name='quote-left' color='#1976d2' size={14} />
           <Text> {this.state.game.reason} </Text>
