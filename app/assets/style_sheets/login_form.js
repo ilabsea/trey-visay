@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet , Platform} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -7,7 +7,12 @@ export default StyleSheet.create({
   title: {
     fontSize: 30,
     color: '#fff',
-    marginTop: 20,
+    marginTop: 30,
+    ...Platform.select({
+      android: {
+        lineHeight: 48
+      },
+    })
   },
   subTitle: {
     fontSize: 24,

@@ -227,7 +227,6 @@ export default class AdminDashboardScreen extends Component {
         name: 'voiceRecord.aac'
       });
     }
-    console.log('data in build game : ', data)
 
     return data;
   }
