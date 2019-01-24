@@ -1,7 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field, formValueSelector, getFormValues, reset } from 'redux-form';
-import { ScrollView, View, Text, TouchableOpacity, Button, StyleSheet } from 'react-native';
+import {
+  reduxForm,
+  Field,
+  formValueSelector,
+  getFormValues,
+  reset
+} from 'redux-form';
+import {
+  View,
+  Text,
+  StyleSheet
+} from 'react-native';
 
 import CustomTextInput from '../../components/CustomTextInput'
 import CustomRadioGroup from '../../components/CustomRadioGroup'
@@ -20,9 +30,8 @@ function Form(props) {
   const labelStyle = props.haveEverThoughtOfCareerIsYes ? {} : {color: '#ccc'};
   const buttonColor = props.haveEverThoughtOfCareerIsYes ? '#4caf50' : '#ccc';
   return (
-    <ScrollView
-      showsVerticalScrollIndicator={false}
-      style={styles.scrollContainer}>
+
+    <View style={styles.scrollContainer}>
 
       <View>
         <View style={{flexDirection: 'row', marginVertical: 16}}>
@@ -139,15 +148,13 @@ function Form(props) {
           placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
         />
       </View>
-
-    </ScrollView>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
-    flexDirection: 'column',
     margin: 16,
   },
   formGroup: {

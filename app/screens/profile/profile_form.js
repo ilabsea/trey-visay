@@ -23,8 +23,7 @@ import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';
-import KeyboardSpecificScrollView from '../../components/keyboard_specific_scroll_view';
-
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Components
 import RadioGroupContainer from '../../components/radio_group_container';
@@ -127,11 +126,9 @@ export default class ProfileForm extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar />
-        <ScrollView style={{flex: 1}}>
-          <KeyboardSpecificScrollView>
-            { this._renderContent() }
-          </KeyboardSpecificScrollView>
-        </ScrollView>
+        <KeyboardAwareScrollView>
+          { this._renderContent() }
+        </KeyboardAwareScrollView>
 
         <ConfirmDialog
           title="អ្នកពិតជាចង់ចាកចេញមែនទេ?"
@@ -297,16 +294,16 @@ export default class ProfileForm extends Component {
     let value = this.state.user[params.stateName] ? this.state.user[params.stateName]: '';
     return (
       <InputTextContainer
-      onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
-      name={params.label}
-      placeholder={placeholder}
-      value={value}
-      errors={this.state.errors[params.stateName]}
-      keyboardType={params.keyboardType || 'default' }
-      inputRef={(input) => this[params.stateName + 'Input'] = input}
-      onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
-      returnKeyType='next'
-      style={ params.style || {} }/>
+        onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
+        name={params.label}
+        placeholder={placeholder}
+        value={value}
+        errors={this.state.errors[params.stateName]}
+        keyboardType={params.keyboardType || 'default' }
+        inputRef={(input) => this[params.stateName + 'Input'] = input}
+        onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
+        returnKeyType='next'
+        style={ params.style || {} }/>
     )
   }
 
