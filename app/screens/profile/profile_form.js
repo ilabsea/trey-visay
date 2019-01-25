@@ -325,7 +325,7 @@ export default class ProfileForm extends Component {
         <Text style={styles.inputLabel}>{params.label}</Text>
         <PickerSpecific
           mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
-          selectedValue={params.options.find(obj => obj.value === this.state.user[params.stateName]).label}
+          selectedValue={this.state.user[params.stateName]}
           onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
           { params.options.map((obj, i) => {
             { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }

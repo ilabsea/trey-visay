@@ -50,6 +50,9 @@ export default class EditFamilySituation extends Component {
 
   checkRequire(field) {
     let value = this.state.user[field];
+    console.log('field name : ', field);
+    console.log('field value : ', value);
+
     if ( value == null || !value.length) {
       formError[field] = ["មិនអាចទទេបានទេ"];
     } else {
@@ -58,20 +61,7 @@ export default class EditFamilySituation extends Component {
     this.setState({errors: formError})
   }
 
-  isValidForm() {
-    fields = [ 'fatherName', 'fatherOccupation', 'motherName', 'motherOccupation', 'guidance', 'numberOfFamilyMember','numberOfSisters','numberOfBrothers'];
-    for (var i = 0; i < fields.length; i++) {
-      this.checkRequire(fields[i]);
-    }
-
-    return Object.keys(formError).length == 0;
-  }
-
   handleSubmit() {
-    if (!this.isValidForm()) {
-      return this.refs.toast.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
-    }
-
     try {
       realm.write(() => {
         realm.create('User', this._buildData(), true);
