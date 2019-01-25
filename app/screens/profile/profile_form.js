@@ -23,6 +23,7 @@ import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Components
 import RadioGroupContainer from '../../components/radio_group_container';
@@ -125,9 +126,9 @@ export default class ProfileForm extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar />
-        <ScrollView style={{flex: 1}}>
+        <KeyboardAwareScrollView>
           { this._renderContent() }
-        </ScrollView>
+        </KeyboardAwareScrollView>
 
         <ConfirmDialog
           title="អ្នកពិតជាចង់ចាកចេញមែនទេ?"
@@ -155,7 +156,6 @@ export default class ProfileForm extends Component {
     user[field] = value;
     this.setState({...this.state, user: user});
   }
-
   _renderSection(obj, i) {
     let collapsedSection = 'collapsed' + i;
     return (
@@ -165,8 +165,9 @@ export default class ProfileForm extends Component {
         </TouchableHighlight>
 
         <Collapsible collapsed={this.state[collapsedSection]}>
-          {this[obj.body]()}
+            {this[obj.body]()}
         </Collapsible>
+
       </View>
     )
   }

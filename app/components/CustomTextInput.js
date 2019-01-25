@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View, StyleSheet } from 'react-native';
+import { TextInput, View, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import PropTypes from 'prop-types';
 
@@ -9,25 +9,24 @@ export default function CustomTextInput(props) {
   const formStates = ['active', 'autofilled', 'asyncValidating', 'dirty', 'invalid', 'pristine',
     'submitting', 'touched', 'valid', 'visited'];
 
-    const validationStyles = meta.touched && !meta.active
-      ? meta.valid ? styles.valid : styles.invalid
-      : null;
+  const validationStyles = meta.touched && !meta.active
+    ? meta.valid ? styles.valid : styles.invalid
+    : null;
 
-    const disableStyle = styles.disable;
+  const disableStyle = styles.disable;
 
   return (
     <View>
-      <TextField
-        {...inputProps}
-        label=''
-        value={input.value}
-        onChangeText={ input.onChange }
-        onBlur={input.onBlur}
-        onFocus={input.onFocus}
-        multiline={true}
-        labelHeight={0}
-        style={[validationStyles, disableStyle]}
-      />
+        <TextField
+          {...inputProps}
+          label=''
+          value={input.value}
+          onChangeText={ input.onChange }
+          onBlur={input.onBlur}
+          onFocus={input.onFocus}
+          labelHeight={0}
+          style={[validationStyles, disableStyle]}
+        />
     </View>
   );
 }

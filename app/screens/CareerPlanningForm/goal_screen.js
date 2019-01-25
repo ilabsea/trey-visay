@@ -18,6 +18,7 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
@@ -405,11 +406,11 @@ export default class GoalScreen extends Component {
   render() {
     return(
       <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
+        <KeyboardAwareScrollView style={{flex: 1}}>
           <View style={{margin: 16, flex: 1}}>
             { this._renderContent() }
           </View>
-        </ScrollView>
+        </KeyboardAwareScrollView>
 
         { this._renderFooter() }
 

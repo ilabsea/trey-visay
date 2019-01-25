@@ -6,9 +6,13 @@ import {
   TouchableOpacity,
   TouchableHighlight,
   Modal,
+  KeyboardAvoidingView,
+  Platform
 } from 'react-native';
 
-import Toast, { DURATION } from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -197,7 +201,7 @@ export default class PersonalUnderstandingForm extends Component {
   render() {
     return (
       <View>
-        <ScrollView>
+        <KeyboardAwareScrollView>
           <Modal
             animationType="slide"
             transparent={false}
@@ -220,8 +224,8 @@ export default class PersonalUnderstandingForm extends Component {
           <Provider store={store}>
             <Form ref={'form'} />
           </Provider>
-        </ScrollView>
         <Toast ref='toast'/>
+        </KeyboardAwareScrollView>
       </View>
     );
   };
