@@ -11,36 +11,24 @@ import {
 import { createStackNavigator } from 'react-navigation';
 
 // Screens
-import ProfileForm from './app/screens/profile/profile_form';
-import HomeNavigator from './app/screens/home';
-import Login from './app/screens/login';
-import AdminLogin from './app/screens/admin/login';
-import Register from './app/screens/register';
-import AdminHomeNavigator from './app/screens/admin/home';
-
-import User from './app/utils/user';
-import uuidv4 from './app/utils/uuidv4';
-import realm from './app/schema';
+import HomeScreen from './app/screens/home';
+import AdminHomeScreen from './app/screens/admin/home';
 
 const AppNavigator = createStackNavigator({
-  Login: { screen: Login },
-  AdminLogin: { screen: AdminLogin },
-  Register: { screen: Register },
-  ProfileForm: { screen: ProfileForm },
   Home: {
-    screen: ({ navigation }) => <HomeNavigator screenProps={{ rootNavigation: navigation }} />,
+    screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
     navigationOptions: ({navigation}) => ({
       header: null
     }),
   },
   AdminHome: {
-    screen: ({ navigation }) => <AdminHomeNavigator screenProps={{ rootNavigation: navigation }} />,
+    screen: ({ navigation }) => <AdminHomeScreen screenProps={{ rootNavigation: navigation }} />,
     navigationOptions: ({navigation}) => ({
       header: null
     }),
   }
 }, {
-  initialRouteName: 'Login',
+  initialRouteName: 'Home',
 });
 
 export default class App extends Component {
