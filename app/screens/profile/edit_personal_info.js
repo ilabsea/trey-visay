@@ -20,8 +20,10 @@ import headerStyles from '../../assets/style_sheets/header';
 
 import DatePicker from 'react-native-datepicker';
 import InputTextContainer from '../../components/input_text_container';
+import Grades from '../../data/json/grades.json';
 
 let formError = {};
+const grades = Grades;
 
 export default class EditPersonalInfo extends Component {
 
@@ -37,7 +39,7 @@ export default class EditPersonalInfo extends Component {
     });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     user = Object.assign({}, user, {sex: user.sex || 'ស្រី', nationality: user.nationality || 'ខ្មែរ',
-                                    houseType: user.houseType || 'ផ្ទះឈើ',
+                                    grade: '9', houseType: user.houseType || 'ផ្ទះឈើ',
                                     collectiveIncome: user.collectiveIncome || '0-25ម៉ឺន'})
     this.setState({user: user});
   }
@@ -124,7 +126,7 @@ export default class EditPersonalInfo extends Component {
         { this._renderDatePicker() }
         { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
         { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'gradeInput', keyboardType: 'phone-pad'}) }
-        { this._renderInputTextContainer({stateName: 'grade', label: 'រៀនថ្នាក់ទី', nextFocusInput: 'highSchoolIdInput'}) }
+        { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
         { this._renderInputTextContainer({stateName: 'highSchoolId', label: 'រៀននៅសាលា', nextFocusInput: 'addressInput'}) }
         { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន'}) }
       </View>
@@ -178,7 +180,7 @@ export default class EditPersonalInfo extends Component {
         <Text style={styles.inputLabel}>{params.label}</Text>
         <PickerSpecific
           mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
-          selectedValue={params.options.find(obj => obj.value === this.state.user[params.stateName]).label}
+          selectedValue={this.state.user[params.stateName]}
           onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
           { params.options.map((obj, i) => {
             { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }

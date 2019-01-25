@@ -31,6 +31,7 @@ import InputTextContainer from '../../components/input_text_container';
 import SaveButton from '../../components/save_button';
 
 import FamilySituation from '../../data/json/family_situation.json';
+import Grades from '../../data/json/grades.json';
 
 let formError = {};
 
@@ -38,6 +39,8 @@ const CONTENTS = [
   { header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo' },
   { header: 'ស្ថានភាពគ្រួសារ', body: '_renderFamilySituation' }
 ];
+
+const grades = Grades;
 
 export default class ProfileForm extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -56,7 +59,7 @@ export default class ProfileForm extends Component {
     super(props);
     this._handleSubmit = this.props.navigation.setParams({ handleSubmit: this.handleSubmit.bind(this) });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    user = Object.assign({}, user, { sex: 'ស្រី', nationality: 'ខ្មែរ',
+    user = Object.assign({}, user, { sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9',
                                     houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន' })
 
     this.state = {
@@ -75,7 +78,7 @@ export default class ProfileForm extends Component {
   _skip() {
     try {
       realm.write(() => {
-        realm.create('User', { uuid: this.state.user.uuid }, true);
+        realm.create('User', { uuid: this.state.user.uuid, grade: 'ផ្សេងៗ'}, true);
         realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
         this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
       });
@@ -234,7 +237,7 @@ export default class ProfileForm extends Component {
         { this._renderDatePicker() }
         { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
         { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'gradeInput', keyboardType: 'phone-pad'}) }
-        { this._renderInputTextContainer({stateName: 'grade', label: 'រៀនថ្នាក់ទី', nextFocusInput: 'highSchoolIdInput'}) }
+        { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
         { this._renderInputTextContainer({stateName: 'highSchoolId', label: 'រៀននៅសាលា', nextFocusInput: 'addressInput'}) }
         { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន'}) }
       </View>
