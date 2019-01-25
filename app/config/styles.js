@@ -18,13 +18,5 @@ export default StyleSheet.create({
   },
   subTitle: {
     fontSize: 16
-  },
-  inputText: {
-    height: 40,
-    paddingLeft: 5,
-    paddingRight: 5
-  },
-  inputLabel: {
-
   }
 });

@@ -12,7 +12,6 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import Button from '../components/button';
-import InputField from '../components/input_field';
 import InputTextContainer from '../components/input_text_container';
 import shareStyles from '../assets/style_sheets/profile_form';
 import styles from '../assets/style_sheets/login_form';
@@ -87,8 +86,7 @@ export default class ChangePasswordScreen extends Component {
           <View style={[styles.scrollContainer, {margin: 16}]}>
             <View style={shareStyles.box}>
               <InputTextContainer
-                name = 'វាយបញ្ចូលលេខសម្ងាត់ចាស់'
-                labelHeight={0}
+                label='វាយបញ្ចូលលេខសម្ងាត់ចាស់'
                 placeholder='វាយបញ្ចូលលេខសម្ងាត់ចាស់នៅទីនេះ'
                 secureTextEntry={true}
                 onChangeText={(text) => this.setState({oldPassword: text})}
@@ -97,8 +95,7 @@ export default class ChangePasswordScreen extends Component {
                 returnKeyType='next'/>
 
               <InputTextContainer
-                name = 'វាយបញ្ចូលលេខសម្ងាត់ថ្មី'
-                labelHeight={0}
+                label='វាយបញ្ចូលលេខសម្ងាត់ថ្មី'
                 placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីនៅទីនេះ'
                 secureTextEntry={true}
                 onChangeText={(text) => this.setState({newPassword: text})}
@@ -108,8 +105,7 @@ export default class ChangePasswordScreen extends Component {
                 returnKeyType='next'/>
 
               <InputTextContainer
-                name = 'វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត'
-                labelHeight={0}
+                label='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត'
                 placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀតនៅទីនេះ'
                 secureTextEntry={true}
                 onChangeText={(text) => this.setState({passwordConfirmation: text})}

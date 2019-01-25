@@ -4,7 +4,6 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  TextInput,
   Picker,
   Platform
 } from 'react-native';
@@ -136,7 +135,7 @@ export default class EditPersonalInfo extends Component {
   _renderDatePicker(){
     return(
       <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
+        <Text>ថ្ងៃខែឆ្នាំកំណើត</Text>
         <DatePicker
           style={{width: 200}}
           date={this.state.user.dateOfBirth}
@@ -159,15 +158,14 @@ export default class EditPersonalInfo extends Component {
     return (
       <InputTextContainer
         onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
-        name={params.label}
+        label={params.label}
         placeholder={placeholder}
         value={value}
         errors={this.state.errors[params.stateName]}
         keyboardType={params.keyboardType || 'default' }
         inputRef={(input) => this[params.stateName + 'Input'] = input}
         onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
-        returnKeyType='next'
-        style={ params.style || {} }/>
+        returnKeyType='next'/>
     )
   }
 
@@ -177,7 +175,7 @@ export default class EditPersonalInfo extends Component {
         Picker;
     return (
       <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>{params.label}</Text>
+        <Text>{params.label}</Text>
         <PickerSpecific
           mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
           selectedValue={this.state.user[params.stateName]}

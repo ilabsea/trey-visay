@@ -89,25 +89,31 @@ function Form(props) {
         />
 
         <View style={styles.formSubGroup3}>
-          <Text style={getTextColor}>{ Question.careerName }</Text>
+          <Text style={getTextColor} onPress={() => {this.careerName.focus()}}>
+            { Question.careerName }
+          </Text>
           <Field
-            name={'careerName'}
-            component={CustomTextInput}
-            multiline={true}
-            placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
-            editable={props.haveEverThoughtOfCareerIsYes}
-          />
-        </View>
-
-        <View style={styles.formSubGroup3}>
-          <Text style={getTextColor}>{ Question.howToReachCareerGoal }</Text>
-          <Field
-            name={'howToReachCareerGoal'}
+            name={ Question.careerName }
             component={CustomTextInput}
             multiline={true}
             numberOfLines={3}
             placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
             editable={props.haveEverThoughtOfCareerIsYes}
+            onRef={(input) => {this.careerName = input}}
+          />
+        </View>
+
+        <View style={styles.formSubGroup3}>
+          <Text
+            style={getTextColor}
+            onPress={() => {this.howToReachCareerGoal.focus()}}> { Question.howToReachJobVacancy } </Text>
+
+          <Field
+            name={ Question.howToReachCareerGoal }
+            component={CustomTextInput}
+            placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
+            editable={props.haveEverThoughtOfCareerIsYes}
+            onRef={(input) => {this.howToReachCareerGoal = input}}
           />
         </View>
 
@@ -131,7 +137,7 @@ function Form(props) {
       </View>
 
       <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>{ Question.everTalkedWithAnyoneAboutCareer }</Text>
+        <Text style={styles.labelGroup} >{ Question.everTalkedWithAnyoneAboutCareer }</Text>
         <Field
           name={'everTalkedWithAnyoneAboutCareer'}
           component={CustomCheckbox}
@@ -139,13 +145,12 @@ function Form(props) {
       </View>
 
       <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>{ Question.howToReachJobVacancy }</Text>
+        <Text style={styles.labelGroup} onPress={() => {this.howToReachJobVacancy.focus()}}> { Question.howToReachJobVacancy } </Text>
         <Field
-          name={'howToReachJobVacancy'}
+          name={ Question.howToReachJobVacancy }
           component={CustomTextInput}
-          multiline={true}
-          numberOfLines={2}
           placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
+          onRef={(input) => {this.howToReachJobVacancy = input}}
         />
       </View>
     </View>

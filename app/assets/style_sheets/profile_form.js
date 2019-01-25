@@ -10,12 +10,9 @@ export default StyleSheet.create({
   },
   inputContainer: {
     padding: 2,
-    marginTop: 18,
+    marginTop: 30,
     marginBottom: 18,
     maxWidth: 500
-  },
-  inputLabel: {
-    fontSize: 16
   },
   errorText: {
     color: 'rgb(221,44,0)',

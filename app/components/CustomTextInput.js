@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextInput, View, StyleSheet, KeyboardAvoidingView } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { TextField } from 'react-native-material-textfield';
 import PropTypes from 'prop-types';
 
@@ -17,22 +17,25 @@ export default function CustomTextInput(props) {
 
   return (
     <View>
-        <TextField
-          {...inputProps}
-          label=''
-          value={input.value}
-          onChangeText={ input.onChange }
-          onBlur={input.onBlur}
-          onFocus={input.onFocus}
-          labelHeight={0}
-          style={[validationStyles, disableStyle]}
-        />
+      <TextField
+        {...inputProps}
+        labelHeight={0}
+        label=''
+        value={input.value}
+        multiline={true}
+        onChangeText={ input.onChange }
+        onBlur={input.onBlur}
+        onFocus={input.onFocus}
+        ref={props.onRef }
+        style={[validationStyles, disableStyle]}
+      />
     </View>
   );
 }
 
 CustomTextInput.propTypes = {
   input: PropTypes.shape({
+    name: PropTypes.string,
     onBlur: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,

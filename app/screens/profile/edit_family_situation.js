@@ -110,7 +110,7 @@ export default class EditFamilySituation extends Component {
         Picker;
     return (
       <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>{params.label}</Text>
+        <Text>{params.label}</Text>
         <PickerSpecific
           mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
           selectedValue={this.state.user[params.stateName]}

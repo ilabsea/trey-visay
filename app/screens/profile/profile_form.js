@@ -3,7 +3,6 @@ import {
   Text,
   View,
   ScrollView,
-  TextInput,
   Picker,
   TouchableOpacity,
   Platform,
@@ -275,7 +274,7 @@ export default class ProfileForm extends Component {
   _renderDatePicker(){
     return(
       <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
+        <Text>ថ្ងៃខែឆ្នាំកំណើត</Text>
         <DatePicker
           style={{width: 200}}
           date={this.state.user.dateOfBirth}
@@ -298,15 +297,14 @@ export default class ProfileForm extends Component {
     return (
       <InputTextContainer
         onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
-        name={params.label}
+        label={params.label}
         placeholder={placeholder}
         value={value}
         errors={this.state.errors[params.stateName]}
         keyboardType={params.keyboardType || 'default' }
         inputRef={(input) => this[params.stateName + 'Input'] = input}
         onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
-        returnKeyType='next'
-        style={ params.style || {} }/>
+        returnKeyType='next'/>
     )
   }
 
@@ -326,7 +324,7 @@ export default class ProfileForm extends Component {
         Picker;
     return (
       <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>{params.label}</Text>
+        <Text>{params.label}</Text>
         <PickerSpecific
           mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
           selectedValue={this.state.user[params.stateName]}

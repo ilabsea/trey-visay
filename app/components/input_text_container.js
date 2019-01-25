@@ -4,8 +4,9 @@ import {
   TextInput,
   View,
   StyleSheet,
+  Platform
 } from 'react-native';
-import InputField from './input_field';
+import { TextField } from 'react-native-material-textfield';
 import styles from '../assets/style_sheets/profile_form';
 
 class InputTextContainer extends Component {
@@ -18,14 +19,17 @@ class InputTextContainer extends Component {
       return <Text key={i} style={styles.errorText}>{message}</Text>
     })
 
-    const {style, ...props} = this.props;
+    const { ...props} = this.props;
 
     return (
-      <View style={[styles.inputContainer, style]}>
-        <Text style={styles.inputLabel}>{this.props.name}</Text>
-        <InputField
-          underlineColorAndroid='rgba(0,0,0,0.7)'
-          style={ styles.inputText }
+      <View style={styles.inputContainer}>
+        <TextField
+          baseColor="rgba(0, 0, 0, 1)"
+          tintColor="black"
+          label={this.props.label}
+          labelFontSize={Platform.os === 'ios' ? 16 : 18}
+          labelHeight={10}
+          labelPadding={12}
           onChangeText={ this.props.onChangeText }
           keyboardType={ this.props.keyboardType || 'default'}
           value={ this.props.value }
