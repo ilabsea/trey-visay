@@ -150,14 +150,19 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 315,
     alignItems: 'center',
-    margin: 8,
+    margin: 10,
     backgroundColor: '#fff',
-    paddingRight: 16,
   },
   btnLabel: {
     fontSize: 24,
     color: '#1976d2',
+    width: '100%',
     textAlign: 'center',
+    ...Platform.select({
+      android: {
+        lineHeight: 48,
+      }
+    })
   },
   btnDescription: {
     padding: 8,
