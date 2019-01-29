@@ -61,5 +61,12 @@ export default StyleSheet.create({
         lineHeight: 48
       }
     })
+  },
+  dialogButtonText: {
+    ...Platform.select({
+      android: {
+        lineHeight: 18
+      }
+    })
   }
 });
