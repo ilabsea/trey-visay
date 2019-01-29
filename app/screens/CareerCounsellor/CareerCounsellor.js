@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Image,
   ScrollView,
+  Platform
 } from 'react-native';
 
 import realm from '../../schema';
@@ -144,7 +145,7 @@ export default class CareerCounsellor extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar />
-        <ScrollView style={{flex: 1}}>
+        <ScrollView>
           <View style={{margin: 16}}>
             { this._renderInstruction() }
             { this._renderGameHistory() }
@@ -198,6 +199,11 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 24,
     color: '#1976d2',
+    ...Platform.select({
+      android: {
+        lineHeight: 48
+      }
+    })
   },
   logoWrapper: {
     flexDirection: 'row',
@@ -209,7 +215,6 @@ const styles = StyleSheet.create({
     height: 60
   },
   text: {
-    fontWeight: 'bold',
-    fontSize: 14
+    fontWeight: 'bold'
   }
 });

@@ -39,7 +39,7 @@ const uiTheme = {
 
 export default class VideoScreen extends Component {
   static navigationOptions = {
-    drawerLabel: 'វីដេអូមុខរបរ',
+    drawerLabel: "វីដេអូមុខរបរ ",
     drawerIcon: ({ tintColor }) => (
       <AwesomeIcon name='play-circle-o' size={20} color={tintColor} />
     ),
@@ -187,7 +187,7 @@ export default class VideoScreen extends Component {
           <StatusBar />
           <Toolbar
             leftElement="menu"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}
+            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}> វីដេអូមុខរបរ</Text>}
             onLeftElementPress={() => this.props.navigation.openDrawer()}
             searchable={{
               autoFocus: true,
