@@ -45,7 +45,7 @@ export default class Dashboard extends Component {
       <View style={styles.overlay}>
         <ScrollView style={{flex: 1}}>
           <View style={{margin: 16}}>
-            <Text style={[styles.paragraph, {fontSize: 24, textAlign: 'center'}]}>ស្វាគមន៍មកកាន់ “ត្រីវិស័យ”</Text>
+            <Text style={[styles.paragraph, styles.welcomeText]}>ស្វាគមន៍មកកាន់ “ត្រីវិស័យ”</Text>
 
             <Text style={styles.paragraph}>
               ត្រីវិស័យ គឺជាកម្មវិធីប្រឹក្សាតាមប្រព័ន្ធអេឡិចត្រូនិចដែលតម្រង់ទិសសិស្សានុសិស្ស
@@ -201,5 +201,14 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginBottom: 10,
     textAlign: 'justify',
+  },
+  welcomeText: {
+    fontSize: 24,
+    textAlign: 'center',
+    ...Platform.select({
+      android: {
+        lineHeight: 48
+      }
+    })
   }
 });
