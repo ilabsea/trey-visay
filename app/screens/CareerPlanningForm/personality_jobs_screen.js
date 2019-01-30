@@ -11,6 +11,7 @@ import Toast, { DURATION } from 'react-native-easy-toast'
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 import CheckboxGroup from '../../components/checkbox_group';
+import FooterBar from '../../components/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../assets/style_sheets/profile_form';
@@ -171,17 +172,6 @@ export default class PersonalityJobsScreen extends Component {
     this.setState({jobs: value});
   }
 
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   _goNext() {
     if (this.state.jobs.length != 3) {
       return this.refs.toast.show('សូមជ្រើសរើសមុខរបរចំនួន 3គត់!', DURATION.SHORT);
@@ -219,8 +209,8 @@ export default class PersonalityJobsScreen extends Component {
           </View>
         </ScrollView>
 
-        { this._renderFooter() }
-        <Toast ref="toast"/>
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
+        <Toast ref='toast'/>
       </View>
     );
   };

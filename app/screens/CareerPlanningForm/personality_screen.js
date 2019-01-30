@@ -20,6 +20,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Images from '../../assets/images';
 import CheckboxGroup from '../../components/checkbox_group';
+import FooterBar from '../../components/FooterBar';
 import MathUtil from '../../utils/math';
 
 import realm from '../../schema';
@@ -89,17 +90,6 @@ export default class PersonalityScreen extends Component {
       this.setState({confirmDialogVisible: false});
       this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
-  }
-
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
   }
 
   _findAndSetMaximumScoreGroup() {
@@ -216,7 +206,7 @@ export default class PersonalityScreen extends Component {
           </View>
         </ScrollView>
 
-        { this._renderFooter() }
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -224,7 +214,7 @@ export default class PersonalityScreen extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <Toast ref="toast"/>
+        <Toast ref='toast'/>
       </View>
     );
   };

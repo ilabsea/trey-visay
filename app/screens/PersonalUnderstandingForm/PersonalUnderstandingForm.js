@@ -224,8 +224,9 @@ export default class PersonalUnderstandingForm extends Component {
           <Provider store={store}>
             <Form ref={'form'} />
           </Provider>
-        <Toast ref='toast'/>
+
         </KeyboardAwareScrollView>
+        <Toast ref='toast'/>
       </View>
     );
   };

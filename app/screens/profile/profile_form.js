@@ -149,7 +149,7 @@ export default class ProfileForm extends Component {
           }}
         />
 
-        <Toast ref="toast"/>
+        <Toast ref='toast'/>
 
       </View>
     )

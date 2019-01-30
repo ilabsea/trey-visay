@@ -22,6 +22,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
+import FooterBar from '../../components/FooterBar';
 import labelStyles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
@@ -123,17 +124,6 @@ export default class GoalScreen extends Component {
       this.setState({confirmDialogVisible: false});
       this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
-  }
-
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
   }
 
   _goNext() {
@@ -412,7 +402,7 @@ export default class GoalScreen extends Component {
           </View>
         </KeyboardAwareScrollView>
 
-        { this._renderFooter() }
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

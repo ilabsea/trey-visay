@@ -13,6 +13,7 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 import CheckboxGroup from '../../components/checkbox_group';
 import RadioButtonGroup from '../../components/radio_button_group';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
+import FooterBar from '../../components/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../assets/style_sheets/profile_form';
@@ -114,17 +115,6 @@ export default class SummaryScreen extends Component {
     return arr;
   }
 
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   _goNext() {
     if (!this.state.mostFavorableJob) {
       return this.refs.toast.show('សូូមជ្រើសរើសមុខរបរចំនួន 1!', DURATION.SHORT);
@@ -168,7 +158,7 @@ export default class SummaryScreen extends Component {
           </View>
         </ScrollView>
 
-        { this._renderFooter() }
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -176,7 +166,7 @@ export default class SummaryScreen extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <Toast ref="toast"/>
+        <Toast ref='toast'/>
       </View>
     );
   };

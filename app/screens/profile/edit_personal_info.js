@@ -52,11 +52,13 @@ export default class EditPersonalInfo extends Component {
 
   render() {
     return (
-      <KeyboardAwareScrollView>
-        {this._renderPersonalInfo()}
+      <View style={{flex: 1}}>
+        <KeyboardAwareScrollView>
+          {this._renderPersonalInfo()}
 
+        </KeyboardAwareScrollView>
         <Toast ref='toast'/>
-      </KeyboardAwareScrollView>
+       </View>
     )
   }
 

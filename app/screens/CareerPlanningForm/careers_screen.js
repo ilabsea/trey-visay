@@ -20,6 +20,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import careerList from '../../data/json/characteristic_jobs';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 import CloseButton from '../../components/close_button';
+import FooterBar from '../../components/FooterBar';
 
 
 import realm from '../../schema';
@@ -54,17 +55,6 @@ export default class CareersScreen extends Component {
     this.setState({confirmDialogVisible: true});
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
     return true
-  }
-
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
   }
 
   _goNext() {
@@ -120,7 +110,8 @@ export default class CareersScreen extends Component {
           </View>
 
         </ScrollView>
-        { this._renderFooter() }
+
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
