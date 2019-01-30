@@ -20,8 +20,10 @@ import headerStyles from '../../assets/style_sheets/header';
 import DatePicker from 'react-native-datepicker';
 import InputTextContainer from '../../components/input_text_container';
 import Grades from '../../data/json/grades.json';
+import highSchoolList from '../../data/json/high_schools';
 
 let formError = {};
+const schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
 const grades = Grades;
 
 export default class EditPersonalInfo extends Component {
@@ -38,7 +40,8 @@ export default class EditPersonalInfo extends Component {
     });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     user = Object.assign({}, user, {sex: user.sex || 'ស្រី', nationality: user.nationality || 'ខ្មែរ',
-                                    grade: '9', houseType: user.houseType || 'ផ្ទះឈើ',
+                                    grade: '9', highSchoolId: user.highSchoolId || '1',
+                                    houseType: user.houseType || 'ផ្ទះឈើ',
                                     collectiveIncome: user.collectiveIncome || '0-25ម៉ឺន'})
     this.setState({user: user});
   }
@@ -124,9 +127,9 @@ export default class EditPersonalInfo extends Component {
         { this._renderPicker({label: 'ភេទ', stateName: 'sex', options: [{label: 'ស្រី', value: 'ស្រី'}, {label: 'ប្រុស', value: 'ប្រុស'}, {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ'}]}) }
         { this._renderDatePicker() }
         { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
-        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'gradeInput', keyboardType: 'phone-pad'}) }
+        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'addressInput', keyboardType: 'phone-pad'}) }
         { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
-        { this._renderInputTextContainer({stateName: 'highSchoolId', label: 'រៀននៅសាលា', nextFocusInput: 'addressInput'}) }
+        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolId', options: schools})}
         { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន'}) }
       </View>
     )
