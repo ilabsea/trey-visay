@@ -139,11 +139,13 @@ export default class ProfileForm extends Component {
           onTouchOutside={() => this.setState({confirmDialogVisible: false})}
           positiveButton={{
             title: "ចាកចេញ",
-            onPress: this._onYes.bind(this)
+            onPress: this._onYes.bind(this),
+            titleStyle: styles.dialogButtonText
           }}
           negativeButton={{
             title: "អត់ទេ",
-            onPress: this._onNo.bind(this)
+            onPress: this._onNo.bind(this),
+            titleStyle: styles.dialogButtonText
           }}
         />
 

@@ -161,7 +161,7 @@ export default class SummaryScreen extends Component {
           <View style={{margin: 16, flex: 1}}>
             <View style={{flexDirection: 'row', marginVertical: 16}}>
               <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-              <Text>ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!</Text>
+              <Text style={{flex: 1}}>ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!</Text>
             </View>
 
             { this._renderRadioGroups() }

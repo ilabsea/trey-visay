@@ -172,7 +172,7 @@ export default class SubjectScreen extends Component {
 
   _renderScience() {
     let obj = {
-      title: 'វិទ្យាសាស្ត្រ',
+      title: " វិទ្យាសាស្ត្រ",
       groups: [
         { stateName: 'math', label: 'គណិតវិទ្យា' },
         { stateName: 'sciencePhysics', label: 'រូបវិទ្យា' },

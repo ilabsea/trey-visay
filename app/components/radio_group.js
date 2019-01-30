@@ -24,6 +24,7 @@ class RadioGroup extends Component {
                     onPress={this.props.onPress}
                     buttonSize={10}
                     buttonColor='#4caf50'
+                    buttonWrapStyle={styles.buttonWrapper}
                   />
                   <RadioButtonLabel
                     obj={obj}
@@ -45,13 +46,13 @@ class RadioGroup extends Component {
 
 const styles = StyleSheet.create({
   label: {
+    lineHeight: 28
+  },
+  buttonWrapper: {
     ...Platform.select({
       android: {
-        lineHeight: 18
-      },
-      ios: {
-        lineHeight: 28
-      },
+        marginTop: 5
+      }
     })
   }
 })

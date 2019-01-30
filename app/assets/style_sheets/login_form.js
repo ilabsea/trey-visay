@@ -10,7 +10,7 @@ export default StyleSheet.create({
     marginTop: 30,
     ...Platform.select({
       android: {
-        lineHeight: 48
+        lineHeight: 55
       },
     })
   },
@@ -18,6 +18,11 @@ export default StyleSheet.create({
     fontSize: 24,
     color: '#fff',
     marginVertical: 30,
+    ...Platform.select({
+      android: {
+        lineHeight: 48
+      },
+    })
   },
   inputText: {
     backgroundColor: '#fff',

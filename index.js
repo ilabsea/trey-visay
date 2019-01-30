@@ -13,16 +13,15 @@ import App from './app';
 
 const customTextProps = {
   style: {
+    fontSize: 16,
     ...Platform.select({
       android: {
         fontFamily: 'Kantumruy',
-        lineHeight: 28,
-        fontSize: 18,
+        lineHeight: 38,
       },
       ios: {
         fontFamily: 'HelveticaNeue',
         lineHeight: 0,
-        fontSize: 16,
       }
     })
 
@@ -32,15 +31,15 @@ const customTextProps = {
 const customTextInputProps = {
   style: {
     height: 48,
-    lineHeight: 28,
+    fontSize: 16,
     ...Platform.select({
       android: {
         fontFamily: 'Kantumruy',
-        fontSize: 18,
+        lineHeight: 48,
       },
       ios: {
         fontFamily: 'HelveticaNeue',
-        fontSize: 16
+        lineHeight: 28,
       }
     })
   }

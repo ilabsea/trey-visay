@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Platform, StyleSheet } from 'react-native';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 
 export default class BackConfirmDialog extends Component {
@@ -15,13 +16,25 @@ export default class BackConfirmDialog extends Component {
         onTouchOutside={this.props.onTouchOutside}
         positiveButton={{
           title: "បាទ/ចាស",
-          onPress: this.props.onPressYes
+          onPress: this.props.onPressYes,
+          titleStyle: styles.dialogButtonText
         }}
         negativeButton={{
           title: "ទេ",
-          onPress: this.props.onPressNo
+          onPress: this.props.onPressNo,
+          titleStyle: styles.dialogButtonText
         }}
       />
     );
   }
 }
+
+const styles = StyleSheet.create({
+  dialogButtonText: {
+    ...Platform.select({
+      android: {
+        lineHeight: 18
+      }
+    })
+  }
+});
