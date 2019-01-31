@@ -34,7 +34,10 @@ const HomeScreen = createDrawerNavigator(
     },
     InstitutionStack: {
       screen: ({ navigation }) => <InstitutionStack screenProps={{ drawerNavigation: navigation, category: 'សាលារដ្ឋ' }} /> },
-    VideoScreen: { screen: VideoScreen },
+    VideoScreen: {
+      screen: VideoScreen,
+      header: { visible:false }
+    },
     VocationalJobStack: { screen: VocationalJobStack },
     ChangePasswordStack: { screen: ChangePasswordStack },
   },
