@@ -7,7 +7,6 @@ import {
   Picker,
   Platform
 } from 'react-native';
-import Toast, { DURATION } from 'react-native-easy-toast';
 import IOSPicker from 'react-native-ios-picker';
 
 // Utils
@@ -43,7 +42,6 @@ export default class EditFamilySituation extends Component {
     return (
       <ScrollView>
         {this._renderFamilySituation()}
-        <Toast ref='toast'/>
       </ScrollView>
     )
   }

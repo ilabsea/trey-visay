@@ -17,6 +17,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import RadioGroup from '../../components/radio_group';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 import CloseButton from '../../components/close_button';
+import FooterBar from '../../components/FooterBar';
 
 import styles from '../../assets/style_sheets/profile_form';
 import shareStyles from './style';
@@ -199,17 +200,6 @@ export default class SubjectScreen extends Component {
     return this._renderRadioGroups(obj);
   }
 
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   _goNext() {
     if (!this._isValid()) {
       this.setState({submit: true});
@@ -280,7 +270,7 @@ export default class SubjectScreen extends Component {
           </View>
         </ScrollView>
 
-        { this._renderFooter() }
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -288,7 +278,7 @@ export default class SubjectScreen extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <Toast ref="toast"/>
+        <Toast ref='toast' positionValue={Platform.OS == 'ios' ? 120 : 140}/>
       </View>
     );
   };

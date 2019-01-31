@@ -5,7 +5,8 @@ import {
   ScrollView,
   StyleSheet,
   Alert,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -124,7 +125,7 @@ export default class ChangePasswordScreen extends Component {
             </View>
           </View>
         </ScrollView>
-        <Toast ref='toast'/>
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
     )
   }

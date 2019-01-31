@@ -9,7 +9,8 @@ import {
   Linking,
   ActivityIndicator,
   FlatList,
-  RefreshControl
+  RefreshControl,
+  Platform
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -199,7 +200,7 @@ export default class VideoScreen extends Component {
 
           { this.state.isLoaded && this.state.isConnected && this._renderContent() }
           { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
-          <Toast ref='toast'/>
+          <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
         </View>
       </ThemeContext.Provider>
     );

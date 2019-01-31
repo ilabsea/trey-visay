@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
+import FooterBar from '../../components/FooterBar';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -71,17 +72,6 @@ export default class RecommendationScreen extends Component {
       this.setState({confirmDialogVisible: false});
       this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
-  }
-
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <MaterialIcon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
   }
 
   _goNext() {
@@ -234,7 +224,7 @@ export default class RecommendationScreen extends Component {
           </View>
         </ScrollView>
 
-        { this._renderFooter() }
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
