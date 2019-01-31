@@ -27,7 +27,7 @@ class InputTextContainer extends Component {
           baseColor="rgba(0, 0, 0, 1)"
           tintColor="black"
           label={this.props.label}
-          labelFontSize={Platform.os === 'ios' ? 16 : 18}
+          labelFontSize={16}
           labelHeight={10}
           labelPadding={12}
           onChangeText={ this.props.onChangeText }

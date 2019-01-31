@@ -24,19 +24,13 @@ import { Thumbnail } from 'react-native-thumbnail-video';
 import headerStyles from '../assets/style_sheets/header';
 import StatusBar from '../components/status_bar';
 import videoList from '../data/json/videos';
+import uiThemeAndroid from '../assets/style_sheets/uiThemeAndroid.js';
+import uiThemeIOS from '../assets/style_sheets/uiThemeIOS.js';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  },
-  toolbar: {
-    container: {height: 65},
-    leftElementContainer: {marginTop: 25},
-    centerElementContainer:{marginTop: 25} ,
-    rightElementContainer: {marginTop: 20},
-  },
-};
-
+const uiTheme = Platform.select({
+  ios: uiThemeIOS,
+  android: uiThemeAndroid
+});
 
 export default class VideoScreen extends Component {
   static navigationOptions = {
@@ -188,11 +182,11 @@ export default class VideoScreen extends Component {
           <StatusBar />
           <Toolbar
             leftElement="menu"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}> វីដេអូមុខរបរ</Text>}
+            centerElement={<Text style={[headerStyles.headerTitleStyle, styles.headerTitleText]}> វីដេអូមុខរបរ</Text>}
             onLeftElementPress={() => this.props.navigation.openDrawer()}
             searchable={{
               autoFocus: true,
-              placeholder: 'Search',
+              placeholder: 'ស្វែងរក',
               onChangeText: this._onChangeText.bind(this),
               onSearchClosed: this._onSearchClosed.bind(this)
             }}
@@ -228,5 +222,17 @@ const styles = StyleSheet.create({
   title: {
     padding: 10,
     backgroundColor: '#fff'
-  }
+  },
+  headerTitleText: {
+    marginLeft: 0,
+    ...Platform.select({
+      android: {
+        fontFamily: 'Roboto',
+        fontWeight: 'bold'
+      },
+      ios: {
+        textAlign: 'center'
+      }
+    })
+  },
 });
