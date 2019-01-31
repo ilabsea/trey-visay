@@ -140,7 +140,7 @@ export default class EditPersonalInfo extends Component {
   _renderDatePicker(){
     return(
       <View style={styles.inputContainer}>
-        <Text>ថ្ងៃខែឆ្នាំកំណើត</Text>
+        <Text style={styles.labelColor}>ថ្ងៃខែឆ្នាំកំណើត</Text>
         <DatePicker
           style={{width: 200}}
           date={this.state.user.dateOfBirth}
@@ -180,7 +180,7 @@ export default class EditPersonalInfo extends Component {
         Picker;
     return (
       <View style={styles.inputContainer}>
-        <Text>{params.label}</Text>
+        <Text style={styles.labelColor}>{params.label}</Text>
         <PickerSpecific
           mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
           selectedValue={this.state.user[params.stateName]}

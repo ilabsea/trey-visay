@@ -68,5 +68,8 @@ export default StyleSheet.create({
         lineHeight: 18
       }
     })
+  },
+  labelColor: {
+    color: 'black'
   }
 });
