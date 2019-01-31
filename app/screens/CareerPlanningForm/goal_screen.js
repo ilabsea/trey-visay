@@ -128,7 +128,7 @@ export default class GoalScreen extends Component {
 
   _goNext() {
     if (!this.state.reasonText && !this.state.voiceRecord) {
-      return this.refs.toast.show('សូូមបំពេញការដាក់គោលដៅរបស់អ្នកជាអក្សរ ឬក៏ថតជាសំលេង!', DURATION.SHORT);
+      return this.refs.toast.show('សូូមបំពេញគោលដៅរបស់អ្នកជាអក្សរ ឬក៏ថតជាសំលេង!', DURATION.SHORT);
     }
 
     this._handleSubmit();
