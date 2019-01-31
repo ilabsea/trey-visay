@@ -30,7 +30,8 @@ export default class PersonalityJobsScreen extends Component {
     let highlighStyle = (state.params && state.params.total > 3) ? {color: '#e94b35'} : {color: '#fff'};
 
     return {
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>{state.params && state.params.title}</Text>,
+      title: state.params && state.params.title,
+      headerTitleStyle: [headerStyles.headerTitleStyle],
       headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
                       <Text style={headerStyles.saveText}><Text style={highlighStyle}>{state.params && state.params.total || 0} </Text> / 3</Text>
                     </TouchableOpacity>),

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   headerTitleStyle: {
     color: '#fff',
-    fontSize: 20,
+    fontSize: 22,
     marginLeft: 20,
   },
   headerStyle: {
