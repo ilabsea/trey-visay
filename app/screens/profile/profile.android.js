@@ -20,7 +20,10 @@ import User from '../../utils/user';
 
 // Components
 import ScrollableHeader from '../../components/scrollable_header';
-import highSchoolList from '../../data/json/high_schools';
+import provinces from '../../data/json/address/provinces.json';
+import communes from '../../data/json/address/communes.json';
+import districts from '../../data/json/address/districts.json';
+import highSchools from '../../data/json/address/highSchools.json';
 
 const PROFILE_SIZE = 120;
 
@@ -42,10 +45,9 @@ export default class Profile extends Component {
   }
 
   refreshState() {
-    let user = User.getCurrent();
-    let school = highSchoolList.find((school) => school.id == user.highSchoolId);
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
 
-    this.setState({user: user, schoolName: !!school && school.name || ''});
+    this.setState({ user: user });
   }
 
   _renderScrollViewContent() {
@@ -64,12 +66,17 @@ export default class Profile extends Component {
         </View>
 
         { this._renderPersonalInfo() }
-        { this._renderFamilySituation() }
       </View>
     )
   }
 
   _renderPersonalInfo() {
+    let user = this.state.user;
+    let provinceName = user.povinceCode ? provinces.find((province) => province.code == user.provinceCode).label : '';
+    let districtName = user.districtCode ? districts.find((district) => district.code == user.districtCode).label : '';
+    let communeName = user.communeCode ? communes.find((commune) => commune.code == user.communeCode).label : '';
+    let schoolName = user.highSchoolCode ? highSchools.find((school) => school.code == user.highSchoolCode).label : '';
+
     return (
       <View style={[styles.box, {marginTop: 60}]}>
         <View style={styles.item}>
@@ -85,11 +92,6 @@ export default class Profile extends Component {
         </View>
 
         <View style={styles.item}>
-          <Text style={styles.itemLabel}>ឈ្មោះគណនី</Text>
-          <Text style={styles.itemValue}>: {this.state.user.username}</Text>
-        </View>
-
-        <View style={styles.item}>
           <Text style={styles.itemLabel}>ភេទ</Text>
           <Text style={styles.itemValue}>: {this.state.user.sex}</Text>
         </View>
@@ -97,11 +99,6 @@ export default class Profile extends Component {
         <View style={styles.item}>
           <Text style={styles.itemLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
           <Text style={styles.itemValue}>: {this.state.user.dateOfBirth}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>សញ្ជាតិ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.nationality}</Text>
         </View>
 
         <View style={styles.item}>
@@ -115,62 +112,23 @@ export default class Profile extends Component {
         </View>
 
         <View style={styles.item}>
+          <Text style={styles.itemLabel}>ខេត្ត</Text>
+          <Text style={styles.itemValue}>: {provinceName}</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>ស្រុក</Text>
+          <Text style={styles.itemValue}>: {districtName}</Text>
+        </View>
+
+        <View style={styles.item}>
+          <Text style={styles.itemLabel}>ឃុំ</Text>
+          <Text style={styles.itemValue}>: {communeName}</Text>
+        </View>
+
+        <View style={styles.item}>
           <Text style={styles.itemLabel}>រៀននៅសាលា</Text>
-          <Text style={styles.itemValue}>: {this.state.schoolName}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>អាស័យដ្ឋានបច្ចុប្បន្ន</Text>
-          <Text style={styles.itemValue}>: {this.state.user.address}</Text>
-        </View>
-      </View>
-    )
-  }
-
-  _renderFamilySituation() {
-    return (
-      <View style={styles.box}>
-        <View style={styles.item}>
-          <Text style={styles.itemTitle}>ស្ថានភាពគ្រួសារ</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilySituation', { refresh: this.refreshState.bind(this) })}>
-            <Icon name="edit" />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={[styles.itemLabel, {flex: 2}]}>ឪពុកម្តាយលែងលះ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDivorce ? 'លែងលះ' : 'គ្មានទេ'}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={[styles.itemLabel, {flex: 2}]}>ពិការភាពក្នុងគ្រួសារ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDisable ? 'មាន' : 'គ្មានទេ'}</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={[styles.itemLabel, {flex: 2}]}>អំពើហិង្សាក្នុងគ្រួសារ</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDomesticViolence ? 'មាន' : 'គ្មានទេ'}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយជក់បារី</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isSmoking ? 'មាន' : 'គ្មានទេ'}</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយញៀនសុរា</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isAlcoholic ? 'មាន' : 'គ្មានទេ'}</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={[styles.itemLabel, {flex: 2}]}>សាមាជិកគ្រួសារណាមួយជក់គ្រឿងញៀន</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.isDrug ? 'មាន' : 'គ្មានទេ'}</Text>
-        </View>
-        <View style={styles.item}>
-          <Text style={[styles.itemLabel, {flex: 2}]}>ប្រភេទផ្ទះរបស់សិស្ស</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.houseType}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={[styles.itemLabel, {flex: 2}]}>ចំណូលប្រចាំខែគិតជាលុយរៀល</Text>
-          <Text style={[styles.itemValue, {flex: 1}]}>: {this.state.user.collectiveIncome}</Text>
+          <Text style={styles.itemValue}>: {schoolName}</Text>
         </View>
       </View>
     )

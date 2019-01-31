@@ -1,0 +1,14 @@
+[ 
+  {
+    "code": "010101",
+    "label": "commune district បន្ទាយមានជ័យ",
+    "name_en": "commune district បន្ទាយមានជ័យ",
+    "parent_code": "0101"
+  },
+  {
+    "code": "010102",
+    "label": "commune2 district បន្ទាយមានជ័យ",
+    "name_en": "commune2 district បន្ទាយមានជ័យ",
+    "parent_code": "0101"
+  }
+]

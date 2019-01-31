@@ -1,0 +1,62 @@
+[ 
+  {
+    "code": "0101",
+    "label": "district បន្ទាយមានជ័យ",
+    "name_en": "district បន្ទាយមានជ័យ",
+    "parent_code": "01"
+  },
+  {
+    "code": "0102",
+    "label": "district បន្ទាយមានជ័យ2",
+    "name_en": "district បន្ទាយមានជ័យ2",
+    "parent_code": "01"
+  },
+  {
+    "code": "0103",
+    "label": "district បន្ទាយមានជ័យ3",
+    "name_en": "district បន្ទាយមានជ័យ3",
+    "parent_code": "01"
+  },
+  {
+    "code": "0104",
+    "label": "district បន្ទាយមានជ័យ4",
+    "name_en": "district បន្ទាយមានជ័យ4",
+    "parent_code": "01"
+  },
+  {
+    "code": "0105",
+    "label": "district បន្ទាយមានជ័យ5",
+    "name_en": "district បន្ទាយមានជ័យ5",
+    "parent_code": "01"
+  },
+  {
+    "code": "0106",
+    "label": "district ត្បូងឃ្មុំ",
+    "name_en": "district ត្បូងឃ្មុំ",
+    "parent_code": 25
+  },
+  {
+    "code": "0107",
+    "label": "district ត្បូងឃ្មុំ2",
+    "name_en": "district ត្បូងឃ្មុំ2",
+    "parent_code": 25
+  },
+  {
+    "code": "0108",
+    "label": "district ត្បូងឃ្មុំ3",
+    "name_en": "district ត្បូងឃ្មុំ3",
+    "parent_code": 25
+  },
+  {
+    "code": "0109",
+    "label": "district ត្បូងឃ្មុំ4",
+    "name_en": "district ត្បូងឃ្មុំ4",
+    "parent_code": 25
+  },
+  {
+    "code": "0110",
+    "label": "district ត្បូងឃ្មុំ5",
+    "name_en": "district ត្បូងឃ្មុំ5",
+    "parent_code": 25
+  }
+]

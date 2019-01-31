@@ -4,12 +4,9 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Platform,
-  TouchableHighlight
+  Platform
 } from 'react-native';
-
 import DatePicker from 'react-native-datepicker';
-import Collapsible from 'react-native-collapsible';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -23,22 +20,18 @@ import StatusBar from '../../components/status_bar';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Components
-import RadioGroupContainer from '../../components/radio_group_container';
 import InputTextContainer from '../../components/input_text_container';
 import SaveButton from '../../components/save_button';
 import PickerSpecific from '../../components/picker/PickerSpecific';
 
 import FamilySituation from '../../data/json/family_situation.json';
-import Grades from '../../data/json/grades.json';
-import highSchoolList from '../../data/json/high_schools';
+import grades from '../../data/json/grades.json';
+import provinces from '../../data/json/address/provinces.json';
+import communes from '../../data/json/address/communes.json';
+import districts from '../../data/json/address/districts.json';
+import highSchools from '../../data/json/address/highSchools.json';
 
 let formError = {};
-const CONTENTS = [
-  { header: 'ព័ត៌មានផ្ទាល់ខ្លួន', body: '_renderPersonalInfo' },
-  { header: 'ស្ថានភាពគ្រួសារ', body: '_renderFamilySituation' }
-];
-const schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
-const grades = Grades;
 
 export default class ProfileForm extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -52,17 +45,15 @@ export default class ProfileForm extends Component {
 
   constructor(props) {
     super(props);
-
-    this._handleSubmit = this.props.navigation.setParams({ handleSubmit: this.handleSubmit.bind(this) });
+    this._handleSubmit = this.props.navigation.setParams({
+                            handleSubmit: this.handleSubmit.bind(this)
+                          });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    user = Object.assign({}, user, { sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9', highSchoolId: '1',
-                                    houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន' })
+    user = Object.assign({}, user, { sex: 'ស្រី', grade: '9'})
 
     this.state = {
       user: user,
       errors: {},
-      collapsed0: false,
-      collapsed1: true,
       confirmDialogVisible: false
     }
   }
@@ -82,7 +73,8 @@ export default class ProfileForm extends Component {
           actions: [{
             type: 'Navigation/NAVIGATE',
             routeName:'CareerCounsellorStack'
-          }]})
+          }]
+        })
       });
     } catch (e) {
       alert(e);
@@ -110,9 +102,9 @@ export default class ProfileForm extends Component {
           </View>
         </View>
 
-        { !!this.state.user && CONTENTS.map((obj, i) => {
-          return( <View key={i}>{this._renderSection(obj, i)}</View>)
-        })}
+        <View style={styles.box}>
+          {this._renderPersonalInfo()}
+        </View>
 
       </View>
     )
@@ -120,7 +112,12 @@ export default class ProfileForm extends Component {
 
   _onYes() {
     User.logout();
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}], key: null});
+    this.props.navigation.dispatch({
+      type: 'Navigation/RESET',
+      index: 0,
+      actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}],
+      key: null
+    });
   }
 
   _onNo() {
@@ -167,30 +164,6 @@ export default class ProfileForm extends Component {
     });
   }
 
-  _renderSection(obj, i) {
-    let collapsedSection = 'collapsed' + i;
-    return (
-      <View style={styles.box}>
-        <TouchableHighlight
-          onPress={this._toggleExpanded.bind(this, collapsedSection)}
-          underlayColor="#F7FAF7" >
-          <Text style={styles.subTitle}>{obj.header}</Text>
-        </TouchableHighlight>
-
-        <Collapsible collapsed={this.state[collapsedSection]}>
-            {this[obj.body]()}
-        </Collapsible>
-
-      </View>
-    )
-  }
-
-  _toggleExpanded(collapsedIndex) {
-    let obj = {};
-    obj[collapsedIndex] = !this.state[collapsedIndex];
-    this.setState(obj);
-  }
-
   checkRequire(field) {
     let value = this.state.user[field];
     if ( value == null || !value.length) {
@@ -202,7 +175,7 @@ export default class ProfileForm extends Component {
   }
 
   isValidForm() {
-    fields = [ 'fullName', 'dateOfBirth', 'nationality', 'address'];
+    fields = [ 'fullName', 'dateOfBirth', 'provinceCode', 'districtCode', 'highSchoolCode'];
     for (var i = 0; i < fields.length; i++) {
       this.checkRequire(fields[i]);
     }
@@ -210,20 +183,8 @@ export default class ProfileForm extends Component {
     return Object.keys(formError).length == 0;
   }
 
-  _openErrorCollapsed() {
-    let section1 = ['fullName', 'dateOfBirth', 'nationality', 'address'];
-    let errors = Object.keys(formError);
-    let foundInSection1 = errors.some(r=> section1.includes(r));
-    if (foundInSection1) {
-      this.setState({collapsed0: false})
-    }
-
-    this.setState({collapsed1: false})
-  }
-
   handleSubmit() {
     if (!this.isValidForm()) {
-      this._openErrorCollapsed();
       return this.refs.toast.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     }
 
@@ -245,46 +206,48 @@ export default class ProfileForm extends Component {
     }
   }
 
-  _renderPersonalInfo() {
-    return (
-      <View>
-        { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ', nextFocusInput: 'usernameInput'}) }
-        { this._renderInputTextContainer({stateName: 'username', label: 'ឈ្មោះគណនី'}) }
-        { this._renderPicker({label: 'ភេទ', stateName: 'sex', options: [{label: 'ស្រី', value: 'ស្រី'}, {label: 'ប្រុស', value: 'ប្រុស'}, {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ'}]}) }
-        { this._renderDatePicker() }
-        { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
-        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'addressInput', keyboardType: 'phone-pad'}) }
-        { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
-        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolId', options: schools})}
-        { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន'}) }
-      </View>
-    )
+  _getDistricts(){
+    let provinceCode = this.state.user.provinceCode;
+    return districts.filter((district) => district.parent_code == provinceCode);
   }
 
-  _renderFamilySituation() {
-    let houseTypes = [
-      { label: 'ផ្ទះឈើ', value: 'ផ្ទះឈើ' },
-      { label: 'ផ្ទះឈើលើថ្មក្រោម', value: 'ផ្ទះឈើលើថ្មក្រោម' },
-      { label: 'ផ្ទះថ្ម', value: 'ផ្ទះថ្ម' },
-      { label: 'ផ្ទះស័ង្កសី', value: 'ផ្ទះស័ង្កសី' },
-      { label: 'ផ្ទះស្លឹក', value: 'ផ្ទះស្លឹក' },
-    ];
+  _getCommunes(){
+    let districtCode = this.state.user.districtCode;
+    return communes.filter((commune) => commune.parent_code == districtCode);
+  }
 
-    let collectiveIncomes = [
-      { label: 'ក្រោម 25ម៉ឺនរៀល', value: '0-25ម៉ឺន' }, { label: 'ចន្លោះ 25ម៉ឺន-50ម៉ឺនរៀល', value: '25ម៉ឺន-50ម៉ឺន' },
-      { label: 'ចន្លោះ 50ម៉ឺន-75ម៉ឺនរៀល', value: '50ម៉ឺន-75ម៉ឺន' }, { label: 'ចន្លោះ 75ម៉ឺន-1លានរៀល', value: '75ម៉ឺន-1លាន' },
-      { label: 'លើស1លានរៀល', value: 'លើស1លាន' }];
+  _getHighSchools(){
+    let districtCode = this.state.user.districtCode;
+    return highSchools.filter((highSchool) => highSchool.parent_code == districtCode);
+  }
 
+  _renderPersonalInfo() {
+    let sexOptions = [
+      {label: 'ស្រី', value: 'ស្រី', code: 'ស្រី'},
+      {label: 'ប្រុស', value: 'ប្រុស', code: 'ប្រុស'},
+      {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ', code: 'ផ្សេងៗ'}
+    ]
+    let noValue = [{ "code": "", "label": "គ្មានតម្លៃ" }]
     return (
       <View>
-        { this._renderRadioGroup({stateName: 'isDivorce', label: FamilySituation.isDivorce, options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
-        { this._renderRadioGroup({stateName: 'isDisable', label: FamilySituation.isDisable }) }
-        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: FamilySituation.isDomesticViolence }) }
-        { this._renderRadioGroup({stateName: 'isSmoking', label: FamilySituation.isSmoking }) }
-        { this._renderRadioGroup({stateName: 'isAlcoholic', label: FamilySituation.isAlcoholic }) }
-        { this._renderRadioGroup({stateName: 'isDrug', label: FamilySituation.isDrug }) }
-        { this._renderPicker({label: FamilySituation.houseType , stateName: 'houseType', options: houseTypes}) }
-        { this._renderPicker({label: FamilySituation.collectiveIncome , stateName: 'collectiveIncome', options: collectiveIncomes}) }
+        { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ',
+          nextFocusInput: 'usernameInput'}) }
+        { this._renderPicker({label: 'ភេទ', stateName: 'sex',
+          options: sexOptions})
+        }
+        { this._renderDatePicker() }
+        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ',
+          keyboardType: 'phone-pad'})
+        }
+        { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
+        { this._renderPicker({label: 'ខេត្ត', stateName: 'provinceCode',
+          options: noValue.concat(provinces) })}
+        { this._renderPicker({label: 'ស្រុក', stateName: 'districtCode',
+            options: noValue.concat(this._getDistricts()) })}
+        { this._renderPicker({label: 'ឃុំ', stateName: 'communeCode',
+            options: noValue.concat(this._getCommunes()) })}
+        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolCode',
+            options: noValue.concat(this._getHighSchools()) })}
       </View>
     )
   }
@@ -324,25 +287,6 @@ export default class ProfileForm extends Component {
         onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
         returnKeyType='next'/>
     )
-  }
-
-  _renderRadioGroup(params = {}) {
-    return (
-      <RadioGroupContainer
-        options={ params.options || [{ label: 'គ្មានទេ', value: false }, { label: 'មាន', value: true }]}
-        onPress={((text) => this._setUserState(params.stateName, text)).bind(this)}
-        value={this.state.user[params.stateName]}
-        label={params.label} />
-    )
-  }
-
-  _setSelectedValues( params, index ) {
-    let selectedValues = {...this.state.selectedValues};
-    selectedValues[params.stateName] = params.options[index].label;
-    this.setState({
-      ...this.state,
-      selectedValues: selectedValues
-    });
   }
 
   _renderPicker(params={}) {

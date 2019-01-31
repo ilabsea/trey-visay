@@ -1,0 +1,152 @@
+[ 
+  {
+    "code": "01",
+    "label": "បន្ទាយមានជ័យ",
+    "name_en": "Banteay Meanchey",
+    "parent_code": ""
+  },
+  {
+    "code": "02",
+    "label": "បាត់ដំបង",
+    "name_en": "Battambang",
+    "parent_code": ""
+  },
+  {
+    "code": "03",
+    "label": "កំពង់ចាម",
+    "name_en": "Kampong Cham",
+    "parent_code": ""
+  },
+  {
+    "code": "04",
+    "label": "កំពង់ឆ្នាំង",
+    "name_en": "Kampong Chhnang",
+    "parent_code": ""
+  },
+  {
+    "code": "05",
+    "label": "កំពង់ស្ពឺ",
+    "name_en": "Kampong Speu",
+    "parent_code": ""
+  },
+  {
+    "code": "06",
+    "label": "កំពង់ធំ",
+    "name_en": "Kampong Thom",
+    "parent_code": ""
+  },
+  {
+    "code": "07",
+    "label": "កំពត",
+    "name_en": "Kampot",
+    "parent_code": ""
+  },
+  {
+    "code": "08",
+    "label": "កណ្តាល",
+    "name_en": "Kandal",
+    "parent_code": ""
+  },
+  {
+    "code": "09",
+    "label": "កោះកុង",
+    "name_en": "Koh Kong",
+    "parent_code": ""
+  },
+  {
+    "code": "10",
+    "label": "ក្រចេះ",
+    "name_en": "Kratie",
+    "parent_code": ""
+  },
+  {
+    "code": "11",
+    "label": "មណ្ឌលគីរី",
+    "name_en": "Mondul Kiri",
+    "parent_code": ""
+  },
+  {
+    "code": "12",
+    "label": "ភ្នំពេញ",
+    "name_en": "Phnom Penh",
+    "parent_code": ""
+  },
+  {
+    "code": "13",
+    "label": "ព្រះវិហារ",
+    "name_en": "Preah Vihear",
+    "parent_code": ""
+  },
+  {
+    "code": "14",
+    "label": "ព្រៃវែង",
+    "name_en": "Prey Veng",
+    "parent_code": ""
+  },
+  {
+    "code": "15",
+    "label": "ពោធិ៍សាត់",
+    "name_en": "Pursat",
+    "parent_code": ""
+  },
+  {
+    "code": "16",
+    "label": "រតនគីរី",
+    "name_en": "Ratanak Kiri",
+    "parent_code": ""
+  },
+  {
+    "code": "17",
+    "label": "សៀមរាប",
+    "name_en": "Siem Reap",
+    "parent_code": ""
+  },
+  {
+    "code": "18",
+    "label": "ព្រះសីហនុ",
+    "name_en": "Preah Sihanouk",
+    "parent_code": ""
+  },
+  {
+    "code": "19",
+    "label": "ស្ទឹងត្រែង",
+    "name_en": "Stung Treng",
+    "parent_code": ""
+  },
+  {
+    "code": "20",
+    "label": "ស្វាយរៀង",
+    "name_en": "Svay Rieng",
+    "parent_code": ""
+  },
+  {
+    "code": "21",
+    "label": "តាកែវ",
+    "name_en": "Takeo",
+    "parent_code": ""
+  },
+  {
+    "code": "22",
+    "label": "ឧត្តរមានជ័យ",
+    "name_en": "Oddar Meanchey",
+    "parent_code": ""
+  },
+  {
+    "code": "23",
+    "label": "កែប",
+    "name_en": "Kep",
+    "parent_code": ""
+  },
+  {
+    "code": "24",
+    "label": "បៃលិន",
+    "name_en": "Pailin",
+    "parent_code": ""
+  },
+  {
+    "code": "25",
+    "label": "ត្បូងឃ្មុំ",
+    "name_en": "Tboung Khmum",
+    "parent_code": ""
+  }
+]

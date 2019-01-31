@@ -7,7 +7,8 @@ import {
 import styles from '../../assets/style_sheets/profile_form';
 
 class PickerSpecific extends Component {
-  _getPickerValue(data){
+  _getPickerValue(data) {
+    console.log('this.props.user[data.stateName]: ', this.props.user[data.stateName])
     return this.props.user[data.stateName];
   }
 
@@ -18,11 +19,13 @@ class PickerSpecific extends Component {
         <Text style={styles.labelColor}>{ props.data.label }</Text>
         <Picker
           mode='dialog'
+          prompt='សូមជ្រេីសរេីស'
           selectedValue={ this._getPickerValue(props.data) }
           onValueChange={ props.onValueChange}>
           { props.data.options.map((obj, i) => {
-            { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
-          }) }
+            { return (<Picker.Item key={i} label={obj.label} value={obj.code} />) }
+            })
+          }
         </Picker>
       </View>
     )
