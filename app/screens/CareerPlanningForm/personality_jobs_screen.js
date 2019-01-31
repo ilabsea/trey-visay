@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
+  Platform
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast'
 
@@ -210,7 +211,7 @@ export default class PersonalityJobsScreen extends Component {
         </ScrollView>
 
         <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
-        <Toast ref='toast'/>
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
     );
   };

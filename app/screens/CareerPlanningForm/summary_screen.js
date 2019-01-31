@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
+  Platform
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -166,7 +167,7 @@ export default class SummaryScreen extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <Toast ref='toast'/>
+        <Toast ref='toast' positionValue={ Platform.OS === 'ios' ? 120 : 140 }/>
       </View>
     );
   };

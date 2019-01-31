@@ -57,7 +57,7 @@ export default class EditPersonalInfo extends Component {
           {this._renderPersonalInfo()}
 
         </KeyboardAwareScrollView>
-        <Toast ref='toast'/>
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
        </View>
     )
   }

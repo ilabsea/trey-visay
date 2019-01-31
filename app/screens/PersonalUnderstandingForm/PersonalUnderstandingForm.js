@@ -13,7 +13,6 @@ import {
 import Toast, { DURATION } from 'react-native-easy-toast';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { Provider } from 'react-redux';
@@ -226,7 +225,7 @@ export default class PersonalUnderstandingForm extends Component {
           </Provider>
 
         </KeyboardAwareScrollView>
-        <Toast ref='toast'/>
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
     );
   };

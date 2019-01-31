@@ -410,7 +410,7 @@ export default class GoalScreen extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <Toast ref="toast"/>
+        <Toast ref='toast' positionValue={Platform.OS == 'ios' ? 120 : 140}/>
       </View>
     );
   };
