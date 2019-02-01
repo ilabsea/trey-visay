@@ -15,6 +15,7 @@ import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
 
 import RadioGroupContainer from '../../components/radio_group_container';
+import StatusBar from '../../components/status_bar';
 import FamilySituation from '../../data/json/family_situation.json';
 
 let formError = {};
@@ -40,16 +41,17 @@ export default class EditFamilySituation extends Component {
 
   render() {
     return (
-      <ScrollView>
-        {this._renderFamilySituation()}
-      </ScrollView>
+      <View style={{flex: 1}}>
+        <StatusBar />
+        <ScrollView>
+          {this._renderFamilySituation()}
+        </ScrollView>
+      </View>
     )
   }
 
   checkRequire(field) {
     let value = this.state.user[field];
-    console.log('field name : ', field);
-    console.log('field value : ', value);
 
     if ( value == null || !value.length) {
       formError[field] = ["មិនអាចទទេបានទេ"];

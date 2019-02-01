@@ -19,6 +19,7 @@ import headerStyles from '../../assets/style_sheets/header';
 
 import DatePicker from 'react-native-datepicker';
 import InputTextContainer from '../../components/input_text_container';
+import StatusBar from '../../components/status_bar';
 import Grades from '../../data/json/grades.json';
 import highSchoolList from '../../data/json/high_schools';
 
@@ -53,6 +54,7 @@ export default class EditPersonalInfo extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
+        <StatusBar />
         <KeyboardAwareScrollView>
           {this._renderPersonalInfo()}
 

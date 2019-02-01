@@ -18,6 +18,7 @@ import {
 
 import { Dialog } from 'react-native-simple-dialogs';
 import ImagePicker from 'react-native-image-crop-picker';
+import StatusBar from '../../components/status_bar';
 
 // Utils
 import realm from '../../schema';
@@ -195,6 +196,7 @@ export default class EditProfilePhoto extends Component {
   render() {
     return (
         <View style={{position: 'relative', flex: 1}}>
+          <StatusBar />
           { this._renderCover() }
           { this._renderProfile() }
           { this._renderDialog() }

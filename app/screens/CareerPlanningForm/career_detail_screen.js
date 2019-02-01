@@ -23,7 +23,7 @@ export default class CareerDetailScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
     return {
-      headerTitle: !!state.params && state.params.title
+      title: !!state.params && state.params.title
     }
   };
 
