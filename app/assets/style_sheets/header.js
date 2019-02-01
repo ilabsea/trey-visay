@@ -9,6 +9,14 @@ export default StyleSheet.create({
   headerStyle: {
     backgroundColor: '#1976d2'
   },
+  headerStyleProfile: {
+    backgroundColor: '#1976d2',
+    ...Platform.select({
+      android: {
+        marginTop: 20
+      }
+    })
+  },
   saveText: {
     color: '#fff',
     marginRight: 16,

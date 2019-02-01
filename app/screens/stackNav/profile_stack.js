@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-
 import { createStackNavigator } from  'react-navigation';
 
 import Profile from '../profile/profile';
@@ -22,11 +21,10 @@ const ProfileStack = createStackNavigator(
     navigationOptions: ({navigation}) => ({
       title: 'កែសម្រួល',
       headerTitleStyle: headerStyles.headerTitleStyle,
-      headerStyle: headerStyles.headerStyle,
+      headerStyle: headerStyles.headerStyleProfile,
       headerLeft: <CloseButton navigation={navigation}/>,
       headerRight: <SaveButton navigation={navigation}/>
     })
   }
 );
-
 export default ProfileStack;
