@@ -20,6 +20,7 @@ import headerStyles from '../../assets/style_sheets/header';
 import DatePicker from 'react-native-datepicker';
 import InputTextContainer from '../../components/input_text_container';
 import StatusBar from '../../components/status_bar';
+import PickerSpecific from '../../components/picker/PickerSpecific';
 import Grades from '../../data/json/grades.json';
 import highSchoolList from '../../data/json/high_schools';
 
@@ -101,7 +102,8 @@ export default class EditPersonalInfo extends Component {
   }
 
   _buildData() {
-    return {
+
+    data = {
       uuid: this.state.user.uuid,
       fullName: this.state.user.fullName,
       username: this.state.user.username,
@@ -115,6 +117,8 @@ export default class EditPersonalInfo extends Component {
       grade: this.state.user.grade,
       address: this.state.user.address
     }
+    console.log('data User : ', data)
+    return data
   }
 
   _setUserState(field, value) {
@@ -177,21 +181,11 @@ export default class EditPersonalInfo extends Component {
   }
 
   _renderPicker(params={}) {
-    let PickerSpecific = Platform.OS === 'ios' ?
-        IOSPicker :
-        Picker;
     return (
-      <View style={styles.inputContainer}>
-        <Text style={styles.labelColor}>{params.label}</Text>
-        <PickerSpecific
-          mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
-          selectedValue={this.state.user[params.stateName]}
-          onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
-          { params.options.map((obj, i) => {
-            { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
-          }) }
-        </PickerSpecific>
-      </View>
+      <PickerSpecific
+        data={params}
+        user={this.state.user}
+        onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue) } />
     )
   }
 }
