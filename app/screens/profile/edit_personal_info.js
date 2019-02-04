@@ -102,8 +102,7 @@ export default class EditPersonalInfo extends Component {
   }
 
   _buildData() {
-
-    data = {
+    return {
       uuid: this.state.user.uuid,
       fullName: this.state.user.fullName,
       username: this.state.user.username,
@@ -117,8 +116,6 @@ export default class EditPersonalInfo extends Component {
       grade: this.state.user.grade,
       address: this.state.user.address
     }
-    console.log('data User : ', data)
-    return data
   }
 
   _setUserState(field, value) {
