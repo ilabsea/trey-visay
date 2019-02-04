@@ -19,7 +19,7 @@ const VocationalJobStack = createStackNavigator(
     VocationalJobIndexScreen: {
       screen: VocationalJobIndexScreen,
       navigationOptions: ({navigation}) => ({
-        title: "ជំនាញវិជ្ជាជីវះ",
+        title: "ជំនាញវិជ្ជាជីវៈ",
         headerLeft: <OpenDrawer navigation={navigation}/>
       })
     },

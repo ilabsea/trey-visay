@@ -3,7 +3,6 @@ import {
   Text,
   View,
   ScrollView,
-  Picker,
   TouchableOpacity,
   Platform,
   TouchableHighlight
@@ -14,7 +13,6 @@ import Collapsible from 'react-native-collapsible';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Toast, { DURATION } from 'react-native-easy-toast';
-import IOSPicker from 'react-native-ios-picker';
 
 // Utils
 import realm from '../../schema';
@@ -28,6 +26,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import RadioGroupContainer from '../../components/radio_group_container';
 import InputTextContainer from '../../components/input_text_container';
 import SaveButton from '../../components/save_button';
+import PickerSpecific from '../../components/picker/PickerSpecific';
 
 import FamilySituation from '../../data/json/family_situation.json';
 import Grades from '../../data/json/grades.json';
@@ -51,11 +50,9 @@ export default class ProfileForm extends Component {
     }
   }
 
-  _handleSubmit;
-  state;
-
   constructor(props) {
     super(props);
+
     this._handleSubmit = this.props.navigation.setParams({ handleSubmit: this.handleSubmit.bind(this) });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     user = Object.assign({}, user, { sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9', highSchoolId: '1',
@@ -66,7 +63,7 @@ export default class ProfileForm extends Component {
       errors: {},
       collapsed0: false,
       collapsed1: true,
-      confirmDialogVisible: false,
+      confirmDialogVisible: false
     }
   }
 
@@ -158,8 +155,12 @@ export default class ProfileForm extends Component {
   _setUserState(field, value) {
     let user = {...this.state.user};
     user[field] = value;
-    this.setState({...this.state, user: user});
+    this.setState({
+      ...this.state,
+      user: user
+    });
   }
+
   _renderSection(obj, i) {
     let collapsedSection = 'collapsed' + i;
     return (
@@ -320,22 +321,21 @@ export default class ProfileForm extends Component {
     )
   }
 
+  _setSelectedValues( params, index ) {
+    let selectedValues = {...this.state.selectedValues};
+    selectedValues[params.stateName] = params.options[index].label;
+    this.setState({
+      ...this.state,
+      selectedValues: selectedValues
+    });
+  }
+
   _renderPicker(params={}) {
-    let PickerSpecific = Platform.OS === 'ios' ?
-        IOSPicker :
-        Picker;
     return (
-      <View style={styles.inputContainer}>
-        <Text style={styles.labelColor}>{params.label}</Text>
-        <PickerSpecific
-          mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
-          selectedValue={this.state.user[params.stateName]}
-          onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
-          { params.options.map((obj, i) => {
-            { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
-          }) }
-        </PickerSpecific>
-      </View>
+      <PickerSpecific
+        data={params}
+        user={this.state.user}
+        onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue) } />
     )
   }
 }
