@@ -190,11 +190,15 @@ export default class AdminDashboardScreen extends Component {
     let careerIds = game.personalityCareers.map((obj) => obj.value);
 
     game.personalityCareers.map((obj) => {
-      attributes.careers = currentGroup.careers.filter((item, pos) => { return careerIds.includes(item.id) });
+      attributes.careers = currentGroup.careers.filter((item, pos) => {
+        return careerIds.includes(item.id)
+      });
     });
 
     attributes.careers = attributes.careers.map((obj) => {
       obj.is_goal = (obj.id == game.mostFavorableJobId);
+      obj.name = obj.name.trim();
+      obj.description = obj.description.trim();
       return obj;
     })
 

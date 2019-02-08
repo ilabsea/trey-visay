@@ -93,7 +93,7 @@ function Form(props) {
             { Question.careerName }
           </Text>
           <Field
-            name={ Question.careerName }
+            name={'careerName'}
             component={CustomTextInput}
             multiline={true}
             numberOfLines={3}
@@ -109,7 +109,7 @@ function Form(props) {
             onPress={() => {this.howToReachCareerGoal.focus()}}> { Question.howToReachJobVacancy } </Text>
 
           <Field
-            name={ Question.howToReachCareerGoal }
+            name={'howToReachCareerGoal'}
             component={CustomTextInput}
             placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
             editable={props.haveEverThoughtOfCareerIsYes}
@@ -147,7 +147,7 @@ function Form(props) {
       <View style={styles.formGroup}>
         <Text style={styles.labelGroup} onPress={() => {this.howToReachJobVacancy.focus()}}> { Question.howToReachJobVacancy } </Text>
         <Field
-          name={ Question.howToReachJobVacancy }
+          name={ 'howToReachJobVacancy' }
           component={CustomTextInput}
           placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
           onRef={(input) => {this.howToReachJobVacancy = input}}
