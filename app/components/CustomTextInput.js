@@ -35,7 +35,6 @@ export default function CustomTextInput(props) {
 
 CustomTextInput.propTypes = {
   input: PropTypes.shape({
-    name: PropTypes.string,
     onBlur: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired,
     onFocus: PropTypes.func.isRequired,
