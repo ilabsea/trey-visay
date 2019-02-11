@@ -107,15 +107,15 @@ export default class ScrollableHeader extends Component {
           />}
 
           { this.props.title &&
-            <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), bottom: titleBottom}}>
-              <Text style={{fontSize: 20, color: '#fff', fontFamily: 'KhmerOureang'}}>{this.props.title}</Text>
+            <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), right: 5, bottom: titleBottom}}>
+              <Text style={{fontSize: 20, color: '#fff'}}>{this.props.title}</Text>
             </View>
           }
 
           { this.props.subTitle &&
             <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), bottom: 0, flexDirection: 'row'}}>
               <AwesomeIcon name='building-o' color='#fff' size={20} />
-              <Text style={{marginLeft: 8, fontSize: 16, color: '#fff', fontFamily: 'Kantumruy'}}>{this.props.subTitle}</Text>
+              <Text style={{marginLeft: 8, fontSize: 16, color: '#fff'}}>{this.props.subTitle}</Text>
             </View>
           }
 
@@ -168,8 +168,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     marginTop: Platform.OS === 'ios' ? 28 : 38,
     height: 32,
-    alignItems: 'center',
-    justifyContent: 'center',
     position: 'absolute',
     top: 0,
     left: 0,
@@ -177,7 +175,7 @@ const styles = StyleSheet.create({
   },
   title: {
     color: 'white',
-    fontSize: 18,
+    fontSize: 18
   },
   scrollViewContent: {
     marginTop: HEADER_MAX_HEIGHT,

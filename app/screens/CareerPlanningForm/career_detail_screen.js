@@ -7,33 +7,28 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
-
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
-// import careers from '../../data/json/careers';
 import careers from '../../data/json/characteristic_jobs';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Accordion from 'react-native-collapsible/Accordion';
 import { Divider } from 'react-native-elements';
 
+import BackButton from '../../components/back_button';
+
 let job;
 export default class CareerDetailScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
-
     return {
-      title: '',
-      headerTitle: !!state.params && state.params.title,
-      headerStyle: headerStyles.headerStyle,
-      headerTitleStyle: headerStyles.headerTitleStyle,
-      headerTintColor: '#fff',
+      title: !!state.params && state.params.title
     }
+  };
+
+  state = {
+    activeSections: []
   };
 
   componentWillMount() {
@@ -73,21 +68,27 @@ export default class CareerDetailScreen extends Component {
     );
   }
 
+  _updateSections = activeSections => {
+    this.setState({ activeSections });
+  };
+
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <ScrollView>
-          <View style={{margin: 16}}>
-            <View style={styles.box}>
-              <Accordion
-                sections={job.careers}
-                renderHeader={this._renderHeader}
-                renderContent={this._renderContent}
-              />
-            </View>
+      <ScrollView>
+        <View style={{margin: 16}}>
+          <View style={styles.box}>
+            <Accordion
+              touchableProps={{underlayColor:"#F7FAF7"}}
+              sectionContainerStyle={{padding: 10}}
+              activeSections={this.state.activeSections}
+              sections={job.careers}
+              renderHeader={this._renderHeader}
+              renderContent={this._renderContent}
+              onChange={this._updateSections}
+            />
           </View>
-        </ScrollView>
-      </ThemeProvider>
+        </View>
+      </ScrollView>
     );
   };
 }

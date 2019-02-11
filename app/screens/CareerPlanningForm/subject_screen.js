@@ -6,22 +6,20 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
-  ToastAndroid,
+  Platform
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 import { Divider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import RadioGroup from '../../components/radio_group';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
+import CloseButton from '../../components/close_button';
+import FooterBar from '../../components/FooterBar';
 
 import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 
 import realm from '../../schema';
@@ -29,21 +27,6 @@ import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 
 export default class SubjectScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'បំពេញមុខវិជ្ជា',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញមុខវិជ្ជា</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
-    }
-  };
-
   state = {
     khmerReading: '',
     khmerWriting: '',
@@ -190,7 +173,7 @@ export default class SubjectScreen extends Component {
 
   _renderScience() {
     let obj = {
-      title: 'វិទ្យាសាស្ត្រ',
+      title: " វិទ្យាសាស្ត្រ",
       groups: [
         { stateName: 'math', label: 'គណិតវិទ្យា' },
         { stateName: 'sciencePhysics', label: 'រូបវិទ្យា' },
@@ -217,21 +200,10 @@ export default class SubjectScreen extends Component {
     return this._renderRadioGroups(obj);
   }
 
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   _goNext() {
     if (!this._isValid()) {
       this.setState({submit: true});
-      return ToastAndroid.show('សូមបំពេញមុខវិជ្ជាទាំងអស់ជាមុនសិន...!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូមបំពេញមុខវិជ្ជាទាំងអស់ជាមុនសិន...!', DURATION.SHORT);
     }
 
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
@@ -282,33 +254,32 @@ export default class SubjectScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16}}>
-              <View style={{flexDirection: 'row', marginVertical: 16}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
-              </View>
-
-              { this._renderKhmer() }
-              { this._renderEnglish() }
-              { this._renderSocialStudies() }
-              { this._renderScience() }
-              { this._renderSoftSkill() }
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16}}>
+            <View style={{flexDirection: 'row', marginVertical: 16}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
             </View>
-          </ScrollView>
 
-          { this._renderFooter() }
+            { this._renderKhmer() }
+            { this._renderEnglish() }
+            { this._renderSocialStudies() }
+            { this._renderScience() }
+            { this._renderSoftSkill() }
+          </View>
+        </ScrollView>
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
+
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+        <Toast ref='toast' positionValue={Platform.OS == 'ios' ? 120 : 140}/>
+      </View>
     );
   };
 }

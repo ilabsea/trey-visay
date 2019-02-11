@@ -1,26 +1,25 @@
 import React from 'react';
 import {
-  DrawerNavigator,
-  StackNavigator,
+  createDrawerNavigator
 } from 'react-navigation';
 
 // Screens
-import Dashboard from './dashboard_screen';
-import About from '../about';
+import AboutStack from '../stackNav/about_stack';
+import Dashboard from './dashboard_stack';
+
 import Profile from './profile';
 import SideMenu from './side_menu';
 import ChangePasswordScreen from '../change_password_screen';
 
-const AdminHomeScreen = DrawerNavigator(
+const AdminHomeScreen = createDrawerNavigator(
   {
     Dashboard: { screen: Dashboard },
-    About: { screen: About },
+    About: { screen: AboutStack },
     ChangePasswordScreen: { screen: ChangePasswordScreen },
     Profile: { screen: Profile },
   },
   {
     initialRouteName: 'Dashboard',
-    // initialRouteName: 'About',
     contentComponent: SideMenu,
     contentOptions: {
       activeTintColor: '#1976d2',

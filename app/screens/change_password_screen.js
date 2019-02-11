@@ -4,19 +4,16 @@ import {
   View,
   ScrollView,
   StyleSheet,
-  TextInput,
   Alert,
-  ToastAndroid,
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Toolbar,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import Button from '../components/button';
-import headerStyles from '../assets/style_sheets/header';
+import InputTextContainer from '../components/input_text_container';
 import shareStyles from '../assets/style_sheets/profile_form';
 import styles from '../assets/style_sheets/login_form';
 import StatusBar from '../components/status_bar';
@@ -24,31 +21,36 @@ import StatusBar from '../components/status_bar';
 import realm from '../schema';
 import User from '../utils/user';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
-
 export default class ChangePasswordScreen extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     drawerLabel: 'ប្តូរលេខសម្ងាត់',
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
-        <Icon name="key" color={tintColor} />
-      </ThemeProvider>
-    ),
-  };
+      <MaterialIcon name="key" color={tintColor} />
+    )
+  });
 
-  componentWillMount() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+  constructor(props) {
+    super(props);
 
     this.state = {
       oldPassword: '',
       newPassword: '',
       passwordConfirmation: '',
-      user: user
-    };
+      user: null
+    }
+  }
+
+  componentWillMount() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    this.setState({ user: user });
+  }
+
+  componentDidMount(){
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+  }
+
+  _handleBack(){
+    this.props.navigation.goBack(null);
   }
 
   handleSubmit() {
@@ -59,7 +61,7 @@ export default class ChangePasswordScreen extends Component {
 
     realm.write(() => {
       realm.create('User', { password: this.state.newPassword, uuid: User.getID() }, true);
-      ToastAndroid.show('រក្សាទុកលេខសម្ងាត់ដោយជោគជ័យ!', ToastAndroid.LONG);
+      this.refs.toast.show('រក្សាទុកលេខសម្ងាត់ដោយជោគជ័យ!', DURATION.LONG);
       this.props.navigation.navigate('Dashboard');
     });
   }
@@ -72,61 +74,59 @@ export default class ChangePasswordScreen extends Component {
   }
 
   render() {
-    const isEnabled = this.state.newPassword.length &&
+    const isEnabled = this.state.oldPassword.length && this.state.newPassword.length &&
                       this.state.passwordConfirmation.length;
     const btnSubmitTextColor = isEnabled ? '#fff' : '#868686';
+    const btnSubmitColor = isEnabled ? '#4caf50' : '#d9d9d9';
 
     return (
-      <ThemeProvider uiTheme={uiTheme}>
-        <View style={styles.container}>
-          <StatusBar />
-          <Toolbar
-            leftElement="close"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ប្តូរលេខសម្ងាត់</Text>}
-            onLeftElementPress={() => this.props.navigation.goBack()}
-          />
+      <View style={styles.container}>
+        <StatusBar />
 
-          <ScrollView>
-            <View style={[styles.scrollContainer, {margin: 16}]}>
-              <View style={shareStyles.box}>
-                <Text>វាយបញ្ចូលលេខសម្ងាត់ចាស់</Text>
-                <TextInput
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({oldPassword: text})}
-                  value={this.state.oldPassword}
-                  onSubmitEditing={() => this.passwordInput.focus()}
-                  returnKeyType='next' />
+        <ScrollView>
+          <View style={[styles.scrollContainer, {margin: 16}]}>
+            <View style={shareStyles.box}>
+              <InputTextContainer
+                label='វាយបញ្ចូលលេខសម្ងាត់ចាស់'
+                placeholder='វាយបញ្ចូលលេខសម្ងាត់ចាស់នៅទីនេះ'
+                secureTextEntry={true}
+                onChangeText={(text) => this.setState({oldPassword: text})}
+                value={this.state.oldPassword}
+                onSubmitEditing={() => this.passwordInput.focus()}
+                returnKeyType='next'/>
 
-                <Text>វាយបញ្ចូលលេខសម្ងាត់ថ្មី</Text>
-                <TextInput
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({newPassword: text})}
-                  value={this.state.newPassword}
-                  ref={(input) => this.passwordInput = input}
-                  onSubmitEditing={() => this.passwordConfirmationInput.focus()}
-                  returnKeyType='next' />
+              <InputTextContainer
+                label='វាយបញ្ចូលលេខសម្ងាត់ថ្មី'
+                placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីនៅទីនេះ'
+                secureTextEntry={true}
+                onChangeText={(text) => this.setState({newPassword: text})}
+                value={this.state.newPassword}
+                ref={(input) => this.passwordInput = input}
+                onSubmitEditing={() => this.passwordConfirmationInput.focus()}
+                returnKeyType='next'/>
 
-                <Text>វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត</Text>
-                <TextInput
-                  secureTextEntry={true}
-                  onChangeText={(text) => this.setState({passwordConfirmation: text})}
-                  value={this.state.passwordConfirmation}
-                  ref={(input) => this.passwordConfirmationInput = input}
-                  returnKeyType='done' />
+              <InputTextContainer
+                label='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត'
+                placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀតនៅទីនេះ'
+                secureTextEntry={true}
+                onChangeText={(text) => this.setState({passwordConfirmation: text})}
+                value={this.state.passwordConfirmation}
+                ref={(input) => this.passwordConfirmationInput = input}
+                returnKeyType='done'/>
 
-                <View style={styles.submitWrapper}>
-                  <Button
-                    style={[styles.btnSubmit, {paddingHorizontal: 16}]}
-                    onPress={this.handleSubmit.bind(this)}
-                    disabled={!isEnabled} >
-                    <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>យល់ព្រម</Text>
-                  </Button>
-                </View>
+              <View style={styles.submitWrapper}>
+                <TouchableOpacity
+                  onPress={this.handleSubmit.bind(this)}
+                  disabled={!isEnabled}
+                  style={[styles.btnSubmit, {backgroundColor: btnSubmitColor}]}>
+                  <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>យល់ព្រម</Text>
+                </TouchableOpacity>
               </View>
             </View>
-          </ScrollView>
-        </View>
-      </ThemeProvider>
+          </View>
+        </ScrollView>
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+      </View>
     )
   }
 }

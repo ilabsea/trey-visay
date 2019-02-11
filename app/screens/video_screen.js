@@ -6,42 +6,48 @@ import {
   StyleSheet,
   Dimensions,
   NetInfo,
-  ToastAndroid,
   Linking,
   ActivityIndicator,
-  ListView,
+  FlatList,
   RefreshControl,
+  Platform
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Toolbar,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast';
 
-import API from '../api/videos';
+import { ThemeContext, getTheme, Toolbar } from 'react-native-material-ui';
+
 import LoadingIndicator from '../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import Thumbnail from 'react-native-thumbnail-video';
+import { Thumbnail } from 'react-native-thumbnail-video';
 import headerStyles from '../assets/style_sheets/header';
 import StatusBar from '../components/status_bar';
+import videoList from '../data/json/videos';
+import uiThemeAndroid from '../assets/style_sheets/uiThemeAndroid.js';
+import uiThemeIOS from '../assets/style_sheets/uiThemeIOS.js';
 
-// https://github.com/CodeLinkIO/ReactNative-Endless-Scrolling
+const uiTheme = Platform.select({
+  ios: uiThemeIOS,
+  android: uiThemeAndroid
+});
+
 export default class VideoScreen extends Component {
   static navigationOptions = {
-    drawerLabel: 'វីដេអូមុខរបរ',
+    drawerLabel: "វីដេអូមុខរបរ ",
     drawerIcon: ({ tintColor }) => (
       <AwesomeIcon name='play-circle-o' size={20} color={tintColor} />
     ),
   };
+
+  _keyExtractor = (item, index) => index.toString();
 
   constructor(props) {
     super(props)
 
     this.state = {
       pagination: {},
-      videos: [],
-      ds: new ListView.DataSource({ rowHasChanged: this._rowHasChanged })
+      videos: videoList
     }
   }
 
@@ -51,7 +57,6 @@ export default class VideoScreen extends Component {
 
   _handleInternetConnection() {
     NetInfo.isConnected.fetch().then(isConnected => {
-      this._getVideos(1);
       this.setState({isConnected: isConnected, isOnline: isConnected, isLoaded: true, showLoading: false});
     });
 
@@ -67,52 +72,9 @@ export default class VideoScreen extends Component {
     }
   }
 
-  _getVideosRequest() {
-    const pagination = { ...this.state.pagination, loading: true }
-    this._update(pagination, this.state.videos)
-  }
-
-  _getVideosSuccess(result) {
-    const pagination = { ...result.pagination, loading: false }
-    const videos = pagination.page === 1 ? result.records : [ ...this.state.videos, ...result.records ]
-
-    this._update(pagination, videos)
-  }
-
-  _getVideosFailure(error) {
-    const pagination = { ...this.state.pagination, loading: false }
-    this._update(pagination, this.state.videos)
-    console.error(error)
-  }
-
-  _getVideos(page) {
-    this._getVideosRequest()
-
-    API
-      .getVideos(page)
-      .then(result => this._getVideosSuccess(result))
-      .catch(error => this._getVideosFailure(error))
-  }
-
-  _rowHasChanged(r1, r2) {
-    return r1 !== r2
-  }
-
-  _update(pagination, videos) {
-    const loading = {
-      type: 'Loading',
-      loading: pagination.loading
-    }
-    this.setState({
-      pagination: pagination,
-      videos: videos,
-      ds: this.state.ds.cloneWithRows([ ...videos, loading ])
-    })
-  }
-
-  _renderRow(row) {
-    if (row.type === 'Loading') {
-      return <LoadingIndicator loading={ row.loading } />
+  _renderItem(item) {
+    if (item.type === 'Loading') {
+      return <LoadingIndicator loading={ item.loading } />
     }
 
     let { width } = Dimensions.get('window');
@@ -121,11 +83,11 @@ export default class VideoScreen extends Component {
     return (
       <View style={styles.row}>
         <Thumbnail
-          url={row.url}
+          url={item.url}
           imageWidth={imageWidth}
-          onPress={ () => this._onOpenUrl(row.url) }
+          onPress={ () => this._onOpenUrl(item.url) }
         />
-        <Text style={ [styles.title, {flex: 1}] }>{ row.title }</Text>
+        <Text style={ [styles.title, {flex: 1}] }>{ item.title }</Text>
       </View>
     )
   }
@@ -143,11 +105,11 @@ export default class VideoScreen extends Component {
       return;
     }
 
-    ToastAndroid.show('Not available while offline!', ToastAndroid.SHORT);
+    this.refs.toast.show('Not available while offline!', DURATION.SHORT);
   }
 
   _onRefresh() {
-    this._getVideos(1)
+    this.setState({videos: videoList})
   }
 
   _onEndReached() {
@@ -162,19 +124,12 @@ export default class VideoScreen extends Component {
 
   _renderContent() {
     return (
-      <ListView
-        style={ styles.container }
-        enableEmptySections={ true }
-        automaticallyAdjustContentInsets={ false }
-        dataSource={ this.state.ds }
-        renderRow={ row => this._renderRow(row) }
-        refreshControl={
-          <RefreshControl
-            refreshing={ false }
-            onRefresh={ () => this._onRefresh() }
-          />
-        }
-        onEndReached={ () => this._onEndReached() }
+      <FlatList
+        data={ this.state.videos }
+        renderItem={ ({item}) => this._renderItem(item) }
+        refreshing={false}
+        onRefresh={ () => this._onRefresh() }
+        keyExtractor={this._keyExtractor}
       />
     )
   }
@@ -185,10 +140,10 @@ export default class VideoScreen extends Component {
     }
 
     if (val.length > 1) {
-      API
-        .getVideosByName(val, 1)
-        .then(result => this._getVideosSuccess(result))
-        .catch(error => this._getVideosFailure(error))
+      list = videoList.filter((video) => {
+        return video.title.toLowerCase().indexOf(val.toLowerCase()) > -1
+      })
+      this.setState({videos: list})
     }
   }
 
@@ -222,16 +177,16 @@ export default class VideoScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
+      <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={styles.container} ref="myRef">
           <StatusBar />
           <Toolbar
             leftElement="menu"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វីដេអូមុខរបរ</Text>}
-            onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+            centerElement={<Text style={[headerStyles.headerTitleStyle, styles.headerTitleText]}> វីដេអូមុខរបរ</Text>}
+            onLeftElementPress={() => this.props.navigation.openDrawer()}
             searchable={{
               autoFocus: true,
-              placeholder: 'Search',
+              placeholder: 'ស្វែងរក',
               onChangeText: this._onChangeText.bind(this),
               onSearchClosed: this._onSearchClosed.bind(this)
             }}
@@ -239,8 +194,9 @@ export default class VideoScreen extends Component {
 
           { this.state.isLoaded && this.state.isConnected && this._renderContent() }
           { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
+          <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
         </View>
-      </ThemeProvider>
+      </ThemeContext.Provider>
     );
   };
 }
@@ -266,5 +222,17 @@ const styles = StyleSheet.create({
   title: {
     padding: 10,
     backgroundColor: '#fff'
-  }
+  },
+  headerTitleText: {
+    marginLeft: 0,
+    ...Platform.select({
+      android: {
+        fontFamily: 'Roboto',
+        fontWeight: 'bold'
+      },
+      ios: {
+        textAlign: 'center'
+      }
+    })
+  },
 });

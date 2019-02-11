@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   ScrollView,
@@ -6,13 +6,8 @@ import {
   Button,
   StyleSheet,
   TouchableOpacity,
+  Platform
 } from 'react-native';
-
-import {
-  ThemeProvider,
-  Toolbar,
-  Icon,
-} from 'react-native-material-ui';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -23,29 +18,26 @@ import User from '../utils/user';
 import headerStyles from '../assets/style_sheets/header';
 import StatusBar from '../components/status_bar';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
 
 export default class Dashboard extends Component {
   static navigationOptions = {
     drawerLabel: 'ទំព័រដើម',
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
-        <Icon name="home" color={tintColor} />
-      </ThemeProvider>
-    ),
+      <MaterialIcon name="home" color={tintColor} />
+    )
   };
+
+  constructor(props) {
+    super(props);
+  }
 
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
 
-    this.state = {
+    this.setState({
       showTourTip: !user.isVisited,
       user: user
-    };
+    });
   }
 
   _renderTourtip() {
@@ -53,7 +45,7 @@ export default class Dashboard extends Component {
       <View style={styles.overlay}>
         <ScrollView style={{flex: 1}}>
           <View style={{margin: 16}}>
-            <Text style={[styles.paragraph, {fontSize: 24, fontFamily: 'KhmerOureang', textAlign: 'center'}]}>ស្វាគមន៍មកកាន់ “ត្រីវិស័យ”</Text>
+            <Text style={[styles.paragraph, styles.welcomeText]}>ស្វាគមន៍មកកាន់ “ត្រីវិស័យ”</Text>
 
             <Text style={styles.paragraph}>
               ត្រីវិស័យ គឺជាកម្មវិធីប្រឹក្សាតាមប្រព័ន្ធអេឡិចត្រូនិចដែលតម្រង់ទិសសិស្សានុសិស្ស
@@ -62,7 +54,7 @@ export default class Dashboard extends Component {
               នីមួយៗបានយ៉ាងងាយស្រួល។
             </Text>
 
-            <Text style={[styles.paragraph, {fontSize: 20, fontFamily: 'KhmerOureang', textAlign: 'center'}]}>
+            <Text style={[styles.paragraph, {fontSize: 20, textAlign: 'center'}]}>
               ហេតុអ្វីបានជាយើងត្រូវការប្រឹក្សាយោបល់តាមប្រព័ន្ធអេឡិចត្រូនិច?
             </Text>
 
@@ -84,7 +76,7 @@ export default class Dashboard extends Component {
               <TouchableOpacity
                 onPress={() => this._onClickOk()}
                 style={{paddingHorizontal: 24, paddingVertical: 5, backgroundColor: 'rgba(255,255,255,0.28)'}}>
-                <Text style={{color: '#fff', fontFamily: 'KantumruyBold'}}>យល់ព្រម</Text>
+                <Text style={{color: '#fff', fontWeight: 'bold'}}>យល់ព្រម</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -107,11 +99,11 @@ export default class Dashboard extends Component {
         style={[styles.btnBox]}>
         <View style={[styles.btnFab, {backgroundColor: options.icon_bg_color}]}>
           { !(options.icon_type == 'material') &&
-            <AwesomeIcon name={options.icon_name} size={50} color='#fff' />
+            <AwesomeIcon style={styles.icon} name={options.icon_name} size={50} color='#fff' />
           }
 
           { options.icon_type == 'material' &&
-            <MaterialIcon name={options.icon_name} size={56} color='#fff' />
+            <MaterialIcon style={styles.icon} name={options.icon_name} size={56} color='#fff' />
           }
         </View>
         <Text style={styles.btnLabel}>{options.title}</Text>
@@ -122,44 +114,30 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
-        <View style={{flex: 1}}>
-          <StatusBar />
+      <View style={{flex: 1}}>
+        <StatusBar />
 
-          { !this.state.showTourTip &&
-            <Toolbar
-              leftElement="menu"
-              centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
-              onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-            />
-          }
+        { !this.state.showTourTip }
 
-          <ScrollView>
-            { this.state.showTourTip &&
-              <Toolbar
-                leftElement="menu"
-                centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>ត្រីវិស័យ</Text>}
-                onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-              />
-            }
+        <ScrollView>
+          { this.state.showTourTip }
 
-            <View style={styles.scrollContainer}>
-              <View style={{flexDirection: 'row'}}>
-                { this._renderButton({ title: 'វាយតម្លៃមុខរបរ', url: 'CareerCounsellorScreen', icon_bg_color: '#3f51b5', icon_name: 'briefcase', description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក។' }) }
-                { this._renderButton({ title: 'គ្រឹះស្ថានសិក្សា', url: 'InstitutionStack', icon_bg_color: '#009688', icon_name: 'business', icon_type: 'material', description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជាដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២។' }) }
-              </View>
-
-              <View style={{flexDirection: 'row'}}>
-                { this._renderButton({ title: 'ជំនាញវិជ្ជាជីវៈ', url: 'VocationalJobStack', icon_bg_color: '#1aaf5d', icon_name: 'photo-filter', icon_type: 'material', description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវះរយៈពេលខ្លី។' }) }
-                { this._renderButton({ title: 'វីដេអូមុខរបរ', url: 'VideoScreen', icon_bg_color: '#f44336', icon_name: 'video-camera', description: 'យល់ដឹងអំពីមុខរបរ និងអាជីព តាមរយះវីដេអូ។' }) }
-              </View>
+          <View style={styles.scrollContainer}>
+            <View style={{flexDirection: 'row'}}>
+              { this._renderButton({ title: 'វាយតម្លៃមុខរបរ', url: 'CareerCounsellorScreen', icon_bg_color: '#3f51b5', icon_name: 'briefcase', description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក។' }) }
+              { this._renderButton({ title: 'គ្រឹះស្ថានសិក្សា', url: 'InstitutionStack', icon_bg_color: '#009688', icon_name: 'business', icon_type: 'material', description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជាដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២។' }) }
             </View>
-          </ScrollView>
 
-          { this.state.showTourTip && this._renderTourtip() }
+            <View style={{flexDirection: 'row'}}>
+              { this._renderButton({ title: 'ជំនាញវិជ្ជាជីវៈ', url: 'VocationalJobStack', icon_bg_color: '#1aaf5d', icon_name: 'photo-filter', icon_type: 'material', description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវះរយៈពេលខ្លី។' }) }
+              { this._renderButton({ title: 'វីដេអូមុខរបរ', url: 'VideoScreen', icon_bg_color: '#f44336', icon_name: 'video-camera', description: 'យល់ដឹងអំពីមុខរបរ និងអាជីព តាមរយះវីដេអូ។' }) }
+            </View>
+          </View>
+        </ScrollView>
 
-        </View>
-      </ThemeProvider>
+        { this.state.showTourTip && this._renderTourtip() }
+
+      </View>
     );
   }
 }
@@ -172,19 +150,21 @@ const styles = StyleSheet.create({
     flex: 1,
     minHeight: 315,
     alignItems: 'center',
-    margin: 8,
+    margin: 10,
     backgroundColor: '#fff',
-    paddingRight: 16,
   },
   btnLabel: {
-    fontFamily: 'KhmerOureang',
     fontSize: 24,
-    lineHeight: 40,
     color: '#1976d2',
+    width: '100%',
     textAlign: 'center',
+    ...Platform.select({
+      android: {
+        lineHeight: 48,
+      }
+    })
   },
   btnDescription: {
-    marginTop: 16,
     padding: 8,
     textAlign: 'center',
   },
@@ -195,6 +175,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     margin: 24
+  },
+  icon: {
+    ...Platform.select({
+      android: {
+        padding:  20,
+        marginTop: 20
+      },
+      ios: {
+        padding:  0,
+        marginTop: 0
+      }
+    })
+
   },
   overlay: {
     position: 'absolute',
@@ -208,6 +201,14 @@ const styles = StyleSheet.create({
     color: '#fff',
     marginBottom: 10,
     textAlign: 'justify',
-    fontSize: 16,
+  },
+  welcomeText: {
+    fontSize: 24,
+    textAlign: 'center',
+    ...Platform.select({
+      android: {
+        lineHeight: 48
+      }
+    })
   }
 });

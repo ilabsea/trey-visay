@@ -35,7 +35,8 @@ const styles = StyleSheet.create({
     maxWidth: 500
   },
   radioTitle: {
-    marginBottom: 10
+    marginBottom: 10,
+    color: 'black'
   }
 })
 

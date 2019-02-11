@@ -5,13 +5,8 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  TouchableNativeFeedback,
   BackHandler,
 } from 'react-native';
-
-import {
-  ThemeProvider,
-} from 'react-native-material-ui';
 
 import styles from '../../../assets/style_sheets/profile_form';
 import headerStyles from '../../../assets/style_sheets/header';
@@ -24,17 +19,6 @@ import characteristicList from '../../../data/json/characteristic_jobs';
 import subjectTe from '../../../data/translates/subject';
 
 export default class RecommendationReport extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ការផ្តល់អនុសាសន៍',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ការផ្តល់អនុសាសន៍</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerTintColor: '#fff'
-    }
-  };
-
   componentWillMount() {
     this._initState();
   }
@@ -45,13 +29,13 @@ export default class RecommendationReport extends Component {
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((obj) => obj.id == game.mostFavorableJobId);
 
-    this.state = {
+    this.setState({
       currentJob: currentJob,
       user: user,
       game: game,
       gameSubject: game.gameSubject,
       currentGroup: currentGroup,
-    }
+    })
   }
 
   _goNext() {
@@ -70,7 +54,6 @@ export default class RecommendationReport extends Component {
 
   _handleSubmit() {
     realm.write(() => {
-    //   realm.create('Game', this._buildData(), true);
       this.state.game.step = 'GoalScreen';
       this.props.navigation.navigate('GoalScreen', {career: this.state.currentJob.name});
     });
@@ -192,28 +175,26 @@ export default class RecommendationReport extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderContent() }
-            </View>
-          </ScrollView>
-        </View>
-      </ThemeProvider>
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderContent() }
+          </View>
+        </ScrollView>
+      </View>
     );
   };
 }
 
 const localStyle = StyleSheet.create({
   boldText: {
-    fontFamily: 'KantumruyBold',
+    fontWeight: 'bold'
   },
   paragraph: {
     marginTop: 16,
   },
   highlightBlue: {
-    fontFamily: 'KantumruyBold',
+    fontWeight: 'bold',
     color: '#1976d2'
   }
 });

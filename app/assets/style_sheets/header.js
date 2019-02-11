@@ -1,29 +1,34 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet , Platform } from 'react-native';
 
 export default StyleSheet.create({
   headerTitleStyle: {
     color: '#fff',
-    fontSize: 20,
-    lineHeight: 30,
-    fontFamily: 'KhmerOureang',
+    fontSize: 22,
     marginLeft: 20,
   },
   headerStyle: {
     backgroundColor: '#1976d2'
   },
+  headerStyleProfile: {
+    backgroundColor: '#1976d2',
+    ...Platform.select({
+      android: {
+        marginTop: 20
+      }
+    })
+  },
   saveText: {
     color: '#fff',
-    marginLeft: 10,
     marginRight: 16,
     fontSize: 16,
-    fontFamily: 'KhmerOureang',
   },
   actionWrapper: {
     flexDirection: 'row',
-    alignItems: 'center'
+    alignItems: 'flex-start',
+    justifyContent: "flex-start"
   },
   body2: {
-    fontFamily: 'KantumruyBold',
+    fontWeight: 'bold',
     fontSize: 14
   }
 })

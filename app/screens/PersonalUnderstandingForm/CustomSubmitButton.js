@@ -6,33 +6,31 @@ import styles from './styles'
 import {
   Button,
   Text,
-  TouchableNativeFeedback
+  TouchableNativeFeedback,
+  TouchableHighlight,
 } from 'react-native';
 
 class CustomSubmitButton extends React.Component{
   constructor(props) {
     super(props);
   };
+  
   handleClick = () => {
     this.props.handleSubmit();
   }
 
   render(){
+    let TouchablePlatformSpecific = Platform.OS === 'ios' ?
+        TouchableHighlight :
+        TouchableNativeFeedback;
     return (
-      <TouchableNativeFeedback>
+      <TouchablePlatformSpecific>
         <Text style={styles.buttonText} onPress={() => this.props.dispatch(submit('personalUnderstandingForm', this.handleClick() ))}>រក្សាទុក</Text>
-      </TouchableNativeFeedback>
+      </TouchablePlatformSpecific>
     )
   }
 
 
 }
-
-// const CustomSubmitButton = ({ dispatch }) =>
-
-
-
-
-
 
 export default connect()(CustomSubmitButton)

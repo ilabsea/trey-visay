@@ -6,17 +6,15 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
-  ToastAndroid,
+  Platform
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 import CheckboxGroup from '../../components/checkbox_group';
-import RadioGroup from '../../components/radio_group';
+import RadioButtonGroup from '../../components/radio_button_group';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
+import FooterBar from '../../components/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../assets/style_sheets/profile_form';
@@ -36,13 +34,6 @@ export default class SummaryScreen extends Component {
 
     return {
       title: 'ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
     }
   };
 
@@ -62,14 +53,14 @@ export default class SummaryScreen extends Component {
     let careerIds = game.personalityCareers.map((obj) => obj.value);
     let userCareers = currentGroup.careers.filter((item, pos) => { return careerIds.includes(item.id) });
 
-    this.state = {
+    this.setState({
       userCareers: userCareers,
       currentGroup: currentGroup,
       user: user,
       game: game,
       confirmDialogVisible: false,
       mostFavorableJob: game.mostFavorableJobId,
-    }
+    })
   }
 
   _handleBack() {
@@ -125,20 +116,9 @@ export default class SummaryScreen extends Component {
     return arr;
   }
 
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   _goNext() {
     if (!this.state.mostFavorableJob) {
-      return ToastAndroid.show('សូមជ្រើសរើសមុខរបរចំនួន 1!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូូមជ្រើសរើសមុខរបរចំនួន 1!', DURATION.SHORT);
     }
 
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
@@ -156,45 +136,39 @@ export default class SummaryScreen extends Component {
     return(
       <View style={styles.box}>
         <Text style={styles.subTitle}>ចូរជ្រើសរើស មុខរបរតែមួយគត់ដែលអ្នកពេញចិត្តបំផុត</Text>
-
-        <View style={{borderTopWidth: 1, borderTopColor: '#ccc', paddingVertical: 16}}>
-          <RadioGroup
-            style={{alignItems: 'flex-start'}}
-            formVertical={true}
-            options={this._formatDataForCheckbox(this.state.userCareers)}
+          <RadioButtonGroup
+            radio_props={this._formatDataForCheckbox(this.state.userCareers)}
             onPress={(text) => this.setState({ mostFavorableJob: text })}
             value={this.state.mostFavorableJob} >
-          </RadioGroup>
-        </View>
+          </RadioButtonGroup>
       </View>
     )
   }
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              <View style={{flexDirection: 'row', marginVertical: 16}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!</Text>
-              </View>
-
-              { this._renderRadioGroups() }
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            <View style={{flexDirection: 'row', marginVertical: 16}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text style={{flex: 1}}>ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!</Text>
             </View>
-          </ScrollView>
 
-          { this._renderFooter() }
+            { this._renderRadioGroups() }
+          </View>
+        </ScrollView>
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
+
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+        <Toast ref='toast' positionValue={ Platform.OS === 'ios' ? 120 : 140 }/>
+      </View>
     );
   };
 }

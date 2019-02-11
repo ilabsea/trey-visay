@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet , Platform} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -7,21 +7,16 @@ export default StyleSheet.create({
   },
   subTitle: {
     fontSize: 20,
-    fontFamily: 'KhmerOureang',
   },
   inputContainer: {
     padding: 2,
-    marginTop: 18,
+    marginTop: 30,
     marginBottom: 18,
     maxWidth: 500
   },
-  inputLabel: {
-    color: 'rgba(0,0,0,0.5)',
-  },
   errorText: {
     color: 'rgb(221,44,0)',
-    fontSize: 12,
-    lineHeight: 14
+    fontSize: 12
   },
   saveText: {
     color: '#fff',
@@ -49,4 +44,32 @@ export default StyleSheet.create({
     alignItems: 'flex-start',
     flexDirection:'row',
   },
+  icon: {
+    ...Platform.select({
+      ios: {
+        paddingTop: 0
+      },
+      android: {
+        paddingTop: 20
+      },
+    })
+  },
+  textTime: {
+    fontSize: 34,
+    ...Platform.select({
+      android: {
+        lineHeight: 48
+      }
+    })
+  },
+  dialogButtonText: {
+    ...Platform.select({
+      android: {
+        lineHeight: 18
+      }
+    })
+  },
+  labelColor: {
+    color: 'black'
+  }
 });

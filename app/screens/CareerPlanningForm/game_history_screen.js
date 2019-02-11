@@ -7,11 +7,6 @@ import {
   Image,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
@@ -20,6 +15,8 @@ import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 
+import BackButton from '../../components/back_button';
+
 import realm from '../../schema';
 import User from '../../utils/user';
 import schoolList from '../../data/json/schools';
@@ -27,21 +24,6 @@ import characteristicList from '../../data/json/characteristic_jobs';
 import Images from '../../assets/images';
 
 export default class GameHistoryScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'Game History',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>តេស្តលើកទី {state.params.num}</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='arrow-back' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
-    }
-  };
-
   componentWillMount() {
     this._initState();
   }
@@ -60,7 +42,7 @@ export default class GameHistoryScreen extends Component {
     let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);
     let schools = schoolList.filter((school, pos) => { return currentJob.schools.includes(school.id) });
 
-    this.state = {
+    this.setState({
       user: user,
       game: game,
       time: '',
@@ -68,11 +50,11 @@ export default class GameHistoryScreen extends Component {
       gameUuid: this.props.navigation.state.params.gameUuid,
       schools: schools,
       currentJob: currentJob
-    };
-
+    });
     if (!game.voiceRecord) { return }
+    console.log('this.state.game : ', game.voiceRecord);
 
-    this.sound = new Sound(this.state.game.voiceRecord, '', (error) => {
+    this.sound = new Sound(game.voiceRecord, '', (error) => {
       if (error) {
         console.log('failed to load the sound', error);
       }
@@ -163,21 +145,14 @@ export default class GameHistoryScreen extends Component {
   }
 
   async _play() {
-    // These timeouts are a hacky workaround for some issues with react-native-sound.
-    // See https://github.com/zmxv/react-native-sound/issues/89.
     this.setState({isPlaying: true});
-
-    setTimeout(() => {
-      this.sound.play((success) => {
-        if (success) {
-          console.log('successfully finished playing');
-          this.setState({isPlaying: false});
-        } else {
-          console.log('playback failed due to audio decoding errors');
-          this.sound.reset();
-        }
-      });
-    }, 100);
+    this.sound.play((success) => {
+      if (success) {
+        this.setState({isPlaying: false});
+      } else {
+        this.sound.reset();
+      }
+    });
   }
 
   async _stop() {
@@ -191,18 +166,18 @@ export default class GameHistoryScreen extends Component {
         <View style={{marginRight: 16}}>
           { !this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._play()}>
-              <MaterialIcon name='play-circle-outline' size={40} color='#4caf50'/>
+              <MaterialIcon style={styles.icon} name='play-circle-outline' size={40} color='#4caf50'/>
             </TouchableOpacity>
           }
 
           { this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._stop()}>
-              <MaterialIcon name='pause-circle-outline' size={40} color='#e94b35'/>
+              <MaterialIcon style={styles.icon} name='pause-circle-outline' size={40} color='#e94b35'/>
             </TouchableOpacity>
           }
         </View>
 
-        <Text style={{fontSize: 34}}>{this.state.time}</Text>
+        <Text style={styles.textTime}>{this.state.time}</Text>
       </View>
     )
   }
@@ -273,18 +248,16 @@ export default class GameHistoryScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderTest1Trigger() }
-              { this._renderTest2Trigger() }
-              { this._renderGoal() }
-              { this._renderContent() }
-            </View>
-          </ScrollView>
-        </View>
-      </ThemeProvider>
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderTest1Trigger() }
+            { this._renderTest2Trigger() }
+            { this._renderGoal() }
+            { this._renderContent() }
+          </View>
+        </ScrollView>
+      </View>
     );
   };
 }

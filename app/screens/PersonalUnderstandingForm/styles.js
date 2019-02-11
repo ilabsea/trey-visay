@@ -11,7 +11,6 @@ export default StyleSheet.create({
   },
   subTitle: {
     fontSize: 20,
-    fontFamily: 'KhmerOureang',
     textAlign: 'center'
   },
   paragraph: {
@@ -24,7 +23,7 @@ export default StyleSheet.create({
     borderRadius: 3
   },
   btnText: {
-    fontFamily: 'KantumruyBold',
+    fontWeight: 'bold',
     fontSize: 16,
     color: '#fff',
   }

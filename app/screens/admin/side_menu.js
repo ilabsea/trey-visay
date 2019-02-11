@@ -6,9 +6,11 @@ import {
   Button,
   ScrollView,
   StyleSheet,
+  TouchableHighlight,
   TouchableNativeFeedback,
   TouchableOpacity,
   Image,
+  Platform
 } from 'react-native';
 
 import {NavigationActions} from 'react-navigation';
@@ -85,33 +87,41 @@ class SideMenu extends Component {
     this.props.screenProps.rootNavigation.dispatch({type: 'Navigation/RESET', routeName: 'Home', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]})
   }
 
+  _renderMenuHeader() {
+    let TouchablePlatformSpecific = Platform.OS === 'ios' ?
+        TouchableHighlight :
+        TouchableNativeFeedback;
+    return(
+      <TouchablePlatformSpecific onPress={this.toggleScreen.bind(this)}>
+        <View>
+          <View style={{position: 'relative'}}>
+            <Image
+              source={this.state.cover}
+              style={{width: null, height: 180}} />
+          </View>
+
+          <View style={{position: 'absolute', top: 24, left: 24}}>
+            <Image
+              source={this.state.photo}
+              style={{borderRadius: 32, width: 64, height: 64 }} />
+          </View>
+
+          <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={styles.name}>{!!this.state.user && this.state.user.fullName}</Text>
+            { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
+            { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
+          </View>
+        </View>
+      </TouchablePlatformSpecific>
+    )
+  }
+
   render() {
     return (
       <ScrollView>
-        <TouchableNativeFeedback onPress={this.toggleScreen.bind(this)}>
-          <View>
-            <View style={{position: 'relative'}}>
-              <Image
-                source={this.state.cover}
-                style={{width: null, height: 180}} />
-            </View>
+        { this._renderMenuHeader() }
 
-            <View style={{position: 'absolute', top: 24, left: 24}}>
-              <Image
-                source={this.state.photo}
-                style={{borderRadius: 32, width: 64, height: 64 }} />
-            </View>
-
-            <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
-              <Text style={styles.name}>{!!this.state.user && this.state.user.fullName}</Text>
-              { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
-              { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
-            </View>
-          </View>
-        </TouchableNativeFeedback>
-
-        {
-          this.state.isOpen &&
+        { this.state.isOpen &&
           <View>
             <TouchableOpacity onPress={() => this.navigateToScreen('Dashboard')} style={this.isActive}>
               <View style={this.getWrapperStyle('Dashboard')}>
@@ -159,7 +169,6 @@ export default SideMenu;
 const styles = StyleSheet.create({
   name: {
     fontSize: 14,
-    fontFamily: 'KhmerOureang',
     color: '#fff',
     flex: 1
   },
@@ -174,7 +183,6 @@ const styles = StyleSheet.create({
     color: 'rgba(0,0,0,0.54)'
   },
   menuLabel: {
-    fontFamily: 'KhmerOureang',
     fontSize: 14,
   },
 });

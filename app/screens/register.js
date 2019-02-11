@@ -7,9 +7,12 @@ import {
   Alert,
   Image,
   TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import StatusBar from '../components/status_bar';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+
 
 // Utils
 import realm from '../schema';
@@ -18,7 +21,6 @@ import User from '../utils/user';
 import styles from '../assets/style_sheets/login_form';
 
 // Components
-import BackgroundImage from '../components/image_background';
 import Button from '../components/button';
 
 export default class RegisterScreen extends Component {
@@ -61,7 +63,6 @@ export default class RegisterScreen extends Component {
 
       });
     } catch (e) {
-      console.log('===========Error on creation', e);
       alert('Fail to create user!');
     }
   }
@@ -81,10 +82,10 @@ export default class RegisterScreen extends Component {
 
     return (
       <LinearGradient style={styles.container} colors={['#80d0c7', '#0093e8']}>
-        <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
+        <ImageBackground source={require('../assets/images/sign_in_bg.png')} style={{width: '100%', height: '100%'}}>
           <StatusBar hidden={true} />
 
-          <ScrollView>
+          <KeyboardAwareScrollView>
             <View style={{padding: 24}}>
               <View style={{flex: 1, alignItems: 'center'}}>
                 <Image
@@ -145,8 +146,8 @@ export default class RegisterScreen extends Component {
                 </TouchableOpacity>
               </View>
             </View>
-          </ScrollView>
-        </BackgroundImage>
+          </KeyboardAwareScrollView>
+        </ImageBackground>
       </LinearGradient>
     )
   }

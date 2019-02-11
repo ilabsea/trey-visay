@@ -5,17 +5,11 @@ import {
   StyleSheet,
   ScrollView,
   TouchableOpacity,
-  TouchableNativeFeedback,
   BackHandler,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
-
-import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
+import FooterBar from '../../components/FooterBar';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -29,21 +23,6 @@ import characteristicList from '../../data/json/characteristic_jobs';
 import subjectTe from '../../data/translates/subject';
 
 export default class RecommendationScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ការផ្តល់អនុសាសន៍',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ការផ្តល់អនុសាសន៍</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
-    }
-  };
-
   componentWillMount() {
     this._initState();
     this._backHandler();
@@ -55,13 +34,13 @@ export default class RecommendationScreen extends Component {
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((obj) => obj.id == game.mostFavorableJobId);
 
-    this.state = {
+    this.setState({
       currentJob: currentJob,
       user: user,
       game: game,
       gameSubject: game.gameSubject,
       currentGroup: currentGroup,
-    }
+    })
 
     this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
   }
@@ -93,17 +72,6 @@ export default class RecommendationScreen extends Component {
       this.setState({confirmDialogVisible: false});
       this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
-  }
-
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
   }
 
   _goNext() {
@@ -245,41 +213,39 @@ export default class RecommendationScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>ចូរប្អូនអានអនុសាសន៍ខាងក្រោម៖</Text>
-              </View>
-              { this._renderContent() }
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>ចូរប្អូនអានអនុសាសន៍ខាងក្រោម៖</Text>
             </View>
-          </ScrollView>
+            { this._renderContent() }
+          </View>
+        </ScrollView>
 
-          { this._renderFooter() }
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+      </View>
     );
   };
 }
 
 const localStyle = StyleSheet.create({
   boldText: {
-    fontFamily: 'KantumruyBold',
+    fontWeight: 'bold'
   },
   paragraph: {
     marginTop: 16,
   },
   highlightBlue: {
-    fontFamily: 'KantumruyBold',
+    fontWeight: 'bold',
     color: '#1976d2'
   }
 });

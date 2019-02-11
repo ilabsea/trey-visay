@@ -12,47 +12,32 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
   Icon,
   Avatar,
 } from 'react-native-material-ui';
 
 import { Dialog } from 'react-native-simple-dialogs';
 import ImagePicker from 'react-native-image-crop-picker';
+import StatusBar from '../../components/status_bar';
 
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
 
 export default class EditProfilePhoto extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack } = navigation;
-
-    return {
-      title: 'កែសម្រួល',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>កែសម្រួល</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
-      headerRight: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <Icon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>
-                   </ThemeProvider>,
-    }
-  };
-
   state = {user: '', type: ''};
 
   componentWillMount() {
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
+    this.props.navigation.setParams({
+      handleSubmit: this.handleSubmit.bind(this),
+      _handleBack: this._handleBack.bind(this)
+    });
     this.refreshState();
+  }
+
+  _handleBack(){
+    this.props.navigation.goBack();
   }
 
   handleSubmit() {
@@ -86,8 +71,6 @@ export default class EditProfilePhoto extends Component {
   }
 
   takePhoto() {
-    this.openDialog(false);
-
     ImagePicker.openCamera({
       width: 200,
       height: 200,
@@ -99,8 +82,6 @@ export default class EditProfilePhoto extends Component {
   }
 
   selectPhoto() {
-    this.openDialog(false);
-
     ImagePicker.openPicker({
       width: 200,
       height: 200,
@@ -113,6 +94,7 @@ export default class EditProfilePhoto extends Component {
 
   handleSelectedPhoto(image) {
     let source = { uri: image.path };
+    this.openDialog(false);
 
     if (this.state.type == 'photo') {
       this.setState({ photo: source });
@@ -213,13 +195,12 @@ export default class EditProfilePhoto extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={{}}>
         <View style={{position: 'relative', flex: 1}}>
+          <StatusBar />
           { this._renderCover() }
           { this._renderProfile() }
           { this._renderDialog() }
         </View>
-      </ThemeProvider>
     )
   }
 }

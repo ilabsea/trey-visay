@@ -6,8 +6,7 @@ const questions = {
                       howToReachCareerGoal: {type: 'text', rate: 2},
                       doesParentsAgreeWith: {type: 'yes_no', rate: {'Yes': 2, 'No': 0, 'Don_Know': 0}},
                       everTalkedWithAnyoneAboutCareer: {type: 'select_many', rate: {1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6:1}},
-                      howToReachJobVacancy: {type: 'text', rate: 1},
-                      whoToReachJobVacancy: {type: 'text', rate: 1}
+                      howToReachJobVacancy: {type: 'text', rate: 1}
                    }
 
 export default class PersonalUnderstandingScore {

@@ -7,22 +7,21 @@ import {
   TouchableOpacity,
   BackHandler,
   Image,
+  Platform
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast';
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
+import CloseButton from '../../components/close_button';
 
 import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Images from '../../assets/images';
 import CheckboxGroup from '../../components/checkbox_group';
+import FooterBar from '../../components/FooterBar';
 import MathUtil from '../../utils/math';
 
 import realm from '../../schema';
@@ -32,21 +31,6 @@ import characteristicList from '../../data/json/characteristic_jobs';
 let entries = ["មានទំនាក់ទំនងល្អជាមួយនឹងក្រុមការងារ", "ស្រាវជ្រាវ", "ឯករាជ្យ", "មហិច្ឆតា", "មានទំនុកចិត្ត", "មានផែនការ និងគៅដៅច្បាស់លាស់", "ហ្មត់ចត់នឹងការងារ", "មានទេពកោសល្យ", "មានចម្ងល់ជារឿយ", "មានទំនួលខុសត្រូវ", "គិតស៊ីជំរៅ និងមានហេតុផល", "ប្រាកដប្រជា", "ជាបុគ្គលឆ្នើម", "មានស្មារតីប្រុងប្រយត្ន័", "មានភាពជាអ្នកដឹកនាំ និងគ្រប់គ្រង", "អនុវត្តន៍ការងារជាក់ស្តែង", "គ្រប់គ្រងពេលវេលា​បានល្អ", "មានក្រមវិន័យល្អ", "មានឆន្ទៈ", "ឆ្លាត", "ចូលចិត្តវិទ្យាសាស្រ្ត", "មានគំនិតច្នៃប្រឌិត", "ចូលចិត្តធ្វើការជាមួយ នឹងបច្ចេកវិទ្យា និង គ្រឿងម៉ាស៊ីន", "មានដំណោះស្រាយល្អ", "ពូកែចរចារ", "ចេះសម្របខ្លួនតាមស្ថានភាពជាក់ស្ដែង", "អត់ធ្មត់", "ពូកែសម្របសម្រួល", "ចូលចិត្តធ្វើការជាមួយមនុស្ស", "ស្លូតបូត និងសុភាពរាបសារ", "ជួយផ្ដល់យោបល់ឲ្យអ្នកដទៃ", "ចូលចិត្តទទួលការរិៈគន់ក្នុងន័យស្ថាបនា", "ចេះចែករំលែកបទពិសោធន៍ការងារ និងចំណេះដឹង", "មានប្រាស្រ័យល្អក្នុងសហគមន៍", "រួសរាយរាក់ទាក់"];
 
 export default class PersonalityScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'បំពេញបុគ្គលិកលក្ខណៈ',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>បំពេញបុគ្គលិកលក្ខណៈ</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
-    }
-  };
-
   currentGroup;
 
   state = {
@@ -109,17 +93,6 @@ export default class PersonalityScreen extends Component {
     });
   }
 
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   _findAndSetMaximumScoreGroup() {
     let arr = [];
 
@@ -137,7 +110,7 @@ export default class PersonalityScreen extends Component {
 
   _goNext() {
     if (this.state.characteristicEntries.length < 5) {
-      return alert('Please select characteristic at least 5!');
+      return this.refs.toast.show('សូមជ្រេីសរេីសបុគ្គលិកលក្ខណៈចំនួន ៥!', DURATION.SHORT);
     }
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
     this._findAndSetMaximumScoreGroup();
@@ -185,6 +158,8 @@ export default class PersonalityScreen extends Component {
 
     return(
       <View style={styles.box}>
+        <Text style={styles.subTitle}>បុគ្គលិកលក្ខណៈ</Text>
+
         <View>
           <CheckboxGroup
             onSelect={(selected) => {this._handleChecked(selected)}}
@@ -220,29 +195,28 @@ export default class PersonalityScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16}}>
-              <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបានយ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់ និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយជាក់លាក់នាពេលអនាគត។</Text>
-              </View>
-
-              { this._renderPersonalities() }
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16}}>
+            <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបានយ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់ និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយជាក់លាក់នាពេលអនាគត។</Text>
             </View>
-          </ScrollView>
 
-          { this._renderFooter() }
+            { this._renderPersonalities() }
+          </View>
+        </ScrollView>
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
+
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+      </View>
     );
   };
 }

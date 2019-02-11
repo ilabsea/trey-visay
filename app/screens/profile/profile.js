@@ -5,10 +5,10 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Platform
 } from 'react-native';
 
 import {
-  ThemeProvider,
   Toolbar,
   Icon,
   Avatar,
@@ -20,7 +20,6 @@ import User from '../../utils/user';
 
 // Components
 import ScrollableHeader from '../../components/scrollable_header';
-
 import highSchoolList from '../../data/json/high_schools';
 
 const PROFILE_SIZE = 120;
@@ -30,9 +29,7 @@ export default class Profile extends Component {
     header: null,
     title: 'ប្រវត្តិរូបសង្ខេប',
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
-        <Icon name="person" color={tintColor} />
-      </ThemeProvider>
+      <Icon name="person" color={tintColor} />
     ),
   });
 
@@ -67,7 +64,6 @@ export default class Profile extends Component {
         </View>
 
         { this._renderPersonalInfo() }
-        { this._renderFamilyInfo() }
         { this._renderFamilySituation() }
       </View>
     )
@@ -131,54 +127,6 @@ export default class Profile extends Component {
     )
   }
 
-  _renderFamilyInfo() {
-    return (
-      <View style={styles.box}>
-        <View style={styles.item}>
-          <Text style={styles.itemTitle}>ព័ត៌មានគ្រួសារ</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditFamilyInfo', { refresh: this.refreshState.bind(this) })}>
-            <Icon name="edit" />
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ឪពុកឈ្មោះ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.fatherName}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>មុខរបរ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.fatherOccupation}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ម្តាយឈ្មោះ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.motherName}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>មុខរបរ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.motherOccupation}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>អាណាព្យាបាល</Text>
-          <Text style={styles.itemValue}>: {this.state.user.guidance}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>លេខទូរស័ព្ទឪពុកម្តាយ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.parentContactNumber || '-'}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ចំនួនសមាជិកគ្រួសារ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.numberOfFamilyMember} (ស្រី{this.state.user.numberOfSisters} ប្រុស{this.state.user.numberOfBrothers})</Text>
-        </View>
-      </View>
-    )
-  }
-
   _renderFamilySituation() {
     return (
       <View style={styles.box}>
@@ -237,7 +185,7 @@ export default class Profile extends Component {
             <Avatar icon='edit' size={30} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.26)'}}} />
           </TouchableOpacity>
         }
-        onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+        onLeftElementPress={() => this.props.navigation.openDrawer()}
         style={{
           container: {backgroundColor: 'transparent'}
         }}
@@ -257,16 +205,14 @@ export default class Profile extends Component {
     }
 
     return (
-      <ThemeProvider uiTheme={{}}>
-        <ScrollableHeader
-          customView={ this._renderScrollViewContent.bind(this) }
-          imageBgSrc={ cover }
-          customHeader={ this._renderHeader.bind(this) }
-          profile={ photo }
-          profileSize={ PROFILE_SIZE }
-          title={this.state.user.fullName}
-        />
-      </ThemeProvider>
+      <ScrollableHeader
+        customView={ this._renderScrollViewContent.bind(this) }
+        imageBgSrc={ cover }
+        customHeader={ this._renderHeader.bind(this) }
+        profile={ photo }
+        profileSize={ PROFILE_SIZE }
+        title={this.state.user.fullName}
+      />
     )
   }
 }
@@ -286,7 +232,6 @@ const styles = StyleSheet.create({
   itemTitle: {
     flex: 1,
     fontSize: 20,
-    fontFamily: 'KhmerOureang',
     color: '#111'
   },
   itemLabel: {
@@ -295,7 +240,7 @@ const styles = StyleSheet.create({
   itemValue: {
     flex: 2,
     fontSize: 16,
-    fontFamily: 'KantumruyBold',
+    fontWeight: 'bold',
     color: '#111'
   },
   avataContainer: {

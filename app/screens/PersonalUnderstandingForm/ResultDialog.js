@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
   Dialog,
   DialogDefaultActions,
 } from 'react-native-material-ui';
@@ -15,7 +14,6 @@ export default class ResultDialog extends React.Component{
     render(){
       return(
         <View>
-          <ThemeProvider uiTheme={{}}>
           <Dialog>
             <Dialog.Title><Text>Hello world</Text></Dialog.Title>
             <Dialog.Content>
@@ -30,7 +28,6 @@ export default class ResultDialog extends React.Component{
               />
             </Dialog.Actions>
           </Dialog>
-          </ThemeProvider>
         </View>
       );
     }

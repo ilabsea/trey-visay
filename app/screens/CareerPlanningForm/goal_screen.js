@@ -10,20 +10,19 @@ import {
   Platform,
   PermissionsAndroid,
   Image,
-  BackHandler,
-  ToastAndroid,
+  BackHandler
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast';
+
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
+import FooterBar from '../../components/FooterBar';
 import labelStyles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
@@ -39,21 +38,6 @@ const uiTheme = {
 };
 
 export default class GoalScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ដាក់គោលដៅមួយ និងមូលហេតុ',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ដាក់គោលដៅមួយ និងមូលហេតុ</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
-    }
-  };
-
   componentWillMount() {
     this._initState();
     this._backHandler();
@@ -91,7 +75,7 @@ export default class GoalScreen extends Component {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
 
-    this.state = {
+    this.setState({
       currentTime: 0.0,
       recording: false,
       stoppedRecording: false,
@@ -104,7 +88,7 @@ export default class GoalScreen extends Component {
       game: game,
       reasonText: '',
       voiceRecord: ''
-    };
+    });
 
     this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
   }
@@ -142,20 +126,9 @@ export default class GoalScreen extends Component {
     });
   }
 
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   _goNext() {
     if (!this.state.reasonText && !this.state.voiceRecord) {
-      return ToastAndroid.show('សូមបំពេញការដាក់គោលដៅរបស់អ្នកជាអក្សរ ឬក៏ថតជាសំលេង!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូូមបំពេញគោលដៅរបស់អ្នកជាអក្សរ ឬក៏ថតជាសំលេង!', DURATION.SHORT);
     }
 
     this._handleSubmit();
@@ -206,7 +179,7 @@ export default class GoalScreen extends Component {
         <View style={labelStyles.box}>
           <Text style={labelStyles.subTitle}>តើអ្នកនឹងប្រកបមុខរបរអ្វីនាពេលអនាគត? មូលហេតុអ្វី?</Text>
           <Text>
-            <Text style={{fontFamily: 'KantumruyBold'}}>ឧទាហរណ៍៖ </Text>
+            <Text style={{fontWeight: 'bold'}}>ឧទាហរណ៍៖ </Text>
             ខ្ញុំនឹងធ្វើជាស្ថបត្យករក៏ពូកែម្នាក់ ក្នុងក្រុមហ៊ុនឯកជនមួយនៅទីក្រុងភ្នំពេញ ពេលខ្ញំបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រក្នុងឆ្នាំ២០២២។
           </Text>
           <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 24}}>
@@ -422,24 +395,23 @@ export default class GoalScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={uiTheme}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderContent() }
-            </View>
-          </ScrollView>
+      <View style={{flex: 1}}>
+        <KeyboardAwareScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderContent() }
+          </View>
+        </KeyboardAwareScrollView>
 
-          { this._renderFooter() }
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+        <Toast ref='toast' positionValue={Platform.OS == 'ios' ? 120 : 140}/>
+      </View>
     );
   };
 }
@@ -456,7 +428,7 @@ var styles = StyleSheet.create({
     fontSize: 50,
   },
   button: {
-    padding: 20,
+    padding: Platform.OS === 'ios' ? 15 : 20,
     borderWidth: 1,
     borderRadius: 28,
     width: 56,

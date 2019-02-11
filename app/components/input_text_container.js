@@ -4,7 +4,10 @@ import {
   TextInput,
   View,
   StyleSheet,
+  Platform
 } from 'react-native';
+import { TextField } from 'react-native-material-textfield';
+import styles from '../assets/style_sheets/profile_form';
 
 class InputTextContainer extends Component {
   constructor(props) {
@@ -16,18 +19,21 @@ class InputTextContainer extends Component {
       return <Text key={i} style={styles.errorText}>{message}</Text>
     })
 
-    const {style, ...props} = this.props;
+    const { ...props} = this.props;
 
     return (
-      <View style={[styles.inputContainer, style]}>
-        <Text style={styles.inputLabel}>{this.props.label}</Text>
-        <TextInput
-          underlineColorAndroid='rgba(0,0,0,0.7)'
-          style={ styles.inputText }
+      <View style={styles.inputContainer}>
+        <TextField
+          baseColor="rgba(0, 0, 0, 1)"
+          tintColor="black"
+          label={this.props.label}
+          labelFontSize={16}
+          labelHeight={10}
+          labelPadding={12}
           onChangeText={ this.props.onChangeText }
           keyboardType={ this.props.keyboardType || 'default'}
           value={ this.props.value }
-          ref={this.props.inputRef}
+          inputRef={this.props.inputRef}
           {...props}
         />
         {errorElements}
@@ -35,22 +41,5 @@ class InputTextContainer extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  inputContainer: {
-    padding: 2,
-    marginTop: 18,
-    marginBottom: 18,
-    maxWidth: 500
-  },
-  errorText: {
-    color: 'rgb(221,44,0)',
-    fontSize: 12,
-    lineHeight: 14
-  },
-  inputLabel: {
-    color: 'rgba(0,0,0,0.5)',
-  },
-})
 
 export default InputTextContainer;

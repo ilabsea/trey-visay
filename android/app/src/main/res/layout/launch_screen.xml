@@ -14,7 +14,7 @@
       android:id="@+id/imageButton_speak"
       android:layout_width="150dp"
       android:layout_height="150dp"
-      android:src="@mipmap/logo" />
+      android:src="@drawable/background" />
   </LinearLayout>
 
   <LinearLayout

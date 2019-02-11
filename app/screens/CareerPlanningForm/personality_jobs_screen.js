@@ -6,16 +6,13 @@ import {
   ScrollView,
   TouchableOpacity,
   BackHandler,
-  ToastAndroid,
+  Platform
 } from 'react-native';
-
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast'
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 import CheckboxGroup from '../../components/checkbox_group';
+import FooterBar from '../../components/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../assets/style_sheets/profile_form';
@@ -33,14 +30,8 @@ export default class PersonalityJobsScreen extends Component {
     let highlighStyle = (state.params && state.params.total > 3) ? {color: '#e94b35'} : {color: '#fff'};
 
     return {
-      title: '',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>{state.params && state.params.title}</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
+      title: state.params && state.params.title,
+      headerTitleStyle: [headerStyles.headerTitleStyle],
       headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
                       <Text style={headerStyles.saveText}><Text style={highlighStyle}>{state.params && state.params.total || 0} </Text> / 3</Text>
                     </TouchableOpacity>),
@@ -48,6 +39,10 @@ export default class PersonalityJobsScreen extends Component {
   };
 
   careers = [];
+
+  constructor(props) {
+    super(props);
+  }
 
   componentWillMount() {
     this._initState();
@@ -64,12 +59,7 @@ export default class PersonalityJobsScreen extends Component {
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
 
-    this.state = {
-      user: user,
-      game: game,
-      currentGroup: currentGroup,
-      jobs: [],
-    }
+    this.state = { user: user, game: game, currentGroup: currentGroup, jobs: []};
   }
 
   _handleBack() {
@@ -178,27 +168,15 @@ export default class PersonalityJobsScreen extends Component {
     this.props.navigation.setParams({total: careers.length});
 
     if (careers.length > 3) {
-      ToastAndroid.show('សូមជ្រើសរើសមុខរបរចំនួន 3 ប៉ុណ្ណោះ!', ToastAndroid.SHORT);
-      return
+      return this.refs.toast.show('សូមជ្រើសរើសមុខរបរចំនួន 3 ប៉ុណ្ណោះ!',  DURATION.SHORT);
     }
 
     this.setState({jobs: value});
   }
 
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={this._goNext.bind(this)} style={shareStyles.btnNext}>
-          <Text style={shareStyles.btnText}>បន្តទៀត</Text>
-          <Icon name='keyboard-arrow-right' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   _goNext() {
     if (this.state.jobs.length != 3) {
-      return ToastAndroid.show('សូមជ្រើសរើសមុខរបរចំនួន 3គត់!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូមជ្រើសរើសមុខរបរចំនួន 3គត់!', DURATION.SHORT);
     }
 
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
@@ -214,29 +192,28 @@ export default class PersonalityJobsScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16}}>
-              <View style={{flexDirection: 'row', marginVertical: 16}}>
-                <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-                <Text>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
-              </View>
-
-              { this._renderCheckBoxes() }
-
-              <BackConfirmDialog
-                visible={this.state.confirmDialogVisible}
-                onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-                onPressYes={() => this._onYes()}
-                onPressNo={() => this._onNo()}
-              />
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16}}>
+            <View style={{flexDirection: 'row', marginVertical: 16}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
             </View>
-          </ScrollView>
 
-          { this._renderFooter() }
-        </View>
-      </ThemeProvider>
+            { this._renderCheckBoxes() }
+
+            <BackConfirmDialog
+              visible={this.state.confirmDialogVisible}
+              onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+              onPressYes={() => this._onYes()}
+              onPressNo={() => this._onNo()}
+            />
+          </View>
+        </ScrollView>
+
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+      </View>
     );
   };
 }

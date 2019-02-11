@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Image,
   NetInfo,
+  ImageBackground
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import DeviceInfo from 'react-native-device-info';
@@ -23,13 +24,9 @@ import uuidv4 from '../../utils/uuidv4';
 import styles from '../../assets/style_sheets/login_form';
 
 // Components
-import BackgroundImage from '../../components/image_background';
 import Button from '../../components/button';
 
 const api = create({
-  // baseURL: 'http://192.168.1.119:3000/api/v1'
-  // baseURL: 'http://110.74.204.121:8090/api/v1'
-  // baseURL: 'http://54.169.137.147/api/v1'
   baseURL: environment.apiUrl
 })
 
@@ -166,8 +163,7 @@ export default class AdminLogin extends Component {
         </ScrollView>
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginRight: 24, marginBottom: 16}}>
-          <Text style={styles.whiteLabel}>ជំនាន់: </Text>
-          <Text style={styles.whiteLabel}>{DeviceInfo.getVersion()}</Text>
+          <Text style={styles.whiteLabel}>ជំនាន់: {DeviceInfo.getVersion()} </Text>
         </View>
       </View>
     )
@@ -184,11 +180,12 @@ export default class AdminLogin extends Component {
   render() {
     return (
       <LinearGradient style={styles.container} colors={['#80d0c7', '#0093e8']}>
-        <BackgroundImage source={require('../../assets/images/sign_in_bg.png')}>
+        <ImageBackground source={require('../../assets/images/sign_in_bg.png')}
+              style={{width: '100%', height: '100%'}}>
           <StatusBar hidden={true} />
 
           { this._renderContent() }
-        </BackgroundImage>
+        </ImageBackground>
       </LinearGradient>
     )
   }

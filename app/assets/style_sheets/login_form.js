@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet , Platform} from 'react-native';
 
 export default StyleSheet.create({
   container: {
@@ -7,20 +7,29 @@ export default StyleSheet.create({
   title: {
     fontSize: 30,
     color: '#fff',
-    marginTop: 20,
-    fontFamily: 'KhmerOureang',
+    marginTop: 30,
+    ...Platform.select({
+      android: {
+        lineHeight: 55
+      },
+    })
   },
   subTitle: {
     fontSize: 24,
     color: '#fff',
     marginVertical: 30,
-    fontFamily: 'KhmerOureang',
+    ...Platform.select({
+      android: {
+        lineHeight: 48
+      },
+    })
   },
   inputText: {
     backgroundColor: '#fff',
     marginBottom: 10,
     borderRadius: 5,
     paddingHorizontal: 10,
+    height: 40
   },
   whiteLabel: {
     color: '#fff',
@@ -35,12 +44,12 @@ export default StyleSheet.create({
     marginLeft: 10,
     fontSize: 16,
     color: '#fff',
-    fontFamily: 'KantumruyBold',
+    fontWeight: 'bold'
   },
   submitText: {
-    fontFamily: 'KantumruyBold',
+    fontWeight: 'bold',
     fontSize: 20,
-    lineHeight: 32,
+    color: '#fff'
   },
   btnLogin: {
     marginTop: 24,
@@ -59,5 +68,12 @@ export default StyleSheet.create({
     position: 'absolute',
     right: 16,
     top: 16
+  },
+  btnSubmit: {
+    borderRadius: 3,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 16
   }
 })

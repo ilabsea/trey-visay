@@ -7,6 +7,7 @@ import {
   Alert,
   TouchableOpacity,
   Image,
+  ImageBackground
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import SplashScreen from 'react-native-splash-screen';
@@ -20,11 +21,8 @@ import User from '../utils/user';
 import styles from '../assets/style_sheets/login_form';
 
 // Components
-import BackgroundImage from '../components/image_background';
 import Button from '../components/button';
 
-// Source for form
-// https://facebook.github.io/react/docs/forms.html
 export default class Login extends Component {
   static navigationOptions = {
     header: null
@@ -37,7 +35,6 @@ export default class Login extends Component {
 
   componentWillMount() {
     SplashScreen.hide();
-
     User.isLoggedin(this.handleUser.bind(this));
   }
 
@@ -136,6 +133,7 @@ export default class Login extends Component {
 
                 <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>ចូលគណនី</Text>
               </Button>
+
             </View>
 
             <View style={styles.row}>
@@ -149,8 +147,7 @@ export default class Login extends Component {
         </ScrollView>
 
         <View style={{flexDirection: 'row', justifyContent: 'flex-end', marginRight: 24, marginBottom: 16}}>
-          <Text style={styles.whiteLabel}>ជំនាន់: </Text>
-          <Text style={styles.whiteLabel}>{DeviceInfo.getVersion()}</Text>
+          <Text style={styles.whiteLabel}>ជំនាន់: {DeviceInfo.getVersion()} </Text>
         </View>
       </View>
     )
@@ -171,11 +168,11 @@ export default class Login extends Component {
 
     return (
       <LinearGradient style={styles.container} colors={['#80d0c7', '#0093e8']}>
-        <BackgroundImage source={require('../assets/images/sign_in_bg.png')}>
+        <ImageBackground source={require('../assets/images/sign_in_bg.png')}
+               style={{width: '100%', height: '100%'}}>
           <StatusBar hidden={true} />
-
           { this._renderContent() }
-        </BackgroundImage>
+        </ImageBackground>
       </LinearGradient>
     )
   }

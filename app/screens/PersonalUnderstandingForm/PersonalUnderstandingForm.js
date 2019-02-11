@@ -4,21 +4,23 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
+  TouchableHighlight,
   Modal,
-  ToastAndroid,
+  KeyboardAvoidingView,
+  Platform
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Toolbar,
-  Icon
-} from 'react-native-material-ui';
+import Toast, { DURATION } from 'react-native-easy-toast';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { Provider } from 'react-redux';
 import store from '../../redux/store';
 
 import PersonalUnderstandingScore from './PersonalUnderstandingScore';
+import CloseButton from '../../components/close_button';
+import SaveButton from '../../components/save_button';
 
 import Form from './_Form';
 import realm from '../../schema';
@@ -27,32 +29,10 @@ import uuidv4 from '../../utils/uuidv4';
 import styles from './styles';
 import headerStyles from '../../assets/style_sheets/header';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
 
 export default class PersonalUnderstandingForm extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    title: 'ស្វែងយល់អំពីខ្លួនឯង',
-    headerTitle: <Text style={headerStyles.headerTitleStyle}>ស្វែងយល់អំពីខ្លួនឯង</Text>,
-    headerStyle: headerStyles.headerStyle,
-    headerLeft: <ThemeProvider uiTheme={{}}>
-                  <TouchableOpacity onPress={() => { navigation.state.params.refresh(); navigation.goBack()}} style={{marginHorizontal: 16}}>
-                    <Icon name='close' color='#fff' size={24} />
-                  </TouchableOpacity>
-                </ThemeProvider>,
-    headerRight: <ThemeProvider uiTheme={{}}>
-                  <Provider store={store}>
-                    <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <Icon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>
-                  </Provider>
-                 </ThemeProvider>,
-
     drawerIcon: ({ tintColor }) => (
       <AwesomeIcon name="briefcase" size={16}  color={tintColor} />
     ),
@@ -68,19 +48,24 @@ export default class PersonalUnderstandingForm extends Component {
     };
   };
 
+  _handleBack() {
+    this.props.navigation.state.params.refresh();
+    this.props.navigation.goBack();
+  }
+
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit});
+    this.props.navigation.setParams({handleSubmit: this.handleSubmit, _handleBack: this._handleBack.bind(this)});
   }
 
   handleSubmit = () => {
     let formValues = this.parseFormValue(this.refs.form.selector.props.values);
 
     if (!formValues) {
-      return ToastAndroid.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', ToastAndroid.SHORT);
+      return this.refs.toast.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     }
 
     this.submitForm(this._buildData(formValues));
@@ -154,15 +139,17 @@ export default class PersonalUnderstandingForm extends Component {
         </View>
 
         <View style={[styles.paragraph, {flexDirection: 'row', justifyContent: 'center'}]}>
-          <TouchableOpacity onPress={() => {
-            this.setModalVisible(!this.state.modalVisible)
-            store.dispatch({type: 'RESET'})
-          }} style={styles.button}>
+          <TouchableHighlight onPress={() => {
+              this.setModalVisible(!this.state.modalVisible)
+              store.dispatch({type: 'RESET'})
+            }} style={styles.button}
+            underlayColor="rgba(0, 128, 0, 0.2)"
+          >
             <Text style={styles.btnText}>
               {this.state.testCount < 2 && 'សូម'}
               សាកល្បងធ្វើតេស្តម្តងទៀត
             </Text>
-          </TouchableOpacity>
+          </TouchableHighlight>
 
           { this.state.testCount > 1 &&
             <TouchableOpacity onPress={() => {
@@ -212,18 +199,13 @@ export default class PersonalUnderstandingForm extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
-        <ScrollView>
+      <View>
+        <KeyboardAwareScrollView>
           <Modal
             animationType="slide"
             transparent={false}
             visible={this.state.modalVisible}
-            onRequestClose={() => { ToastAndroid.show('សូមចុចលើប៊ូតុង...!', ToastAndroid.SHORT) } }>
-
-            <Toolbar
-              centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វាយតម្លៃមុខរបរ និង អាជីព</Text>}
-              onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-            />
+            onRequestClose={() => { this.refs.toast.show('សូមចុចលើប៊ូតុង...!', DURATION.SHORT) } }>
 
             <ScrollView>
               <View style={{margin: 16, padding: 16, backgroundColor: '#fff'}}>
@@ -241,8 +223,10 @@ export default class PersonalUnderstandingForm extends Component {
           <Provider store={store}>
             <Form ref={'form'} />
           </Provider>
-        </ScrollView>
-      </ThemeProvider>
+
+        </KeyboardAwareScrollView>
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+      </View>
     );
   };
 }

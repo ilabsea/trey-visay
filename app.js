@@ -1,7 +1,14 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { StackNavigator } from 'react-navigation';
+import {
+  View,
+  AppRegistry,
+  Text,
+  Platform
+} from 'react-native';
+
+import { createStackNavigator } from 'react-navigation';
 
 // Screens
 import ProfileForm from './app/screens/profile/profile_form';
@@ -15,7 +22,7 @@ import User from './app/utils/user';
 import uuidv4 from './app/utils/uuidv4';
 import realm from './app/schema';
 
-const AppNavigator = StackNavigator({
+const AppNavigator = createStackNavigator({
   Login: { screen: Login },
   AdminLogin: { screen: AdminLogin },
   Register: { screen: Register },
@@ -38,6 +45,6 @@ const AppNavigator = StackNavigator({
 
 export default class App extends Component {
   render() {
-    return ( <AppNavigator/> );
+    return (<AppNavigator/>);
   }
 }

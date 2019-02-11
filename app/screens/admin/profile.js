@@ -8,10 +8,10 @@ import {
 } from 'react-native';
 
 import {
-  ThemeProvider,
   Toolbar,
   Icon,
 } from 'react-native-material-ui';
+
 
 // Utils
 import realm from '../../schema';
@@ -27,9 +27,7 @@ export default class Profile extends Component {
     header: null,
     title: 'ប្រវត្តិរូបសង្ខេប',
     drawerIcon: ({ tintColor }) => (
-      <ThemeProvider uiTheme={{}}>
         <Icon name="person" color={tintColor} />
-      </ThemeProvider>
     ),
   });
 
@@ -44,7 +42,8 @@ export default class Profile extends Component {
 
   refreshState() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    this.setState({user: user});
+    let school = highSchoolList.find((school) => school.id == user.highSchoolId);
+    this.setState({user: user, schoolName: !!school && school.name || ''});
   }
 
   _renderScrollViewContent() {
@@ -106,7 +105,7 @@ export default class Profile extends Component {
     return(
       <Toolbar
         leftElement="menu"
-        onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
+        onLeftElementPress={() => this.props.navigation.openDrawer()}
         style={{
           container: {backgroundColor: 'transparent'}
         }}
@@ -126,16 +125,14 @@ export default class Profile extends Component {
     }
 
     return (
-      <ThemeProvider uiTheme={{}}>
-        <ScrollableHeader
-          customView={ this._renderScrollViewContent.bind(this) }
-          imageBgSrc={ cover }
-          customHeader={ this._renderHeader.bind(this) }
-          profile={ photo }
-          profileSize={ PROFILE_SIZE }
-          title={this.state.user.fullName}
-        />
-      </ThemeProvider>
+      <ScrollableHeader
+        customView={ this._renderScrollViewContent.bind(this) }
+        imageBgSrc={ cover }
+        customHeader={ this._renderHeader.bind(this) }
+        profile={ photo }
+        profileSize={ PROFILE_SIZE }
+        title={this.state.user.fullName}
+      />
     )
   }
 }
@@ -155,7 +152,6 @@ const styles = StyleSheet.create({
   itemTitle: {
     flex: 1,
     fontSize: 20,
-    fontFamily: 'KhmerOureang',
     color: '#111'
   },
   itemLabel: {
@@ -164,7 +160,7 @@ const styles = StyleSheet.create({
   itemValue: {
     flex: 2,
     fontSize: 16,
-    fontFamily: 'KantumruyBold',
+    fontWeight: 'bold',
     color: '#111'
   },
   avataContainer: {

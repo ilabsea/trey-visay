@@ -6,8 +6,10 @@ import {
   ScrollView,
   StyleSheet,
   TouchableNativeFeedback,
+  TouchableHighlight,
   TouchableOpacity,
   Image,
+  Platform
 } from 'react-native';
 
 import {NavigationActions} from 'react-navigation';
@@ -21,22 +23,19 @@ import headerStyles from '../assets/style_sheets/header';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
+
 export default class SideMenu extends Component {
-  state = {user: '', photo: '', cover: '', isOpen: true}
+  constructor(props){
+    super(props);
+    this.state = {
+      user: '',
+      isOpen: true
+    }
+  }
 
   componentWillMount() {
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    let photo = require('../assets/images/default_profile.png');
-    let cover = require('../assets/images/header_bg.jpg');
-
-    if (!!user && !!user.photo) {
-      photo = {uri: user.photo};
-    }
-    if (!!user && !!user.cover) {
-      cover = {uri: user.cover};
-    }
-
-    this.setState({user: user, photo: photo, cover: cover});
+    this.setState({user: user});
   }
 
   toggleScreen() {
@@ -104,37 +103,56 @@ export default class SideMenu extends Component {
     )
   }
 
+  _renderMenuHeader() {
+    let TouchablePlatformSpecific = Platform.OS === 'ios' ?
+        TouchableHighlight :
+        TouchableNativeFeedback;
+    let user = this.state.user;
+    let photo = require('../assets/images/default_profile.png');
+    let cover = require('../assets/images/header_bg.jpg');
+
+    if (!!user && !!this.state.user.photo) {
+      photo = {uri: user.photo, CACHE: 'reload'};
+    }
+    if (!!user && !!user.cover) {
+      cover = {uri: user.cover, CACHE: 'reload'};
+    }
+
+    return(
+      <TouchablePlatformSpecific onPress={this.toggleScreen.bind(this)}>
+        <View>
+          <View style={{position: 'relative'}}>
+            <Image
+              source={cover}
+              style={{width: null, height: 180}} />
+          </View>
+
+          <View style={{position: 'absolute', top: 24, left: 24}}>
+            <Image
+              source={photo}
+              style={{borderRadius: 32, width: 64, height: 64 }} />
+          </View>
+
+          <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
+            <Text style={styles.name}>{!!this.state.user && this.state.user.fullName}</Text>
+            { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
+            { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
+          </View>
+        </View>
+      </TouchablePlatformSpecific>
+    )
+  }
+
   render() {
     return (
       <ScrollView>
-        <TouchableNativeFeedback onPress={this.toggleScreen.bind(this)}>
-          <View>
-            <View style={{position: 'relative'}}>
-              <Image
-                source={this.state.cover}
-                style={{width: null, height: 180}} />
-            </View>
-
-            <View style={{position: 'absolute', top: 24, left: 24}}>
-              <Image
-                source={this.state.photo}
-                style={{borderRadius: 32, width: 64, height: 64 }} />
-            </View>
-
-            <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
-              <Text style={styles.name}>{!!this.state.user && this.state.user.fullName}</Text>
-              { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
-              { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
-            </View>
-          </View>
-        </TouchableNativeFeedback>
-
+        { this._renderMenuHeader() }
         { this.state.isOpen &&
           <View>
             { this._renderMenuItem({title: 'ទំព័រដើម', screenName: 'Dashboard', iconName: 'home', iconSize: 18}) }
             { this._renderMenuItem({title: 'វាយតម្លៃមុខរបរ និង អាជីព', screenName: 'CareerCounsellorScreen', iconName: 'briefcase'}) }
             { this._renderMenuItemWithMaterialIcon({title: 'គ្រឹះស្ថានសិក្សា', screenName: 'InstitutionStack', iconName: 'business'}) }
-            { this._renderMenuItem({title: 'វីដេអូមុខរបរ', screenName: 'VideoScreen', iconName: 'play-circle-o', iconSize: 18}) }
+            { this._renderMenuItem({title: ' វីដេអូមុខរបរ', screenName: 'VideoScreen', iconName: 'play-circle-o', iconSize: 18}) }
             { this._renderMenuItemWithMaterialIcon({title: 'ជំនាញវិជ្ជាជីវៈ', screenName: 'VocationalJobStack', iconName: 'photo-filter'}) }
             { this._renderMenuItem({title: 'អំពីកម្មវិធី', screenName: 'About', iconName: 'list'}) }
           </View>
@@ -143,7 +161,7 @@ export default class SideMenu extends Component {
         { !this.state.isOpen &&
           <View>
             { this._renderMenuItem({title: 'ប្រវត្តិរូបសង្ខេប', screenName: 'ProfileStack', iconName: 'user', iconSize: 18}) }
-            { this._renderMenuItem({title: 'ប្តូរលេខសម្ងាត់', screenName: 'ChangePasswordScreen', iconName: 'key', iconSize: 18}) }
+            { this._renderMenuItem({title: 'ប្តូរលេខសម្ងាត់', screenName: 'ChangePasswordStack', iconName: 'key', iconSize: 18}) }
 
             <TouchableOpacity onPress={this.logout.bind(this)}>
               <View style={styles.row}>
@@ -161,7 +179,6 @@ export default class SideMenu extends Component {
 const styles = StyleSheet.create({
   name: {
     fontSize: 14,
-    fontFamily: 'KhmerOureang',
     color: '#fff',
     flex: 1
   },
@@ -176,7 +193,6 @@ const styles = StyleSheet.create({
     color: 'rgba(0,0,0,0.54)'
   },
   menuLabel: {
-    fontFamily: 'KhmerOureang',
     fontSize: 14,
   },
 });

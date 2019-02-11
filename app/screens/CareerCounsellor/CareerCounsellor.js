@@ -2,17 +2,12 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  TouchableNativeFeedback,
   TouchableOpacity,
   StyleSheet,
   Image,
   ScrollView,
+  Platform
 } from 'react-native';
-
-import {
-  ThemeProvider,
-  Toolbar,
-} from 'react-native-material-ui';
 
 import realm from '../../schema';
 import User from '../../utils/user';
@@ -35,7 +30,6 @@ const uiTheme = {
 export default class CareerCounsellor extends Component {
   static navigationOptions = {
     drawerLabel: 'វាយតម្លៃមុខរបរនិងអាជីព',
-    header: null,
     drawerIcon: ({ tintColor }) => (
       <AwesomeIcon name="briefcase" size={16} color={tintColor} />
     ),
@@ -119,7 +113,7 @@ export default class CareerCounsellor extends Component {
     return (
       <View >
         { !!this.state.completedGames.length &&
-          <Text style={{fontFamily: 'KantumruyBold', marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
+          <Text style={{fontWeight: 'bold', marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
         }
 
         { this.state.completedGames.map((game, i) => {
@@ -149,23 +143,15 @@ export default class CareerCounsellor extends Component {
 
   render() {
     return (
-      <ThemeProvider uiTheme={uiTheme}>
-        <View style={{flex: 1}}>
-          <StatusBar />
-          <Toolbar
-            leftElement="menu"
-            centerElement={<Text style={[headerStyles.headerTitleStyle, {marginLeft: 0}]}>វាយតម្លៃមុខរបរ និង អាជីព</Text>}
-            onLeftElementPress={() => this.props.navigation.navigate('DrawerOpen')}
-          />
-
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16}}>
-              { this._renderInstruction() }
-              { this._renderGameHistory() }
-            </View>
-          </ScrollView>
-        </View>
-      </ThemeProvider>
+      <View style={{flex: 1}}>
+        <StatusBar />
+        <ScrollView>
+          <View style={{margin: 16}}>
+            { this._renderInstruction() }
+            { this._renderGameHistory() }
+          </View>
+        </ScrollView>
+      </View>
     );
   }
 
@@ -211,9 +197,13 @@ const styles = StyleSheet.create({
     padding: 24
   },
   title: {
-    fontFamily: 'KhmerOureang',
     fontSize: 24,
     color: '#1976d2',
+    ...Platform.select({
+      android: {
+        lineHeight: 48
+      }
+    })
   },
   logoWrapper: {
     flexDirection: 'row',
@@ -225,7 +215,6 @@ const styles = StyleSheet.create({
     height: 60
   },
   text: {
-    fontFamily: 'KantumruyBold',
-    fontSize: 14
+    fontWeight: 'bold'
   }
 });

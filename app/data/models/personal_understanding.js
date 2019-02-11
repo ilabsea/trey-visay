@@ -18,7 +18,6 @@ PersonalUnderstanding.schema = {
     doesParentsAgreeWith: {type: 'string', optional: true},
     everTalkedWithAnyoneAboutCareer: {type: 'list', objectType: 'arrayInt'},
     howToReachJobVacancy: {type: 'string', optional: true},
-    whoToReachJobVacancy: {type: 'string', optional: true},
     score: {type: 'string', optional: true},
     games: { type: 'linkingObjects', objectType: 'Game', property: 'personalUnderstandings' }
   }

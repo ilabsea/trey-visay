@@ -5,67 +5,54 @@ import {
   ScrollView,
   TouchableOpacity,
   Picker,
-  ToastAndroid,
+  Platform
 } from 'react-native';
-
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
+import IOSPicker from 'react-native-ios-picker';
 
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
 
 import RadioGroupContainer from '../../components/radio_group_container';
+import StatusBar from '../../components/status_bar';
+import FamilySituation from '../../data/json/family_situation.json';
 
 let formError = {};
 
 export default class EditFamilySituation extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack } = navigation;
-
-    return {
-      title: 'កែសម្រួល',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>កែសម្រួល</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => goBack()} style={{marginLeft: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
-      headerRight: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => navigation.state.params.handleSubmit()}>
-                      <Icon name="done" color='#fff' size={24} />
-                      <Text style={headerStyles.saveText}>រក្សាទុក</Text>
-                    </TouchableOpacity>
-                   </ThemeProvider>,
-    }
-  };
-
   constructor(props) {
     super(props)
     this.state = { user: '', errors: {} };
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
+    this.props.navigation.setParams({
+      handleSubmit: this.handleSubmit.bind(this),
+      _handleBack: this._handleBack.bind(this)
+    });
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     this.setState({user: user});
   }
 
+  _handleBack() {
+    this.props.navigation.goBack();
+  }
+
   render() {
     return (
-      <ScrollView>
-        {this._renderFamilySituation()}
-      </ScrollView>
+      <View style={{flex: 1}}>
+        <StatusBar />
+        <ScrollView>
+          {this._renderFamilySituation()}
+        </ScrollView>
+      </View>
     )
   }
 
   checkRequire(field) {
     let value = this.state.user[field];
+
     if ( value == null || !value.length) {
       formError[field] = ["មិនអាចទទេបានទេ"];
     } else {
@@ -74,20 +61,7 @@ export default class EditFamilySituation extends Component {
     this.setState({errors: formError})
   }
 
-  isValidForm() {
-    fields = [ 'fatherName', 'fatherOccupation', 'motherName', 'motherOccupation', 'guidance', 'numberOfFamilyMember','numberOfSisters','numberOfBrothers'];
-    for (var i = 0; i < fields.length; i++) {
-      this.checkRequire(fields[i]);
-    }
-
-    return Object.keys(formError).length == 0;
-  }
-
   handleSubmit() {
-    if (!this.isValidForm()) {
-      return ToastAndroid.show('សូមបំពេញព័ត៌មានខាងក្រោមជាមុនសិន...!', ToastAndroid.SHORT);
-    }
-
     try {
       realm.write(() => {
         realm.create('User', this._buildData(), true);
@@ -131,16 +105,20 @@ export default class EditFamilySituation extends Component {
   }
 
   _renderPicker(params={}) {
+    let PickerSpecific = Platform.OS === 'ios' ?
+        IOSPicker :
+        Picker;
     return (
       <View style={styles.inputContainer}>
-        <Text style={styles.inputLabel}>{params.label}</Text>
-        <Picker
+        <Text style={styles.labelColor}>{params.label}</Text>
+        <PickerSpecific
+          mode={Platform.OS === 'ios' ? 'modal' : 'dialog'}
           selectedValue={this.state.user[params.stateName]}
           onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue)}>
           { params.options.map((obj, i) => {
             { return (<Picker.Item key={i} label={obj.label} value={obj.value} />) }
           }) }
-        </Picker>
+        </PickerSpecific>
       </View>
     )
   }
@@ -161,14 +139,14 @@ export default class EditFamilySituation extends Component {
 
     return (
       <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
-        { this._renderRadioGroup({stateName: 'isDivorce', label: 'តើឪពុកម្តាយរបស់ប្អូនមានការលែងលះដែរឬទេ?', options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
-        { this._renderRadioGroup({stateName: 'isDisable', label: 'តើមានសមាជិកណាម្នាក់មានពិការភាពដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: 'តើក្នុងគ្រួសាររបស់ប្អូន មានអំពើហឹង្សាដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isSmoking', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ជក់បារីដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isAlcoholic', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ញៀនសុរាដែរឬទេ?'}) }
-        { this._renderRadioGroup({stateName: 'isDrug', label: 'តើមានសមាជិកណាមួយក្នុងគ្រូសារប្អូន ប្រើប្រាស់គ្រឿងញៀនដែរឬទេ?'}) }
-        { this._renderPicker({label: 'តើប្អូនមានប្រភេទផ្ទះបែបណា?', stateName: 'houseType', options: houseTypes}) }
-        { this._renderPicker({label: 'តើគ្រួសាររបស់ប្អូនរកប្រាក់ចំណូលជាមធ្យមប្រហែលប៉ុន្មាន ក្នុង១ខែ?', stateName: 'collectiveIncome', options: collectiveIncomes}) }
+        { this._renderRadioGroup({stateName: 'isDivorce', label: FamilySituation.isDivorce, options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
+        { this._renderRadioGroup({stateName: 'isDisable', label: FamilySituation.isDisable}) }
+        { this._renderRadioGroup({stateName: 'isDomesticViolence', label: FamilySituation.isDomesticViolence}) }
+        { this._renderRadioGroup({stateName: 'isSmoking', label: FamilySituation.isSmoking }) }
+        { this._renderRadioGroup({stateName: 'isAlcoholic', label: FamilySituation.isAlcoholic }) }
+        { this._renderRadioGroup({stateName: 'isDrug', label: FamilySituation.isDrug }) }
+        { this._renderPicker({label: FamilySituation.houseType, stateName: 'houseType', options: houseTypes}) }
+        { this._renderPicker({label: FamilySituation.collectiveIncome , stateName: 'collectiveIncome', options: collectiveIncomes}) }
       </View>
     )
   }

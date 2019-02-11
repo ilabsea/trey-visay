@@ -9,14 +9,10 @@ import {
   BackHandler,
 } from 'react-native';
 
-import {
-  ThemeProvider,
-  Icon,
-} from 'react-native-material-ui';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
+import FooterBar from '../../components/FooterBar';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -30,21 +26,6 @@ import Images from '../../assets/images';
 import characteristicList from '../../data/json/characteristic_jobs';
 
 export default class ContactScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ព័ត៌មានសាលា និងទំនាក់ទំនង',
-      headerTitle: <Text style={headerStyles.headerTitleStyle}>ព័ត៌មានសាលា លេខទំនាក់ទំនង</Text>,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <ThemeProvider uiTheme={{}}>
-                    <TouchableOpacity onPress={() => state.params._handleBack()} style={{marginHorizontal: 16}}>
-                      <Icon name='close' color='#fff' size={24} />
-                    </TouchableOpacity>
-                  </ThemeProvider>,
-    }
-  };
-
   componentWillMount() {
     this._initState();
     this._backHandler();
@@ -110,17 +91,6 @@ export default class ContactScreen extends Component {
   _onNo() {
     this.setState({confirmDialogVisible: false});
     this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
-  }
-
-  _renderFooter() {
-    return(
-      <View style={shareStyles.footerWrapper}>
-        <TouchableOpacity onPress={ this._goNext.bind(this) } style={shareStyles.btnNext}>
-          <Text style={[shareStyles.btnText, {marginRight: 10}]}>រួចរាល់</Text>
-          <Icon name='done' color='#fff' size={24} />
-        </TouchableOpacity>
-      </View>
-    )
   }
 
   _goNext() {
@@ -231,25 +201,25 @@ export default class ContactScreen extends Component {
         <View style={{marginRight: 16}}>
           { !this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._play()}>
-              <MaterialIcon name='play-circle-outline' size={40} color='#4caf50'/>
+              <MaterialIcon style={styles.icon} name='play-circle-outline' size={40} color='#4caf50'/>
             </TouchableOpacity>
           }
 
           { this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._stop()}>
-              <MaterialIcon name='pause-circle-outline' size={40} color='#e94b35'/>
+              <MaterialIcon style={styles.icon} name='pause-circle-outline' size={40} color='#e94b35'/>
             </TouchableOpacity>
           }
         </View>
 
-        <Text style={{fontSize: 34}}>{this.state.time}</Text>
+        <Text style={styles.textTime}>{this.state.time}</Text>
       </View>
     )
   }
 
   _renderReason() {
     return (
-      <View style={{flexDirection: 'row'}}>
+      <View>
         <Text style={{flex: 1}}>
           <AwesomeIcon name='quote-left' color='#1976d2' size={14} />
           <Text> {this.state.game.reason} </Text>
@@ -277,25 +247,23 @@ export default class ContactScreen extends Component {
 
   render() {
     return(
-      <ThemeProvider uiTheme={{}}>
-        <View style={{flex: 1}}>
-          <ScrollView style={{flex: 1}}>
-            <View style={{margin: 16, flex: 1}}>
-              { this._renderGoal() }
-              { this._renderContent() }
-            </View>
-          </ScrollView>
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16, flex: 1}}>
+            { this._renderGoal() }
+            { this._renderContent() }
+          </View>
+        </ScrollView>
 
-          { this._renderFooter() }
+        <FooterBar icon='done' text='រួចរាល់' onPress={this._goNext.bind(this)} />
 
-          <BackConfirmDialog
-            visible={this.state.confirmDialogVisible}
-            onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-            onPressYes={() => this._onYes()}
-            onPressNo={() => this._onNo()}
-          />
-        </View>
-      </ThemeProvider>
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+      </View>
     );
   };
 }
