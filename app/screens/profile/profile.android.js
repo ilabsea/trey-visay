@@ -72,7 +72,7 @@ export default class Profile extends Component {
 
   _renderPersonalInfo() {
     let user = this.state.user;
-    let provinceName = user.povinceCode ? provinces.find((province) => province.code == user.provinceCode).label : '';
+    let provinceName = user.provinceCode ? provinces.find((province) => province.code == user.provinceCode).label : '';
     let districtName = user.districtCode ? districts.find((district) => district.code == user.districtCode).label : '';
     let communeName = user.communeCode ? communes.find((commune) => commune.code == user.communeCode).label : '';
     let schoolName = user.highSchoolCode ? highSchools.find((school) => school.code == user.highSchoolCode).label : '';
