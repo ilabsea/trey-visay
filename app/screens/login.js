@@ -55,14 +55,36 @@ export default class Login extends Component {
 
     // Only admin user has token
     if (!!user.token) {
-      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}], key: null})
+      return this.props.navigation.dispatch({
+        type: 'Navigation/RESET',
+        index: 0,
+        actions: [{
+          type: 'Navigation/NAVIGATE',
+          routeName:'AdminHome'
+        }],
+        key: null
+      })
     }
 
     if (this.isUserInfoCompleted(user)) {
-      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+      return this.props.navigation.dispatch({
+        type: 'Navigation/RESET',
+        index: 0,
+        actions: [{
+          type: 'Navigation/NAVIGATE',
+          routeName:'Home'
+        }]
+      })
     }
 
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
+    this.props.navigation.dispatch({
+      type: 'Navigation/RESET',
+      index: 0,
+      actions: [{
+        type: 'Navigation/NAVIGATE',
+        routeName:'ProfileForm'
+      }]
+    })
   }
 
   handleSubmit(event) {
@@ -75,10 +97,25 @@ export default class Login extends Component {
 
     User.setLogin(user.uuid, ()=>{
       if (!!user.dateOfBirth) {
-        return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+
+        return this.props.navigation.dispatch({
+          type: 'Navigation/RESET',
+          index: 0,
+          actions: [{
+            type: 'Navigation/NAVIGATE',
+            routeName:'PersonalUnderstandingFormScreen',
+          }]
+        })
       }
 
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
+      this.props.navigation.dispatch({
+        type: 'Navigation/RESET',
+        index: 0,
+        actions: [{
+          type: 'Navigation/NAVIGATE',
+          routeName:'ProfileForm'
+        }]
+      })
     });
   }
 

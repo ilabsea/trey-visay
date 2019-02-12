@@ -9,7 +9,7 @@ import ProfileForm from '../profile/profile_form';
 import Login from '../login';
 import AdminLogin from '../admin/login';
 import Register from '../register';
-import CareerCounsellorStack from './career_counsellor_stack';
+import PersonalUnderstandingForm from '../PersonalUnderstandingForm/PersonalUnderstandingForm';
 
 const AccountStack = createStackNavigator(
   {
@@ -25,12 +25,9 @@ const AccountStack = createStackNavigator(
         headerRight: (<SaveButton navigation={navigation}/>),
       })
     },
-    CareerCounsellorStack: {
-      screen: CareerCounsellorStack,
-      navigationOptions: ({ navigation }) => ({
-        header: null
-      })
-    }
+    PersonalUnderstandingFormScreen: {
+      screen: PersonalUnderstandingForm
+    },
   },
   {
     initialRouteName: 'Login',

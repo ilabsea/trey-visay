@@ -21,12 +21,6 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
-
 export default class CareerCounsellor extends Component {
   static navigationOptions = {
     drawerLabel: 'វាយតម្លៃមុខរបរនិងអាជីព',
@@ -34,24 +28,36 @@ export default class CareerCounsellor extends Component {
       <AwesomeIcon name="briefcase" size={16} color={tintColor} />
     ),
   };
+  constructor(props){
+    super(props);
+    this.state = {
+      user: null,
+      game: null,
+      completedGames: null,
+      canContinueToTest2: ''
+    }
+  }
 
   componentWillMount() {
     this.refreshState();
   }
 
   refreshState() {
-    let user = User.getCurrent();
-    let game = user.games[user.games.length - 1];
-    let canContinueToTest2 = !!game && !game.isDone &&
-                                    (!!game.personalUnderstandings.length &&
-                                    game.personalUnderstandings[0].score > 11
-                                    || game.personalUnderstandings.length > 1);
-
-    this.setState({
-      user: user,
-      game: game,
-      completedGames: user.games.filtered('isDone = true').sorted('createdAt', true),
-      canContinueToTest2: canContinueToTest2
+    User.isLoggedin(() => {
+      let user = User.getCurrent();
+      if(user){
+        game = user ? user.games[user.games.length - 1] : '';
+        canContinueToTest2 = !!game && !game.isDone &&
+                                        (!!game.personalUnderstandings.length &&
+                                        game.personalUnderstandings[0].score > 11
+                                        || game.personalUnderstandings.length > 1);
+        this.setState({
+          user: user,
+          game: game,
+          completedGames: user.games.filtered('isDone = true').sorted('createdAt', true),
+          canContinueToTest2: canContinueToTest2
+        });
+      }
     });
   }
 
@@ -81,7 +87,7 @@ export default class CareerCounsellor extends Component {
               onPress={this._goToPersonalUnderstandingForm.bind(this)}
               >
               <Text style={[myStyles.submitText, {color: '#fff', fontSize: 20}]}>
-                ចាប់ផ្តើមថ្មី
+                {this.state.user ? 'ចាប់ផ្តើមថ្មី' : 'ចូលគណនី'}
               </Text>
             </Button>
 
@@ -148,7 +154,8 @@ export default class CareerCounsellor extends Component {
         <ScrollView>
           <View style={{margin: 16}}>
             { this._renderInstruction() }
-            { this._renderGameHistory() }
+            { this.state.user &&
+              this._renderGameHistory() }
           </View>
         </ScrollView>
       </View>
@@ -179,15 +186,20 @@ export default class CareerCounsellor extends Component {
   }
 
   _goToPersonalUnderstandingForm() {
-    let uncompletedGames = this.state.user.games.filtered('isDone = false');
+    if(!this.state.user){
+    this.props.navigation.navigate('AccountStack');
+    } else {
+      let uncompletedGames = this.state.user.games.filtered('isDone = false');
 
-    realm.write(() => {
-      realm.delete(uncompletedGames);
+      realm.write(() => {
+        realm.delete(uncompletedGames);
 
-      this.state.user.games.push(this._buildData());
-      this.setState({game: this.state.user.games[this.state.user.games.length-1]});
-      this.props.navigation.navigate('PersonalUnderstandingFormScreen', { refresh: this.refreshState.bind(this) });
-    });
+        this.state.user.games.push(this._buildData());
+        this.setState({game: this.state.user.games[this.state.user.games.length-1]});
+        this.props.navigation.navigate('PersonalUnderstandingFormScreen',
+          { refresh: this.refreshState.bind(this) });
+      });
+    }
   }
 }
 

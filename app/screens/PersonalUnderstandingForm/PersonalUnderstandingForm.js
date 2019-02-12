@@ -33,9 +33,14 @@ import headerStyles from '../../assets/style_sheets/header';
 export default class PersonalUnderstandingForm extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    drawerIcon: ({ tintColor }) => (
-      <AwesomeIcon name="briefcase" size={16}  color={tintColor} />
-    ),
+    drawerIcon: ({ tintColor }) => ( <AwesomeIcon name="briefcase" size={16}  color={tintColor} />),
+    title: 'ស្វែងយល់អំពីខ្លួនឯង',
+    headerLeft: <CloseButton navigation={navigation}/>,
+    headerRight: <Provider store={store}>
+                    <SaveButton navigation={navigation}/>
+                  </Provider>,
+    headerTitleStyle: headerStyles.headerTitleStyle,
+    headerStyle: headerStyles.headerStyle,
   });
 
   constructor(props) {
@@ -49,8 +54,7 @@ export default class PersonalUnderstandingForm extends Component {
   };
 
   _handleBack() {
-    this.props.navigation.state.params.refresh();
-    this.props.navigation.goBack();
+    this.props.navigation.goBack(null);
   }
 
   setModalVisible(visible) {
