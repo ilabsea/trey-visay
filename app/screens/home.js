@@ -7,7 +7,6 @@ import {
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import headerStyles from '../assets/style_sheets/header';
-import OpenDrawer from '../components/open_drawer';
 
 // Screens
 import ProfileStack from './stackNav/profile_stack';

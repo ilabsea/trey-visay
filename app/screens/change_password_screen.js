@@ -41,7 +41,7 @@ export default class ChangePasswordScreen extends Component {
   }
 
   componentWillMount() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     this.setState({ user: user });
   }
 

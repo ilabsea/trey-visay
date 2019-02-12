@@ -17,7 +17,7 @@ import StatusBar from '../../../components/status_bar';
 
 export default class SubjectReport extends Component {
   componentWillMount() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
 
     this.setState({

@@ -39,7 +39,7 @@ export default class ContactScreen extends Component {
   }
 
   _initState() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);

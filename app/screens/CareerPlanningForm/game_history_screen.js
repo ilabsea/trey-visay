@@ -36,7 +36,7 @@ export default class GameHistoryScreen extends Component {
   }
 
   _initState() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     let game = user.games.filtered('uuid=="' + this.props.navigation.state.params.gameUuid + '"')[0];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);

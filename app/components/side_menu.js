@@ -12,12 +12,14 @@ import {
   Platform
 } from 'react-native';
 
+import { connect } from 'react-redux'
+
 import { NavigationActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 
 // Utils
-import realm from '../schema';
 import User from '../utils/user';
+
 import headerStyles from '../assets/style_sheets/header';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -32,14 +34,15 @@ export default class SideMenu extends Component {
     }
   }
 
-  componentWillMount() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    console.log('user : ', user);
-    this.setState({ user: user })
+  componentDidUpdate() {
+    User.isLoggedin(() => {
+      let user = User.getCurrent();
+      this.setState({ user: user});
+    });
   }
 
   toggleScreen() {
-    this.setState({isOpen: !this.state.isOpen});
+    this.setState({isOpen: !this.state.isOpen });
   }
 
   isActive(routeName) {
@@ -156,7 +159,7 @@ export default class SideMenu extends Component {
           </View>
         }
 
-        { this.state.user && !this.state.isOpen &&
+        { !!this.state.user && !this.state.isOpen &&
           <View>
             { this._renderMenuItem({title: 'ប្រវត្តិរូបសង្ខេប', screenName: 'ProfileStack', iconName: 'user', iconSize: 18}) }
             { this._renderMenuItem({title: 'ប្តូរលេខសម្ងាត់', screenName: 'ChangePasswordStack', iconName: 'key', iconSize: 18}) }

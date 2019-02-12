@@ -40,7 +40,7 @@ export default class CareerCounsellor extends Component {
   }
 
   refreshState() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let canContinueToTest2 = !!game && !game.isDone &&
                                     (!!game.personalUnderstandings.length &&

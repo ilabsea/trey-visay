@@ -82,7 +82,7 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   submitForm(values) {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let list = game.personalUnderstandings;
 

@@ -44,7 +44,7 @@ export default class ProfileForm extends Component {
     super(props);
 
     this._handleSubmit = this.props.navigation.setParams({ handleSubmit: this.handleSubmit.bind(this) });
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     user = Object.assign({}, user, { sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9', highSchoolId: '1',
                                     houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន' })
 

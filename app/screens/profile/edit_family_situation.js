@@ -31,7 +31,7 @@ export default class EditFamilySituation extends Component {
       handleSubmit: this.handleSubmit.bind(this),
       _handleBack: this._handleBack.bind(this)
     });
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     this.setState({user: user});
   }
 

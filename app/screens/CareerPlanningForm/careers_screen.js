@@ -36,7 +36,7 @@ export default class CareersScreen extends Component {
   }
 
   componentWillMount() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     this.setState({game : game});
     this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
