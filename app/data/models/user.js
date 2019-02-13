@@ -17,7 +17,6 @@ User.schema = {
     cover: { type: 'string', optional: true},
     dateOfBirth: { type: 'string', optional: true },
     phoneNumber: { type: 'string', optional: true },
-    highSchoolId: { type: 'string', optional: true },
     highSchoolCode: { type: 'string', optional: true },
     provinceCode: { type: 'string', optional: true },
     districtCode: { type: 'string', optional: true },
