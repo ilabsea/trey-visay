@@ -10,8 +10,6 @@ import CloseButton from '../../components/close_button';
 import SaveButton from '../../components/save_button';
 import BackButton from '../../components/back_button';
 
-import AccountStack from './account_stack';
-
 import PersonalUnderstandingForm from '../PersonalUnderstandingForm/PersonalUnderstandingForm';
 import CareerCounsellor from '../CareerCounsellor/CareerCounsellor';
 import CareerDetailScreen from '../CareerPlanningForm/career_detail_screen';
@@ -40,14 +38,15 @@ const CareerCounsellorStack = createStackNavigator(
         headerLeft: <OpenDrawer navigation={navigation}/>
       })
     },
-    AccountStack: {
-      screen: AccountStack,
-      navigationOptions: () => ({
-        header: null
-      })
-    },
     PersonalUnderstandingFormScreen: {
-      screen: PersonalUnderstandingForm
+      screen: PersonalUnderstandingForm,
+      navigationOptions: ({navigation}) => ({
+        title: 'ស្វែងយល់អំពីខ្លួនឯង',
+        headerLeft: <CloseButton navigation={navigation}/>,
+        headerRight: <Provider store={store}>
+                        <SaveButton navigation={navigation}/>
+                      </Provider>
+      })
     },
     CareerDetailScreen: { screen: CareerDetailScreen },
     SubjectScreen: {

@@ -18,12 +18,14 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
+import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Components
 import RadioGroupContainer from '../../components/radio_group_container';
 import InputTextContainer from '../../components/input_text_container';
+import SaveButton from '../../components/save_button';
 import PickerSpecific from '../../components/picker/PickerSpecific';
 
 import FamilySituation from '../../data/json/family_situation.json';
@@ -39,12 +41,20 @@ const schools = highSchoolList.map((obj) => { return {label: obj.name, value: ob
 const grades = Grades;
 
 export default class ProfileForm extends Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'បំពេញប្រវត្តិរូបសង្ខេប',
+      headerStyle: headerStyles.headerStyle,
+      headerTitleStyle: headerStyles.headerTitleStyle,
+      headerRight: (<SaveButton navigation={navigation}/>),
+    }
+  }
 
   constructor(props) {
     super(props);
 
     this._handleSubmit = this.props.navigation.setParams({ handleSubmit: this.handleSubmit.bind(this) });
-    let user = User.getCurrent();
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     user = Object.assign({}, user, { sex: 'ស្រី', nationality: 'ខ្មែរ', grade: '9', highSchoolId: '1',
                                     houseType: 'ផ្ទះឈើ', collectiveIncome: '0-25ម៉ឺន' })
 
@@ -66,15 +76,13 @@ export default class ProfileForm extends Component {
       realm.write(() => {
         realm.create('User', { uuid: this.state.user.uuid, highSchoolId: '14', grade: 'ផ្សេងៗ'}, true);
         realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
-
         this.props.navigation.dispatch({
           type: 'Navigation/RESET',
           index: 0,
           actions: [{
             type: 'Navigation/NAVIGATE',
-            routeName:'PersonalUnderstandingFormScreen'
-          }]
-        })
+            routeName:'CareerCounsellorStack'
+          }]})
       });
     } catch (e) {
       alert(e);
@@ -221,13 +229,12 @@ export default class ProfileForm extends Component {
       realm.write(() => {
         realm.create('User', this.state.user, true);
         realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
-
         this.props.navigation.dispatch({
           type: 'Navigation/RESET',
           index: 0,
           actions: [{
             type: 'Navigation/NAVIGATE',
-            routeName:'PersonalUnderstandingFormScreen'
+            routeName:'CareerCounsellorStack'
           }]
         })
       });

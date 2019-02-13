@@ -6,13 +6,15 @@ import headerStyles from '../../assets/style_sheets/header';
 import SaveButton from '../../components/save_button';
 
 import ProfileForm from '../profile/profile_form';
-import Login from '../login';
+import Login from '../Account/login';
+import Intro from '../Account/intro';
 import AdminLogin from '../admin/login';
-import Register from '../register';
-import PersonalUnderstandingForm from '../PersonalUnderstandingForm/PersonalUnderstandingForm';
+import Register from '../Account/register';
+import CareerCounsellorStack from './career_counsellor_stack';
 
 const AccountStack = createStackNavigator(
   {
+    Intro: { screen: Intro },
     Login: { screen: Login },
     AdminLogin: { screen: AdminLogin },
     Register: { screen: Register },
@@ -25,12 +27,15 @@ const AccountStack = createStackNavigator(
         headerRight: (<SaveButton navigation={navigation}/>),
       })
     },
-    PersonalUnderstandingFormScreen: {
-      screen: PersonalUnderstandingForm
-    },
+    CareerCounsellorStack: {
+      screen: CareerCounsellorStack,
+      navigationOptions: ({ navigation }) => ({
+        header: null
+      })
+    }
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Intro',
   }
 );
 

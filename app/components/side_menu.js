@@ -135,7 +135,10 @@ export default class SideMenu extends Component {
           </View>
 
           <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={styles.name}>{!!this.state.user && this.state.user.fullName}</Text>
+            <Text style={styles.name}>
+              {!!this.state.user && this.state.user.fullName}
+              {!this.state.user && 'ភ្ញៀវ'}
+            </Text>
             { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
             { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
           </View>
@@ -151,7 +154,7 @@ export default class SideMenu extends Component {
         { this.state.isOpen &&
           <View>
             { this._renderMenuItem({title: 'ទំព័រដើម', screenName: 'Dashboard', iconName: 'home', iconSize: 18}) }
-            { this._renderMenuItem({title: 'វាយតម្លៃមុខរបរ និង អាជីព', screenName: 'CareerCounsellorStack', iconName: 'briefcase'}) }
+            { this._renderMenuItem({title: 'វាយតម្លៃមុខរបរ និង អាជីព', screenName: 'AccountStack', iconName: 'briefcase'}) }
             { this._renderMenuItem({title: 'គ្រឹះស្ថានសិក្សា', screenName: 'InstitutionStack', iconName: 'business', type: 'material'}) }
             { this._renderMenuItem({title: ' វីដេអូមុខរបរ', screenName: 'VideoScreen', iconName: 'play-circle-o', iconSize: 18}) }
             { this._renderMenuItem({title: 'ជំនាញវិជ្ជាជីវៈ', screenName: 'VocationalJobStack', iconName: 'photo-filter', type: 'material'}) }

@@ -28,36 +28,24 @@ export default class CareerCounsellor extends Component {
       <AwesomeIcon name="briefcase" size={16} color={tintColor} />
     ),
   };
-  constructor(props){
-    super(props);
-    this.state = {
-      user: null,
-      game: null,
-      completedGames: null,
-      canContinueToTest2: ''
-    }
-  }
 
   componentWillMount() {
     this.refreshState();
   }
 
   refreshState() {
-    User.isLoggedin(() => {
-      let user = User.getCurrent();
-      if(user){
-        game = user ? user.games[user.games.length - 1] : '';
-        canContinueToTest2 = !!game && !game.isDone &&
-                                        (!!game.personalUnderstandings.length &&
-                                        game.personalUnderstandings[0].score > 11
-                                        || game.personalUnderstandings.length > 1);
-        this.setState({
-          user: user,
-          game: game,
-          completedGames: user.games.filtered('isDone = true').sorted('createdAt', true),
-          canContinueToTest2: canContinueToTest2
-        });
-      }
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let game = user.games[user.games.length - 1];
+    let canContinueToTest2 = !!game && !game.isDone &&
+                                    (!!game.personalUnderstandings.length &&
+                                    game.personalUnderstandings[0].score > 11
+                                    || game.personalUnderstandings.length > 1);
+
+    this.setState({
+      user: user,
+      game: game,
+      completedGames: user.games.filtered('isDone = true').sorted('createdAt', true),
+      canContinueToTest2: canContinueToTest2
     });
   }
 
@@ -87,7 +75,7 @@ export default class CareerCounsellor extends Component {
               onPress={this._goToPersonalUnderstandingForm.bind(this)}
               >
               <Text style={[myStyles.submitText, {color: '#fff', fontSize: 20}]}>
-                {this.state.user ? 'ចាប់ផ្តើមថ្មី' : 'ចូលគណនី'}
+                ចាប់ផ្តើមថ្មី
               </Text>
             </Button>
 
@@ -154,8 +142,7 @@ export default class CareerCounsellor extends Component {
         <ScrollView>
           <View style={{margin: 16}}>
             { this._renderInstruction() }
-            { this.state.user &&
-              this._renderGameHistory() }
+            { this._renderGameHistory() }
           </View>
         </ScrollView>
       </View>
@@ -186,20 +173,15 @@ export default class CareerCounsellor extends Component {
   }
 
   _goToPersonalUnderstandingForm() {
-    if(!this.state.user){
-    this.props.navigation.navigate('AccountStack');
-    } else {
-      let uncompletedGames = this.state.user.games.filtered('isDone = false');
+    let uncompletedGames = this.state.user.games.filtered('isDone = false');
 
-      realm.write(() => {
-        realm.delete(uncompletedGames);
+    realm.write(() => {
+      realm.delete(uncompletedGames);
 
-        this.state.user.games.push(this._buildData());
-        this.setState({game: this.state.user.games[this.state.user.games.length-1]});
-        this.props.navigation.navigate('PersonalUnderstandingFormScreen',
-          { refresh: this.refreshState.bind(this) });
-      });
-    }
+      this.state.user.games.push(this._buildData());
+      this.setState({game: this.state.user.games[this.state.user.games.length-1]});
+      this.props.navigation.navigate('PersonalUnderstandingFormScreen', { refresh: this.refreshState.bind(this) });
+    });
   }
 }
 

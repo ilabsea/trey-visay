@@ -10,18 +10,18 @@ import {
   ImageBackground
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
-import StatusBar from '../components/status_bar';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 
 // Utils
-import realm from '../schema';
-import uuidv4 from '../utils/uuidv4';
-import User from '../utils/user';
-import styles from '../assets/style_sheets/login_form';
+import realm from '../../schema';
+import uuidv4 from '../../utils/uuidv4';
+import User from '../../utils/user';
+import styles from '../../assets/style_sheets/login_form';
 
 // Components
-import Button from '../components/button';
+import StatusBar from '../../components/status_bar';
+import Button from '../../components/button';
 
 export default class RegisterScreen extends Component {
   static navigationOptions = {
@@ -58,7 +58,14 @@ export default class RegisterScreen extends Component {
       realm.write(() => {
         realm.create('User', this.buildData());
         User.setLogin(this.state.uuid, ()=> {
-          this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'RegisterScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}], key: null})
+          this.props.navigation.dispatch({
+            type: 'Navigation/RESET',
+            index: 0,
+            actions: [{
+              type: 'Navigation/NAVIGATE',
+              routeName:'ProfileForm'
+            }]
+          })
         });
 
       });
@@ -82,14 +89,14 @@ export default class RegisterScreen extends Component {
 
     return (
       <LinearGradient style={styles.container} colors={['#80d0c7', '#0093e8']}>
-        <ImageBackground source={require('../assets/images/sign_in_bg.png')} style={{width: '100%', height: '100%'}}>
+        <ImageBackground source={require('../../assets/images/sign_in_bg.png')} style={{width: '100%', height: '100%'}}>
           <StatusBar hidden={true} />
 
           <KeyboardAwareScrollView>
             <View style={{padding: 24}}>
               <View style={{flex: 1, alignItems: 'center'}}>
                 <Image
-                  source={require('../assets/images/logo.png')}
+                  source={require('../../assets/images/logo.png')}
                   style={{width: 120, height: 120}}
                 />
 

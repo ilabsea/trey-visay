@@ -33,14 +33,9 @@ import headerStyles from '../../assets/style_sheets/header';
 export default class PersonalUnderstandingForm extends Component {
 
   static navigationOptions = ({ navigation }) => ({
-    drawerIcon: ({ tintColor }) => ( <AwesomeIcon name="briefcase" size={16}  color={tintColor} />),
-    title: 'ស្វែងយល់អំពីខ្លួនឯង',
-    headerLeft: <CloseButton navigation={navigation}/>,
-    headerRight: <Provider store={store}>
-                    <SaveButton navigation={navigation}/>
-                  </Provider>,
-    headerTitleStyle: headerStyles.headerTitleStyle,
-    headerStyle: headerStyles.headerStyle,
+    drawerIcon: ({ tintColor }) => (
+      <AwesomeIcon name="briefcase" size={16}  color={tintColor} />
+    ),
   });
 
   constructor(props) {
@@ -54,7 +49,8 @@ export default class PersonalUnderstandingForm extends Component {
   };
 
   _handleBack() {
-    this.props.navigation.goBack(null);
+    this.props.navigation.state.params.refresh();
+    this.props.navigation.goBack();
   }
 
   setModalVisible(visible) {
@@ -86,7 +82,7 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   submitForm(values) {
-    let user = User.getCurrent();
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     let game = user.games[user.games.length - 1];
     let list = game.personalUnderstandings;
 

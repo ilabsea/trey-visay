@@ -64,7 +64,7 @@ export default class CareersScreen extends Component {
 
   _onYes() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
   }
 
   _onNo() {
