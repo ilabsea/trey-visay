@@ -14,13 +14,24 @@ import CareerCounsellorStack from './career_counsellor_stack';
 
 const AccountStack = createStackNavigator(
   {
+<<<<<<< cbe107eb82a40ea17e26b175a76917ab16d49d3e
     Intro: {
       screen: IntroStack,
+=======
+    Intro: { screen: Intro },
+    Login: { screen: Login },
+    AdminLogin: { screen: AdminLogin },
+    AdminHome: {
+      screen: ({ navigation }) => <AdminHomeScreen screenProps={{ rootNavigation: navigation }} />,
+>>>>>>> fix navigation register account
       navigationOptions: ({navigation}) => ({
         header: null
       }),
     },
+<<<<<<< cbe107eb82a40ea17e26b175a76917ab16d49d3e
     Login: { screen: Login },
+=======
+>>>>>>> fix navigation register account
     Home: {
       screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
       navigationOptions: ({navigation}) => ({
