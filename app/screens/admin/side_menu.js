@@ -84,7 +84,14 @@ class SideMenu extends Component {
   logout() {
     User.removeToken();
     User.logout();
-    this.props.screenProps.rootNavigation.dispatch({type: 'Navigation/RESET', routeName: 'Home', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]})
+    this.props.screenProps.rootNavigation.dispatch({
+      type: 'Navigation/RESET',
+      index: 0,
+      actions: [{
+        type: 'Navigation/NAVIGATE',
+        routeName:'Home'
+      }]
+    })
   }
 
   _renderMenuHeader() {
@@ -123,10 +130,10 @@ class SideMenu extends Component {
 
         { this.state.isOpen &&
           <View>
-            <TouchableOpacity onPress={() => this.navigateToScreen('Dashboard')} style={this.isActive}>
-              <View style={this.getWrapperStyle('Dashboard')}>
-                <AwesomeIcon name='home' size={18} style={this.getIconStyle('Dashboard')} />
-                <Text style={this.getMenuTextStyle('Dashboard')}>ទំព័រដើម</Text>
+            <TouchableOpacity onPress={() => this.navigateToScreen('AdminDashboard')} style={this.isActive}>
+              <View style={this.getWrapperStyle('AdminDashboard')}>
+                <AwesomeIcon name='home' size={18} style={this.getIconStyle('AdminDashboard')} />
+                <Text style={this.getMenuTextStyle('AdminDashboard')}>ទំព័រដើម</Text>
               </View>
             </TouchableOpacity>
 

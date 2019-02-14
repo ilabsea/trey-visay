@@ -148,7 +148,7 @@ export default class RegisterScreen extends Component {
               <View style={styles.row}>
                 <Text style={styles.whiteLabel}>មានគណនីរួចហើយមែនទេ?</Text>
                 <TouchableOpacity
-                  onPress={() => this.props.navigation.goBack()}>
+                  onPress={() => this.props.navigation.navigate('Login')}>
                   <Text style={styles.linkText}>បញ្ចូលគណនី</Text>
                 </TouchableOpacity>
               </View>

@@ -13,13 +13,13 @@ import ChangePasswordScreen from '../change_password_screen';
 
 const AdminHomeScreen = createDrawerNavigator(
   {
-    Dashboard: { screen: Dashboard },
+    AdminDashboard: { screen: Dashboard },
     About: { screen: AboutStack },
     ChangePasswordScreen: { screen: ChangePasswordScreen },
     Profile: { screen: Profile },
   },
   {
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'AdminDashboard',
     contentComponent: SideMenu,
     contentOptions: {
       activeTintColor: '#1976d2',
