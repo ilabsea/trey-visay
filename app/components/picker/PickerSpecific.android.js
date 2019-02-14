@@ -8,7 +8,6 @@ import styles from '../../assets/style_sheets/profile_form';
 
 class PickerSpecific extends Component {
   _getPickerValue(data) {
-    console.log('this.props.user[data.stateName]: ', this.props.user[data.stateName])
     return this.props.user[data.stateName];
   }
 

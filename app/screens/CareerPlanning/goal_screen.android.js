@@ -229,7 +229,6 @@ export default class GoalScreen extends Component {
 
     return PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.RECORD_AUDIO, rationale)
       .then((result) => {
-        console.log('Permission result:', result);
         return (result === true || result === PermissionsAndroid.RESULTS.GRANTED);
       });
   }

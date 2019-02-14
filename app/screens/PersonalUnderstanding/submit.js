@@ -6,7 +6,6 @@ function submit(values, callback){
   formValues = parseFormValue(values);
   score = new PersonalUnderstandingScore(formValues).calculate();
 
-  console.log('Your form '+ score);
   callback;
   // return sleep(1000) // simulate server latency
   //   .then(() => {

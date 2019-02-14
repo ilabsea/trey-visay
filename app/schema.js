@@ -32,15 +32,12 @@ function migration3(oldRealm, newRealm) {
   if (oldRealm.schemaVersion < 3) {
     const oldObjects = oldRealm.objects('User');
     const newObjects = newRealm.objects('User');
-    console.log('highSchools : ', highSchools);
     for (let i = 0; i < oldObjects.length; i++) {
       let highSchool = highSchools.find(school => school.id == oldObjects[i].highSchoolId);
       if(!highSchool) { continue; }
 
       let districtCode = highSchoolsJson.find(school => school.code == highSchool.code).parent_code;
       let provinceCode = districtCode ? districts.find(district => district.code == districtCode).parent_code : '';
-      console.log('districtCode : ', districtCode)
-      console.log('provinceCode : ', provinceCode)
       newObjects[i].highSchoolCode = highSchool.code;
       newObjects[i].districtCode = districtCode;
       newObjects[i].provinceCode = provinceCode;
