@@ -11,13 +11,8 @@ import SideMenu from './side_menu/side_menu';
 
 const AdminHomeScreen = createDrawerNavigator(
   {
-<<<<<<< 00e0a9a2f172b363fa2432f68c337d1e971f98b1
     AdminDashboard: { screen: Dashboard },
-    About: { screen: AboutStack }
-=======
-    Dashboard: { screen: Dashboard },
     About: { screen: AboutStack },
->>>>>>> fix admin login route + remove bio for admin
   },
   {
     initialRouteName: 'AdminDashboard',

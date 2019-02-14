@@ -11,7 +11,7 @@ import NextButton from '../../components/NextButton';
 import SaveButton from '../../components/save_button';
 import BackButton from '../../components/back_button';
 
-import PersonalUnderstandingForm from '../PersonalUnderstandingForm/PersonalUnderstandingForm';
+import PersonalUnderstandingForm from '../PersonalUnderstanding/PersonalUnderstandingForm';
 import CareerCounsellor from '../CareerCounsellor/CareerCounsellor';
 import CareerDetailScreen from '../CareerPlanningForm/career_detail_screen';
 import SubjectScreen from '../CareerPlanningForm/subject_screen';

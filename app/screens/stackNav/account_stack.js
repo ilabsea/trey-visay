@@ -18,12 +18,6 @@ const AccountStack = createStackNavigator(
   {
     Intro: { screen: Intro },
     Login: { screen: Login },
-    Home: {
-      screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
-      navigationOptions: ({navigation}) => ({
-        header: null
-      }),
-    },
     AdminLogin: { screen: AdminLogin },
     AdminHome: {
       screen: ({ navigation }) => <AdminHomeScreen screenProps={{ rootNavigation: navigation }} />,
@@ -31,15 +25,12 @@ const AccountStack = createStackNavigator(
         header: null
       }),
     },
-<<<<<<< 00e0a9a2f172b363fa2432f68c337d1e971f98b1
     Home: {
       screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
       navigationOptions: ({navigation}) => ({
         header: null
       }),
     },
-=======
->>>>>>> fix admin login route + remove bio for admin
     Register: { screen: Register },
     ProfileForm: {
       screen: ProfileForm,

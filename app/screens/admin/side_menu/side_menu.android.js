@@ -86,10 +86,7 @@ class SideMenu extends Component {
     User.logout();
     this.props.screenProps.rootNavigation.dispatch({
       type: 'Navigation/RESET',
-<<<<<<< 00e0a9a2f172b363fa2432f68c337d1e971f98b1
-=======
       routeName: 'Home',
->>>>>>> fix admin login route + remove bio for admin
       index: 0,
       actions: [{
         type: 'Navigation/NAVIGATE',
