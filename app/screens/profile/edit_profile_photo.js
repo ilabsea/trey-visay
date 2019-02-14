@@ -66,7 +66,7 @@ export default class EditProfilePhoto extends Component {
   }
 
   refreshState() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     this.setState({user: user});
   }
 

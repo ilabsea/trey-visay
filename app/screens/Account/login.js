@@ -12,16 +12,16 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import SplashScreen from 'react-native-splash-screen';
 import DeviceInfo from 'react-native-device-info';
-import StatusBar from '../components/status_bar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Utils
-import realm from '../schema';
-import User from '../utils/user';
-import styles from '../assets/style_sheets/login_form';
+import realm from '../../schema';
+import User from '../../utils/user';
+import styles from '../../assets/style_sheets/login_form';
 
 // Components
-import Button from '../components/button';
+import StatusBar from '../../components/status_bar';
+import Button from '../../components/button';
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -34,7 +34,6 @@ export default class Login extends Component {
   }
 
   componentWillMount() {
-    SplashScreen.hide();
     User.isLoggedin(this.handleUser.bind(this));
   }
 
@@ -56,14 +55,36 @@ export default class Login extends Component {
 
     // Only admin user has token
     if (!!user.token) {
-      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}], key: null})
+      return this.props.navigation.dispatch({
+        type: 'Navigation/RESET',
+        index: 0,
+        actions: [{
+          type: 'Navigation/NAVIGATE',
+          routeName:'AdminHome'
+        }],
+        key: null
+      })
     }
 
     if (this.isUserInfoCompleted(user)) {
-      return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+      return this.props.navigation.dispatch({
+        type: 'Navigation/RESET',
+        index: 0,
+        actions: [{
+          type: 'Navigation/NAVIGATE',
+          routeName:'Home'
+        }]
+      })
     }
 
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
+    this.props.navigation.dispatch({
+      type: 'Navigation/RESET',
+      index: 0,
+      actions: [{
+        type: 'Navigation/NAVIGATE',
+        routeName:'ProfileForm'
+      }]
+    })
   }
 
   handleSubmit(event) {
@@ -76,10 +97,25 @@ export default class Login extends Component {
 
     User.setLogin(user.uuid, ()=>{
       if (!!user.dateOfBirth) {
-        return this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+
+        return this.props.navigation.dispatch({
+          type: 'Navigation/RESET',
+          index: 0,
+          actions: [{
+            type: 'Navigation/NAVIGATE',
+            routeName:'CareerCounsellorStack',
+          }]
+        })
       }
 
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'ProfileForm'}]})
+      this.props.navigation.dispatch({
+        type: 'Navigation/RESET',
+        index: 0,
+        actions: [{
+          type: 'Navigation/NAVIGATE',
+          routeName:'ProfileForm'
+        }]
+      })
     });
   }
 
@@ -95,7 +131,7 @@ export default class Login extends Component {
           <View style={{margin: 24}}>
             <View style={{flex: 1, alignItems: 'center'}}>
               <Image
-                source={require('../assets/images/logo.png')}
+                source={require('../../assets/images/logo.png')}
                 style={{width: 120, height: 120}}
               />
 
@@ -168,7 +204,7 @@ export default class Login extends Component {
 
     return (
       <LinearGradient style={styles.container} colors={['#80d0c7', '#0093e8']}>
-        <ImageBackground source={require('../assets/images/sign_in_bg.png')}
+        <ImageBackground source={require('../../assets/images/sign_in_bg.png')}
                style={{width: '100%', height: '100%'}}>
           <StatusBar hidden={true} />
           { this._renderContent() }

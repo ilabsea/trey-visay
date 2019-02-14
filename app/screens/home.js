@@ -7,16 +7,15 @@ import {
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import headerStyles from '../assets/style_sheets/header';
-import OpenDrawer from '../components/open_drawer';
 
 // Screens
-import CareerCounsellorStack from './stackNav/career_counsellor_stack';
 import ProfileStack from './stackNav/profile_stack';
 import VocationalJobStack from './stackNav/vocational_job_stack';
 import DashboardStack from './stackNav/dashboard_stack';
 import InstitutionStack from './school/institution_stack';
 import AboutStack from './stackNav/about_stack';
 import ChangePasswordStack from './stackNav/change_password_stack';
+import AccountStack from './stackNav/account_stack';
 
 import VideoScreen from './video_screen';
 import SideMenu from '../components/side_menu';
@@ -25,13 +24,9 @@ import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnder
 const HomeScreen = createDrawerNavigator(
   {
     Dashboard: { screen: DashboardStack },
+    AccountStack: { screen: AccountStack },
     About: { screen: AboutStack },
     ProfileStack: { screen: ProfileStack },
-    PersonalUnderstandingForm: { screen: PersonalUnderstandingForm },
-    CareerCounsellorScreen: {
-      name: 'CareerCounsellorStack',
-      screen: CareerCounsellorStack
-    },
     InstitutionStack: {
       screen: ({ navigation }) => <InstitutionStack screenProps={{ drawerNavigation: navigation, category: 'សាលារដ្ឋ' }} /> },
     VideoScreen: {

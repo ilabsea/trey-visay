@@ -76,7 +76,13 @@ export default class ProfileForm extends Component {
       realm.write(() => {
         realm.create('User', { uuid: this.state.user.uuid, highSchoolId: '14', grade: 'ផ្សេងៗ'}, true);
         realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
-        this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+        this.props.navigation.dispatch({
+          type: 'Navigation/RESET',
+          index: 0,
+          actions: [{
+            type: 'Navigation/NAVIGATE',
+            routeName:'CareerCounsellorStack'
+          }]})
       });
     } catch (e) {
       alert(e);
@@ -223,7 +229,14 @@ export default class ProfileForm extends Component {
       realm.write(() => {
         realm.create('User', this.state.user, true);
         realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
-        this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]})
+        this.props.navigation.dispatch({
+          type: 'Navigation/RESET',
+          index: 0,
+          actions: [{
+            type: 'Navigation/NAVIGATE',
+            routeName:'CareerCounsellorStack'
+          }]
+        })
       });
     } catch (e) {
       alert(e);

@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+import realm from '../schema';
 
 let STORAGE_KEY = 'USER_ID';
 let TOKEN_KEY = 'TOKEN';
@@ -64,5 +65,9 @@ export default class User {
 
       !!callback && callback();
     });
+  }
+
+  static getCurrent(){
+    return realm.objects('User').filtered('uuid="' + this.getID() + '"')[0]
   }
 }

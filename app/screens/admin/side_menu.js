@@ -27,7 +27,7 @@ class SideMenu extends Component {
   state = {user: '', photo: '', cover: '', isOpen: true}
 
   componentWillMount() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     let photo = require('../../assets/images/default_profile.png');
     let cover = require('../../assets/images/header_bg.jpg');
 

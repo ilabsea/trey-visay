@@ -36,7 +36,7 @@ export default class GameHistoryScreen extends Component {
   }
 
   _initState() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     let game = user.games.filtered('uuid=="' + this.props.navigation.state.params.gameUuid + '"')[0];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);
@@ -81,7 +81,7 @@ export default class GameHistoryScreen extends Component {
   _handleSubmit() {
     realm.write(() => {
       realm.create('Game', this._buildData(), true);
-      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
     });
   }
 

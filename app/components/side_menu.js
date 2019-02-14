@@ -12,17 +12,18 @@ import {
   Platform
 } from 'react-native';
 
-import {NavigationActions} from 'react-navigation';
+import { connect } from 'react-redux'
+
+import { NavigationActions } from 'react-navigation';
 import PropTypes from 'prop-types';
 
 // Utils
-import realm from '../schema';
 import User from '../utils/user';
+
 import headerStyles from '../assets/style_sheets/header';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-
 
 export default class SideMenu extends Component {
   constructor(props){
@@ -33,13 +34,15 @@ export default class SideMenu extends Component {
     }
   }
 
-  componentWillMount() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    this.setState({user: user});
+  componentDidUpdate() {
+    User.isLoggedin(() => {
+      let user = User.getCurrent();
+      this.setState({ user: user});
+    });
   }
 
   toggleScreen() {
-    this.setState({isOpen: !this.state.isOpen});
+    this.setState({isOpen: !this.state.isOpen });
   }
 
   isActive(routeName) {
@@ -70,33 +73,31 @@ export default class SideMenu extends Component {
   }
 
   navigateToScreen = (route) => {
-    const navigateAction = NavigationActions.navigate({
-      routeName: route
-    });
-    this.props.navigation.dispatch(navigateAction);
+    if(route == 'Home'){
+      this.logout();
+    }else{
+      const navigateAction = NavigationActions.navigate({
+        routeName: route
+      });
+      this.props.navigation.dispatch(navigateAction);
+    }
   }
 
   logout() {
     User.logout();
-    this.props.screenProps.rootNavigation.dispatch({type: 'Navigation/RESET', routeName: 'Home', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}]})
+    this.props.screenProps.rootNavigation.dispatch({
+      type: 'Navigation/RESET',
+      index: 0,
+      actions: [{ type: 'Navigation/NAVIGATE', routeName:'Home'}]
+    })
   }
 
   _renderMenuItem(options={}) {
+    let Icon = options.type == 'material'? MaterialIcon : AwesomeIcon;
     return (
       <TouchableOpacity onPress={() => this.navigateToScreen(options.screenName)} style={this.isActive}>
         <View style={this.getWrapperStyle(options.screenName)}>
-          <AwesomeIcon name={ options.iconName } size={ options.iconSize || 16 } style={this.getIconStyle(options.screenName)} />
-          <Text style={this.getMenuTextStyle(options.screenName)}>{options.title}</Text>
-        </View>
-      </TouchableOpacity>
-    )
-  }
-
-  _renderMenuItemWithMaterialIcon(options={}) {
-    return (
-      <TouchableOpacity onPress={() => this.navigateToScreen(options.screenName)} style={this.isActive}>
-        <View style={this.getWrapperStyle(options.screenName)}>
-          <MaterialIcon name={ options.iconName } size={ options.iconSize || 18 } style={this.getIconStyle(options.screenName)} />
+          <Icon name={ options.iconName } size={ options.iconSize || 16 } style={this.getIconStyle(options.screenName)} />
           <Text style={this.getMenuTextStyle(options.screenName)}>{options.title}</Text>
         </View>
       </TouchableOpacity>
@@ -134,7 +135,10 @@ export default class SideMenu extends Component {
           </View>
 
           <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={styles.name}>{!!this.state.user && this.state.user.fullName}</Text>
+            <Text style={styles.name}>
+              {!!this.state.user && this.state.user.fullName}
+              {!this.state.user && 'ភ្ញៀវ'}
+            </Text>
             { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
             { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
           </View>
@@ -150,25 +154,25 @@ export default class SideMenu extends Component {
         { this.state.isOpen &&
           <View>
             { this._renderMenuItem({title: 'ទំព័រដើម', screenName: 'Dashboard', iconName: 'home', iconSize: 18}) }
-            { this._renderMenuItem({title: 'វាយតម្លៃមុខរបរ និង អាជីព', screenName: 'CareerCounsellorScreen', iconName: 'briefcase'}) }
-            { this._renderMenuItemWithMaterialIcon({title: 'គ្រឹះស្ថានសិក្សា', screenName: 'InstitutionStack', iconName: 'business'}) }
+            { this._renderMenuItem({title: 'វាយតម្លៃមុខរបរ និង អាជីព', screenName: 'AccountStack', iconName: 'briefcase'}) }
+            { this._renderMenuItem({title: 'គ្រឹះស្ថានសិក្សា', screenName: 'InstitutionStack', iconName: 'business', type: 'material'}) }
             { this._renderMenuItem({title: ' វីដេអូមុខរបរ', screenName: 'VideoScreen', iconName: 'play-circle-o', iconSize: 18}) }
-            { this._renderMenuItemWithMaterialIcon({title: 'ជំនាញវិជ្ជាជីវៈ', screenName: 'VocationalJobStack', iconName: 'photo-filter'}) }
+            { this._renderMenuItem({title: 'ជំនាញវិជ្ជាជីវៈ', screenName: 'VocationalJobStack', iconName: 'photo-filter', type: 'material'}) }
             { this._renderMenuItem({title: 'អំពីកម្មវិធី', screenName: 'About', iconName: 'list'}) }
           </View>
         }
 
-        { !this.state.isOpen &&
+        { !!this.state.user && !this.state.isOpen &&
           <View>
             { this._renderMenuItem({title: 'ប្រវត្តិរូបសង្ខេប', screenName: 'ProfileStack', iconName: 'user', iconSize: 18}) }
             { this._renderMenuItem({title: 'ប្តូរលេខសម្ងាត់', screenName: 'ChangePasswordStack', iconName: 'key', iconSize: 18}) }
+            { this._renderMenuItem({title: 'ចាកចេញពីគណនី', screenName: 'Home', iconName: 'unlock-alt', iconSize: 18}) }
+          </View>
+        }
 
-            <TouchableOpacity onPress={this.logout.bind(this)}>
-              <View style={styles.row}>
-                <AwesomeIcon name='unlock-alt' size={18} style={styles.icon} />
-                <Text style={styles.menuLabel}>ចាកចេញពីគណនី</Text>
-              </View>
-            </TouchableOpacity>
+        { !this.state.user && !this.state.isOpen &&
+          <View>
+            { this._renderMenuItem({title: 'ចូលគណនី', screenName: 'Login', iconName: 'user', iconSize: 18}) }
           </View>
         }
       </ScrollView>

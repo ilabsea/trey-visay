@@ -21,12 +21,6 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
 
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
-
 export default class CareerCounsellor extends Component {
   static navigationOptions = {
     drawerLabel: 'វាយតម្លៃមុខរបរនិងអាជីព',

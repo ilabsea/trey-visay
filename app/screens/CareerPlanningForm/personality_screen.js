@@ -64,7 +64,7 @@ export default class PersonalityScreen extends Component {
   }
 
   _initState() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
 
     if (!!game.characteristicEntries.length) {
@@ -80,7 +80,7 @@ export default class PersonalityScreen extends Component {
       realm.create('Game', this._buildData('PersonalityScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
     });
   }
 
@@ -89,7 +89,7 @@ export default class PersonalityScreen extends Component {
       realm.delete(this.state.game);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
     });
   }
 

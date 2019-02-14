@@ -34,7 +34,7 @@ export default class AdminDashboardScreen extends Component {
   };
 
   componentWillMount() {
-    let currentUser = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let currentUser = User.getCurrent();
 
     this.setState({
       currentUser: currentUser
