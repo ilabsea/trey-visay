@@ -149,15 +149,6 @@ class SideMenu extends Component {
         {
           !this.state.isOpen &&
           <View>
-            <TouchableOpacity onPress={() => this.navigateToScreen('Profile')}>
-              <View style={this.getWrapperStyle('Profile')}>
-
-                <AwesomeIcon name='user' size={18} style={this.getIconStyle('Profile')} />
-                <Text style={this.getMenuTextStyle('Profile')}>ប្រវត្តិរូបសង្ខេប</Text>
-
-              </View>
-            </TouchableOpacity>
-
             <TouchableOpacity onPress={this.logout.bind(this)}>
               <View style={styles.row}>
                 <AwesomeIcon name='unlock-alt' size={18} style={styles.icon} />
