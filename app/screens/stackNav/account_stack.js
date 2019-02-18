@@ -9,6 +9,8 @@ import ProfileForm from '../profile/profile_form';
 import Login from '../Account/login';
 import Intro from '../Account/intro';
 import AdminLogin from '../admin/login';
+import AdminHomeScreen from '../admin/home';
+import HomeScreen from '../home';
 import Register from '../Account/register';
 import CareerCounsellorStack from './career_counsellor_stack';
 
@@ -17,6 +19,18 @@ const AccountStack = createStackNavigator(
     Intro: { screen: Intro },
     Login: { screen: Login },
     AdminLogin: { screen: AdminLogin },
+    AdminHome: {
+      screen: ({ navigation }) => <AdminHomeScreen screenProps={{ rootNavigation: navigation }} />,
+      navigationOptions: ({navigation}) => ({
+        header: null
+      }),
+    },
+    Home: {
+      screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
+      navigationOptions: ({navigation}) => ({
+        header: null
+      }),
+    },
     Register: { screen: Register },
     ProfileForm: {
       screen: ProfileForm,

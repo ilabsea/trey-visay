@@ -26,19 +26,17 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 export default class SideMenu extends Component {
+  user;
   constructor(props){
     super(props);
     this.state = {
-      user: '',
       isOpen: true
     }
+
   }
 
   componentDidUpdate() {
-    User.isLoggedin(() => {
-      let user = User.getCurrent();
-      this.setState({ user: user});
-    });
+    this.user = User.getCurrent();
   }
 
   toggleScreen() {
@@ -108,15 +106,14 @@ export default class SideMenu extends Component {
     let TouchablePlatformSpecific = Platform.OS === 'ios' ?
         TouchableHighlight :
         TouchableNativeFeedback;
-    let user = this.state.user;
     let photo = require('../assets/images/default_profile.png');
     let cover = require('../assets/images/header_bg.jpg');
 
-    if (!!user && !!this.state.user.photo) {
-      photo = {uri: user.photo, CACHE: 'reload'};
+    if (!!this.user && !!this.user.photo) {
+      photo = {uri: this.user.photo, CACHE: 'reload'};
     }
-    if (!!user && !!user.cover) {
-      cover = {uri: user.cover, CACHE: 'reload'};
+    if (!!this.user && !!this.user.cover) {
+      cover = {uri: this.user.cover, CACHE: 'reload'};
     }
 
     return(
@@ -136,8 +133,8 @@ export default class SideMenu extends Component {
 
           <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
             <Text style={styles.name}>
-              {!!this.state.user && this.state.user.fullName}
-              {!this.state.user && 'ភ្ញៀវ'}
+              {!!this.user && this.user.fullName}
+              {!this.user && 'ភ្ញៀវ'}
             </Text>
             { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
             { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
@@ -162,7 +159,7 @@ export default class SideMenu extends Component {
           </View>
         }
 
-        { !!this.state.user && !this.state.isOpen &&
+        { !!this.user && !this.state.isOpen &&
           <View>
             { this._renderMenuItem({title: 'ប្រវត្តិរូបសង្ខេប', screenName: 'ProfileStack', iconName: 'user', iconSize: 18}) }
             { this._renderMenuItem({title: 'ប្តូរលេខសម្ងាត់', screenName: 'ChangePasswordStack', iconName: 'key', iconSize: 18}) }
@@ -170,7 +167,7 @@ export default class SideMenu extends Component {
           </View>
         }
 
-        { !this.state.user && !this.state.isOpen &&
+        { !this.user && !this.state.isOpen &&
           <View>
             { this._renderMenuItem({title: 'ចូលគណនី', screenName: 'Login', iconName: 'user', iconSize: 18}) }
           </View>
