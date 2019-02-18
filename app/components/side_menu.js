@@ -110,10 +110,10 @@ export default class SideMenu extends Component {
     let cover = require('../assets/images/header_bg.jpg');
 
     if (!!this.user && !!this.user.photo) {
-      photo = {uri: user.photo, CACHE: 'reload'};
+      photo = {uri: this.user.photo, CACHE: 'reload'};
     }
     if (!!this.user && !!this.user.cover) {
-      cover = {uri: user.cover, CACHE: 'reload'};
+      cover = {uri: this.user.cover, CACHE: 'reload'};
     }
 
     return(
