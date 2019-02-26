@@ -87,7 +87,10 @@ export default class VideoScreen extends Component {
           imageWidth={imageWidth}
           onPress={ () => this._onOpenUrl(item.url) }
         />
-        <Text style={ [styles.title, {flex: 1}] }>{ item.title }</Text>
+        <View style={styles.textContainer}>
+          <Text style={styles.title}>{ item.title }</Text>
+          <Text style={styles.title}>ប្រភព៖ { item.author }</Text>
+        </View>
       </View>
     )
   }
@@ -215,13 +218,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row'
   },
-  column: {
-    margin: 8,
-    flex: 1
+  textContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
   },
   title: {
     padding: 10,
-    backgroundColor: '#fff'
   },
   headerTitleText: {
     marginLeft: 0,
