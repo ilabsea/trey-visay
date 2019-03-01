@@ -4,7 +4,6 @@ import {
   createStackNavigator
 } from 'react-navigation';
 
-
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import headerStyles from '../assets/style_sheets/header';
 
@@ -20,7 +19,6 @@ import CareerCounsellorStack from './stackNav/career_counsellor_stack';
 
 import VideoScreen from './video_screen';
 import SideMenu from '../components/side_menu/side_menu';
-import PersonalUnderstandingForm from './PersonalUnderstanding/PersonalUnderstandingForm';
 
 const HomeScreen = createDrawerNavigator(
   {

@@ -19,7 +19,7 @@ import BackButton from '../../components/shared/back_button';
 
 import realm from '../../schema';
 import User from '../../utils/user';
-import schoolList from '../../data/json/schools';
+import universities from '../../data/json/universities';
 import characteristicList from '../../data/json/characteristic_jobs';
 import Images from '../../assets/images';
 
@@ -39,8 +39,8 @@ export default class GameHistoryScreen extends Component {
     let user = User.getCurrent();
     let game = user.games.filtered('uuid=="' + this.props.navigation.state.params.gameUuid + '"')[0];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);
-    let schools = schoolList.filter((school, pos) => { return currentJob.schools.includes(school.id) });
+    let currentJob = currentGroup.careers.find((career) => career.code == game.mostFavorableJobCode);
+    let schools = universities.filter((school, pos) => { return currentJob.schools.includes(school.id) });
 
     this.setState({
       user: user,

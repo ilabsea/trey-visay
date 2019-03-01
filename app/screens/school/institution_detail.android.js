@@ -14,7 +14,7 @@ import ScrollableHeader from '../../components/scrollable_header';
 import shareStyles from '../../assets/style_sheets/profile_form';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import schoolList from '../../data/json/schools';
+import universities from '../../data/json/universities';
 import Images from '../../assets/images';
 import BackButton from '../../components/shared/back_button';
 

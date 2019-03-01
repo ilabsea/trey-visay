@@ -20,7 +20,7 @@ export default class PersonalityReport extends Component {
     let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
     let personalityCareers = game.personalityCareers.map(career => career.value);
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let jobs = currentGroup.careers.filter(career => personalityCareers.includes(career.id));
+    let jobs = currentGroup.careers.filter(career => personalityCareers.includes(career.code));
 
     this.setState({
       user: user,

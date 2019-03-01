@@ -23,7 +23,6 @@ import shareStyles from '../../assets/style_sheets/profile_form';
 import StatusBar from '../../components/shared/status_bar';
 
 
-import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';
 
 export default class SchoolScreen extends Component {
