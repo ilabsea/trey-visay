@@ -75,7 +75,6 @@ export default class EditProfilePhoto extends Component {
       width: 200,
       height: 200,
       cropping: true,
-      compressImageQuality: 1
     }).then(image => {
       this.handleSelectedPhoto(image);
     }).catch((e) => {})
@@ -86,7 +85,6 @@ export default class EditProfilePhoto extends Component {
       width: 200,
       height: 200,
       cropping: true,
-      compressImageQuality: 1
     }).then(image => {
       this.handleSelectedPhoto(image);
     }).catch((e) => {});
