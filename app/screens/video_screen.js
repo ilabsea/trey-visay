@@ -20,12 +20,12 @@ import { ThemeContext, getTheme, Toolbar } from 'react-native-material-ui';
 import LoadingIndicator from '../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import { Thumbnail } from 'react-native-thumbnail-video';
 import headerStyles from '../assets/style_sheets/header';
 import StatusBar from '../components/status_bar';
 import videoList from '../data/json/videos';
 import uiThemeAndroid from '../assets/style_sheets/uiThemeAndroid.js';
 import uiThemeIOS from '../assets/style_sheets/uiThemeIOS.js';
+import VideoListView from '../components/video/video_list';
 
 const uiTheme = Platform.select({
   ios: uiThemeIOS,
@@ -77,21 +77,10 @@ export default class VideoScreen extends Component {
       return <LoadingIndicator loading={ item.loading } />
     }
 
-    let { width } = Dimensions.get('window');
-    let imageWidth = width/2-24;
-
     return (
-      <View style={styles.row}>
-        <Thumbnail
-          url={item.url}
-          imageWidth={imageWidth}
-          onPress={ () => this._onOpenUrl(item.url) }
-        />
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>{ item.title }</Text>
-          <Text style={styles.title}>ប្រភព៖ { item.author }</Text>
-        </View>
-      </View>
+      <VideoListView
+        onPress={() => this._onOpenUrl(item.url)}
+        item={item} />
     )
   }
 
@@ -212,29 +201,9 @@ const styles = StyleSheet.create({
   scrollContainer: {
     padding: 16
   },
-  row: {
-    margin: 8,
-    marginBottom: 0,
-    flex: 1,
-    flexDirection: 'row'
-  },
-  textContainer: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  title: {
-    padding: 10,
-  },
   headerTitleText: {
     marginLeft: 0,
-    ...Platform.select({
-      android: {
-        fontFamily: 'Roboto',
-        fontWeight: 'bold'
-      },
-      ios: {
-        textAlign: 'center'
-      }
-    })
+    fontFamily: 'Roboto',
+    fontWeight: 'bold'
   },
 });
