@@ -3,7 +3,14 @@ import { StyleSheet , Platform} from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    ...Platform.select({
+      android: {
+        padding: 16
+      },
+      ios: {
+        padding: 8
+      }
+    })
   },
   subTitle: {
     fontSize: 20,
@@ -26,7 +33,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   box: {
-    marginBottom: 10,
+    marginBottom: 8,
     borderWidth: 1,
     borderColor: '#eee',
     padding: 16,
@@ -42,7 +49,7 @@ export default StyleSheet.create({
   inlineBlock: {
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    flexDirection:'row',
+    flexDirection:'row'
   },
   icon: {
     ...Platform.select({

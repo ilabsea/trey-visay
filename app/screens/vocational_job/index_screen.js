@@ -4,6 +4,8 @@ import {
   ScrollView,
   View,
   TouchableOpacity,
+  StyleSheet,
+  Platform
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -39,7 +41,7 @@ export default class VocationalJobIndexScreen extends Component {
 
   _renderContent() {
     return (
-      <View style={{margin: 16}}>
+      <View style={myStyles.container}>
         <Text style={styles.box}>{this.state.currentGroup.recommendation}</Text>
 
         <Text style={[headerStyles.body2, {marginTop: 16}]}>មុខរបរមានដូចខាងក្រោម៖</Text>
@@ -65,3 +67,16 @@ export default class VocationalJobIndexScreen extends Component {
     );
   }
 }
+
+const myStyles = StyleSheet.create({
+  container: {
+    ...Platform.select({
+      android: {
+        margin: 16
+      },
+      ios: {
+        margin: 8
+      }
+    })
+  }
+})

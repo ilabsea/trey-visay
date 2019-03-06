@@ -171,7 +171,9 @@ export default class ProfileForm extends Component {
     let collapsedSection = 'collapsed' + i;
     return (
       <View style={styles.box}>
-        <TouchableHighlight onPress={this._toggleExpanded.bind(this, collapsedSection)} underlayColor="#F7FAF7">
+        <TouchableHighlight
+          onPress={this._toggleExpanded.bind(this, collapsedSection)}
+          underlayColor="#F7FAF7" >
           <Text style={styles.subTitle}>{obj.header}</Text>
         </TouchableHighlight>
 

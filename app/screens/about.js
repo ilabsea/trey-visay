@@ -45,7 +45,7 @@ export default class About extends Component {
                 កម្មវិធី ត្រីវិស័យ ត្រូវបានបង្កើតឡើងដោយអង្គការ KAPE សហការជាមួយនឹងអង្គការ InSTEDD iLab Southeast Asia ដោយទទួលបានមូលនិធិគាំទ្រពី SPIDER។
               </Text>
 
-              <View style={[styles.paragraph]}>
+              <View style={styles.paragraph}>
                 <Text>
                   <Text style={styles.textBold}>អំពី អង្គការសកម្មភាពសម្រាប់បឋមសិក្សានៅកម្ពុជា </Text>
 
@@ -56,7 +56,7 @@ export default class About extends Component {
                 </Text>
               </View>
 
-              <View style={[styles.paragraph]}>
+              <View style={styles.paragraph}>
                 <Text>
                   បច្ចុប្បន្ននេះ ស្ថាប័នផ្តល់ការគាំទ្រ ដល់សាលាបឋមសិក្សា និងអនុវិទ្យាល័យ
                   ប្រហែលជាង ២០០សាលា ដើម្បីពង្រឹងគុណភាពអប់រំ និងផ្តល់ភាពងាយស្រួលចូលសាលារៀន។
@@ -73,7 +73,7 @@ export default class About extends Component {
                 </View>
               </View>
 
-              <View style={[styles.paragraph]}>
+              <View style={styles.paragraph}>
                 <Text>
                   <Text style={styles.textBold}>អំពី អង្គការ InSTEDD iLab Southeast Asia </Text>
 
@@ -107,7 +107,14 @@ const styles = StyleSheet.create({
     flex: 1
   },
   scrollContainer: {
-    padding: 16
+    ...Platform.select({
+      android: {
+        padding: 16
+      },
+      ios: {
+        padding: 8
+      }
+    })
   },
   paragraph: {
     marginBottom: 16

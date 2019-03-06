@@ -51,7 +51,6 @@ export default class SchoolScreen extends Component {
   }
 
   _getProvinces() {
-    console.log('this.myCategory : ', this.myCategory);
     API
       .getProvinces(this.myCategory)
       .then(result => this.setState({provinces: result.provinces}))
@@ -118,9 +117,11 @@ export default class SchoolScreen extends Component {
     }
 
     return (
-      <TouchableOpacity onPress={() => this.props.screenProps.navigation.navigate('InstitutionDetail', {id: school.id})}>
-        <View style={[shareStyles.box, {flexDirection: 'row', marginHorizontal: 16}]}>
-          <Image source={logo} style={{width: 100, height: 100}} />
+      <TouchableOpacity
+        onPress={() =>
+          this.props.screenProps.navigation.navigate('InstitutionDetail', {id: school.id})}>
+        <View style={styles.box}>
+          <Image source={logo} style={styles.image} />
 
           <View style={{flex: 1, marginLeft: 16}}>
             <Text style={shareStyles.subTitle}>{school.universityName}</Text>
@@ -154,7 +155,6 @@ export default class SchoolScreen extends Component {
   _renderContent() {
     return (
       <ListView
-        style={{flex: 1, paddingBottom: 16}}
         enableEmptySections={ true }
         automaticallyAdjustContentInsets={ false }
         dataSource={ this.state.ds }
@@ -253,3 +253,26 @@ export default class SchoolScreen extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  box: {
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: '#eee',
+    padding: 16,
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    ...Platform.select({
+      android: {
+        marginHorizontal: 16
+      },
+      ios: {
+        marginHorizontal: 8
+      }
+    })
+  },
+  image: {
+    width: 100,
+    height: 100
+  }
+})

@@ -5,6 +5,8 @@ import {
   View,
   TouchableOpacity,
   Image,
+  Platform,
+  StyleSheet
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -120,7 +122,7 @@ export default class VocationalJobShowScreen extends Component {
       <View style={{flex: 1}}>
         <StatusBar />
         <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16, flex: 1}}>
+          <View style={myStyles.container}>
             { this._renderDescription() }
             { this._renderPlacesForWork() }
             { this._renderSchoolList() }
@@ -130,3 +132,17 @@ export default class VocationalJobShowScreen extends Component {
     );
   }
 }
+
+const myStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    ...Platform.select({
+      android: {
+        margin: 16
+      },
+      ios: {
+        margin: 8
+      }
+    })
+  }
+})

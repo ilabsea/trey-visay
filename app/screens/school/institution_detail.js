@@ -6,6 +6,7 @@ import {
   View,
   TouchableOpacity,
   Linking,
+  Platform
 } from 'react-native';
 
 // Components
@@ -23,7 +24,7 @@ export default class InstitutionDetail extends Component {
   static navigationOptions = {
     header: null
   }
-  
+
   componentWillMount() {
     this.setState({
       school: schoolList.filter((school) => school.id == this.props.navigation.state.params.id)[0]
@@ -152,7 +153,7 @@ export default class InstitutionDetail extends Component {
           />
         </View>
 
-        <View style={{marginTop: 60, marginHorizontal: 16}}>
+        <View style={styles.container}>
           { this._renderContact() }
           { this._renderMajor() }
         </View>
@@ -188,6 +189,17 @@ export default class InstitutionDetail extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginTop: 60,
+    ...Platform.select({
+      android: {
+        margin: 8
+      },
+      ios: {
+        margin: 8
+      }
+    })
+  },
   avataContainer: {
     position: 'absolute',
     left: 24,
