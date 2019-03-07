@@ -220,10 +220,17 @@ export default class Profile extends Component {
 const styles = StyleSheet.create({
   box: {
     marginTop: 10,
-    marginHorizontal: 16,
     borderWidth: 1,
     borderColor: '#eee',
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
+    ...Platform.select({
+      android: {
+        marginHorizontal: 16,
+      },
+      ios: {
+        marginHorizontal: 8,
+      }
+    })
   },
   item: {
     flexDirection: 'row',

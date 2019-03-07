@@ -5,10 +5,10 @@ export default StyleSheet.create({
     flex: 1,
     ...Platform.select({
       android: {
-        padding: 16
+        margin: 16
       },
       ios: {
-        padding: 8
+        margin: 8
       }
     })
   },
