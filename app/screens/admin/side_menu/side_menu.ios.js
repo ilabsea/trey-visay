@@ -24,6 +24,7 @@ import User from '../../../utils/user';
 import headerStyles from '../../../assets/style_sheets/header';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 class SideMenu extends Component {
   state = {user: '', photo: '', cover: ''}
@@ -129,7 +130,7 @@ class SideMenu extends Component {
 
           <TouchableOpacity onPress={() => this.navigateToScreen('About')}>
             <View style={this.getWrapperStyle('About')}>
-              <AwesomeIcon name='list' size={16} style={this.getIconStyle('About')} />
+              <MaterialIcon name='info' size={18} style={this.getIconStyle('About')} />
               <Text style={this.getMenuTextStyle('About')}>អំពីកម្មវិធី</Text>
             </View>
           </TouchableOpacity>
@@ -162,12 +163,12 @@ const styles = StyleSheet.create({
     height: 48
   },
   icon: {
-    width: 40,
+    width: 35,
     color: 'rgba(0,0,0,0.54)'
   },
   menuLabel: {
     fontSize: 14,
-    marginTop: 8
+    marginTop: 9
   },
 });
 

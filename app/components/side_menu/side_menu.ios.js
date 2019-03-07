@@ -155,27 +155,30 @@ export default class SideMenu extends Component {
               title: 'គ្រឹះស្ថានសិក្សា',
               screenName: 'InstitutionStack',
               iconName: 'business',
-              type: 'material'
+              type: 'material',
+              iconSize: 18
             })
           }
           { this._renderMenuItem({
               title: ' វីដេអូមុខរបរ',
               screenName: 'VideoScreen',
-              iconName: 'play-circle-o',
-              iconSize: 18
+              iconName: 'video-camera',
             })
           }
           { this._renderMenuItem({
               title: 'ជំនាញវិជ្ជាជីវៈ',
               screenName: 'VocationalJobStack',
               iconName: 'photo-filter',
-              type: 'material'
+              type: 'material',
+              iconSize: 18
             })
           }
           { this._renderMenuItem({
               title: 'អំពីកម្មវិធី',
               screenName: 'About',
-              iconName: 'list'
+              iconName: 'info',
+              type: 'material',
+              iconSize: 18
             })
           }
         </View>
@@ -213,11 +216,11 @@ const styles = StyleSheet.create({
     height: 48
   },
   icon: {
-    width: 40,
+    width: 35,
     color: 'rgba(0,0,0,0.54)'
   },
   menuLabel: {
     fontSize: 14,
-    marginTop: 8
+    marginTop: 9
   },
 });
