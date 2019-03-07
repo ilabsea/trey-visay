@@ -7,7 +7,7 @@ import {
 import AboutStack from '../stackNav/about_stack';
 import Dashboard from './dashboard_stack';
 
-import SideMenu from './side_menu';
+import SideMenu from './side_menu/side_menu';
 
 const AdminHomeScreen = createDrawerNavigator(
   {

@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     ...Platform.select({
       ios: {
-        fontSize: 14,
+        fontSize: 12,
         color: "#3A3A3A"
       }
     })

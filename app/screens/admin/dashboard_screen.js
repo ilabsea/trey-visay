@@ -335,7 +335,14 @@ export default class AdminDashboardScreen extends Component {
 const styles = StyleSheet.create({
   btnBox: {
     flex: 1,
-    margin: 16,
+    ...Platform.select({
+      android: {
+        margin: 16
+      },
+      ios: {
+        margin: 8
+      }
+    }),
     backgroundColor: '#fff',
   },
   btnLabel: {
