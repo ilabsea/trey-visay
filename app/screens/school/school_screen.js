@@ -124,12 +124,12 @@ export default class SchoolScreen extends Component {
           <Image source={logo} style={styles.image} />
 
           <View style={{flex: 1, marginLeft: 16}}>
-            <Text style={shareStyles.subTitle}>{school.universityName}</Text>
+            <Text style={styles.schoolName}>{school.universityName}</Text>
 
             { !!school.address &&
               <View style={{flexDirection: 'row'}}>
                 <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
-                <Text style={{marginLeft: 8}}>{school.address}</Text>
+                <Text style={styles.schoolAddress}>{school.address}</Text>
               </View>
             }
           </View>
@@ -274,5 +274,24 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100
+  },
+  schoolName: {
+    ...Platform.select({
+      android:{
+        fontSize: 20
+      },
+      ios: {
+        fontSize: 14
+      }
+    })
+  },
+  schoolAddress: {
+    marginLeft: 8,
+    ...Platform.select({
+      ios: {
+        fontSize: 14,
+        color: "#3A3A3A"
+      }
+    })
   }
 })
