@@ -18,7 +18,7 @@ import ChangePasswordStack from './stackNav/change_password_stack';
 import AccountStack from './stackNav/account_stack';
 
 import VideoScreen from './video_screen';
-import SideMenu from '../components/side_menu';
+import SideMenu from '../components/side_menu/side_menu';
 import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
 
 const HomeScreen = createDrawerNavigator(
