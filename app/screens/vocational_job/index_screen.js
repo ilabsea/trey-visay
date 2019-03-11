@@ -29,7 +29,9 @@ export default class VocationalJobIndexScreen extends Component {
       <View key={i}>
         <TouchableOpacity
           style={{flexDirection: 'row', alignItems: 'center', padding: 16}}
-          onPress={() => {this.props.navigation.navigate('VocationalJobShowScreen', {id: career.id, title: career.name})}}
+          onPress={() => {
+            this.props.navigation.navigate('VocationalJobShowScreen', {id: career.id, title: career.name})
+          }}
         >
           <Text style={[styles.subTitle, {flex: 1}]}>{career.name}</Text>
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />

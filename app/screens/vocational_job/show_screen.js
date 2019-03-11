@@ -11,6 +11,7 @@ import {
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
+import RF from "react-native-responsive-fontsize"
 
 // Utils
 import styles from '../../assets/style_sheets/profile_form';
@@ -93,20 +94,20 @@ export default class VocationalJobShowScreen extends Component {
         key={i}>
 
         <View>
-          <Image source={logo} style={{width: 100, height: 100}} />
+          <Image source={logo} style={myStyles.image} />
         </View>
 
         <View style={{flex: 1, marginLeft: 16}}>
-          <Text style={styles.subTitle}>{school.universityName}</Text>
+          <Text numberOfLines={1} style={myStyles.schoolName}>{school.universityName}</Text>
 
           <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='building-o' color='#1976d2' size={20} />
-            <Text style={{marginLeft: 8}}>{school.category}</Text>
+            <AwesomeIcon name='building-o' color='#1976d2' size={16} />
+            <Text style={myStyles.schoolAddress}>{school.category}</Text>
           </View>
 
           <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
-            <Text style={{marginLeft: 8}}>{school.address}</Text>
+            <AwesomeIcon name='map-marker' color='#1976d2' size={18} />
+            <Text numberOfLines={2} style={myStyles.schoolAddress}>{school.address}</Text>
           </View>
         </View>
 
@@ -142,6 +143,29 @@ const myStyles = StyleSheet.create({
       },
       ios: {
         margin: 8
+      }
+    })
+  },
+  image: {
+    width: 100,
+    height: 100
+  },
+  schoolName: {
+    ...Platform.select({
+      android:{
+        fontSize: 20
+      },
+      ios: {
+        fontSize: RF(2.4)
+      }
+    })
+  },
+  schoolAddress: {
+    marginLeft: 8,
+    ...Platform.select({
+      ios: {
+        fontSize: RF(2),
+        color: "#3A3A3A"
       }
     })
   }

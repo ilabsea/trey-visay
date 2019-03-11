@@ -13,6 +13,7 @@ import {
   RefreshControl,
 } from 'react-native';
 import IOSPicker from 'react-native-ios-picker';
+import RF from "react-native-responsive-fontsize"
 
 import API from '../../api/schools';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -124,12 +125,12 @@ export default class SchoolScreen extends Component {
           <Image source={logo} style={styles.image} />
 
           <View style={{flex: 1, marginLeft: 16}}>
-            <Text style={styles.schoolName}>{school.universityName}</Text>
+            <Text numberOfLines={1} style={styles.schoolName}>{school.universityName}</Text>
 
             { !!school.address &&
               <View style={{flexDirection: 'row'}}>
-                <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
-                <Text style={styles.schoolAddress}>{school.address}</Text>
+                <AwesomeIcon name='map-marker' color='#1976d2' size={18} />
+                <Text numberOfLines={2} style={styles.schoolAddress}>{school.address}</Text>
               </View>
             }
           </View>
@@ -267,13 +268,15 @@ const styles = StyleSheet.create({
         marginHorizontal: 16
       },
       ios: {
-        marginHorizontal: 8
+        marginHorizontal: 8,
+        paddingLeft: 8,
+        paddingRight: 16,
       }
     })
   },
   image: {
-    width: 100,
-    height: 100
+    width: 80,
+    height: 80
   },
   schoolName: {
     ...Platform.select({
@@ -281,7 +284,7 @@ const styles = StyleSheet.create({
         fontSize: 20
       },
       ios: {
-        fontSize: 14
+        fontSize: RF(2.4)
       }
     })
   },
@@ -289,8 +292,9 @@ const styles = StyleSheet.create({
     marginLeft: 8,
     ...Platform.select({
       ios: {
-        fontSize: 12,
-        color: "#3A3A3A"
+        fontSize: RF(2),
+        color: "#3A3A3A",
+        paddingRight: 16
       }
     })
   }
