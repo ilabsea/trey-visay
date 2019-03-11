@@ -17,6 +17,7 @@ import RF from "react-native-responsive-fontsize"
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';
+import LongText from '../../components/vocational/long_text';
 import characteristicList from '../../data/json/characteristic_jobs';
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';
@@ -42,7 +43,7 @@ export default class VocationalJobShowScreen extends Component {
 
   _renderDescription() {
     return (
-      <Text style={styles.box}>{this.state.currentJob.description || 'Description is not available'}</Text>
+      <LongText text={this.state.currentJob.description || 'Description is not available'} />
     )
   }
 
