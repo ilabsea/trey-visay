@@ -6,6 +6,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
+import RF from "react-native-responsive-fontsize"
 
 export default class VideoList extends Component  {
   constructor(props){
@@ -13,13 +14,13 @@ export default class VideoList extends Component  {
   }
   render(){
     let { width } = Dimensions.get('window');
-    let imageWidth = width/2-48;
+    let imageWidth = width/2-58;
 
     return(<View style={styles.row}>
         <Thumbnail
           url={this.props.item.url}
           imageWidth={imageWidth}
-          imageHeight={78}
+          imageHeight={73}
           onPress={ this.props.onPress }
         />
         <View style={styles.textContainer}>
@@ -34,22 +35,24 @@ const styles = StyleSheet.create({
   row: {
     margin: 8,
     marginBottom: 0,
-    height: 78,
     flex: 1,
-    flexDirection: 'row'
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    flexDirection: 'row',
   },
   textContainer: {
     flex: 1,
+    padding: 8,
     backgroundColor: '#fff',
+    alignSelf: 'flex-start',
   },
   title: {
-    padding: 8,
-    fontSize: 12
+    fontSize: RF(2.4)
   },
   source: {
-    padding: 8,
-    marginTop: -12,
-    fontSize: 10,
-    color: '#3A3A3A'
+    fontSize: RF(2),
+    color: '#3A3A3A',
+    textAlign: 'justify',
   }
 });
