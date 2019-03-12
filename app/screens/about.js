@@ -1,100 +1,117 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Text,
   View,
-  Button,
   ScrollView,
   StyleSheet,
+  Image,
   Linking,
-  TouchableOpacity,
-  Platform
+  TouchableOpacity
 } from 'react-native';
 
-import headerStyles from '../assets/style_sheets/header';
-import shareStyles from '../assets/style_sheets/profile_form';
-import StatusBar from '../components/status_bar';
-
 import DeviceInfo from 'react-native-device-info';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import RF from "react-native-responsive-fontsize"
 
 export default class About extends Component {
-  static navigationOptions = {
-    drawerLabel: 'អំពីកម្មវិធី',
-    drawerIcon: ({ tintColor }) => (
-        <MaterialIcon name="list" color={tintColor} />
-    ),
-  };
+  constructor(props) {
+    super(props);
+  }
 
   _openLink(url) {
     Linking.openURL(url);
   }
 
-  render() {
+  _renderImageButton(styles, link_url, source){
+    return(
+      <TouchableOpacity style={styles.btn}
+        onPress={()=> this._openLink(link_url)}>
+        <Image
+          style={styles.img}
+          resizeMode="contain"
+          source={source}/>
+      </TouchableOpacity>
+    )
+  }
+
+  _renderContent() {
     return (
       <View style={styles.container}>
-        <StatusBar />
-        <ScrollView>
-          <View style={styles.scrollContainer}>
-            <View style={shareStyles.box}>
-              <Text style={styles.paragraph}>
-                <Text style={styles.textBold}>កម្មវិធីត្រីវិស័យ </Text>
-                គឺជាកម្មវិធីទូរស័ព្ទមួយដែលអនុញ្ញាតឱ្យសិស្សថ្នាក់ទី 9 ដល់ ទី12 អាចធ្វើការស្វែងយល់អំពីខ្លួនឯង បង្កើនជំនាញទន់ និងជំនាញរឹង ហើយគេអាចប្រើប្រាស់វាដើម្បី កំណត់ទិសដៅអាជីពរបស់ពួកគេ។
-              </Text>
+        <Text style={styles.title}>ត្រីវិស័យ</Text>
+        <Text style={styles.paragraph}>
+          កម្មវិធី​ត្រីវិស័យ គឺ​ជា​កម្មវិធី​ទូរសព្ទ​មួយ​ដែល​អនុញ្ញាត​ឱ្យ​សិស្ស​ថ្នាក់​ទី៩ ដល់​ថ្នាក់​ទី១២
+          អាច​ធ្វើ​ការ​ស្វែងយល់​អំពី​ខ្លួន​ឯង ដោយ​ធ្វើ​ការ​តេស្ត​ជា​មួយ​នឹង​កម្មវិធី ដើម្បី​អាច​អោយ​គាត់​ស្គាល់​ពី​ជំនាញ​ទន់
+          និង​ជំនាញ​រឹង​ និង​កំណត់​គោលដៅ​របស់​ខ្លួន សម្រាប់​ការ​ជ្រើសរើស​ជំនាញ​វិជ្ជាជីវៈ​នា​ពេល​អនាគត។
+        </Text>
 
-              <Text style={styles.paragraph}>
-                កម្មវិធី ត្រីវិស័យ ត្រូវបានបង្កើតឡើងដោយអង្គការ KAPE សហការជាមួយនឹងអង្គការ InSTEDD iLab Southeast Asia ដោយទទួលបានមូលនិធិគាំទ្រពី SPIDER។
-              </Text>
+        <Text style={styles.paragraph}>
+          បន្ថែម​ពី​នេះ​ទៀត​កម្មវិធី​ត្រីវិស័យ បាន​បញ្ចូល​នៅ​ព័ត៌មាន​ទាក់ទង​ជា​មួយ​នឹង​គ្រឹះស្ថាន​សិក្សា​នៅ​ក្នុង​ស្រុក​
+          ពត័មាន​ជំនាញ​ដែល​យើង​ត្រូវ​សិក្សា​នៅ​សាកលវិទ្យាល័យ ក៏​ដូច​ជាព័ត៌មាន​អំពី​ជំនាញ​វិជ្ជាជីវៈ
+          ដោយ​ភ្ជាប់​ជា​មួយ​សាលា​ដែល​យើងអាច​សិក្សា​បាន។
+        </Text>
 
-              <View style={styles.paragraph}>
-                <Text>
-                  <Text style={styles.textBold}>អំពី អង្គការសកម្មភាពសម្រាប់បឋមសិក្សានៅកម្ពុជា </Text>
+        <Text style={styles.paragraph}>សហការផលិតដោយ</Text>
 
-                  (ហៅកាត់ថា ខេប)
-                  គឺជាអង្គការក្រៅរដ្ឋាភិបាលក្នុងស្រុកដែលមានទីតាំងក្នុងខេត្តកំពង់ចាម កំពុងអនុវត្តកម្មវិធីក្នុងខេត្តចំនួន
-                  ១២។ ស្ថាប័ន មានជំនាញ និងធ្វើការចម្បងក្នុងការអភិវឌ្ឍន៍វិស័យអប់រំក្នុងប្រព័ន្ធ កម្រិតបឋមសិក្សា
-                  និងអនុវិទ្យាល័យ។
-                </Text>
-              </View>
+        <View style={styles.imgWrapper}>
+          { this._renderImageButton(
+            {btn: styles.imgButton, img: styles.img},
+            'http://www.moeys.gov.kh',
+            require('../assets/images/about/moeys.png'))
+          }
 
-              <View style={styles.paragraph}>
-                <Text>
-                  បច្ចុប្បន្ននេះ ស្ថាប័នផ្តល់ការគាំទ្រ ដល់សាលាបឋមសិក្សា និងអនុវិទ្យាល័យ
-                  ប្រហែលជាង ២០០សាលា ដើម្បីពង្រឹងគុណភាពអប់រំ និងផ្តល់ភាពងាយស្រួលចូលសាលារៀន។
-                  គម្រោងជាច្រើនរបស់ស្ថាប័ន រួមមាន៖ អំនានថ្នាក់ដំបូង
-                  ការគាំទ្រកម្មវិធីសាលារៀនកុមារមេត្រី កម្មវិធីអាហារូបករណ៍ បច្ចេកវិទ្យាក្នុងវិស័យអប់រំ
-                  កម្មវិធីសម្រាប់អប់រំកុមារជនជាតិ និង សមភាពយេនឌ័រជាដើម។
-                </Text>
+          { this._renderImageButton(
+            {btn: styles.imgButton, img: [styles.img, {maxHeight: 110}]},
+            'http://www.kapekh.org',
+            require('../assets/images/about/kape.png'))
+          }
+        </View>
 
-                <View style={{flexDirection: 'row'}}>
-                  <Text>សម្រាប់ព័ត៌មានលម្អិត៖ </Text>
-                  <TouchableOpacity onPress={() => this._openLink('http://www.kapekh.org/')}>
-                    <Text style={styles.link}>ចូលទៅកាន់គេហទំព័រ។</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
+        <Text style={styles.paragraph}>អភិវឌ្ឍន៍ដោយ</Text>
 
-              <View style={styles.paragraph}>
-                <Text>
-                  <Text style={styles.textBold}>អំពី អង្គការ InSTEDD iLab Southeast Asia </Text>
+        <View style={styles.imgWrapper}>
+          { this._renderImageButton(
+            {btn: styles.imgButton, img: [styles.img, {maxHeight: 56}]},
+            'http://ilabsoutheastasia.org',
+            require('../assets/images/about/ilab.png'))
+          }
+        </View>
 
-                  គឺជាអង្គការក្រៅរដ្ឋាភិបាលអន្តរជាតិ ដែលមានទីតាំងនៅរាជធានីភ្នំពេញ ផ្តោតសំខាន់លើសុខមាលភាពរបស់ប្រជាពលរដ្ឋ
-                  និង ការអភិវឌ្ឍន៍បែបនិរន្តរភាព តាមរយៈការប្រើប្រាស់បច្ចេកវិទ្យាទំនើប។ អង្គការនេះត្រូវបានបង្កើតឡើងក្នុងឆ្នាំ២០០៨
-                  ដោយមានទីតាំងនៅ សហរដ្ឋអាមេរិក ប្រទេសអាសង់ទីន និង ប្រទេសកម្ពុជា។ កន្លងមកអង្គការបានធ្វើការសហការជាមួយក្រសួងសុខាភិបាល
-                  ក្រសួងអប់រំ និង អង្គការក្រៅរដ្ឋាភិបាលមួយចំនួនក្នុងការបញ្ជ្រាបបច្ចេកវិទ្យាទំនើបចូលទៅក្នុងគម្រោងដែលពួកគេកំពុងតែធ្វើកិច្ចប្រតិបត្តិការណ៍។
-                </Text>
+        <Text style={styles.paragraph}>គ្រាំទ្រថវិកាពី</Text>
 
-                <View style={{flexDirection: 'row'}}>
-                  <Text>សម្រាប់ព័ត៌មានលម្អិត៖ </Text>
-                  <TouchableOpacity onPress={() => this._openLink('http://ilabsoutheastasia.org/')}>
-                    <Text style={styles.link}>ចូលទៅកាន់គេហទំព័រ។</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
+        <View style={[styles.imgWrapper, { marginTop: -20 }]}>
+          { this._renderImageButton(
+            { btn: styles.imgButton, img: styles.img },
+            'https://www.usaid.gov/cambodia',
+            require('../assets/images/about/usaid.png'))
+          }
 
-              <View style={{flexDirection: 'row', justifyContent: 'flex-end'}}>
-                <Text>ជំនាន់: {DeviceInfo.getVersion()}</Text>
-              </View>
-            </View>
+          { this._renderImageButton(
+            { btn: styles.imgButton, img: styles.img },
+            'https://www.development-innovations.org/',
+            require('../assets/images/about/di.png'))
+          }
+        </View>
+
+        <View style={[styles.imgWrapper, { marginTop: 0 }]}>
+          { this._renderImageButton(
+            { btn: styles.imgButton, img: [styles.img, {maxHeight: 60}] },
+            'https://spidercenter.org/',
+            require('../assets/images/about/spider.png'))
+          }
+        </View>
+      </View>
+    )
+  }
+
+  render() {
+    return (
+      <View style={styles.mainContainer}>
+        <ScrollView style={{flex: 1}}>
+          { this._renderContent() }
+
+          <View style={styles.footer}>
+            <Text style={{textAlign: 'right'}}>
+              ជំនាន់: { DeviceInfo.getVersion() }
+            </Text>
           </View>
         </ScrollView>
       </View>
@@ -103,26 +120,43 @@ export default class About extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
+  mainContainer: {
+    flex: 1,
+    backgroundColor: '#ffffff'
   },
-  scrollContainer: {
-    ...Platform.select({
-      android: {
-        padding: 16
-      },
-      ios: {
-        padding: 8
-      }
-    })
+  container: {
+    margin: 24,
+    alignItems: 'center'
+  },
+  title: {
+    lineHeight: 48,
+    fontSize: RF(2.8),
+    textAlign: 'center'
   },
   paragraph: {
-    marginBottom: 16
+    textAlign: 'center',
+    marginTop: 24,
+    fontSize: RF(1.8)
   },
-  textBold: {
-    fontWeight: 'bold'
+  footer: {
+    marginTop: 20,
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end'
   },
-  link: {
-    color: '#1976d2',
+  imgWrapper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 24
+  },
+  img: {
+    flex: 1,
+    maxHeight: 130,
+  },
+  imgButton: {
+    flex: 1,
+    flexDirection: 'row'
   }
 });
