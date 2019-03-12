@@ -263,6 +263,7 @@ const styles = StyleSheet.create({
     padding: 16,
     backgroundColor: '#fff',
     flexDirection: 'row',
+    alignItems: 'center',
     ...Platform.select({
       android: {
         marginHorizontal: 16
