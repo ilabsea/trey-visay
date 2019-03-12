@@ -15,12 +15,13 @@ import {
 import { connect } from 'react-redux'
 
 import { NavigationActions } from 'react-navigation';
+import { Divider } from 'react-native-elements';
 import PropTypes from 'prop-types';
 
 // Utils
-import User from '../utils/user';
+import User from '../../utils/user';
 
-import headerStyles from '../assets/style_sheets/header';
+import headerStyles from '../../assets/style_sheets/header';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -29,18 +30,10 @@ export default class SideMenu extends Component {
   user;
   constructor(props){
     super(props);
-    this.state = {
-      isOpen: true
-    }
-
   }
 
   componentDidUpdate() {
     this.user = User.getCurrent();
-  }
-
-  toggleScreen() {
-    this.setState({isOpen: !this.state.isOpen });
   }
 
   isActive(routeName) {
@@ -106,8 +99,8 @@ export default class SideMenu extends Component {
     let TouchablePlatformSpecific = Platform.OS === 'ios' ?
         TouchableHighlight :
         TouchableNativeFeedback;
-    let photo = require('../assets/images/default_profile.png');
-    let cover = require('../assets/images/header_bg.jpg');
+    let photo = require('../../assets/images/default_profile.png');
+    let cover = require('../../assets/images/header_bg.jpg');
 
     if (!!this.user && !!this.user.photo) {
       photo = {uri: this.user.photo, CACHE: 'reload'};
@@ -117,30 +110,26 @@ export default class SideMenu extends Component {
     }
 
     return(
-      <TouchablePlatformSpecific onPress={this.toggleScreen.bind(this)}>
-        <View>
-          <View style={{position: 'relative'}}>
-            <Image
-              source={cover}
-              style={{width: null, height: 180}} />
-          </View>
-
-          <View style={{position: 'absolute', top: 24, left: 24}}>
-            <Image
-              source={photo}
-              style={{borderRadius: 32, width: 64, height: 64 }} />
-          </View>
-
-          <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={styles.name}>
-              {!!this.user && this.user.fullName}
-              {!this.user && 'ភ្ញៀវ'}
-            </Text>
-            { this.state.isOpen && <AwesomeIcon name='caret-down' color='#fff' size={16} /> }
-            { !this.state.isOpen && <AwesomeIcon name='caret-up' color='#fff' size={16} /> }
-          </View>
+      <View>
+        <View style={{position: 'relative'}}>
+          <Image
+            source={cover}
+            style={{width: null, height: 180}} />
         </View>
-      </TouchablePlatformSpecific>
+
+        <View style={{position: 'absolute', top: 24, left: 24}}>
+          <Image
+            source={photo}
+            style={{borderRadius: 32, width: 64, height: 64 }} />
+        </View>
+
+        <View style={{position: 'absolute', bottom: 0, left: 0, padding: 24, flexDirection: 'row', alignItems: 'center'}}>
+          <Text style={styles.name}>
+            {!!this.user && this.user.fullName}
+            {!this.user && 'ភ្ញៀវ'}
+          </Text>
+        </View>
+      </View>
     )
   }
 
@@ -148,18 +137,55 @@ export default class SideMenu extends Component {
     return (
       <ScrollView>
         { this._renderMenuHeader() }
-        { this.state.isOpen &&
-          <View>
-            { this._renderMenuItem({title: 'ទំព័រដើម', screenName: 'Dashboard', iconName: 'home', iconSize: 18}) }
-            { this._renderMenuItem({title: 'វាយតម្លៃមុខរបរ និង អាជីព', screenName: 'AccountStack', iconName: 'briefcase'}) }
-            { this._renderMenuItem({title: 'គ្រឹះស្ថានសិក្សា', screenName: 'InstitutionStack', iconName: 'business', type: 'material'}) }
-            { this._renderMenuItem({title: ' វីដេអូមុខរបរ', screenName: 'VideoScreen', iconName: 'play-circle-o', iconSize: 18}) }
-            { this._renderMenuItem({title: 'ជំនាញវិជ្ជាជីវៈ', screenName: 'VocationalJobStack', iconName: 'photo-filter', type: 'material'}) }
-            { this._renderMenuItem({title: 'អំពីកម្មវិធី', screenName: 'About', iconName: 'list'}) }
-          </View>
-        }
+        <View>
+          { this._renderMenuItem({
+              title: 'ទំព័រដើម',
+              screenName: 'Dashboard',
+              iconName: 'home',
+              iconSize: 18
+            })
+          }
+          { this._renderMenuItem({
+              title: 'វាយតម្លៃមុខរបរ និង អាជីព',
+              screenName: 'AccountStack',
+              iconName: 'briefcase'
+            })
+          }
+          { this._renderMenuItem({
+              title: 'គ្រឹះស្ថានសិក្សា',
+              screenName: 'InstitutionStack',
+              iconName: 'business',
+              type: 'material',
+              iconSize: 18
+            })
+          }
+          { this._renderMenuItem({
+              title: ' វីដេអូមុខរបរ',
+              screenName: 'VideoScreen',
+              iconName: 'video-camera',
+            })
+          }
+          { this._renderMenuItem({
+              title: 'ជំនាញវិជ្ជាជីវៈ',
+              screenName: 'VocationalJobStack',
+              iconName: 'photo-filter',
+              type: 'material',
+              iconSize: 18
+            })
+          }
+          { this._renderMenuItem({
+              title: 'អំពីកម្មវិធី',
+              screenName: 'About',
+              iconName: 'info',
+              type: 'material',
+              iconSize: 18
+            })
+          }
+        </View>
 
-        { !!this.user && !this.state.isOpen &&
+        <Divider style={{marginLeft: 55}}/>
+
+        { !!this.user &&
           <View>
             { this._renderMenuItem({title: 'ប្រវត្តិរូបសង្ខេប', screenName: 'ProfileStack', iconName: 'user', iconSize: 18}) }
             { this._renderMenuItem({title: 'ប្តូរលេខសម្ងាត់', screenName: 'ChangePasswordStack', iconName: 'key', iconSize: 18}) }
@@ -167,7 +193,7 @@ export default class SideMenu extends Component {
           </View>
         }
 
-        { !this.user && !this.state.isOpen &&
+        { !this.user &&
           <View>
             { this._renderMenuItem({title: 'ចូលគណនី', screenName: 'Login', iconName: 'user', iconSize: 18}) }
           </View>
@@ -190,10 +216,11 @@ const styles = StyleSheet.create({
     height: 48
   },
   icon: {
-    width: 54,
+    width: 35,
     color: 'rgba(0,0,0,0.54)'
   },
   menuLabel: {
     fontSize: 14,
+    marginTop: 9
   },
 });

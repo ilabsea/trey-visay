@@ -4,6 +4,7 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
+  Platform
 } from 'react-native';
 
 import Button from '../../components/button';
@@ -25,14 +26,6 @@ export default class IntroScreen extends Component {
 
   _handleOnPress = (route) => {
     this.props.navigation.navigate(route)
-    // this.props.navigation.dispatch({
-    //   type: 'Navigation/RESET',
-    //   index: 0,
-    //   actions: [{
-    //     type: 'Navigation/NAVIGATE',
-    //     routeName:route
-    //   }]
-    // })
   }
 
   render() {
@@ -71,7 +64,14 @@ const styles = StyleSheet.create({
   box: {
     backgroundColor: '#fff',
     padding: 24,
-    margin: 16
+    ...Platform.select({
+      android: {
+        margin: 16
+      },
+      ios: {
+        margin: 8
+      }
+    })
   },
   text: {
     fontWeight: 'bold',
@@ -79,9 +79,11 @@ const styles = StyleSheet.create({
     marginBottom: 24
   },
   inlineBlock: {
-    flexWrap: 'wrap',
+    flex: 1,
+    margin: 15,
     justifyContent: 'center',
     flexDirection:'row',
+    alignItems: 'center',
   },
   button: {
     borderRadius: 3,

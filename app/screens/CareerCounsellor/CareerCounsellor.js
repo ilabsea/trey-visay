@@ -71,10 +71,10 @@ export default class CareerCounsellor extends Component {
 
           <View style={shareStyles.inlineBlock}>
             <Button
-              style={[myStyles.btnSubmit, {paddingHorizontal: 20, marginRight: 20, marginBottom: 10}]}
+              style={[myStyles.btnSubmit, { paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }]}
               onPress={this._goToPersonalUnderstandingForm.bind(this)}
               >
-              <Text style={[myStyles.submitText, {color: '#fff', fontSize: 20}]}>
+              <Text style={[myStyles.submitText, { color: '#fff', fontSize: 20 }]}>
                 ចាប់ផ្តើមថ្មី
               </Text>
             </Button>
@@ -140,7 +140,7 @@ export default class CareerCounsellor extends Component {
       <View style={{flex: 1}}>
         <StatusBar />
         <ScrollView>
-          <View style={{margin: 16}}>
+          <View style={styles.container}>
             { this._renderInstruction() }
             { this._renderGameHistory() }
           </View>
@@ -186,9 +186,19 @@ export default class CareerCounsellor extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    ...Platform.select({
+      android: {
+        margin: 16
+      },
+      ios: {
+        margin: 8
+      }
+    })
+  },
   box: {
     backgroundColor: '#fff',
-    padding: 24
+    padding: 24,
   },
   title: {
     fontSize: 24,

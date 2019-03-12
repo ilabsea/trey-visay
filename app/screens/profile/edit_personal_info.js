@@ -126,7 +126,7 @@ export default class EditPersonalInfo extends Component {
 
   _renderPersonalInfo() {
     return (
-      <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
+      <View style={[styles.container, {backgroundColor: '#fff'}]}>
         { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
         { this._renderInputTextContainer({stateName: 'username', label: 'ឈ្មោះគណនី'}) }
         { this._renderPicker({label: 'ភេទ', stateName: 'sex', options: [{label: 'ស្រី', value: 'ស្រី'}, {label: 'ប្រុស', value: 'ប្រុស'}, {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ'}]}) }

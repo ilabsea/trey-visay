@@ -138,7 +138,7 @@ export default class EditFamilySituation extends Component {
       { label: 'លើស1លាន', value: 'លើស1លាន' }];
 
     return (
-      <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
+      <View style={[styles.container, {backgroundColor: '#fff'}]}>
         { this._renderRadioGroup({stateName: 'isDivorce', label: FamilySituation.isDivorce, options: [{ label: 'គ្មានទេ', value: false }, { label: 'លែងលះ', value: true }]}) }
         { this._renderRadioGroup({stateName: 'isDisable', label: FamilySituation.isDisable}) }
         { this._renderRadioGroup({stateName: 'isDomesticViolence', label: FamilySituation.isDomesticViolence}) }

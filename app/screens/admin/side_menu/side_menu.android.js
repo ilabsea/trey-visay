@@ -17,9 +17,9 @@ import {NavigationActions} from 'react-navigation';
 import PropTypes from 'prop-types';
 
 // Utils
-import realm from '../../schema';
-import User from '../../utils/user';
-import headerStyles from '../../assets/style_sheets/header';
+import realm from '../../../schema';
+import User from '../../../utils/user';
+import headerStyles from '../../../assets/style_sheets/header';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
@@ -28,8 +28,8 @@ class SideMenu extends Component {
 
   componentWillMount() {
     let user = User.getCurrent();
-    let photo = require('../../assets/images/default_profile.png');
-    let cover = require('../../assets/images/header_bg.jpg');
+    let photo = require('../../../assets/images/default_profile.png');
+    let cover = require('../../../assets/images/header_bg.jpg');
 
     if (!!user && !!user.photo) {
       photo = {uri: user.photo};

@@ -84,7 +84,7 @@ export default class ChangePasswordScreen extends Component {
         <StatusBar />
 
         <ScrollView>
-          <View style={[styles.scrollContainer, {margin: 16}]}>
+          <View style={styles.scrollContainer}>
             <View style={shareStyles.box}>
               <InputTextContainer
                 label='វាយបញ្ចូលលេខសម្ងាត់ចាស់'

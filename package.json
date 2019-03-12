@@ -31,6 +31,8 @@
     "react-native-material-ui": "^1.30.1",
     "react-native-picker": "^4.3.7",
     "react-native-progress": "^3.4.0",
+    "react-native-read-more-text": "^1.1.0",
+    "react-native-responsive-fontsize": "^0.1.8",
     "react-native-simple-dialogs": "^1.0.0",
     "react-native-simple-radio-button": "^2.6.2",
     "react-native-sound": "^0.10.4",

@@ -1,12 +1,27 @@
 import { StyleSheet , Platform} from 'react-native';
+import RF from "react-native-responsive-fontsize"
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    ...Platform.select({
+      android: {
+        margin: 16
+      },
+      ios: {
+        margin: 8
+      }
+    })
   },
   subTitle: {
-    fontSize: 20,
+    ...Platform.select({
+      android: {
+        fontSize: 20
+      },
+      ios: {
+        fontSize: RF(2.5)
+      }
+    })
   },
   inputContainer: {
     padding: 2,
@@ -26,7 +41,7 @@ export default StyleSheet.create({
     fontWeight: 'bold',
   },
   box: {
-    marginBottom: 10,
+    marginBottom: 8,
     borderWidth: 1,
     borderColor: '#eee',
     padding: 16,
@@ -42,7 +57,7 @@ export default StyleSheet.create({
   inlineBlock: {
     flexWrap: 'wrap',
     alignItems: 'flex-start',
-    flexDirection:'row',
+    flexDirection:'row'
   },
   icon: {
     ...Platform.select({

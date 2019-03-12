@@ -13,6 +13,7 @@ import {
   RefreshControl,
 } from 'react-native';
 import IOSPicker from 'react-native-ios-picker';
+import RF from "react-native-responsive-fontsize"
 
 import API from '../../api/schools';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -51,7 +52,6 @@ export default class SchoolScreen extends Component {
   }
 
   _getProvinces() {
-    console.log('this.myCategory : ', this.myCategory);
     API
       .getProvinces(this.myCategory)
       .then(result => this.setState({provinces: result.provinces}))
@@ -118,17 +118,19 @@ export default class SchoolScreen extends Component {
     }
 
     return (
-      <TouchableOpacity onPress={() => this.props.screenProps.navigation.navigate('InstitutionDetail', {id: school.id})}>
-        <View style={[shareStyles.box, {flexDirection: 'row', marginHorizontal: 16}]}>
-          <Image source={logo} style={{width: 100, height: 100}} />
+      <TouchableOpacity
+        onPress={() =>
+          this.props.screenProps.navigation.navigate('InstitutionDetail', {id: school.id})}>
+        <View style={styles.box}>
+          <Image source={logo} style={styles.image} />
 
           <View style={{flex: 1, marginLeft: 16}}>
-            <Text style={shareStyles.subTitle}>{school.universityName}</Text>
+            <Text numberOfLines={1} style={styles.schoolName}>{school.universityName}</Text>
 
             { !!school.address &&
               <View style={{flexDirection: 'row'}}>
-                <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
-                <Text style={{marginLeft: 8}}>{school.address}</Text>
+                <AwesomeIcon name='map-marker' color='#1976d2' size={18} />
+                <Text numberOfLines={2} style={styles.schoolAddress}>{school.address}</Text>
               </View>
             }
           </View>
@@ -154,7 +156,6 @@ export default class SchoolScreen extends Component {
   _renderContent() {
     return (
       <ListView
-        style={{flex: 1, paddingBottom: 16}}
         enableEmptySections={ true }
         automaticallyAdjustContentInsets={ false }
         dataSource={ this.state.ds }
@@ -253,3 +254,49 @@ export default class SchoolScreen extends Component {
     )
   }
 }
+
+const styles = StyleSheet.create({
+  box: {
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: '#eee',
+    padding: 16,
+    backgroundColor: '#fff',
+    flexDirection: 'row',
+    alignItems: 'center',
+    ...Platform.select({
+      android: {
+        marginHorizontal: 16
+      },
+      ios: {
+        marginHorizontal: 8,
+        paddingLeft: 8,
+        paddingRight: 16,
+      }
+    })
+  },
+  image: {
+    width: 80,
+    height: 80
+  },
+  schoolName: {
+    ...Platform.select({
+      android:{
+        fontSize: 20
+      },
+      ios: {
+        fontSize: RF(2.4)
+      }
+    })
+  },
+  schoolAddress: {
+    marginLeft: 8,
+    ...Platform.select({
+      ios: {
+        fontSize: RF(2),
+        color: "#3A3A3A",
+        paddingRight: 16
+      }
+    })
+  }
+})
