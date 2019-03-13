@@ -4,6 +4,7 @@ import {
   Text,
   StyleSheet,
   Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
 import RF from "react-native-responsive-fontsize"
@@ -16,18 +17,17 @@ export default class VideoList extends Component  {
     let { width } = Dimensions.get('window');
     let imageWidth = width/2-58;
 
-    return(<View style={styles.row}>
+    return(<TouchableOpacity style={styles.row} onPress={ this.props.onPress }>
         <Thumbnail
           url={this.props.item.url}
           imageWidth={imageWidth}
           imageHeight={73}
-          onPress={ this.props.onPress }
         />
         <View style={styles.textContainer}>
           <Text style={styles.title}>{ this.props.item.title }</Text>
           <Text style={styles.source}>{ this.props.item.author }</Text>
         </View>
-      </View>)
+      </TouchableOpacity>)
   }
 }
 
