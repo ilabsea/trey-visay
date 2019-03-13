@@ -25,7 +25,7 @@ export default class VocationalJobShowScreen extends Component {
   componentWillMount() {
     let currentGroup = characteristicList.find((obj) => obj.id == 4);
     let currentJob = currentGroup.careers.find((obj) => obj.id == this.props.navigation.state.params.id)
-    let schools = universities.filter((school, pos) => { return currentJob.schools.includes(school.id) });
+    let schools = universities.filter((school, pos) => { return currentJob.schools.includes(school.code) });
 
     this.setState({
       currentGroup: currentGroup,

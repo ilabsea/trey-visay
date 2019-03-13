@@ -50,8 +50,13 @@ function migrateSchoolsToCode(oldRealm, newRealm) {
 
 //migrate personalityCareers from career code to ID
 //migrate mostFavorableJobId to mostFavorableJobCode
+<<<<<<< 6f623bc97f2cfc704814391853d925ec563813d8
 function migrateCareersToCode(oldRealm, newRealm) {
   if (oldRealm.schemaVersion < 5) {
+=======
+function migration4(oldRealm, newRealm) {
+  if (oldRealm.schemaVersion < 4) {
+>>>>>>> change career school id to code
     const oldObjects = oldRealm.objects('Game');
     console.log('oldObjects : ', oldObjects);
     const newObjects = newRealm.objects('Game');
@@ -75,13 +80,18 @@ function migrateCareersToCode(oldRealm, newRealm) {
   }
 }
 
-
 const schemas = [
   { schema: schema, schemaVersion: 1 },
   { schema: schema, schemaVersion: 2 },
+<<<<<<< 6f623bc97f2cfc704814391853d925ec563813d8
   { schema: schema, schemaVersion: 3, migration: migrateSchoolsToCode },
   { schema: schema, schemaVersion: 4 },
   { schema: schema, schemaVersion: 5, migration: migrateCareersToCode }
+=======
+  { schema: schema, schemaVersion: 3, migration: migration3 },
+  { schema: schema, schemaVersion: 4, migration: migration4 },
+
+>>>>>>> change career school id to code
 ]
 
 // the first schema to update to is the current schema version
