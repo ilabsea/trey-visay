@@ -28,8 +28,17 @@ import PersonalityReport from '../CareerPlanning/game_history/personality_report
 import StudentPersonalityReport from '../CareerPlanning/game_history/student_personality_report';
 import RecommendationReport from '../CareerPlanning/game_history/recommendation_report';
 
+import Accessment from '../Accessment/Accessment';
+
 const CareerCounsellorStack = createStackNavigator(
   {
+    AccessmentScreen: {
+      screen: Accessment,
+      navigationOptions: ({navigation}) => ({
+        title: 'វាយតម្លៃមុខរបរនិងអាជីព',
+        headerLeft: <OpenDrawer navigation={navigation}/>
+      })
+    },
     CareerCounsellorScreen: {
       screen: CareerCounsellor,
       navigationOptions: ({navigation}) => ({
@@ -143,9 +152,7 @@ const CareerCounsellorStack = createStackNavigator(
       headerTitleStyle: headerStyles.headerTitleStyle,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <BackButton navigation={navigation}/>
-    })
-  },
-  {
+    }),
     initialRouteName: 'CareerCounsellorScreen',
   }
 );

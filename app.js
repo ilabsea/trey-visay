@@ -15,18 +15,29 @@ import User from './app/utils/user';
 import Task from './app/utils/task';
 
 // Screens
-import HomeScreen from './app/screens/home';
+// import HomeScreen from './app/screens/home';
 
-const HomeNavigator = createStackNavigator({
-  Home: {
-    screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
-    navigationOptions: ({navigation}) => ({
-      header: null
-    }),
-  },
-}, {
-  initialRouteName: 'Home',
-});
+// const HomeNavigator = createStackNavigator({
+//   Home: {
+//     screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
+//     navigationOptions: ({navigation}) => ({
+//       header: null
+//     }),
+//   },
+// }, {
+//   initialRouteName: 'Home',
+// });
+
+// const AdminNavigator = createStackNavigator({
+//   AdminHome: {
+//     screen: ({ navigation }) => <AdminHomeNavigator screenProps={{ rootNavigation: navigation }} />,
+//     navigationOptions: ({navigation}) => ({
+//       header: null
+//     })
+//   }
+// }, {
+//   initialRouteName: 'AdminHome',
+// });
 
 export default class App extends Component {
   constructor(props) {
@@ -51,6 +62,14 @@ export default class App extends Component {
       realm.create('User', { uuid: uuid, fullName: 'Demo', username: 'Demo', password: '123456', dateOfBirth: Date()}, true);
     });
   }
+
+  // setHomeRoute(){
+  //   if(this.state.user){
+  //     let app = this.state.user.role=='admin' ? AdminHomeNavigator: HomeScreen;
+  //     return app;
+  //   }
+  //   return HomeScreen;
+  // }
 
   render() {
     return (<HomeNavigator/>);

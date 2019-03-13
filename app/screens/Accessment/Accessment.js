@@ -1,0 +1,114 @@
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Platform
+} from 'react-native';
+
+import realm from '../../schema';
+import User from '../../utils/user';
+import uuidv4 from '../../utils/uuidv4';
+
+import Button from '../../components/button';
+import StatusBar from '../../components/status_bar';
+import myStyles from '../../assets/style_sheets/login_form';
+
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import headerStyles from '../../assets/style_sheets/header';
+import shareStyles from '../../assets/style_sheets/profile_form';
+
+export default class Accessment extends Component {
+  static navigationOptions = {
+    drawerLabel: 'វាយតម្លៃមុខរបរនិងអាជីព',
+    drawerIcon: ({ tintColor }) => (
+      <AwesomeIcon name="briefcase" size={16} color={tintColor} />
+    ),
+  };
+
+  _renderInstruction() {
+    return (
+      <View style={[styles.box, {flexDirection: 'row'}]}>
+
+        <View style={{flex: 1}}>
+          <Text style={styles.title}>ការធ្វើតេស្ដឆ្លុះបញ្ចាំងពីខ្លួនឯង</Text>
+
+          <View>
+            <Button
+              style={[myStyles.btnSubmit, { paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }]}
+              onPress={()=> {}}
+              >
+              <Text style={[myStyles.submitText, { color: '#fff', fontSize: 20 }]}>
+                ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព
+              </Text>
+            </Button>
+
+            <Button
+              style={[myStyles.btnSubmit, { paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }]}
+              onPress={()=> {}}
+              >
+              <Text style={[myStyles.submitText, { color: '#fff', fontSize: 20 }]}>
+                ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព
+              </Text>
+            </Button>
+
+          </View>
+        </View>
+      </View>
+    )
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <StatusBar />
+        <ScrollView>
+          <View style={styles.container}>
+            { this._renderInstruction() }
+          </View>
+        </ScrollView>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    ...Platform.select({
+      android: {
+        margin: 16
+      },
+      ios: {
+        margin: 8
+      }
+    })
+  },
+  box: {
+    backgroundColor: '#fff',
+    padding: 24,
+  },
+  title: {
+    fontSize: 24,
+    color: '#1976d2',
+    ...Platform.select({
+      android: {
+        lineHeight: 48
+      }
+    })
+  },
+  logoWrapper: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    marginRight: 20,
+  },
+  logo: {
+    width: 60,
+    height: 60
+  },
+  text: {
+    fontWeight: 'bold'
+  }
+});
