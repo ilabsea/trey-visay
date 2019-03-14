@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.facebook.react.ReactApplication;
 import com.beefe.picker.PickerViewPackage;
+import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -32,7 +33,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+<<<<<<< a9d4ea92677dc2f5a765afd38c56b732c9f26bbb
             new PickerViewPackage(),
+=======
+            new RNBackgroundFetchPackage(),
+>>>>>>> add background fetch to sync data to server on background;
             new PickerPackage(),
             new SplashScreenReactPackage(),
             new LinearGradientPackage(),

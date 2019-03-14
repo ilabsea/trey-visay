@@ -12,6 +12,7 @@ import realm from './app/schema';
 
 import { createStackNavigator } from 'react-navigation';
 import User from './app/utils/user';
+import Task from './app/utils/task';
 
 // Screens
 import HomeScreen from './app/screens/home';
@@ -46,6 +47,10 @@ export default class App extends Component {
       user: null
     }
     this.handlerPredefinedUser();
+  }
+
+  componentDidMount(){
+    Task.configBackgroundFetch();
   }
 
   componentWillMount(){

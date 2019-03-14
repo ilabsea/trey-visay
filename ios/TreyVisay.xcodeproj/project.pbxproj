@@ -34,9 +34,11 @@
 		2AA423EA021E4AF194035573 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DB95574EDCC4470581FD136C /* FontAwesome5_Brands.ttf */; };
 		42BE5FB781B84FD1BE451C3E /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 391057C8DB8F485095D63EF0 /* Roboto-Medium.ttf */; };
 		43F6EE8D938E41EAA33BF956 /* libRNAudio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BBD9FA8F095E45F1BE286167 /* libRNAudio.a */; };
+		4697AB212C2A4E98AEBC70DE /* TSBackgroundFetch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60E1C27005BF4C3193F3BE79 /* TSBackgroundFetch.framework */; };
 		49B830AF2B6B40F2B516EE16 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 0A06ADA2DAD24967B3693938 /* Feather.ttf */; };
 		5A44CD2F8DD8439182E041AA /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8371A6F0FE364E62AB6D3B51 /* Roboto-Light.ttf */; };
 		60AE4C5621C8A3FB001E8D9F /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AE4C5521C8A3D5001E8D9F /* libRNSound.a */; };
+		60F7DED0223A406A0077DC30 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 60F7DECF223A406A0077DC30 /* RNBackgroundFetch+AppDelegate.m */; };
 		6663CAF5C1B14C7BB0CBD94B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E6D9C263BEB455D8871B9D2 /* Zocial.ttf */; };
 		6C784691580245189D107CD7 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0EB143F9D9144B6ABA812FD /* Roboto-Italic.ttf */; };
 		770FC3069BDE4CF7A5AD821E /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EF956BA7BD0D442B9F17FAFA /* FontAwesome5_Regular.ttf */; };
@@ -428,6 +430,7 @@
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = TreyVisay/main.m; sourceTree = "<group>"; };
 		13E2870AD668437DAE4D4307 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-Regular.ttf"; path = "../app/assets/fonts/Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
+		1B0EC5496E664D068BC67291 /* RNBackgroundJob.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNBackgroundJob.xcodeproj; path = "../node_modules/react-native-background-job/ios/RNBackgroundJob.xcodeproj"; sourceTree = "<group>"; };
 		2242B99FDE5827DE62B24D7F /* Pods-TreyVisay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TreyVisay.release.xcconfig"; path = "Pods/Target Support Files/Pods-TreyVisay/Pods-TreyVisay.release.xcconfig"; sourceTree = "<group>"; };
 		25B5CC85CBE34BBC8F98A310 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -444,6 +447,8 @@
 		5803BC2D29F04D8DB282D06F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		60AE4C2A21C8A3D5001E8D9F /* RNSound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
+		60E1C27005BF4C3193F3BE79 /* TSBackgroundFetch.framework */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = TSBackgroundFetch.framework; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/TSBackgroundFetch.framework"; sourceTree = SDKROOT; };
+		60F7DECF223A406A0077DC30 /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "RNBackgroundFetch+AppDelegate.m"; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; };
 		7365F85E8A83451FBC276DF1 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		74EF441968474F33949D8FA0 /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; };
 		768443013C9D48A8A823FACD /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
@@ -472,6 +477,7 @@
 		DB95574EDCC4470581FD136C /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		EC78AF6B68E3438A96A08773 /* libRealmReact.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRealmReact.a; sourceTree = "<group>"; };
 		EF956BA7BD0D442B9F17FAFA /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
+		F29346E477A84F14826E6823 /* libRNBackgroundJob.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNBackgroundJob.a; sourceTree = "<group>"; };
 		F713F16B00E54DCC921FFB42 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		F83833D3942241FA820002D9 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
 		FDE7762229284B1D82367A74 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../app/assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
@@ -512,6 +518,7 @@
 				BB108951A0A94C65A6E11D87 /* libBVLinearGradient.a in Frameworks */,
 				974E21E3D64D4586BF0ED02B /* libSplashScreen.a in Frameworks */,
 				D409EE372E9B6F37324114A7 /* libPods-TreyVisay.a in Frameworks */,
+				4697AB212C2A4E98AEBC70DE /* TSBackgroundFetch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,6 +607,7 @@
 		13B07FAE1A68108700A75B9A /* TreyVisay */ = {
 			isa = PBXGroup;
 			children = (
+				60F7DECF223A406A0077DC30 /* RNBackgroundFetch+AppDelegate.m */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -675,6 +683,7 @@
 				48FCCBDD1BE24F94A834FC2E /* libc++.tbd */,
 				DAA1FAAA823C4FF8981F3F45 /* libz.tbd */,
 				D3C22FDAD8FED845DCA71486 /* libPods-TreyVisay.a */,
+				60E1C27005BF4C3193F3BE79 /* TSBackgroundFetch.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -699,6 +708,7 @@
 				97F019082A5C4C26AD7024E8 /* libRNDeviceInfo-tvOS.a */,
 				74EF441968474F33949D8FA0 /* libRNVectorIcons-tvOS.a */,
 				818238EEDBCA4001850A9647 /* libSplashScreen.a */,
+				F29346E477A84F14826E6823 /* libRNBackgroundJob.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -793,6 +803,7 @@
 				36837D01C8B24AE9BB5AF1D3 /* RNAudio.xcodeproj */,
 				9FF571FCFE4845E2AAF390F2 /* BVLinearGradient.xcodeproj */,
 				43E116BB4FBE4BE8BFCD8CF9 /* SplashScreen.xcodeproj */,
+				1B0EC5496E664D068BC67291 /* RNBackgroundJob.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -906,6 +917,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = JW8Q88ZUPR;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = true;
+							};
+						};
 					};
 				};
 			};
@@ -1452,6 +1468,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60F7DED0223A406A0077DC30 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
@@ -1484,6 +1501,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -1510,6 +1528,7 @@
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
@@ -1526,6 +1545,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/realm/src/**",
@@ -1540,6 +1560,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
@@ -1567,6 +1588,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = JW8Q88ZUPR;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/realm/src/**",
@@ -1583,7 +1605,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.instedd.ilabsea.TreyVisay;
+				PRODUCT_BUNDLE_IDENTIFIER = org.instedd.ilabsea.TreyVisayDev;
 				PRODUCT_NAME = TreyVisay;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1596,6 +1618,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JW8Q88ZUPR;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/realm/src/**",
@@ -1612,7 +1635,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = org.instedd.ilabsea.TreyVisay;
+				PRODUCT_BUNDLE_IDENTIFIER = org.instedd.ilabsea.TreyVisayDev;
 				PRODUCT_NAME = TreyVisay;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

@@ -9,8 +9,10 @@ import {
   setCustomTouchableOpacity
 } from 'react-native-global-props';
 import { FontSetting } from './app/assets/style_sheets/font_setting';
+import BackgroundFetch from "react-native-background-fetch";
 
 import App from './app';
+import Task from './app/utils/task';
 
 const customTextProps = {
   style: {
@@ -54,5 +56,13 @@ export default class TreyVisay extends Component {
     return(<App/>)
   }
 }
+
+let MyHeadlessTask = async (event) => {
+  console.log('[BackgroundFetch HeadlessTask] start');
+  Task.syncToServer();
+  BackgroundFetch.finish();
+}
+
+BackgroundFetch.registerHeadlessTask(MyHeadlessTask);
 
 AppRegistry.registerComponent('TreyVisay', () => TreyVisay);

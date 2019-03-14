@@ -55,6 +55,8 @@ PODS:
     - React/Core
     - React/fishhook
     - React/RCTBlob
+  - RNBackgroundFetch (2.5.1):
+    - React
   - RNImageCropPicker (0.21.3):
     - QBImagePickerController
     - React/Core
@@ -77,6 +79,7 @@ DEPENDENCIES:
   - React/RCTText (from `../node_modules/react-native`)
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
+  - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
@@ -95,6 +98,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-picker"
   React:
     :path: "../node_modules/react-native"
+  RNBackgroundFetch:
+    :path: "../node_modules/react-native-background-fetch"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   yoga:
@@ -108,10 +113,11 @@ SPEC CHECKSUMS:
   Picker: 67a2566d9ff6b141d505d88b9177f905aaa5f1a6
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
+  RNBackgroundFetch: 8c4f77f83c398c659bce82af2f0a885079417b9e
   RNImageCropPicker: 32ca4b9fef4e1b7b85ba69494242122948117e06
   RSKImageCropper: 98296ad26b41753f796b6898d015509598f13d97
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: c25fb972cff8fad307817a0246ac639891b8d5fa
+PODFILE CHECKSUM: ec2852dd8d0073a2acb43de9172c7042e23366d7
 
 COCOAPODS: 1.5.3
