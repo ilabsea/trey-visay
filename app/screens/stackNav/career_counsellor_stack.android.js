@@ -28,22 +28,30 @@ import PersonalityReport from '../CareerPlanning/game_history/personality_report
 import StudentPersonalityReport from '../CareerPlanning/game_history/student_personality_report';
 import RecommendationReport from '../CareerPlanning/game_history/recommendation_report';
 
-import Accessment from '../Accessment/Accessment';
+import Assessment from '../Assessment/Assessment';
+import PersonalityAssessment from '../PersonalityAssessment/PersonalityAssessment';
 
 const CareerCounsellorStack = createStackNavigator(
   {
-    AccessmentScreen: {
-      screen: Accessment,
+    AssessmentScreen: {
+      screen: Assessment,
       navigationOptions: ({navigation}) => ({
         title: 'វាយតម្លៃមុខរបរនិងអាជីព',
         headerLeft: <OpenDrawer navigation={navigation}/>
+      })
+    },
+    PersonalityAssessmentScreen: {
+      screen: PersonalityAssessment,
+      navigationOptions: ({navigation}) => ({
+        title: 'វាយតម្លៃមុខរបរនិងអាជីព',
       })
     },
     CareerCounsellorScreen: {
       screen: CareerCounsellor,
       navigationOptions: ({navigation}) => ({
         title: 'វាយតម្លៃមុខរបរនិងអាជីព',
-        headerLeft: <BackButton navigation={navigation}/>
+        // headerLeft: <BackButton navigation={navigation}/>
+        // headerLeft: <OpenDrawer navigation={navigation}/>
       })
     },
     PersonalUnderstandingFormScreen: {
@@ -153,7 +161,8 @@ const CareerCounsellorStack = createStackNavigator(
       headerStyle: headerStyles.headerStyle,
       headerLeft: <BackButton navigation={navigation}/>
     }),
-    initialRouteName: 'CareerCounsellorScreen',
+    // initialRouteName: 'CareerCounsellorScreen',
+    initialRouteName: 'AssessmentScreen',
   }
 );
 

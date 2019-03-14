@@ -21,7 +21,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
 
-export default class Accessment extends Component {
+export default class Assessment extends Component {
   static navigationOptions = {
     drawerLabel: 'វាយតម្លៃមុខរបរនិងអាជីព',
     drawerIcon: ({ tintColor }) => (
@@ -32,26 +32,29 @@ export default class Accessment extends Component {
   _renderInstruction() {
     return (
       <View style={[styles.box, {flexDirection: 'row'}]}>
+        <View style={styles.logoWrapper}>
+          <Image source={require('../../assets/images/list.png')} style={styles.logo} />
+        </View>
 
         <View style={{flex: 1}}>
           <Text style={styles.title}>ការធ្វើតេស្ដឆ្លុះបញ្ចាំងពីខ្លួនឯង</Text>
 
           <View>
             <Button
-              style={[myStyles.btnSubmit, { paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }]}
-              onPress={()=> {}}
+              style={{paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }}
+              onPress={()=> this.props.navigation.navigate('CareerCounsellorScreen')}
               >
               <Text style={[myStyles.submitText, { color: '#fff', fontSize: 20 }]}>
-                ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព
+                ការធ្វើតេស្តវាយតម្លៃ មុខរបរនិងអាជីព
               </Text>
             </Button>
 
             <Button
-              style={[myStyles.btnSubmit, { paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }]}
-              onPress={()=> {}}
+              style={{ paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }}
+              onPress={()=> this.props.navigation.navigate('PersonalityAssessmentScreen')}
               >
               <Text style={[myStyles.submitText, { color: '#fff', fontSize: 20 }]}>
-                ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព
+                ការធ្វើតេស្តស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ
               </Text>
             </Button>
 
