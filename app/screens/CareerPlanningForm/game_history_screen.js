@@ -116,7 +116,7 @@ export default class GameHistoryScreen extends Component {
     return (
       <TouchableOpacity
         style={[styles.box, {flexDirection: 'row'}]}
-        onPress={() => {this.props.navigation.navigate('InstitutionDetail', {id: school.id})}}
+        onPress={() => {this.props.navigation.navigate('InstitutionDetail', {school: school})}}
         key={i}>
 
         <View>

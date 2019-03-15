@@ -1,9 +1,10 @@
 import { StyleSheet , Platform } from 'react-native';
+import { FontSetting } from './font_setting';
 
 export default StyleSheet.create({
   headerTitleStyle: {
     color: '#fff',
-    fontSize: 22,
+    fontSize: FontSetting.nav_title,
     marginLeft: 20,
   },
   headerStyle: {
@@ -29,6 +30,6 @@ export default StyleSheet.create({
   },
   body2: {
     fontWeight: 'bold',
-    fontSize: 14
+    fontSize: FontSetting.text
   }
 })

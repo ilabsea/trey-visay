@@ -11,9 +11,9 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import SplashScreen from 'react-native-splash-screen';
-import RF from "react-native-responsive-fontsize";
 
 import StatusBar from '../components/status_bar';
+import { FontSetting } from '../assets/style_sheets/font_setting';
 import User from '../utils/user';
 
 export default class Dashboard extends Component {
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   btnLabel: {
-    fontSize: RF(2.8),
+    fontSize: FontSetting.nav_title,
     color: '#1976d2',
     width: '100%',
     textAlign: 'center',
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   btnDescription: {
     padding: 8,
     textAlign: 'center',
-    fontSize: RF(2),
+    fontSize: FontSetting.dashboard_subtitle,
   },
   btnFab: {
     width: 100,

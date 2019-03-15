@@ -46,6 +46,7 @@ const styles = {
     borderWidth: 1,
     borderColor: '#eee',
     padding: 16,
+    marginTop: 30,
     backgroundColor: '#fff'
   }
 }

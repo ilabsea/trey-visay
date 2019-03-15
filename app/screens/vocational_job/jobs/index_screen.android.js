@@ -4,19 +4,18 @@ import {
   ScrollView,
   View,
   TouchableOpacity,
-  StyleSheet,
-  Platform
+  StyleSheet
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
 // Utils
-import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
-import StatusBar from '../../components/status_bar';
-import LongText from '../../components/vocational/long_text';
-import characteristicList from '../../data/json/characteristic_jobs';
+import styles from '../../../assets/style_sheets/profile_form';
+import headerStyles from '../../../assets/style_sheets/header';
+import StatusBar from '../../../components/status_bar';
+import LongText from '../../../components/vocational_job/long_text';
+import characteristicList from '../../../data/json/characteristic_jobs';
 
 export default class VocationalJobIndexScreen extends Component {
   componentWillMount() {
@@ -76,13 +75,6 @@ export default class VocationalJobIndexScreen extends Component {
 
 const myStyles = StyleSheet.create({
   container: {
-    ...Platform.select({
-      android: {
-        margin: 16
-      },
-      ios: {
-        margin: 8
-      }
-    })
+    margin: 16
   }
 })
