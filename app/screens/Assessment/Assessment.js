@@ -9,17 +9,10 @@ import {
   Platform
 } from 'react-native';
 
-import realm from '../../schema';
-import User from '../../utils/user';
-import uuidv4 from '../../utils/uuidv4';
-
 import Button from '../../components/button';
 import StatusBar from '../../components/status_bar';
 import myStyles from '../../assets/style_sheets/login_form';
-
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import headerStyles from '../../assets/style_sheets/header';
-import shareStyles from '../../assets/style_sheets/profile_form';
 
 export default class Assessment extends Component {
   static navigationOptions = {

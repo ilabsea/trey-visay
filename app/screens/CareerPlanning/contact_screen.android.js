@@ -9,6 +9,8 @@ import {
   BackHandler,
 } from 'react-native';
 
+import { NavigationActions } from 'react-navigation';
+
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';

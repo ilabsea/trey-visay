@@ -30,6 +30,8 @@ import RecommendationReport from '../CareerPlanning/game_history/recommendation_
 
 import Assessment from '../Assessment/Assessment';
 import PersonalityAssessment from '../PersonalityAssessment/PersonalityAssessment';
+import Realistic from '../PersonalityAssessment/Realistic';
+import Result from '../PersonalityAssessment/Result';
 
 const CareerCounsellorStack = createStackNavigator(
   {
@@ -44,6 +46,48 @@ const CareerCounsellorStack = createStackNavigator(
       screen: PersonalityAssessment,
       navigationOptions: ({navigation}) => ({
         title: 'វាយតម្លៃមុខរបរនិងអាជីព',
+      })
+    },
+    RealisticScreen: {
+      screen: Realistic,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តប្រាកដនិយម',
+      })
+    },
+    InvestigativeScreen: {
+      screen: Realistic,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តពូកែអង្កេត',
+      })
+    },
+    ArtisticScreen: {
+      screen: Realistic,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តសិល្បៈនិយម',
+      })
+    },
+    SocialScreen: {
+      screen: Realistic,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តសង្គម',
+      })
+    },
+    EnterprisingScreen: {
+      screen: Realistic,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តត្រិះរិះពិចារណា',
+      })
+    },
+    ConventionalScreen: {
+      screen: Realistic,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តសណ្ដាប់ធ្នាប់',
+      })
+    },
+    AssessmentResultScreen: {
+      screen: Result,
+      navigationOptions: ({navigation}) => ({
+        title: 'បង្ហាញលទ្ធផល',
       })
     },
     CareerCounsellorScreen: {
@@ -163,6 +207,7 @@ const CareerCounsellorStack = createStackNavigator(
     }),
     // initialRouteName: 'CareerCounsellorScreen',
     initialRouteName: 'AssessmentScreen',
+    // initialRouteName: 'RealisticScreen',
   }
 );
 
