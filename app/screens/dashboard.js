@@ -11,6 +11,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import SplashScreen from 'react-native-splash-screen';
+import RF from "react-native-responsive-fontsize";
 
 import StatusBar from '../components/status_bar';
 import User from '../utils/user';
@@ -66,49 +67,47 @@ export default class Dashboard extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar />
-        <ScrollView>
-          <View style={styles.scrollContainer}>
-            <View style={{flexDirection: 'row'}}>
-              { this._renderButton({
-                  title: 'វាយតម្លៃមុខរបរ',
-                  url: this.getRoute(),
-                  icon_bg_color: '#3f51b5',
-                  icon_name: 'briefcase',
-                  description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក។'
-                })
-              }
-              { this._renderButton({
-                  title: 'គ្រឹះស្ថានសិក្សា',
-                  url: 'InstitutionStack',
-                  icon_bg_color: '#009688',
-                  icon_name: 'business',
-                  icon_type: 'material',
-                  description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជាដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២។'
-                })
-              }
-            </View>
-
-            <View style={{flexDirection: 'row'}}>
-              { this._renderButton({
-                  title: 'ជំនាញវិជ្ជាជីវៈ',
-                  url: 'VocationalJobStack',
-                  icon_bg_color: '#1aaf5d',
-                  icon_name: 'photo-filter',
-                  icon_type: 'material',
-                  description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវះរយៈពេលខ្លី។'
-                })
-              }
-              { this._renderButton({
-                  title: 'វីដេអូមុខរបរ',
-                  url: 'VideoScreen',
-                  icon_bg_color: '#f44336',
-                  icon_name: 'video-camera',
-                  description: 'យល់ដឹងអំពីមុខរបរ និងអាជីព តាមរយះវីដេអូ។'
-                })
-              }
-            </View>
+        <View style={styles.scrollContainer}>
+          <View style={{flexDirection: 'row'}}>
+            { this._renderButton({
+                title: 'វាយតម្លៃមុខរបរ',
+                url: this.getRoute(),
+                icon_bg_color: '#3f51b5',
+                icon_name: 'briefcase',
+                description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក។'
+              })
+            }
+            { this._renderButton({
+                title: 'គ្រឹះស្ថានសិក្សា',
+                url: 'InstitutionStack',
+                icon_bg_color: '#009688',
+                icon_name: 'business',
+                icon_type: 'material',
+                description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជាដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២។'
+              })
+            }
           </View>
-        </ScrollView>
+
+          <View style={{flexDirection: 'row'}}>
+            { this._renderButton({
+                title: 'ជំនាញវិជ្ជាជីវៈ',
+                url: 'VocationalJobStack',
+                icon_bg_color: '#1aaf5d',
+                icon_name: 'photo-filter',
+                icon_type: 'material',
+                description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវះរយៈពេលខ្លី។'
+              })
+            }
+            { this._renderButton({
+                title: 'វីដេអូមុខរបរ',
+                url: 'VideoScreen',
+                icon_bg_color: '#f44336',
+                icon_name: 'video-camera',
+                description: 'យល់ដឹងអំពីមុខរបរ និងអាជីព តាមរយះវីដេអូ។'
+              })
+            }
+          </View>
+        </View>
       </View>
     );
   }
@@ -134,13 +133,15 @@ const styles = StyleSheet.create({
         margin : 10,
       },
       ios: {
-        margin: 8
+        margin: 0,
+        borderWidth: 1,
+        borderColor: '#d3d3d3',
       }
     }),
     backgroundColor: '#fff',
   },
   btnLabel: {
-    fontSize: 24,
+    fontSize: RF(2.8),
     color: '#1976d2',
     width: '100%',
     textAlign: 'center',
@@ -153,6 +154,7 @@ const styles = StyleSheet.create({
   btnDescription: {
     padding: 8,
     textAlign: 'center',
+    fontSize: RF(2),
   },
   btnFab: {
     width: 100,
