@@ -15,6 +15,7 @@ import SplashScreen from 'react-native-splash-screen';
 import StatusBar from '../components/status_bar';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 import User from '../utils/user';
+import API from '../api/schools';
 
 export default class Dashboard extends Component {
   static navigationOptions = {
@@ -43,7 +44,12 @@ export default class Dashboard extends Component {
     return this.state.user ? 'CareerCounsellorStack' : 'AccountStack';
   }
 
+  _clearSelectedValues(){
+    API.setSelectedProvince('');
+  }
+
   _renderButton(options) {
+    this._clearSelectedValues();
     return (
       <TouchableOpacity
         onPress={() => this.props.navigation.navigate(options.url)}

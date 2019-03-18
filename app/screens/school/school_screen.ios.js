@@ -39,7 +39,6 @@ export default class SchoolScreen extends Component {
     this.state = {
       pagination: {},
       schools: [],
-      provinces: [],
       majors: [],
       currentProvince: '',
       currentMajor: '',
@@ -47,16 +46,37 @@ export default class SchoolScreen extends Component {
     }
   }
 
-  componentWillMount() {
-    this._getProvinces();
-    this._getSchools(1);
+  componentDidMount(){
+    this.props.screenProps.navigation.addListener('willFocus', (route) => {
+      API.setSelectedProvince('គ្រប់ទីកន្លែង');
+      API.setSelectedMajor('គ្រប់ជំនាញ');
+    });
   }
 
-  _getProvinces() {
-    API
-      .getProvinces(this.myCategory)
-      .then(result => this.setState({provinces: result.provinces}))
-      .catch(error => {console.log(error)})
+  componentWillMount() {
+    this.props.screenProps.navigation.setParams({
+      refresh: this.refreshState.bind(this),
+      category: this.myCategory
+    });
+    this.refreshState();
+  }
+
+  refreshState() {
+    API.getSelectedProvince((province) => {
+      if(province == 'គ្រប់ទីកន្លែង'){
+        province = '';
+      }
+      this.setState({ currentProvince: province });
+      this._onChangeProvince(province);
+    });
+
+    API.getSelectedMajor((major) => {
+      if(major == 'គ្រប់ជំនាញ'){
+        major = '';
+      }
+      this.setState({ currentMajor: major });
+      this._onChangeMajor(major);
+    });
   }
 
   _getSchoolsRequest() {

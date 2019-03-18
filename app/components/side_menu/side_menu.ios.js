@@ -23,6 +23,7 @@ import User from '../../utils/user';
 
 import headerStyles from '../../assets/style_sheets/header';
 
+import API from '../../api/schools';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -63,10 +64,15 @@ export default class SideMenu extends Component {
     return styles.menuLabel;
   }
 
+  clearSelectedData() {
+    API.setSelectedProvince('');
+  }
+
   navigateToScreen = (route) => {
     if(route == 'Home'){
       this.logout();
     }else{
+      this.clearSelectedData();
       const navigateAction = NavigationActions.navigate({
         routeName: route
       });

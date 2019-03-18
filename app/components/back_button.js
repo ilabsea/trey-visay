@@ -7,9 +7,16 @@ class BackButton extends React.Component {
     super(props);
   }
 
+  handleOnPress = () => {
+    if (this.props.navigation.state.params && this.props.navigation.state.params._handleBack) {
+        this.props.navigation.state.params._handleBack()
+    }
+    this.props.navigation.goBack()
+  }
+
   render() {
     let iconName = Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back';
-    return <TouchableOpacity onPress={() => this.props.navigation.goBack()}
+    return <TouchableOpacity onPress={this.handleOnPress}
                 style={{marginHorizontal: 16}}>
               <IonicIcon name={iconName} color='#fff' size={24} />
             </TouchableOpacity>;
