@@ -52,42 +52,49 @@ const CareerCounsellorStack = createStackNavigator(
       screen: Realistic,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តប្រាកដនិយម',
+        headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     InvestigativeScreen: {
       screen: Realistic,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តពូកែអង្កេត',
+        headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     ArtisticScreen: {
       screen: Realistic,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសិល្បៈនិយម',
+        headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     SocialScreen: {
       screen: Realistic,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសង្គម',
+        headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     EnterprisingScreen: {
       screen: Realistic,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តត្រិះរិះពិចារណា',
+        headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     ConventionalScreen: {
       screen: Realistic,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសណ្ដាប់ធ្នាប់',
+        headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     AssessmentResultScreen: {
       screen: Result,
       navigationOptions: ({navigation}) => ({
         title: 'បង្ហាញលទ្ធផល',
+        headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     CareerCounsellorScreen: {

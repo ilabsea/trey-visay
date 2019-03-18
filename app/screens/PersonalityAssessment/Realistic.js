@@ -7,6 +7,7 @@ import {
   Button,
   Platform,
   TouchableOpacity,
+  BackHandler,
 } from 'react-native';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -15,6 +16,12 @@ import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import CheckboxGroup from '../../components/checkbox_group';
 import personalities from '../../data/json/personality';
+import BackConfirmDialog from '../../components/back_confirm_dialog';
+import { NavigationActions } from 'react-navigation';
+
+import realm from '../../schema';
+import User from '../../utils/user';
+import uuidv4 from '../../utils/uuidv4';
 
 export default class Realistic extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -45,17 +52,79 @@ export default class Realistic extends Component {
     if (!!props.navigation.state.params && !!props.navigation.state.params.category) {
       index = this.screens.map(e => e.category).indexOf(props.navigation.state.params.category);
     }
-
     this.screen = this.screens[index];
+
+    let assessments = realm.objects('PersonalityAssessment').filtered('isDone = false AND userUuid = "' + User.getID() + '"');
+    let assessment = assessments[assessments.length - 1];
+    let data = assessment[this.screen.category].map((obj)=> obj.value);
+
     this.state = {
-      personalities: personalities.filter(item => item.category == this.screen.category)
+      personalities: personalities.filter(item => item.category == this.screen.category),
+      data: data,
+      assessment: assessment
     }
   }
 
+  componentDidMount() {
+    this._backHandler();
+  }
+
+  _backHandler() {
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
+
+  _handleBack() {
+    this.setState({confirmDialogVisible: true});
+  }
+
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
+
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    return true
+  }
+
+  _onYes() {
+    realm.write(() => {
+      realm.create('PersonalityAssessment', this._buildData(), true);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
+    });
+  }
+
+  _onNo() {
+    realm.write(() => {
+      realm.delete(this.state.assessment);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
+    });
+  }
+
+  _toTitleCase(str) {
+    return str.replace(/^[a-z]/, function (x) {return x.toUpperCase()})
+  }
+
+  _buildData(step) {
+    let screen = step || `${this._toTitleCase(this.screen.category)}Screen`;
+    let data = this.state.data.map((value) => { return { value: value } })
+
+    obj = {
+      uuid: this.state.assessment.uuid,
+      step: screen,
+    };
+
+    obj[this.screen.category] = data;
+
+    return obj;
+  }
+
   _handleChecked(value) {
-    let items = value
-    this.props.navigation.setParams({total: items.length});
-    // this.setState({jobs: value});
+    console.log('value', value)
+    this.props.navigation.setParams({total: value.length});
+    this.setState({data: value});
   }
 
   _renderCheckBoxes() {
@@ -71,6 +140,7 @@ export default class Realistic extends Component {
           <CheckboxGroup
             onSelect={(selected) => {this._handleChecked(selected)}}
             items={checkboxes}
+            checked={this.state.data}
             style={{
               icon: {
                 color: '#4caf50',
@@ -95,12 +165,16 @@ export default class Realistic extends Component {
   }
 
   _goNext = () => {
-    this.props.navigation.navigate(this.screen.nextScreen, {category: this.screen.nextCategory});
+    realm.write(() => {
+      realm.create('PersonalityAssessment', this._buildData(this.screen.nextScreen), true);
+
+      this.props.navigation.navigate(this.screen.nextScreen, {category: this.screen.nextCategory});
+    });
+
   }
 
   render() {
     return(
-
       <View style={{flex: 1}}>
         <ScrollView style={{flex: 1}}>
           <View style={{margin: 16}}>
@@ -113,6 +187,12 @@ export default class Realistic extends Component {
           </View>
         </ScrollView>
 
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
         <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext} />
       </View>
     )
