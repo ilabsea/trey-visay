@@ -21,7 +21,6 @@ import { NavigationActions } from 'react-navigation';
 
 import realm from '../../schema';
 import User from '../../utils/user';
-import uuidv4 from '../../utils/uuidv4';
 
 export default class Realistic extends Component {
   static navigationOptions = ({ navigation }) => {
