@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import {
-  createMaterialTopTabNavigator,
+  createBottomTabNavigator,
   createStackNavigator,
 } from 'react-navigation';
 import headerStyles from '../../assets/style_sheets/header';
@@ -15,7 +15,7 @@ import OpenDrawer from '../../components/open_drawer';
 import SchoolScreen from './school_screen';
 import InstitutionDetail from './institution_detail';
 
-const InstitutionTab = createMaterialTopTabNavigator({
+const InstitutionTab = createBottomTabNavigator({
   GovernmentSchoolScreen: {
     screen: ({ navigation }) => <SchoolScreen screenProps={{category: 'សាលារដ្ឋ', navigation: navigation }} />,
     navigationOptions: {tabBarLabel: 'សាលារដ្ឋ'}

@@ -142,10 +142,5 @@ const styles = StyleSheet.create({
   schoolAddress: {
     marginLeft: 8,
     fontSize: FontSetting.sub_title
-  },
-  textList: {
-    padding: 8,
-    paddingLeft: 16,
-    paddingRight: 16
   }
 })
