@@ -213,7 +213,8 @@ const CareerCounsellorStack = createStackNavigator(
       headerLeft: <BackButton navigation={navigation}/>
     }),
     // initialRouteName: 'CareerCounsellorScreen',
-    initialRouteName: 'AssessmentScreen',
+    // initialRouteName: 'AssessmentScreen',
+    initialRouteName: 'PersonalityAssessmentScreen',
     // initialRouteName: 'RealisticScreen',
   }
 );

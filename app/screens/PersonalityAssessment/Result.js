@@ -7,6 +7,7 @@ import {
   Button,
   BackHandler,
   Dimensions,
+  processColor,
 } from 'react-native';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -15,15 +16,27 @@ import FooterBar from '../../components/FooterBar';
 import { NavigationActions } from 'react-navigation';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 
-// import { BarChart } from 'react-native-chart-kit';
-// import { Bar } from 'react-native-pathjs-charts';
+import {BarChart} from 'react-native-charts-wrapper';
 
 import realm from '../../schema';
 import User from '../../utils/user';
 
 
 class Result extends Component {
-  state = {};
+  categories = ['realistic', 'investigative', 'artistic', 'social', 'enterprising', 'conventional'];
+
+  constructor(props) {
+    super(props);
+
+    let assessments = realm.objects('PersonalityAssessment').filtered('isDone = false AND userUuid = "' + User.getID() + '"');
+    let assessment = assessments[assessments.length - 1];
+
+    this.state = {
+      assessment: assessment,
+    };
+
+
+  }
 
   componentDidMount() {
     this._backHandler();
@@ -82,29 +95,76 @@ class Result extends Component {
   render() {
     // return(
     //       <View>
-    //         <Text>ពូកែអង្កេត</Text>
     //         <Button title='Done' onPress={()=> this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1)} />
     //       </View>
     // )
 
-    return(
-      <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16}}>
+    let arr = this.categories.map(item => {return {y: this.state.assessment[item].length}});
+    let option = {
+      legend: {
+        enabled: true,
+        textSize: 14,
+        form: 'SQUARE',
+        formSize: 14,
+        xEntrySpace: 10,
+        yEntrySpace: 5,
+        formToTextSpace: 5,
+        wordWrapEnabled: true,
+        maxSizePercent: 0.5
+      },
+      data: {
+        dataSets: [{
+          values: arr,
+          label: 'បុគ្គលិកលក្ខណៈ',
+          config: {
+            color: processColor('teal'),
+            barShadowColor: processColor('lightgrey'),
+            highlightAlpha: 90,
+            highlightColor: processColor('red'),
+          }
+        }],
+        config: {
+          barWidth: 0.7,
+        }
+      },
+      xAxis: {
+        valueFormatter: ['ប្រាកដនិយម', 'ពូកែអង្កេត', 'សិល្បៈនិយម', 'សង្គម', 'ត្រិះរិះពិចារណា', 'សណ្ដាប់ធ្នាប់'],
+        granularityEnabled: true,
+        granularity : 1,
+      }
+    }
 
+  return (
+        <View style={{flex: 1}}>
+          <View style={styles.container}>
+            <BarChart
+              style={styles.chart}
+              data={option.data}
+              xAxis={option.xAxis}
+              animation={{durationX: 2000}}
+              legend={option.legend}
+              gridBackgroundColor={processColor('#ffffff')}
+              visibleRange={{x: { min: 6, max: 6 }}}
+              drawBarShadow={false}
+              drawValueAboveBar={true}
+              drawHighlightArrow={true}
+            />
           </View>
-        </ScrollView>
-
-        <BackConfirmDialog
-          visible={this.state.confirmDialogVisible}
-          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-          onPressYes={() => this._onYes()}
-          onPressNo={() => this._onNo()}
-        />
-        <FooterBar icon='keyboard-arrow-right' text='រួចរាល់' onPress={this._goNext} />
-      </View>
-    )
-  }
+        </View>
+      );
+    }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    height: 220,
+    backgroundColor: '#F5FCFF',
+    margin: 10,
+    paddingVertical: 10
+  },
+  chart: {
+    flex: 1
+  }
+});
 
 export default Result;
