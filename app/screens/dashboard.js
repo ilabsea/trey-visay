@@ -132,8 +132,8 @@ const styles = StyleSheet.create({
   },
   btnBox: {
     flex: 1,
-    minHeight: 350,
     alignItems: 'center',
+    minHeight: '50%',
     ...Platform.select({
       android: {
         margin : 10,
