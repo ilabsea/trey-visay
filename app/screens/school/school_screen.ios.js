@@ -140,13 +140,13 @@ export default class SchoolScreen extends Component {
           </View>
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 16}}>
-            <Text numberOfLines={1} style={mainStyles.text}>
+            <Text numberOfLines={1} style={mainStyles.title}>
               {school.universityName}
             </Text>
 
             <View style={{flexDirection: 'row'}}>
               <AwesomeIcon name='map-marker' color='#1976d2' size={18} />
-              <Text ellipsizeMode='head' numberOfLines={1} style={styles.schoolAddress}>{school.address}</Text>
+              <Text ellipsizeMode='head' numberOfLines={1} style={[mainStyles.subTitle, {marginLeft: 8}]}>{school.address}</Text>
             </View>
           </View>
 
@@ -240,9 +240,5 @@ const styles = StyleSheet.create({
   image: {
     width: 50,
     height: 50
-  },
-  schoolAddress: {
-    marginLeft: 8,
-    fontSize: FontSetting.sub_title
   }
 })

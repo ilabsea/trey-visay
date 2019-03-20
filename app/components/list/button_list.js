@@ -22,7 +22,7 @@ class ButtonList extends React.Component {
           style={mainStyles.btnList}
           onPress={this.props.onPress}
         >
-          <Text style={mainStyles.text}>{this.props.title}</Text>
+          <Text style={mainStyles.title}>{this.props.title}</Text>
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </TouchableOpacity>
         <Divider style={styles.divider}/>

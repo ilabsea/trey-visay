@@ -51,7 +51,7 @@ class FilterProvinces extends Component {
           onPress={()=> this.setSelectedProvince(province)}
           key={i}
         >
-          <Text style={mainStyles.text}>{province}</Text>
+          <Text style={mainStyles.title}>{province}</Text>
           { this.state.selectedProvince == province &&
             <AwesomeIcon name='check' size={18} color='green' />
           }

@@ -8,6 +8,7 @@ import {
   ScrollView,
   Platform
 } from 'react-native';
+import { Divider } from 'react-native-elements';
 
 import realm from '../../schema';
 import User from '../../utils/user';
@@ -20,6 +21,7 @@ import myStyles from '../../assets/style_sheets/login_form';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
+import {mainStyles} from '../../assets/style_sheets/main/main';
 
 export default class CareerCounsellor extends Component {
   static navigationOptions = {
@@ -107,27 +109,38 @@ export default class CareerCounsellor extends Component {
     return (
       <View >
         { !!this.state.completedGames.length &&
-          <Text style={{fontWeight: 'bold', marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
+          <Text style={mainStyles.sectionText}>លទ្ធផលធ្វើតេស្ត</Text>
         }
 
         { this.state.completedGames.map((game, i) => {
           return (
-            <TouchableOpacity
-              key={i}
-              style={[styles.box, {marginTop: 0, marginBottom: 8, flexDirection: 'row', alignItems: 'center'}]}
-              onPress={() => this.props.navigation.navigate('GameHistoryScreen', {num: (count - i), gameUuid: game.uuid})}
-              >
-              <View style={{flexDirection: 'row', flex: 1}}>
-                <Image source={require('../../assets/images/checklist.png')} style={{width: 60, height: 60, marginRight: 16}} />
-                <View style={{flex: 1}}>
-                  <Text style={shareStyles.subTitle}>តេស្តលើកទី {count - i}</Text>
-                  <Text style={styles.text}>ធ្វើនៅ: {this._getFullDate(game.createdAt)}</Text>
+            <View style={{backgroundColor: 'white'}}>
+              <TouchableOpacity
+                key={i}
+                style={mainStyles.btnList}
+                onPress={() => this.props.navigation.navigate('GameHistoryScreen', {num: (count - i), gameUuid: game.uuid})}
+                >
+
+                <View>
+                  <Image source={require('../../assets/images/checklist.png')} style={styles.logo} />
                 </View>
-              </View>
 
-              <AwesomeIcon name='angle-right' size={24}/>
+                <View style={{flex: 1, marginLeft: 16, marginRight: 16}}>
+                  <Text style={mainStyles.title}>
+                    តេស្តលើកទី {count - i}
+                  </Text>
 
-            </TouchableOpacity>
+                  <Text style={mainStyles.subTitle}>
+                    ធ្វើនៅ: {this._getFullDate(game.createdAt)}
+                  </Text>
+                </View>
+
+                <View style={{justifyContent: 'center'}}>
+                  <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+                </View>
+              </TouchableOpacity>
+              <Divider style={{maginLeft: 16}} />
+            </View>
           )
         })}
 
@@ -190,9 +203,6 @@ const styles = StyleSheet.create({
     ...Platform.select({
       android: {
         margin: 16
-      },
-      ios: {
-        margin: 8
       }
     })
   },

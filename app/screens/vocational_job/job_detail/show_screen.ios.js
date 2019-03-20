@@ -91,7 +91,7 @@ export default class VocationalJobShowScreen extends Component {
           </View>
 
           <View style={{flex: 1, marginLeft: 16}}>
-            <Text numberOfLines={1} style={mainStyles.text}>
+            <Text numberOfLines={1} style={mainStyles.title}>
               {school.universityName}
             </Text>
 

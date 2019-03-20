@@ -20,10 +20,10 @@ class OneList extends React.Component {
         <TouchableOpacity
           style={mainStyles.btnList}
           onPress={this.props.onPress}>
-          <Text style={mainStyles.text}>{this.props.text}</Text>
+          <Text style={mainStyles.title}>{this.props.text}</Text>
         { !!this.props.selectedValue &&
             <View style={{flex:1}}>
-              <Text style={[mainStyles.text,styles.rightText]}>{this.props.selectedValue}</Text>
+              <Text style={[mainStyles.title,styles.rightText]}>{this.props.selectedValue}</Text>
             </View>
           }
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />

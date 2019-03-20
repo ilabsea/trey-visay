@@ -9,9 +9,12 @@ export const mainStyles = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16
   },
-  text: {
+  title: {
     flex: 1 ,
     fontSize: FontSetting.text
+  },
+  subTitle:{
+    fontSize: FontSetting.sub_title
   },
   box: {
     marginBottom: 8,

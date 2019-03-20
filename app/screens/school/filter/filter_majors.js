@@ -59,7 +59,7 @@ class FilterMajors extends Component {
           onPress={()=> this.setSelectedMajor(major)}
           key={i}
         >
-          <Text style={mainStyles.text}>{major}</Text>
+          <Text style={mainStyles.title}>{major}</Text>
           { this.state.selectedMajor == major &&
             <AwesomeIcon name='check' size={18} color='green' />
           }
