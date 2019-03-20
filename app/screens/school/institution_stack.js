@@ -12,7 +12,7 @@ import headerStyles from '../../assets/style_sheets/header';
 import API from '../../api/schools';
 
 import OpenDrawer from '../../components/open_drawer';
-import Filter from '../../components/filter';
+import Filter from '../../components/schools/filter';
 import BackButton from '../../components/back_button';
 
 import SchoolScreen from './school_screen';

@@ -1,7 +1,6 @@
 import React from 'react';
 import { TouchableOpacity , Image} from 'react-native';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import headerStyles from '../assets/style_sheets/header';
+import API from '../../api/schools';
 
 class Filter extends React.Component {
   constructor(props) {
@@ -11,6 +10,7 @@ class Filter extends React.Component {
   render() {
     let navigationState = this.props.screenProps.navigation.state;
     let index = navigationState.index;
+    let icon = require('../../assets/images/icons/filter.png');
     return <TouchableOpacity
             style={{marginRight: 16}}
             onPress={() => {
@@ -24,7 +24,7 @@ class Filter extends React.Component {
             }>
               <Image
                 style={{width: 22, height: 22}}
-                source={require('../assets/images/icons/filter.png')}/>
+                source={icon}/>
             </TouchableOpacity>;
   }
 }

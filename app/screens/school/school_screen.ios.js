@@ -23,6 +23,8 @@ import { FontSetting } from "../../assets/style_sheets/font_setting";
 import { mainStyles } from '../../assets/style_sheets/vocational_job/main';
 import shareStyles from '../../assets/style_sheets/profile_form';
 import StatusBar from '../../components/status_bar';
+import Filter from '../../components/schools/filter';
+import OpenDrawer from '../../components/open_drawer';
 
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';
@@ -45,32 +47,26 @@ export default class SchoolScreen extends Component {
       ds: new ListView.DataSource({ rowHasChanged: this._rowHasChanged })
     }
   }
-  
+
   componentWillMount() {
-    this.props.screenProps.navigation.setParams({
-      refresh: this.refreshState.bind(this),
-      category: this.myCategory
-    });
     this.props.screenProps.navigation.addListener('willFocus', (route) => {
       this.refreshState();
+    });
+    this.props.screenProps.navigation.setParams({
+      refresh: this.refreshState.bind(this),
+      category: this.myCategory,
     });
   }
 
   refreshState() {
     API.getSelectedProvince((province) => {
-      if(province == 'គ្រប់ទីកន្លែង'){
-        province = '';
-      }
-      this.setState({ currentProvince: province });
-      this._onChangeProvince(province);
-    });
-
-    API.getSelectedMajor((major) => {
-      if(major == 'គ្រប់ជំនាញ'){
-        major = '';
-      }
-      this.setState({ currentMajor: major });
-      this._onChangeMajor(major);
+      API.getSelectedMajor((major) => {
+        province = province == 'គ្រប់ទីកន្លែង' ? '': province;
+        major = major == 'គ្រប់ជំនាញ' ? '': major;
+        this.setState({ currentProvince: province,currentMajor: major });
+        this._onChangeProvince(province);
+        this._onChangeMajor(major);
+      });
     });
   }
 
