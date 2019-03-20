@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { mainStyles } from '../../assets/style_sheets/vocational_job/main';
+import { mainStyles } from '../../assets/style_sheets/main/main';
 
 class OneList extends React.Component {
   constructor(props) {

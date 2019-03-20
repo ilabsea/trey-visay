@@ -20,7 +20,7 @@ import LoadingIndicator from '../../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
-import { mainStyles } from '../../assets/style_sheets/vocational_job/main';
+import { mainStyles } from '../../assets/style_sheets/main/main';
 import shareStyles from '../../assets/style_sheets/profile_form';
 import StatusBar from '../../components/status_bar';
 import Filter from '../../components/schools/filter';

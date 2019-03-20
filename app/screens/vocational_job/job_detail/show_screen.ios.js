@@ -12,7 +12,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
 // Utils
-import { mainStyles } from '../../../assets/style_sheets/vocational_job/main';
+import { mainStyles } from '../../../assets/style_sheets/main/main';
 import { FontSetting } from "../../../assets/style_sheets/font_setting";
 import OneList from '../../../components/list/one_list';
 import StatusBar from '../../../components/status_bar';

@@ -8,7 +8,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 import API from '../../../api/schools';
-import { mainStyles } from '../../../assets/style_sheets/vocational_job/main';
+import { mainStyles } from '../../../assets/style_sheets/main/main';
 
 class FilterMajors extends Component {
   constructor(props){
