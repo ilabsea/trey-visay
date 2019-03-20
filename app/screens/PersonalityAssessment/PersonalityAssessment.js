@@ -17,6 +17,7 @@ import shareStyles from '../../assets/style_sheets/profile_form';
 import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
+import {longDateFormat} from '../../utils/date';
 
 export default class PersonalityAssessment extends Component {
   constructor(props) {
@@ -24,7 +25,7 @@ export default class PersonalityAssessment extends Component {
 
     let assessments = realm.objects('PersonalityAssessment').filtered('userUuid="' + User.getID() +'"');
     let assessment = assessments[assessments.length-1];
-    let completedAssessments = realm.objects('PersonalityAssessment').filtered('isDone = true AND userUuid="' + User.getID() +'"');
+    let completedAssessments = realm.objects('PersonalityAssessment').filtered('isDone = true AND userUuid="' + User.getID() +'"').sorted('createdAt', true);
     let isContinued = !!assessment && !assessment.isDone && !!assessment.step;
 
     this.state = {
@@ -114,7 +115,7 @@ export default class PersonalityAssessment extends Component {
 
     return (
       <View >
-        { !!this.state.completedAssessments.length &&
+        { !!count &&
           <Text style={{fontWeight: 'bold', marginTop: 20, marginBottom: 16, marginHorizontal: 16}}>លទ្ធផលធ្វើតេស្ត</Text>
         }
 
@@ -129,25 +130,16 @@ export default class PersonalityAssessment extends Component {
                 <Image source={require('../../assets/images/checklist.png')} style={{width: 60, height: 60, marginRight: 16}} />
                 <View style={{flex: 1}}>
                   <Text style={shareStyles.subTitle}>តេស្តលើកទី {count - i}</Text>
-                  <Text style={styles.text}>ធ្វើនៅ: {this._getFullDate(assessment.createdAt)}</Text>
+                  <Text style={styles.text}>ធ្វើនៅ: {longDateFormat(assessment.createdAt)}</Text>
                 </View>
               </View>
 
               <AwesomeIcon name='angle-right' size={24}/>
-
             </TouchableOpacity>
           )
         })}
-
       </View>
     )
-  }
-
-  _getFullDate(createdAt) {
-    let days = ['អាទិត្យ', 'ច័ន្ទ', 'អង្គារ', 'ពុធ', 'ព្រហស្បតិ៍', 'សុក្រ', 'សៅរ៍'];
-    let months = ['មករា', 'កុម្ភៈ', 'មិនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្តដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'];
-    let time = new Date(createdAt);
-    return "ថ្ងៃ" + days[time.getDay()] + ' ទី' + time.getDate() + ' ខែ' + months[time.getMonth()] + ' ឆ្នាំ' + time.getFullYear();
   }
 
   render() {

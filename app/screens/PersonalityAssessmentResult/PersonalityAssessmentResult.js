@@ -12,17 +12,13 @@ import {
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import FooterBar from '../../components/FooterBar';
-
 import { NavigationActions } from 'react-navigation';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
-
 import {BarChart} from 'react-native-charts-wrapper';
-
 import realm from '../../schema';
 import User from '../../utils/user';
 
-
-class Result extends Component {
+class PersonalityAssessmentResult extends Component {
   categories = [
     {label: 'ប្រាកដនិយម', value: 'realistic'},
     {label: 'ពូកែអង្កេត', value: 'investigative'},
@@ -200,4 +196,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Result;
+export default PersonalityAssessmentResult;

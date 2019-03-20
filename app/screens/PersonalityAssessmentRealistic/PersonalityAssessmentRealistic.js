@@ -22,7 +22,7 @@ import { NavigationActions } from 'react-navigation';
 import realm from '../../schema';
 import User from '../../utils/user';
 
-export default class Realistic extends Component {
+export default class PersonalityAssessmentRealistic extends Component {
   static navigationOptions = ({ navigation }) => {
     const { state } = navigation;
 
