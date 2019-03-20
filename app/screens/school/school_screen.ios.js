@@ -45,20 +45,15 @@ export default class SchoolScreen extends Component {
       ds: new ListView.DataSource({ rowHasChanged: this._rowHasChanged })
     }
   }
-
-  componentDidMount(){
-    this.props.screenProps.navigation.addListener('willFocus', (route) => {
-      API.setSelectedProvince('គ្រប់ទីកន្លែង');
-      API.setSelectedMajor('គ្រប់ជំនាញ');
-    });
-  }
-
+  
   componentWillMount() {
     this.props.screenProps.navigation.setParams({
       refresh: this.refreshState.bind(this),
       category: this.myCategory
     });
-    this.refreshState();
+    this.props.screenProps.navigation.addListener('willFocus', (route) => {
+      this.refreshState();
+    });
   }
 
   refreshState() {
@@ -139,7 +134,7 @@ export default class SchoolScreen extends Component {
     }
 
     return (
-      <View>
+      <View style={{backgroundColor: 'white'}}>
         <TouchableOpacity
           style={mainStyles.btnList}
           onPress={() => { this.props.screenProps.navigation.navigate('InstitutionDetail', {school: school})} }>
@@ -185,7 +180,6 @@ export default class SchoolScreen extends Component {
   _renderContent() {
     return (
       <ListView
-        style={mainStyles.box}
         enableEmptySections={ true }
         automaticallyAdjustContentInsets={ false }
         dataSource={ this.state.ds }
@@ -235,10 +229,10 @@ export default class SchoolScreen extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View>
         <StatusBar />
 
-        <View style={{flex: 1}}>
+        <View >
           { this._renderContent() }
         </View>
       </View>

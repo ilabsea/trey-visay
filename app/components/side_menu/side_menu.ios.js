@@ -66,6 +66,7 @@ export default class SideMenu extends Component {
 
   clearSelectedData() {
     API.setSelectedProvince('');
+    API.setSelectedMajor('');
   }
 
   navigateToScreen = (route) => {

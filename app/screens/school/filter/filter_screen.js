@@ -39,26 +39,28 @@ class FilterScreen extends Component {
   }
 
   render(){
+    let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
+    let major = this.state.selectedMajor ? this.state.selectedMajor: "គ្រប់ជំនាញ";
     return (
       <View>
         <OneList onPress={() => {
             this.props.navigation.navigate('FilterProvinces', {
               title: 'ជ្រើសរើសទីតាំង',
               category: this.props.navigation.state.params.category,
-              selectedProvince: this.state.selectedProvince,
+              selectedProvince: province,
               refresh: this.refreshState.bind(this)
             })
-          }} text='ជ្រើសរើសទីតាំង' selectedValue={this.state.selectedProvince}/>
+          }} text='ជ្រើសរើសទីតាំង' selectedValue={province}/>
 
         <OneList onPress={() => {
             this.props.navigation.navigate('FilterMajors', {
               title: 'ជ្រើសរើសជំនាញ',
               category: this.props.navigation.state.params.category,
-              selectedProvince: this.state.selectedProvince,
-              selectedMajor: this.state.selectedMajor,
+              selectedProvince: province,
+              selectedMajor: major,
               refresh: this.refreshState.bind(this)
             })
-          }} text='ជ្រើសរើសជំនាញ' selectedValue={this.state.selectedMajor}/>
+          }} text='ជ្រើសរើសជំនាញ' selectedValue={major} />
       </View>
     )
   }
