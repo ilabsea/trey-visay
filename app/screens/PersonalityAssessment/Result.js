@@ -23,7 +23,13 @@ import User from '../../utils/user';
 
 
 class Result extends Component {
-  categories = ['realistic', 'investigative', 'artistic', 'social', 'enterprising', 'conventional'];
+  categories = [
+    {label: 'ប្រាកដនិយម', value: 'realistic'},
+    {label: 'ពូកែអង្កេត', value: 'investigative'},
+    {label: 'សិល្បៈនិយម', value: 'artistic'},
+    {label: 'សង្គម', value: 'social'},
+    {label: 'ត្រិះរិះពិចារណា', value: 'enterprising'},
+    {label: 'សណ្ដាប់ធ្នាប់', value: 'conventional'}];
 
   constructor(props) {
     super(props);
@@ -34,8 +40,6 @@ class Result extends Component {
     this.state = {
       assessment: assessment,
     };
-
-
   }
 
   componentDidMount() {
@@ -60,7 +64,8 @@ class Result extends Component {
 
   _goNext = () => {
     realm.write(() => {
-      realm.create('PersonalityAssessment', this._buildData(this.screen.nextScreen), true);
+      realm.create('PersonalityAssessment', this._buildData(), true);
+      realm.create('Sidekiq', { paramUuid: this.state.assessment.uuid, tableName: 'PersonalityAssessment' }, true)
 
       this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
     });
@@ -69,6 +74,7 @@ class Result extends Component {
   _onYes() {
     realm.write(() => {
       realm.create('PersonalityAssessment', this._buildData(), true);
+      realm.create('Sidekiq', { paramUuid: this.state.assessment.uuid, tableName: 'PersonalityAssessment' }, true)
 
       this.setState({confirmDialogVisible: false});
       this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
@@ -92,14 +98,8 @@ class Result extends Component {
     };
   }
 
-  render() {
-    // return(
-    //       <View>
-    //         <Button title='Done' onPress={()=> this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1)} />
-    //       </View>
-    // )
-
-    let arr = this.categories.map(item => {return {y: this.state.assessment[item].length}});
+  _renderChart() {
+    let arr = this.categories.map(category => {return {y: this.state.assessment[category.value].length}});
     let option = {
       legend: {
         enabled: true,
@@ -128,38 +128,71 @@ class Result extends Component {
         }
       },
       xAxis: {
-        valueFormatter: ['ប្រាកដនិយម', 'ពូកែអង្កេត', 'សិល្បៈនិយម', 'សង្គម', 'ត្រិះរិះពិចារណា', 'សណ្ដាប់ធ្នាប់'],
+        valueFormatter: this.categories.map(x => x.label),
         granularityEnabled: true,
         granularity : 1,
       }
     }
 
-  return (
-        <View style={{flex: 1}}>
-          <View style={styles.container}>
-            <BarChart
-              style={styles.chart}
-              data={option.data}
-              xAxis={option.xAxis}
-              animation={{durationX: 2000}}
-              legend={option.legend}
-              gridBackgroundColor={processColor('#ffffff')}
-              visibleRange={{x: { min: 6, max: 6 }}}
-              drawBarShadow={false}
-              drawValueAboveBar={true}
-              drawHighlightArrow={true}
-            />
-          </View>
+    return (
+      <View style={{flex: 1}}>
+        <View style={styles.container}>
+          <BarChart
+            style={styles.chart}
+            data={option.data}
+            xAxis={option.xAxis}
+            animation={{durationX: 2000}}
+            legend={option.legend}
+            gridBackgroundColor={processColor('#ffffff')}
+            visibleRange={{x: { min: 6, max: 6 }}}
+            drawBarShadow={false}
+            drawValueAboveBar={true}
+            drawHighlightArrow={true}
+          />
         </View>
-      );
-    }
+      </View>
+    );
+  }
+
+  _renderPersonalityGroup() {
+    let doms = this.categories.map((category, index) => (<Text key={index}>{index+1}) {category.label} ({this.state.assessment[category.value].length})</Text>));
+
+    return (<View>{doms}</View>);
+  }
+
+  render() {
+    return(
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          <View style={{margin: 16}}>
+            <View style={{flexDirection: 'row', marginVertical: 16}}>
+              <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
+            </View>
+            <Text style={{textAlign: 'center'}}>លទ្ធផលរបស់អ្នក</Text>
+
+            { this._renderChart() }
+            { this._renderPersonalityGroup() }
+          </View>
+        </ScrollView>
+
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+        <FooterBar icon='keyboard-arrow-right' text='រួចរាល់' onPress={this._goNext} />
+      </View>
+    );
+
+  }
 }
 
 const styles = StyleSheet.create({
   container: {
     height: 220,
     backgroundColor: '#F5FCFF',
-    margin: 10,
+    marginVertical: 10,
     paddingVertical: 10
   },
   chart: {
