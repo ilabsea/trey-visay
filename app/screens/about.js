@@ -37,7 +37,7 @@ export default class About extends Component {
     return (
       <View style={styles.container}>
         <Text style={styles.title}>ត្រីវិស័យ</Text>
-        <Text style={styles.paragraph}>
+        <Text style={[styles.paragraph, {marginTop: 0}]}>
           កម្មវិធី​ត្រីវិស័យ គឺ​ជា​កម្មវិធី​ទូរសព្ទ​មួយ​ដែល​អនុញ្ញាត​ឱ្យ​សិស្ស​ថ្នាក់​ទី៩ ដល់​ថ្នាក់​ទី១២
           អាច​ធ្វើ​ការ​ស្វែងយល់​អំពី​ខ្លួន​ឯង ដោយ​ធ្វើ​ការ​តេស្ត​ជា​មួយ​នឹង​កម្មវិធី ដើម្បី​អាច​អោយ​គាត់​ស្គាល់​ពី​ជំនាញ​ទន់
           និង​ជំនាញ​រឹង​ និង​កំណត់​គោលដៅ​របស់​ខ្លួន សម្រាប់​ការ​ជ្រើសរើស​ជំនាញ​វិជ្ជាជីវៈ​នា​ពេល​អនាគត។
@@ -53,13 +53,13 @@ export default class About extends Component {
 
         <View style={styles.imgWrapper}>
           { this._renderImageButton(
-            {btn: styles.imgButton, img: styles.img},
+            {btn: [styles.imgButton, {width: 70}], img: [styles.img, {maxHeight: 70}]},
             'http://www.moeys.gov.kh',
             require('../assets/images/about/moeys.png'))
           }
 
           { this._renderImageButton(
-            {btn: styles.imgButton, img: [styles.img, {maxHeight: 110}]},
+            {btn:[styles.imgButton, {width: 70}], img: [styles.img, {maxHeight: 60}]},
             'http://www.kapekh.org',
             require('../assets/images/about/kape.png'))
           }
@@ -69,7 +69,7 @@ export default class About extends Component {
 
         <View style={styles.imgWrapper}>
           { this._renderImageButton(
-            {btn: styles.imgButton, img: [styles.img, {maxHeight: 56}]},
+            {btn: styles.imgButton, img: styles.img},
             'http://ilabsoutheastasia.org',
             require('../assets/images/about/ilab.png'))
           }
@@ -77,7 +77,7 @@ export default class About extends Component {
 
         <Text style={styles.paragraph}>គ្រាំទ្រថវិកាពី</Text>
 
-        <View style={[styles.imgWrapper, { marginTop: -20 }]}>
+        <View style={styles.imgWrapper}>
           { this._renderImageButton(
             { btn: styles.imgButton, img: styles.img },
             'https://www.usaid.gov/cambodia',
@@ -91,9 +91,9 @@ export default class About extends Component {
           }
         </View>
 
-        <View style={[styles.imgWrapper, { marginTop: 0 }]}>
+        <View style={styles.imgWrapper}>
           { this._renderImageButton(
-            { btn: styles.imgButton, img: [styles.img, {maxHeight: 60}] },
+            { btn: styles.imgButton, img: styles.img },
             'https://spidercenter.org/',
             require('../assets/images/about/spider.png'))
           }
@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffffff'
   },
   container: {
-    margin: 24,
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: 16
   },
   title: {
     lineHeight: 48,
@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     textAlign: 'center',
-    marginTop: 24,
+    marginTop: 5,
     fontSize: RF(1.8)
   },
   footer: {
@@ -149,14 +149,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    marginTop: 24
+    marginBottom: 15
   },
   img: {
     flex: 1,
-    maxHeight: 130,
+    maxHeight: 40,
   },
   imgButton: {
-    flex: 1,
-    flexDirection: 'row'
+    flexDirection: 'row',
+    width: 150
   }
 });
