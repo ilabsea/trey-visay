@@ -1,0 +1,6 @@
+module Pods_TreyVisay {
+  umbrella header "Pods-TreyVisay-umbrella.h"
+
+  export *
+  module * { export * }
+}
