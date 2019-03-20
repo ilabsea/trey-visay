@@ -3,7 +3,8 @@ import {
   View,
   Text,
   StyleSheet,
-  Dimensions
+  Dimensions,
+  TouchableOpacity
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
 
@@ -16,17 +17,16 @@ export default class VideoList extends Component  {
     let { width } = Dimensions.get('window');
     let imageWidth = width/2-24;
 
-    return(<View style={styles.row}>
+    return(<TouchableOpacity style={styles.row} onPress={this.props.onPress }>
         <Thumbnail
           url={this.props.item.url}
           imageWidth={imageWidth}
-          onPress={this.props.onPress }
         />
         <View style={styles.textContainer}>
           <Text style={styles.title}>{ this.props.item.title }</Text>
           <Text style={styles.title}>{ this.props.item.author }</Text>
         </View>
-      </View>)
+      </TouchableOpacity>)
   }
 }
 
