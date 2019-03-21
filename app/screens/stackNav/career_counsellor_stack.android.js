@@ -32,6 +32,7 @@ import Assessment from '../Assessment/Assessment';
 import PersonalityAssessment from '../PersonalityAssessment/PersonalityAssessment';
 import PersonalityAssessmentRealistic from '../PersonalityAssessmentRealistic/PersonalityAssessmentRealistic';
 import PersonalityAssessmentResult from '../PersonalityAssessmentResult/PersonalityAssessmentResult';
+import PersonalityAssessmentHistory from '../PersonalityAssessmentHistory/PersonalityAssessmentHistory';
 
 const CareerCounsellorStack = createStackNavigator(
   {
@@ -95,6 +96,12 @@ const CareerCounsellorStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         title: 'បង្ហាញលទ្ធផល',
         headerLeft: <CloseButton navigation={navigation}/>
+      })
+    },
+    AssessmentHistoryScreen: {
+      screen: PersonalityAssessmentHistory,
+      navigationOptions: ({navigation}) => ({
+        title: 'លទ្ធផលតេស្ត',
       })
     },
     CareerCounsellorScreen: {

@@ -137,7 +137,7 @@ class PersonalityAssessmentResult extends Component {
             style={styles.chart}
             data={option.data}
             xAxis={option.xAxis}
-            animation={{durationX: 2000}}
+            animation={{durationX: 1000}}
             legend={option.legend}
             gridBackgroundColor={processColor('#ffffff')}
             visibleRange={{x: { min: 6, max: 6 }}}
