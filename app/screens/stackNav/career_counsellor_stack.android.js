@@ -105,7 +105,7 @@ const CareerCounsellorStack = createStackNavigator(
         title: 'លទ្ធផលតេស្ត',
       })
     },
-    AssessmentRealisticHistoryScreen: {
+    RealisticHistoryScreen: {
       screen: PersonalityAssessmentRealisticHistory,
       navigationOptions: ({navigation}) => ({
         title: `លទ្ធផលតេស្តបែប${navigation.getParam('title')}`,

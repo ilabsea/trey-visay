@@ -21,12 +21,12 @@ import personalityList from '../../data/json/personality';
 
 export default class PersonalityAssessmentHistory extends Component {
   categories = [
-    {screen: 'RealisticScreenHistory', value: 'realistic', label: 'ប្រាកដនិយម'},
-    {screen: 'InvestigativeScreenHistory', value: 'investigative', label: 'ពូកែអង្កេត'},
-    {screen: 'ArtisticScreenHistory', value: 'artistic', label: 'សិល្បៈនិយម'},
-    {screen: 'SocialScreenHistory', value: 'social', label: 'សង្គម'},
-    {screen: 'EnterprisingScreenHistory', value: 'enterprising', label: 'ត្រិះរិះពិចារណា'},
-    {screen: 'ConventionalScreenHistory', value: 'conventional', label: 'សណ្ដាប់ធ្នាប់'},
+    { value: 'realistic', label: 'ប្រាកដនិយម'},
+    { value: 'investigative', label: 'ពូកែអង្កេត'},
+    { value: 'artistic', label: 'សិល្បៈនិយម'},
+    { value: 'social', label: 'សង្គម'},
+    { value: 'enterprising', label: 'ត្រិះរិះពិចារណា'},
+    { value: 'conventional', label: 'សណ្ដាប់ធ្នាប់'},
   ];
 
   constructor(props) {
@@ -44,7 +44,7 @@ export default class PersonalityAssessmentHistory extends Component {
     let personalities = personalityList.filter(x => codes.includes(x.code));
 
     if (!!personalities.length) {
-      this.props.navigation.navigate('AssessmentRealisticHistoryScreen', { title: category.label, entries: personalities })
+      this.props.navigation.navigate('RealisticHistoryScreen', { title: category.label, entries: personalities })
     }
   }
 
