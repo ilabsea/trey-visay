@@ -17,6 +17,7 @@ import BackButton from '../../components/back_button';
 import { BarChart } from 'react-native-charts-wrapper';
 import realm from '../../schema';
 import User from '../../utils/user';
+import personalityList from '../../data/json/personality';
 
 export default class PersonalityAssessmentHistory extends Component {
   categories = [
@@ -38,13 +39,22 @@ export default class PersonalityAssessmentHistory extends Component {
     };
   }
 
+  _handleButtonClick(category) {
+    let codes = this.state.assessment[category.value].map(x => x.value);
+    let personalities = personalityList.filter(x => codes.includes(x.code));
+
+    if (!!personalities.length) {
+      this.props.navigation.navigate('AssessmentRealisticHistoryScreen', { title: category.label, entries: personalities })
+    }
+  }
+
   _renderButton(category, index) {
     return (
       <TouchableOpacity
         key={index}
         style={[formStyles.box, {marginTop: 0, marginBottom: 8, flexDirection: 'row', alignItems: 'center'}]}
-        onPress={() => this.props.navigation.navigate(category.screen, {assessmentUuid: this.state.assessment.uuid, category: category.value})}
-        >
+        onPress={() => this._handleButtonClick(category)}
+      >
         <Image source={require('../../assets/images/list.png')} style={{width: 60, height: 60, marginRight: 16}} />
         <Text style={[formStyles.subTitle, {flex: 1}]}>{category.label} ({this.state.assessment[category.value].length})</Text>
         <AwesomeIcon name='angle-right' size={24}/>
