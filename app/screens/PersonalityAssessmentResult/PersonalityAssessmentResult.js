@@ -14,7 +14,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import FooterBar from '../../components/FooterBar';
 import { NavigationActions } from 'react-navigation';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
-import {BarChart} from 'react-native-charts-wrapper';
+import {HorizontalBarChart} from 'react-native-charts-wrapper';
 import realm from '../../schema';
 import User from '../../utils/user';
 
@@ -127,13 +127,16 @@ class PersonalityAssessmentResult extends Component {
         valueFormatter: this.categories.map(x => x.label),
         granularityEnabled: true,
         granularity : 1,
-      }
+        position: 'BOTTOM',
+        labelCount: 6,
+      },
+      yAxis: {left:{axisMinimum: 0}}
     }
 
     return (
       <View style={{flex: 1}}>
         <View style={styles.container}>
-          <BarChart
+          <HorizontalBarChart
             style={styles.chart}
             data={option.data}
             xAxis={option.xAxis}

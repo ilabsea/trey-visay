@@ -14,7 +14,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import formStyles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import BackButton from '../../components/back_button';
-import { BarChart } from 'react-native-charts-wrapper';
+import { HorizontalBarChart, BarChart } from 'react-native-charts-wrapper';
 import realm from '../../schema';
 import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
@@ -104,13 +104,16 @@ export default class PersonalityAssessmentHistory extends Component {
         valueFormatter: this.categories.map(x => x.label),
         granularityEnabled: true,
         granularity : 1,
-      }
+        position: 'BOTTOM',
+        labelCount: 6,
+      },
+      yAxis: {left:{axisMinimum: 0}}
     };
 
     return (
       <View style={{flex: 1}}>
         <View style={styles.container}>
-          <BarChart
+          <HorizontalBarChart
             style={styles.chart}
             data={option.data}
             xAxis={option.xAxis}
