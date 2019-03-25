@@ -122,7 +122,7 @@ export default class VocationalJobShowScreen extends Component {
         <ScrollView style={{flex: 1}}>
           <OneList onPress={() => {
               this.props.navigation.navigate('Description', {
-                title: 'អំពី',
+                title: 'អំពី' + this.props.navigation.state.params.title,
                 text: this.state.currentJob.description || 'Description is not available'
               })
             }} text='អំពី'/>

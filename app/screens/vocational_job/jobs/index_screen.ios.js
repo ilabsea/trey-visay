@@ -48,7 +48,7 @@ export default class VocationalJobIndexScreen extends Component {
       <View>
         <OneList onPress={() => {
             this.props.navigation.navigate('Description', {
-              title: 'អំពី',
+              title: 'អំពីជំនាញវិជ្ជាជីវៈ',
               text: this.state.currentGroup.recommendation
             })
           }} text="អំពី"/>
