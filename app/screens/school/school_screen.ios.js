@@ -63,6 +63,11 @@ export default class SchoolScreen extends Component {
       API.getSelectedMajor((major) => {
         province = province == 'គ្រប់ទីកន្លែង' ? '': province;
         major = major == 'គ្រប់ជំនាញ' ? '': major;
+        if(province || major){
+          this.props.screenProps.navigation.setParams({
+            hasFilter: true
+          });
+        }
         this.setState({ currentProvince: province,currentMajor: major });
         this._onChangeProvince(province);
         this._onChangeMajor(major);

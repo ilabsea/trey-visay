@@ -23,7 +23,6 @@ class FilterMajors extends Component {
   componentWillMount(){
     this.getMajors();
     this.props.navigation.setParams({
-      _handleBack: this._handleBack.bind(this),
       handleSubmit: this._handleSubmit.bind(this)
     });
   }
@@ -32,12 +31,10 @@ class FilterMajors extends Component {
     this.setState({ selectedMajor: major });
   }
 
-  _handleBack(){
-    this.props.navigation.state.params.refresh();
-  }
-
   _handleSubmit(){
     API.setSelectedMajor(this.state.selectedMajor);
+    this.props.navigation.state.params.refresh();
+    this.props.navigation.goBack();
   }
 
   getMajors(){

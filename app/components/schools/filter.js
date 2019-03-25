@@ -8,16 +8,20 @@ class Filter extends React.Component {
   }
 
   render() {
+    let icon = require('../../assets/images/icons/filter.png');
     let navigationState = this.props.screenProps.navigation.state;
     let index = navigationState.index;
-    let icon = require('../../assets/images/icons/filter.png');
+    let params = navigationState.routes[index].params
+    if(params && params.hasFilter){
+      icon = require('../../assets/images/icons/filter-blue.png');
+    }
     return <TouchableOpacity
             style={{marginRight: 16}}
             onPress={() => {
               this.props.screenProps.navigation.navigate(
                 'FilterScreen' ,
-                { refresh: navigationState.routes[index].params.refresh.bind(this),
-                  category: navigationState.routes[index].params.category
+                { refresh: params.refresh.bind(this),
+                  category: params.category
                 }
               )
             }
