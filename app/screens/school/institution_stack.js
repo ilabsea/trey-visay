@@ -15,6 +15,7 @@ import { FontSetting } from '../../assets/style_sheets/font_setting';
 import OpenDrawer from '../../components/open_drawer';
 import Filter from '../../components/schools/filter';
 import BackButton from '../../components/back_button';
+import SaveButton from '../../components/save_button';
 
 import SchoolScreen from './school_screen';
 import InstitutionDetail from './institution_detail';
@@ -71,13 +72,15 @@ const InstitutionStack = createStackNavigator(
     FilterProvinces: {
       screen: FilterProvinces,
       navigationOptions: ({navigation, screenProps}) => ({
-        title: 'ជ្រេីសរេីសទីតាំង'
+        title: 'ជ្រេីសរេីសទីតាំង',
+        headerRight:(<SaveButton noIcon={true} navigation={navigation} />)
       })
     },
     FilterMajors: {
       screen: FilterMajors,
       navigationOptions: ({navigation, screenProps}) => ({
-        title: 'ជ្រេីសរេីសជំនាញ'
+        title: 'ជ្រេីសរេីសជំនាញ',
+        headerRight:(<SaveButton noIcon={true} navigation={navigation} />)
       })
     }
   },

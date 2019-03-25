@@ -22,7 +22,10 @@ class FilterMajors extends Component {
 
   componentWillMount(){
     this.getMajors();
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      handleSubmit: this._handleSubmit.bind(this)
+    });
   }
 
   setSelectedMajor(major){
@@ -30,8 +33,11 @@ class FilterMajors extends Component {
   }
 
   _handleBack(){
-    API.setSelectedMajor(this.state.selectedMajor);
     this.props.navigation.state.params.refresh();
+  }
+
+  _handleSubmit(){
+    API.setSelectedMajor(this.state.selectedMajor);
   }
 
   getMajors(){

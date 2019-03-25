@@ -24,7 +24,10 @@ class FilterProvinces extends Component {
 
   componentWillMount(){
     this.getProvinces();
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      handleSubmit: this._handleSubmit.bind(this)
+    });
   }
 
   getProvinces() {
@@ -39,8 +42,11 @@ class FilterProvinces extends Component {
   }
 
   _handleBack(){
-    API.setSelectedProvince(this.state.selectedProvince);
     this.props.navigation.state.params.refresh();
+  }
+
+  _handleSubmit(){
+    API.setSelectedProvince(this.state.selectedProvince);
   }
 
   renderProvinces(province, i) {
