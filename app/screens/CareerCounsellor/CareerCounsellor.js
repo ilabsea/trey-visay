@@ -22,6 +22,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
 import {mainStyles} from '../../assets/style_sheets/main/main';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 export default class CareerCounsellor extends Component {
   static navigationOptions = {
@@ -53,44 +54,44 @@ export default class CareerCounsellor extends Component {
 
   _renderInstruction() {
     return (
-      <View style={[styles.box, {flexDirection: 'row'}]}>
-        <View style={styles.logoWrapper}>
-          <Image source={require('../../assets/images/list.png')} style={styles.logo} />
+      <View style={styles.box}>
+        <View style={{flex:1, flexDirection: 'row'}}> 
+          <View style={styles.logoWrapper}>
+            <Image source={require('../../assets/images/list.png')} style={styles.logo} />
+          </View>
+
+          <View style={{flex: 1}}>
+            <Text style={styles.title}>ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព</Text>
+
+            <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
+              ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
+            </Text>
+
+            <View style={{marginBottom: 30}}>
+              <Text style={styles.text}>មាន២ជំហានៈ</Text>
+              <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
+              <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
+            </View>
+          </View>
         </View>
 
-        <View style={{flex: 1}}>
-          <Text style={styles.title}>ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព</Text>
+        <View style={{flex: 1, flexDirection: 'column'}}>
+          <Button
+            style={styles.button}
+            onPress={this._goToPersonalUnderstandingForm.bind(this)}>
+            <Text style={styles.btnText}>
+              ចាប់ផ្តើមថ្មី
+            </Text>
+          </Button>
 
-          <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
-            ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
-          </Text>
-
-          <View style={{marginBottom: 30}}>
-            <Text style={styles.text}>មាន២ជំហានៈ</Text>
-            <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
-            <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
-          </View>
-
-          <View style={shareStyles.inlineBlock}>
+          { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
             <Button
-              style={[myStyles.btnSubmit, { paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }]}
-              onPress={this._goToPersonalUnderstandingForm.bind(this)}
+              style={styles.button}
+              onPress={this._handleGoingNextStep.bind(this)}
               >
-              <Text style={[myStyles.submitText, { color: '#fff', fontSize: 20 }]}>
-                ចាប់ផ្តើមថ្មី
-              </Text>
+              <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
             </Button>
-
-            { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
-              <Button
-                style={[myStyles.btnSubmit, {paddingHorizontal: 20}]}
-                onPress={this._handleGoingNextStep.bind(this)}
-                >
-                <Text style={[myStyles.submitText, {color: '#fff', fontSize: 20}]}>បន្តទៅវគ្គមុន</Text>
-              </Button>
-            }
-
-          </View>
+          }
         </View>
       </View>
     )
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   title: {
-    fontSize: 24,
+    fontSize: FontSetting.big_title,
     color: '#1976d2',
     ...Platform.select({
       android: {
@@ -230,5 +231,18 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: 'bold'
+  },
+  button: {
+    borderRadius: 3,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    marginBottom: 10
+  },
+  btnText: {
+    fontWeight: 'bold',
+    fontSize: FontSetting.button_text,
+    color: '#fff',
   }
 });
