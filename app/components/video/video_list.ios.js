@@ -21,20 +21,19 @@ export default class VideoList extends Component  {
 
     return(
       <View>
-        <View style={styles.row}>
+        <TouchableOpacity style={styles.row} onPress={ this.props.onPress }>
           <Thumbnail
             url={this.props.item.url}
             imageWidth={imageWidth}
             imageHeight={100}
             iconStyle={{width: '20%', height: '30%'}}
-            onPress={ this.props.onPress }
           />
           <View style={styles.textContainer}>
             <Text style={styles.title}>{ this.props.item.title }</Text>
             <Text style={styles.source}>{ this.props.item.author }</Text>
           </View>
 
-        </View>
+        </TouchableOpacity>
         <Divider style={styles.divider}/>
       </View>
     )

@@ -57,7 +57,12 @@ export default class VideoScreen extends Component {
 
   _handleInternetConnection() {
     NetInfo.isConnected.fetch().then(isConnected => {
-      this.setState({isConnected: isConnected, isOnline: isConnected, isLoaded: true, showLoading: false});
+      this.setState({
+        isConnected: isConnected,
+        isOnline: isConnected,
+        isLoaded: true,
+        showLoading: false
+      });
     });
 
     NetInfo.isConnected.addEventListener(
