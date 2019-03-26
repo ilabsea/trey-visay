@@ -38,7 +38,8 @@ export default class SideMenu extends Component {
   }
 
   isActive(routeName) {
-    return this.props.navigation.state.routes[this.props.navigation.state.index].routeName == routeName;
+    let navigationState = this.props.navigation.state;
+    return navigationState.routes[navigationState.index].routeName == routeName;
   }
 
   getWrapperStyle(routeName) {
@@ -93,10 +94,15 @@ export default class SideMenu extends Component {
   _renderMenuItem(options={}) {
     let Icon = options.type == 'material'? MaterialIcon : AwesomeIcon;
     return (
-      <TouchableOpacity onPress={() => this.navigateToScreen(options.screenName)} style={this.isActive}>
+      <TouchableOpacity
+        onPress={() => this.navigateToScreen(options.screenName)}
+        style={this.isActive}>
         <View style={this.getWrapperStyle(options.screenName)}>
-          <Icon name={ options.iconName } size={ options.iconSize || 16 } style={this.getIconStyle(options.screenName)} />
-          <Text style={this.getMenuTextStyle(options.screenName)}>{options.title}</Text>
+          <Icon name={ options.iconName } size={ options.iconSize || 16 }
+            style={this.getIconStyle(options.screenName)} />
+          <Text style={this.getMenuTextStyle(options.screenName)}>
+            {options.title}
+          </Text>
         </View>
       </TouchableOpacity>
     )
@@ -141,6 +147,7 @@ export default class SideMenu extends Component {
   }
 
   render() {
+    let route = this.user ? 'CareerCounsellorStack':'AccountStack';
     return (
       <ScrollView>
         { this._renderMenuHeader() }
@@ -154,7 +161,7 @@ export default class SideMenu extends Component {
           }
           { this._renderMenuItem({
               title: 'វាយតម្លៃមុខរបរ និង អាជីព',
-              screenName: 'AccountStack',
+              screenName: route,
               iconName: 'briefcase'
             })
           }
