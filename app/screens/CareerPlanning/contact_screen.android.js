@@ -29,7 +29,9 @@ import Images from '../../assets/images';
 import characteristicList from '../../data/json/characteristic_jobs';
 
 export default class ContactScreen extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
     this._initState();
     this._backHandler();
   }
@@ -89,29 +91,16 @@ export default class ContactScreen extends Component {
   }
 
   _onYes() {
+    this._closeDialog();
+  }
+
+  _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({
-      type: 'Navigation/RESET',
-      index: 0,
-      key: null,
-      actions: [{
-        type: 'Navigation/NAVIGATE',
-        routeName:'CareerCounsellorScreen'
-      }]
-    });
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
-    this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({
-      type: 'Navigation/RESET',
-      index: 0,
-      key: null,
-      actions: [{
-        type: 'Navigation/NAVIGATE',
-        routeName:'CareerCounsellorScreen'
-      }]
-    });
+    this._closeDialog();
   }
 
   _goNext() {

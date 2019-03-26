@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
+import { NavigationActions } from 'react-navigation';
 
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CloseButton from '../../components/shared/close_button';
@@ -77,18 +78,19 @@ export default class PersonalityScreen extends Component {
   _onYes() {
     realm.write(() => {
       realm.create('Game', this._buildData('PersonalityScreen'), true);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
+  }
+
+  _closeDialog() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
   }
 
@@ -140,12 +142,7 @@ export default class PersonalityScreen extends Component {
   }
 
   _formatDataForCheckbox(personalities) {
-    let arr = [];
-
-    for(let i = 0; i < personalities.length; i++) {
-      arr.push({ value: personalities[i], label: personalities[i] })
-    }
-    return arr;
+    return personalities.map(obj => {return {value: obj, label: obj}})
   }
 
   _handleChecked(arr) {

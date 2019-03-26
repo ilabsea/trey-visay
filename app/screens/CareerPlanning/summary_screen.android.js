@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
+import { NavigationActions } from 'react-navigation';
 
 import CheckboxGroup from '../../components/checkbox_group';
 import RadioButtonGroup from '../../components/radio_button_group';
@@ -18,15 +19,9 @@ import FooterBar from '../../components/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
-import shareStyles from './style';
-
-import realm from '../../db/schema';
+import realm from '../../schema';
 import User from '../../utils/user';
 import characteristicList from '../../data/json/characteristic_jobs';
-
-let careers = [];
-let allCareers = [];
 
 export default class SummaryScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -37,9 +32,8 @@ export default class SummaryScreen extends Component {
     }
   };
 
-  componentWillMount() {
-    careers = [];
-    allCareers = [];
+  constructor(props) {
+    super(props);
 
     this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
     this._initState();
@@ -50,16 +44,18 @@ export default class SummaryScreen extends Component {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let personalityCareers = game.personalityCareers.map((obj) => obj.value);
-    let userCareers = currentGroup.careers.filter((item, pos) => { return personalityCareers.includes(item.code) });
-    this.setState({
+
+    let careerIds = game.personalityCareers.map((obj) => obj.value) || [];
+    let userCareers = currentGroup.careers.filter((item, pos) => { return careerIds.includes(item.code) }) || [];
+
+    this.state = {
       userCareers: userCareers,
       currentGroup: currentGroup,
       user: user,
       game: game,
       confirmDialogVisible: false,
       mostFavorableJob: game.mostFavorableJobCode,
-    })
+    }
   }
 
   _handleBack() {
@@ -81,33 +77,20 @@ export default class SummaryScreen extends Component {
     realm.write(() => {
       realm.create('Game', this._buildData('SummaryScreen'), true);
 
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({
-        type: 'Navigation/RESET',
-        index: 0,
-        key: null,
-        actions: [{
-          type: 'Navigation/NAVIGATE',
-          routeName:'CareerCounsellorScreen'
-        }]
-      });
+      this._closeDialog();
     });
+  }
+
+  _closeDialog() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
 
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({
-        type: 'Navigation/RESET',
-        index: 0,
-        key: null,
-        actions: [{
-          type: 'Navigation/NAVIGATE',
-          routeName:'CareerCounsellorScreen'
-        }]
-      });
+      this._closeDialog();
     });
   }
 
@@ -123,12 +106,7 @@ export default class SummaryScreen extends Component {
   }
 
   _formatDataForCheckbox(jobs) {
-    let arr = [];
-
-    for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].code, label: jobs[i].name })
-    }
-    return arr;
+    return jobs.map(job => {return {value: job.code, label: job.name}});
   }
 
   _goNext() {

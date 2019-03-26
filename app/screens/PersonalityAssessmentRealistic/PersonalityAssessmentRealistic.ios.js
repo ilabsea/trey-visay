@@ -10,6 +10,8 @@ import {
   BackHandler,
 } from 'react-native';
 
+import { Container, Content } from 'native-base';
+
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import FooterBar from '../../components/FooterBar';
 import styles from '../../assets/style_sheets/profile_form';
@@ -175,16 +177,16 @@ export default class PersonalityAssessmentRealistic extends Component {
   render() {
     return(
       <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16}}>
-            <View style={{flexDirection: 'row', marginVertical: 16}}>
+        <Container style={{flex: 1}}>
+          <Content padder>
+            <View style={{flexDirection: 'row'}}>
               <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
               <Text>សូមបំពេញក្នុងប្រអប់ខាងមុខឃ្លាទាំងឡាយណាដែលបរិយាយពីអត្តចរិករបស់អ្នក!</Text>
             </View>
 
             { this._renderCheckBoxes() }
-          </View>
-        </ScrollView>
+          </Content>
+        </Container>
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

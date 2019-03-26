@@ -8,7 +8,9 @@ import {
   BackHandler,
   Platform
 } from 'react-native';
-import Toast, { DURATION } from 'react-native-easy-toast'
+import Toast, { DURATION } from 'react-native-easy-toast';
+import { NavigationActions } from 'react-navigation';
+import CloseButton from '../../components/close_button';
 
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CheckboxGroup from '../../components/checkbox_group';
@@ -22,8 +24,6 @@ import realm from '../../db/schema';
 import User from '../../utils/user';
 import characteristicList from '../../data/json/characteristic_jobs';
 
-let careers = [];
-
 export default class PersonalityJobsScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
@@ -32,43 +32,38 @@ export default class PersonalityJobsScreen extends Component {
     return {
       title: state.params && state.params.title,
       headerTitleStyle: [headerStyles.headerTitleStyle],
+      headerLeft: <CloseButton navigation={navigation}/>,
       headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
                       <Text style={headerStyles.saveText}><Text style={highlighStyle}>{state.params && state.params.total || 0} </Text> / 3</Text>
                     </TouchableOpacity>),
     }
   };
 
-  careers = [];
-
   constructor(props) {
     super(props);
-  }
 
-  componentWillMount() {
     this._initState();
-    this._handleSetSelectCareer();
     this._backHandler();
-  }
-
-  componentDidMount() {
-    this.props.navigation.setParams({
-      _handleBack: this._handleBack.bind(this),
-      title: this.state.currentGroup.career_title,
-      total: careers.length
-    });
   }
 
   _initState() {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
+    let selectedJobIds = game.personalityCareers.map((obj) => obj.value);
 
     this.state = {
       user: user,
       game: game,
       currentGroup: currentGroup,
-      jobs: []
+      jobs: selectedJobIds,
     };
+
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      title: currentGroup.career_title,
+      total: selectedJobIds.length
+    });
   }
 
   _handleBack() {
@@ -104,42 +99,21 @@ export default class PersonalityJobsScreen extends Component {
     realm.write(() => {
       realm.create('Game', this._buildData('PersonalityJobsScreen'), true);
 
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({
-        type: 'Navigation/RESET',
-        index: 0,
-        key: null,
-        actions: [{
-          type: 'Navigation/NAVIGATE',
-          routeName:'CareerCounsellorScreen'
-        }]
-      });
+      this._closeDialog();
     });
+  }
+
+  _closeDialog() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
 
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({
-        type: 'Navigation/RESET',
-        index: 0,
-        key: null,
-        actions: [{
-          type: 'Navigation/NAVIGATE',
-          routeName:'CareerCounsellorScreen'
-        }]
-      });
+      this._closeDialog();
     });
-  }
-
-  _handleSetSelectCareer() {
-    let jobs = this.state.currentGroup.careers;
-    let selectedJobCodes = this.state.game.personalityCareers.map((obj) => obj.value) || [];
-    let arr = jobs.filter(function (item, pos) { return selectedJobCodes.includes(item.code) });
-    careers = arr.map((obj) => obj.code);
-    this.setState({jobs: careers});
   }
 
   _renderCheckBoxes() {
@@ -179,12 +153,8 @@ export default class PersonalityJobsScreen extends Component {
 
   _formatDataForCheckbox(id) {
     let jobs = characteristicList.find((obj) => obj.id == id).careers;
-    let arr = [];
 
-    for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].code, label: jobs[i].name })
-    }
-    return arr;
+    return jobs.map(job => {return {value: job.id, label: job.name}});
   }
 
   _handleChecked(value) {

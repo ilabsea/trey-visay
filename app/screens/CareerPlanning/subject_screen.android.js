@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast'
+import { NavigationActions } from 'react-navigation';
 
 import { Divider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
@@ -237,18 +238,19 @@ export default class SubjectScreen extends Component {
   _onYes() {
     realm.write(() => {
       realm.create('Game', this._buildData('SubjectScreen'), true);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
+  }
+
+  _closeDialog() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
   }
 

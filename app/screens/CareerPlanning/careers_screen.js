@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import { Divider } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 import headerStyles from '../../assets/style_sheets/header';
@@ -67,15 +68,19 @@ export default class CareersScreen extends Component {
   }
 
   _onYes() {
+    this._closeDialog();
+  }
+
+  _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
 
-      this._onYes();
+      this._closeDialog();
     });
   }
 
