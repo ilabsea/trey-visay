@@ -23,6 +23,7 @@ export default class Task {
           break;
         case BackgroundFetch.STATUS_AVAILABLE:
           console.log("BackgroundFetch is enabled");
+          Task.syncToServer();
           break;
       }
     });

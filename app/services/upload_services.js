@@ -14,7 +14,11 @@ export default class UploadServices  {
 
   static syncToServer(){
     NetInfo.isConnected.fetch().then(isConnected => {
-      this.uploadData();
+      console.log('isConnected')
+      api.get('/me').then((res) => {
+        if(res.data && res.data.success)
+          this.uploadData()
+      })
     });
   }
 
@@ -32,7 +36,7 @@ export default class UploadServices  {
     let data = realm.objects(sidekiq.tableName)
       .filtered('uuid="' + sidekiq.paramUuid + '"')[0];
     let postUrl = sidekiq.tableName == 'User' ? '/users' : "/games";
-
+    console.log('data : ', data)
     api.post(postUrl, this['build' + sidekiq.tableName](data))
     .then((res) => {
       this.handleResponse(res, sidekiq);

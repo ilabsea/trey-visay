@@ -5,7 +5,7 @@ import { environment } from '../config/environment';
 const api = create({
   baseURL: environment.apiUrl,
   headers: {
-    'Authorization': 'Basic ' + btoa(`${environment['email']}:${environment['password']}`)
+    'Authorization': 'Basic ' + btoa(`${environment['username']}:${environment['password']}`)
   }
 });
 
