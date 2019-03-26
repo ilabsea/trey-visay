@@ -55,14 +55,17 @@ export default class CareerCounsellor extends Component {
   _renderInstruction() {
     return (
       <View style={styles.box}>
-        <View style={{flex:1, flexDirection: 'row'}}> 
+        <View style={{flex:1, flexDirection: 'row'}}>
           <View style={styles.logoWrapper}>
             <Image source={require('../../assets/images/list.png')} style={styles.logo} />
           </View>
 
           <View style={{flex: 1}}>
             <Text style={styles.title}>ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព</Text>
+          </View>
+        </View>
 
+        <View style={{flex: 1, flexDirection: 'column'}}>
             <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
               ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
             </Text>
@@ -72,10 +75,6 @@ export default class CareerCounsellor extends Component {
               <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
               <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
             </View>
-          </View>
-        </View>
-
-        <View style={{flex: 1, flexDirection: 'column'}}>
           <Button
             style={styles.button}
             onPress={this._goToPersonalUnderstandingForm.bind(this)}>

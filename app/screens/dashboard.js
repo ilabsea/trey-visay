@@ -89,7 +89,7 @@ export default class Dashboard extends Component {
                 icon_bg_color: '#009688',
                 icon_name: 'business',
                 icon_type: 'material',
-                description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជាដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២។'
+                description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជា ដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២។'
               })
             }
           </View>
