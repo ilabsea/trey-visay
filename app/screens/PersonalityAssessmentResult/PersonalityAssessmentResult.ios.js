@@ -1,14 +1,11 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
-  StyleSheet,
-  ScrollView,
-  Button,
   BackHandler,
-  Dimensions,
   processColor,
 } from 'react-native';
+
+import { Container, Header, Content, ListItem, Thumbnail, Text, Left, Body, Right, Button, Icon, Card, CardItem } from 'native-base';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import FooterBar from '../../components/FooterBar';
@@ -135,9 +132,9 @@ class PersonalityAssessmentResult extends Component {
 
     return (
       <View style={{flex: 1}}>
-        <View style={styles.container}>
+        <View style={{height: 220, paddingVertical: 10}}>
           <HorizontalBarChart
-            style={styles.chart}
+            style={{flex: 1}}
             data={option.data}
             xAxis={option.xAxis}
             animation={{durationX: 1000}}
@@ -153,26 +150,36 @@ class PersonalityAssessmentResult extends Component {
     );
   }
 
-  _renderPersonalityGroup() {
-    let doms = this.categories.map((category, index) => (<Text key={index}>{index+1}) {category.label} ({this.state.assessment[category.value].length})</Text>));
+  // _renderPersonalityGroup() {
+  //   let doms = this.categories.map((category, index) => (<Text key={index}>{index+1}) {category.label} ({this.state.assessment[category.value].length})</Text>));
 
-    return (<View>{doms}</View>);
-  }
+  //   return (<View>{doms}</View>);
+  // }
 
   render() {
     return(
-      <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16}}>
-            <View style={{flexDirection: 'row', marginVertical: 16}}>
-              <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
-            </View>
+      <Container>
+        <Content padder>
+            <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
             <Text style={{textAlign: 'center'}}>លទ្ធផលរបស់អ្នក</Text>
 
             { this._renderChart() }
-            { this._renderPersonalityGroup() }
-          </View>
-        </ScrollView>
+
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{flex: 1}}>1. ប្រាកដនិយម ({this.state.assessment.realistic.length})</Text>
+              <Text style={{flex: 1}}>4. សង្គម ({this.state.assessment.social.length})</Text>
+            </View>
+
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{flex: 1}}>2. ពូកែអង្កេត ({this.state.assessment.investigative.length})</Text>
+              <Text style={{flex: 1}}>5. ត្រិះរិះពិចារណា ({this.state.assessment.enterprising.length})</Text>
+            </View>
+
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{flex: 1}}>3. សិល្បៈនិយម ({this.state.assessment.artistic.length})</Text>
+              <Text style={{flex: 1}}>6. សណ្ដាប់ធ្នាប់ ({this.state.assessment.conventional.length})</Text>
+            </View>
+        </Content>
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -181,22 +188,10 @@ class PersonalityAssessmentResult extends Component {
           onPressNo={() => this._onNo()}
         />
         <FooterBar icon='keyboard-arrow-right' text='រួចរាល់' onPress={this._goNext} />
-      </View>
+      </Container>
     );
 
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: 220,
-    backgroundColor: '#F5FCFF',
-    marginVertical: 10,
-    paddingVertical: 10
-  },
-  chart: {
-    flex: 1
-  }
-});
 
 export default PersonalityAssessmentResult;
