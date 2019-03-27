@@ -5,7 +5,7 @@ import {
   processColor,
 } from 'react-native';
 
-import { Container, Header, Content, ListItem, Thumbnail, Text, Left, Body, Right, Button, Icon, Card, CardItem } from 'native-base';
+import { Container, Content, ListItem, Text, Left, Body, Right, Button, Icon, Badge } from 'native-base';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import FooterBar from '../../components/FooterBar';
@@ -14,6 +14,7 @@ import BackConfirmDialog from '../../components/back_confirm_dialog';
 import {HorizontalBarChart} from 'react-native-charts-wrapper';
 import realm from '../../schema';
 import User from '../../utils/user';
+import personalityList from '../../data/json/personality';
 
 class PersonalityAssessmentResult extends Component {
   categories = [
@@ -150,35 +151,63 @@ class PersonalityAssessmentResult extends Component {
     );
   }
 
-  // _renderPersonalityGroup() {
-  //   let doms = this.categories.map((category, index) => (<Text key={index}>{index+1}) {category.label} ({this.state.assessment[category.value].length})</Text>));
+  _handleButtonClick(category) {
+    let codes = this.state.assessment[category.value].map(x => x.value);
+    let personalities = personalityList.filter(x => codes.includes(x.code));
 
-  //   return (<View>{doms}</View>);
-  // }
+    this.props.navigation.navigate('MajorListScreen', { title: category.label, entries: personalities })
+  }
+
+  _renderListItem(category, index) {
+    return (
+      <ListItem
+        key={index}
+        button={true}
+        icon
+        onPress={() => this._handleButtonClick(category)}>
+        <Left>
+          <Button style={{ backgroundColor: "#4caf50" }}>
+            <Icon active name="airplane" />
+          </Button>
+        </Left>
+        <Body>
+          <Text>{category.label}</Text>
+        </Body>
+        <Right>
+          <Text>{this.state.assessment[category.value].length}</Text>
+          <Icon name="arrow-forward" />
+        </Right>
+      </ListItem>
+    );
+  }
+
+  _renderPersonalityGroups() {
+    return (
+      <View>
+        <ListItem itemDivider>
+          <Text>សេចក្តីលម្អិត</Text>
+        </ListItem>
+
+        { this.categories.map((category, index) => this._renderListItem(category, index)) }
+      </View>
+    );
+  }
+
 
   render() {
     return(
       <Container>
-        <Content padder>
-            <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
-            <Text style={{textAlign: 'center'}}>លទ្ធផលរបស់អ្នក</Text>
+        <Content>
+            <Content padder>
+              <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
+            </Content>
+
+            <ListItem itemDivider>
+              <Text>លទ្ធផលរបស់អ្នក</Text>
+            </ListItem>
 
             { this._renderChart() }
-
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{flex: 1}}>1. ប្រាកដនិយម ({this.state.assessment.realistic.length})</Text>
-              <Text style={{flex: 1}}>4. សង្គម ({this.state.assessment.social.length})</Text>
-            </View>
-
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{flex: 1}}>2. ពូកែអង្កេត ({this.state.assessment.investigative.length})</Text>
-              <Text style={{flex: 1}}>5. ត្រិះរិះពិចារណា ({this.state.assessment.enterprising.length})</Text>
-            </View>
-
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{flex: 1}}>3. សិល្បៈនិយម ({this.state.assessment.artistic.length})</Text>
-              <Text style={{flex: 1}}>6. សណ្ដាប់ធ្នាប់ ({this.state.assessment.conventional.length})</Text>
-            </View>
+            { this._renderPersonalityGroups() }
         </Content>
 
         <BackConfirmDialog

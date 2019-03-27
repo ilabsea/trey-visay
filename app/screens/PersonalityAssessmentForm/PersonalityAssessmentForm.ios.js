@@ -181,7 +181,7 @@ export default class PersonalityAssessmentRealistic extends Component {
           <Content padder>
             <View style={{flexDirection: 'row'}}>
               <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-              <Text>សូមបំពេញក្នុងប្រអប់ខាងមុខឃ្លាទាំងឡាយណាដែលបរិយាយពីអត្តចរិករបស់អ្នក!</Text>
+              <Text style={{flex: 1}}>សូមបំពេញក្នុងប្រអប់ខាងមុខឃ្លាទាំងឡាយណាដែល បរិយាយពីអត្តចរិករបស់អ្នក!</Text>
             </View>
 
             { this._renderCheckBoxes() }

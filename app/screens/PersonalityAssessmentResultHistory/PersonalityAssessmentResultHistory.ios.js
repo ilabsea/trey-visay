@@ -9,7 +9,7 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
 
-import { Container, Content, ListItem, Thumbnail, Text, Left, Body, Right, Button, Icon, Badge } from 'native-base';
+import { Container, Content, ListItem, Text, Left, Body, Right, Button, Icon, Badge } from 'native-base';
 
 export default class PersonalityAssessmentHistory extends Component {
   categories = [
