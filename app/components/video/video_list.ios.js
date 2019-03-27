@@ -7,7 +7,9 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
-import RF from "react-native-responsive-fontsize"
+import RF from "react-native-responsive-fontsize";
+import {FontSetting} from "../../assets/style_sheets/font_setting";
+import { Divider } from 'react-native-elements';
 
 export default class VideoList extends Component  {
   constructor(props){
@@ -17,24 +19,29 @@ export default class VideoList extends Component  {
     let { width } = Dimensions.get('window');
     let imageWidth = width/2-58;
 
-    return(<TouchableOpacity style={styles.row} onPress={ this.props.onPress }>
-        <Thumbnail
-          url={this.props.item.url}
-          imageWidth={imageWidth}
-          imageHeight={73}
-        />
-        <View style={styles.textContainer}>
-          <Text style={styles.title}>{ this.props.item.title }</Text>
-          <Text style={styles.source}>{ this.props.item.author }</Text>
-        </View>
-      </TouchableOpacity>)
+    return(
+      <View>
+        <TouchableOpacity style={styles.row} onPress={ this.props.onPress }>
+          <Thumbnail
+            url={this.props.item.url}
+            imageWidth={imageWidth}
+            imageHeight={100}
+            iconStyle={{width: '20%', height: '30%'}}
+          />
+          <View style={styles.textContainer}>
+            <Text style={styles.title}>{ this.props.item.title }</Text>
+            <Text style={styles.source}>{ this.props.item.author }</Text>
+          </View>
+
+        </TouchableOpacity>
+        <Divider style={styles.divider}/>
+      </View>
+    )
   }
 }
 
 const styles = StyleSheet.create({
   row: {
-    margin: 8,
-    marginBottom: 0,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -48,11 +55,14 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-start',
   },
   title: {
-    fontSize: RF(2.4)
+    fontSize: FontSetting.title
   },
   source: {
-    fontSize: RF(2),
+    fontSize: FontSetting.sub_title,
     color: '#3A3A3A',
     textAlign: 'justify',
+  },
+  divider: {
+    marginLeft: 16
   }
 });

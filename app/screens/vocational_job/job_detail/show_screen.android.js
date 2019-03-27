@@ -5,7 +5,6 @@ import {
   View,
   TouchableOpacity,
   Image,
-  Platform,
   StyleSheet
 } from 'react-native';
 
@@ -14,19 +13,13 @@ import { Divider } from 'react-native-elements';
 import RF from "react-native-responsive-fontsize"
 
 // Utils
-import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
-import StatusBar from '../../components/status_bar';
-import LongText from '../../components/vocational/long_text';
-import characteristicList from '../../data/json/characteristic_jobs';
-import schoolList from '../../data/json/schools';
-import Images from '../../assets/images';
-
-const uiTheme = {
-  palette: {
-    primaryColor: '#1976d2',
-  }
-};
+import styles from '../../../assets/style_sheets/profile_form';
+import headerStyles from '../../../assets/style_sheets/header';
+import StatusBar from '../../../components/status_bar';
+import LongText from '../../../components/vocational_job/long_text';
+import characteristicList from '../../../data/json/characteristic_jobs';
+import schoolList from '../../../data/json/schools';
+import Images from '../../../assets/images';
 
 export default class VocationalJobShowScreen extends Component {
   componentWillMount() {
@@ -83,7 +76,7 @@ export default class VocationalJobShowScreen extends Component {
   }
 
   _renderSchool(school, i) {
-    let logo = require('../../assets/images/schools/default.png');
+    let logo = require('../../../assets/images/schools/default.png');
     if (school.logoName) {
       logo = Images[school.logoName];
     }
@@ -91,7 +84,7 @@ export default class VocationalJobShowScreen extends Component {
     return (
       <TouchableOpacity
         style={[styles.box, {flexDirection: 'row'}]}
-        onPress={() => {this.props.navigation.navigate('InstitutionDetail', {id: school.id})}}
+        onPress={() => {this.props.navigation.navigate('InstitutionDetail', {school: school})}}
         key={i}>
 
         <View>
@@ -137,37 +130,16 @@ export default class VocationalJobShowScreen extends Component {
 
 const myStyles = StyleSheet.create({
   container: {
-    flex: 1,
-    ...Platform.select({
-      android: {
-        margin: 16
-      },
-      ios: {
-        margin: 8
-      }
-    })
+    margin: 16
   },
   image: {
     width: 100,
     height: 100
   },
   schoolName: {
-    ...Platform.select({
-      android:{
-        fontSize: 20
-      },
-      ios: {
-        fontSize: RF(2.4)
-      }
-    })
+    fontSize: RF(2.4)
   },
   schoolAddress: {
-    marginLeft: 8,
-    ...Platform.select({
-      ios: {
-        fontSize: RF(2),
-        color: "#3A3A3A"
-      }
-    })
+    marginLeft: 8
   }
 })

@@ -8,22 +8,21 @@ import {
   setCustomImage,
   setCustomTouchableOpacity
 } from 'react-native-global-props';
-import RF from 'react-native-responsive-fontsize';
+import { FontSetting } from './app/assets/style_sheets/font_setting';
 
 import App from './app';
 
 const customTextProps = {
   style: {
+    fontSize: FontSetting.text,
     ...Platform.select({
       android: {
         fontFamily: 'Kantumruy',
         lineHeight: 38,
-        fontSize: 16,
       },
       ios: {
         fontFamily: 'HelveticaNeue',
         lineHeight: 0,
-        fontSize: RF(2.5)
       }
     })
 
@@ -33,16 +32,15 @@ const customTextProps = {
 const customTextInputProps = {
   style: {
     height: 48,
+    fontSize: FontSetting.text,
     ...Platform.select({
       android: {
         fontFamily: 'Kantumruy',
         lineHeight: 48,
-        fontSize: 16
       },
       ios: {
         fontFamily: 'HelveticaNeue',
-        lineHeight: 28,
-        fontSize: RF(2.5)
+        lineHeight: 28
       }
     })
   }

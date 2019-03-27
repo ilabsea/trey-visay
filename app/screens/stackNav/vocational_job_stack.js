@@ -6,9 +6,10 @@ import {
   Text
 } from 'react-native';
 
-import VocationalJobIndexScreen from '../vocational_job/index_screen';
-import VocationalJobShowScreen from '../vocational_job/show_screen';
+import VocationalJobIndexScreen from '../vocational_job/jobs/index_screen';
+import VocationalJobShowScreen from '../vocational_job/job_detail/show_screen';
 import InstitutionDetail from '../school/institution_detail';
+import Description from '../vocational_job/description';
 
 import BackButton from '../../components/back_button';
 import OpenDrawer from '../../components/open_drawer';
@@ -33,6 +34,13 @@ const VocationalJobStack = createStackNavigator(
     },
     InstitutionDetail: {
       screen: InstitutionDetail
+    },
+    Description: {
+      screen: Description,
+      navigationOptions: ({navigation}) => ({
+        title: navigation.state.params.title,
+        headerLeft: <BackButton navigation={navigation}/>
+      })
     },
   },{
     navigationOptions: ({navigation}) => ({

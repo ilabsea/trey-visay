@@ -264,39 +264,16 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     flexDirection: 'row',
     alignItems: 'center',
-    ...Platform.select({
-      android: {
-        marginHorizontal: 16
-      },
-      ios: {
-        marginHorizontal: 8,
-        paddingLeft: 8,
-        paddingRight: 16,
-      }
-    })
+    marginHorizontal: 16
   },
   image: {
     width: 80,
     height: 80
   },
   schoolName: {
-    ...Platform.select({
-      android:{
-        fontSize: 20
-      },
-      ios: {
-        fontSize: RF(2.4)
-      }
-    })
+    fontSize: 20
   },
   schoolAddress: {
-    marginLeft: 8,
-    ...Platform.select({
-      ios: {
-        fontSize: RF(2),
-        color: "#3A3A3A",
-        paddingRight: 16
-      }
-    })
+    marginLeft: 8
   }
 })

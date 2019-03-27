@@ -1,5 +1,5 @@
 import { StyleSheet , Platform} from 'react-native';
-import RF from "react-native-responsive-fontsize"
+import { FontSetting } from "./font_setting";
 
 export default StyleSheet.create({
   container: {
@@ -14,14 +14,7 @@ export default StyleSheet.create({
     })
   },
   subTitle: {
-    ...Platform.select({
-      android: {
-        fontSize: 20
-      },
-      ios: {
-        fontSize: RF(2.5)
-      }
-    })
+    fontSize: FontSetting.title
   },
   inputContainer: {
     padding: 2,
@@ -42,10 +35,10 @@ export default StyleSheet.create({
   },
   box: {
     marginBottom: 8,
+    padding: 8,
+    backgroundColor: '#fff',
     borderWidth: 1,
-    borderColor: '#eee',
-    padding: 16,
-    backgroundColor: '#fff'
+    borderColor: '#d3d3d3',
   },
   listItem: {
     fontSize: 20,

@@ -1,14 +1,36 @@
 // totalCount is totalEntries
 // pageCount is total items in the current page
-
+import {
+  AsyncStorage
+} from 'react-native';
 import { random, min, times } from 'lodash';
 import schoolList from '../data/json/schools';
 import util from '../utils/math';
 
 const perPage = 15;
 
-export default {
-  getSchools(page, option={}) {
+export default class API {
+  static setSelectedProvince(province, callback){
+    AsyncStorage.setItem('SelectedProvince', province);
+  }
+
+  static getSelectedProvince(callback){
+    AsyncStorage.getItem('SelectedProvince', (err, result) => {
+      !!callback && callback(result);
+    })
+  }
+
+  static setSelectedMajor(major, callback){
+    AsyncStorage.setItem('selectedMajor', major);
+  }
+
+  static getSelectedMajor(callback){
+    AsyncStorage.getItem('selectedMajor', (err, result) => {
+      !!callback && callback(result);
+    })
+  }
+
+  static getSchools(page, option={}) {
     return new Promise(resolve => {
       setTimeout(() => {
         let list = util.sortByName(schoolList, 'universityName');
@@ -39,8 +61,9 @@ export default {
         resolve({ pagination, records, provinces });
       }, random(100, 500))
     })
-  },
-  getProvinces(category) {
+  }
+
+  static getProvinces(category) {
     return new Promise(resolve => {
       let list = schoolList;
       if (!!category) {

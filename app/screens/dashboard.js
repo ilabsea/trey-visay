@@ -13,7 +13,9 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import SplashScreen from 'react-native-splash-screen';
 
 import StatusBar from '../components/status_bar';
+import { FontSetting } from '../assets/style_sheets/font_setting';
 import User from '../utils/user';
+import API from '../api/schools';
 
 export default class Dashboard extends Component {
   static navigationOptions = {
@@ -42,7 +44,12 @@ export default class Dashboard extends Component {
     return this.state.user ? 'CareerCounsellorStack' : 'AccountStack';
   }
 
+  _clearSelectedValues(){
+    API.setSelectedProvince('');
+  }
+
   _renderButton(options) {
+    this._clearSelectedValues();
     return (
       <TouchableOpacity
         onPress={() => this.props.navigation.navigate(options.url)}
@@ -66,49 +73,47 @@ export default class Dashboard extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar />
-        <ScrollView>
-          <View style={styles.scrollContainer}>
-            <View style={{flexDirection: 'row'}}>
-              { this._renderButton({
-                  title: 'វាយតម្លៃមុខរបរ',
-                  url: this.getRoute(),
-                  icon_bg_color: '#3f51b5',
-                  icon_name: 'briefcase',
-                  description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក។'
-                })
-              }
-              { this._renderButton({
-                  title: 'គ្រឹះស្ថានសិក្សា',
-                  url: 'InstitutionStack',
-                  icon_bg_color: '#009688',
-                  icon_name: 'business',
-                  icon_type: 'material',
-                  description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជាដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២។'
-                })
-              }
-            </View>
-
-            <View style={{flexDirection: 'row'}}>
-              { this._renderButton({
-                  title: 'ជំនាញវិជ្ជាជីវៈ',
-                  url: 'VocationalJobStack',
-                  icon_bg_color: '#1aaf5d',
-                  icon_name: 'photo-filter',
-                  icon_type: 'material',
-                  description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវះរយៈពេលខ្លី។'
-                })
-              }
-              { this._renderButton({
-                  title: 'វីដេអូមុខរបរ',
-                  url: 'VideoScreen',
-                  icon_bg_color: '#f44336',
-                  icon_name: 'video-camera',
-                  description: 'យល់ដឹងអំពីមុខរបរ និងអាជីព តាមរយះវីដេអូ។'
-                })
-              }
-            </View>
+        <View style={styles.scrollContainer}>
+          <View style={{flexDirection: 'row'}}>
+            { this._renderButton({
+                title: 'វាយតម្លៃមុខរបរ',
+                url: this.getRoute(),
+                icon_bg_color: '#3f51b5',
+                icon_name: 'briefcase',
+                description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក។'
+              })
+            }
+            { this._renderButton({
+                title: 'គ្រឹះស្ថានសិក្សា',
+                url: 'InstitutionStack',
+                icon_bg_color: '#009688',
+                icon_name: 'business',
+                icon_type: 'material',
+                description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជា ដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២។'
+              })
+            }
           </View>
-        </ScrollView>
+
+          <View style={{flexDirection: 'row'}}>
+            { this._renderButton({
+                title: 'ជំនាញវិជ្ជាជីវៈ',
+                url: 'VocationalJobStack',
+                icon_bg_color: '#1aaf5d',
+                icon_name: 'photo-filter',
+                icon_type: 'material',
+                description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវះរយៈពេលខ្លី។'
+              })
+            }
+            { this._renderButton({
+                title: 'វីដេអូមុខរបរ',
+                url: 'VideoScreen',
+                icon_bg_color: '#f44336',
+                icon_name: 'video-camera',
+                description: 'យល់ដឹងអំពីមុខរបរ និងអាជីព តាមរយះវីដេអូ។'
+              })
+            }
+          </View>
+        </View>
       </View>
     );
   }
@@ -127,20 +132,22 @@ const styles = StyleSheet.create({
   },
   btnBox: {
     flex: 1,
-    minHeight: 315,
     alignItems: 'center',
+    minHeight: '50%',
     ...Platform.select({
       android: {
         margin : 10,
       },
       ios: {
-        margin: 8
+        margin: 0,
+        borderWidth: 1,
+        borderColor: '#d3d3d3',
       }
     }),
     backgroundColor: '#fff',
   },
   btnLabel: {
-    fontSize: 24,
+    fontSize: FontSetting.nav_title,
     color: '#1976d2',
     width: '100%',
     textAlign: 'center',
@@ -153,6 +160,7 @@ const styles = StyleSheet.create({
   btnDescription: {
     padding: 8,
     textAlign: 'center',
+    fontSize: FontSetting.dashboard_subtitle,
   },
   btnFab: {
     width: 100,

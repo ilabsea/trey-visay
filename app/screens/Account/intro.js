@@ -11,6 +11,7 @@ import Button from '../../components/button';
 import OpenDrawer from '../../components/open_drawer';
 import StatusBar from '../../components/status_bar';
 import headerStyles from '../../assets/style_sheets/header';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 export default class IntroScreen extends Component {
   static navigationOptions = ({navigation}) => ({
@@ -37,23 +38,21 @@ export default class IntroScreen extends Component {
             ដេីម្បីអាចធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ប្អូនត្រូវមានគណនី និង បញ្ចូលគណនី៖
           </Text>
 
-          <View style={styles.inlineBlock}>
-            <Button
-              style={styles.button}
-              onPress={() => this._handleOnPress('Login')}>
-              <Text style={styles.btnText}>
-                ចូលគណនី
-              </Text>
-            </Button>
+          <Button
+            style={styles.button}
+            onPress={() => this._handleOnPress('Login')}>
+            <Text style={styles.btnText}>
+              ចូលគណនី
+            </Text>
+          </Button>
 
-            <Button
-              style={styles.button}
-              onPress={() => this._handleOnPress('Register')}>
-              <Text style={styles.btnText}>
-                បង្កេីតគណនី
-              </Text>
-            </Button>
-          </View>
+          <Button
+            style={styles.button}
+            onPress={() => this._handleOnPress('Register')}>
+            <Text style={styles.btnText}>
+              បង្កេីតគណនី
+            </Text>
+          </Button>
         </View>
       </View>
     );
@@ -67,9 +66,6 @@ const styles = StyleSheet.create({
     ...Platform.select({
       android: {
         margin: 16
-      },
-      ios: {
-        margin: 8
       }
     })
   },
@@ -78,25 +74,17 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 24
   },
-  inlineBlock: {
-    flex: 1,
-    margin: 15,
-    justifyContent: 'center',
-    flexDirection:'row',
-    alignItems: 'center',
-  },
   button: {
     borderRadius: 3,
     height: 48,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    marginRight: 20,
     marginBottom: 10
   },
   btnText: {
     fontWeight: 'bold',
-    fontSize: 20,
+    fontSize: FontSetting.button_text,
     color: '#fff',
   }
 });

@@ -10,7 +10,8 @@ class SaveButton extends React.Component {
 
   render() {
     return <TouchableOpacity style={headerStyles.actionWrapper} onPress={() => this.props.navigation.state.params.handleSubmit()}>
-              <MaterialIcon name="done" color='#fff' size={24} />
+              { !this.props.noIcon
+                && <MaterialIcon name="done" color='#fff' size={24} /> }
               <Text style={headerStyles.saveText}>រក្សាទុក</Text>
             </TouchableOpacity>;
   }
