@@ -10,11 +10,8 @@ import api from './../utils/api';
 
 export default class UploadServices  {
 
-  static count = 0;
-
   static syncToServer(){
     NetInfo.isConnected.fetch().then(isConnected => {
-      console.log('isConnected')
       api.get('/me').then((res) => {
         if(res.data && res.data.success)
           this.uploadData()
@@ -25,8 +22,8 @@ export default class UploadServices  {
   static uploadData() {
     let data = realm.objects('Sidekiq');
     let sidekidData = data.map((sidekiq) => ({paramUuid: sidekiq.paramUuid, tableName: sidekiq.tableName}));
-    if ( this.count < sidekidData.length ) {
-      let sidekiq = sidekidData[this.count];
+    if ( sidekidData.length > 0 ) {
+      let sidekiq = sidekidData[0];
       this.upload(sidekiq);
       return;
     }
@@ -36,7 +33,6 @@ export default class UploadServices  {
     let data = realm.objects(sidekiq.tableName)
       .filtered('uuid="' + sidekiq.paramUuid + '"')[0];
     let postUrl = sidekiq.tableName == 'User' ? '/users' : "/games";
-    console.log('data : ', data)
     api.post(postUrl, this['build' + sidekiq.tableName](data))
     .then((res) => {
       this.handleResponse(res, sidekiq);
@@ -125,7 +121,6 @@ export default class UploadServices  {
     if (res.ok) {
       this.deleteSidekiq(sidekiq);
     }
-    this.count++;
     this.uploadData();
   }
 

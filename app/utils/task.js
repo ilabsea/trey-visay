@@ -7,7 +7,7 @@ export default class Task {
     BackgroundFetch.configure({
       minimumFetchInterval: environment.minimumFetchInterval,
     }, () => {
-      console.log("[js] Received background-fetch event");
+      Task.syncToServer();
       BackgroundFetch.finish(BackgroundFetch.FETCH_RESULT_NEW_DATA);
     }, (error) => {
       console.log("[js] RNBackgroundFetch failed to start");
@@ -23,7 +23,6 @@ export default class Task {
           break;
         case BackgroundFetch.STATUS_AVAILABLE:
           console.log("BackgroundFetch is enabled");
-          Task.syncToServer();
           break;
       }
     });
