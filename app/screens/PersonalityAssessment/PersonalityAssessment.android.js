@@ -124,7 +124,7 @@ export default class PersonalityAssessment extends Component {
             <TouchableOpacity
               key={i}
               style={[styles.box, {marginTop: 0, marginBottom: 8, flexDirection: 'row', alignItems: 'center'}]}
-              onPress={() => this.props.navigation.navigate('AssessmentHistoryScreen', {num: (count - i), assessmentUuid: assessment.uuid})}
+              onPress={() => this.props.navigation.navigate('AssessmentResultHistoryScreen', {num: (count - i), assessmentUuid: assessment.uuid})}
               >
               <View style={{flexDirection: 'row', flex: 1}}>
                 <Image source={require('../../assets/images/checklist.png')} style={{width: 60, height: 60, marginRight: 16}} />

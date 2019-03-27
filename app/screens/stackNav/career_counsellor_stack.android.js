@@ -30,10 +30,11 @@ import RecommendationReport from '../CareerPlanning/game_history/recommendation_
 
 import Assessment from '../Assessment/Assessment';
 import PersonalityAssessment from '../PersonalityAssessment/PersonalityAssessment';
-import PersonalityAssessmentRealistic from '../PersonalityAssessmentRealistic/PersonalityAssessmentRealistic';
+import PersonalityAssessmentForm from '../PersonalityAssessmentForm/PersonalityAssessmentForm';
 import PersonalityAssessmentResult from '../PersonalityAssessmentResult/PersonalityAssessmentResult';
-import PersonalityAssessmentHistory from '../PersonalityAssessmentHistory/PersonalityAssessmentHistory';
-import PersonalityAssessmentRealisticHistory from '../PersonalityAssessmentRealisticHistory/PersonalityAssessmentRealisticHistory';
+import PersonalityAssessmentResultHistory from '../PersonalityAssessmentResultHistory/PersonalityAssessmentResultHistory';
+import PersonalityAssessmentMajorList from '../PersonalityAssessmentMajorList/PersonalityAssessmentMajorList';
+import PersonalityAssessmentMajorDetail from '../PersonalityAssessmentMajorDetail/PersonalityAssessmentMajorDetail';
 
 const CareerCounsellorStack = createStackNavigator(
   {
@@ -51,42 +52,42 @@ const CareerCounsellorStack = createStackNavigator(
       })
     },
     RealisticScreen: {
-      screen: PersonalityAssessmentRealistic,
+      screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តប្រាកដនិយម',
         headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     InvestigativeScreen: {
-      screen: PersonalityAssessmentRealistic,
+      screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តពូកែអង្កេត',
         headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     ArtisticScreen: {
-      screen: PersonalityAssessmentRealistic,
+      screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសិល្បៈនិយម',
         headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     SocialScreen: {
-      screen: PersonalityAssessmentRealistic,
+      screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសង្គម',
         headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     EnterprisingScreen: {
-      screen: PersonalityAssessmentRealistic,
+      screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តត្រិះរិះពិចារណា',
         headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     ConventionalScreen: {
-      screen: PersonalityAssessmentRealistic,
+      screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសណ្ដាប់ធ្នាប់',
         headerLeft: <CloseButton navigation={navigation}/>
@@ -99,16 +100,22 @@ const CareerCounsellorStack = createStackNavigator(
         headerLeft: <CloseButton navigation={navigation}/>
       })
     },
-    AssessmentHistoryScreen: {
-      screen: PersonalityAssessmentHistory,
+    AssessmentResultHistoryScreen: {
+      screen: PersonalityAssessmentResultHistory,
       navigationOptions: ({navigation}) => ({
         title: 'លទ្ធផលតេស្ត',
       })
     },
-    RealisticHistoryScreen: {
-      screen: PersonalityAssessmentRealisticHistory,
+    MajorListScreen: {
+      screen: PersonalityAssessmentMajorList,
       navigationOptions: ({navigation}) => ({
         title: `លទ្ធផលតេស្តបែប${navigation.getParam('title')}`,
+      })
+    },
+    MajorDetailScreen: {
+      screen: PersonalityAssessmentMajorDetail,
+      navigationOptions: ({navigation}) => ({
+        title: `ការសិក្សាជំនាញ${navigation.getParam('title')}`,
       })
     },
     CareerCounsellorScreen: {

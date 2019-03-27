@@ -122,7 +122,7 @@ export default class PersonalityAssessment extends Component {
       <ListItem
         key={index}
         button={true}
-        onPress={() => this.props.navigation.navigate('AssessmentHistoryScreen', {num: (count - index), assessmentUuid: assessment.uuid})}
+        onPress={() => this.props.navigation.navigate('AssessmentResultHistoryScreen', {num: (count - index), assessmentUuid: assessment.uuid})}
         thumbnail>
         <Left>
           <Thumbnail square source={require('../../assets/images/checklist.png')} />

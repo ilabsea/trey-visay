@@ -1,23 +1,15 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
-  ScrollView,
-  TouchableOpacity,
-  Image,
-  Dimensions,
   processColor,
-  StyleSheet,
 } from 'react-native';
 
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import formStyles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
-import BackButton from '../../components/back_button';
-import { HorizontalBarChart, BarChart } from 'react-native-charts-wrapper';
+import { HorizontalBarChart } from 'react-native-charts-wrapper';
 import realm from '../../schema';
 import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
+
+import { Container, Content, ListItem, Thumbnail, Text, Left, Body, Right, Button, Icon, Badge } from 'native-base';
 
 export default class PersonalityAssessmentHistory extends Component {
   categories = [
@@ -43,30 +35,40 @@ export default class PersonalityAssessmentHistory extends Component {
     let codes = this.state.assessment[category.value].map(x => x.value);
     let personalities = personalityList.filter(x => codes.includes(x.code));
 
-    if (!!personalities.length) {
-      this.props.navigation.navigate('RealisticHistoryScreen', { title: category.label, entries: personalities })
-    }
+    this.props.navigation.navigate('MajorListScreen', { title: category.label, entries: personalities })
   }
 
-  _renderButton(category, index) {
+  _renderListItem(category, index) {
     return (
-      <TouchableOpacity
+      <ListItem
         key={index}
-        style={[formStyles.box, {marginTop: 0, marginBottom: 8, flexDirection: 'row', alignItems: 'center'}]}
-        onPress={() => this._handleButtonClick(category)}
-      >
-        <Image source={require('../../assets/images/list.png')} style={{width: 60, height: 60, marginRight: 16}} />
-        <Text style={[formStyles.subTitle, {flex: 1}]}>{category.label} ({this.state.assessment[category.value].length})</Text>
-        <AwesomeIcon name='angle-right' size={24}/>
-      </TouchableOpacity>
-    )
+        button={true}
+        icon
+        onPress={() => this._handleButtonClick(category)}>
+        <Left>
+          <Button style={{ backgroundColor: "#4caf50" }}>
+            <Icon active name="airplane" />
+          </Button>
+        </Left>
+        <Body>
+          <Text>{category.label}</Text>
+        </Body>
+        <Right>
+          <Text>{this.state.assessment[category.value].length}</Text>
+          <Icon name="arrow-forward" />
+        </Right>
+      </ListItem>
+    );
   }
 
   _renderPersonalityGroups() {
     return (
-      <View style={{marginBottom: 16}}>
-        <Text style={headerStyles.body2}>សេចក្តីលម្អិត</Text>
-        { this.categories.map((category, index) => this._renderButton(category, index)) }
+      <View>
+        <ListItem itemDivider>
+          <Text>សេចក្តីលម្អិត</Text>
+        </ListItem>
+
+        { this.categories.map((category, index) => this._renderListItem(category, index)) }
       </View>
     );
   }
@@ -112,9 +114,9 @@ export default class PersonalityAssessmentHistory extends Component {
 
     return (
       <View style={{flex: 1}}>
-        <View style={styles.container}>
+        <View style={{height: 220, paddingVertical: 6}}>
           <HorizontalBarChart
-            style={styles.chart}
+            style={{flex: 1}}
             data={option.data}
             xAxis={option.xAxis}
             animation={{durationX: 1000}}
@@ -132,29 +134,20 @@ export default class PersonalityAssessmentHistory extends Component {
 
   render () {
     return (
-      <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16, flex: 1}}>
-            <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
-            <Text style={headerStyles.body2}>លទ្ធផលរបស់អ្នក</Text>
+        <Container>
+          <Content>
+            <Content padder>
+              <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
+            </Content>
+
+            <ListItem itemDivider>
+              <Text>លទ្ធផលរបស់អ្នក</Text>
+            </ListItem>
 
             { this._renderChart() }
             { this._renderPersonalityGroups() }
-          </View>
-        </ScrollView>
-      </View>
+          </Content>
+        </Container>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    height: 220,
-    backgroundColor: '#F5FCFF',
-    marginBottom: 10,
-    paddingVertical: 10
-  },
-  chart: {
-    flex: 1
-  }
-});
