@@ -8,19 +8,11 @@ import { HorizontalBarChart } from 'react-native-charts-wrapper';
 import realm from '../../schema';
 import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
+import categoryList from '../../data/json/personality_category';
 
 import { Container, Content, ListItem, Text, Left, Body, Right, Button, Icon, Badge } from 'native-base';
 
 export default class PersonalityAssessmentHistory extends Component {
-  categories = [
-    { value: 'realistic', label: 'ប្រាកដនិយម'},
-    { value: 'investigative', label: 'ពូកែអង្កេត'},
-    { value: 'artistic', label: 'សិល្បៈនិយម'},
-    { value: 'social', label: 'សង្គម'},
-    { value: 'enterprising', label: 'ត្រិះរិះពិចារណា'},
-    { value: 'conventional', label: 'សណ្ដាប់ធ្នាប់'},
-  ];
-
   constructor(props) {
     super(props);
 
@@ -32,10 +24,10 @@ export default class PersonalityAssessmentHistory extends Component {
   }
 
   _handleButtonClick(category) {
-    let codes = this.state.assessment[category.value].map(x => x.value);
+    let codes = this.state.assessment[category.name_en].map(x => x.value);
     let personalities = personalityList.filter(x => codes.includes(x.code));
 
-    this.props.navigation.navigate('MajorListScreen', { title: category.label, entries: personalities })
+    this.props.navigation.navigate('MajorListScreen', { title: category.name_km, entries: personalities, category: category })
   }
 
   _renderListItem(category, index) {
@@ -47,14 +39,14 @@ export default class PersonalityAssessmentHistory extends Component {
         onPress={() => this._handleButtonClick(category)}>
         <Left>
           <Button style={{ backgroundColor: "#4caf50" }}>
-            <Icon active name="airplane" />
+            <Icon active name="bulb" />
           </Button>
         </Left>
         <Body>
-          <Text>{category.label}</Text>
+          <Text>{category.name_km}</Text>
         </Body>
         <Right>
-          <Text>{this.state.assessment[category.value].length}</Text>
+          <Text>{this.state.assessment[category.name_en].length}</Text>
           <Icon name="arrow-forward" />
         </Right>
       </ListItem>
@@ -68,13 +60,13 @@ export default class PersonalityAssessmentHistory extends Component {
           <Text>សេចក្តីលម្អិត</Text>
         </ListItem>
 
-        { this.categories.map((category, index) => this._renderListItem(category, index)) }
+        { categoryList.map((category, index) => this._renderListItem(category, index)) }
       </View>
     );
   }
 
   _renderChart() {
-    let arr = this.categories.map(category => {return {y: this.state.assessment[category.value].length}});
+    let arr = categoryList.map(category => {return {y: this.state.assessment[category.name_en].length}});
     let option = {
       legend: {
         enabled: true,
@@ -103,7 +95,7 @@ export default class PersonalityAssessmentHistory extends Component {
         }
       },
       xAxis: {
-        valueFormatter: this.categories.map(x => x.label),
+        valueFormatter: categoryList.map(x => x.name_km),
         granularityEnabled: true,
         granularity : 1,
         position: 'BOTTOM',

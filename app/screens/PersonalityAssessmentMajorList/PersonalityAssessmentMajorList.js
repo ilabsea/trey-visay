@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { View, StyleSheet } from 'react-native';
-import { Container, Content, ListItem, Text, Left, Body, Icon, Right } from 'native-base';
+import { View, StyleSheet, Text } from 'react-native';
+import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
 import styles from '../../assets/style_sheets/list';
+import majorList from '../../data/json/personality_major';
 
-export default class PersonalityAssessmentRealisticHistory extends Component {
+export default class PersonalityAssessmentMajorList extends Component {
   _renderList() {
     let entries = this.props.navigation.getParam('entries');
 
@@ -35,15 +36,13 @@ export default class PersonalityAssessmentRealisticHistory extends Component {
   }
 
   _renderDescription() {
-    let arr = [
-      'ធ្វើការដោយការអនុវត្តជាក់ស្តែង',
-      'ធ្វើការដោយប្រើម៉ាស៊ីន ឬសម្ភារៈឧបទ្ទេស',
-      'ធ្វើការដោយប្រើសត្វជាកម្លាំងជំនួយ',
-      'ធ្វើការដោយប្រើកម្លាំងជាមធ្យោបាយ',
-      'ធ្វើការជាអ្នកបើកបរ'
-    ];
+    let category = this.props.navigation.getParam('category');
 
-    let doms = arr.map((text, index) => {
+    if (!category.description) {
+      return (null)
+    }
+
+    let doms = category.description.split(';').map((text, index) => {
       return (
         <View style={ styles.column } key={index}>
             <View style={ styles.row }>
@@ -67,23 +66,18 @@ export default class PersonalityAssessmentRealisticHistory extends Component {
   }
 
   _renderMajorList() {
-    let majors = [
-      { name: 'គណិតវិទ្យា'},
-      { name: 'រូបវិទ្យា'},
-      { name: 'វិស្វកម្មសំណង់ស៊ីវិល'},
-      { name: 'វិស្វកម្មអគ្គិសនី'},
-      { name: 'ស្ថាបត្យកម្ម'}
-    ];
+    let category = this.props.navigation.getParam('category');
+    let majors = majorList.filter(obj => (obj.group == category.group));
 
     let doms = majors.map((major, index) => {
       return (
         <ListItem
           key={index}
           button
-          onPress={() => {this.props.navigation.navigate('MajorDetailScreen', {title: major.name})}}
+          onPress={() => {this.props.navigation.navigate('MajorDetailScreen', {title: major.name_km, major: major})}}
           >
           <Body>
-            <Text>{major.name}</Text>
+            <Text>{major.name_km}</Text>
           </Body>
           <Right>
             <Icon active name="arrow-forward" />

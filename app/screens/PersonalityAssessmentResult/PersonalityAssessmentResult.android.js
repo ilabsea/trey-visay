@@ -2,31 +2,28 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ScrollView,
-  Button,
-  BackHandler,
+  TouchableOpacity,
+  Image,
   Dimensions,
   processColor,
+  StyleSheet,
+  BackHandler,
 } from 'react-native';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import headerStyles from '../../assets/style_sheets/header';
+import formStyles from '../../assets/style_sheets/profile_form';
 import FooterBar from '../../components/FooterBar';
 import { NavigationActions } from 'react-navigation';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 import {HorizontalBarChart} from 'react-native-charts-wrapper';
 import realm from '../../schema';
 import User from '../../utils/user';
+import personalityList from '../../data/json/personality';
+import categoryList from '../../data/json/personality_category';
 
 class PersonalityAssessmentResult extends Component {
-  categories = [
-    {label: 'ប្រាកដនិយម', value: 'realistic'},
-    {label: 'ពូកែអង្កេត', value: 'investigative'},
-    {label: 'សិល្បៈនិយម', value: 'artistic'},
-    {label: 'សង្គម', value: 'social'},
-    {label: 'ត្រិះរិះពិចារណា', value: 'enterprising'},
-    {label: 'សណ្ដាប់ធ្នាប់', value: 'conventional'}];
-
   constructor(props) {
     super(props);
 
@@ -95,7 +92,7 @@ class PersonalityAssessmentResult extends Component {
   }
 
   _renderChart() {
-    let arr = this.categories.map(category => {return {y: this.state.assessment[category.value].length}});
+    let arr = categoryList.map(category => {return {y: this.state.assessment[category.name_en].length}});
     let option = {
       legend: {
         enabled: true,
@@ -124,7 +121,7 @@ class PersonalityAssessmentResult extends Component {
         }
       },
       xAxis: {
-        valueFormatter: this.categories.map(x => x.label),
+        valueFormatter: categoryList.map(x => x.name_km),
         granularityEnabled: true,
         granularity : 1,
         position: 'BOTTOM',
@@ -153,10 +150,36 @@ class PersonalityAssessmentResult extends Component {
     );
   }
 
-  _renderPersonalityGroup() {
-    let doms = this.categories.map((category, index) => (<Text key={index}>{index+1}) {category.label} ({this.state.assessment[category.value].length})</Text>));
+  _handleButtonClick(category) {
+    let codes = this.state.assessment[category.name_en].map(x => x.value);
+    let personalities = personalityList.filter(x => codes.includes(x.code));
 
-    return (<View>{doms}</View>);
+    if (!!personalities.length) {
+      this.props.navigation.navigate('MajorListScreen', { title: category.name_km, entries: personalities, category: category })
+    }
+  }
+
+  _renderButton(category, index) {
+    return (
+      <TouchableOpacity
+        key={index}
+        style={[formStyles.box, {marginTop: 0, marginBottom: 8, flexDirection: 'row', alignItems: 'center'}]}
+        onPress={() => this._handleButtonClick(category)}
+      >
+        <Image source={require('../../assets/images/list.png')} style={{width: 60, height: 60, marginRight: 16}} />
+        <Text style={[formStyles.subTitle, {flex: 1}]}>{category.name_km} ({this.state.assessment[category.name_en].length})</Text>
+        <AwesomeIcon name='angle-right' size={24}/>
+      </TouchableOpacity>
+    )
+  }
+
+  _renderPersonalityGroup() {
+    return (
+      <View style={{marginBottom: 16}}>
+        <Text style={headerStyles.body2}>សេចក្តីលម្អិត</Text>
+        { categoryList.map((category, index) => this._renderButton(category, index)) }
+      </View>
+    );
   }
 
   render() {
@@ -167,7 +190,7 @@ class PersonalityAssessmentResult extends Component {
             <View style={{flexDirection: 'row', marginVertical: 16}}>
               <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
             </View>
-            <Text style={{textAlign: 'center'}}>លទ្ធផលរបស់អ្នក</Text>
+            <Text style={headerStyles.body2}>លទ្ធផលរបស់អ្នក</Text>
 
             { this._renderChart() }
             { this._renderPersonalityGroup() }
@@ -180,7 +203,7 @@ class PersonalityAssessmentResult extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <FooterBar icon='keyboard-arrow-right' text='រួចរាល់' onPress={this._goNext} />
+        <FooterBar icon='done' text='រួចរាល់' onPress={this._goNext} />
       </View>
     );
 

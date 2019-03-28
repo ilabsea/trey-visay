@@ -5,9 +5,8 @@ import {
   processColor,
 } from 'react-native';
 
-import { Container, Content, ListItem, Text, Left, Body, Right, Button, Icon, Badge } from 'native-base';
+import { Container, Content, ListItem, Text, Left, Body, Right, Button, Icon } from 'native-base';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import FooterBar from '../../components/FooterBar';
 import { NavigationActions } from 'react-navigation';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
@@ -15,16 +14,9 @@ import {HorizontalBarChart} from 'react-native-charts-wrapper';
 import realm from '../../schema';
 import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
+import categoryList from '../../data/json/personality_category';
 
 class PersonalityAssessmentResult extends Component {
-  categories = [
-    {label: 'ប្រាកដនិយម', value: 'realistic'},
-    {label: 'ពូកែអង្កេត', value: 'investigative'},
-    {label: 'សិល្បៈនិយម', value: 'artistic'},
-    {label: 'សង្គម', value: 'social'},
-    {label: 'ត្រិះរិះពិចារណា', value: 'enterprising'},
-    {label: 'សណ្ដាប់ធ្នាប់', value: 'conventional'}];
-
   constructor(props) {
     super(props);
 
@@ -93,7 +85,7 @@ class PersonalityAssessmentResult extends Component {
   }
 
   _renderChart() {
-    let arr = this.categories.map(category => {return {y: this.state.assessment[category.value].length}});
+    let arr = categoryList.map(category => {return {y: this.state.assessment[category.name_en].length}});
     let option = {
       legend: {
         enabled: true,
@@ -122,7 +114,7 @@ class PersonalityAssessmentResult extends Component {
         }
       },
       xAxis: {
-        valueFormatter: this.categories.map(x => x.label),
+        valueFormatter: categoryList.map(x => x.name_km),
         granularityEnabled: true,
         granularity : 1,
         position: 'BOTTOM',
@@ -152,10 +144,10 @@ class PersonalityAssessmentResult extends Component {
   }
 
   _handleButtonClick(category) {
-    let codes = this.state.assessment[category.value].map(x => x.value);
+    let codes = this.state.assessment[category.name_en].map(x => x.value);
     let personalities = personalityList.filter(x => codes.includes(x.code));
 
-    this.props.navigation.navigate('MajorListScreen', { title: category.label, entries: personalities })
+    this.props.navigation.navigate('MajorListScreen', { title: category.name_km, entries: personalities, category: category })
   }
 
   _renderListItem(category, index) {
@@ -171,10 +163,10 @@ class PersonalityAssessmentResult extends Component {
           </Button>
         </Left>
         <Body>
-          <Text>{category.label}</Text>
+          <Text>{category.name_km}</Text>
         </Body>
         <Right>
-          <Text>{this.state.assessment[category.value].length}</Text>
+          <Text>{this.state.assessment[category.name_en].length}</Text>
           <Icon name="arrow-forward" />
         </Right>
       </ListItem>
@@ -188,7 +180,7 @@ class PersonalityAssessmentResult extends Component {
           <Text>សេចក្តីលម្អិត</Text>
         </ListItem>
 
-        { this.categories.map((category, index) => this._renderListItem(category, index)) }
+        { categoryList.map((category, index) => this._renderListItem(category, index)) }
       </View>
     );
   }
