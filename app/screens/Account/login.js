@@ -76,7 +76,7 @@ export default class Login extends Component {
 
   handleSubmit(event) {
     let user = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"')[0];
-    if (!user || user.role == 'admin') {
+    if (!user) {
       return Alert.alert(
         'ការបញ្ចូលមិនត្រឹមត្រូវ',
         'ឈ្មោះគណនី ឬលេខសម្ងាត់ដែលអ្នកបានបញ្ចូលមិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត។');

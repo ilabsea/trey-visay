@@ -16,7 +16,6 @@ import Task from './app/utils/task';
 
 // Screens
 import HomeScreen from './app/screens/home';
-import AdminHomeNavigator from './app/screens/admin/home';
 
 const HomeNavigator = createStackNavigator({
   Home: {
@@ -27,17 +26,6 @@ const HomeNavigator = createStackNavigator({
   },
 }, {
   initialRouteName: 'Home',
-});
-
-const AdminNavigator = createStackNavigator({
-  AdminHome: {
-    screen: ({ navigation }) => <AdminHomeNavigator screenProps={{ rootNavigation: navigation }} />,
-    navigationOptions: ({navigation}) => ({
-      header: null
-    })
-  }
-}, {
-  initialRouteName: 'AdminHome',
 });
 
 export default class App extends Component {
@@ -53,13 +41,6 @@ export default class App extends Component {
     Task.configBackgroundFetch();
   }
 
-  componentWillMount(){
-    setTimeout(() => {
-      let user = User.getCurrent();
-      this.setState({user: user});
-    }, 300)
-  }
-
   handlerPredefinedUser() {
     let uuid = '0335745d-daa3-485b-bc0f-3610db5udemo';
     let predefinedUser = realm.objects('User').filtered('uuid="' + uuid + '"')[0];
@@ -71,16 +52,7 @@ export default class App extends Component {
     });
   }
 
-  setHomeRoute(){
-    if(this.state.user){
-      let app = this.state.user.role=='admin' ? AdminNavigator: HomeNavigator;
-      return app;
-    }
-    return HomeNavigator;
-  }
-
   render() {
-    let AppNavigator = this.setHomeRoute();
-    return (<AppNavigator/>);
+    return (<HomeNavigator/>);
   }
 }
