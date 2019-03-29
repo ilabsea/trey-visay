@@ -45,7 +45,7 @@ const InstitutionTab = createBottomTabNavigator({
       fontSize: FontSetting.tab_label,
     },
     style: {
-      backgroundColor: '#EFEFF4'
+      backgroundColor: '#fff'
     }
   },
 });
