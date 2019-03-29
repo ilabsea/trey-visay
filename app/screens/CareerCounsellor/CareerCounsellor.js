@@ -70,7 +70,7 @@ export default class CareerCounsellor extends Component {
             ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
           </Text>
 
-          <View style={{marginBottom: 30}}>
+          <View>
             <Text style={styles.text}>មាន២ជំហានៈ</Text>
             <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
             <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
