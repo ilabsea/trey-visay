@@ -9,7 +9,6 @@ import {
   createStackNavigator,
 } from 'react-navigation';
 import headerStyles from '../../assets/style_sheets/header';
-import API from '../../api/schools';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 import OpenDrawer from '../../components/open_drawer';
@@ -39,14 +38,14 @@ const InstitutionTab = createBottomTabNavigator({
 }, {
   animationEnabled: true,
   tabBarOptions: {
-    activeTintColor: '#fff',
+    activeTintColor: '#007AFF',
     showIcon: false,
     allowFontScaling: true,
     labelStyle: {
       fontSize: FontSetting.tab_label,
     },
     style: {
-      backgroundColor: '#1976d2'
+      backgroundColor: '#EFEFF4'
     }
   },
 });
