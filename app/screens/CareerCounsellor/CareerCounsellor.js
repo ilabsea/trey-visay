@@ -21,7 +21,7 @@ import myStyles from '../../assets/style_sheets/login_form';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
-import {mainStyles} from '../../assets/style_sheets/main/main';
+import mainStyles from '../../assets/style_sheets/main/main';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 export default class CareerCounsellor extends Component {

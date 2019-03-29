@@ -1,7 +1,7 @@
 import { StyleSheet , Platform } from 'react-native';
 import { FontSetting } from '../font_setting';
 
-export const mainStyles = StyleSheet.create({
+export default StyleSheet.create({
   btnList: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -11,6 +11,9 @@ export const mainStyles = StyleSheet.create({
   },
   title: {
     flex: 1 ,
+    fontSize: FontSetting.text
+  },
+  text: {
     fontSize: FontSetting.text
   },
   subTitle:{
@@ -28,5 +31,9 @@ export const mainStyles = StyleSheet.create({
     fontSize: FontSetting.text,
     marginTop: 16,
     marginLeft: 16
-  }
+  },
+  link: {
+    color: '#1976d2',
+    fontSize: FontSetting.text
+  },
 })
