@@ -31,28 +31,30 @@ export default class IntroScreen extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.container}>
         <StatusBar />
         <View style={styles.box}>
           <Text style={styles.text}>
             ដេីម្បីអាចធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ប្អូនត្រូវមានគណនី និង បញ្ចូលគណនី៖
           </Text>
 
-          <Button
-            style={styles.button}
-            onPress={() => this._handleOnPress('Login')}>
-            <Text style={styles.btnText}>
-              ចូលគណនី
-            </Text>
-          </Button>
+          <View style={styles.inlineBlock}>
+            <Button
+              style={styles.button}
+              onPress={() => this._handleOnPress('Login')}>
+              <Text style={styles.btnText}>
+                ចូលគណនី
+              </Text>
+            </Button>
 
-          <Button
-            style={styles.button}
-            onPress={() => this._handleOnPress('Register')}>
-            <Text style={styles.btnText}>
-              បង្កេីតគណនី
-            </Text>
-          </Button>
+            <Button
+              style={styles.button}
+              onPress={() => this._handleOnPress('Register')}>
+              <Text style={styles.btnText}>
+                បង្កេីតគណនី
+              </Text>
+            </Button>
+          </View>
         </View>
       </View>
     );
@@ -60,8 +62,11 @@ export default class IntroScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
   box: {
-    backgroundColor: '#fff',
     padding: 24,
     ...Platform.select({
       android: {
@@ -74,13 +79,23 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 24
   },
+  inlineBlock: {
+    flex: 1,
+    margin: 24,
+    marginRight: 0,
+    marginLeft: 10,
+    justifyContent: 'center',
+    flexDirection:'row',
+    alignItems: 'center',
+  },
   button: {
     borderRadius: 3,
     height: 48,
+    width: '50%',
+    marginRight: 14,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    marginBottom: 10
   },
   btnText: {
     fontWeight: 'bold',

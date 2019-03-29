@@ -66,31 +66,34 @@ export default class CareerCounsellor extends Component {
         </View>
 
         <View style={{flex: 1, flexDirection: 'column'}}>
-            <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
-              ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
-            </Text>
+          <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
+            ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
+          </Text>
 
-            <View style={{marginBottom: 30}}>
-              <Text style={styles.text}>មាន២ជំហានៈ</Text>
-              <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
-              <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
-            </View>
-          <Button
-            style={styles.button}
-            onPress={this._goToPersonalUnderstandingForm.bind(this)}>
-            <Text style={styles.btnText}>
-              ចាប់ផ្តើមថ្មី
-            </Text>
-          </Button>
+          <View style={{marginBottom: 30}}>
+            <Text style={styles.text}>មាន២ជំហានៈ</Text>
+            <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
+            <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
+          </View>
 
-          { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
+          <View style={styles.inlineBlock}>
             <Button
               style={styles.button}
-              onPress={this._handleGoingNextStep.bind(this)}
-              >
-              <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
+              onPress={this._goToPersonalUnderstandingForm.bind(this)}>
+              <Text style={styles.btnText}>
+                ចាប់ផ្តើមថ្មី
+              </Text>
             </Button>
-          }
+
+            { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
+              <Button
+                style={styles.button}
+                onPress={this._handleGoingNextStep.bind(this)}
+                >
+                <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
+              </Button>
+            }
+          </View>
         </View>
       </View>
     )
@@ -231,13 +234,23 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: 'bold'
   },
+  inlineBlock: {
+    flex: 1,
+    margin: 24,
+    marginRight: 0,
+    marginLeft: 10,
+    justifyContent: 'center',
+    flexDirection:'row',
+    alignItems: 'center',
+  },
   button: {
     borderRadius: 3,
     height: 48,
+    width: '50%',
+    marginRight: 14,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    marginBottom: 10
   },
   btnText: {
     fontWeight: 'bold',
