@@ -8,8 +8,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
-import headerStyles from '../../../assets/style_sheets/header';
-import shareStyles from '../../../assets/style_sheets/profile_form';
+import mainStyles from '../../../assets/style_sheets/main/main';
 import StatusBar from '../../../components/status_bar';
 import characteristicList from '../../../data/json/characteristic_jobs';
 import realm from '../../../schema';
@@ -28,17 +27,14 @@ export default class StudentPersonalityReport extends Component {
 
   _renderContent() {
     return (
-      <View style={shareStyles.box}>
-        <Text style={shareStyles.subTitle}>ចម្លើយអំពីបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
-
+      <View style={mainStyles.box}>
+        <Text style={mainStyles.sectionText}>ចម្លើយអំពីបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
+        <Divider />
         { this.state.game.characteristicEntries.map((entry, i) => {
           return (
-            <View key={i}>
-              <Divider style={{marginBottom: 8}}/>
-              <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 8}}>
-                <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-                <Text style={{fontWeight: 'bold'}}>{entry.value}</Text>
-              </View>
+            <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 8, marginLeft: 32}}>
+              <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
+              <Text style={{fontWeight: 'bold'}}>{entry.value}</Text>
             </View>
           )
         })}
@@ -51,10 +47,8 @@ export default class StudentPersonalityReport extends Component {
       <View style={{flex: 1}}>
         <StatusBar />
 
-        <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16, flex: 1}}>
-            { this._renderContent() }
-          </View>
+        <ScrollView style={{flex: 1, marginTop: 8}}>
+          { this._renderContent() }
         </ScrollView>
       </View>
     )

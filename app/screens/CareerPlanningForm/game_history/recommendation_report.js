@@ -8,9 +8,7 @@ import {
   BackHandler,
 } from 'react-native';
 
-import styles from '../../../assets/style_sheets/profile_form';
-import headerStyles from '../../../assets/style_sheets/header';
-import shareStyles from '../style';
+import mainStyles from '../../../assets/style_sheets/main/main';
 
 import realm from '../../../schema';
 import User from '../../../utils/user';
@@ -93,7 +91,7 @@ export default class RecommendationReport extends Component {
   _renderSubject() {
     return (
       <View>
-        <Text style={[styles.subTitle, localStyle.paragraph, {color: '#1976d2'}]}>មុខវិជ្ជា</Text>
+        <Text style={[mainStyles.text, localStyle.paragraph, {color: '#1976d2'}]}>មុខវិជ្ជា</Text>
         <Text>ជា{this.state.currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖ </Text>
         <View>
           { this.state.currentGroup.concern_subjects.map((code, i) => {
@@ -127,7 +125,7 @@ export default class RecommendationReport extends Component {
   _renderCharacteristic() {
     return (
       <View>
-        <Text style={[styles.subTitle, localStyle.paragraph, {color: '#1976d2'}]}>បុគ្គលិកលក្ខណៈ</Text>
+        <Text style={[mainStyles.text, localStyle.paragraph, {color: '#1976d2'}]}>បុគ្គលិកលក្ខណៈ</Text>
         <Text>ជា{this.state.currentJob.name} អ្នកគួរមានបុគ្គលិកលក្ខណៈជាមនុស្ស៖</Text>
         <View>
           { this.state.currentGroup.concern_entries.map((character, i) => {
@@ -151,7 +149,7 @@ export default class RecommendationReport extends Component {
 
   _renderContent() {
     return (
-      <View style={styles.box}>
+      <View style={[mainStyles.box, {padding: 16}]}>
         <Text>
           <Text style={localStyle.boldText}>{this.state.user.fullName}</Text>! អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ
           <Text style={localStyle.boldText}> “{this.state.currentJob.name}” </Text>
@@ -177,9 +175,7 @@ export default class RecommendationReport extends Component {
     return(
       <View style={{flex: 1}}>
         <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16, flex: 1}}>
-            { this._renderContent() }
-          </View>
+          { this._renderContent() }
         </ScrollView>
       </View>
     );
