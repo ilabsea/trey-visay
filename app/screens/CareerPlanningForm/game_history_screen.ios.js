@@ -16,6 +16,7 @@ import { Divider } from 'react-native-elements';
 import mainStyles from '../../assets/style_sheets/main/main';
 
 import BackButton from '../../components/back_button';
+import SchoolListView from '../../components/schools/school_list';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 
 import realm from '../../schema';
@@ -97,53 +98,7 @@ export default class GameHistoryScreen extends Component {
       <View>
         <Text style={mainStyles.sectionText}>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
 
-        <View style={mainStyles.box}>
-          { this.state.schools.map((school, i) => {
-            { return(this._renderSchool(school, i)) }
-          })}
-        </View>
-      </View>
-    )
-  }
-
-  _renderSchool(school, i) {
-    let logo = require('../../assets/images/schools/default.png');
-    if (school.logoName) {
-      logo = Images[school.logoName];
-    }
-
-    return (
-      <View>
-        <TouchableOpacity
-          style={mainStyles.btnList}
-          onPress={() => { this.props.navigation.navigate('InstitutionDetail', {school: school})} }
-          key={i}>
-
-          <View>
-            <Image source={logo} style={styles.image} />
-          </View>
-
-          <View style={{flex: 1, marginLeft: 16}}>
-            <Text numberOfLines={1} style={mainStyles.title}>
-              {school.universityName}
-            </Text>
-
-            <View style={{flexDirection: 'row'}}>
-              <AwesomeIcon name='building-o' color='#1976d2' size={16} />
-              <Text style={styles.schoolAddress}>{school.category || 'មិនមាន'}</Text>
-            </View>
-
-            <View style={{flexDirection: 'row'}}>
-              <AwesomeIcon name='map-marker' color='#1976d2' size={18} />
-              <Text numberOfLines={2} style={styles.schoolAddress}>{school.address || 'មិនមាន'}</Text>
-            </View>
-          </View>
-
-          <View style={{justifyContent: 'center'}}>
-            <AwesomeIcon name='angle-right' size={24} color='#bbb' />
-          </View>
-        </TouchableOpacity>
-        <Divider style={{marginLeft: 100}}/>
+        <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
       </View>
     )
   }

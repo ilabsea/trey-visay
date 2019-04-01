@@ -142,7 +142,7 @@ export default class CareerCounsellor extends Component {
                   <AwesomeIcon name='angle-right' size={24} color='#bbb' />
                 </View>
               </TouchableOpacity>
-              <Divider style={{maginLeft: 16}} />
+              <Divider style={{marginLeft: 16}} />
             </View>
           )
         })}
