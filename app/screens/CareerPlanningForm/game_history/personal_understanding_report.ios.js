@@ -77,15 +77,15 @@ export default class PersonalUnderstandingReport extends Component {
 
         { !!personalUnderstanding.careerName &&
           <View>
-            <Text style={[mainStyles.text, {marginTop: 12}]}>{Question.careerName}</Text>
-            <Text>{personalUnderstanding.careerName}</Text>
+            <Text style={[mainStyles.text, {marginTop: 30}]}>{Question.careerName}</Text>
+            <Text style={[mainStyles.text, {marginLeft: 16}]}>{personalUnderstanding.careerName}</Text>
           </View>
         }
 
         { !!personalUnderstanding.howToReachCareerGoal &&
           <View>
-            <Text style={[mainStyles.text, {marginTop: 12}]}>{ Question.howToReachCareerGoal}</Text>
-            <Text>{personalUnderstanding.howToReachCareerGoal}</Text>
+            <Text style={[mainStyles.text, {marginTop: 30}]}>{ Question.howToReachCareerGoal}</Text>
+            <Text style={[mainStyles.text, {marginLeft: 16}]}>{personalUnderstanding.howToReachCareerGoal}</Text>
           </View>
         }
 
@@ -132,9 +132,9 @@ export default class PersonalUnderstandingReport extends Component {
     }
 
     return (
-      <View style={[mainStyles.box, padding: 16]}>
+      <View style={[mainStyles.box, {padding: 16}]}>
         <Text style={mainStyles.text}>{ Question.howToReachJobVacancy }</Text>
-        <Text>{personalUnderstanding.howToReachJobVacancy}</Text>
+        <Text style={[mainStyles.text, {marginLeft: 16}]} >{personalUnderstanding.howToReachJobVacancy}</Text>
       </View>
     );
   }

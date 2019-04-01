@@ -15,7 +15,6 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
 
 import DatePicker from 'react-native-datepicker';
 import InputTextContainer from '../../components/input_text_container';
@@ -126,7 +125,7 @@ export default class EditPersonalInfo extends Component {
 
   _renderPersonalInfo() {
     return (
-      <View style={[styles.container, {backgroundColor: '#fff'}]}>
+      <View style={[styles.container, {backgroundColor: '#fff', padding: 16}]}>
         { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
         { this._renderInputTextContainer({stateName: 'username', label: 'ឈ្មោះគណនី'}) }
         { this._renderPicker({label: 'ភេទ', stateName: 'sex', options: [{label: 'ស្រី', value: 'ស្រី'}, {label: 'ប្រុស', value: 'ប្រុស'}, {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ'}]}) }

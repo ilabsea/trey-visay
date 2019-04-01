@@ -1,11 +1,11 @@
 import { StyleSheet , Platform} from 'react-native';
-
+import {FontSetting} from './font_setting';
 export default StyleSheet.create({
   container: {
     flex: 1,
   },
   title: {
-    fontSize: 30,
+    fontSize: FontSetting.big_title,
     color: '#fff',
     marginTop: 30,
     ...Platform.select({
@@ -15,7 +15,7 @@ export default StyleSheet.create({
     })
   },
   subTitle: {
-    fontSize: 24,
+    fontSize: FontSetting.tab_label,
     color: '#fff',
     marginVertical: 30,
     ...Platform.select({
@@ -82,7 +82,7 @@ export default StyleSheet.create({
         margin: 16
       },
       ios: {
-        margin: 8
+        margin: 0
       }
     })
   }
