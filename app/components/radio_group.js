@@ -22,7 +22,7 @@ class RadioGroup extends Component {
                     index={i}
                     isSelected={this.props.value == obj.value}
                     onPress={this.props.onPress}
-                    buttonSize={10}
+                    buttonSize={8}
                     buttonColor='#4caf50'
                     buttonWrapStyle={styles.buttonWrapper}
                   />
@@ -49,11 +49,7 @@ const styles = StyleSheet.create({
     lineHeight: 28
   },
   buttonWrapper: {
-    ...Platform.select({
-      android: {
-        marginTop: 5
-      }
-    })
+    marginTop: 5
   }
 })
 

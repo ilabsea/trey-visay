@@ -35,7 +35,7 @@ function Form(props) {
 
     <View style={styles.scrollContainer}>
       <View>
-        <View style={styles.instruction}>
+        <View style={mainStyles.instructionContainer}>
           <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
           <Text style={{flex: 1}}>
             ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។
@@ -43,7 +43,7 @@ function Form(props) {
           </Text>
         </View>
 
-        <Text style={mainStyles.sectionText}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
+        <Text style={mainStyles.instructionText}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
       </View>
 
       <View style={styles.formGroup}>
@@ -161,10 +161,6 @@ function Form(props) {
 const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
-  },
-  instruction: {
-    flexDirection: 'row',
-    marginVertical: 16
   },
   formGroup: {
     padding: 16,

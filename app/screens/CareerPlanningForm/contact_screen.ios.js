@@ -1,0 +1,285 @@
+import React, { Component } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  Image,
+  BackHandler,
+} from 'react-native';
+
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Sound from 'react-native-sound';
+import { Divider } from 'react-native-elements';
+import FooterBar from '../../components/FooterBar';
+import { FontSetting } from "../../assets/style_sheets/font_setting";
+
+import mainStyles from '../../assets/style_sheets/main/main';
+import headerStyles from '../../assets/style_sheets/header';
+import shareStyles from './style';
+import BackConfirmDialog from '../../components/back_confirm_dialog';
+
+import realm from '../../schema';
+import User from '../../utils/user';
+import schoolList from '../../data/json/schools';
+import Images from '../../assets/images';
+import characteristicList from '../../data/json/characteristic_jobs';
+
+export default class ContactScreen extends Component {
+  componentWillMount() {
+    this._initState();
+    this._backHandler();
+  }
+
+  componentWillUnmount() {
+    if (!!this.sound) {
+      this.sound.stop();
+      this.sound.release();
+    }
+  }
+
+  _initState() {
+    let user = User.getCurrent();
+    let game = user.games[user.games.length - 1];
+    let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
+    let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);
+    let schools = schoolList.filter((school, pos) => { return currentJob.schools.includes(school.id) });
+    if(currentJob.unknown_schools)
+      schools.push({universityName: currentJob.unknown_schools});
+
+    this.state = {
+      user: user,
+      game: game,
+      time: '',
+      isPlaying: false,
+      schools: schools,
+      currentJob: currentJob
+    };
+
+    this.sound = new Sound(this.state.game.voiceRecord, '', (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+      }
+
+      let date = new Date(null);
+      date.setSeconds(Math.ceil(this.sound.getDuration()));
+      let time = date.toISOString().substr(11, 8);
+      this.setState({time: time});
+    });
+
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+  }
+
+  _handleBack() {
+    this.setState({confirmDialogVisible: true});
+  }
+
+  _backHandler() {
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
+
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
+
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    return true
+  }
+
+  _onYes() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+  }
+
+  _onNo() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+  }
+
+  _goNext() {
+    this._handleSubmit();
+  }
+
+  _buildData() {
+    return {
+      uuid: this.state.game.uuid,
+      step: 'ContactScreen',
+      isDone: true
+    };
+  }
+
+  _handleSubmit() {
+    realm.write(() => {
+      realm.create('Game', this._buildData(), true);
+      realm.create('Sidekiq', { paramUuid: this.state.game.uuid, tableName: 'Game' }, true)
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    });
+  }
+
+  _renderContent() {
+    if (!this.state.schools.length && !this.state.currentJob.unknown_schools) {
+      return (null)
+    }
+
+    return (
+      <View>
+        <Text style={mainStyles.sectionText}>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
+
+        <View style={mainStyles.box}>
+          { this.state.schools.map((school, i) => {
+            { return(this._renderSchool(school, i)) }
+          })}
+        </View>
+      </View>
+    )
+  }
+
+  _renderSchool(school, i) {
+    let logo = require('../../assets/images/schools/default.png');
+    if (school.logoName) {
+      logo = Images[school.logoName];
+    }
+
+    return (
+      <View>
+        <TouchableOpacity
+          style={mainStyles.btnList}
+          onPress={() => { this.props.navigation.navigate('InstitutionDetail', {school: school})} }
+          key={i}>
+
+          <View>
+            <Image source={logo} style={styles.image} />
+          </View>
+
+          <View style={{flex: 1, marginLeft: 16}}>
+            <Text numberOfLines={1} style={mainStyles.title}>
+              {school.universityName}
+            </Text>
+
+            <View style={{flexDirection: 'row'}}>
+              <AwesomeIcon name='building-o' color='#1976d2' size={16} />
+              <Text style={styles.schoolAddress}>{school.category || 'មិនមាន'}</Text>
+            </View>
+
+            <View style={{flexDirection: 'row'}}>
+              <AwesomeIcon name='map-marker' color='#1976d2' size={18} />
+              <Text numberOfLines={2} style={styles.schoolAddress}>{school.address || 'មិនមាន'}</Text>
+            </View>
+          </View>
+
+          <View style={{justifyContent: 'center'}}>
+            <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+          </View>
+        </TouchableOpacity>
+        <Divider style={{marginLeft: 100}}/>
+      </View>
+    )
+  }
+
+  async _play() {
+    // These timeouts are a hacky workaround for some issues with react-native-sound.
+    // See https://github.com/zmxv/react-native-sound/issues/89.
+    this.setState({isPlaying: true});
+
+    setTimeout(() => {
+      this.sound.play((success) => {
+        if (success) {
+          console.log('successfully finished playing');
+          this.setState({isPlaying: false});
+        } else {
+          console.log('playback failed due to audio decoding errors');
+          this.sound.reset();
+        }
+      });
+    }, 100);
+  }
+
+  async _stop() {
+    this.sound.stop();
+    this.setState({isPlaying: false});
+  }
+
+  _renderVoiceRecord() {
+    return (
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{marginRight: 16}}>
+          { !this.state.isPlaying &&
+            <TouchableOpacity onPress={() => this._play()}>
+              <MaterialIcon style={mainStyles.icon} name='play-circle-outline' size={40} color='#4caf50'/>
+            </TouchableOpacity>
+          }
+
+          { this.state.isPlaying &&
+            <TouchableOpacity onPress={() => this._stop()}>
+              <MaterialIcon style={mainStyles.icon} name='pause-circle-outline' size={40} color='#e94b35'/>
+            </TouchableOpacity>
+          }
+        </View>
+
+        <Text style={styles.textTime}>{this.state.time}</Text>
+      </View>
+    )
+  }
+
+  _renderReason() {
+    return (
+      <View>
+        <Text style={{flex: 1}}>
+          <AwesomeIcon name='quote-left' color='#1976d2' size={14} />
+          <Text> {this.state.game.reason} </Text>
+          <AwesomeIcon name='quote-right' color='#1976d2' size={14} />
+        </Text>
+      </View>
+    )
+  }
+
+  _renderGoal() {
+    return (
+      <View>
+        <Text style={[mainStyles.instructionText, {marginTop: 24}]}>
+          ដាក់គោលដៅមួយ និងមូលហេតុ
+        </Text>
+
+        <View style={[mainStyles.box, {padding: 16}]}>
+          <Text style={mainStyles.text}>{this.state.game.goalCareer}</Text>
+
+          { !!this.state.game.reason && this._renderReason()}
+          { !!this.state.game.voiceRecord && this._renderVoiceRecord()}
+
+        </View>
+      </View>
+    )
+  }
+
+  render() {
+    return(
+      <View style={{flex: 1}}>
+        <ScrollView style={{flex: 1}}>
+          { this._renderGoal() }
+          { this._renderContent() }
+        </ScrollView>
+
+        <FooterBar icon='done' text='រួចរាល់' onPress={this._goNext.bind(this)} />
+
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+      </View>
+    );
+  };
+}
+
+const styles = StyleSheet.create({
+  image: {
+    width: 70,
+    height: 70
+  },
+  schoolAddress: {
+    marginLeft: 8,
+    fontSize: FontSetting.sub_title
+  }
+})

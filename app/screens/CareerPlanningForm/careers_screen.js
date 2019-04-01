@@ -11,7 +11,7 @@ import {
 
 import { Divider } from 'react-native-elements';
 
-import styles from '../../assets/style_sheets/profile_form';
+import mainStyles from '../../assets/style_sheets/main/main';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import Images from '../../assets/images';
@@ -83,17 +83,17 @@ export default class CareersScreen extends Component {
           onPress={() => {this.props.navigation.navigate('CareerDetailScreen',{careerId: career.id})}}
         >
           <Image source={Images[career.logoName]} style={{width: 80, height: 80, marginRight: 16}} />
-          <Text style={[styles.subTitle, {flex: 1}]}>{career.career_title}</Text>
+          <Text style={mainStyles.title}>{career.career_title}</Text>
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </TouchableOpacity>
-        <Divider/>
+        <Divider style={{marginLeft: 100}}/>
       </View>
     )
   }
 
   _renderContent() {
     return (
-      <View style={[styles.box, {padding: 0}]}>
+      <View style={mainStyles.box}>
         { careerList.slice(0, 3).map((career, i) => {
           { return (this._renderCareer(career, i))}
         })}
@@ -105,10 +105,7 @@ export default class CareersScreen extends Component {
     return(
       <View style={{flex: 1}}>
         <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16, flex: 1}}>
-            { this._renderContent() }
-          </View>
-
+          { this._renderContent() }
         </ScrollView>
 
         <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />

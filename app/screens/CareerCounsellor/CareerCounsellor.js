@@ -236,8 +236,8 @@ const styles = StyleSheet.create({
   },
   inlineBlock: {
     flex: 1,
-    margin: 24,
-    marginRight: 0,
+    margin: 0,
+    marginTop: 10,
     marginLeft: 10,
     justifyContent: 'center',
     flexDirection:'row',
