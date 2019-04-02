@@ -38,12 +38,15 @@ export default class PersonalityScreen extends Component {
     confirmDialogVisible: false,
     user: '',
     game: '',
-    personalities: MathUtil.shuffle(entries),
+    personalities: entries,
     characteristicEntries: [],
   }
 
   componentWillMount() {
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      goNext: this._goNext.bind(this)
+    });
     this._initState();
     this._backHandler();
   }
@@ -158,32 +161,28 @@ export default class PersonalityScreen extends Component {
 
     return(
       <View style={mainStyles.box}>
-        <Text style={mainStyles.sectionText}>បុគ្គលិកលក្ខណៈ</Text>
-
-        <View>
-          <CheckboxGroup
-            onSelect={(selected) => {this._handleChecked(selected)}}
-            items={checkboxes}
-            checked={this.state.characteristicEntries}
-            style={{
-              icon: {
-                color: '#4caf50',
-                size: 30
-              },
-              container: {
-                flexDirection: 'row',
-                borderTopWidth: 0.5,
-                borderColor: '#ccc',
-                paddingVertical: 8,
-              },
-              label: {
-                color: '#333',
-                fontSize: 16,
-                marginLeft: 10
-              }
-            }}
-          />
-        </View>
+        <CheckboxGroup
+          onSelect={(selected) => {this._handleChecked(selected)}}
+          items={checkboxes}
+          checked={this.state.characteristicEntries}
+          style={{
+            icon: {
+              color: '#4caf50',
+              size: 30
+            },
+            container: {
+              flexDirection: 'row',
+              borderTopWidth: 0.5,
+              borderColor: '#ccc',
+              paddingVertical: 8,
+            },
+            label: {
+              color: '#333',
+              fontSize: 16,
+              marginLeft: 10
+            }
+          }}
+        />
       </View>
     )
   }
@@ -204,8 +203,6 @@ export default class PersonalityScreen extends Component {
 
           { this._renderPersonalities() }
         </ScrollView>
-
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

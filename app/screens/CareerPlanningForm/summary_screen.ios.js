@@ -42,7 +42,10 @@ export default class SummaryScreen extends Component {
     careers = [];
     allCareers = [];
 
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      goNext: this._goNext.bind(this)
+    });
     this._initState();
     this._backHandler();
   }
@@ -162,8 +165,6 @@ export default class SummaryScreen extends Component {
 
           { this._renderRadioGroups() }
         </ScrollView>
-
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

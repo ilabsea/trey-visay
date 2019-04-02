@@ -26,18 +26,18 @@ import characteristicList from '../../data/json/characteristic_jobs';
 let careers = [];
 
 export default class PersonalityJobsScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-    let highlighStyle = (state.params && state.params.total > 3) ? {color: '#e94b35'} : {color: '#fff'};
+  // static navigationOptions = ({ navigation }) => {
+  //   const { goBack, state } = navigation;
+  //   let highlighStyle = (state.params && state.params.total > 3) ? {color: '#e94b35'} : {color: '#fff'};
 
-    return {
-      title: state.params && state.params.title,
-      headerTitleStyle: [headerStyles.headerTitleStyle],
-      headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
-                      <Text style={headerStyles.saveText}><Text style={highlighStyle}>{state.params && state.params.total || 0} </Text> / 3</Text>
-                    </TouchableOpacity>),
-    }
-  };
+  //   return {
+  //     title: state.params && state.params.title,
+  //     headerTitleStyle: [headerStyles.headerTitleStyle],
+  //     headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
+  //                     <Text style={headerStyles.saveText}><Text style={highlighStyle}>{state.params && state.params.total || 0} </Text> / 3</Text>
+  //                   </TouchableOpacity>),
+  //   }
+  // };
 
   careers = [];
 
@@ -52,7 +52,12 @@ export default class PersonalityJobsScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this), title: this.state.currentGroup.career_title, total: careers.length});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      title: this.state.currentGroup.career_title,
+      total: careers.length,
+      goNext: this._goNext.bind(this)
+    });
   }
 
   _initState() {
@@ -209,7 +214,6 @@ export default class PersonalityJobsScreen extends Component {
           </View>
         </ScrollView>
 
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
     );

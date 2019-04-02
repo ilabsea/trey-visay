@@ -42,7 +42,10 @@ export default class RecommendationScreen extends Component {
       currentGroup: currentGroup,
     })
 
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      goNext: this._goNext.bind(this)
+    });
   }
 
   _handleBack() {
@@ -221,8 +224,6 @@ export default class RecommendationScreen extends Component {
           </View>
           { this._renderContent() }
         </ScrollView>
-
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

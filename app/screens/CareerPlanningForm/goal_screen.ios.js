@@ -90,7 +90,10 @@ export default class GoalScreen extends Component {
       voiceRecord: ''
     });
 
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      goNext: this._goNext.bind(this)
+    });
   }
 
   _handleBack() {
@@ -401,8 +404,6 @@ export default class GoalScreen extends Component {
         <KeyboardAwareScrollView style={{flex: 1}}>
           { this._renderContent() }
         </KeyboardAwareScrollView>
-
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

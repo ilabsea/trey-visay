@@ -68,7 +68,10 @@ export default class ContactScreen extends Component {
       this.setState({time: time});
     });
 
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      goNext: this._goNext.bind(this)
+    });
   }
 
   _handleBack() {
@@ -212,8 +215,6 @@ export default class ContactScreen extends Component {
           { this._renderGoal() }
           { this._renderContent() }
         </ScrollView>
-
-        <FooterBar icon='done' text='រួចរាល់' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

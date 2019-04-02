@@ -39,7 +39,10 @@ export default class CareersScreen extends Component {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     this.setState({game : game});
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      goNext: this._goNext.bind(this)
+    });
     this._backHandler();
   }
 
@@ -107,8 +110,6 @@ export default class CareersScreen extends Component {
         <ScrollView style={{flex: 1}}>
           { this._renderContent() }
         </ScrollView>
-
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

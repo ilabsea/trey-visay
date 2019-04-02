@@ -158,28 +158,32 @@ export default class PersonalityScreen extends Component {
 
     return(
       <View style={styles.box}>
-        <CheckboxGroup
-          onSelect={(selected) => {this._handleChecked(selected)}}
-          items={checkboxes}
-          checked={this.state.characteristicEntries}
-          style={{
-            icon: {
-              color: '#4caf50',
-              size: 30
-            },
-            container: {
-              flexDirection: 'row',
-              borderTopWidth: 0.5,
-              borderColor: '#ccc',
-              paddingVertical: 8,
-            },
-            label: {
-              color: '#333',
-              fontSize: 16,
-              marginLeft: 10
-            }
-          }}
-        />
+        <View>
+          <Text style={mainStyles.sectionText}>បុគ្គលិកលក្ខណៈ</Text>
+
+          <CheckboxGroup
+            onSelect={(selected) => {this._handleChecked(selected)}}
+            items={checkboxes}
+            checked={this.state.characteristicEntries}
+            style={{
+              icon: {
+                color: '#4caf50',
+                size: 30
+              },
+              container: {
+                flexDirection: 'row',
+                borderTopWidth: 0.5,
+                borderColor: '#ccc',
+                paddingVertical: 8,
+              },
+              label: {
+                color: '#333',
+                fontSize: 16,
+                marginLeft: 10
+              }
+            }}
+          />
+        </View>
       </View>
     )
   }
