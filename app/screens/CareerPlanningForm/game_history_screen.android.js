@@ -52,7 +52,6 @@ export default class GameHistoryScreen extends Component {
       currentJob: currentJob
     });
     if (!game.voiceRecord) { return }
-    console.log('this.state.game : ', game.voiceRecord);
 
     this.sound = new Sound(game.voiceRecord, '', (error) => {
       if (error) {

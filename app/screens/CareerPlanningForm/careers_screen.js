@@ -86,7 +86,7 @@ export default class CareersScreen extends Component {
           <Text style={mainStyles.title}>{career.career_title}</Text>
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </TouchableOpacity>
-        <Divider style={{marginLeft: 100}}/>
+        <Divider style={{marginLeft: 110}}/>
       </View>
     )
   }
