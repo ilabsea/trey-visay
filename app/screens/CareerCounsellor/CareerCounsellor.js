@@ -152,10 +152,11 @@ export default class CareerCounsellor extends Component {
   }
 
   render() {
+    let background = this.state.completedGames.length ? {}:{backgroundColor: '#fff'}
     return (
       <View style={{flex: 1}}>
         <StatusBar />
-        <ScrollView>
+        <ScrollView style={background}>
           <View style={styles.container}>
             { this._renderInstruction() }
             { this._renderGameHistory() }
