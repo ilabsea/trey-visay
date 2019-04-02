@@ -46,6 +46,7 @@ export default StyleSheet.create({
   },
   link: {
     color: '#1976d2',
-    fontSize: FontSetting.text
+    fontSize: FontSetting.text,
+    height: 26
   },
 })

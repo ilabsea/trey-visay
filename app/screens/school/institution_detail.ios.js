@@ -47,7 +47,7 @@ export default class InstitutionDetail extends Component {
     }
 
     return (
-      <View style={[mainStyles.box, { padding: 10,paddingLeft: 8, paddingRight: 14 }]}>
+      <View style={[mainStyles.box, { padding: 10,paddingLeft: 8}]}>
         { this._renderCommunication({data: school.address, icon: 'map-marker'}) }
         { this._renderCommunication({data: school.phoneNumbers, icon: 'phone'}) }
         { this._renderCommunication({data: school.faxes, icon: 'fax', iconSize: 14}) }
@@ -107,14 +107,14 @@ export default class InstitutionDetail extends Component {
                 <MaterialIcon name={com.icon} color='#8E8E93' size={iconSize} />
               }
             </View>
-            { !!com.isLink &&
+            { !!com.isLink && data!='មិនមាន' &&
               <Text
                 onPress={()=> Linking.openURL('mailto:' + data)}
                 style={mainStyles.link}>
                 {data}
               </Text>
             }
-            { !com.isLink &&
+            { (!com.isLink || data=='មិនមាន') &&
               <Text
                 style={mainStyles.text}>
                 {data}
@@ -232,7 +232,8 @@ const styles = StyleSheet.create({
   },
   communicationWrapper: {
     flexDirection: 'row',
-    padding: 6
+    padding: 6,
+    marginRight: 30
   },
   majorWrapper: {
     flexDirection: 'row',

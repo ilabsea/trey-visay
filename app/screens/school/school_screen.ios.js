@@ -151,7 +151,7 @@ export default class SchoolScreen extends Component {
 
             <View style={{flexDirection: 'row'}}>
               <AwesomeIcon name='map-marker' color='#1976d2' size={18} />
-              <Text ellipsizeMode='head' numberOfLines={1} style={[mainStyles.subTitle, {marginLeft: 8}]}>{school.address}</Text>
+              <Text numberOfLines={1} style={[mainStyles.subTitle, {marginLeft: 8}]}>{school.address}</Text>
             </View>
           </View>
 
