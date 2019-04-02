@@ -44,7 +44,7 @@ export default class VocationalJobShowScreen extends Component {
         <OneList onPress={() => {
             this.props.navigation.navigate('Description', {
               title: 'បង្ហាញទីកន្លែងការងារ',
-              text:'ទីកន្លែងការងារមាន ៖ ' + this.state.currentJob.places_for_work
+              content:'ទីកន្លែងការងារមាន ៖ ' + this.state.currentJob.places_for_work
             })
           }} text='បង្ហាញទីកន្លែងការងារ'/>
       </View>
@@ -72,12 +72,6 @@ export default class VocationalJobShowScreen extends Component {
       <View style={{flex: 1}}>
         <StatusBar />
         <ScrollView style={{flex: 1}}>
-          <OneList onPress={() => {
-              this.props.navigation.navigate('Description', {
-                title: 'អំពី' + this.props.navigation.state.params.title,
-                text: this.state.currentJob.description || 'Description is not available'
-              })
-            }} text='អំពី'/>
           { this._renderPlacesForWork() }
           { this._renderSchoolList() }
         </ScrollView>

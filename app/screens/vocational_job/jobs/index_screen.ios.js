@@ -26,6 +26,10 @@ export default class VocationalJobIndexScreen extends Component {
       currentGroup: currentGroup,
       lineDescription: 2
     });
+    this.props.navigation.setParams({
+      title: 'ជំនាញវិជ្ជាជីវៈ',
+      content: currentGroup.recommendation
+    })
   }
 
   _renderCareer(career, i) {
@@ -35,7 +39,8 @@ export default class VocationalJobIndexScreen extends Component {
           onPress={() => {
             this.props.navigation.navigate('VocationalJobShowScreen', {
               id: career.id,
-              title: career.name
+              title: career.name,
+              content: career.description || 'Description is not available'
             })
           }}
           title={career.name} />
@@ -46,13 +51,6 @@ export default class VocationalJobIndexScreen extends Component {
   _renderContent() {
     return (
       <View>
-        <OneList onPress={() => {
-            this.props.navigation.navigate('Description', {
-              title: 'អំពីជំនាញវិជ្ជាជីវៈ',
-              text: this.state.currentGroup.recommendation
-            })
-          }} text="អំពី"/>
-
         <Text style={mainStyles.sectionText}>
           មុខរបរមានដូចខាងក្រោម៖
         </Text>
