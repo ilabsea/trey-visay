@@ -16,6 +16,8 @@ import { Divider } from 'react-native-elements';
 import mainStyles from '../../assets/style_sheets/main/main';
 
 import BackButton from '../../components/back_button';
+import ButtonList from '../../components/list/button_list';
+import OneList from '../../components/list/one_list';
 import SchoolListView from '../../components/schools/school_list';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 
@@ -170,16 +172,13 @@ export default class GameHistoryScreen extends Component {
 
   _renderButton(label, screenName) {
     return (
-      <View style={mainStyles.box}>
-        <TouchableOpacity
-          style={mainStyles.btnList}
-          onPress={() => this.props.navigation.navigate(screenName, {gameUuid: this.state.gameUuid})}
-          >
-          <Image source={require('../../assets/images/list.png')} style={{width: 60, height: 60, marginRight: 16}} />
-          <Text style={mainStyles.title}>{label}</Text>
-          <AwesomeIcon name='angle-right' size={24} color='#bbb'/>
-        </TouchableOpacity>
-      </View>
+      <ButtonList
+        onPress={() => {
+          this.props.navigation.navigate(screenName, {
+            gameUuid: this.state.gameUuid
+          })
+        }}
+        title={label} />
     )
   }
 
@@ -187,8 +186,11 @@ export default class GameHistoryScreen extends Component {
     return (
       <View>
         <Text style={mainStyles.sectionText}>ធ្វើតេស្តដំណាក់កាលទី 1</Text>
-
-        { this._renderButton('ស្វែងយល់អំពីខ្លួនឯង', 'PersonalUnderstandingReport') }
+        <OneList onPress={() => {
+            this.props.navigation.navigate('PersonalUnderstandingReport', {
+              gameUuid: this.state.gameUuid
+            })
+          }} text='ស្វែងយល់អំពីខ្លួនឯង' />
       </View>
     )
   }
@@ -197,11 +199,12 @@ export default class GameHistoryScreen extends Component {
     return (
       <View>
         <Text style={mainStyles.sectionText}>ធ្វើតេស្តដំណាក់កាលទី 2</Text>
-
-        { this._renderButton('ការបំពេញមុខវិជ្ជា', 'SubjectReport') }
-        { this._renderButton('ការបំពេញបុគ្គលិកលក្ខណៈ', 'StudentPersonalityReport') }
-        { this._renderButton('ការជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណៈ', 'PersonalityReport') }
-        { this._renderButton('ការផ្តល់អនុសាសន៍', 'RecommendationReport') }
+        <View style={mainStyles.box}>
+          { this._renderButton('ការបំពេញមុខវិជ្ជា', 'SubjectReport') }
+          { this._renderButton('ការបំពេញបុគ្គលិកលក្ខណៈ', 'StudentPersonalityReport') }
+          { this._renderButton('ការជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណៈ', 'PersonalityReport') }
+          { this._renderButton('ការផ្តល់អនុសាសន៍', 'RecommendationReport') }
+        </View>
       </View>
     )
   }

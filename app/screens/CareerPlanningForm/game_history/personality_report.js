@@ -52,8 +52,10 @@ export default class PersonalityReport extends Component {
       <View style={{flex: 1}}>
         <StatusBar />
 
-        <ScrollView style={{flex: 1, marginTop: 8}}>
-          { this._renderContent() }
+        <ScrollView>
+          <View style={{flex: 1, marginTop: 8}}>
+            { this._renderContent() }
+          </View>
         </ScrollView>
       </View>
     )

@@ -122,12 +122,14 @@ export default class SubjectReport extends Component {
       <View style={{flex: 1}}>
         <StatusBar />
 
-        <ScrollView style={{flex: 1, marginTop: 8}}>
-          { this._renderKhmer() }
-          { this._renderEnglish() }
-          { this._renderSocialStudies() }
-          { this._renderScience() }
-          { this._renderSoftSkill() }
+        <ScrollView>
+          <View style={{flex: 1, marginTop: 8}}>
+            { this._renderKhmer() }
+            { this._renderEnglish() }
+            { this._renderSocialStudies() }
+            { this._renderScience() }
+            { this._renderSoftSkill() }
+          </View>
         </ScrollView>
       </View>
     )

@@ -23,15 +23,15 @@ class SchoolListView extends Component {
     }
 
     return (
-      <View>
+      <View key={i}>
         <TouchableOpacity
           style={mainStyles.btnList}
           onPress={() => { this.props.navigation.navigate('InstitutionDetail', {school: school})} }
-          key={i}>
+          >
 
           <Image source={logo} style={styles.image} />
 
-          <View style={{flex: 1, marginLeft: 16}}>
+          <View style={{flex: 1, marginLeft: 16, marginRight: 8}}>
             <Text numberOfLines={1} style={mainStyles.title}>
               {school.universityName}
             </Text>
@@ -43,7 +43,7 @@ class SchoolListView extends Component {
 
             <View style={{flexDirection: 'row'}}>
               <AwesomeIcon name='map-marker' color='#1976d2' size={18} />
-              <Text numberOfLines={2} style={styles.schoolAddress}>{school.address || 'មិនមាន'}</Text>
+              <Text numberOfLines={1} style={styles.schoolAddress}>{school.address || 'មិនមាន'}</Text>
             </View>
           </View>
 
