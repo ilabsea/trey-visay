@@ -85,18 +85,18 @@ export default class CareersScreen extends Component {
           style={{flexDirection: 'row', alignItems: 'center', padding: 16}}
           onPress={() => {this.props.navigation.navigate('CareerDetailScreen',{careerId: career.id})}}
         >
-          <Image source={Images[career.logoName]} style={{width: 80, height: 80, marginRight: 16}} />
+          <Image source={Images[career.logoName]} style={{width: 30, height: 30, marginRight: 16}} />
           <Text style={mainStyles.title}>{career.career_title}</Text>
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </TouchableOpacity>
-        <Divider style={{marginLeft: 110}}/>
+        <Divider style={{marginLeft: 58}}/>
       </View>
     )
   }
 
   _renderContent() {
     return (
-      <View style={mainStyles.box}>
+      <View>
         { careerList.slice(0, 3).map((career, i) => {
           { return (this._renderCareer(career, i))}
         })}
@@ -106,7 +106,7 @@ export default class CareersScreen extends Component {
 
   render() {
     return(
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor: 'white'}}>
         <ScrollView style={{flex: 1}}>
           { this._renderContent() }
         </ScrollView>

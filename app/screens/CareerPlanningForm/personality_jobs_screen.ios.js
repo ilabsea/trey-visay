@@ -199,8 +199,8 @@ export default class PersonalityJobsScreen extends Component {
   render() {
     return(
       <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1, marginTop: 24}}>
-          <View>
+        <ScrollView style={{flex: 1}}>
+          <View style={{marginTop: 24}}>
             <Text style={mainStyles.instructionText}>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
 
             { this._renderCheckBoxes() }

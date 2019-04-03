@@ -258,14 +258,16 @@ export default class SubjectScreen extends Component {
   render() {
     return(
       <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1, marginTop: 24}}>
-          <Text style={mainStyles.instructionText}>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
+        <ScrollView style={{flex: 1}}>
+          <View style={{marginTop: 24}}>
+            <Text style={mainStyles.instructionText}>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
 
-          { this._renderKhmer() }
-          { this._renderEnglish() }
-          { this._renderSocialStudies() }
-          { this._renderScience() }
-          { this._renderSoftSkill() }
+            { this._renderKhmer() }
+            { this._renderEnglish() }
+            { this._renderSocialStudies() }
+            { this._renderScience() }
+            { this._renderSoftSkill() }
+          </View>
         </ScrollView>
 
         <BackConfirmDialog

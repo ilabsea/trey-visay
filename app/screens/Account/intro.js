@@ -38,23 +38,19 @@ export default class IntroScreen extends Component {
             ដេីម្បីអាចធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ប្អូនត្រូវមានគណនី និង បញ្ចូលគណនី៖
           </Text>
 
-          <View style={styles.inlineBlock}>
-            <Button
-              style={styles.button}
-              onPress={() => this._handleOnPress('Login')}>
-              <Text style={styles.btnText}>
-                ចូលគណនី
-              </Text>
-            </Button>
+          <Button
+            style={styles.button}
+            onPress={() => this._handleOnPress('Login')}>
+            <Text style={styles.btnText}>
+              ចូលគណនី
+            </Text>
+          </Button>
 
-            <Button
-              style={styles.button}
-              onPress={() => this._handleOnPress('Register')}>
-              <Text style={styles.btnText}>
-                បង្កេីតគណនី
-              </Text>
-            </Button>
-          </View>
+          <TouchableOpacity style={styles.linkBtn}
+            onPress={() => this._handleOnPress('Register')}>
+            <Text style={[styles.btnText, {color: 'green'}]}>បង្កើតគណនី</Text>
+          </TouchableOpacity>
+
         </View>
       </View>
     );
@@ -79,27 +75,21 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginBottom: 24
   },
-  inlineBlock: {
-    flex: 1,
-    margin: 24,
-    marginRight: 0,
-    marginLeft: 10,
-    justifyContent: 'center',
-    flexDirection:'row',
-    alignItems: 'center',
-  },
   button: {
     borderRadius: 3,
     height: 48,
-    width: '50%',
-    marginRight: 14,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
   },
   btnText: {
+    color: '#fff',
     fontWeight: 'bold',
     fontSize: FontSetting.button_text,
-    color: '#fff',
+  },
+  linkBtn: {
+    margin: 100,
+    marginTop: 16,
+    alignItems: 'center'
   }
 });

@@ -75,8 +75,7 @@ export default class CareerCounsellor extends Component {
             <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
             <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
           </View>
-
-          <View style={styles.inlineBlock}>
+          <View style={{marginTop: 16}}>
             <Button
               style={styles.button}
               onPress={this._goToPersonalUnderstandingForm.bind(this)}>
@@ -87,7 +86,7 @@ export default class CareerCounsellor extends Component {
 
             { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
               <Button
-                style={styles.button}
+                style={[styles.button, { backgroundColor: '#1976d2' , marginTop: 16}]}
                 onPress={this._handleGoingNextStep.bind(this)}
                 >
                 <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
@@ -235,23 +234,12 @@ const styles = StyleSheet.create({
   text: {
     fontWeight: 'bold'
   },
-  inlineBlock: {
-    flex: 1,
-    margin: 0,
-    marginTop: 10,
-    marginLeft: 10,
-    justifyContent: 'center',
-    flexDirection:'row',
-    alignItems: 'center',
-  },
   button: {
     borderRadius: 3,
     height: 48,
-    width: '50%',
-    marginRight: 14,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 20
   },
   btnText: {
     fontWeight: 'bold',
