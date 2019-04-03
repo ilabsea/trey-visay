@@ -117,7 +117,7 @@ export default class CareerCounsellor extends Component {
 
         { this.state.completedGames.map((game, i) => {
           return (
-            <View style={{backgroundColor: 'white'}}>
+            <View style={{backgroundColor: 'white'}} key={i}>
               <TouchableOpacity
                 key={i}
                 style={mainStyles.btnList}
