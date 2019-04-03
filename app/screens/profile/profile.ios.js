@@ -13,10 +13,13 @@ import {
   Icon,
   Avatar,
 } from 'react-native-material-ui';
+import { Divider } from 'react-native-elements';
 
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
+
+import {FontSetting} from '../../assets/style_sheets/font_setting';
 
 // Components
 import ScrollableHeader from '../../components/scrollable_header';
@@ -78,6 +81,7 @@ export default class Profile extends Component {
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
+        <Divider />
 
         <View style={styles.item}>
           <Text style={styles.itemLabel}>ឈ្មោះពេញ</Text>
@@ -136,6 +140,7 @@ export default class Profile extends Component {
             <Icon name="edit" />
           </TouchableOpacity>
         </View>
+        <Divider />
 
         <View style={styles.item}>
           <Text style={[styles.itemLabel, {flex: 2}]}>ឪពុកម្តាយលែងលះ</Text>
@@ -223,14 +228,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#eee',
     backgroundColor: '#fff',
-    ...Platform.select({
-      android: {
-        marginHorizontal: 16,
-      },
-      ios: {
-        marginHorizontal: 8,
-      }
-    })
   },
   item: {
     flexDirection: 'row',
@@ -238,7 +235,7 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     flex: 1,
-    fontSize: 20,
+    fontSize: FontSetting.medium_title,
     color: '#111'
   },
   itemLabel: {
@@ -246,7 +243,7 @@ const styles = StyleSheet.create({
   },
   itemValue: {
     flex: 2,
-    fontSize: 16,
+    fontSize: FontSetting.text,
     fontWeight: 'bold',
     color: '#111'
   },

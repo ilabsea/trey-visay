@@ -15,7 +15,7 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
 import CloseButton from '../../components/close_button';
 
-import styles from '../../assets/style_sheets/profile_form';
+import mainStyles from '../../assets/style_sheets/main/main';
 import shareStyles from './style';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -38,12 +38,15 @@ export default class PersonalityScreen extends Component {
     confirmDialogVisible: false,
     user: '',
     game: '',
-    personalities: MathUtil.shuffle(entries),
+    personalities: entries,
     characteristicEntries: [],
   }
 
   componentWillMount() {
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      goNext: this._goNext.bind(this)
+    });
     this._initState();
     this._backHandler();
   }
@@ -157,33 +160,29 @@ export default class PersonalityScreen extends Component {
     let checkboxes = this._formatDataForCheckbox(this.state.personalities);
 
     return(
-      <View style={styles.box}>
-        <Text style={styles.subTitle}>បុគ្គលិកលក្ខណៈ</Text>
-
-        <View>
-          <CheckboxGroup
-            onSelect={(selected) => {this._handleChecked(selected)}}
-            items={checkboxes}
-            checked={this.state.characteristicEntries}
-            style={{
-              icon: {
-                color: '#4caf50',
-                size: 30
-              },
-              container: {
-                flexDirection: 'row',
-                borderTopWidth: 0.5,
-                borderColor: '#ccc',
-                paddingVertical: 8,
-              },
-              label: {
-                color: '#333',
-                fontSize: 16,
-                marginLeft: 10
-              }
-            }}
-          />
-        </View>
+      <View style={mainStyles.box}>
+        <CheckboxGroup
+          onSelect={(selected) => {this._handleChecked(selected)}}
+          items={checkboxes}
+          checked={this.state.characteristicEntries}
+          style={{
+            icon: {
+              color: '#4caf50',
+              size: 30
+            },
+            container: {
+              flexDirection: 'row',
+              borderTopWidth: 0.5,
+              borderColor: '#ccc',
+              paddingVertical: 8,
+            },
+            label: {
+              color: '#333',
+              fontSize: 16,
+              marginLeft: 10
+            }
+          }}
+        />
       </View>
     )
   }
@@ -197,17 +196,13 @@ export default class PersonalityScreen extends Component {
     return(
       <View style={{flex: 1}}>
         <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16}}>
-            <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
-              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-              <Text>ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបានយ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់ និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយជាក់លាក់នាពេលអនាគត។</Text>
-            </View>
-
-            { this._renderPersonalities() }
+          <View style={mainStyles.instructionContainer}>
+            <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+            <Text style={[mainStyles.text, {flex:1}]}>ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបានយ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់ និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយជាក់លាក់នាពេលអនាគត។</Text>
           </View>
-        </ScrollView>
 
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
+          { this._renderPersonalities() }
+        </ScrollView>
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

@@ -31,7 +31,7 @@ export default class IntroScreen extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.container}>
         <StatusBar />
         <View style={styles.box}>
           <Text style={styles.text}>
@@ -46,13 +46,11 @@ export default class IntroScreen extends Component {
             </Text>
           </Button>
 
-          <Button
-            style={styles.button}
+          <TouchableOpacity style={styles.linkBtn}
             onPress={() => this._handleOnPress('Register')}>
-            <Text style={styles.btnText}>
-              បង្កេីតគណនី
-            </Text>
-          </Button>
+            <Text style={[styles.btnText, {color: 'green'}]}>បង្កើតគណនី</Text>
+          </TouchableOpacity>
+
         </View>
       </View>
     );
@@ -60,8 +58,11 @@ export default class IntroScreen extends Component {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff'
+  },
   box: {
-    backgroundColor: '#fff',
     padding: 24,
     ...Platform.select({
       android: {
@@ -80,11 +81,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
-    marginBottom: 10
   },
   btnText: {
+    color: '#fff',
     fontWeight: 'bold',
     fontSize: FontSetting.button_text,
-    color: '#fff',
+  },
+  linkBtn: {
+    margin: 100,
+    marginTop: 16,
+    alignItems: 'center'
   }
 });

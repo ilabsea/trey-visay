@@ -12,6 +12,7 @@ import InstitutionDetail from '../school/institution_detail';
 import Description from '../vocational_job/description';
 
 import BackButton from '../../components/back_button';
+import InfoButton from '../../components/info_button';
 import OpenDrawer from '../../components/open_drawer';
 import headerStyles from '../../assets/style_sheets/header';
 
@@ -21,15 +22,15 @@ const VocationalJobStack = createStackNavigator(
       screen: VocationalJobIndexScreen,
       navigationOptions: ({navigation}) => ({
         title: "ជំនាញវិជ្ជាជីវៈ",
-        headerLeft: <OpenDrawer navigation={navigation}/>
+        headerLeft: <OpenDrawer navigation={navigation}/>,
+        headerRight: <InfoButton navigation={navigation}/>
       })
     },
     VocationalJobShowScreen: {
       screen: VocationalJobShowScreen,
       navigationOptions: ({navigation}) => ({
         title: navigation.state.params.title,
-        headerTitleStyle: headerStyles.headerTitleStyle,
-        headerLeft: <BackButton navigation={navigation}/>
+        headerRight: <InfoButton navigation={navigation}/>
       })
     },
     InstitutionDetail: {
@@ -38,12 +39,12 @@ const VocationalJobStack = createStackNavigator(
     Description: {
       screen: Description,
       navigationOptions: ({navigation}) => ({
-        title: navigation.state.params.title,
-        headerLeft: <BackButton navigation={navigation}/>
+        title: navigation.state.params.title
       })
     },
   },{
     navigationOptions: ({navigation}) => ({
+      headerLeft: <BackButton navigation={navigation}/>,
       headerTitleStyle: headerStyles.headerTitleStyle,
       headerStyle: headerStyles.headerStyle,
     })

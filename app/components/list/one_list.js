@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { mainStyles } from '../../assets/style_sheets/main/main';
+import mainStyles from '../../assets/style_sheets/main/main';
 
 class OneList extends React.Component {
   constructor(props) {
@@ -16,7 +16,7 @@ class OneList extends React.Component {
 
   render() {
     return (
-      <View style={[mainStyles.box, {marginTop: 30}]}>
+      <View style={[mainStyles.box, {marginTop: 24}]}>
         <TouchableOpacity
           style={mainStyles.btnList}
           onPress={this.props.onPress}>

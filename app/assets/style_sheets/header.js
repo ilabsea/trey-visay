@@ -21,7 +21,7 @@ export default StyleSheet.create({
   saveText: {
     color: '#fff',
     marginRight: 16,
-    fontSize: 16,
+    fontSize: FontSetting.text,
   },
   actionWrapper: {
     flexDirection: 'row',

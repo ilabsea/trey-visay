@@ -56,7 +56,7 @@ export default class Dashboard extends Component {
         style={styles.btnBox}>
         <View style={[styles.btnFab, {backgroundColor: options.icon_bg_color}]}>
           { !(options.icon_type == 'material') &&
-            <AwesomeIcon style={styles.icon} name={options.icon_name} size={50} color='#fff' />
+            <AwesomeIcon style={styles.icon} name={options.icon_name} size={40} color='#fff' />
           }
 
           { options.icon_type == 'material' &&
@@ -101,7 +101,7 @@ export default class Dashboard extends Component {
                 icon_bg_color: '#1aaf5d',
                 icon_name: 'photo-filter',
                 icon_type: 'material',
-                description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវះរយៈពេលខ្លី។'
+                description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាច រៀនជំនាញវិជ្ជាជីវៈរយៈពេលខ្លី។'
               })
             }
             { this._renderButton({
@@ -140,14 +140,14 @@ const styles = StyleSheet.create({
       },
       ios: {
         margin: 0,
-        borderWidth: 1,
+        borderWidth: 0.5,
         borderColor: '#d3d3d3',
       }
     }),
     backgroundColor: '#fff',
   },
   btnLabel: {
-    fontSize: FontSetting.nav_title,
+    fontSize: FontSetting.big_title,
     color: '#1976d2',
     width: '100%',
     textAlign: 'center',
@@ -158,13 +158,13 @@ const styles = StyleSheet.create({
     })
   },
   btnDescription: {
-    padding: 8,
+    padding: 5,
     textAlign: 'center',
     fontSize: FontSetting.dashboard_subtitle,
   },
   btnFab: {
-    width: 100,
-    height: 100,
+    width: 80,
+    height: 80,
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',

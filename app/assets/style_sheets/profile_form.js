@@ -9,7 +9,7 @@ export default StyleSheet.create({
         margin: 16
       },
       ios: {
-        margin: 8
+        margin: 0
       }
     })
   },
@@ -35,7 +35,7 @@ export default StyleSheet.create({
   },
   box: {
     marginBottom: 8,
-    padding: 8,
+    padding: 16,
     backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#d3d3d3',

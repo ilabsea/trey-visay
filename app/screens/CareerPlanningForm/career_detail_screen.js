@@ -6,6 +6,7 @@ import {
   ScrollView,
   TouchableOpacity,
 } from 'react-native';
+import { Container, Content, Accordion } from "native-base";
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -13,7 +14,6 @@ import shareStyles from './style';
 import careers from '../../data/json/characteristic_jobs';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import Accordion from 'react-native-collapsible/Accordion';
 import { Divider } from 'react-native-elements';
 
 import BackButton from '../../components/back_button';
@@ -72,23 +72,21 @@ export default class CareerDetailScreen extends Component {
     this.setState({ activeSections });
   };
 
+  rebuildCareers(jobs){
+    let careers = jobs.map(career => {
+      return { title : career.name, content: career.description ? career.description : 'content is not available'}
+    })
+    return careers;
+  }
+
   render() {
+    let careers = this.rebuildCareers(job.careers)
     return(
-      <ScrollView>
-        <View style={{margin: 16}}>
-          <View style={styles.box}>
-            <Accordion
-              touchableProps={{underlayColor:"#F7FAF7"}}
-              sectionContainerStyle={{padding: 10}}
-              activeSections={this.state.activeSections}
-              sections={job.careers}
-              renderHeader={this._renderHeader}
-              renderContent={this._renderContent}
-              onChange={this._updateSections}
-            />
-          </View>
-        </View>
-      </ScrollView>
+      <Container>
+        <Content padder>
+          <Accordion dataArray={careers} icon="add" expandedIcon="remove" />
+        </Content>
+      </Container>
     );
   };
 }

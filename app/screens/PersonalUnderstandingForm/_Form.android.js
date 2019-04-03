@@ -32,9 +32,8 @@ function Form(props) {
   return (
 
     <View style={styles.scrollContainer}>
-
       <View>
-        <View style={{flexDirection: 'row', marginVertical: 16}}>
+        <View style={styles.instruction}>
           <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
           <Text style={{flex: 1}}>
             ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។
@@ -161,6 +160,10 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
     margin: 16,
+  },
+  instruction: {
+    flexDirection: 'row',
+    marginVertical: 16
   },
   formGroup: {
     padding: 16,

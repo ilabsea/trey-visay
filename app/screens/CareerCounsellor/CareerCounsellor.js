@@ -21,7 +21,7 @@ import myStyles from '../../assets/style_sheets/login_form';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
-import {mainStyles} from '../../assets/style_sheets/main/main';
+import mainStyles from '../../assets/style_sheets/main/main';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 export default class CareerCounsellor extends Component {
@@ -66,31 +66,33 @@ export default class CareerCounsellor extends Component {
         </View>
 
         <View style={{flex: 1, flexDirection: 'column'}}>
-            <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
-              ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
-            </Text>
+          <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
+            ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
+          </Text>
 
-            <View style={{marginBottom: 30}}>
-              <Text style={styles.text}>មាន២ជំហានៈ</Text>
-              <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
-              <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
-            </View>
-          <Button
-            style={styles.button}
-            onPress={this._goToPersonalUnderstandingForm.bind(this)}>
-            <Text style={styles.btnText}>
-              ចាប់ផ្តើមថ្មី
-            </Text>
-          </Button>
-
-          { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
+          <View>
+            <Text style={styles.text}>មាន២ជំហានៈ</Text>
+            <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
+            <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
+          </View>
+          <View style={{marginTop: 16}}>
             <Button
               style={styles.button}
-              onPress={this._handleGoingNextStep.bind(this)}
-              >
-              <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
+              onPress={this._goToPersonalUnderstandingForm.bind(this)}>
+              <Text style={styles.btnText}>
+                ចាប់ផ្តើមថ្មី
+              </Text>
             </Button>
-          }
+
+            { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
+              <Button
+                style={[styles.button, { backgroundColor: '#1976d2' , marginTop: 16}]}
+                onPress={this._handleGoingNextStep.bind(this)}
+                >
+                <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
+              </Button>
+            }
+          </View>
         </View>
       </View>
     )
@@ -114,7 +116,7 @@ export default class CareerCounsellor extends Component {
 
         { this.state.completedGames.map((game, i) => {
           return (
-            <View style={{backgroundColor: 'white'}}>
+            <View style={{backgroundColor: 'white'}} key={i}>
               <TouchableOpacity
                 key={i}
                 style={mainStyles.btnList}
@@ -139,7 +141,7 @@ export default class CareerCounsellor extends Component {
                   <AwesomeIcon name='angle-right' size={24} color='#bbb' />
                 </View>
               </TouchableOpacity>
-              <Divider style={{maginLeft: 16}} />
+              <Divider style={{marginLeft: 16}} />
             </View>
           )
         })}
@@ -149,10 +151,11 @@ export default class CareerCounsellor extends Component {
   }
 
   render() {
+    let background = this.state.completedGames.length ? {}:{backgroundColor: '#fff'}
     return (
       <View style={{flex: 1}}>
         <StatusBar />
-        <ScrollView>
+        <ScrollView style={background}>
           <View style={styles.container}>
             { this._renderInstruction() }
             { this._renderGameHistory() }
@@ -236,8 +239,7 @@ const styles = StyleSheet.create({
     height: 48,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 20,
-    marginBottom: 10
+    paddingHorizontal: 20
   },
   btnText: {
     fontWeight: 'bold',

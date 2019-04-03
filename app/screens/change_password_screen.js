@@ -83,46 +83,42 @@ export default class ChangePasswordScreen extends Component {
       <View style={styles.container}>
         <StatusBar />
 
-        <ScrollView>
-          <View style={styles.scrollContainer}>
-            <View style={shareStyles.box}>
-              <InputTextContainer
-                label='វាយបញ្ចូលលេខសម្ងាត់ចាស់'
-                placeholder='វាយបញ្ចូលលេខសម្ងាត់ចាស់នៅទីនេះ'
-                secureTextEntry={true}
-                onChangeText={(text) => this.setState({oldPassword: text})}
-                value={this.state.oldPassword}
-                onSubmitEditing={() => this.passwordInput.focus()}
-                returnKeyType='next'/>
+        <ScrollView style={{flex:1, backgroundColor: '#fff', padding: 16}}>
+          <InputTextContainer
+            label='វាយបញ្ចូលលេខសម្ងាត់ចាស់'
+            placeholder='វាយបញ្ចូលលេខសម្ងាត់ចាស់នៅទីនេះ'
+            secureTextEntry={true}
+            onChangeText={(text) => this.setState({oldPassword: text})}
+            value={this.state.oldPassword}
+            onSubmitEditing={() => this.passwordInput.focus()}
+            returnKeyType='next'/>
 
-              <InputTextContainer
-                label='វាយបញ្ចូលលេខសម្ងាត់ថ្មី'
-                placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីនៅទីនេះ'
-                secureTextEntry={true}
-                onChangeText={(text) => this.setState({newPassword: text})}
-                value={this.state.newPassword}
-                ref={(input) => this.passwordInput = input}
-                onSubmitEditing={() => this.passwordConfirmationInput.focus()}
-                returnKeyType='next'/>
+          <InputTextContainer
+            label='វាយបញ្ចូលលេខសម្ងាត់ថ្មី'
+            placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីនៅទីនេះ'
+            secureTextEntry={true}
+            onChangeText={(text) => this.setState({newPassword: text})}
+            value={this.state.newPassword}
+            ref={(input) => this.passwordInput = input}
+            onSubmitEditing={() => this.passwordConfirmationInput.focus()}
+            returnKeyType='next'/>
 
-              <InputTextContainer
-                label='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត'
-                placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀតនៅទីនេះ'
-                secureTextEntry={true}
-                onChangeText={(text) => this.setState({passwordConfirmation: text})}
-                value={this.state.passwordConfirmation}
-                ref={(input) => this.passwordConfirmationInput = input}
-                returnKeyType='done'/>
+          <InputTextContainer
+            label='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀត'
+            placeholder='វាយបញ្ចូលលេខសម្ងាត់ថ្មីម្តងទៀតនៅទីនេះ'
+            secureTextEntry={true}
+            onChangeText={(text) => this.setState({passwordConfirmation: text})}
+            value={this.state.passwordConfirmation}
+            ref={(input) => this.passwordConfirmationInput = input}
+            returnKeyType='done'/>
 
-              <View style={styles.submitWrapper}>
-                <TouchableOpacity
-                  onPress={this.handleSubmit.bind(this)}
-                  disabled={!isEnabled}
-                  style={[styles.btnSubmit, {backgroundColor: btnSubmitColor}]}>
-                  <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>យល់ព្រម</Text>
-                </TouchableOpacity>
-              </View>
-            </View>
+          <View style={styles.submitWrapper}>
+            <TouchableOpacity
+              onPress={this.handleSubmit.bind(this)}
+              disabled={!isEnabled}
+              style={[styles.btnSubmit, {backgroundColor: btnSubmitColor}]}>
+              <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>យល់ព្រម</Text>
+            </TouchableOpacity>
           </View>
         </ScrollView>
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>

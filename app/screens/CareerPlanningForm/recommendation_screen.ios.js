@@ -8,22 +8,29 @@ import {
   BackHandler,
 } from 'react-native';
 
-import mainStyles from '../../../assets/style_sheets/main/main';
+import BackConfirmDialog from '../../components/back_confirm_dialog';
+import FooterBar from '../../components/FooterBar';
 
-import realm from '../../../schema';
-import User from '../../../utils/user';
-import subjectList from '../../../data/json/subject';
-import characteristicList from '../../../data/json/characteristic_jobs';
-import subjectTe from '../../../data/translates/subject';
+import mainStyles from '../../assets/style_sheets/main/main';
+import headerStyles from '../../assets/style_sheets/header';
+import shareStyles from './style';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-export default class RecommendationReport extends Component {
+import realm from '../../schema';
+import User from '../../utils/user';
+import subjectList from '../../data/json/subject';
+import characteristicList from '../../data/json/characteristic_jobs';
+import subjectTe from '../../data/translates/subject';
+
+export default class RecommendationScreen extends Component {
   componentWillMount() {
     this._initState();
+    this._backHandler();
   }
 
   _initState() {
     let user = User.getCurrent();
-    let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
+    let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((obj) => obj.id == game.mostFavorableJobId);
 
@@ -34,9 +41,45 @@ export default class RecommendationReport extends Component {
       gameSubject: game.gameSubject,
       currentGroup: currentGroup,
     })
+
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      goNext: this._goNext.bind(this)
+    });
+  }
+
+  _handleBack() {
+    this.setState({confirmDialogVisible: true});
+  }
+
+  _backHandler() {
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
+
+  _onClickBackHandler = () => {
+    this.setState({confirmDialogVisible: true});
+
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    return true
+  }
+
+  _onYes() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+  }
+
+  _onNo() {
+    realm.write(() => {
+      realm.delete(this.state.game);
+
+      this.setState({confirmDialogVisible: false});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+    });
   }
 
   _goNext() {
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+
     this._handleSubmit();
   }
 
@@ -91,7 +134,7 @@ export default class RecommendationReport extends Component {
   _renderSubject() {
     return (
       <View>
-        <Text style={[mainStyles.text, localStyle.paragraph, {color: '#1976d2'}]}>មុខវិជ្ជា</Text>
+        <Text style={[localStyle.paragraph, {color: '#1976d2'}]}>មុខវិជ្ជា</Text>
         <Text>ជា{this.state.currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖ </Text>
         <View>
           { this.state.currentGroup.concern_subjects.map((code, i) => {
@@ -125,7 +168,7 @@ export default class RecommendationReport extends Component {
   _renderCharacteristic() {
     return (
       <View>
-        <Text style={[mainStyles.text, localStyle.paragraph, {color: '#1976d2'}]}>បុគ្គលិកលក្ខណៈ</Text>
+        <Text style={[localStyle.paragraph, {color: '#1976d2'}]}>បុគ្គលិកលក្ខណៈ</Text>
         <Text>ជា{this.state.currentJob.name} អ្នកគួរមានបុគ្គលិកលក្ខណៈជាមនុស្ស៖</Text>
         <View>
           { this.state.currentGroup.concern_entries.map((character, i) => {
@@ -175,8 +218,19 @@ export default class RecommendationReport extends Component {
     return(
       <View style={{flex: 1}}>
         <ScrollView style={{flex: 1}}>
+          <View style={mainStyles.instructionContainer}>
+            <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+            <Text style={[mainStyles.text, {flex:1 }]}>ចូរប្អូនអានអនុសាសន៍ខាងក្រោម៖</Text>
+          </View>
           { this._renderContent() }
         </ScrollView>
+
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
       </View>
     );
   };
@@ -192,5 +246,6 @@ const localStyle = StyleSheet.create({
   highlightBlue: {
     fontWeight: 'bold',
     color: '#1976d2'
-  }
+  },
+
 });

@@ -9,19 +9,13 @@ import {
   createStackNavigator,
 } from 'react-navigation';
 import headerStyles from '../../assets/style_sheets/header';
-import API from '../../api/schools';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 import OpenDrawer from '../../components/open_drawer';
-import Filter from '../../components/schools/filter';
 import BackButton from '../../components/back_button';
-import SaveButton from '../../components/save_button';
 
 import SchoolScreen from './school_screen';
 import InstitutionDetail from './institution_detail';
-import FilterScreen from './filter/filter_screen';
-import FilterProvinces from './filter/filter_provinces';
-import FilterMajors from './filter/filter_majors';
 
 const InstitutionTab = createBottomTabNavigator({
   GovernmentSchoolScreen: {
@@ -60,29 +54,11 @@ const InstitutionStack = createStackNavigator(
         headerTitleStyle: [headerStyles.headerTitleStyle],
         headerStyle: headerStyles.headerStyle,
         headerLeft:(<OpenDrawer navigation={screenProps.drawerNavigation}/>),
-        headerRight:(<Filter screenProps={{navigation: navigation}} />)
       })
     },
     InstitutionDetail: {
       screen: InstitutionDetail
     },
-    FilterScreen: {
-      screen: FilterScreen
-    },
-    FilterProvinces: {
-      screen: FilterProvinces,
-      navigationOptions: ({navigation, screenProps}) => ({
-        title: 'ជ្រេីសរេីសទីតាំង',
-        headerRight:(<SaveButton noIcon={true} navigation={navigation} />)
-      })
-    },
-    FilterMajors: {
-      screen: FilterMajors,
-      navigationOptions: ({navigation, screenProps}) => ({
-        title: 'ជ្រេីសរេីសជំនាញ',
-        headerRight:(<SaveButton noIcon={true} navigation={navigation} />)
-      })
-    }
   },
   {
     navigationOptions: ({navigation}) => ({

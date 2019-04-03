@@ -46,17 +46,19 @@ export default class ScrollableHeader extends Component {
       outputRange: [1, 1, 0],
       extrapolate: 'clamp',
     });
+
     const imageTranslate = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE],
-      outputRange: [0, 100],
+      outputRange: [0, HEADER_MIN_HEIGHT],
       extrapolate: 'clamp',
     });
 
     const titleScale = this.state.scrollY.interpolate({
-      inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-      outputRange: [1, 1, 0.8],
+      inputRange: [0, HEADER_SCROLL_DISTANCE],
+      outputRange: [HEADER_MAX_HEIGHT, HEADER_SCROLL_DISTANCE],
       extrapolate: 'clamp',
     });
+
     const titleTranslate = this.state.scrollY.interpolate({
       inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
       outputRange: [0, 0, -8],
@@ -106,19 +108,26 @@ export default class ScrollableHeader extends Component {
             source={this.props.profile}
           />}
 
-          { this.props.title &&
-            <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), right: 5, bottom: titleBottom}}>
-              <Text style={{fontSize: 20, color: '#fff'}}>{this.props.title}</Text>
-            </View>
-          }
+          <Animated.View
+            style={[
+              { transform: [{ translateY: titleScale }] },
+            ]}
+          >
 
-          { this.props.subTitle &&
-            <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), bottom: 0, flexDirection: 'row'}}>
-              <AwesomeIcon name='building-o' color='#fff' size={20} />
-              <Text style={{marginLeft: 8, fontSize: 16, color: '#fff'}}>{this.props.subTitle}</Text>
-            </View>
-          }
+            { this.props.title &&
+              <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), right: 5, bottom: titleBottom}}>
+                <Text style={{fontSize: 20, color: '#fff'}}>{this.props.title}</Text>
+              </View>
+            }
 
+            { this.props.subTitle &&
+              <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), bottom: 0, flexDirection: 'row'}}>
+                <AwesomeIcon name='building-o' color='#fff' size={20} />
+                <Text style={{marginLeft: 8, fontSize: 16, color: '#fff'}}>{this.props.subTitle}</Text>
+              </View>
+            }
+
+          </Animated.View>
 
         </Animated.View>
         <Animated.View

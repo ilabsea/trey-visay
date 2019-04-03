@@ -126,8 +126,6 @@ export default class Login extends Component {
     return (
       <View style={{flexDirection: 'column', flex: 1}}>
         <ScrollView style={{flex: 1}}>
-          { this._renderAdminTrigger() }
-
           <View style={{margin: 24}}>
             <View style={{flex: 1, alignItems: 'center'}}>
               <Image
