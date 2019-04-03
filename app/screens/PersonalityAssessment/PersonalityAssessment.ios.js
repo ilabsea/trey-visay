@@ -46,29 +46,47 @@ export default class PersonalityAssessment extends Component {
             <Text>តាមការសិក្សាស្រាវជ្រាវរបស់អ្នកឯកទេសខាងចិត្តសាស្ត្របង្ហាញថា បុគ្គលិកលក្ខណៈរបស់មនុស្ស ត្រូវបានចែកចេញជា ៦ ប្រភេទ៖</Text>
 
             <View style={{flexDirection: 'row', paddingLeft: 20, marginBottom: 12}}>
-              <Text style={{flex: 1}}>1. ប្រាកដនិយម (Realistic)</Text>
-              <Text style={{flex: 1}}>4. សង្គម (Social)</Text>
+              <View style={{flex: 1}}>
+                <Text>1. ប្រាកដនិយម</Text>
+                <Text>(Realistic)</Text>
+              </View>
+              <View style={{flex: 1}}>
+                <Text>4. សង្គម</Text>
+                <Text>(Social)</Text>
+              </View>
             </View>
 
             <View style={{flexDirection: 'row', paddingLeft: 20, marginBottom: 12}}>
-              <Text style={{flex: 1}}>2. ពូកែអង្កេត (Investigative)</Text>
-              <Text style={{flex: 1}}>5. ត្រិះរិះពិចារណា (Enterprising)</Text>
+              <View style={{flex: 1}}>
+                <Text>2. ពូកែអង្កេត</Text>
+                <Text>(Investigative)</Text>
+              </View>
+              <View style={{flex: 1}}>
+                <Text>5. ត្រិះរិះពិចារណា</Text>
+                <Text>(Enterprising)</Text>
+              </View>
             </View>
 
             <View style={{flexDirection: 'row', paddingLeft: 20}}>
-              <Text style={{flex: 1}}>3. សិល្បៈនិយម (Artisitc)</Text>
-              <Text style={{flex: 1}}>6. សណ្ដាប់ធ្នាប់ (Conventional)</Text>
+              <View style={{flex: 1}}>
+                <Text>3. សិល្បៈនិយម</Text>
+                <Text>(Artisitc)</Text>
+              </View>
+              <View style={{flex: 1}}>
+                <Text>6. សណ្ដាប់ធ្នាប់</Text>
+                <Text>(Conventional)</Text>
+              </View>
             </View>
           </Body>
         </CardItem>
 
         <CardItem footer style={{justifyContent: 'center'}}>
-          <Button onPress={()=> this._startNewAssessment()}>
+          <Button onPress={()=> this._startNewAssessment()} style={{width: 136, justifyContent: 'center'}}>
             <Text>ចាប់ផ្ដើមធ្វើតេស្ត</Text>
           </Button>
 
           { this.state.isContinued &&
-            <Button onPress={()=> this._continueStep()} style={{marginLeft: 10}} >
+            <Button onPress={()=> this._continueStep()} style={{width: 136, justifyContent: 'center', marginLeft: 10}}>
               <Text>បន្តទៅវគ្គមុន</Text>
             </Button>
           }
