@@ -82,7 +82,7 @@ export default class CareersScreen extends Component {
     return (
       <View key={i}>
         <TouchableOpacity
-          style={{flexDirection: 'row', alignItems: 'center', padding: 16}}
+          style={mainStyles.btnList}
           onPress={() => {this.props.navigation.navigate('CareerDetailScreen',{careerId: career.id})}}
         >
           <Image source={Images[career.logoName]} style={{width: 30, height: 30, marginRight: 16}} />

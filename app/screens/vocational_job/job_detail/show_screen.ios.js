@@ -40,7 +40,7 @@ export default class VocationalJobShowScreen extends Component {
     }
 
     return (
-      <View style={{marginTop: 30}}>
+      <View>
         <OneList onPress={() => {
             this.props.navigation.navigate('Description', {
               title: 'បង្ហាញទីកន្លែងការងារ',

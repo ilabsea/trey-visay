@@ -185,12 +185,12 @@ export default class GameHistoryScreen extends Component {
   _renderTest1Trigger() {
     return (
       <View>
-        <Text style={mainStyles.sectionText}>ធ្វើតេស្តដំណាក់កាលទី 1</Text>
+        <Text style={[mainStyles.sectionText, {marginBottom: -24}]}>ធ្វើតេស្តដំណាក់កាលទី 1</Text>
         <OneList onPress={() => {
             this.props.navigation.navigate('PersonalUnderstandingReport', {
               gameUuid: this.state.gameUuid
             })
-          }} text='ស្វែងយល់អំពីខ្លួនឯង' />
+          }} text='ស្វែងយល់អំពីខ្លួនឯង'/>
       </View>
     )
   }

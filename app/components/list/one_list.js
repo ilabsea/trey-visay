@@ -16,7 +16,7 @@ class OneList extends React.Component {
 
   render() {
     return (
-      <View style={mainStyles.box}>
+      <View style={[mainStyles.box, {marginTop: 24}]}>
         <TouchableOpacity
           style={mainStyles.btnList}
           onPress={this.props.onPress}>

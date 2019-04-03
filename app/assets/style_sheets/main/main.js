@@ -11,7 +11,7 @@ export default StyleSheet.create({
   },
   title: {
     flex: 1 ,
-    fontSize: FontSetting.text
+    fontSize: FontSetting.title
   },
   text: {
     fontSize: FontSetting.text
