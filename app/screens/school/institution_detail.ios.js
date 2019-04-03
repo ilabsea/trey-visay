@@ -143,7 +143,7 @@ export default class InstitutionDetail extends Component {
               <Text style={mainStyles.text}>{department.name}</Text>
               { department.majors.map((major, j) => {
                 return (
-                  <View style={styles.majorWrapper}>
+                  <View style={styles.majorWrapper} key={j}>
                     <View style={styles.iconWrapper}>
                       <AwesomeIcon name='graduation-cap' color='#8E8E93' size={16} />
                     </View>
