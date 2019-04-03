@@ -8,6 +8,8 @@ import {
   Platform
 } from 'react-native';
 
+import realm from './app/schema';
+
 import { createStackNavigator } from 'react-navigation';
 import User from './app/utils/user';
 
@@ -43,6 +45,7 @@ export default class App extends Component {
     this.state = {
       user: null
     }
+    this.handlerPredefinedUser();
   }
 
   componentWillMount(){
@@ -50,6 +53,17 @@ export default class App extends Component {
       let user = User.getCurrent();
       this.setState({user: user});
     }, 300)
+  }
+
+  handlerPredefinedUser() {
+    let uuid = '0335745d-daa3-485b-bc0f-3610db5udemo';
+    let predefinedUser = realm.objects('User').filtered('uuid="' + uuid + '"')[0];
+
+    if (!!predefinedUser) { return; }
+
+    realm.write(() => {
+      realm.create('User', { uuid: uuid, fullName: 'Demo', username: 'Demo', password: '123456', dateOfBirth: Date()}, true);
+    });
   }
 
   setHomeRoute(){
