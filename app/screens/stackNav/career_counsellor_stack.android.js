@@ -35,6 +35,8 @@ import PersonalityAssessmentResult from '../PersonalityAssessmentResult/Personal
 import PersonalityAssessmentResultHistory from '../PersonalityAssessmentResultHistory/PersonalityAssessmentResultHistory';
 import PersonalityAssessmentMajorList from '../PersonalityAssessmentMajorList/PersonalityAssessmentMajorList';
 import PersonalityAssessmentMajorDetail from '../PersonalityAssessmentMajorDetail/PersonalityAssessmentMajorDetail';
+import PersonalityAssessmentPersonalityCategory from '../PersonalityAssessmentPersonalityCategory/PersonalityAssessmentPersonalityCategory';
+import PersonalityAssessmentHighSchoolStudyOption from '../PersonalityAssessmentHighSchoolStudyOption/PersonalityAssessmentHighSchoolStudyOption';
 
 const CareerCounsellorStack = createStackNavigator(
   {
@@ -106,10 +108,22 @@ const CareerCounsellorStack = createStackNavigator(
         title: 'លទ្ធផលតេស្ត',
       })
     },
+    PersonalityCategoryScreen: {
+      screen: PersonalityAssessmentPersonalityCategory,
+      navigationOptions: ({navigation}) => ({
+        title: `លទ្ធផលតេស្តបែប${navigation.getParam('title')}`,
+      })
+    },
+    HighSchoolStudyOptionScreen: {
+      screen: PersonalityAssessmentHighSchoolStudyOption,
+      navigationOptions: ({navigation}) => ({
+        title: `ជម្រើសនៃការសិក្សាកម្រិតមធ្យមសិក្សាទុតិយភូមិ`,
+      })
+    },
     MajorListScreen: {
       screen: PersonalityAssessmentMajorList,
       navigationOptions: ({navigation}) => ({
-        title: `លទ្ធផលតេស្តបែប${navigation.getParam('title')}`,
+        title: `ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា`,
       })
     },
     MajorDetailScreen: {
@@ -236,7 +250,7 @@ const CareerCounsellorStack = createStackNavigator(
     // initialRouteName: 'CareerCounsellorScreen',
     initialRouteName: 'AssessmentScreen',
     // initialRouteName: 'PersonalityAssessmentScreen',
-    // initialRouteName: 'RealisticScreen',
+    // initialRouteName: 'HighSchoolStudyOptionScreen',
   }
 );
 

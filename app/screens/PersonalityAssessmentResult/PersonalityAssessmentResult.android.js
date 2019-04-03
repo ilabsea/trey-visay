@@ -154,9 +154,12 @@ class PersonalityAssessmentResult extends Component {
     let codes = this.state.assessment[category.name_en].map(x => x.value);
     let personalities = personalityList.filter(x => codes.includes(x.code));
 
-    if (!!personalities.length) {
-      this.props.navigation.navigate('MajorListScreen', { title: category.name_km, entries: personalities, category: category })
-    }
+    this.props.navigation.navigate('PersonalityCategoryScreen', {
+      title: category.name_km,
+      entries: personalities,
+      category: category,
+      assessment: this.state.assessment
+    });
   }
 
   _renderButton(category, index) {
@@ -176,8 +179,11 @@ class PersonalityAssessmentResult extends Component {
   _renderPersonalityGroup() {
     return (
       <View style={{marginBottom: 16}}>
-        <Text style={headerStyles.body2}>សេចក្តីលម្អិត</Text>
-        { categoryList.map((category, index) => this._renderButton(category, index)) }
+        <Text style={headerStyles.body2}>ផ្នែកវិទ្យសាស្ត្រ</Text>
+        { categoryList.filter(category => category.group == 'science').map((category, index) => this._renderButton(category, index)) }
+
+        <Text style={headerStyles.body2}>ផ្នែកវិទ្យាសាស្ត្រសង្គម</Text>
+        { categoryList.filter(category => category.group == 'social').map((category, index) => this._renderButton(category, index)) }
       </View>
     );
   }
