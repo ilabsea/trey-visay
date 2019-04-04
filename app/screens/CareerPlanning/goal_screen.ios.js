@@ -5,7 +5,6 @@ import {
   TextInput,
   StyleSheet,
   ScrollView,
-  TouchableOpacity,
   TouchableHighlight,
   Platform,
   PermissionsAndroid,

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ScrollView,
-  TouchableOpacity,
   BackHandler,
   Image,
   Platform
@@ -17,12 +15,9 @@ import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CloseButton from '../../components/shared/close_button';
 
 import mainStyles from '../../assets/style_sheets/main/main';
-import shareStyles from './style';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Images from '../../assets/images';
 import CheckboxGroup from '../../components/checkbox_group';
-import FooterBar from '../../components/FooterBar';
 import MathUtil from '../../utils/math';
 
 import realm from '../../db/schema';
