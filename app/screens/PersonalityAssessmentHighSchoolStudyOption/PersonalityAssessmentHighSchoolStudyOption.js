@@ -37,25 +37,21 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
     };
   }
 
-  _renderTip(code, tipType) {
-    let subject = subjectList.find((obj) => obj.code == code);
-
-    return (
-      <View>
-        { subject[tipType].map((tip, i) => {
-          { return (<Text key={i} style={{marginLeft: 8}}>- {tip}</Text>) }
-        })}
-      </View>
-    )
-  }
-
   _renderSubjectToImproveTip(code, i) {
     return (
-      <CardItem key={i} bordered>
+      <CardItem
+        key={i}
+        bordered
+        button
+        onPress={() => this.props.navigation.navigate('PersonalityAssessmentSubjectTipScreen', {subjectCode: code})}
+      >
         <Body>
           <Text>{ subjectTe[code] }</Text>
-          { this._renderTip(code, 'medium_tips') }
         </Body>
+
+        <Right>
+          <Icon name="arrow-forward" />
+        </Right>
       </CardItem>
     );
   }

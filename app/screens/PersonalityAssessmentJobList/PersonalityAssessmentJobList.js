@@ -9,22 +9,6 @@ import majorList from '../../data/json/personality_major';
 import characteristicList from '../../data/json/characteristic_jobs';
 
 export default class PersonalityAssessmentJobList extends Component {
-  // constructor(props) {
-  //   super(props)
-
-  //   // let category = this.props.navigation.getParam('category');
-  //   // let id = category.group == 'science' ? 1 : 3;
-  //   // let careers = characteristicList.find((obj) => obj.id == id).careers;
-  //   // // let assessment = this.props.navigation.getParam('assessment');
-
-  //   // this.state = {
-  //   //   careers: careers,
-  //   //   // assessment: assessment,
-  //   //   category: category,
-  //   //   categoryGroupLabel: translate[category.group]
-  //   // };
-  // }
-
   _renderList() {
     let category = this.props.navigation.getParam('category');
     let id = category.group == 'science' ? 1 : 3;

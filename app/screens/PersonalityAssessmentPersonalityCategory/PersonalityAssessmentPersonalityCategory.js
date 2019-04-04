@@ -8,6 +8,15 @@ import styles from '../../assets/style_sheets/list';
 import majorList from '../../data/json/personality_major';
 
 export default class PersonalityAssessmentPersonalityCategory extends Component {
+  constructor(props) {
+    super(props);
+
+    let category = props.navigation.getParam('category');
+    this.state = {
+      category: category
+    }
+  }
+
   _renderList() {
     let entries = this.props.navigation.getParam('entries');
 
@@ -36,24 +45,17 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
   }
 
   _renderDescription() {
-    let category = this.props.navigation.getParam('category');
-
-    if (!category.description) {
-      return (null)
+    if (!this.state.category.description) {
+      return (null);
     }
 
-    let doms = category.description.split(';').map((text, index) => {
+    let doms = this.state.category.description.split(';').map((text, index) => {
       return (
-        <View style={ styles.column } key={index}>
-            <View style={ styles.row }>
-                <View style={ styles.bullet }>
-                    <Text>{'\u2022' + " "}</Text>
-                </View>
-                <View style={ styles.bulletText }>
-                    <Text>{text}</Text>
-                </View>
-            </View>
-        </View>
+        <ListItem key={index}>
+          <Body>
+              <Text>{text}</Text>
+          </Body>
+        </ListItem>
       );
     })
 
@@ -66,7 +68,6 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
   }
 
   _renderButtonList() {
-    let category = this.props.navigation.getParam('category');
     let options = [
       {label: 'ជម្រើសនៃការសិក្សាកម្រិតមធ្យមសិក្សាទុតិយភូមិ', screen: 'HighSchoolStudyOptionScreen'},
       {label: 'ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា', screen: 'MajorListScreen'},
@@ -80,7 +81,7 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
           button
           onPress={() => {
             this.props.navigation.navigate(option.screen, {
-              category: category,
+              category: this.state.category,
               assessment: this.props.navigation.getParam('assessment')
             })}
           }>

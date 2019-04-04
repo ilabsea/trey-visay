@@ -40,6 +40,7 @@ import PersonalityAssessmentPersonalityCategory from '../PersonalityAssessmentPe
 import PersonalityAssessmentHighSchoolStudyOption from '../PersonalityAssessmentHighSchoolStudyOption/PersonalityAssessmentHighSchoolStudyOption';
 import PersonalityAssessmentJobList from '../PersonalityAssessmentJobList/PersonalityAssessmentJobList';
 import PersonalityAssessmentJobDetail from '../PersonalityAssessmentJobDetail/PersonalityAssessmentJobDetail';
+import PersonalityAssessmentSubjectTip from '../PersonalityAssessmentSubjectTip/PersonalityAssessmentSubjectTip';
 
 const CareerCounsellorStack = createStackNavigator(
   {
@@ -145,6 +146,12 @@ const CareerCounsellorStack = createStackNavigator(
       screen: PersonalityAssessmentJobDetail,
       navigationOptions: ({navigation}) => ({
         title: `ទំព័រលម្អិតពីអាជីព`,
+      })
+    },
+    PersonalityAssessmentSubjectTipScreen: {
+      screen: PersonalityAssessmentSubjectTip,
+      navigationOptions: ({navigation}) => ({
+        title: `គន្លឹះពង្រឹងមុខវិជ្ជា${navigation.getParam('title')}`,
       })
     },
     CareerCounsellorScreen: {
