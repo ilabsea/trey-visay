@@ -20,7 +20,7 @@ import SummaryScreen from '../CareerPlanning/summary_screen';
 import RecommendationScreen from '../CareerPlanning/recommendation_screen';
 import GoalScreen from '../CareerPlanning/goal_screen';
 import ContactScreen from '../CareerPlanning/contact_screen';
-import CareersScreen from '../CareerPlanning/careers_screen';
+import CareersScreen from '../CareerPlanningForm/careers_screen';
 import InstitutionDetail from '../school/institution_detail';
 import GameHistoryScreen from '../CareerPlanning/game_history_screen';
 import PersonalUnderstandingReport from '../CareerPlanning/game_history/personal_understanding_report';
@@ -29,13 +29,116 @@ import PersonalityReport from '../CareerPlanning/game_history/personality_report
 import StudentPersonalityReport from '../CareerPlanning/game_history/student_personality_report';
 import RecommendationReport from '../CareerPlanning/game_history/recommendation_report';
 
+import Assessment from '../Assessment/Assessment';
+import PersonalityAssessment from '../PersonalityAssessment/PersonalityAssessment';
+import PersonalityAssessmentForm from '../PersonalityAssessmentForm/PersonalityAssessmentForm';
+import PersonalityAssessmentResult from '../PersonalityAssessmentResult/PersonalityAssessmentResult';
+import PersonalityAssessmentResultHistory from '../PersonalityAssessmentResultHistory/PersonalityAssessmentResultHistory';
+import PersonalityAssessmentMajorList from '../PersonalityAssessmentMajorList/PersonalityAssessmentMajorList';
+import PersonalityAssessmentMajorDetail from '../PersonalityAssessmentMajorDetail/PersonalityAssessmentMajorDetail';
+import PersonalityAssessmentPersonalityCategory from '../PersonalityAssessmentPersonalityCategory/PersonalityAssessmentPersonalityCategory';
+import PersonalityAssessmentHighSchoolStudyOption from '../PersonalityAssessmentHighSchoolStudyOption/PersonalityAssessmentHighSchoolStudyOption';
+
 const CareerCounsellorStack = createStackNavigator(
   {
+    AssessmentScreen: {
+      screen: Assessment,
+      navigationOptions: ({navigation}) => ({
+        title: 'វាយតម្លៃមុខរបរនិងអាជីព',
+        headerLeft: <OpenDrawer navigation={navigation}/>
+      })
+    },
+    PersonalityAssessmentScreen: {
+      screen: PersonalityAssessment,
+      navigationOptions: ({navigation}) => ({
+        title: 'វាយតម្លៃមុខរបរនិងអាជីព',
+      })
+    },
+    RealisticScreen: {
+      screen: PersonalityAssessmentForm,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តប្រាកដនិយម',
+        headerLeft: <CloseButton navigation={navigation}/>
+      })
+    },
+    InvestigativeScreen: {
+      screen: PersonalityAssessmentForm,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តពូកែអង្កេត',
+        headerLeft: <CloseButton navigation={navigation}/>
+      })
+    },
+    ArtisticScreen: {
+      screen: PersonalityAssessmentForm,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តសិល្បៈនិយម',
+        headerLeft: <CloseButton navigation={navigation}/>
+      })
+    },
+    SocialScreen: {
+      screen: PersonalityAssessmentForm,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តសង្គម',
+        headerLeft: <CloseButton navigation={navigation}/>
+      })
+    },
+    EnterprisingScreen: {
+      screen: PersonalityAssessmentForm,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តត្រិះរិះពិចារណា',
+        headerLeft: <CloseButton navigation={navigation}/>
+      })
+    },
+    ConventionalScreen: {
+      screen: PersonalityAssessmentForm,
+      navigationOptions: ({navigation}) => ({
+        title: 'អនុវត្តតេស្តសណ្ដាប់ធ្នាប់',
+        headerLeft: <CloseButton navigation={navigation}/>
+      })
+    },
+    AssessmentResultScreen: {
+      screen: PersonalityAssessmentResult,
+      navigationOptions: ({navigation}) => ({
+        title: 'បង្ហាញលទ្ធផល',
+        headerLeft: <CloseButton navigation={navigation}/>
+      })
+    },
+    AssessmentResultHistoryScreen: {
+      screen: PersonalityAssessmentResultHistory,
+      navigationOptions: ({navigation}) => ({
+        title: 'លទ្ធផលតេស្ត',
+      })
+    },
+    PersonalityCategoryScreen: {
+      screen: PersonalityAssessmentPersonalityCategory,
+      navigationOptions: ({navigation}) => ({
+        title: `លទ្ធផលតេស្តបែប${navigation.getParam('title')}`,
+      })
+    },
+    HighSchoolStudyOptionScreen: {
+      screen: PersonalityAssessmentHighSchoolStudyOption,
+      navigationOptions: ({navigation}) => ({
+        title: `ជម្រើសនៃការសិក្សាកម្រិតមធ្យមសិក្សាទុតិយភូមិ`,
+      })
+    },
+    MajorListScreen: {
+      screen: PersonalityAssessmentMajorList,
+      navigationOptions: ({navigation}) => ({
+        title: `ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា`,
+      })
+    },
+    MajorDetailScreen: {
+      screen: PersonalityAssessmentMajorDetail,
+      navigationOptions: ({navigation}) => ({
+        title: `ការសិក្សាជំនាញ${navigation.getParam('title')}`,
+      })
+    },
     CareerCounsellorScreen: {
       screen: CareerCounsellor,
       navigationOptions: ({navigation}) => ({
         title: 'វាយតម្លៃមុខរបរនិងអាជីព',
-        headerLeft: <BackButton navigation={navigation}/>
+        // headerLeft: <BackButton navigation={navigation}/>
+        // headerLeft: <OpenDrawer navigation={navigation}/>
       })
     },
     PersonalUnderstandingFormScreen: {
@@ -158,10 +261,11 @@ const CareerCounsellorStack = createStackNavigator(
       headerTitleStyle: headerStyles.headerTitleStyle,
       headerStyle: headerStyles.headerStyle,
       headerLeft: <BackButton navigation={navigation}/>
-    })
-  },
-  {
-    initialRouteName: 'CareerCounsellorScreen',
+    }),
+    // initialRouteName: 'CareerCounsellorScreen',
+    initialRouteName: 'AssessmentScreen',
+    // initialRouteName: 'PersonalityAssessmentScreen',
+    // initialRouteName: 'HighSchoolStudyOptionScreen',
   }
 );
 

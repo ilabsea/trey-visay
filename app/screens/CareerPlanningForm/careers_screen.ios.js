@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   Image,
   BackHandler,
-  Platform
 } from 'react-native';
 
 import { Divider } from 'react-native-elements';
@@ -20,12 +19,11 @@ import Images from '../../assets/images';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import careerList from '../../data/json/characteristic_jobs';
-import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
-import CloseButton from '../../components/shared/close_button';
+import BackConfirmDialog from '../../components/back_confirm_dialog';
+import CloseButton from '../../components/close_button';
 import FooterBar from '../../components/FooterBar';
 
-
-import realm from '../../db/schema';
+import realm from '../../schema';
 import User from '../../utils/user';
 
 export default class CareersScreen extends Component {
@@ -116,8 +114,6 @@ export default class CareersScreen extends Component {
         <ScrollView style={{flex: 1}}>
           { this._renderContent() }
         </ScrollView>
-
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

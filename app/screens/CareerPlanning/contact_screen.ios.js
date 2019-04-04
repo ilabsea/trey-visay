@@ -9,6 +9,8 @@ import {
   BackHandler,
 } from 'react-native';
 
+import { NavigationActions } from 'react-navigation';
+
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
@@ -28,10 +30,13 @@ import Images from '../../assets/images';
 import characteristicList from '../../data/json/characteristic_jobs';
 
 export default class ContactScreen extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
     this._initState();
     this._backHandler();
   }
+
 
   componentWillUnmount() {
     if (!!this.sound) {
@@ -93,13 +98,16 @@ export default class ContactScreen extends Component {
   }
 
   _onYes() {
+    this._closeDialog();
+  }
+
+  _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
-    this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    this._closeDialog();
   }
 
   _goNext() {

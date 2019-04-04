@@ -16,7 +16,7 @@ import { NavigationActions } from 'react-navigation';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CloseButton from '../../components/shared/close_button';
 
-import styles from '../../assets/style_sheets/profile_form';
+import mainStyles from '../../assets/style_sheets/main/main';
 import shareStyles from './style';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -38,7 +38,7 @@ export default class PersonalityScreen extends Component {
     confirmDialogVisible: false,
     user: '',
     game: '',
-    personalities: MathUtil.shuffle(entries),
+    personalities: entries,
     characteristicEntries: [],
   }
 
@@ -153,8 +153,8 @@ export default class PersonalityScreen extends Component {
     let checkboxes = this._formatDataForCheckbox(this.state.personalities);
 
     return(
-      <View style={styles.box}>
-        <Text style={styles.subTitle}>បុគ្គលិកលក្ខណៈ</Text>
+      <View style={mainStyles.box}>
+        <Text style={mainStyles.sectionText}>បុគ្គលិកលក្ខណៈ</Text>
 
         <View>
           <CheckboxGroup

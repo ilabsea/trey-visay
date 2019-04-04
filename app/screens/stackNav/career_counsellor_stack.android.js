@@ -162,43 +162,49 @@ const CareerCounsellorStack = createStackNavigator(
       screen: PersonalityScreen,
       navigationOptions: ({navigation}) => ({
         title: 'បំពេញបុគ្គលិកលក្ខណៈ',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
       })
     },
-    PersonalityJobsScreen: { screen: PersonalityJobsScreen },
+    PersonalityJobsScreen: {
+      screen: PersonalityJobsScreen,
+      navigationOptions: ({navigation}) => ({
+        title: `${navigation.getParam('title')}`,
+        headerLeft: <CloseButton navigation={navigation}/>,
+      })
+    },
     SummaryScreen: {
       screen: SummaryScreen,
       navigationOptions: ({navigation}) => ({
         title: 'ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
       })
     },
     RecommendationScreen: {
       screen: RecommendationScreen,
       navigationOptions: ({navigation}) => ({
         title: 'ការផ្តល់អនុសាសន៍',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
       })
     },
     GoalScreen: {
       screen: GoalScreen,
       navigationOptions: ({navigation}) => ({
         title: 'ដាក់គោលដៅមួយ និងមូលហេតុ',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
       })
     },
     ContactScreen: {
       screen: ContactScreen,
       navigationOptions: ({navigation}) => ({
         title: 'ព័ត៌មានសាលា និងទំនាក់ទំនង',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
       })
     },
     CareersScreen: {
       screen: CareersScreen,
       navigationOptions: ({navigation}) => ({
         title: 'យល់ដឹងអំពីមុខរបរ',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
       })
     },
     InstitutionDetail: {

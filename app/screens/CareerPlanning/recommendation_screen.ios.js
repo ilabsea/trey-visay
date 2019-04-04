@@ -15,6 +15,7 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import { NavigationActions } from 'react-navigation';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -23,7 +24,9 @@ import characteristicList from '../../data/json/characteristic_jobs';
 import subjectTe from '../../data/translates/subject';
 
 export default class RecommendationScreen extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
     this._initState();
     this._backHandler();
   }
@@ -34,13 +37,13 @@ export default class RecommendationScreen extends Component {
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((obj) => obj.code == game.mostFavorableJobCode);
 
-    this.setState({
+    this.state = {
       currentJob: currentJob,
       user: user,
       game: game,
       gameSubject: game.gameSubject,
       currentGroup: currentGroup,
-    })
+    };
 
     this.props.navigation.setParams({
       _handleBack: this._handleBack.bind(this),
@@ -64,16 +67,18 @@ export default class RecommendationScreen extends Component {
   }
 
   _onYes() {
+    this._closeDialog();
+  }
+
+  _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
   }
 

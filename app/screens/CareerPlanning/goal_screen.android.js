@@ -81,7 +81,7 @@ export default class GoalScreen extends Component {
       showButton: true,
       user: user,
       game: game,
-      reasonText: '',
+      reasonText: game.reason,
       voiceRecord: ''
     });
 
@@ -182,6 +182,7 @@ export default class GoalScreen extends Component {
             <TextInput
               style={[styles.inputText, {flex: 1, textAlignVertical: 'top', height: 100}]}
               onChangeText={(text) => this.setState({reasonText: text})}
+              value={this.state.reasonText}
               placeholder='សរសេរចម្លើយ...'
               placeholderTextColor='rgba(0,0,0,0.6)'
               multiline={true}
