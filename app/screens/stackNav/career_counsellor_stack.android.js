@@ -37,6 +37,8 @@ import PersonalityAssessmentMajorList from '../PersonalityAssessmentMajorList/Pe
 import PersonalityAssessmentMajorDetail from '../PersonalityAssessmentMajorDetail/PersonalityAssessmentMajorDetail';
 import PersonalityAssessmentPersonalityCategory from '../PersonalityAssessmentPersonalityCategory/PersonalityAssessmentPersonalityCategory';
 import PersonalityAssessmentHighSchoolStudyOption from '../PersonalityAssessmentHighSchoolStudyOption/PersonalityAssessmentHighSchoolStudyOption';
+import PersonalityAssessmentJobList from '../PersonalityAssessmentJobList/PersonalityAssessmentJobList';
+import PersonalityAssessmentJobDetail from '../PersonalityAssessmentJobDetail/PersonalityAssessmentJobDetail';
 
 const CareerCounsellorStack = createStackNavigator(
   {
@@ -130,6 +132,18 @@ const CareerCounsellorStack = createStackNavigator(
       screen: PersonalityAssessmentMajorDetail,
       navigationOptions: ({navigation}) => ({
         title: `ការសិក្សាជំនាញ${navigation.getParam('title')}`,
+      })
+    },
+    PersonalityAssessmentJobListScreen: {
+      screen: PersonalityAssessmentJobList,
+      navigationOptions: ({navigation}) => ({
+        title: `ជម្រើសអាជីពការងារសក្ដិសម`,
+      })
+    },
+    PersonalityAssessmentJobDetailScreen: {
+      screen: PersonalityAssessmentJobDetail,
+      navigationOptions: ({navigation}) => ({
+        title: `ទំព័រលម្អិតពីអាជីព`,
       })
     },
     CareerCounsellorScreen: {
