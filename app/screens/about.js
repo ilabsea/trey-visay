@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 import DeviceInfo from 'react-native-device-info';
-import RF from "react-native-responsive-fontsize"
+import {FontSetting} from "../assets/style_sheets/font_setting";
 
 export default class About extends Component {
   constructor(props) {
@@ -130,13 +130,13 @@ const styles = StyleSheet.create({
   },
   title: {
     lineHeight: 48,
-    fontSize: RF(2.8),
+    fontSize: FontSetting.nav_title,
     textAlign: 'center'
   },
   paragraph: {
     textAlign: 'center',
     marginTop: 5,
-    fontSize: RF(1.8)
+    fontSize: FontSetting.text
   },
   footer: {
     marginTop: 20,
