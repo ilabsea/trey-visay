@@ -181,7 +181,7 @@ export default class SideMenu extends Component {
           }
           { this._renderMenuItem({
               title: 'ជំនាញវិជ្ជាជីវៈ',
-              screenName: 'VocationalJobStack',
+              screenName: 'CareerStack',
               iconName: 'photo-filter',
               type: 'material',
               iconSize: 18

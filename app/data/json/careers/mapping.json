@@ -1,0 +1,612 @@
+[
+  {
+    "career_code": "car_sci_0001",
+    "career_cluster_code": "car_0015",
+    "video_code": "vdo_0016; \nvdo_0018; \nvdo_0020"
+  },
+  {
+    "career_code": "car_sci_0002",
+    "career_cluster_code": "car_0015",
+    "video_code": "vdo_0016; \nvdo_0018; \nvdo_0020"
+  },
+  {
+    "career_code": "car_sci_0003",
+    "career_cluster_code": "car_0015",
+    "video_code": "vdo_0016; \nvdo_0018; \nvdo_0020"
+  },
+  {
+    "career_code": "car_sci_0004",
+    "career_cluster_code": "car_0015",
+    "video_code": "vdo_0016; \nvdo_0018; \nvdo_0020"
+  },
+  {
+    "career_code": "car_sci_0005",
+    "career_cluster_code": "car_0015",
+    "video_code": "vdo_0016; \nvdo_0018; \nvdo_0020"
+  },
+  {
+    "career_code": "car_sci_0006",
+    "career_cluster_code": "car_0015",
+    "video_code": "vdo_0016; \nvdo_0018; \nvdo_0020"
+  },
+  {
+    "career_code": "car_sci_0007",
+    "career_cluster_code": "car_0016",
+    "video_code": "vdo_0032"
+  },
+  {
+    "career_code": "car_sci_0008",
+    "career_cluster_code": "car_0001",
+    "video_code": "vdo_0033; \nvdo_0035;\nvdo_0038"
+  },
+  {
+    "career_code": "car_sci_0009",
+    "career_cluster_code": "car_0001",
+    "video_code": "vdo_0033; \nvdo_0035;\nvdo_0038"
+  },
+  {
+    "career_code": "car_sci_0010",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0011",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0012",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0013",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0014",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0015",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0016",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0017",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0018",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0019",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0020",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0021",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0022",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0023",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0024",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0025",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0026",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0027",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0028",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_sci_0029",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_tec_0001",
+    "career_cluster_code": "car_0002",
+    "video_code": "vdo_0023;\nvdo_0031;\nvdo_0043"
+  },
+  {
+    "career_code": "car_tec_0002",
+    "career_cluster_code": "car_0002",
+    "video_code": "vdo_0023;\nvdo_0031;\nvdo_0043"
+  },
+  {
+    "career_code": "car_tec_0003",
+    "career_cluster_code": "car_0002",
+    "video_code": "vdo_0023;\nvdo_0031;\nvdo_0043"
+  },
+  {
+    "career_code": "car_tec_0004",
+    "career_cluster_code": "car_0002",
+    "video_code": "vdo_0023;\nvdo_0031;\nvdo_0043"
+  },
+  {
+    "career_code": "car_tec_0005",
+    "career_cluster_code": "car_0011",
+    "video_code": "vdo_0002;\nvdo_0005;\nvdo_0006;\nvdo_0008;\nvdo_0014;\nvdo_0022;\nvdo_0040;\nvdo_0042"
+  },
+  {
+    "career_code": "car_tec_0006",
+    "career_cluster_code": "car_0011",
+    "video_code": "vdo_0002;\nvdo_0005;\nvdo_0006;\nvdo_0008;\nvdo_0014;\nvdo_0022;\nvdo_0040;\nvdo_0042"
+  },
+  {
+    "career_code": "car_tec_0007",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_tec_0008",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_tec_0009",
+    "career_cluster_code": "car_0011",
+    "video_code": "vdo_0002;\nvdo_0005;\nvdo_0006;\nvdo_0008;\nvdo_0014;\nvdo_0022;\nvdo_0040;\nvdo_0042;\n"
+  },
+  {
+    "career_code": "car_tec_0010",
+    "career_cluster_code": "car_0012",
+    "video_code": null
+  },
+  {
+    "career_code": "car_tec_0011",
+    "career_cluster_code": "car_0013",
+    "video_code": null
+  },
+  {
+    "career_code": "car_tec_0012",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007; \nvdo_0011; \nvdo_0012; \nvdo_0015; \nvdo_0019; \nvdo_0045; \nvdo_0047; \nvdo_0049; \nvdo_0050; \nvdo_0051"
+  },
+  {
+    "career_code": "car_tec_0013",
+    "career_cluster_code": "car_0013",
+    "video_code": null
+  },
+  {
+    "career_code": "car_tec_0014",
+    "career_cluster_code": "car_0002",
+    "video_code": "vdo_0023;\nvdo_0031;\nvdo_0043"
+  },
+  {
+    "career_code": "car_tec_0015",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_tec_0016",
+    "career_cluster_code": "car_0001",
+    "video_code": "vdo_0033; \nvdo_0035;\nvdo_0038"
+  },
+  {
+    "career_code": "car_tec_0017",
+    "career_cluster_code": "car_0001",
+    "video_code": "vdo_0033; \nvdo_0035;\nvdo_0038"
+  },
+  {
+    "career_code": "car_tec_0018",
+    "career_cluster_code": "car_0001",
+    "video_code": "vdo_0033; \nvdo_0035;\nvdo_0038"
+  },
+  {
+    "career_code": "car_tec_0019",
+    "career_cluster_code": "car_0008",
+    "video_code": "vdo_0034;\nvdo_0036;\nvdo_0037;\nvdo_0041"
+  },
+  {
+    "career_code": "car_tec_0020",
+    "career_cluster_code": "car_0006",
+    "video_code": "vdo_0021;\nvdo_0030"
+  },
+  {
+    "career_code": "car_tec_0021",
+    "career_cluster_code": "car_0006",
+    "video_code": "vdo_0021;\nvdo_0030"
+  },
+  {
+    "career_code": "car_tec_0022",
+    "career_cluster_code": "car_0006",
+    "video_code": "vdo_0021;\nvdo_0030"
+  },
+  {
+    "career_code": "car_tec_0023",
+    "career_cluster_code": "car_0006",
+    "video_code": "vdo_0021;\nvdo_0030"
+  },
+  {
+    "career_code": "car_tec_0024",
+    "career_cluster_code": "car_0006",
+    "video_code": "vdo_0021;\nvdo_0030"
+  },
+  {
+    "career_code": "car_tec_0025",
+    "career_cluster_code": "car_0006",
+    "video_code": "vdo_0021;\nvdo_0030"
+  },
+  {
+    "career_code": "car_tec_0026",
+    "career_cluster_code": "car_0004",
+    "video_code": "vdo_0013;\nvdo_0017;\nvdo_0026;\nvdo_0046;"
+  },
+  {
+    "career_code": "car_soc_0001",
+    "career_cluster_code": "car_0005",
+    "video_code": "vdo_0027;\nvdo_0048;\nvdo_0052;\nvdo_0053;\nvdo_0054;\nvdo_0055;\nvdo_0056;\nvdo_0057;\nvdo_0058;\nvdo_0059"
+  },
+  {
+    "career_code": "car_soc_0002",
+    "career_cluster_code": "car_0005",
+    "video_code": "vdo_0027;\nvdo_0048;\nvdo_0052;\nvdo_0053;\nvdo_0054;\nvdo_0055;\nvdo_0056;\nvdo_0057;\nvdo_0058;\nvdo_0059"
+  },
+  {
+    "career_code": "car_soc_0003",
+    "career_cluster_code": "car_0005",
+    "video_code": "vdo_0027;\nvdo_0048;\nvdo_0052;\nvdo_0053;\nvdo_0054;\nvdo_0055;\nvdo_0056;\nvdo_0057;\nvdo_0058;\nvdo_0059"
+  },
+  {
+    "career_code": "car_soc_0004",
+    "career_cluster_code": "car_0005",
+    "video_code": "vdo_0027;\nvdo_0048;\nvdo_0052;\nvdo_0053;\nvdo_0054;\nvdo_0055;\nvdo_0056;\nvdo_0057;\nvdo_0058;\nvdo_0059"
+  },
+  {
+    "career_code": "car_soc_0005",
+    "career_cluster_code": "car_0005",
+    "video_code": "vdo_0027;\nvdo_0048;\nvdo_0052;\nvdo_0053;\nvdo_0054;\nvdo_0055;\nvdo_0056;\nvdo_0057;\nvdo_0058;\nvdo_0059"
+  },
+  {
+    "career_code": "car_soc_0006",
+    "career_cluster_code": "car_0005",
+    "video_code": "vdo_0027;\nvdo_0048;\nvdo_0052;\nvdo_0053;\nvdo_0054;\nvdo_0055;\nvdo_0056;\nvdo_0057;\nvdo_0058;\nvdo_0059"
+  },
+  {
+    "career_code": "car_soc_0007",
+    "career_cluster_code": "car_0005",
+    "video_code": "vdo_0027;\nvdo_0048;\nvdo_0052;\nvdo_0053;\nvdo_0054;\nvdo_0055;\nvdo_0056;\nvdo_0057;\nvdo_0058;\nvdo_0059"
+  },
+  {
+    "career_code": "car_soc_0008",
+    "career_cluster_code": "car_0007",
+    "video_code": null
+  },
+  {
+    "career_code": "car_soc_0009",
+    "career_cluster_code": "car_0007",
+    "video_code": null
+  },
+  {
+    "career_code": "car_soc_0010",
+    "career_cluster_code": "car_0004",
+    "video_code": "vdo_0013;\nvdo_0017;\nvdo_0026;\nvdo_0046;"
+  },
+  {
+    "career_code": "car_soc_0011",
+    "career_cluster_code": "car_0004",
+    "video_code": "vdo_0013;\nvdo_0017;\nvdo_0026;\nvdo_0046;"
+  },
+  {
+    "career_code": "car_soc_0012",
+    "career_cluster_code": "car_0004",
+    "video_code": "vdo_0013;\nvdo_0017;\nvdo_0026;\nvdo_0046;"
+  },
+  {
+    "career_code": "car_soc_0013",
+    "career_cluster_code": "car_0004",
+    "video_code": "vdo_0013;\nvdo_0017;\nvdo_0026;\nvdo_0046;"
+  },
+  {
+    "career_code": "car_soc_0014",
+    "career_cluster_code": "car_0004",
+    "video_code": "vdo_0013;\nvdo_0017;\nvdo_0026;\nvdo_0046;"
+  },
+  {
+    "career_code": "car_soc_0015",
+    "career_cluster_code": "car_0004",
+    "video_code": "vdo_0013;\nvdo_0017;\nvdo_0026;\nvdo_0046;"
+  },
+  {
+    "career_code": "car_soc_0016",
+    "career_cluster_code": "car_0004",
+    "video_code": "vdo_0013;\nvdo_0017;\nvdo_0026;\nvdo_0046;"
+  },
+  {
+    "career_code": "car_soc_0017",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_soc_0018",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_soc_0019",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_soc_0020",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_soc_0021",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_soc_0022",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_soc_0023",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_soc_0024",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_soc_0025",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044;"
+  },
+  {
+    "career_code": "car_soc_0026",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044"
+  },
+  {
+    "career_code": "car_soc_0027",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044"
+  },
+  {
+    "career_code": "car_soc_0028",
+    "career_cluster_code": "car_0014",
+    "video_code": "vdo_0001; \nvdo_0003"
+  },
+  {
+    "career_code": "car_soc_0029",
+    "career_cluster_code": "car_0014",
+    "video_code": "vdo_0001; \nvdo_0003"
+  },
+  {
+    "career_code": "car_soc_0030",
+    "career_cluster_code": "car_0006",
+    "video_code": "vdo_0021;\nvdo_0030"
+  },
+  {
+    "career_code": "car_soc_0031",
+    "career_cluster_code": "car_0006",
+    "video_code": "vdo_0021;\nvdo_0030"
+  },
+  {
+    "career_code": "car_soc_0032",
+    "career_cluster_code": "car_0006",
+    "video_code": "vdo_0021;\nvdo_0030"
+  },
+  {
+    "career_code": "car_soc_0033",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044;"
+  },
+  {
+    "career_code": "car_soc_0034",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044;"
+  },
+  {
+    "career_code": "car_soc_0035",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044;"
+  },
+  {
+    "career_code": "car_soc_0036",
+    "career_cluster_code": "car_0001",
+    "video_code": "vdo_0033; \nvdo_0035;\nvdo_0038"
+  },
+  {
+    "career_code": "car_soc_0037",
+    "career_cluster_code": "car_0009",
+    "video_code": "vdo_0004;\nvdo_0024;\nvdo_0025;\nvdo_0028"
+  },
+  {
+    "career_code": "car_soc_0038",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_soc_0039",
+    "career_cluster_code": "car_0016",
+    "video_code": "vdo_0032"
+  },
+  {
+    "career_code": "car_soc_0040",
+    "career_cluster_code": "car_0007",
+    "video_code": null
+  },
+  {
+    "career_code": "car_soc_0041",
+    "career_cluster_code": "car_0012",
+    "video_code": null
+  },
+  {
+    "career_code": "car_soc_0042",
+    "career_cluster_code": "car_0012",
+    "video_code": null
+  },
+  {
+    "career_code": "car_soc_0043",
+    "career_cluster_code": "car_0012",
+    "video_code": null
+  },
+  {
+    "career_code": "car_soc_0044",
+    "career_cluster_code": "car_0012",
+    "video_code": null
+  },
+  {
+    "career_code": "car_soc_0045",
+    "career_cluster_code": "car_0012",
+    "video_code": null
+  },
+  {
+    "career_code": "car_voc_0001",
+    "career_cluster_code": "car_0015",
+    "video_code": "vdo_0016; \nvdo_0018; \nvdo_0020"
+  },
+  {
+    "career_code": "car_voc_0002",
+    "career_cluster_code": "car_0015",
+    "video_code": "vdo_0016; \nvdo_0018; \nvdo_0020"
+  },
+  {
+    "career_code": "car_voc_0003",
+    "career_cluster_code": "car_0015",
+    "video_code": "vdo_0016; \nvdo_0018; \nvdo_0020"
+  },
+  {
+    "career_code": "car_voc_0004",
+    "career_cluster_code": "car_0003",
+    "video_code": "vdo_0007;\nvdo_0011;\nvdo_0012;\nvdo_0015;\nvdo_0019;\nvdo_0045;\nvdo_0047;\nvdo_0049;\nvdo_0050;\nvdo_0051"
+  },
+  {
+    "career_code": "car_voc_0005",
+    "career_cluster_code": "car_0015",
+    "video_code": "vdo_0016; \nvdo_0018; \nvdo_0020"
+  },
+  {
+    "career_code": "car_voc_0006",
+    "career_cluster_code": "car_0013",
+    "video_code": null
+  },
+  {
+    "career_code": "car_voc_0007",
+    "career_cluster_code": "car_0002",
+    "video_code": "vdo_0023;\nvdo_0031;\nvdo_0043"
+  },
+  {
+    "career_code": "car_voc_0008",
+    "career_cluster_code": "car_0012",
+    "video_code": null
+  },
+  {
+    "career_code": "car_voc_0009",
+    "career_cluster_code": "car_0002",
+    "video_code": "vdo_0023;\nvdo_0031;\nvdo_0043"
+  },
+  {
+    "career_code": "car_voc_0010",
+    "career_cluster_code": "car_0002",
+    "video_code": "vdo_0023;\nvdo_0031;\nvdo_0043"
+  },
+  {
+    "career_code": "car_voc_0011",
+    "career_cluster_code": "car_0002",
+    "video_code": "vdo_0023;\nvdo_0031;\nvdo_0043"
+  },
+  {
+    "career_code": "car_voc_0012",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044;"
+  },
+  {
+    "career_code": "car_voc_0013",
+    "career_cluster_code": "car_0005",
+    "video_code": "vdo_0027;\nvdo_0048;\nvdo_0052;\nvdo_0053;\nvdo_0054;\nvdo_0055;\nvdo_0056;\nvdo_0057;\nvdo_0058;\nvdo_0059"
+  },
+  {
+    "career_code": "car_voc_0014",
+    "career_cluster_code": "car_0005",
+    "video_code": "vdo_0027;\nvdo_0048;\nvdo_0052;\nvdo_0053;\nvdo_0054;\nvdo_0055;\nvdo_0056;\nvdo_0057;\nvdo_0058;\nvdo_0059"
+  },
+  {
+    "career_code": "car_voc_0015",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044;"
+  },
+  {
+    "career_code": "car_voc_0016",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044;"
+  },
+  {
+    "career_code": "car_voc_0017",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044;"
+  },
+  {
+    "career_code": "car_voc_0018",
+    "career_cluster_code": "car_0016",
+    "video_code": "vdo_0032"
+  },
+  {
+    "career_code": "car_voc_0019",
+    "career_cluster_code": "car_0001",
+    "video_code": "vdo_0033; \nvdo_0035;\nvdo_0038"
+  },
+  {
+    "career_code": "car_voc_0020",
+    "career_cluster_code": "car_0002",
+    "video_code": "vdo_0023;\nvdo_0031;\nvdo_0043"
+  },
+  {
+    "career_code": "car_voc_0021",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044;"
+  },
+  {
+    "career_code": "car_voc_0022",
+    "career_cluster_code": "car_0010",
+    "video_code": "vdo_0009;\nvdo_0010;\nvdo_0029;\nvdo_0039;\nvdo_0044;"
+  }
+]

@@ -25,7 +25,7 @@ import shareStyles from '../../assets/style_sheets/profile_form';
 import StatusBar from '../../components/shared/status_bar';
 import Filter from '../../components/schools/filter';
 
-import schoolList from '../../data/json/schools';
+import schoolList from '../../data/json/universities';
 import Images from '../../assets/images';
 
 export default class SchoolScreen extends Component {

@@ -9,7 +9,7 @@ import headerStyles from '../assets/style_sheets/header';
 
 // Screens
 import ProfileStack from './stackNav/profile_stack';
-import VocationalJobStack from './stackNav/vocational_job_stack';
+import CareerStack from './stackNav/career_stack';
 import DashboardStack from './stackNav/dashboard_stack';
 import InstitutionStack from './school/institution_stack';
 import AboutStack from './stackNav/about_stack';
@@ -32,7 +32,7 @@ const HomeScreen = createDrawerNavigator(
       screen: VideoScreen,
       header: { visible:false }
     },
-    VocationalJobStack: { screen: VocationalJobStack },
+    CareerStack: { screen: CareerStack },
     ChangePasswordStack: { screen: ChangePasswordStack },
     CareerCounsellorStack: { screen: CareerCounsellorStack }
   },

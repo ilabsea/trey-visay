@@ -7,8 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
-import RF from "react-native-responsive-fontsize";
-import {FontSetting} from "../../assets/style_sheets/font_setting";
+import { FontSetting } from "../../assets/style_sheets/font_setting";
 import { Divider } from 'react-native-elements';
 
 export default class VideoList extends Component  {

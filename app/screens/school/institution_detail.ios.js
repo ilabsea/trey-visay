@@ -16,7 +16,7 @@ import {FontSetting} from '../../assets/style_sheets/font_setting';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { Divider } from 'react-native-elements';
-import schoolList from '../../data/json/schools';
+import schoolList from '../../data/json/universities';
 import Images from '../../assets/images';
 import BackButton from '../../components/shared/back_button';
 

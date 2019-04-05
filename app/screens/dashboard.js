@@ -98,7 +98,7 @@ export default class Dashboard extends Component {
           <View style={{flexDirection: 'row'}}>
             { this._renderButton({
                 title: 'ជំនាញវិជ្ជាជីវៈ',
-                url: 'VocationalJobStack',
+                url: 'CareerStack',
                 icon_bg_color: '#1aaf5d',
                 icon_name: 'photo-filter',
                 icon_type: 'material',

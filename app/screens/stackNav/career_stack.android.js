@@ -6,31 +6,39 @@ import {
   Text
 } from 'react-native';
 
-import VocationalJobIndexScreen from '../vocational_job/jobs/index_screen';
-import VocationalJobShowScreen from '../vocational_job/job_detail/show_screen';
+import ClusterScreen from '../careers/cluster_screen';
+import CareerIndexScreen from '../careers/index_screen';
+import CareerDetailScreen from '../careers/career_detail_screen';
 import InstitutionDetail from '../school/institution_detail';
+import Description from '../careers/description';
 
 import BackButton from '../../components/shared/back_button';
 import headerStyles from '../../assets/style_sheets/header';
 
-const VocationalJobStack = createStackNavigator(
+const CareerStack = createStackNavigator(
   {
-    VocationalJobIndexScreen: {
-      screen: VocationalJobIndexScreen,
+    ClusterScreen: {
+      screen: ClusterScreen,
       navigationOptions: ({navigation}) => ({
         title: "ជំនាញវិជ្ជាជីវៈ",
         headerLeft: <BackButton navigation={navigation}/>,
       })
     },
-    VocationalJobShowScreen: {
-      screen: VocationalJobShowScreen,
+    CareerIndexScreen: {
+      screen: CareerIndexScreen,
       navigationOptions: ({navigation}) => ({
-        title: navigation.state.params.title,
+        title: navigation.state.params.title
+      })
+    },
+    CareerDetailScreen: {
+      screen: CareerDetailScreen,
+      navigationOptions: ({navigation}) => ({
+        title: navigation.state.params.career.name
       })
     },
     InstitutionDetail: {
       screen: InstitutionDetail
-    }
+    },
   },{
     navigationOptions: ({navigation}) => ({
       headerLeft: <BackButton navigation={navigation}/>,
@@ -40,4 +48,4 @@ const VocationalJobStack = createStackNavigator(
   }
 );
 
-export default VocationalJobStack;
+export default CareerStack;

@@ -23,7 +23,7 @@ import { FontSetting } from "../../assets/style_sheets/font_setting";
 
 import realm from '../../schema';
 import User from '../../utils/user';
-import schoolList from '../../data/json/schools';
+import schoolList from '../../data/json/universities';
 import characteristicList from '../../data/json/characteristic_jobs';
 import Images from '../../assets/images';
 
