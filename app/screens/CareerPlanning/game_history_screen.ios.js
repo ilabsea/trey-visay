@@ -15,7 +15,7 @@ import { Divider } from 'react-native-elements';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 
-import BackButton from '../../components/back_button';
+import BackButton from '../../components/shared/back_button';
 import ButtonList from '../../components/list/button_list';
 import OneList from '../../components/list/one_list';
 import SchoolListView from '../../components/schools/school_list';

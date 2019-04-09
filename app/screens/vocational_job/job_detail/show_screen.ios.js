@@ -13,7 +13,7 @@ import {
 import mainStyles from '../../../assets/style_sheets/main/main';
 import { FontSetting } from "../../../assets/style_sheets/font_setting";
 import OneList from '../../../components/list/one_list';
-import StatusBar from '../../../components/status_bar';
+import StatusBar from '../../../components/shared/status_bar';
 import SchoolListView from '../../../components/schools/school_list';
 import characteristicList from '../../../data/json/characteristic_jobs';
 import schoolList from '../../../data/json/schools';

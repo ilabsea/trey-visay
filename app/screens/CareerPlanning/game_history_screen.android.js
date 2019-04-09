@@ -15,7 +15,7 @@ import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 
-import BackButton from '../../components/back_button';
+import BackButton from '../../components/shared/back_button';
 
 import realm from '../../schema';
 import User from '../../utils/user';

@@ -22,9 +22,9 @@ import headerStyles from '../../assets/style_sheets/header';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 import mainStyles from '../../assets/style_sheets/main/main';
 import shareStyles from '../../assets/style_sheets/profile_form';
-import StatusBar from '../../components/status_bar';
+import StatusBar from '../../components/shared/status_bar';
 import Filter from '../../components/schools/filter';
-import OpenDrawer from '../../components/open_drawer';
+import OpenDrawer from '../../components/shared/open_drawer';
 
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';

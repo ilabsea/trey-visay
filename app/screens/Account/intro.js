@@ -8,19 +8,12 @@ import {
 } from 'react-native';
 
 import Button from '../../components/button';
-import OpenDrawer from '../../components/open_drawer';
-import StatusBar from '../../components/status_bar';
+import OpenDrawer from '../../components/shared/open_drawer';
+import StatusBar from '../../components/shared/status_bar';
 import headerStyles from '../../assets/style_sheets/header';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 export default class IntroScreen extends Component {
-  static navigationOptions = ({navigation}) => ({
-    title: 'សេចក្តីណែនាំ',
-    headerStyle: headerStyles.headerStyle,
-    headerTitleStyle: headerStyles.headerTitleStyle,
-    headerLeft: <OpenDrawer navigation={navigation}/>
-  })
-
   constructor(props){
     super(props);
   }

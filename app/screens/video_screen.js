@@ -21,7 +21,7 @@ import LoadingIndicator from '../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import headerStyles from '../assets/style_sheets/header';
-import StatusBar from '../components/status_bar';
+import StatusBar from '../components/shared/status_bar';
 import videoList from '../data/json/videos';
 import uiThemeAndroid from '../assets/style_sheets/uiThemeAndroid.js';
 import uiThemeIOS from '../assets/style_sheets/uiThemeIOS.js';

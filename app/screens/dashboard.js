@@ -12,7 +12,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import SplashScreen from 'react-native-splash-screen';
 
-import StatusBar from '../components/status_bar';
+import StatusBar from '../components/shared/status_bar';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 import User from '../utils/user';
 import API from '../api/schools';

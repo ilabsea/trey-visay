@@ -20,7 +20,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import careerList from '../../data/json/characteristic_jobs';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
-import CloseButton from '../../components/close_button';
+import CloseButton from '../../components/shared/close_button';
 import FooterBar from '../../components/FooterBar';
 
 

@@ -6,7 +6,7 @@ import EditProfilePhoto from '../profile/edit_profile_photo';
 import EditPersonalInfo from '../profile/edit_personal_info';
 
 import SaveButton from '../../components/save_button';
-import CloseButton from '../../components/close_button';
+import CloseButton from '../../components/shared/close_button';
 import headerStyles from '../../assets/style_sheets/header';
 
 const ProfileStack = createStackNavigator(

@@ -11,9 +11,9 @@ import {
 import headerStyles from '../../assets/style_sheets/header';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
-import OpenDrawer from '../../components/open_drawer';
+import OpenDrawer from '../../components/shared/open_drawer';
 import Filter from '../../components/schools/filter';
-import BackButton from '../../components/back_button';
+import BackButton from '../../components/shared/back_button';
 import SaveButton from '../../components/save_button';
 
 import SchoolScreen from './school_screen';

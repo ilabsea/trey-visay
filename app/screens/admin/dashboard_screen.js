@@ -18,7 +18,7 @@ import Button from '../../components/button';
 import realm from '../../schema';
 import User from '../../utils/user';
 import headerStyles from '../../assets/style_sheets/header';
-import StatusBar from '../../components/status_bar';
+import StatusBar from '../../components/shared/status_bar';
 import shareStyles from '../../assets/style_sheets/login_form';
 import characteristicList from '../../data/json/characteristic_jobs';
 import { environment } from '../../config/environment';

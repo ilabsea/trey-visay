@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { createStackNavigator } from  'react-navigation';
 import headerStyles from '../../assets/style_sheets/header';
-import CloseButton from '../../components/close_button';
+import CloseButton from '../../components/shared/close_button';
 
 import ChangePasswordScreen from '../change_password_screen';
 

@@ -13,7 +13,7 @@ import {
 import Toast, { DURATION } from 'react-native-easy-toast';
 
 import BackConfirmDialog from '../../components/back_confirm_dialog';
-import CloseButton from '../../components/close_button';
+import CloseButton from '../../components/shared/close_button';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 import shareStyles from './style';

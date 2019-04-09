@@ -16,7 +16,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import RadioGroup from '../../components/radio_group';
 import BackConfirmDialog from '../../components/back_confirm_dialog';
-import CloseButton from '../../components/close_button';
+import CloseButton from '../../components/shared/close_button';
 import FooterBar from '../../components/FooterBar';
 
 import mainStyles from '../../assets/style_sheets/main/main';

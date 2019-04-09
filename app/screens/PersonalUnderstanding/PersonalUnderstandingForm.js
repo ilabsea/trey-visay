@@ -19,7 +19,7 @@ import { Provider } from 'react-redux';
 import store from '../../redux/store';
 
 import PersonalUnderstandingScore from './PersonalUnderstandingScore';
-import CloseButton from '../../components/close_button';
+import CloseButton from '../../components/shared/close_button';
 import SaveButton from '../../components/save_button';
 
 import Form from './_Form';

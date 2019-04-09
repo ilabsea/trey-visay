@@ -9,7 +9,7 @@ class BackButton extends React.Component {
 
   handleOnPress = () => {
     if (this.props.navigation.state.params && this.props.navigation.state.params._handleBack) {
-        this.props.navigation.state.params._handleBack()
+      this.props.navigation.state.params._handleBack()
     }
     this.props.navigation.goBack()
   }
