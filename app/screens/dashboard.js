@@ -60,7 +60,7 @@ export default class Dashboard extends Component {
           }
 
           { options.icon_type == 'material' &&
-            <MaterialIcon style={styles.icon} name={options.icon_name} size={56} color='#fff' />
+            <MaterialIcon style={styles.icon} name={options.icon_name} size={44} color='#fff' />
           }
         </View>
         <Text style={styles.btnLabel}>{options.title}</Text>
@@ -73,7 +73,7 @@ export default class Dashboard extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar />
-        <View style={styles.scrollContainer}>
+        <View>
           <View style={{flexDirection: 'row'}}>
             { this._renderButton({
                 title: 'វាយតម្លៃមុខរបរ',
@@ -120,30 +120,13 @@ export default class Dashboard extends Component {
 }
 
 const styles = StyleSheet.create({
-  scrollContainer: {
-    ...Platform.select({
-      android: {
-        padding: 8
-      },
-      ios: {
-        padding: 0
-      }
-    })
-  },
   btnBox: {
     flex: 1,
     alignItems: 'center',
     minHeight: '50%',
-    ...Platform.select({
-      android: {
-        margin : 10,
-      },
-      ios: {
-        margin: 0,
-        borderWidth: 0.5,
-        borderColor: '#d3d3d3',
-      }
-    }),
+    margin: 0,
+    borderWidth: 0.5,
+    borderColor: '#d3d3d3',
     backgroundColor: '#fff',
   },
   btnLabel: {
@@ -168,17 +151,12 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 24
-  },
-  icon: {
     ...Platform.select({
       android: {
-        padding:  20,
-        marginTop: 20
+        margin: 18
       },
       ios: {
-        padding:  0,
-        marginTop: 0
+        margin: 24
       }
     })
   }
