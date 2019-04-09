@@ -75,6 +75,7 @@ export default class Dashboard extends Component {
     return (
       <View style={styles.scrollContainer}>
         <StatusBar />
+
         <DashboardView>
           <View style={{flexDirection: 'row'}}>
             { this._renderButton({
