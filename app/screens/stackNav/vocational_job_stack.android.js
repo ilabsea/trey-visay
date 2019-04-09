@@ -27,7 +27,6 @@ const VocationalJobStack = createStackNavigator(
       screen: VocationalJobShowScreen,
       navigationOptions: ({navigation}) => ({
         title: navigation.state.params.title,
-        headerRight: <InfoButton navigation={navigation}/>
       })
     },
     InstitutionDetail: {

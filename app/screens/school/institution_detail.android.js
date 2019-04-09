@@ -32,29 +32,17 @@ export default class InstitutionDetail extends Component {
   }
 
   _renderContact() {
-    school = this.state.school;
-    if(!school.id){
-      school = {
-        address: 'មិនមាន',
-        phoneNumbers: 'មិនមាន',
-        faxes: 'មិនមាន',
-        emails: 'មិនមាន',
-        mailbox: 'មិនមាន',
-        websiteOrFacebook: []
-      }
-    }
-
     return (
       <View style={[shareStyles.box]}>
         <Text style={shareStyles.subTitle}>ទំនាក់ទំនង</Text>
 
         <View style={{flex: 1, marginLeft: 16}}>
-          { this._renderCommunication({data: school.address, icon: 'map-marker'}) }
-          { this._renderCommunication({data: school.phoneNumbers, icon: 'phone'}) }
-          { this._renderCommunication({data: school.faxes, icon: 'fax', iconSize: 20}) }
-          { this._renderCommunication({data: school.emails, icon: 'envelope', iconSize: 20}) }
-          { this._renderCommunication({data: school.mailbox, icon: 'markunread-mailbox'}) }
-          { this._renderWebsiteOrFacebook({data: school.websiteOrFacebook, icon: 'globe'}) }
+          { this._renderCommunication({data: this.state.school.address, icon: 'map-marker'}) }
+          { this._renderCommunication({data: this.state.school.phoneNumbers, icon: 'phone'}) }
+          { this._renderCommunication({data: this.state.school.faxes, icon: 'fax', iconSize: 20}) }
+          { this._renderCommunication({data: this.state.school.emails, icon: 'envelope', iconSize: 20}) }
+          { this._renderCommunication({data: this.state.school.mailbox, icon: 'markunread-mailbox'}) }
+          { this._renderWebsiteOrFacebook({data: this.state.school.websiteOrFacebook, icon: 'globe'}) }
         </View>
       </View>
     )
@@ -65,7 +53,7 @@ export default class InstitutionDetail extends Component {
   }
 
   _renderWebsiteOrFacebook(com) {
-    if(!com.data.length) {
+    if (!com.data.length) {
       return (null)
     }
 
@@ -75,7 +63,8 @@ export default class InstitutionDetail extends Component {
           <AwesomeIcon name={com.icon} color='#1976d2' size={24} />
         </View>
 
-        { com.data.map((data, i) => {
+        {
+          com.data.map((data, i) => {
             return (
               <TouchableOpacity key={i} onPress={() => this._openLink(data)}>
                 <Text>
@@ -118,7 +107,7 @@ export default class InstitutionDetail extends Component {
   }
 
   _renderMajor() {
-    if (!this.state.school.departments || !this.state.school.departments.length) {
+    if (!this.state.school.departments.length) {
       return (null);
     }
 
@@ -202,14 +191,7 @@ export default class InstitutionDetail extends Component {
 const styles = StyleSheet.create({
   container: {
     marginTop: 60,
-    ...Platform.select({
-      android: {
-        margin: 8
-      },
-      ios: {
-        margin: 8
-      }
-    })
+    margin: 8
   },
   avataContainer: {
     position: 'absolute',
