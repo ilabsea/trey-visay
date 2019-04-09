@@ -162,7 +162,7 @@ export default class GameHistoryScreen extends Component {
   _renderVoiceRecord() {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <View style={{marginRight: 16}}>
+        <View style={{marginRight: 16, marginTop: -25}}>
           { !this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._play()}>
               <MaterialIcon style={styles.icon} name='play-circle-outline' size={40} color='#4caf50'/>

@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Image,
   BackHandler,
+  Platform
 } from 'react-native';
 
 import { Divider } from 'react-native-elements';
@@ -110,6 +111,8 @@ export default class CareersScreen extends Component {
         <ScrollView style={{flex: 1}}>
           { this._renderContent() }
         </ScrollView>
+
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
