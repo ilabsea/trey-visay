@@ -13,22 +13,22 @@ import BackButton from '../../components/back_button';
 
 import PersonalUnderstandingForm from '../PersonalUnderstanding/PersonalUnderstandingForm';
 import CareerCounsellor from '../CareerCounsellor/CareerCounsellor';
-import CareerDetailScreen from '../CareerPlanningForm/career_detail_screen';
-import SubjectScreen from '../CareerPlanningForm/subject_screen';
-import PersonalityScreen from '../CareerPlanningForm/personality_screen';
-import PersonalityJobsScreen from '../CareerPlanningForm/personality_jobs_screen';
-import SummaryScreen from '../CareerPlanningForm/summary_screen';
-import RecommendationScreen from '../CareerPlanningForm/recommendation_screen';
-import GoalScreen from '../CareerPlanningForm/goal_screen';
-import ContactScreen from '../CareerPlanningForm/contact_screen';
-import CareersScreen from '../CareerPlanningForm/careers_screen';
+import CareerDetailScreen from '../CareerPlanning/career_detail_screen';
+import SubjectScreen from '../CareerPlanning/subject_screen';
+import PersonalityScreen from '../CareerPlanning/personality_screen';
+import PersonalityJobsScreen from '../CareerPlanning/personality_jobs_screen';
+import SummaryScreen from '../CareerPlanning/summary_screen';
+import RecommendationScreen from '../CareerPlanning/recommendation_screen';
+import GoalScreen from '../CareerPlanning/goal_screen';
+import ContactScreen from '../CareerPlanning/contact_screen';
+import CareersScreen from '../CareerPlanning/careers_screen';
 import InstitutionDetail from '../school/institution_detail';
-import GameHistoryScreen from '../CareerPlanningForm/game_history_screen';
-import PersonalUnderstandingReport from '../CareerPlanningForm/game_history/personal_understanding_report';
-import SubjectReport from '../CareerPlanningForm/game_history/subject_report';
-import PersonalityReport from '../CareerPlanningForm/game_history/personality_report';
-import StudentPersonalityReport from '../CareerPlanningForm/game_history/student_personality_report';
-import RecommendationReport from '../CareerPlanningForm/game_history/recommendation_report';
+import GameHistoryScreen from '../CareerPlanning/game_history_screen';
+import PersonalUnderstandingReport from '../CareerPlanning/game_history/personal_understanding_report';
+import SubjectReport from '../CareerPlanning/game_history/subject_report';
+import PersonalityReport from '../CareerPlanning/game_history/personality_report';
+import StudentPersonalityReport from '../CareerPlanning/game_history/student_personality_report';
+import RecommendationReport from '../CareerPlanning/game_history/recommendation_report';
 
 const CareerCounsellorStack = createStackNavigator(
   {

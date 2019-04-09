@@ -147,7 +147,7 @@ export default class EditPersonalInfo extends Component {
     ]
     let noValue = [{ "code": "", "label": "គ្មានតម្លៃ" }]
     return (
-      <View style={[styles.container, {margin: 16, backgroundColor: '#fff'}]}>
+      <View style={[styles.container, {padding: 16, backgroundColor: '#fff'}]}>
         { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ',
           nextFocusInput: 'usernameInput'}) }
         { this._renderPicker({label: 'ភេទ', stateName: 'sex',
