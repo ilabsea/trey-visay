@@ -4974,19 +4974,19 @@
     "parent_code": "0901"
   },
   {
-    "code": "0902001",
+    "code": "0902002",
     "label": "វិទ្យាល័យកោះស្តេច",
     "name_en": null,
     "parent_code": "0902"
   },
   {
-    "code": "0902002",
+    "code": "0902003",
     "label": "អនុវិទ្យាល័យព្រែកស្មាច់",
     "name_en": null,
     "parent_code": "0902"
   },
   {
-    "code": "0902003",
+    "code": "0902004",
     "label": "អនុវិទ្យាល័យខ្សាច់",
     "name_en": null,
     "parent_code": "0902"
@@ -5478,18 +5478,6 @@
     "parent_code": "1102"
   },
   {
-    "code": "1103001",
-    "label": "វិទ្យាល័យអូររាំង",
-    "name_en": null,
-    "parent_code": "1103"
-  },
-  {
-    "code": "1103002",
-    "label": "អនុវិទ្យាល័យដាក់ដាំ",
-    "name_en": null,
-    "parent_code": "1103"
-  },
-  {
     "code": "1104001",
     "label": "វិទ្យាល័យជ្រោះប៊ូស្រា",
     "name_en": null,
@@ -5518,6 +5506,18 @@
     "label": "អនុវិទ្យាល័យមនោរម្យ",
     "name_en": null,
     "parent_code": "1105"
+  },
+  {
+    "code": "1105003",
+    "label": "វិទ្យាល័យអូររាំង",
+    "name_en": null,
+    "parent_code": "1103"
+  },
+  {
+    "code": "1105004",
+    "label": "អនុវិទ្យាល័យដាក់ដាំ",
+    "name_en": null,
+    "parent_code": "1103"
   },
   {
     "code": "1201001",
@@ -7458,24 +7458,6 @@
     "parent_code": "1604"
   },
   {
-    "code": "1605001",
-    "label": "វិទ្យាល័យលំផាត់",
-    "name_en": null,
-    "parent_code": "1605"
-  },
-  {
-    "code": "1605002",
-    "label": "អនុវិទ្យាល័យសេដា",
-    "name_en": null,
-    "parent_code": "1605"
-  },
-  {
-    "code": "1605003",
-    "label": "អនុវិទ្យាល័យអូរស៊ីលែ",
-    "name_en": null,
-    "parent_code": "1605"
-  },
-  {
     "code": "1606001",
     "label": "អនុវិទ្យាល័យអូរជុំ",
     "name_en": null,
@@ -7510,6 +7492,24 @@
     "label": "អនុវិទ្យាល័យការចូន",
     "name_en": null,
     "parent_code": "1609"
+  },
+  {
+    "code": "1609003",
+    "label": "វិទ្យាល័យលំផាត់",
+    "name_en": null,
+    "parent_code": "1605"
+  },
+  {
+    "code": "1609004",
+    "label": "អនុវិទ្យាល័យសេដា",
+    "name_en": null,
+    "parent_code": "1605"
+  },
+  {
+    "code": "1609005",
+    "label": "អនុវិទ្យាល័យអូរស៊ីលែ",
+    "name_en": null,
+    "parent_code": "1605"
   },
   {
     "code": "1701001",
