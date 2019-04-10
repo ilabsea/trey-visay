@@ -3,6 +3,7 @@ import {
   View,
 } from 'react-native';
 
+import Button from '../../components/button';
 import StatusBar from '../../components/status_bar';
 import formStyles from '../../assets/style_sheets/login_form';
 import styles from '../../assets/style_sheets/assessment';
@@ -11,7 +12,7 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import { longDateFormat } from '../../utils/date';
-import { Container, Header, Content, ListItem, Thumbnail, Text, Left, Body, Right, Button, Icon, Card, CardItem } from 'native-base';
+import { Container, Header, Content, ListItem, Thumbnail, Text, Left, Body, Right, Icon, Card, CardItem } from 'native-base';
 
 export default class PersonalityAssessment extends Component {
   constructor(props) {
@@ -80,16 +81,24 @@ export default class PersonalityAssessment extends Component {
           </Body>
         </CardItem>
 
-        <CardItem footer style={{justifyContent: 'center'}}>
-          <Button onPress={()=> this._startNewAssessment()} style={{width: 136, justifyContent: 'center'}}>
-            <Text>ចាប់ផ្ដើមធ្វើតេស្ត</Text>
+        <CardItem footer style={{flexDirection: 'column'}}>
+          <Button
+            style={styles.button}
+            onPress={this._startNewAssessment.bind(this)}>
+            <Text style={styles.btnText}>
+              ចាប់ផ្តើមថ្មី
+            </Text>
           </Button>
 
           { this.state.isContinued &&
-            <Button onPress={()=> this._continueStep()} style={{width: 136, justifyContent: 'center', marginLeft: 10}}>
-              <Text>បន្តទៅវគ្គមុន</Text>
+            <Button
+              style={[styles.button, { backgroundColor: '#1976d2' , marginTop: 16}]}
+              onPress={this._continueStep.bind(this)}
+              >
+              <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
             </Button>
           }
+
         </CardItem>
       </Card>
     )

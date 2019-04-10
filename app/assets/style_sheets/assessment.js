@@ -1,4 +1,5 @@
 import { StyleSheet , Platform} from 'react-native';
+import { FontSetting } from './font_setting';
 
 export default StyleSheet.create({
   container: {
@@ -16,7 +17,7 @@ export default StyleSheet.create({
     padding: 24,
   },
   title: {
-    fontSize: 24,
+    fontSize: FontSetting.big_title,
     color: '#1976d2',
     ...Platform.select({
       android: {
@@ -35,5 +36,18 @@ export default StyleSheet.create({
   },
   text: {
     fontWeight: 'bold'
+  },
+  button: {
+    borderRadius: 3,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    width: '100%'
+  },
+  btnText: {
+    fontWeight: 'bold',
+    fontSize: FontSetting.button_text,
+    color: '#fff',
   }
 })

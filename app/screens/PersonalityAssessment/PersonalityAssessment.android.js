@@ -65,13 +65,13 @@ export default class PersonalityAssessment extends Component {
               onPress={()=> this._startNewAssessment()}
               >
               <Text style={[formStyles.submitText, { color: '#fff', fontSize: 20 }]}>
-                ចាប់ផ្ដើមធ្វើតេស្ត
+                ចាប់ផ្ដើមថ្មី
               </Text>
             </Button>
 
             { this.state.isContinued &&
               <Button
-                style={[formStyles.btnSubmit, { paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }]}
+                style={[formStyles.btnSubmit, { paddingHorizontal: 20, marginRight: 20, backgroundColor: '#1976d2'}]}
                 onPress={()=> this._continueStep()}
                 >
                 <Text style={[formStyles.submitText, { color: '#fff', fontSize: 20 }]}>
