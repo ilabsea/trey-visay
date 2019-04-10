@@ -9,21 +9,28 @@ import realm from '../schema';
 import api from './../utils/api';
 
 export default class UploadServices  {
+  static count;
 
   static syncToServer(){
     NetInfo.isConnected.fetch().then(isConnected => {
+      console.log('isConnected : ', isConnected)
       api.get('/me').then((res) => {
-        if(res.data && res.data.success)
+        if(res.data && res.data.success){
+          this.count = 0;
           this.uploadData()
+        }
       })
     });
   }
 
   static uploadData() {
     let data = realm.objects('Sidekiq');
-    let sidekidData = data.map((sidekiq) => ({paramUuid: sidekiq.paramUuid, tableName: sidekiq.tableName}));
-    if ( sidekidData.length > 0 ) {
-      let sidekiq = sidekidData[0];
+    let sidekidData = data.map((sidekiq) => ({
+      paramUuid: sidekiq.paramUuid,
+      tableName: sidekiq.tableName
+    }));
+    if ( this.count < sidekidData.length ) {
+      let sidekiq = sidekidData[this.count];
       this.upload(sidekiq);
       return;
     }
@@ -118,8 +125,10 @@ export default class UploadServices  {
   }
 
   static handleResponse(res, sidekiq) {
-    if (res.ok) {
+    if (res.data.success) {
       this.deleteSidekiq(sidekiq);
+    } else{
+      this.count++;
     }
     this.uploadData();
   }
