@@ -11,7 +11,6 @@ import {
 import headerStyles from '../../assets/style_sheets/header';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
-import OpenDrawer from '../../components/shared/open_drawer';
 import BackButton from '../../components/shared/back_button';
 
 import SchoolScreen from './school_screen';
@@ -53,7 +52,7 @@ const InstitutionStack = createStackNavigator(
         title: 'គ្រឹះស្ថានសិក្សា',
         headerTitleStyle: [headerStyles.headerTitleStyle],
         headerStyle: headerStyles.headerStyle,
-        headerLeft:(<OpenDrawer navigation={screenProps.drawerNavigation}/>),
+        headerLeft:(<BackButton navigation={screenProps.drawerNavigation}/>),
       })
     },
     InstitutionDetail: {

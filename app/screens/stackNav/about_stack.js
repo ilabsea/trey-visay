@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { createStackNavigator } from  'react-navigation';
 import headerStyles from '../../assets/style_sheets/header';
-import OpenDrawer from '../../components/shared/open_drawer';
+import BackButton from '../../components/shared/back_button';
 
 import About from '../about';
 
@@ -14,7 +14,7 @@ const AboutStack = createStackNavigator(
         headerTitleStyle: [headerStyles.headerTitleStyle],
         headerStyle: headerStyles.headerStyle,
         title: 'អំពីកម្មវិធី',
-        headerLeft: <OpenDrawer navigation={navigation}/>
+        headerLeft: <BackButton navigation={navigation}/>
       })
     }
   }

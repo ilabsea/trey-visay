@@ -11,7 +11,6 @@ import VocationalJobShowScreen from '../vocational_job/job_detail/show_screen';
 import InstitutionDetail from '../school/institution_detail';
 
 import BackButton from '../../components/shared/back_button';
-import OpenDrawer from '../../components/shared/open_drawer';
 import headerStyles from '../../assets/style_sheets/header';
 
 const VocationalJobStack = createStackNavigator(
@@ -20,7 +19,7 @@ const VocationalJobStack = createStackNavigator(
       screen: VocationalJobIndexScreen,
       navigationOptions: ({navigation}) => ({
         title: "ជំនាញវិជ្ជាជីវៈ",
-        headerLeft: <OpenDrawer navigation={navigation}/>,
+        headerLeft: <BackButton navigation={navigation}/>,
       })
     },
     VocationalJobShowScreen: {

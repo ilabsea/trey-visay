@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { createStackNavigator } from  'react-navigation';
 import headerStyles from '../../assets/style_sheets/header';
-import CloseButton from '../../components/shared/close_button';
+import BackButton from '../../components/shared/back_button';
 
 import ChangePasswordScreen from '../change_password_screen';
 
@@ -14,7 +14,7 @@ const ChangePasswordStack = createStackNavigator(
         headerTitleStyle: [headerStyles.headerTitleStyle],
         headerStyle: headerStyles.headerStyle,
         title: 'ប្តូរលេខសម្ងាត់',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <BackButton navigation={navigation}/>
       })
     }
   }

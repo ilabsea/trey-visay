@@ -45,14 +45,6 @@ export default class ChangePasswordScreen extends Component {
     this.setState({ user: user });
   }
 
-  componentDidMount(){
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
-  }
-
-  _handleBack(){
-    this.props.navigation.goBack(null);
-  }
-
   handleSubmit() {
     if (!this._isValid()) {
       Alert.alert( 'ខុសលេខសម្ងាត់', 'ការបញ្ចូលមិនត្រឹមត្រូវ' );

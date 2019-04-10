@@ -24,7 +24,6 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import shareStyles from '../../assets/style_sheets/profile_form';
 import StatusBar from '../../components/shared/status_bar';
 import Filter from '../../components/schools/filter';
-import OpenDrawer from '../../components/shared/open_drawer';
 
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';

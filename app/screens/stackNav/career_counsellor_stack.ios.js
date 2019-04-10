@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import store from '../../redux/store';
 
 import headerStyles from '../../assets/style_sheets/header';
-import OpenDrawer from '../../components/shared/open_drawer';
 import CloseButton from '../../components/shared/close_button';
 import NextButton from '../../components/NextButton';
 import SaveButton from '../../components/save_button';
@@ -36,7 +35,7 @@ const CareerCounsellorStack = createStackNavigator(
       screen: CareerCounsellor,
       navigationOptions: ({navigation}) => ({
         title: 'វាយតម្លៃមុខរបរនិងអាជីព',
-        headerLeft: <OpenDrawer navigation={navigation}/>
+        headerLeft: <BackButton navigation={navigation}/>
       })
     },
     PersonalUnderstandingFormScreen: {
