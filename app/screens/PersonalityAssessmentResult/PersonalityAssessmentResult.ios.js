@@ -9,7 +9,7 @@ import { Container, Content, ListItem, Text, Left, Body, Right, Button, Icon } f
 
 import FooterBar from '../../components/FooterBar';
 import { NavigationActions } from 'react-navigation';
-import BackConfirmDialog from '../../components/back_confirm_dialog';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import {HorizontalBarChart} from 'react-native-charts-wrapper';
 import realm from '../../schema';
 import User from '../../utils/user';

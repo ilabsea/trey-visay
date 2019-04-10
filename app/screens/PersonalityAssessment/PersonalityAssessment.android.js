@@ -7,8 +7,8 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import Button from '../../components/button';
-import StatusBar from '../../components/status_bar';
+import Button from '../../components/shared/button';
+import StatusBar from '../../components/shared/status_bar';
 import formStyles from '../../assets/style_sheets/login_form';
 import styles from '../../assets/style_sheets/assessment';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';

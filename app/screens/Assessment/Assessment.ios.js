@@ -5,7 +5,7 @@ import {
 
 import { Container, Header, Content, ListItem, Thumbnail, Text, Left, Body, Right, Button, Icon, Card, CardItem } from 'native-base';
 
-import StatusBar from '../../components/status_bar';
+import StatusBar from '../../components/shared/status_bar';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 export default class Assessment extends Component {

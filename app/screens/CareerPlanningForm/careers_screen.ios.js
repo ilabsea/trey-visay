@@ -15,7 +15,7 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import Images from '../../assets/images';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import careerList from '../../data/json/characteristic_jobs';
-import BackConfirmDialog from '../../components/back_confirm_dialog';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 
 import realm from '../../schema';
 import User from '../../utils/user';

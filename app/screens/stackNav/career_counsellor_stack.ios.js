@@ -9,6 +9,7 @@ import CloseButton from '../../components/shared/close_button';
 import NextButton from '../../components/NextButton';
 import SaveButton from '../../components/shared/save_button';
 import BackButton from '../../components/shared/back_button';
+import OpenDrawer from '../../components/shared/open_drawer';
 
 import PersonalUnderstandingForm from '../PersonalUnderstanding/PersonalUnderstandingForm';
 import CareerCounsellor from '../CareerCounsellor/CareerCounsellor';
@@ -165,8 +166,6 @@ const CareerCounsellorStack = createStackNavigator(
       screen: CareerCounsellor,
       navigationOptions: ({navigation}) => ({
         title: 'វាយតម្លៃមុខរបរនិងអាជីព',
-        // headerLeft: <BackButton navigation={navigation}/>
-        // headerLeft: <OpenDrawer navigation={navigation}/>
       })
     },
     PersonalUnderstandingFormScreen: {

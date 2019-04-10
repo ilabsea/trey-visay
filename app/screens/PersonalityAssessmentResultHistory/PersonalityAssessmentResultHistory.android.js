@@ -13,7 +13,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import formStyles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
-import BackButton from '../../components/back_button';
+import BackButton from '../../components/shared/back_button';
 import { HorizontalBarChart, BarChart } from 'react-native-charts-wrapper';
 import realm from '../../schema';
 import User from '../../utils/user';

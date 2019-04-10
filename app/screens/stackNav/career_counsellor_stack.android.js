@@ -8,6 +8,7 @@ import headerStyles from '../../assets/style_sheets/header';
 import CloseButton from '../../components/shared/close_button';
 import SaveButton from '../../components/shared/save_button';
 import BackButton from '../../components/shared/back_button';
+import OpenDrawer from '../../components/shared/open_drawer';
 
 import PersonalUnderstandingForm from '../PersonalUnderstanding/PersonalUnderstandingForm';
 import CareerCounsellor from '../CareerCounsellor/CareerCounsellor';

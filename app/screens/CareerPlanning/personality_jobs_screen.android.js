@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import { NavigationActions } from 'react-navigation';
-import CloseButton from '../../components/close_button';
+import CloseButton from '../../components/shared/close_button';
 
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CheckboxGroup from '../../components/checkbox_group';

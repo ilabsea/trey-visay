@@ -16,7 +16,7 @@ import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import CheckboxGroup from '../../components/checkbox_group';
 import personalities from '../../data/json/personality';
-import BackConfirmDialog from '../../components/back_confirm_dialog';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import { NavigationActions } from 'react-navigation';
 
 import realm from '../../schema';
