@@ -21,7 +21,7 @@ import styles from '../../assets/style_sheets/login_form';
 
 // Components
 import StatusBar from '../../components/shared/status_bar';
-import Button from '../../components/button';
+import Button from '../../components/shared/button';
 
 export default class Login extends Component {
   static navigationOptions = {

@@ -5,7 +5,7 @@ import Profile from '../profile/profile';
 import EditProfilePhoto from '../profile/edit_profile_photo';
 import EditPersonalInfo from '../profile/edit_personal_info';
 
-import SaveButton from '../../components/save_button';
+import SaveButton from '../../components/shared/save_button';
 import CloseButton from '../../components/shared/close_button';
 import headerStyles from '../../assets/style_sheets/header';
 

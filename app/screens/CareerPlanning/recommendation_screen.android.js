@@ -8,7 +8,7 @@ import {
   BackHandler,
 } from 'react-native';
 
-import BackConfirmDialog from '../../components/back_confirm_dialog';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import FooterBar from '../../components/FooterBar';
 
 import styles from '../../assets/style_sheets/profile_form';

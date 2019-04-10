@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 
 import headerStyles from '../../assets/style_sheets/header';
-import SaveButton from '../../components/save_button';
+import SaveButton from '../../components/shared/save_button';
 
 import ProfileForm from '../profile/profile_form';
 import Login from '../Account/login';

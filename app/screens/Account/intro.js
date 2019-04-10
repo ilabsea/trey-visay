@@ -7,7 +7,7 @@ import {
   Platform
 } from 'react-native';
 
-import Button from '../../components/button';
+import Button from '../../components/shared/button';
 import StatusBar from '../../components/shared/status_bar';
 import headerStyles from '../../assets/style_sheets/header';
 import { FontSetting } from '../../assets/style_sheets/font_setting';

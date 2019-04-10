@@ -17,7 +17,7 @@ import FooterBar from '../../components/FooterBar';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
-import BackConfirmDialog from '../../components/back_confirm_dialog';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 
 import realm from '../../schema';
 import User from '../../utils/user';

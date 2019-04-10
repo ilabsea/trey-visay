@@ -12,7 +12,7 @@ import {
 import Toast, { DURATION } from 'react-native-easy-toast';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import Button from '../components/button';
+import Button from '../components/shared/button';
 import InputTextContainer from '../components/input_text_container';
 import shareStyles from '../assets/style_sheets/profile_form';
 import styles from '../assets/style_sheets/login_form';

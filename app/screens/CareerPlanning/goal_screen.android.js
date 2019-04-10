@@ -21,7 +21,7 @@ import Sound from 'react-native-sound';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 
-import BackConfirmDialog from '../../components/back_confirm_dialog';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import FooterBar from '../../components/FooterBar';
 import labelStyles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';

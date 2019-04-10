@@ -20,7 +20,7 @@ import store from '../../redux/store';
 
 import PersonalUnderstandingScore from './PersonalUnderstandingScore';
 import CloseButton from '../../components/shared/close_button';
-import SaveButton from '../../components/save_button';
+import SaveButton from '../../components/shared/save_button';
 
 import Form from './_Form';
 import realm from '../../schema';

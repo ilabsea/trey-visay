@@ -24,7 +24,7 @@ import uuidv4 from '../../utils/uuidv4';
 import styles from '../../assets/style_sheets/login_form';
 
 // Components
-import Button from '../../components/button';
+import Button from '../../components/shared/button';
 
 const api = create({
   baseURL: environment.apiUrl

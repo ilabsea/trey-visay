@@ -14,7 +14,7 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 
-import Button from '../../components/button';
+import Button from '../../components/shared/button';
 import StatusBar from '../../components/shared/status_bar';
 import myStyles from '../../assets/style_sheets/login_form';
 

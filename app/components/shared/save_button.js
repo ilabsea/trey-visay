@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, TouchableOpacity } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import headerStyles from '../assets/style_sheets/header';
+import headerStyles from '../../assets/style_sheets/header';
 
 class SaveButton extends React.Component {
   constructor(props) {

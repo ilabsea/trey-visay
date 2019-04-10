@@ -15,7 +15,7 @@ import { Divider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import RadioGroup from '../../components/radio_group';
-import BackConfirmDialog from '../../components/back_confirm_dialog';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CloseButton from '../../components/shared/close_button';
 import FooterBar from '../../components/FooterBar';
 
