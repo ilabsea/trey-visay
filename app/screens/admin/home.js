@@ -12,7 +12,7 @@ import SideMenu from './side_menu/side_menu';
 const AdminHomeScreen = createDrawerNavigator(
   {
     AdminDashboard: { screen: Dashboard },
-    About: { screen: AboutStack }
+    About: { screen: AboutStack },
   },
   {
     initialRouteName: 'AdminDashboard',

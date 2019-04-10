@@ -8,8 +8,8 @@ import styles from '../../assets/style_sheets/profile_form';
 
 class PickerSpecific extends Component {
   _getPickerValue(data){
-    obj = data.options.find(obj => obj.value === this.props.user[data.stateName]);
-    return obj.label;
+    obj = data.options.find(obj => obj.code === this.props.user[data.stateName]);
+    return obj ? obj.label : 'គ្មានតម្លៃ';
   }
 
   render() {
@@ -22,7 +22,7 @@ class PickerSpecific extends Component {
           selectedValue={ this._getPickerValue(props.data) }
           onValueChange={ props.onValueChange }>
           { props.data.options.map((obj, i) => {
-            { return (<IOSPicker.Item key={i} label={obj.label} value={obj.value} />) }
+            { return (<IOSPicker.Item key={i} label={obj.label} value={obj.code} />) }
           }) }
         </IOSPicker>
       </View>

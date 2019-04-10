@@ -19,7 +19,7 @@ import AccountStack from './stackNav/account_stack';
 
 import VideoScreen from './video_screen';
 import SideMenu from '../components/side_menu/side_menu';
-import PersonalUnderstandingForm from './PersonalUnderstandingForm/PersonalUnderstandingForm';
+import PersonalUnderstandingForm from './PersonalUnderstanding/PersonalUnderstandingForm';
 
 const HomeScreen = createDrawerNavigator(
   {

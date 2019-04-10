@@ -80,7 +80,15 @@ export default class AdminLogin extends Component {
       realm.write(() => {
         let user = realm.create('User', this.buildData(res), true);
         User.setLogin(user.uuid, () => {
-          this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'AdminHome'}], key: null})
+          this.props.navigation.dispatch({
+            type: 'Navigation/RESET',
+            index: 0,
+            actions: [{
+              type: 'Navigation/NAVIGATE',
+              routeName:'AdminHome'
+            }],
+            key: null
+          })
         });
       });
 

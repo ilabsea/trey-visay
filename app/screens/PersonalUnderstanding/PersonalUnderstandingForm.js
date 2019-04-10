@@ -58,7 +58,10 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit, _handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      handleSubmit: this.handleSubmit,
+      _handleBack: this._handleBack.bind(this)
+    });
   }
 
   handleSubmit = () => {
@@ -82,7 +85,7 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   submitForm(values) {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let list = game.personalUnderstandings;
 

@@ -15,17 +15,17 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
-
 import DatePicker from 'react-native-datepicker';
 import InputTextContainer from '../../components/input_text_container';
 import StatusBar from '../../components/status_bar';
 import PickerSpecific from '../../components/picker/PickerSpecific';
-import Grades from '../../data/json/grades.json';
-import highSchoolList from '../../data/json/high_schools';
+import grades from '../../data/json/grades.json';
+import provinces from '../../data/json/address/provinces.json';
+import communes from '../../data/json/address/communes.json';
+import districts from '../../data/json/address/districts.json';
+import highSchools from '../../data/json/address/highSchools.json';
 
 let formError = {};
-const schools = highSchoolList.map((obj) => { return {label: obj.name, value: obj.id}});
-const grades = Grades;
 
 export default class EditPersonalInfo extends Component {
 
@@ -39,11 +39,9 @@ export default class EditPersonalInfo extends Component {
       handleSubmit: this.handleSubmit.bind(this),
       _handleBack: this._handleBack.bind(this)
     });
-    let user = User.getCurrent();
-    user = Object.assign({}, user, {sex: user.sex || 'ស្រី', nationality: user.nationality || 'ខ្មែរ',
-                                    grade: '9', highSchoolId: user.highSchoolId || '1',
-                                    houseType: user.houseType || 'ផ្ទះឈើ',
-                                    collectiveIncome: user.collectiveIncome || '0-25ម៉ឺន'})
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    user = Object.assign({}, user, {sex: user.sex || 'ស្រី',
+                                    grade: user.grade || '9'})
     this.setState({user: user});
   }
 
@@ -75,7 +73,7 @@ export default class EditPersonalInfo extends Component {
   }
 
   isValidForm() {
-    fields = [ 'fullName', 'dateOfBirth', 'nationality', 'address' ];
+    fields = [ 'fullName', 'dateOfBirth', 'provinceCode', 'districtCode', 'highSchoolCode'];
     for (var i = 0; i < fields.length; i++) {
       this.checkRequire(fields[i]);
     }
@@ -91,7 +89,10 @@ export default class EditPersonalInfo extends Component {
     try {
       realm.write(() => {
         realm.create('User', this._buildData(), true);
-        realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
+        realm.create('Sidekiq', {
+          paramUuid: this.state.user.uuid,
+          tableName: 'User'
+        }, true)
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });
@@ -104,16 +105,16 @@ export default class EditPersonalInfo extends Component {
     return {
       uuid: this.state.user.uuid,
       fullName: this.state.user.fullName,
-      username: this.state.user.username,
       sex: this.state.user.sex,
       photo: this.state.user.photo,
       cover: this.state.user.cover,
       dateOfBirth: this.state.user.dateOfBirth,
       phoneNumber: this.state.user.phoneNumber,
-      nationality: this.state.user.nationality,
-      highSchoolId: this.state.user.highSchoolId,
+      highSchoolCode: this.state.user.highSchoolCode,
+      provinceCode: this.state.user.provinceCode,
+      districtCode: this.state.user.districtCode,
+      communeCode: this.state.user.communeCode,
       grade: this.state.user.grade,
-      address: this.state.user.address
     }
   }
 
@@ -123,18 +124,48 @@ export default class EditPersonalInfo extends Component {
     this.setState({...this.state, user: user});
   }
 
+  _getDistricts(){
+    let provinceCode = this.state.user.provinceCode;
+    return districts.filter((district) => district.parent_code == provinceCode);
+  }
+
+  _getCommunes(){
+    let districtCode = this.state.user.districtCode;
+    return communes.filter((commune) => commune.parent_code == districtCode);
+  }
+
+  _getHighSchools(){
+    let districtCode = this.state.user.districtCode;
+    return highSchools.filter((highSchool) => highSchool.parent_code == districtCode);
+  }
+
   _renderPersonalInfo() {
+    let sexOptions = [
+      {label: 'ស្រី', value: 'ស្រី', code: 'ស្រី'},
+      {label: 'ប្រុស', value: 'ប្រុស', code: 'ប្រុស'},
+      {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ', code: 'ផ្សេងៗ'}
+    ]
+    let noValue = [{ "code": "", "label": "គ្មានតម្លៃ" }]
     return (
-      <View style={[styles.container, {backgroundColor: '#fff', padding: 16}]}>
-        { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ'}) }
-        { this._renderInputTextContainer({stateName: 'username', label: 'ឈ្មោះគណនី'}) }
-        { this._renderPicker({label: 'ភេទ', stateName: 'sex', options: [{label: 'ស្រី', value: 'ស្រី'}, {label: 'ប្រុស', value: 'ប្រុស'}, {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ'}]}) }
+      <View style={[styles.container, {padding: 16, backgroundColor: '#fff'}]}>
+        { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ',
+          nextFocusInput: 'usernameInput'}) }
+        { this._renderPicker({label: 'ភេទ', stateName: 'sex',
+          options: sexOptions})
+        }
         { this._renderDatePicker() }
-        { this._renderInputTextContainer({stateName: 'nationality', label: 'សញ្ជាតិ', nextFocusInput: 'phoneNumberInput'}) }
-        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ', nextFocusInput: 'addressInput', keyboardType: 'phone-pad'}) }
+        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ',
+          keyboardType: 'phone-pad'})
+        }
         { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
-        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolId', options: schools})}
-        { this._renderInputTextContainer({stateName: 'address', label: 'អាស័យដ្ឋានបច្ចុប្បន្ន'}) }
+        { this._renderPicker({label: 'ខេត្ត', stateName: 'provinceCode',
+          options: noValue.concat(provinces) })}
+        { this._renderPicker({label: 'ស្រុក', stateName: 'districtCode',
+            options: noValue.concat(this._getDistricts()) })}
+        { this._renderPicker({label: 'ឃុំ', stateName: 'communeCode',
+            options: noValue.concat(this._getCommunes()) })}
+        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolCode',
+            options: noValue.concat(this._getHighSchools()) })}
       </View>
     )
   }

@@ -1,0 +1,1184 @@
+[
+  {
+    "code": "0102",
+    "label": "មង្គលបូរី",
+    "name_en": "Mongkol Borei",
+    "parent_code": "01"
+  },
+  {
+    "code": "0103",
+    "label": "ភ្នំស្រុក",
+    "name_en": "Phnum Srok",
+    "parent_code": "01"
+  },
+  {
+    "code": "0104",
+    "label": "ព្រះនេត្រព្រះ",
+    "name_en": "Preah Netr Preah",
+    "parent_code": "01"
+  },
+  {
+    "code": "0105",
+    "label": "អូរជ្រៅ",
+    "name_en": "Ou Chrov",
+    "parent_code": "01"
+  },
+  {
+    "code": "0106",
+    "label": "សិរីសោភ័ណ",
+    "name_en": "Serei Saophoan",
+    "parent_code": "01"
+  },
+  {
+    "code": "0107",
+    "label": "ថ្មពួក",
+    "name_en": "Thma Puok",
+    "parent_code": "01"
+  },
+  {
+    "code": "0108",
+    "label": "ស្វាយចេក",
+    "name_en": "Svay Chek",
+    "parent_code": "01"
+  },
+  {
+    "code": "0109",
+    "label": "ម៉ាឡៃ",
+    "name_en": "Malai",
+    "parent_code": "01"
+  },
+  {
+    "code": "0110",
+    "label": "ប៉ោយប៉ែត",
+    "name_en": "Paoy Paet",
+    "parent_code": "01"
+  },
+  {
+    "code": "0201",
+    "label": "បាណន់",
+    "name_en": "Banan",
+    "parent_code": "02"
+  },
+  {
+    "code": "0202",
+    "label": "ថ្មគោល",
+    "name_en": "Thma Koul",
+    "parent_code": "02"
+  },
+  {
+    "code": "0203",
+    "label": "បាត់ដំបង",
+    "name_en": "Battambang",
+    "parent_code": "02"
+  },
+  {
+    "code": "0204",
+    "label": "បវេល",
+    "name_en": "Bavel",
+    "parent_code": "02"
+  },
+  {
+    "code": "0205",
+    "label": "ឯកភ្នំ",
+    "name_en": "Aek Phnum",
+    "parent_code": "02"
+  },
+  {
+    "code": "0206",
+    "label": "មោងឫស្សី",
+    "name_en": "Moung Ruessei",
+    "parent_code": "02"
+  },
+  {
+    "code": "0207",
+    "label": "រតនមណ្ឌល",
+    "name_en": "Rotonak Mondol",
+    "parent_code": "02"
+  },
+  {
+    "code": "0208",
+    "label": "សង្កែ",
+    "name_en": "Sangkae",
+    "parent_code": "02"
+  },
+  {
+    "code": "0209",
+    "label": "សំឡូត",
+    "name_en": "Samlout",
+    "parent_code": "02"
+  },
+  {
+    "code": "0210",
+    "label": "សំពៅលូន",
+    "name_en": "Sampov Lun",
+    "parent_code": "02"
+  },
+  {
+    "code": "0211",
+    "label": "ភ្នំព្រឹក",
+    "name_en": "Phnum Proek",
+    "parent_code": "02"
+  },
+  {
+    "code": "0212",
+    "label": "កំរៀង",
+    "name_en": "Kamrieng",
+    "parent_code": "02"
+  },
+  {
+    "code": "0213",
+    "label": "គាស់ក្រឡ",
+    "name_en": "Koas Krala",
+    "parent_code": "02"
+  },
+  {
+    "code": "0214",
+    "label": "រុក្ខគិរី",
+    "name_en": "Rukh Kiri",
+    "parent_code": "02"
+  },
+  {
+    "code": "0301",
+    "label": "បាធាយ",
+    "name_en": "Batheay",
+    "parent_code": "03"
+  },
+  {
+    "code": "0302",
+    "label": "ចំការលើ",
+    "name_en": "Chamkar Leu",
+    "parent_code": "03"
+  },
+  {
+    "code": "0303",
+    "label": "ជើងព្រៃ",
+    "name_en": "Cheung Prey",
+    "parent_code": "03"
+  },
+  {
+    "code": "0305",
+    "label": "កំពង់ចាម",
+    "name_en": "Kampong Cham",
+    "parent_code": "03"
+  },
+  {
+    "code": "0306",
+    "label": "កំពង់សៀម",
+    "name_en": "Kampong Siem",
+    "parent_code": "03"
+  },
+  {
+    "code": "0307",
+    "label": "កងមាស",
+    "name_en": "Kang Meas",
+    "parent_code": "03"
+  },
+  {
+    "code": "0308",
+    "label": "កោះសូទិន",
+    "name_en": "Kaoh Soutin",
+    "parent_code": "03"
+  },
+  {
+    "code": "0313",
+    "label": "ព្រៃឈរ",
+    "name_en": "Prey Chhor",
+    "parent_code": "03"
+  },
+  {
+    "code": "0314",
+    "label": "ស្រីសន្ធរ",
+    "name_en": "Srei Santhor",
+    "parent_code": "03"
+  },
+  {
+    "code": "0315",
+    "label": "ស្ទឹងត្រង់",
+    "name_en": "Stueng Trang",
+    "parent_code": "03"
+  },
+  {
+    "code": "0401",
+    "label": "បរិបូណ៌",
+    "name_en": "Baribour",
+    "parent_code": "04"
+  },
+  {
+    "code": "0402",
+    "label": "ជលគីរី",
+    "name_en": "Chol Kiri",
+    "parent_code": "04"
+  },
+  {
+    "code": "0403",
+    "label": "កំពង់ឆ្នាំង",
+    "name_en": "Kampong Chhnang",
+    "parent_code": "04"
+  },
+  {
+    "code": "0404",
+    "label": "កំពង់លែង",
+    "name_en": "Kampong Leaeng",
+    "parent_code": "04"
+  },
+  {
+    "code": "0405",
+    "label": "កំពង់ត្រឡាច",
+    "name_en": "Kampong Tralach",
+    "parent_code": "04"
+  },
+  {
+    "code": "0406",
+    "label": "រលាប្អៀរ",
+    "name_en": "Rolea B'ier",
+    "parent_code": "04"
+  },
+  {
+    "code": "0407",
+    "label": "សាមគ្គីមានជ័យ",
+    "name_en": "Sameakki Mean Chey",
+    "parent_code": "04"
+  },
+  {
+    "code": "0408",
+    "label": "ទឹកផុស",
+    "name_en": "Tuek Phos",
+    "parent_code": "04"
+  },
+  {
+    "code": "0501",
+    "label": "បរសេដ្ឋ",
+    "name_en": "Basedth",
+    "parent_code": "05"
+  },
+  {
+    "code": "0502",
+    "label": "ច្បារមន",
+    "name_en": "Chbar Mon",
+    "parent_code": "05"
+  },
+  {
+    "code": "0503",
+    "label": "គងពិសី",
+    "name_en": "Kong Pisei",
+    "parent_code": "05"
+  },
+  {
+    "code": "0504",
+    "label": "ឱរ៉ាល់",
+    "name_en": "Aoral",
+    "parent_code": "05"
+  },
+  {
+    "code": "0505",
+    "label": "ឧដុង្គ",
+    "name_en": "Odongk",
+    "parent_code": "05"
+  },
+  {
+    "code": "0506",
+    "label": "ភ្នំស្រួច",
+    "name_en": "Phnum Sruoch",
+    "parent_code": "05"
+  },
+  {
+    "code": "0507",
+    "label": "សំរោងទង",
+    "name_en": "Samraong Tong",
+    "parent_code": "05"
+  },
+  {
+    "code": "0508",
+    "label": "ថ្ពង",
+    "name_en": "Thpong",
+    "parent_code": "05"
+  },
+  {
+    "code": "0601",
+    "label": "បារាយណ៍",
+    "name_en": "Baray",
+    "parent_code": "06"
+  },
+  {
+    "code": "0602",
+    "label": "កំពង់ស្វាយ",
+    "name_en": "Kampong Svay",
+    "parent_code": "06"
+  },
+  {
+    "code": "0603",
+    "label": "ស្ទឹងសែន",
+    "name_en": "Stueng Saen",
+    "parent_code": "06"
+  },
+  {
+    "code": "0604",
+    "label": "ប្រាសាទបល្ល័ង្គ",
+    "name_en": "Prasat Ballangk",
+    "parent_code": "06"
+  },
+  {
+    "code": "0605",
+    "label": "ប្រាសាទសំបូរ",
+    "name_en": "Prasat Sambour",
+    "parent_code": "06"
+  },
+  {
+    "code": "0606",
+    "label": "សណ្ដាន់",
+    "name_en": "Sandan",
+    "parent_code": "06"
+  },
+  {
+    "code": "0607",
+    "label": "សន្ទុក",
+    "name_en": "Santuk",
+    "parent_code": "06"
+  },
+  {
+    "code": "0608",
+    "label": "ស្ទោង",
+    "name_en": "Stoung",
+    "parent_code": "06"
+  },
+  {
+    "code": "0701",
+    "label": "អង្គរជ័យ",
+    "name_en": "Angkor Chey",
+    "parent_code": "07"
+  },
+  {
+    "code": "0702",
+    "label": "បន្ទាយមាស",
+    "name_en": "Banteay Meas",
+    "parent_code": "07"
+  },
+  {
+    "code": "0703",
+    "label": "ឈូក",
+    "name_en": "Chhuk",
+    "parent_code": "07"
+  },
+  {
+    "code": "0704",
+    "label": "ជុំគិរី",
+    "name_en": "Chum Kiri",
+    "parent_code": "07"
+  },
+  {
+    "code": "0705",
+    "label": "ដងទង់",
+    "name_en": "Dang Tong",
+    "parent_code": "07"
+  },
+  {
+    "code": "0706",
+    "label": "កំពង់ត្រាច",
+    "name_en": "Kampong Trach",
+    "parent_code": "07"
+  },
+  {
+    "code": "0707",
+    "label": "ទឹកឈូ",
+    "name_en": "Tuek Chhou",
+    "parent_code": "07"
+  },
+  {
+    "code": "0708",
+    "label": "កំពត",
+    "name_en": "Kampot",
+    "parent_code": "07"
+  },
+  {
+    "code": "0801",
+    "label": "កណ្ដាលស្ទឹង",
+    "name_en": "Kandal Stueng",
+    "parent_code": "08"
+  },
+  {
+    "code": "0802",
+    "label": "កៀនស្វាយ",
+    "name_en": "Kien Svay",
+    "parent_code": "08"
+  },
+  {
+    "code": "0803",
+    "label": "ខ្សាច់កណ្ដាល",
+    "name_en": "Khsach Kandal",
+    "parent_code": "08"
+  },
+  {
+    "code": "0804",
+    "label": "កោះធំ",
+    "name_en": "Kaoh Thum",
+    "parent_code": "08"
+  },
+  {
+    "code": "0805",
+    "label": "លើកដែក",
+    "name_en": "Leuk Daek",
+    "parent_code": "08"
+  },
+  {
+    "code": "0806",
+    "label": "ល្វាឯម",
+    "name_en": "Lvea Aem",
+    "parent_code": "08"
+  },
+  {
+    "code": "0807",
+    "label": "មុខកំពូល",
+    "name_en": "Mukh Kampul",
+    "parent_code": "08"
+  },
+  {
+    "code": "0808",
+    "label": "អង្គស្នួល",
+    "name_en": "Angk Snuol",
+    "parent_code": "08"
+  },
+  {
+    "code": "0809",
+    "label": "ពញាឮ",
+    "name_en": "Ponhea Lueu",
+    "parent_code": "08"
+  },
+  {
+    "code": "0810",
+    "label": "ស្អាង",
+    "name_en": "S'ang",
+    "parent_code": "08"
+  },
+  {
+    "code": "0811",
+    "label": "តាខ្មៅ",
+    "name_en": "Ta Khmau",
+    "parent_code": "08"
+  },
+  {
+    "code": "0901",
+    "label": "បុទុមសាគរ",
+    "name_en": "Botum Sakor",
+    "parent_code": "09"
+  },
+  {
+    "code": "0902",
+    "label": "គិរីសាគរ",
+    "name_en": "Kiri Sakor",
+    "parent_code": "09"
+  },
+  {
+    "code": "0903",
+    "label": "កោះកុង",
+    "name_en": "Kaoh Kong",
+    "parent_code": "09"
+  },
+  {
+    "code": "0904",
+    "label": "ខេមរភូមិន្ទ",
+    "name_en": "Khemara Phoumin",
+    "parent_code": "09"
+  },
+  {
+    "code": "0905",
+    "label": "មណ្ឌលសីមា",
+    "name_en": "Mondol Seima",
+    "parent_code": "09"
+  },
+  {
+    "code": "0906",
+    "label": "ស្រែ អំបិល",
+    "name_en": "Srae Ambel",
+    "parent_code": "09"
+  },
+  {
+    "code": "0907",
+    "label": "ថ្មបាំង",
+    "name_en": "Thma Bang",
+    "parent_code": "09"
+  },
+  {
+    "code": "1001",
+    "label": "ឆ្លូង",
+    "name_en": "Chhloung",
+    "parent_code": "10"
+  },
+  {
+    "code": "1002",
+    "label": "ក្រចេះ",
+    "name_en": "Kracheh",
+    "parent_code": "10"
+  },
+  {
+    "code": "1003",
+    "label": "ព្រែកប្រសព្វ",
+    "name_en": "Prek Prasab",
+    "parent_code": "10"
+  },
+  {
+    "code": "1004",
+    "label": "សំបូរ",
+    "name_en": "Sambour",
+    "parent_code": "10"
+  },
+  {
+    "code": "1005",
+    "label": "ស្នួល",
+    "name_en": "Snuol",
+    "parent_code": "10"
+  },
+  {
+    "code": "1006",
+    "label": "ចិត្របុរី",
+    "name_en": "Chetr Borei",
+    "parent_code": "10"
+  },
+  {
+    "code": "1101",
+    "label": "កែវសីមា",
+    "name_en": "Kaev Seima",
+    "parent_code": "11"
+  },
+  {
+    "code": "1102",
+    "label": "កោះញែក",
+    "name_en": "Kaoh Nheaek",
+    "parent_code": "11"
+  },
+  {
+    "code": "1103",
+    "label": "អូររាំង",
+    "name_en": "Ou Reang",
+    "parent_code": "11"
+  },
+  {
+    "code": "1104",
+    "label": "ពេជ្រាដា",
+    "name_en": "Pech Chreada",
+    "parent_code": "11"
+  },
+  {
+    "code": "1105",
+    "label": "សែនមនោរម្យ",
+    "name_en": "Saen Monourom",
+    "parent_code": "11"
+  },
+  {
+    "code": "1201",
+    "label": "ខណ្ឌចំការមន",
+    "name_en": "Chamkar Mon Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1202",
+    "label": "ខណ្ឌដូនពេញ",
+    "name_en": "Doun Penh Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1203",
+    "label": "ខណ្ឌ៧មករា",
+    "name_en": "Prampir Meakkakra Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1204",
+    "label": "ខណ្ឌទួលគោក",
+    "name_en": "Tuol Kouk Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1205",
+    "label": "ខណ្ឌដង្កោ",
+    "name_en": "Dangkao Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1206",
+    "label": "ខណ្ឌមានជ័យ",
+    "name_en": "Mean Chey Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1207",
+    "label": "ខណ្ឌឫស្សីកែវ",
+    "name_en": "Russey Keo Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1208",
+    "label": "ខណ្ឌសែនសុខ",
+    "name_en": "Saensokh Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1209",
+    "label": "ខណ្ឌពោធិ៍សែនជ័យ",
+    "name_en": "Pur SenChey Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1210",
+    "label": "ខណ្ឌជ្រោយចង្វារ",
+    "name_en": "Chraoy Chongvar Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1211",
+    "label": "ខណ្ឌព្រែកព្នៅ",
+    "name_en": "Praek Pnov Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1212",
+    "label": "ខណ្ឌច្បារអំពៅ",
+    "name_en": "Chbar Ampov Khan",
+    "parent_code": "12"
+  },
+  {
+    "code": "1301",
+    "label": "ជ័យសែន",
+    "name_en": "Chey Saen",
+    "parent_code": "13"
+  },
+  {
+    "code": "1302",
+    "label": "ឆែប",
+    "name_en": "Chhaeb",
+    "parent_code": "13"
+  },
+  {
+    "code": "1303",
+    "label": "ជាំក្សាន្ដ",
+    "name_en": "Choam Ksant",
+    "parent_code": "13"
+  },
+  {
+    "code": "1304",
+    "label": "គូលែន",
+    "name_en": "Kuleaen",
+    "parent_code": "13"
+  },
+  {
+    "code": "1305",
+    "label": "រវៀង",
+    "name_en": "Rovieng",
+    "parent_code": "13"
+  },
+  {
+    "code": "1306",
+    "label": "សង្គមថ្មី",
+    "name_en": "Sangkum Thmei",
+    "parent_code": "13"
+  },
+  {
+    "code": "1307",
+    "label": "ត្បែងមានជ័យ",
+    "name_en": "Tbaeng Mean Chey",
+    "parent_code": "13"
+  },
+  {
+    "code": "1308",
+    "label": "ព្រះវិហារ",
+    "name_en": "Preah Vihear",
+    "parent_code": "13"
+  },
+  {
+    "code": "1401",
+    "label": "បាភ្នំ",
+    "name_en": "Ba Phnum",
+    "parent_code": "14"
+  },
+  {
+    "code": "1402",
+    "label": "កំចាយមារ",
+    "name_en": "Kamchay Mear",
+    "parent_code": "14"
+  },
+  {
+    "code": "1403",
+    "label": "កំពង់ត្របែក",
+    "name_en": "Kampong Trabaek",
+    "parent_code": "14"
+  },
+  {
+    "code": "1404",
+    "label": "កញ្ជ្រៀច",
+    "name_en": "Kanhchriech",
+    "parent_code": "14"
+  },
+  {
+    "code": "1405",
+    "label": "មេសាង",
+    "name_en": "Me Sang",
+    "parent_code": "14"
+  },
+  {
+    "code": "1406",
+    "label": "ពាមជរ",
+    "name_en": "Peam Chor",
+    "parent_code": "14"
+  },
+  {
+    "code": "1407",
+    "label": "ពាមរក៍",
+    "name_en": "Peam Ro",
+    "parent_code": "14"
+  },
+  {
+    "code": "1408",
+    "label": "ពារាំង",
+    "name_en": "Pea Reang",
+    "parent_code": "14"
+  },
+  {
+    "code": "1409",
+    "label": "ព្រះស្ដេច",
+    "name_en": "Preah Sdach",
+    "parent_code": "14"
+  },
+  {
+    "code": "1410",
+    "label": "ព្រៃវែង",
+    "name_en": "Prey Veng",
+    "parent_code": "14"
+  },
+  {
+    "code": "1411",
+    "label": "ពោធិ៍រៀង",
+    "name_en": "Pur Rieng",
+    "parent_code": "14"
+  },
+  {
+    "code": "1412",
+    "label": "ស៊ីធរកណ្ដាល",
+    "name_en": "Sithor Kandal",
+    "parent_code": "14"
+  },
+  {
+    "code": "1413",
+    "label": "ស្វាយអន្ទរ",
+    "name_en": "Svay Antor",
+    "parent_code": "14"
+  },
+  {
+    "code": "1501",
+    "label": "បាកាន",
+    "name_en": "Bakan",
+    "parent_code": "15"
+  },
+  {
+    "code": "1502",
+    "label": "កណ្ដៀង",
+    "name_en": "Kandieng",
+    "parent_code": "15"
+  },
+  {
+    "code": "1503",
+    "label": "ក្រគរ",
+    "name_en": "Krakor",
+    "parent_code": "15"
+  },
+  {
+    "code": "1504",
+    "label": "ភ្នំក្រវ៉ាញ",
+    "name_en": "Phnum Kravanh",
+    "parent_code": "15"
+  },
+  {
+    "code": "1505",
+    "label": "ពោធិ៍សាត់",
+    "name_en": "Pursat",
+    "parent_code": "15"
+  },
+  {
+    "code": "1506",
+    "label": "វាលវែង",
+    "name_en": "Veal Veaeng",
+    "parent_code": "15"
+  },
+  {
+    "code": "1601",
+    "label": "អណ្ដូងមាស",
+    "name_en": "Andoung Meas",
+    "parent_code": "16"
+  },
+  {
+    "code": "1602",
+    "label": "បានលុង",
+    "name_en": "Ban Lung",
+    "parent_code": "16"
+  },
+  {
+    "code": "1603",
+    "label": "បរកែវ",
+    "name_en": "Bar Kaev",
+    "parent_code": "16"
+  },
+  {
+    "code": "1604",
+    "label": "កូនមុំ",
+    "name_en": "Koun Mom",
+    "parent_code": "16"
+  },
+  {
+    "code": "1605",
+    "label": "លំផាត់",
+    "name_en": "Lumphat",
+    "parent_code": "16"
+  },
+  {
+    "code": "1606",
+    "label": "អូរជុំ",
+    "name_en": "Ou Chum",
+    "parent_code": "16"
+  },
+  {
+    "code": "1607",
+    "label": "អូរយ៉ាដាវ",
+    "name_en": "Ou Ya Dav",
+    "parent_code": "16"
+  },
+  {
+    "code": "1608",
+    "label": "តាវែង",
+    "name_en": "Ta Veaeng",
+    "parent_code": "16"
+  },
+  {
+    "code": "1609",
+    "label": "វើនសៃ",
+    "name_en": "Veun Sai",
+    "parent_code": "16"
+  },
+  {
+    "code": "1701",
+    "label": "អង្គរជុំ",
+    "name_en": "Angkor Chum",
+    "parent_code": "17"
+  },
+  {
+    "code": "1702",
+    "label": "អង្គរធំ",
+    "name_en": "Angkor Thum",
+    "parent_code": "17"
+  },
+  {
+    "code": "1703",
+    "label": "បន្ទាយស្រី",
+    "name_en": "Banteay Srei",
+    "parent_code": "17"
+  },
+  {
+    "code": "1704",
+    "label": "ជីក្រែង",
+    "name_en": "Chi Kraeng",
+    "parent_code": "17"
+  },
+  {
+    "code": "1706",
+    "label": "ក្រឡាញ់",
+    "name_en": "Kralanh",
+    "parent_code": "17"
+  },
+  {
+    "code": "1707",
+    "label": "ពួក",
+    "name_en": "Puok",
+    "parent_code": "17"
+  },
+  {
+    "code": "1709",
+    "label": "ប្រាសាទបាគង",
+    "name_en": "Prasat Bakong",
+    "parent_code": "17"
+  },
+  {
+    "code": "1710",
+    "label": "សៀមរាប",
+    "name_en": "Siem Reap",
+    "parent_code": "17"
+  },
+  {
+    "code": "1711",
+    "label": "សូទ្រនិគម",
+    "name_en": "Soutr Nikom",
+    "parent_code": "17"
+  },
+  {
+    "code": "1712",
+    "label": "ស្រីស្នំ",
+    "name_en": "Srei Snam",
+    "parent_code": "17"
+  },
+  {
+    "code": "1713",
+    "label": "ស្វាយលើ",
+    "name_en": "Svay Leu",
+    "parent_code": "17"
+  },
+  {
+    "code": "1714",
+    "label": "វ៉ារិន",
+    "name_en": "Varin",
+    "parent_code": "17"
+  },
+  {
+    "code": "1801",
+    "label": "ព្រះសីហនុ",
+    "name_en": "Preah Sihanouk",
+    "parent_code": "18"
+  },
+  {
+    "code": "1802",
+    "label": "ព្រៃនប់",
+    "name_en": "Prey Nob",
+    "parent_code": "18"
+  },
+  {
+    "code": "1803",
+    "label": "ស្ទឹងហាវ",
+    "name_en": "Stueng Hav",
+    "parent_code": "18"
+  },
+  {
+    "code": "1804",
+    "label": "កំពង់សីលា",
+    "name_en": "Kampong Seila",
+    "parent_code": "18"
+  },
+  {
+    "code": "1901",
+    "label": "សេសាន",
+    "name_en": "Sesan",
+    "parent_code": "19"
+  },
+  {
+    "code": "1902",
+    "label": "សៀមបូក",
+    "name_en": "Siem Bouk",
+    "parent_code": "19"
+  },
+  {
+    "code": "1903",
+    "label": "សៀមប៉ាង",
+    "name_en": "Siem Pang",
+    "parent_code": "19"
+  },
+  {
+    "code": "1904",
+    "label": "ស្ទឹងត្រែង",
+    "name_en": "Stueng Traeng",
+    "parent_code": "19"
+  },
+  {
+    "code": "1905",
+    "label": "ថាឡាបរិវ៉ាត់",
+    "name_en": "Thala Barivat",
+    "parent_code": "19"
+  },
+  {
+    "code": "2001",
+    "label": "ចន្ទ្រា",
+    "name_en": "Chantrea",
+    "parent_code": "20"
+  },
+  {
+    "code": "2002",
+    "label": "កំពង់រោទិ៍",
+    "name_en": "Kampong Rou",
+    "parent_code": "20"
+  },
+  {
+    "code": "2003",
+    "label": "រំដួល",
+    "name_en": "Rumduol",
+    "parent_code": "20"
+  },
+  {
+    "code": "2004",
+    "label": "រមាសហែក",
+    "name_en": "Romeas Haek",
+    "parent_code": "20"
+  },
+  {
+    "code": "2005",
+    "label": "ស្វាយជ្រំ",
+    "name_en": "Svay Chrum",
+    "parent_code": "20"
+  },
+  {
+    "code": "2006",
+    "label": "ស្វាយរៀង",
+    "name_en": "Svay Rieng",
+    "parent_code": "20"
+  },
+  {
+    "code": "2007",
+    "label": "ស្វាយទាប",
+    "name_en": "Svay Teab",
+    "parent_code": "20"
+  },
+  {
+    "code": "2008",
+    "label": "បាវិត",
+    "name_en": "Bavet",
+    "parent_code": "20"
+  },
+  {
+    "code": "2101",
+    "label": "អង្គរបូរី",
+    "name_en": "Angkor Borei",
+    "parent_code": "21"
+  },
+  {
+    "code": "2102",
+    "label": "បាទី",
+    "name_en": "Bati",
+    "parent_code": "21"
+  },
+  {
+    "code": "2103",
+    "label": "បូរីជលសារ",
+    "name_en": "Borei Cholsar",
+    "parent_code": "21"
+  },
+  {
+    "code": "2104",
+    "label": "គីរីវង់",
+    "name_en": "Kiri Vong",
+    "parent_code": "21"
+  },
+  {
+    "code": "2105",
+    "label": "កោះអណ្ដែត",
+    "name_en": "Kaoh Andaet",
+    "parent_code": "21"
+  },
+  {
+    "code": "2106",
+    "label": "ព្រៃកប្បាស",
+    "name_en": "Prey Kabbas",
+    "parent_code": "21"
+  },
+  {
+    "code": "2107",
+    "label": "សំរោង",
+    "name_en": "Samraong",
+    "parent_code": "21"
+  },
+  {
+    "code": "2108",
+    "label": "ដូនកែវ",
+    "name_en": "Doun Kaev",
+    "parent_code": "21"
+  },
+  {
+    "code": "2109",
+    "label": "ត្រាំកក់",
+    "name_en": "Tram Kak",
+    "parent_code": "21"
+  },
+  {
+    "code": "2110",
+    "label": "ទ្រាំង",
+    "name_en": "Treang",
+    "parent_code": "21"
+  },
+  {
+    "code": "2201",
+    "label": "អន្លង់វែង",
+    "name_en": "Anlong Veaeng",
+    "parent_code": "22"
+  },
+  {
+    "code": "2202",
+    "label": "បន្ទាយអំពិល",
+    "name_en": "Banteay Ampil",
+    "parent_code": "22"
+  },
+  {
+    "code": "2203",
+    "label": "ចុងកាល់",
+    "name_en": "Chong Kal",
+    "parent_code": "22"
+  },
+  {
+    "code": "2204",
+    "label": "សំរោង",
+    "name_en": "Samraong",
+    "parent_code": "22"
+  },
+  {
+    "code": "2205",
+    "label": "ត្រពាំងប្រាសាទ",
+    "name_en": "Trapeang Prasat",
+    "parent_code": "22"
+  },
+  {
+    "code": "2301",
+    "label": "ដំណាក់ចង្អើរ",
+    "name_en": "Damnak Chang'aeur",
+    "parent_code": "23"
+  },
+  {
+    "code": "2302",
+    "label": "កែប",
+    "name_en": "Kaeb",
+    "parent_code": "23"
+  },
+  {
+    "code": "2401",
+    "label": "ប៉ៃលិន",
+    "name_en": "Pailin",
+    "parent_code": "24"
+  },
+  {
+    "code": "2402",
+    "label": "សាលាក្រៅ",
+    "name_en": "Sala Krau",
+    "parent_code": "24"
+  },
+  {
+    "code": "2501",
+    "label": "តំបែរ",
+    "name_en": "Dambae",
+    "parent_code": "25"
+  },
+  {
+    "code": "2502",
+    "label": "ក្រូចឆ្មារ",
+    "name_en": "Krouch Chhmar",
+    "parent_code": "25"
+  },
+  {
+    "code": "2503",
+    "label": "មេមត់",
+    "name_en": "Memot",
+    "parent_code": "25"
+  },
+  {
+    "code": "2504",
+    "label": "អូររាំងឪ",
+    "name_en": "Ou Reang Ov",
+    "parent_code": "25"
+  },
+  {
+    "code": "2505",
+    "label": "ពញាក្រែក",
+    "name_en": "Ponhea Kraek",
+    "parent_code": "25"
+  },
+  {
+    "code": "2506",
+    "label": "សួង",
+    "name_en": "Suong",
+    "parent_code": "25"
+  },
+  {
+    "code": "2507",
+    "label": "ត្បូងឃ្មុំ",
+    "name_en": "Tboung Khmum",
+    "parent_code": "25"
+  }
+]
