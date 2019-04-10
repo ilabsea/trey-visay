@@ -20,8 +20,8 @@ import User from '../../utils/user';
 import styles from '../../assets/style_sheets/login_form';
 
 // Components
-import StatusBar from '../../components/status_bar';
-import Button from '../../components/button';
+import StatusBar from '../../components/shared/status_bar';
+import Button from '../../components/shared/button';
 
 export default class RegisterScreen extends Component {
   static navigationOptions = {

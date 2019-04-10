@@ -15,7 +15,7 @@ import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 
-import BackButton from '../../components/back_button';
+import BackButton from '../../components/shared/back_button';
 
 import realm from '../../schema';
 import User from '../../utils/user';
@@ -80,7 +80,7 @@ export default class GameHistoryScreen extends Component {
   _handleSubmit() {
     realm.write(() => {
       realm.create('Game', this._buildData(), true);
-      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 

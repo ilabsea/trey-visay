@@ -5,10 +5,9 @@ import { Provider } from 'react-redux';
 import store from '../../redux/store';
 
 import headerStyles from '../../assets/style_sheets/header';
-import OpenDrawer from '../../components/open_drawer';
-import CloseButton from '../../components/close_button';
-import SaveButton from '../../components/save_button';
-import BackButton from '../../components/back_button';
+import CloseButton from '../../components/shared/close_button';
+import SaveButton from '../../components/shared/save_button';
+import BackButton from '../../components/shared/back_button';
 
 import PersonalUnderstandingForm from '../PersonalUnderstanding/PersonalUnderstandingForm';
 import CareerCounsellor from '../CareerCounsellor/CareerCounsellor';
@@ -35,7 +34,7 @@ const CareerCounsellorStack = createStackNavigator(
       screen: CareerCounsellor,
       navigationOptions: ({navigation}) => ({
         title: 'វាយតម្លៃមុខរបរនិងអាជីព',
-        headerLeft: <OpenDrawer navigation={navigation}/>
+        headerLeft: <BackButton navigation={navigation}/>
       })
     },
     PersonalUnderstandingFormScreen: {

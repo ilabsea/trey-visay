@@ -18,7 +18,7 @@ import {
 
 import { Dialog } from 'react-native-simple-dialogs';
 import ImagePicker from 'react-native-image-crop-picker';
-import StatusBar from '../../components/status_bar';
+import StatusBar from '../../components/shared/status_bar';
 
 // Utils
 import realm from '../../schema';

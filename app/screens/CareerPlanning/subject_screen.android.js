@@ -15,8 +15,8 @@ import { Divider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import RadioGroup from '../../components/radio_group';
-import BackConfirmDialog from '../../components/back_confirm_dialog';
-import CloseButton from '../../components/close_button';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
+import CloseButton from '../../components/shared/close_button';
 import FooterBar from '../../components/FooterBar';
 
 import styles from '../../assets/style_sheets/profile_form';
@@ -239,7 +239,7 @@ export default class SubjectScreen extends Component {
       realm.create('Game', this._buildData('SubjectScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
@@ -248,7 +248,7 @@ export default class SubjectScreen extends Component {
       realm.delete(this.state.game);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 

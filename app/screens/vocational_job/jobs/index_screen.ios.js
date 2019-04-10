@@ -11,7 +11,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 // Utils
 import mainStyles from '../../../assets/style_sheets/main/main';
-import StatusBar from '../../../components/status_bar';
+import StatusBar from '../../../components/shared/status_bar';
 import ButtonList from '../../../components/list/button_list';
 import OneList from '../../../components/list/one_list';
 import characteristicList from '../../../data/json/characteristic_jobs';

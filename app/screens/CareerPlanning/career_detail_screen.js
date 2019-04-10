@@ -16,7 +16,7 @@ import IonicIcon from 'react-native-vector-icons/Ionicons';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
-import BackButton from '../../components/back_button';
+import BackButton from '../../components/shared/back_button';
 
 let job;
 export default class CareerDetailScreen extends Component {

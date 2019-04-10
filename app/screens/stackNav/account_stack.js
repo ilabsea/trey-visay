@@ -3,11 +3,11 @@ import React, { Component } from 'react';
 import { createStackNavigator } from 'react-navigation';
 
 import headerStyles from '../../assets/style_sheets/header';
-import SaveButton from '../../components/save_button';
+import SaveButton from '../../components/shared/save_button';
 
 import ProfileForm from '../profile/profile_form';
 import Login from '../Account/login';
-import Intro from '../Account/intro';
+import IntroStack from './intro_stack';
 import AdminLogin from '../admin/login';
 import AdminHomeScreen from '../admin/home';
 import HomeScreen from '../home';
@@ -16,7 +16,12 @@ import CareerCounsellorStack from './career_counsellor_stack';
 
 const AccountStack = createStackNavigator(
   {
-    Intro: { screen: Intro },
+    Intro: {
+      screen: IntroStack,
+      navigationOptions: ({navigation}) => ({
+        header: null
+      }), 
+    },
     Login: { screen: Login },
     AdminLogin: { screen: AdminLogin },
     AdminHome: {

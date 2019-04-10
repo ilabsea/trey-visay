@@ -18,7 +18,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { Divider } from 'react-native-elements';
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';
-import BackButton from '../../components/back_button';
+import BackButton from '../../components/shared/back_button';
 
 const PROFILE_SIZE = 120;
 

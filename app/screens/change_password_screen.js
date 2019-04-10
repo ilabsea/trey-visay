@@ -12,11 +12,11 @@ import {
 import Toast, { DURATION } from 'react-native-easy-toast';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import Button from '../components/button';
+import Button from '../components/shared/button';
 import InputTextContainer from '../components/input_text_container';
 import shareStyles from '../assets/style_sheets/profile_form';
 import styles from '../assets/style_sheets/login_form';
-import StatusBar from '../components/status_bar';
+import StatusBar from '../components/shared/status_bar';
 
 import realm from '../schema';
 import User from '../utils/user';
@@ -43,14 +43,6 @@ export default class ChangePasswordScreen extends Component {
   componentWillMount() {
     let user = User.getCurrent();
     this.setState({ user: user });
-  }
-
-  componentDidMount(){
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
-  }
-
-  _handleBack(){
-    this.props.navigation.goBack(null);
   }
 
   handleSubmit() {

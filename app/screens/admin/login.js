@@ -12,7 +12,7 @@ import {
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import DeviceInfo from 'react-native-device-info';
-import StatusBar from '../../components/status_bar';
+import StatusBar from '../../components/shared/status_bar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { create } from 'apisauce';
 import { environment } from '../../config/environment';
@@ -24,7 +24,7 @@ import uuidv4 from '../../utils/uuidv4';
 import styles from '../../assets/style_sheets/login_form';
 
 // Components
-import Button from '../../components/button';
+import Button from '../../components/shared/button';
 
 const api = create({
   baseURL: environment.apiUrl

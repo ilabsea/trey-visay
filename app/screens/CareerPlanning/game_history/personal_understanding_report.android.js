@@ -16,7 +16,7 @@ import User from '../../../utils/user';
 
 import headerStyles from '../../../assets/style_sheets/header';
 import shareStyles from '../../../assets/style_sheets/profile_form';
-import StatusBar from '../../../components/status_bar';
+import StatusBar from '../../../components/shared/status_bar';
 import Question from '../../../data/json/personal_understanding.json';
 
 export default class PersonalUnderstandingReport extends Component {

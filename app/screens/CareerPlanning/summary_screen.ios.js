@@ -14,7 +14,7 @@ import { Divider } from 'react-native-elements';
 
 import CheckboxGroup from '../../components/checkbox_group';
 import RadioButtonGroup from '../../components/radio_button_group';
-import BackConfirmDialog from '../../components/back_confirm_dialog';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import FooterBar from '../../components/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -87,7 +87,7 @@ export default class SummaryScreen extends Component {
       realm.create('Game', this._buildData('SummaryScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
@@ -96,7 +96,7 @@ export default class SummaryScreen extends Component {
       realm.delete(this.state.game);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 

@@ -25,6 +25,7 @@ import communes from '../../data/json/address/communes.json';
 import districts from '../../data/json/address/districts.json';
 import highSchools from '../../data/json/address/highSchools.json';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
+import BackButton from '../../components/shared/back_button';
 
 const PROFILE_SIZE = 120;
 
@@ -138,13 +139,13 @@ export default class Profile extends Component {
   _renderHeader() {
     return(
       <Toolbar
-        leftElement="menu"
+        leftElement={<BackButton navigation={this.props.navigation}/>}
         rightElement={
           <TouchableOpacity onPress={() => this.props.navigation.navigate('EditProfilePhoto', { refresh: this.refreshState.bind(this) })} >
             <Avatar icon='edit' size={30} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.26)'}}} />
           </TouchableOpacity>
         }
-        onLeftElementPress={() => this.props.navigation.openDrawer()}
+        onLeftElementPress={() => this.props.navigation.goBack('null')}
         style={{
           container: {backgroundColor: 'transparent'}
         }}

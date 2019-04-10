@@ -16,16 +16,18 @@ import {
 import Toast, { DURATION } from 'react-native-easy-toast';
 
 import { ThemeContext, getTheme, Toolbar } from 'react-native-material-ui';
-
-import LoadingIndicator from '../components/loading_indicator';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+
 import headerStyles from '../assets/style_sheets/header';
-import StatusBar from '../components/status_bar';
-import videoList from '../data/json/videos';
 import uiThemeAndroid from '../assets/style_sheets/uiThemeAndroid.js';
 import uiThemeIOS from '../assets/style_sheets/uiThemeIOS.js';
+
+import StatusBar from '../components/shared/status_bar';
+import BackButton from '../components/shared/back_button';
 import VideoListView from '../components/video/video_list';
+import LoadingIndicator from '../components/loading_indicator';
+
+import videoList from '../data/json/videos';
 
 const uiTheme = Platform.select({
   ios: uiThemeIOS,
@@ -33,13 +35,6 @@ const uiTheme = Platform.select({
 });
 
 export default class VideoScreen extends Component {
-  static navigationOptions = {
-    drawerLabel: "វីដេអូមុខរបរ ",
-    drawerIcon: ({ tintColor }) => (
-      <AwesomeIcon name='play-circle-o' size={20} color={tintColor} />
-    ),
-  };
-
   _keyExtractor = (item, index) => index.toString();
 
   constructor(props) {
@@ -178,9 +173,8 @@ export default class VideoScreen extends Component {
         <View style={styles.container} ref="myRef">
           <StatusBar />
           <Toolbar
-            leftElement="menu"
+            leftElement={<BackButton navigation={this.props.navigation}/>}
             centerElement={<Text style={[headerStyles.headerTitleStyle, styles.headerTitleText]}> វីដេអូមុខរបរ</Text>}
-            onLeftElementPress={() => this.props.navigation.openDrawer()}
             searchable={{
               autoFocus: true,
               placeholder: 'ស្វែងរក',

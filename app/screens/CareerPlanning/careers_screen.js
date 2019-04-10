@@ -19,8 +19,8 @@ import Images from '../../assets/images';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import careerList from '../../data/json/characteristic_jobs';
-import BackConfirmDialog from '../../components/back_confirm_dialog';
-import CloseButton from '../../components/close_button';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
+import CloseButton from '../../components/shared/close_button';
 import FooterBar from '../../components/FooterBar';
 
 
@@ -68,7 +68,7 @@ export default class CareersScreen extends Component {
 
   _onYes() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
   }
 
   _onNo() {

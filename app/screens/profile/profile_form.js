@@ -16,12 +16,12 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
-import StatusBar from '../../components/status_bar';
+import StatusBar from '../../components/shared/status_bar';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Components
 import InputTextContainer from '../../components/input_text_container';
-import SaveButton from '../../components/save_button';
+import SaveButton from '../../components/shared/save_button';
 import PickerSpecific from '../../components/picker/PickerSpecific';
 
 import FamilySituation from '../../data/json/family_situation.json';

@@ -20,7 +20,7 @@ import LoadingIndicator from '../../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
-import StatusBar from '../../components/status_bar';
+import StatusBar from '../../components/shared/status_bar';
 
 
 import schoolList from '../../data/json/schools';

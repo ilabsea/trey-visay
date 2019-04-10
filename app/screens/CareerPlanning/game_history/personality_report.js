@@ -9,7 +9,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
-import StatusBar from '../../../components/status_bar';
+import StatusBar from '../../../components/shared/status_bar';
 import characteristicList from '../../../data/json/characteristic_jobs';
 import realm from '../../../schema';
 import User from '../../../utils/user';

@@ -15,7 +15,7 @@ import RF from "react-native-responsive-fontsize"
 // Utils
 import styles from '../../../assets/style_sheets/profile_form';
 import headerStyles from '../../../assets/style_sheets/header';
-import StatusBar from '../../../components/status_bar';
+import StatusBar from '../../../components/shared/status_bar';
 import LongText from '../../../components/vocational_job/long_text';
 import characteristicList from '../../../data/json/characteristic_jobs';
 import schoolList from '../../../data/json/schools';

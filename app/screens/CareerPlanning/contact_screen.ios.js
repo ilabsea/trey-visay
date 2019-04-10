@@ -17,7 +17,7 @@ import FooterBar from '../../components/FooterBar';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 
 import mainStyles from '../../assets/style_sheets/main/main';
-import BackConfirmDialog from '../../components/back_confirm_dialog';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import SchoolListView from '../../components/schools/school_list';
 
 import realm from '../../schema';
@@ -91,12 +91,12 @@ export default class ContactScreen extends Component {
 
   _onYes() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
   }
 
   _onNo() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
   }
 
   _goNext() {

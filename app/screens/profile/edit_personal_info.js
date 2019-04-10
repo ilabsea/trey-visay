@@ -17,7 +17,7 @@ import User from '../../utils/user';
 import styles from '../../assets/style_sheets/profile_form';
 import DatePicker from 'react-native-datepicker';
 import InputTextContainer from '../../components/input_text_container';
-import StatusBar from '../../components/status_bar';
+import StatusBar from '../../components/shared/status_bar';
 import PickerSpecific from '../../components/picker/PickerSpecific';
 import grades from '../../data/json/grades.json';
 import provinces from '../../data/json/address/provinces.json';

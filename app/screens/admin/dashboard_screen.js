@@ -12,13 +12,13 @@ import {
 import * as Progress from 'react-native-progress';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/FontAwesome';
-import Button from '../../components/button';
+import Button from '../../components/shared/button';
 
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
 import headerStyles from '../../assets/style_sheets/header';
-import StatusBar from '../../components/status_bar';
+import StatusBar from '../../components/shared/status_bar';
 import shareStyles from '../../assets/style_sheets/login_form';
 import characteristicList from '../../data/json/characteristic_jobs';
 import { environment } from '../../config/environment';

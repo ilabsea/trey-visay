@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast'
 
-import BackConfirmDialog from '../../components/back_confirm_dialog';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CheckboxGroup from '../../components/checkbox_group';
 import FooterBar from '../../components/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -96,7 +96,7 @@ export default class PersonalityJobsScreen extends Component {
       realm.create('Game', this._buildData('PersonalityJobsScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
@@ -105,7 +105,7 @@ export default class PersonalityJobsScreen extends Component {
       realm.delete(this.state.game);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 

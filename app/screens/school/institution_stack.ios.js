@@ -11,10 +11,9 @@ import {
 import headerStyles from '../../assets/style_sheets/header';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
-import OpenDrawer from '../../components/open_drawer';
 import Filter from '../../components/schools/filter';
-import BackButton from '../../components/back_button';
-import SaveButton from '../../components/save_button';
+import BackButton from '../../components/shared/back_button';
+import SaveButton from '../../components/shared/save_button';
 
 import SchoolScreen from './school_screen';
 import InstitutionDetail from './institution_detail';
@@ -58,7 +57,7 @@ const InstitutionStack = createStackNavigator(
         title: 'គ្រឹះស្ថានសិក្សា',
         headerTitleStyle: [headerStyles.headerTitleStyle],
         headerStyle: headerStyles.headerStyle,
-        headerLeft:(<OpenDrawer navigation={screenProps.drawerNavigation}/>),
+        headerLeft:(<BackButton navigation={screenProps.drawerNavigation}/>),
         headerRight:(<Filter screenProps={{navigation: navigation}} />)
       })
     },

@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
+import { Platform } from 'react-native';
 
 import { createStackNavigator } from  'react-navigation';
 import headerStyles from '../../assets/style_sheets/header';
 import BackButton from '../../components/shared/back_button';
 
-import ChangePasswordScreen from '../change_password_screen';
+import IntroScreen from '../Account/intro';
 
-const ChangePasswordStack = createStackNavigator(
+const IntroStack = createStackNavigator(
   {
-    AboutScreen: {
-      screen: ChangePasswordScreen,
+    Intro: {
+      screen: IntroScreen,
       navigationOptions: ({navigation}) => ({
-        headerTitleStyle: [headerStyles.headerTitleStyle],
+        title: 'សេចក្តីណែនាំ',
         headerStyle: headerStyles.headerStyle,
-        title: 'ប្តូរលេខសម្ងាត់',
+        headerTitleStyle: headerStyles.headerTitleStyle,
         headerLeft: <BackButton navigation={navigation}/>
       })
     }
@@ -21,4 +22,4 @@ const ChangePasswordStack = createStackNavigator(
 );
 
 
-export default ChangePasswordStack;
+export default IntroStack;

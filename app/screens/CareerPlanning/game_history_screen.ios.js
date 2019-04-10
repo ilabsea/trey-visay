@@ -15,7 +15,7 @@ import { Divider } from 'react-native-elements';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 
-import BackButton from '../../components/back_button';
+import BackButton from '../../components/shared/back_button';
 import ButtonList from '../../components/list/button_list';
 import OneList from '../../components/list/one_list';
 import SchoolListView from '../../components/schools/school_list';
@@ -86,7 +86,7 @@ export default class GameHistoryScreen extends Component {
   _handleSubmit() {
     realm.write(() => {
       realm.create('Game', this._buildData(), true);
-      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorStack'}]});
+      this.props.navigation.dispatch({type: 'Navigation/RESET', routeName: 'ContactScreen', index: 0, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
     });
   }
 
