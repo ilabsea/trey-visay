@@ -19,7 +19,7 @@ import SummaryScreen from '../CareerPlanning/summary_screen';
 import RecommendationScreen from '../CareerPlanning/recommendation_screen';
 import GoalScreen from '../CareerPlanning/goal_screen';
 import ContactScreen from '../CareerPlanning/contact_screen';
-import CareersScreen from '../CareerPlanning/careers_screen';
+import CareersScreen from '../CareerPlanningForm/careers_screen';
 import InstitutionDetail from '../school/institution_detail';
 import GameHistoryScreen from '../CareerPlanning/game_history_screen';
 import PersonalUnderstandingReport from '../CareerPlanning/game_history/personal_understanding_report';
