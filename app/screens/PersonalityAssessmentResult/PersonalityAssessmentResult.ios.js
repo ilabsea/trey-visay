@@ -26,14 +26,15 @@ class PersonalityAssessmentResult extends Component {
     this.state = {
       assessment: assessment,
     };
-  }
 
-  componentDidMount() {
     this._backHandler();
   }
 
   _backHandler() {
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      goNext: this._goNext.bind(this)
+    });
     BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
   }
 
@@ -52,8 +53,7 @@ class PersonalityAssessmentResult extends Component {
     realm.write(() => {
       realm.create('PersonalityAssessment', this._buildData(), true);
       realm.create('Sidekiq', { paramUuid: this.state.assessment.uuid, tableName: 'PersonalityAssessment' }, true)
-
-      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
+      this._closeDialog();
     });
   }
 
@@ -61,18 +61,19 @@ class PersonalityAssessmentResult extends Component {
     realm.write(() => {
       realm.create('PersonalityAssessment', this._buildData(), true);
       realm.create('Sidekiq', { paramUuid: this.state.assessment.uuid, tableName: 'PersonalityAssessment' }, true)
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
+      this._closeDialog();
     });
+  }
+
+  _closeDialog() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.assessment);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
+      this._closeDialog();
     });
   }
 
@@ -219,7 +220,6 @@ class PersonalityAssessmentResult extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <FooterBar icon='keyboard-arrow-right' text='រួចរាល់' onPress={this._goNext} />
       </Container>
     );
 

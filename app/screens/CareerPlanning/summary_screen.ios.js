@@ -40,14 +40,14 @@ export default class SummaryScreen extends Component {
     let careerCodes = game.personalityCareers.map((obj) => obj.value);
     let userCareers = currentGroup.careers.filter((item, pos) => { return careerCodes.includes(item.code) });
 
-    this.setState({
+    this.state = {
       userCareers: userCareers,
       currentGroup: currentGroup,
       user: user,
       game: game,
       confirmDialogVisible: false,
       mostFavorableJob: game.mostFavorableJobCode,
-    })
+    };
   }
 
   _handleBack() {
@@ -68,18 +68,19 @@ export default class SummaryScreen extends Component {
   _onYes() {
     realm.write(() => {
       realm.create('Game', this._buildData('SummaryScreen'), true);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
+  }
+
+  _closeDialog() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
   }
 

@@ -61,49 +61,56 @@ const CareerCounsellorStack = createStackNavigator(
       screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តប្រាកដនិយម',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
+        headerRight: <NextButton navigation={navigation}/>
       })
     },
     InvestigativeScreen: {
       screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តពូកែអង្កេត',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
+        headerRight: <NextButton navigation={navigation}/>
       })
     },
     ArtisticScreen: {
       screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសិល្បៈនិយម',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
+        headerRight: <NextButton navigation={navigation}/>
       })
     },
     SocialScreen: {
       screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសង្គម',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
+        headerRight: <NextButton navigation={navigation}/>
       })
     },
     EnterprisingScreen: {
       screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តត្រិះរិះពិចារណា',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
+        headerRight: <NextButton navigation={navigation}/>
       })
     },
     ConventionalScreen: {
       screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសណ្ដាប់ធ្នាប់',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
+        headerRight: <NextButton navigation={navigation}/>
       })
     },
     AssessmentResultScreen: {
       screen: PersonalityAssessmentResult,
       navigationOptions: ({navigation}) => ({
         title: 'បង្ហាញលទ្ធផល',
-        headerLeft: <CloseButton navigation={navigation}/>
+        headerLeft: <CloseButton navigation={navigation}/>,
+        headerRight: <NextButton navigation={navigation} text='រួចរាល់' icon='done'/>
       })
     },
     AssessmentResultHistoryScreen: {

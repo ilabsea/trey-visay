@@ -25,17 +25,17 @@ import realm from '../../schema';
 import User from '../../utils/user';
 
 export default class PersonalityAssessmentRealistic extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { state } = navigation;
+  // static navigationOptions = ({ navigation }) => {
+  //   const { state } = navigation;
 
-    return {
-      title: state.params && state.params.title,
-      headerTitleStyle: [headerStyles.headerTitleStyle],
-      headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
-                      <Text style={headerStyles.saveText}><Text>{state.params && state.params.total || 0} </Text> / 18</Text>
-                    </TouchableOpacity>)
-    }
-  };
+  //   return {
+  //     title: state.params && state.params.title,
+  //     headerTitleStyle: [headerStyles.headerTitleStyle],
+  //     headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
+  //                     <Text style={headerStyles.saveText}><Text>{state.params && state.params.total || 0} </Text> / 18</Text>
+  //                   </TouchableOpacity>)
+  //   }
+  // };
 
   screens = [
     { category: 'realistic', nextCategory: 'investigative', nextScreen: 'InvestigativeScreen' },
@@ -64,14 +64,16 @@ export default class PersonalityAssessmentRealistic extends Component {
       data: data,
       assessment: assessment
     }
-  }
 
-  componentDidMount() {
     this._backHandler();
   }
 
   _backHandler() {
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      goNext: this._goNext.bind(this)
+    });
+
     BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
   }
 
@@ -89,18 +91,19 @@ export default class PersonalityAssessmentRealistic extends Component {
   _onYes() {
     realm.write(() => {
       realm.create('PersonalityAssessment', this._buildData(), true);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
+      this._closeDialog();
     });
+  }
+
+  _closeDialog() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.assessment);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
+      this._closeDialog();
     });
   }
 
@@ -171,13 +174,12 @@ export default class PersonalityAssessmentRealistic extends Component {
 
       this.props.navigation.navigate(this.screen.nextScreen, {category: this.screen.nextCategory});
     });
-
   }
 
   render() {
     return(
       <View style={{flex: 1}}>
-        <Container style={{flex: 1}}>
+        <Container>
           <Content padder>
             <View style={{flexDirection: 'row'}}>
               <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
@@ -194,7 +196,6 @@ export default class PersonalityAssessmentRealistic extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext} />
       </View>
     )
   }
