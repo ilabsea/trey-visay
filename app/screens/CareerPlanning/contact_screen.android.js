@@ -91,7 +91,7 @@ export default class ContactScreen extends Component {
       key: null,
       actions: [{
         type: 'Navigation/NAVIGATE',
-        routeName:'CareerCounsellorStack'
+        routeName:'CareerCounsellorScreen'
       }]
     });
   }
@@ -104,7 +104,7 @@ export default class ContactScreen extends Component {
       key: null,
       actions: [{
         type: 'Navigation/NAVIGATE',
-        routeName:'CareerCounsellorStack'
+        routeName:'CareerCounsellorScreen'
       }]
     });
   }
