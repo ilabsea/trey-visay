@@ -76,28 +76,20 @@ export default class UploadServices  {
 
   static buildGame(game) {
     let attributes = this.renameAttributeKeys(game);
+    attributes.subject_attributes = this.renameAttributeKeys(game.gameSubject);
 
     attributes.user_uuid = game.users[0].uuid
     attributes.characteristic_entries = game.characteristicEntries.map(obj => obj.value);
-    attributes.game_subject = this.renameAttributeKeys(game.gameSubject);
-    attributes.personal_understandings = [];
+    attributes.personal_understandings_attributes = [];
 
     this.ignoreAttributes(attributes, false);
 
-    let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let careerIds = game.personalityCareers.map((obj) => obj.value);
-
-    game.personalityCareers.map((obj) => {
-      attributes.careers = currentGroup.careers.filter((item, pos) => {
-        return careerIds.includes(item.id)
-      });
-    });
-
-    attributes.careers = attributes.careers.map((obj) => {
-      obj.is_goal = (obj.id == game.mostFavorableJobId);
-      obj.name = obj.name.trim();
-      obj.description = obj.description.trim();
-      return obj;
+    attributes.career_games_attributes = careerIds.map((id) => {
+      return {
+        career_id: id,
+        is_goal: (id == game.mostFavorableJobId)
+      };
     })
 
     game.personalUnderstandings.map((pu) => {
@@ -113,7 +105,7 @@ export default class UploadServices  {
       obj['ever_talked_with_anyone_about_career'] = myArr
 
 
-      attributes.personal_understandings.push(obj);
+      attributes.personal_understandings_attributes.push(obj);
     })
 
     // Form data
@@ -175,7 +167,8 @@ export default class UploadServices  {
       delete attributes.is_done;
       delete attributes.goal_career;
       delete attributes.users;
-      delete attributes.game_subject.games;
+      delete attributes.subject_attributes.games;
+      delete attributes.personal_understandings;
     }
   }
 
