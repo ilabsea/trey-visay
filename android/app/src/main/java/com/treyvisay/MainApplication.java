@@ -33,19 +33,16 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-<<<<<<< a9d4ea92677dc2f5a765afd38c56b732c9f26bbb
-            new PickerViewPackage(),
-=======
-            new RNBackgroundFetchPackage(),
->>>>>>> add background fetch to sync data to server on background;
-            new PickerPackage(),
-            new SplashScreenReactPackage(),
-            new LinearGradientPackage(),
-            new ReactNativeAudioPackage(),
-            new RNSoundPackage(),
-            new VectorIconsPackage(),
-            new RNDeviceInfo(),
-            new RealmReactPackage()
+          new PickerViewPackage(),
+          new RNBackgroundFetchPackage(),
+          new PickerPackage(),
+          new SplashScreenReactPackage(),
+          new LinearGradientPackage(),
+          new ReactNativeAudioPackage(),
+          new RNSoundPackage(),
+          new VectorIconsPackage(),
+          new RNDeviceInfo(),
+          new RealmReactPackage()
       );
     }
 

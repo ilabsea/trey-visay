@@ -9,48 +9,42 @@ import { environment } from '../config/environment';
 import api from './../utils/api';
 
 export default class UploadServices  {
-  static count;
+  static cursor;
 
   static syncToServer(){
     NetInfo.isConnected.fetch().then(isConnected => {
       api.get('/me').then((res) => {
         if(res.data && res.data.success){
-          this.count = 0;
-          this.uploadData()
+          this.cursor = 0;
+          this.uploadSidekiqs()
         }
       })
     });
   }
 
-  static uploadData() {
-    let data = realm.objects('Sidekiq');
-    let sidekiqData = data.map((sidekiq) => ({
-      paramUuid: sidekiq.paramUuid,
-      tableName: sidekiq.tableName,
-      attempt: sidekiq.attempt,
-      version: sidekiq.version
-    }));
-    if ( this.count < sidekiqData.length ) {
-      let sidekiq = sidekiqData[this.count];
+  static uploadSidekiqs() {
+    let sidekiqs = realm.objects('Sidekiq');
+    let sidekiqsArr = sidekiqs.map((sidekiq) => (sidekiq));
+    if ( this.cursor < sidekiqsArr.length ) {
+      let sidekiq = sidekiqsArr[this.cursor];
       this.upload(sidekiq);
       return;
     }
   }
 
   static upload(sidekiq) {
-    if(sidekiq.attempt < environment.syncAttempt){
-      let data = realm.objects(sidekiq.tableName)
+    if(sidekiq.attempt < environment.maxFailedAttempt){
+      let sidekidTable = realm.objects(sidekiq.tableName)
         .filtered('uuid="' + sidekiq.paramUuid + '"')[0];
       let postUrl = sidekiq.tableName == 'User' ? '/users' : "/games";
-      data.version = sidekiq.version;
-      api.post(postUrl, this['build' + sidekiq.tableName](data))
+      sidekidTable.version = sidekiq.version;
+      api.post(postUrl, this['build' + sidekiq.tableName](sidekidTable))
       .then((res) => {
         this.handleResponse(res, sidekiq);
       })
     } else{
       this.deleteSidekiq(sidekiq);
-      this.count++;
-      this.uploadData();
+      this.uploadSidekiqs();
     }
   }
 
@@ -59,19 +53,19 @@ export default class UploadServices  {
 
     this.ignoreAttributes(attributes, true);
 
-    let data = new FormData();
-    data.append('data', JSON.stringify(attributes));
+    let userData = new FormData();
+    userData.append('data', JSON.stringify(attributes));
 
     if (user.photo) {
       let uri = Platform.OS == 'ios' ? 'file://' + user.photo : user.photo;
-      data.append('photo', {
+      userData.append('photo', {
         uri: uri,
         type: 'image/jpeg',
         name: 'userPhoto'
       });
     }
 
-    return data;
+    return userData;
   }
 
   static buildGame(game) {
@@ -93,42 +87,41 @@ export default class UploadServices  {
     })
 
     game.personalUnderstandings.map((pu) => {
-      let obj = this.renameAttributeKeys(pu);
-      delete obj.games;
+      let newPu = this.renameAttributeKeys(pu);
+      delete newPu.games;
 
       let myArr = [];
       let myObj = { 1: 'ឳពុកម្តាយ', 2: 'បងប្អូន', 3: 'ក្រុមប្រឹក្សាកុមារ', 4: 'នាយកសាលា', 5: 'គ្រូ', 6: 'មិត្តភក្តិ' };
 
-      if (!!obj['ever_talked_with_anyone_about_career']) {
-        obj['ever_talked_with_anyone_about_career'].map((o) => myArr.push(myObj[o.value]))
+      if (!!newPu['ever_talked_with_anyone_about_career']) {
+        newPu['ever_talked_with_anyone_about_career'].map((o) => myArr.push(myObj[o.value]))
       }
-      obj['ever_talked_with_anyone_about_career'] = myArr
+      newPu['ever_talked_with_anyone_about_career'] = myArr.join(';');
 
-
-      attributes.personal_understandings_attributes.push(obj);
+      attributes.personal_understandings_attributes.push(newPu);
     })
 
     // Form data
-    let data = new FormData();
+    let gameData = new FormData();
 
-    data.append('data', JSON.stringify(attributes));
+    gameData.append('data', JSON.stringify(attributes));
 
     if (game.voiceRecord) {
-      data.append('audio', {
+      gameData.append('audio', {
         uri: 'file://'+ game.voiceRecord,
         type: 'audio/aac',
         name: 'voiceRecord.aac'
       });
     }
 
-    return data;
+    return gameData;
   }
 
   static handleResponse(res, sidekiq) {
     if (res.data.success) {
       this.deleteSidekiq(sidekiq);
     } else{
-      this.count++;
+      this.cursor++;
       try {
         realm.write(() => {
           realm.create('Sidekiq', {
@@ -140,7 +133,7 @@ export default class UploadServices  {
         console.log('there is an error update attempt sidekiq');
       }
     }
-    this.uploadData();
+    this.uploadSidekiqs();
   }
 
   static renameAttributeKeys(obj) {
@@ -167,6 +160,8 @@ export default class UploadServices  {
       delete attributes.is_done;
       delete attributes.goal_career;
       delete attributes.users;
+      delete attributes.game_subject.games;
+      delete attributes.game_subject;
       delete attributes.subject_attributes.games;
       delete attributes.personal_understandings;
     }

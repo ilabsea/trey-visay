@@ -28,7 +28,7 @@ const schema = [
   Sidekiq
 ];
 
-function migration3(oldRealm, newRealm) {
+function migrateSchoolsToCode(oldRealm, newRealm) {
   if (oldRealm.schemaVersion < 3) {
     const oldObjects = oldRealm.objects('User');
     const newObjects = newRealm.objects('User');
@@ -48,7 +48,7 @@ function migration3(oldRealm, newRealm) {
 const schemas = [
   { schema: schema, schemaVersion: 1 },
   { schema: schema, schemaVersion: 2 },
-  { schema: schema, schemaVersion: 3, migration: migration3 },
+  { schema: schema, schemaVersion: 3, migration: migrateSchoolsToCode },
   { schema: schema, schemaVersion: 4 }
 ]
 

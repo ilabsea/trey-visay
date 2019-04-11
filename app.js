@@ -9,7 +9,6 @@ import {
 } from 'react-native';
 
 import realm from './app/schema';
-import BackgroundFetch from "react-native-background-fetch";
 
 import { createStackNavigator } from 'react-navigation';
 import User from './app/utils/user';
@@ -17,13 +16,6 @@ import Task from './app/utils/task';
 
 // Screens
 import HomeScreen from './app/screens/home';
-
-let MyHeadlessTask = async (event) => {
-  Task.syncToServer();
-  BackgroundFetch.finish();
-}
-
-BackgroundFetch.registerHeadlessTask(MyHeadlessTask);
 
 const HomeNavigator = createStackNavigator({
   Home: {

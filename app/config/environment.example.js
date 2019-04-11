@@ -4,5 +4,5 @@ export const environment = {
   username: 'username',
   password: 'abc',
   minimumFetchInterval: 15,
-  syncAttempt: 3
+  maxFailedAttempt: 3
 };

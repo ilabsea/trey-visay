@@ -16,7 +16,6 @@ import StatusBar from '../components/shared/status_bar';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 import User from '../utils/user';
 import API from '../api/schools';
-import UploadServices from '../services/upload_services';
 
 export default class Dashboard extends Component {
   static navigationOptions = {
