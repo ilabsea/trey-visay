@@ -21,6 +21,7 @@ import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 
 import realm from '../../schema';
 import User from '../../utils/user';
+import App from '../../utils/app';
 import schoolList from '../../data/json/schools';
 import Images from '../../assets/images';
 import characteristicList from '../../data/json/characteristic_jobs';
@@ -124,7 +125,11 @@ export default class ContactScreen extends Component {
   _handleSubmit() {
     realm.write(() => {
       realm.create('Game', this._buildData(), true);
-      realm.create('Sidekiq', { paramUuid: this.state.game.uuid, tableName: 'Game' }, true)
+      realm.create('Sidekiq', {
+        paramUuid: this.state.game.uuid,
+        tableName: 'Game',
+        version: App.getVersion()
+      }, true)
       this.props.navigation.dispatch({
         type: 'Navigation/RESET',
         index: 0,

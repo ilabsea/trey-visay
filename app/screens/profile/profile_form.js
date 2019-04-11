@@ -14,6 +14,7 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
+import App from '../../utils/app';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/shared/status_bar';
@@ -65,8 +66,16 @@ export default class ProfileForm extends Component {
   _skip() {
     try {
       realm.write(() => {
-        realm.create('User', { uuid: this.state.user.uuid, highSchoolId: '14', grade: 'ផ្សេងៗ'}, true);
-        realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
+        realm.create('User', {
+          uuid: this.state.user.uuid,
+          highSchoolId: '14',
+          grade: 'other'
+        }, true);
+        realm.create('Sidekiq', {
+          paramUuid: this.state.user.uuid,
+          tableName: 'User',
+          version: App.getVersion()
+        }, true)
         this.props.navigation.dispatch({
           type: 'Navigation/RESET',
           index: 0,
@@ -191,7 +200,11 @@ export default class ProfileForm extends Component {
     try {
       realm.write(() => {
         realm.create('User', this.state.user, true);
-        realm.create('Sidekiq', { paramUuid: this.state.user.uuid, tableName: 'User' }, true)
+        realm.create('Sidekiq', {
+          paramUuid: this.state.user.uuid,
+          tableName: 'User',
+          version: App.getVersion()
+        }, true)
         this.props.navigation.dispatch({
           type: 'Navigation/RESET',
           index: 0,

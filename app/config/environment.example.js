@@ -3,5 +3,6 @@ export const environment = {
   domain: 'http://192.168.1.145:3000',
   username: 'username',
   password: 'abc',
-  syn_schedule_in_ms: 30000,
+  minimumFetchInterval: 15,
+  syncAttempt: 3
 };

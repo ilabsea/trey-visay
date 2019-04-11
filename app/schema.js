@@ -45,11 +45,11 @@ function migration3(oldRealm, newRealm) {
   }
 }
 
-
 const schemas = [
   { schema: schema, schemaVersion: 1 },
   { schema: schema, schemaVersion: 2 },
-  { schema: schema, schemaVersion: 3, migration: migration3 }
+  { schema: schema, schemaVersion: 3, migration: migration3 },
+  { schema: schema, schemaVersion: 4 }
 ]
 
 // the first schema to update to is the current schema version

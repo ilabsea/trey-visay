@@ -5,7 +5,7 @@ import {
 
 import characteristicList from '../data/json/characteristic_jobs';
 import realm from '../schema';
-// Utils
+import { environment } from '../config/environment';
 import api from './../utils/api';
 
 export default class UploadServices  {
@@ -13,7 +13,6 @@ export default class UploadServices  {
 
   static syncToServer(){
     NetInfo.isConnected.fetch().then(isConnected => {
-      console.log('isConnected : ', isConnected)
       api.get('/me').then((res) => {
         if(res.data && res.data.success){
           this.count = 0;
@@ -25,25 +24,34 @@ export default class UploadServices  {
 
   static uploadData() {
     let data = realm.objects('Sidekiq');
-    let sidekidData = data.map((sidekiq) => ({
+    let sidekiqData = data.map((sidekiq) => ({
       paramUuid: sidekiq.paramUuid,
-      tableName: sidekiq.tableName
+      tableName: sidekiq.tableName,
+      attempt: sidekiq.attempt,
+      version: sidekiq.version
     }));
-    if ( this.count < sidekidData.length ) {
-      let sidekiq = sidekidData[this.count];
+    if ( this.count < sidekiqData.length ) {
+      let sidekiq = sidekiqData[this.count];
       this.upload(sidekiq);
       return;
     }
   }
 
   static upload(sidekiq) {
-    let data = realm.objects(sidekiq.tableName)
-      .filtered('uuid="' + sidekiq.paramUuid + '"')[0];
-    let postUrl = sidekiq.tableName == 'User' ? '/users' : "/games";
-    api.post(postUrl, this['build' + sidekiq.tableName](data))
-    .then((res) => {
-      this.handleResponse(res, sidekiq);
-    })
+    if(sidekiq.attempt < environment.syncAttempt){
+      let data = realm.objects(sidekiq.tableName)
+        .filtered('uuid="' + sidekiq.paramUuid + '"')[0];
+      let postUrl = sidekiq.tableName == 'User' ? '/users' : "/games";
+      data.version = sidekiq.version;
+      api.post(postUrl, this['build' + sidekiq.tableName](data))
+      .then((res) => {
+        this.handleResponse(res, sidekiq);
+      })
+    } else{
+      this.deleteSidekiq(sidekiq);
+      this.count++;
+      this.uploadData();
+    }
   }
 
   static buildUser(user) {
@@ -129,6 +137,16 @@ export default class UploadServices  {
       this.deleteSidekiq(sidekiq);
     } else{
       this.count++;
+      try {
+        realm.write(() => {
+          realm.create('Sidekiq', {
+            paramUuid: sidekiq.paramUuid,
+            attempt: sidekiq.attempt + 1
+          }, true)
+        });
+      } catch (e) {
+        console.log('there is an error update attempt sidekiq');
+      }
     }
     this.uploadData();
   }
