@@ -14,6 +14,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
+import Sidekiq from '../../utils/models/sidekiq';
 import App from '../../utils/app';
 import styles from '../../assets/style_sheets/profile_form';
 import DatePicker from 'react-native-datepicker';
@@ -90,11 +91,7 @@ export default class EditPersonalInfo extends Component {
     try {
       realm.write(() => {
         realm.create('User', this._buildData(), true);
-        realm.create('Sidekiq', {
-          paramUuid: this.state.user.uuid,
-          tableName: 'User',
-          version: App.getVersion()
-        }, true)
+        Sidekiq.create(this.state.user.uuid, 'User');
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });

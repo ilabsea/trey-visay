@@ -23,6 +23,7 @@ import StatusBar from '../../components/shared/status_bar';
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
+import Sidekiq from '../../utils/models/sidekiq';
 import styles from '../../assets/style_sheets/profile_form';
 
 export default class EditProfilePhoto extends Component {
@@ -44,11 +45,7 @@ export default class EditProfilePhoto extends Component {
     try {
       realm.write(() => {
         realm.create('User', this._buildData(), true);
-        realm.create('Sidekiq', {
-          paramUuid: this.state.user.uuid,
-          tableName: 'User',
-          version: App.getVersion()
-        }, true)
+        Sidekiq.create(this.state.user.uuid, 'User');
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
       });

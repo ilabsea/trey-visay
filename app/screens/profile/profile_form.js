@@ -14,6 +14,7 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 // Utils
 import realm from '../../schema';
 import User from '../../utils/user';
+import Sidekiq from '../../utils/models/sidekiq';
 import App from '../../utils/app';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
@@ -71,11 +72,7 @@ export default class ProfileForm extends Component {
           highSchoolId: '14',
           grade: 'other'
         }, true);
-        realm.create('Sidekiq', {
-          paramUuid: this.state.user.uuid,
-          tableName: 'User',
-          version: App.getVersion()
-        }, true)
+        Sidekiq.create(this.state.user.uuid, 'User');
         this.props.navigation.dispatch({
           type: 'Navigation/RESET',
           index: 0,
@@ -200,11 +197,7 @@ export default class ProfileForm extends Component {
     try {
       realm.write(() => {
         realm.create('User', this.state.user, true);
-        realm.create('Sidekiq', {
-          paramUuid: this.state.user.uuid,
-          tableName: 'User',
-          version: App.getVersion()
-        }, true)
+        Sidekiq.create(this.state.user.uuid, 'User');
         this.props.navigation.dispatch({
           type: 'Navigation/RESET',
           index: 0,

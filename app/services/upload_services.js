@@ -5,6 +5,7 @@ import {
 
 import characteristicList from '../data/json/characteristic_jobs';
 import realm from '../schema';
+import Sidekiq from '../utils/models/sidekiq';
 import { environment } from '../config/environment';
 import api from './../utils/api';
 
@@ -43,7 +44,7 @@ export default class UploadServices  {
         this.handleResponse(res, sidekiq);
       })
     } else{
-      this.deleteSidekiq(sidekiq);
+      Sidekiq.delete(sidekiq);
       this.uploadSidekiqs();
     }
   }
@@ -119,19 +120,10 @@ export default class UploadServices  {
 
   static handleResponse(res, sidekiq) {
     if (res.data.success) {
-      this.deleteSidekiq(sidekiq);
+      Sidekiq.delete(sidekiq);
     } else{
       this.cursor++;
-      try {
-        realm.write(() => {
-          realm.create('Sidekiq', {
-            paramUuid: sidekiq.paramUuid,
-            attempt: sidekiq.attempt + 1
-          }, true)
-        });
-      } catch (e) {
-        console.log('there is an error update attempt sidekiq');
-      }
+      Sidekiq.increaseAttempt(sidekiq);
     }
     this.uploadSidekiqs();
   }
@@ -166,12 +158,4 @@ export default class UploadServices  {
       delete attributes.personal_understandings;
     }
   }
-
-  static deleteSidekiq = (sidekiq) => {
-    let sk = realm.objects('Sidekiq').filtered('paramUuid="' + sidekiq.paramUuid + '"')[0];
-    realm.write(() => {
-      realm.delete(sk);
-    });
-  }
-
 }

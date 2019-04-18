@@ -58,7 +58,6 @@ export default class TreyVisay extends Component {
 }
 
 let MyHeadlessTask = async (event) => {
-  console.log('[BackgroundFetch HeadlessTask] start');
   Task.syncToServer();
   BackgroundFetch.finish();
 }
