@@ -199,7 +199,10 @@ export default class PersonalityScreen extends Component {
           <View style={{margin: 16}}>
             <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
               <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-              <Text>ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបានយ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់ និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយជាក់លាក់នាពេលអនាគត។</Text>
+              <Text>
+                ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបាន យ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់
+                និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយ ជាក់លាក់នាពេលអនាគត។
+              </Text>
             </View>
 
             { this._renderPersonalities() }

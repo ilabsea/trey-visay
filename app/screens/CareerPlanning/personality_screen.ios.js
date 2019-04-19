@@ -197,7 +197,10 @@ export default class PersonalityScreen extends Component {
         <ScrollView style={{flex: 1}}>
           <View style={mainStyles.instructionContainer}>
             <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-            <Text style={[mainStyles.text, {flex:1}]}>ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបានយ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់ និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយជាក់លាក់នាពេលអនាគត។</Text>
+            <Text style={[mainStyles.text, {flex:1}]}>
+              ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបាន យ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់
+              និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយ ជាក់លាក់នាពេលអនាគត។
+            </Text>
           </View>
 
           { this._renderPersonalities() }

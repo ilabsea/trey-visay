@@ -61,13 +61,13 @@ export default class CareerCounsellor extends Component {
           </View>
 
           <View style={{flex: 1}}>
-            <Text style={styles.title}>ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព</Text>
+            <Text style={styles.title}>ការធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព</Text>
           </View>
         </View>
 
         <View style={{flex: 1, flexDirection: 'column'}}>
           <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
-            ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
+            ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចំណូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
           </Text>
 
           <View>
