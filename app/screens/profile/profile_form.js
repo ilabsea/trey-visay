@@ -69,7 +69,6 @@ export default class ProfileForm extends Component {
       realm.write(() => {
         realm.create('User', {
           uuid: this.state.user.uuid,
-          highSchoolId: '14',
           grade: 'other'
         }, true);
         Sidekiq.create(this.state.user.uuid, 'User');
