@@ -171,7 +171,7 @@ export default class GoalScreen extends Component {
       <View>
         <View style={{flexDirection: 'row', marginVertical: 16}}>
           <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-          <Text>អ្នកអាចដាក់គោលដៅ និងមូលហេតុដោយការសរសេរ ឬក៏ថតជាសំលេង!</Text>
+          <Text style={{flex: 1}}>អ្នកអាចដាក់គោលដៅ និងមូលហេតុដោយការសរសេរ ឬក៏ថតជាសំលេង!</Text>
         </View>
 
         { this._renderInstruction() }
@@ -180,7 +180,7 @@ export default class GoalScreen extends Component {
           <Text style={labelStyles.subTitle}>តើអ្នកនឹងប្រកបមុខរបរអ្វីនាពេលអនាគត? មូលហេតុអ្វី?</Text>
           <Text>
             <Text style={{fontWeight: 'bold'}}>ឧទាហរណ៍៖ </Text>
-            ខ្ញុំនឹងធ្វើជាស្ថបត្យករក៏ពូកែម្នាក់ ក្នុងក្រុមហ៊ុនឯកជនមួយនៅទីក្រុងភ្នំពេញ ពេលខ្ញំបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រក្នុងឆ្នាំ២០២២។
+            ខ្ញុំនឹងធ្វើជាស្ថាបត្យករដ៏ពូកែម្នាក់ ក្នុងក្រុមហ៊ុនឯកជនមួយនៅទីក្រុងភ្នំពេញ ពេលខ្ញុំបញ្ចប់ការសិក្សាថ្នាក់បរិញ្ញាបត្រក្នុងឆ្នាំ២០២២។
           </Text>
           <View style={{flexDirection: 'row', alignItems: 'flex-end', marginTop: 24}}>
             <TextInput

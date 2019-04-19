@@ -241,7 +241,7 @@ const localStyle = StyleSheet.create({
     fontWeight: 'bold'
   },
   paragraph: {
-    marginTop: 16,
+    marginVertical: 10
   },
   highlightBlue: {
     fontWeight: 'bold',
