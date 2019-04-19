@@ -122,7 +122,14 @@ export default class Dashboard extends Component {
 
 const styles = StyleSheet.create({
   scrollContainer: {
-    padding: 8
+    ...Platform.select({
+      android: {
+        padding: 8
+      },
+      ios: {
+        padding: 0
+      }
+    })
   },
   btnBox: {
     flex: 1,
