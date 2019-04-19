@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import {
-  createBottomTabNavigator,
+  createMaterialTopTabNavigator,
   createStackNavigator,
 } from 'react-navigation';
 import headerStyles from '../../assets/style_sheets/header';
@@ -16,7 +16,7 @@ import BackButton from '../../components/shared/back_button';
 import SchoolScreen from './school_screen';
 import InstitutionDetail from './institution_detail';
 
-const InstitutionTab = createBottomTabNavigator({
+const InstitutionTab = createMaterialTopTabNavigator({
   GovernmentSchoolScreen: {
     screen: ({ navigation }) => <SchoolScreen screenProps={{category: 'សាលារដ្ឋ', navigation: navigation }} />,
     navigationOptions: {tabBarLabel: 'សាលារដ្ឋ'}
@@ -30,13 +30,13 @@ const InstitutionTab = createBottomTabNavigator({
     navigationOptions: {tabBarLabel: 'អង្គការ'}
   },
 }, {
+  tabBarPosition: 'top',
   animationEnabled: true,
   tabBarOptions: {
     activeTintColor: '#fff',
-    showIcon: false,
-    allowFontScaling: true,
     labelStyle: {
-      fontSize: FontSetting.tab_label,
+      fontWeight: 'bold',
+      fontSize: FontSetting.text,
     },
     style: {
       backgroundColor: '#1976d2'
