@@ -45,16 +45,6 @@ export default class User {
     });
   }
 
-  static isAdminLoggedin(callback) {
-    AsyncStorage.getItem(TOKEN_KEY, (err, token) => {
-      if (!!token) {
-        this.token = token;
-      }
-
-      !!callback && callback(token);
-    });
-  }
-
   static getToken() {
     this.token;
   }

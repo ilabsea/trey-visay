@@ -8,8 +8,6 @@ import SaveButton from '../../components/shared/save_button';
 import ProfileForm from '../profile/profile_form';
 import Login from '../Account/login';
 import IntroStack from './intro_stack';
-import AdminLogin from '../admin/login';
-import AdminHomeScreen from '../admin/home';
 import HomeScreen from '../home';
 import Register from '../Account/register';
 import CareerCounsellorStack from './career_counsellor_stack';
@@ -20,16 +18,9 @@ const AccountStack = createStackNavigator(
       screen: IntroStack,
       navigationOptions: ({navigation}) => ({
         header: null
-      }), 
-    },
-    Login: { screen: Login },
-    AdminLogin: { screen: AdminLogin },
-    AdminHome: {
-      screen: ({ navigation }) => <AdminHomeScreen screenProps={{ rootNavigation: navigation }} />,
-      navigationOptions: ({navigation}) => ({
-        header: null
       }),
     },
+    Login: { screen: Login },
     Home: {
       screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
       navigationOptions: ({navigation}) => ({

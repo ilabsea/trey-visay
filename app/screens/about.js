@@ -10,7 +10,8 @@ import {
 } from 'react-native';
 
 import DeviceInfo from 'react-native-device-info';
-import {FontSetting} from "../assets/style_sheets/font_setting";
+
+import { FontSetting } from "../assets/style_sheets/font_setting";
 
 export default class About extends Component {
   constructor(props) {

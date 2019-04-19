@@ -53,6 +53,9 @@ yarn-error.log
 yarn.lock
 package-lock.json
 
+# app
+app/config/environment.js
+
 # BUCK
 buck-out/
 \.buckd/

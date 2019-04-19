@@ -12,10 +12,10 @@ import realm from './app/schema';
 
 import { createStackNavigator } from 'react-navigation';
 import User from './app/utils/user';
+import Task from './app/utils/task';
 
 // Screens
 import HomeScreen from './app/screens/home';
-import AdminHomeNavigator from './app/screens/admin/home';
 
 const HomeNavigator = createStackNavigator({
   Home: {
@@ -28,17 +28,6 @@ const HomeNavigator = createStackNavigator({
   initialRouteName: 'Home',
 });
 
-const AdminNavigator = createStackNavigator({
-  AdminHome: {
-    screen: ({ navigation }) => <AdminHomeNavigator screenProps={{ rootNavigation: navigation }} />,
-    navigationOptions: ({navigation}) => ({
-      header: null
-    })
-  }
-}, {
-  initialRouteName: 'AdminHome',
-});
-
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -48,11 +37,8 @@ export default class App extends Component {
     this.handlerPredefinedUser();
   }
 
-  componentWillMount(){
-    setTimeout(() => {
-      let user = User.getCurrent();
-      this.setState({user: user});
-    }, 300)
+  componentDidMount(){
+    Task.configBackgroundFetch();
   }
 
   handlerPredefinedUser() {
@@ -66,16 +52,7 @@ export default class App extends Component {
     });
   }
 
-  setHomeRoute(){
-    if(this.state.user){
-      let app = this.state.user.role=='admin' ? AdminNavigator: HomeNavigator;
-      return app;
-    }
-    return HomeNavigator;
-  }
-
   render() {
-    let AppNavigator = this.setHomeRoute();
-    return (<AppNavigator/>);
+    return (<HomeNavigator/>);
   }
 }

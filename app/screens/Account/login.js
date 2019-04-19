@@ -53,19 +53,6 @@ export default class Login extends Component {
       return this.setState({loaded: true});
     }
 
-    // Only admin user has token
-    if (!!user.token) {
-      return this.props.navigation.dispatch({
-        type: 'Navigation/RESET',
-        index: 0,
-        actions: [{
-          type: 'Navigation/NAVIGATE',
-          routeName:'AdminHome'
-        }],
-        key: null
-      })
-    }
-
     if (this.isUserInfoCompleted(user)) {
       return this.props.navigation.dispatch({
         type: 'Navigation/RESET',
@@ -89,7 +76,7 @@ export default class Login extends Component {
 
   handleSubmit(event) {
     let user = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"')[0];
-    if (!user || user.role == 'admin') {
+    if (!user) {
       return Alert.alert(
         'ការបញ្ចូលមិនត្រឹមត្រូវ',
         'ឈ្មោះគណនី ឬលេខសម្ងាត់ដែលអ្នកបានបញ្ចូលមិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត។');
@@ -184,14 +171,6 @@ export default class Login extends Component {
           <Text style={styles.whiteLabel}>ជំនាន់: {DeviceInfo.getVersion()} </Text>
         </View>
       </View>
-    )
-  }
-
-  _renderAdminTrigger() {
-    return (
-      <TouchableOpacity style={styles.iconWrapper} onPress={ () => this.props.navigation.navigate('AdminLogin') } >
-        <MaterialIcon name='person' color='#1976d2' size={16}/>
-      </TouchableOpacity>
     )
   }
 

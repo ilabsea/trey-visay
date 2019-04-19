@@ -10,5 +10,7 @@ Sidekiq.schema = {
   properties: {
     paramUuid: 'string',
     tableName: 'string',
+    version: 'string',
+    attempt: { type: 'int', default: 0 }
   }
 }
