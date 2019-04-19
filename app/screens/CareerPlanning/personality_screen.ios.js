@@ -27,7 +27,7 @@ import MathUtil from '../../utils/math';
 import realm from '../../schema';
 import User from '../../utils/user';
 import characteristicList from '../../data/json/characteristic_jobs';
-import entries from '../..data/json/personalities';
+import entries from '../../data/json/personalities';
 
 export default class PersonalityScreen extends Component {
   currentGroup;

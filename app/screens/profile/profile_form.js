@@ -16,6 +16,7 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
 import App from '../../utils/app';
+import mainStyles from '../../assets/style_sheets/main/main';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/shared/status_bar';
@@ -88,26 +89,29 @@ export default class ProfileForm extends Component {
 
   _renderContent() {
     return (
-      <View style={styles.container}>
-        <View style={{flexDirection: 'row', marginVertical: 16}}>
+      <View>
+        <View style={mainStyles.instructionContainer}>
           <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-          <View style={{flex: 1}}>
-            <Text>អ្នកត្រូវបំពេញពត៌មានផ្ទាល់ខ្លួនខាងក្រោមដើម្បីប្រើប្រាស់កម្មវិធី។ </Text>
-            <View style={styles.inlineBlock}>
-              <Text>ឬអ្នកចង់បំពេញនៅពេលក្រោយ? </Text>
-              <TouchableOpacity onPress={() => this._skip()}>
-                <Text style={{color: '#4caf50', fontWeight: 'bold'}}>រំលង</Text>
-              </TouchableOpacity>
-
-              <Text> ឬ </Text>
-              <TouchableOpacity onPress={() => this.setState({confirmDialogVisible: true})}>
-                <Text style={{color: '#4caf50', fontWeight: 'bold'}}>ចាកចេញពីគណនី</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <Text style={{flex: 1}}>
+            អ្នកអាចបំពេញពត៌មានផ្ទាល់ខ្លួនខាងក្រោម ឬក៏បំពេញនៅ ពេលក្រោយដោយចុចលេី
+          </Text>
         </View>
 
-        <View style={styles.box}>
+        <View style={[styles.inlineBlock, {paddingLeft: 45}]}>
+          <TouchableOpacity onPress={() => this._skip()}>
+            <Text style={{color: '#4caf50', fontWeight: 'bold', paddingRight: 8}}>រំលង</Text>
+          </TouchableOpacity>
+
+          <Text>
+            ឬ
+          </Text>
+
+          <TouchableOpacity onPress={() => this.setState({confirmDialogVisible: true})}>
+            <Text style={{color: '#4caf50', fontWeight: 'bold', paddingLeft: 8}}>ចាកចេញពីគណនី</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={[mainStyles.box, {padding: 16}]}>
           {this._renderPersonalInfo()}
         </View>
 
