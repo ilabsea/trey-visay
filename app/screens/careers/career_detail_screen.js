@@ -6,21 +6,22 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
-  FlatList,
   NetInfo,
-  Linking
+  Linking,
+  Dimensions
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Carousel from 'react-native-snap-carousel';
 import { Divider } from 'react-native-elements';
 
 import mainStyles from '../../assets/style_sheets/main/main';
-import StatusBar from '../../components/status_bar';
+import StatusBar from '../../components/shared/status_bar';
 import SchoolListView from '../../components/schools/school_list';
+import VideoView from '../../components/careers/video_view';
 import universities from '../../data/json/universities';
 import mapping from '../../data/json/careers/mapping';
 import videoList from '../../data/json/videos';
-import VideoListView from '../../components/video/video_list';
 
 export default class CareerDetailScreen extends Component {
   constructor(props){
@@ -72,23 +73,27 @@ export default class CareerDetailScreen extends Component {
 
   renderItem(item) {
     return (
-      <VideoListView
+      <VideoView
         onPress={() => this.onOpenUrl(item.url)}
         item={item} />
     )
   }
 
   renderVideoList(){
+    let { width } = Dimensions.get('window');
     return(
       <View>
         <Text style={mainStyles.sectionText}>
           សូមមេីលវីដេអូខាងក្រោមដេីម្បីស្វែងយល់ពីជំនាញនេះ ៖
         </Text>
-        <FlatList
-          data={ this.state.videos }
-          renderItem={ ({item}) => this.renderItem(item) }
-          refreshing={false}
-          keyExtractor={this._keyExtractor}
+
+        <Carousel
+          ref={(c) => { this._carousel = c; }}
+          data={this.state.videos}
+          renderItem={({item}) => this.renderItem(item)}
+          sliderWidth={width}
+          itemWidth={width-80}
+          layout={'defualt'}
         />
       </View>
     )
