@@ -35,10 +35,13 @@ export default class CareerDetailScreen extends Component {
     });
 
     let careerCluster = mapping.find(code => {return code.career_code == career.code})
-    let videoCodes = careerCluster.video_code.split(';').map(function(item) {
-      return item.trim();
-    });;
-    let videos = videoList.filter((video, pos) => { return videoCodes.includes(video.code) });
+    let videos = [];
+    if(careerCluster.video_code){
+      let videoCodes = careerCluster.video_code.split(';').map(function(item) {
+        return item.trim();
+      });;
+      videos = videoList.filter((video, pos) => { return videoCodes.includes(video.code) });
+    }
 
     this.setState({
       schools: schools,
@@ -99,14 +102,28 @@ export default class CareerDetailScreen extends Component {
     )
   }
 
+  renderNoData(){
+    return(
+      <View style={{flex:1, alignItems: 'center', marginTop: 24}}>
+        <Text >
+          គ្មានទិន្នន័យ
+        </Text>
+      </View>
+    )
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
         <StatusBar />
         <ScrollView style={{flex: 1}}>
-          { this.renderSchoolList() }
+          { this.state.schools.length > 0 && this.renderSchoolList() }
 
-          { this.renderVideoList() }
+          { this.state.videos.length > 0 && this.renderVideoList() }
+          { this.state.schools.length == 0
+            && this.state.videos.length == 0
+            && this.renderNoData() }
+
         </ScrollView>
       </View>
     );
