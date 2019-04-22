@@ -92,6 +92,13 @@ export default class ScrollableHeader extends Component {
             { backgroundColor: bgColor, transform: [{ translateY: headerTranslate }] },
           ]}
         >
+          { this.props.title &&
+            <View style={{position: 'absolute', left: (this.props.profileSize - 40),
+                right: 5, bottom: 0}}>
+              <Text style={{fontSize: 20, color: '#fff'}} numberOfLines={1}>{this.props.title}</Text>
+            </View>
+          }
+
           <Animated.Image
             style={[
               styles.backgroundImage,
