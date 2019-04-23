@@ -13,6 +13,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import SplashScreen from 'react-native-splash-screen';
 
 import StatusBar from '../components/shared/status_bar';
+import DashboardView from '../components/dashboard/dashboard_view';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 import User from '../utils/user';
 import API from '../api/schools';
@@ -71,9 +72,9 @@ export default class Dashboard extends Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={styles.scrollContainer}>
         <StatusBar />
-        <View>
+        <DashboardView>
           <View style={{flexDirection: 'row'}}>
             { this._renderButton({
                 title: 'វាយតម្លៃមុខរបរ',
@@ -113,26 +114,43 @@ export default class Dashboard extends Component {
               })
             }
           </View>
-        </View>
+        </DashboardView>
       </View>
     );
   }
 }
 
 const styles = StyleSheet.create({
+  scrollContainer: {
+    ...Platform.select({
+      android: {
+        padding: 8
+      },
+      ios: {
+        padding: 0
+      }
+    })
+  },
   btnBox: {
     flex: 1,
     alignItems: 'center',
-    minHeight: '50%',
-    margin: 0,
-    borderWidth: 0.5,
-    borderColor: '#d3d3d3',
     backgroundColor: '#fff',
+    ...Platform.select({
+      android:{
+        minHeight: 315,
+        margin: 10
+      },ios:{
+        borderColor: '#d3d3d3',
+        margin: 0,
+        borderWidth: 0.5,
+        minHeight: '50%',
+      }
+    })
   },
   btnLabel: {
-    fontSize: FontSetting.big_title,
     color: '#1976d2',
     width: '100%',
+    fontSize: FontSetting.big_title,
     textAlign: 'center',
     ...Platform.select({
       android: {
@@ -141,9 +159,15 @@ const styles = StyleSheet.create({
     })
   },
   btnDescription: {
-    padding: 5,
-    textAlign: 'center',
     fontSize: FontSetting.dashboard_subtitle,
+    ...Platform.select({
+      android: {
+        padding: 8,
+      },
+      ios:{
+        padding: 5,
+      }
+    })
   },
   btnFab: {
     width: 80,
