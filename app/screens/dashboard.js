@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
     })
   },
   btnDescription: {
+    textAlign: 'center',
     fontSize: FontSetting.dashboard_subtitle,
     ...Platform.select({
       android: {
