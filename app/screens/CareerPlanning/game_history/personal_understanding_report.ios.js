@@ -10,7 +10,7 @@ import {
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import realm from '../../../schema';
+import realm from '../../../db/schema';
 import User from '../../../utils/user';
 
 import mainStyles from '../../../assets/style_sheets/main/main';

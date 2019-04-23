@@ -24,7 +24,7 @@ import CloseButton from '../../components/shared/close_button';
 import FooterBar from '../../components/FooterBar';
 
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 
 export default class CareersScreen extends Component {

@@ -17,7 +17,7 @@ import {NavigationActions} from 'react-navigation';
 import PropTypes from 'prop-types';
 
 // Utils
-import realm from '../../../schema';
+import realm from '../../../db/schema';
 import User from '../../../utils/user';
 import headerStyles from '../../../assets/style_sheets/header';
 

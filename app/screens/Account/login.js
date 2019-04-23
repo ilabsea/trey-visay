@@ -15,7 +15,7 @@ import DeviceInfo from 'react-native-device-info';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 // Utils
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/login_form';
 

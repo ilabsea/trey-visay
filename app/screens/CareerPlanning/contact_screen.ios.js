@@ -20,7 +20,7 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import SchoolListView from '../../components/schools/school_list';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
 import schoolList from '../../data/json/universities';

@@ -14,7 +14,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 
 // Utils
-import realm from '../../schema';
+import realm from '../../db/schema';
 import uuidv4 from '../../utils/uuidv4';
 import User from '../../utils/user';
 import styles from '../../assets/style_sheets/login_form';

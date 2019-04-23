@@ -24,7 +24,7 @@ import CheckboxGroup from '../../components/checkbox_group';
 import FooterBar from '../../components/FooterBar';
 import MathUtil from '../../utils/math';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import characteristicList from '../../data/json/characteristic_jobs';
 import entries from '../../data/json/personalities';

@@ -17,7 +17,7 @@ import shareStyles from './style';
 
 import BackButton from '../../components/shared/back_button';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import universities from '../../data/json/universities';
 import characteristicList from '../../data/json/characteristic_jobs';

@@ -21,7 +21,7 @@ import OneList from '../../components/list/one_list';
 import SchoolListView from '../../components/schools/school_list';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import schoolList from '../../data/json/universities';
 import characteristicList from '../../data/json/characteristic_jobs';

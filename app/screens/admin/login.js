@@ -18,7 +18,7 @@ import { create } from 'apisauce';
 import { environment } from '../../config/environment';
 
 // Utils
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import styles from '../../assets/style_sheets/login_form';

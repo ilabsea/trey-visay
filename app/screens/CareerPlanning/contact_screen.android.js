@@ -19,7 +19,7 @@ import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
 import universities from '../../data/json/universities';

@@ -1,4 +1,4 @@
-import realm from '../../schema';
+import realm from '../../db/schema';
 import App from '../app';
 
 export default class Sidekiq {

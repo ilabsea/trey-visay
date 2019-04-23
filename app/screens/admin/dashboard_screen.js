@@ -15,7 +15,7 @@ import MaterialIcon from 'react-native-vector-icons/FontAwesome';
 import Button from '../../components/button';
 
 // Utils
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import headerStyles from '../../assets/style_sheets/header';
 import StatusBar from '../../components/status_bar';

@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 
 import characteristicList from '../data/json/characteristic_jobs';
-import realm from '../schema';
+import realm from '../db/schema';
 import Sidekiq from '../utils/models/sidekiq';
 import { environment } from '../config/environment';
 import api from './../utils/api';
