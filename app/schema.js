@@ -4,13 +4,21 @@
 'use strict';
 
 import Realm from 'realm';
-import User from './data/models/user';
-import PersonalUnderstanding from './data/models/personal_understanding';
+import User from './data/models/v1/user';
+import PersonalUnderstanding from './data/models/v1/personal_understanding';
 import arrayInt from './data/models/arrayInt';
 import arrayString from './data/models/arrayString';
-import Game from './data/models/game';
-import GameSubject from './data/models/game_subject';
-import Sidekiq from './data/models/sidekiq';
+import Game from './data/models/v1/game';
+import GameSubject from './data/models/v1/game_subject';
+import Sidekiq from './data/models/v1/sidekiq';
+
+import User2 from './data/models/v2/user';
+import PersonalUnderstanding2 from './data/models/v2/personal_understanding';
+import arrayInt from './data/models/arrayInt';
+import arrayString from './data/models/arrayString';
+import Game2 from './data/models/v2/game';
+import GameSubject2 from './data/models/v2/game_subject';
+import Sidekiq2 from './data/models/v2/sidekiq';
 
 import HighSchools from './utils/highSchools';
 import highSchoolsJson from './data/json/address/highSchools.json';
@@ -29,6 +37,16 @@ const schema = [
   Game,
   GameSubject,
   Sidekiq
+];
+
+const schema2 = [
+  User2,
+  PersonalUnderstanding2,
+  arrayInt,
+  arrayString,
+  Game2,
+  GameSubject2,
+  Sidekiq2
 ];
 
 function migrateSchoolsToCode(oldRealm, newRealm) {
@@ -51,7 +69,7 @@ function migrateSchoolsToCode(oldRealm, newRealm) {
 //migrate personalityCareers from career code to ID
 //migrate mostFavorableJobId to mostFavorableJobCode
 function migrateCareersToCode(oldRealm, newRealm) {
-  if (oldRealm.schemaVersion < 5) {
+  if (oldRealm.schemaVersion < 4) {
     const oldObjects = oldRealm.objects('Game');
     console.log('oldObjects : ', oldObjects);
     const newObjects = newRealm.objects('Game');
@@ -79,8 +97,7 @@ const schemas = [
   { schema: schema, schemaVersion: 1 },
   { schema: schema, schemaVersion: 2 },
   { schema: schema, schemaVersion: 3, migration: migrateSchoolsToCode },
-  { schema: schema, schemaVersion: 4 },
-  { schema: schema, schemaVersion: 5, migration: migrateCareersToCode },
+  { schema: schema2, schemaVersion: 4, migration: migrateCareersToCode }
 ]
 
 // the first schema to update to is the current schema version
