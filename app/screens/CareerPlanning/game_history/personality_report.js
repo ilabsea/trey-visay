@@ -32,14 +32,14 @@ export default class PersonalityReport extends Component {
   _renderContent() {
     return (
       <View style={mainStyles.box}>
-        <Text style={mainStyles.sectionText}>មុខរបរ</Text>
+        <Text>មុខរបរ</Text>
         <Divider/>
 
         { this.state.jobs.map((job, i) => {
           return (
             <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 8, marginLeft: 32}}>
               <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-              <Text style={{fontWeight: 'bold'}}>{job.name}</Text>
+              <Text>{job.name}</Text>
             </View>
           )
         })}
@@ -53,7 +53,7 @@ export default class PersonalityReport extends Component {
         <StatusBar />
 
         <ScrollView>
-          <View style={{flex: 1, marginTop: 8}}>
+          <View style={{flex: 1}}>
             { this._renderContent() }
           </View>
         </ScrollView>
