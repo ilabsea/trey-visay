@@ -54,8 +54,8 @@ export default class SummaryScreen extends Component {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let careerIds = game.personalityCareers.map((obj) => obj.value);
-    let userCareers = currentGroup.careers.filter((item, pos) => { return careerIds.includes(item.id) });
+    let careerCodes = game.personalityCareers.map((obj) => obj.value);
+    let userCareers = currentGroup.careers.filter((item, pos) => { return careerCodes.includes(item.code) });
 
     this.setState({
       userCareers: userCareers,
@@ -63,7 +63,7 @@ export default class SummaryScreen extends Component {
       user: user,
       game: game,
       confirmDialogVisible: false,
-      mostFavorableJob: game.mostFavorableJobId,
+      mostFavorableJob: game.mostFavorableJobCode,
     })
   }
 

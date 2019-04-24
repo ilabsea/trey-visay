@@ -43,8 +43,11 @@ export default class GameHistoryScreen extends Component {
     let user = User.getCurrent();
     let game = user.games.filtered('uuid=="' + this.props.navigation.state.params.gameUuid + '"')[0];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);
-    let schools = schoolList.filter((school, pos) => { return currentJob.schools.includes(school.id) });
+    let currentJob = currentGroup.careers.find((career) => career.code == game.mostFavorableJobCode);
+    let schools = schoolList.filter((school, pos) => {
+      return currentJob.schools.includes(school.code)
+    });
+    
     if(currentJob.unknown_schools)
       schools.push({universityName: currentJob.unknown_schools});
 

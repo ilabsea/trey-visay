@@ -117,7 +117,7 @@ export default class PersonalityJobsScreen extends Component {
 
   _handleSetSelectCareer() {
     let jobs = this.state.currentGroup.careers;
-    let selectedJobIds = this.state.game.personalityCareers.map((obj) => obj.value) || [];
+    let selectedJobCodes = this.state.game.personalityCareers.map((obj) => obj.value) || [];
     let arr = jobs.filter(function (item, pos) { return selectedJobIds.includes(item.id) });
     careers = arr.map((obj) => obj.id);
 

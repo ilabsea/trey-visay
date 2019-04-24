@@ -79,11 +79,11 @@ export default class UploadServices  {
 
     this.ignoreAttributes(attributes, false);
 
-    let careerIds = game.personalityCareers.map((obj) => obj.value);
-    attributes.career_games_attributes = careerIds.map((id) => {
+    let careerCodes = game.personalityCareers.map((obj) => obj.value);
+    attributes.career_games_attributes = careerCodes.map((code) => {
       return {
-        career_id: id,
-        is_goal: (id == game.mostFavorableJobId)
+        career_code: code,
+        is_goal: (code == game.mostFavorableJobCode)
       };
     })
 

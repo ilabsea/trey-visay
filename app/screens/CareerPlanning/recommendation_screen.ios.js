@@ -32,7 +32,7 @@ export default class RecommendationScreen extends Component {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let currentJob = currentGroup.careers.find((obj) => obj.id == game.mostFavorableJobId);
+    let currentJob = currentGroup.careers.find((obj) => obj.code == game.mostFavorableJobCode);
 
     this.setState({
       currentJob: currentJob,
