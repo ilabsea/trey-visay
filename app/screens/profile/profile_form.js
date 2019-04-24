@@ -48,9 +48,9 @@ export default class ProfileForm extends Component {
 
   constructor(props) {
     super(props);
-    this._handleSubmit = this.props.navigation.setParams({
-                            handleSubmit: this.handleSubmit.bind(this)
-                          });
+
+    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
+
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     user = Object.assign({}, user, { sex: 'ស្រី', grade: '9'})
 
@@ -61,10 +61,6 @@ export default class ProfileForm extends Component {
     }
   }
 
-  componentWillMount() {
-    this._handleSubmit;
-  }
-
   _skip() {
     try {
       realm.write(() => {
@@ -72,7 +68,7 @@ export default class ProfileForm extends Component {
           uuid: this.state.user.uuid,
           grade: 'other'
         }, true);
-        Sidekiq.create(this.state.user.uuid, 'User');
+        Sidekiq.create(User.getID(), 'User');
         this.props.navigation.dispatch({
           type: 'Navigation/RESET',
           index: 0,

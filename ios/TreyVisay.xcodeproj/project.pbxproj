@@ -133,6 +133,8 @@
 		F1F6FD21D7AF4778BF241465 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 64B0AB0092CF4C389A59C1EC /* EvilIcons.ttf */; };
 		F7C388EB6580449C9B485214 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A20458BAE5CC4FBCB46FF3E6 /* Entypo.ttf */; };
 		FE68380BBB984DBD82F5CE42 /* Roboto-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CC3F3B1A81C54532A4D1B7C9 /* Roboto-MediumItalic.ttf */; };
+		BF96C89185954BD2A968F96A /* TSBackgroundFetch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4267CBD28A6B4D219E7BE2D7 /* TSBackgroundFetch.framework */; };
+		460B6387F9F34DCA85A022F3 /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D6A3EB7A3CF94B9E8EB88A16 /* RNBackgroundFetch+AppDelegate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -623,6 +625,8 @@
 		F83833D3942241FA820002D9 /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
 		FBD82FB9882247DC9864249F /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		FDE7762229284B1D82367A74 /* Roboto-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Roboto-BoldItalic.ttf"; path = "../app/assets/fonts/Roboto-BoldItalic.ttf"; sourceTree = "<group>"; };
+		4267CBD28A6B4D219E7BE2D7 /* TSBackgroundFetch.framework */ = {isa = PBXFileReference; name = "TSBackgroundFetch.framework"; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/TSBackgroundFetch.framework"; sourceTree = SDKROOT; fileEncoding = undefined; lastKnownFileType = wrapper.framework; explicitFileType = undefined; includeInIndex = 0; };
+		D6A3EB7A3CF94B9E8EB88A16 /* RNBackgroundFetch+AppDelegate.m */ = {isa = PBXFileReference; name = "RNBackgroundFetch+AppDelegate.m"; path = "../node_modules/react-native-background-fetch/ios/RNBackgroundFetch/RNBackgroundFetch+AppDelegate.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -661,6 +665,7 @@
 				974E21E3D64D4586BF0ED02B /* libSplashScreen.a in Frameworks */,
 				D409EE372E9B6F37324114A7 /* libPods-TreyVisay.a in Frameworks */,
 				4697AB212C2A4E98AEBC70DE /* TSBackgroundFetch.framework in Frameworks */,
+				BF96C89185954BD2A968F96A /* TSBackgroundFetch.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,6 +762,7 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				D6A3EB7A3CF94B9E8EB88A16 /* RNBackgroundFetch+AppDelegate.m */,
 			);
 			name = TreyVisay;
 			sourceTree = "<group>";
@@ -844,6 +850,7 @@
 				DAA1FAAA823C4FF8981F3F45 /* libz.tbd */,
 				D3C22FDAD8FED845DCA71486 /* libPods-TreyVisay.a */,
 				60E1C27005BF4C3193F3BE79 /* TSBackgroundFetch.framework */,
+				4267CBD28A6B4D219E7BE2D7 /* TSBackgroundFetch.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1243,6 +1250,11 @@
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = JW8Q88ZUPR;
 						LastSwiftMigration = 1010;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = true;
+							};
+						};
 					};
 				};
 			};
@@ -1861,6 +1873,7 @@
 				EEFE5D162241E6E400603446 /* RNPieChartManagerBridge.m in Sources */,
 				EEFE5D182241E6E400603446 /* RNPieChartManager.swift in Sources */,
 				EEFE5D242241E6E400603446 /* RNHorizontalBarChartView.swift in Sources */,
+				460B6387F9F34DCA85A022F3 /* RNBackgroundFetch+AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

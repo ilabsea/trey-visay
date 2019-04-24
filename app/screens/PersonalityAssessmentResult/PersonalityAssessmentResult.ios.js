@@ -15,6 +15,7 @@ import realm from '../../schema';
 import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
 import categoryList from '../../data/json/personality_category';
+import Sidekiq from '../../utils/models/sidekiq';
 
 class PersonalityAssessmentResult extends Component {
   constructor(props) {
@@ -52,7 +53,7 @@ class PersonalityAssessmentResult extends Component {
   _goNext = () => {
     realm.write(() => {
       realm.create('PersonalityAssessment', this._buildData(), true);
-      realm.create('Sidekiq', { paramUuid: this.state.assessment.uuid, tableName: 'PersonalityAssessment' }, true)
+      Sidekiq.create(this.state.assessment.uuid, 'PersonalityAssessment');
       this._closeDialog();
     });
   }
@@ -60,7 +61,7 @@ class PersonalityAssessmentResult extends Component {
   _onYes() {
     realm.write(() => {
       realm.create('PersonalityAssessment', this._buildData(), true);
-      realm.create('Sidekiq', { paramUuid: this.state.assessment.uuid, tableName: 'PersonalityAssessment' }, true)
+      Sidekiq.create(this.state.assessment.uuid, 'PersonalityAssessment');
       this._closeDialog();
     });
   }

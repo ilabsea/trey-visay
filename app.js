@@ -15,7 +15,7 @@ import User from './app/utils/user';
 import Task from './app/utils/task';
 
 // Screens
-// import HomeScreen from './app/screens/home';
+import HomeScreen from './app/screens/home';
 
 const HomeNavigator = createStackNavigator({
   Home: {
@@ -50,6 +50,7 @@ export default class App extends Component {
 
   componentDidMount(){
     Task.configBackgroundFetch();
+    // Task.syncToServer();
   }
 
   handlerPredefinedUser() {
