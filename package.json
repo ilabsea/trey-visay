@@ -16,7 +16,11 @@
     "apisauce": "^1.0.0",
     "base-64": "^0.1.0",
     "native-base": "^2.12.1",
+<<<<<<< 580a599799bd913fe20bf3d6b432d88d60167e13
     "prop-types": "^15.7.2",
+=======
+    "prop-types": "^15.6.2",
+>>>>>>> add carousel on home screen
     "react": "^16.6.0-alpha.8af6728",
     "react-native": "0.57.4",
     "react-native-audio": "^4.2.2",

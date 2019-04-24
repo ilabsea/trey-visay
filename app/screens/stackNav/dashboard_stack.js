@@ -4,7 +4,7 @@ import { createStackNavigator } from  'react-navigation';
 import headerStyles from '../../assets/style_sheets/header';
 import OpenDrawer from '../../components/shared/open_drawer';
 
-import Dashboard from '../dashboard';
+import Dashboard from '../home/home';
 
 const DashboardStack = createStackNavigator(
   {
