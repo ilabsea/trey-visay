@@ -1,5 +1,8 @@
 PODS:
   - boost-for-react-native (1.63.0)
+  - Charts (3.2.2):
+    - Charts/Core (= 3.2.2)
+  - Charts/Core (3.2.2)
   - DoubleConversion (1.1.5)
   - Folly (2016.10.31.00):
     - boost-for-react-native
@@ -62,9 +65,11 @@ PODS:
     - React/Core
     - RSKImageCropper
   - RSKImageCropper (2.2.1)
+  - SwiftyJSON (4.0.0)
   - yoga (0.57.4.React)
 
 DEPENDENCIES:
+  - Charts (= 3.2.2)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - Picker (from `../node_modules/react-native-picker`)
   - React/Core (from `../node_modules/react-native`)
@@ -81,15 +86,18 @@ DEPENDENCIES:
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
+  - SwiftyJSON (= 4.0.0)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - boost-for-react-native
+    - Charts
     - DoubleConversion
     - glog
     - QBImagePickerController
     - RSKImageCropper
+    - SwiftyJSON
 
 EXTERNAL SOURCES:
   Folly:
@@ -107,6 +115,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
+  Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
   DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
   Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
   glog: 1de0bb937dccdc981596d3b5825ebfb765017ded
@@ -116,8 +125,9 @@ SPEC CHECKSUMS:
   RNBackgroundFetch: 8c4f77f83c398c659bce82af2f0a885079417b9e
   RNImageCropPicker: 32ca4b9fef4e1b7b85ba69494242122948117e06
   RSKImageCropper: 98296ad26b41753f796b6898d015509598f13d97
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
 
-PODFILE CHECKSUM: a7cf71c2101bcdaecb9e2b9aec585647f2066fb1
+PODFILE CHECKSUM: 3e06158ea28a53ff19be54afbde220019a1e23e0
 
 COCOAPODS: 1.5.2

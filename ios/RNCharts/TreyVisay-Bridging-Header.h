@@ -1,5 +1,9 @@
 //
-//  Use this file to import your target's public headers that you would like to expose to Swift.
+//  TreyVisay-Bridging-Header.swift
+//  TreyVisay
+//
+//  Created by Instedd on 4/25/19.
+//  Copyright © 2019 Facebook. All rights reserved.
 //
 
 #import "React/RCTBridge.h"

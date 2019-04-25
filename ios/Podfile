@@ -23,11 +23,11 @@ target 'TreyVisay' do
   pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
   pod 'Picker', :path => '../node_modules/react-native-picker'
   pod 'RNBackgroundFetch', :path => '../node_modules/react-native-background-fetch'
-  # pod 'SwiftyJSON', '4.0.0'
-  # pod 'Charts', '3.2.2'
+  pod 'SwiftyJSON', '4.0.0'
+  pod 'Charts', '3.2.2'
 end
 
-# swift4 = ['Charts']
+swift4 = ['Charts']
 
 post_install do |installer|
   installer.pods_project.targets.each do |target|
@@ -35,10 +35,10 @@ post_install do |installer|
       target.remove_from_project
     end
 
-    # target.build_configurations.each do |config|
-    #     if swift4.include?(target.name)
-    #         config.build_settings['SWIFT_VERSION'] = '4.2'
-    #     end
-    # end
+    target.build_configurations.each do |config|
+        if swift4.include?(target.name)
+            config.build_settings['SWIFT_VERSION'] = '4.2'
+        end
+    end
   end
 end
