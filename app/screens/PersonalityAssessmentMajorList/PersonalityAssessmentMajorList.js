@@ -10,7 +10,7 @@ import majorList from '../../data/json/personality_major';
 export default class PersonalityAssessmentMajorList extends Component {
   _renderMajorList() {
     let category = this.props.navigation.getParam('category');
-    let majors = majorList.filter(obj => (obj.group == category.group));
+    let majors = majorList.filter(obj => category.majors.includes(obj.code));
 
     let doms = majors.map((major, index) => {
       return (
