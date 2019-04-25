@@ -27,7 +27,6 @@ import InputTextContainer from '../../components/input_text_container';
 import SaveButton from '../../components/shared/save_button';
 import PickerSpecific from '../../components/picker/PickerSpecific';
 
-import FamilySituation from '../../data/json/family_situation.json';
 import grades from '../../data/json/grades.json';
 import provinces from '../../data/json/address/provinces.json';
 import communes from '../../data/json/address/communes.json';
