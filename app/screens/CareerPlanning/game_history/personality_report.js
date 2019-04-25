@@ -32,7 +32,7 @@ export default class PersonalityReport extends Component {
   _renderContent() {
     return (
       <View style={mainStyles.box}>
-        <Text>មុខរបរ</Text>
+        <Text style={mainStyles.sectionText}>មុខរបរ</Text>
         <Divider/>
 
         { this.state.jobs.map((job, i) => {
@@ -53,7 +53,7 @@ export default class PersonalityReport extends Component {
         <StatusBar />
 
         <ScrollView>
-          <View style={{flex: 1}}>
+          <View style={{flex: 1, marginTop: 8}}>
             { this._renderContent() }
           </View>
         </ScrollView>

@@ -28,7 +28,7 @@ export default class StudentPersonalityReport extends Component {
   _renderContent() {
     return (
       <View style={mainStyles.box}>
-        <Text>ចម្លើយអំពីបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
+        <Text style={mainStyles.sectionText}>ចម្លើយអំពីបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
         <Divider />
         { this.state.game.characteristicEntries.map((entry, i) => {
           return (

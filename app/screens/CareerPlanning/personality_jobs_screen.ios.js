@@ -26,19 +26,6 @@ import characteristicList from '../../data/json/characteristic_jobs';
 let careers = [];
 
 export default class PersonalityJobsScreen extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   const { goBack, state } = navigation;
-  //   let highlighStyle = (state.params && state.params.total > 3) ? {color: '#e94b35'} : {color: '#fff'};
-
-  //   return {
-  //     title: state.params && state.params.title,
-  //     headerTitleStyle: [headerStyles.headerTitleStyle],
-  //     headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
-  //                     <Text style={headerStyles.saveText}><Text style={highlighStyle}>{state.params && state.params.total || 0} </Text> / 3</Text>
-  //                   </TouchableOpacity>),
-  //   }
-  // };
-
   careers = [];
 
   constructor(props) {
@@ -118,9 +105,8 @@ export default class PersonalityJobsScreen extends Component {
   _handleSetSelectCareer() {
     let jobs = this.state.currentGroup.careers;
     let selectedJobCodes = this.state.game.personalityCareers.map((obj) => obj.value) || [];
-    let arr = jobs.filter(function (item, pos) { return selectedJobIds.includes(item.id) });
-    careers = arr.map((obj) => obj.id);
-
+    let arr = jobs.filter(function (item, pos) { return selectedJobCodes.includes(item.code) });
+    careers = arr.map((obj) => obj.code);
     this.setState({jobs: careers});
   }
 
@@ -164,7 +150,7 @@ export default class PersonalityJobsScreen extends Component {
     let arr = [];
 
     for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].id, label: jobs[i].name })
+      arr.push({ value: jobs[i].code, label: jobs[i].name })
     }
     return arr;
   }

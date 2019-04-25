@@ -103,8 +103,8 @@ export default class SummaryScreen extends Component {
   _buildData(step) {
     let obj =  {
       uuid: this.state.game.uuid,
-      mostFavorableJobId: this.state.mostFavorableJob || null,
-      goalCareer: this.state.mostFavorableJob && this.state.currentGroup.careers.find((obj) => obj.id == this.state.mostFavorableJob).name || null,
+      mostFavorableJobCode: this.state.mostFavorableJob || null,
+      goalCareer: this.state.mostFavorableJob && this.state.currentGroup.careers.find((obj) => obj.code == this.state.mostFavorableJob).name || null,
       step: step || 'RecommendationScreen'
     }
 
@@ -115,7 +115,7 @@ export default class SummaryScreen extends Component {
     let arr = [];
 
     for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].id, label: jobs[i].name })
+      arr.push({ value: jobs[i].code, label: jobs[i].name })
     }
     return arr;
   }
