@@ -32,7 +32,7 @@ export default class PersonalityReport extends Component {
   _renderContent() {
     return (
       <View style={mainStyles.box}>
-        <Text style={mainStyles.sectionText}>មុខរបរ</Text>
+        <Text style={mainStyles.sectionTextInBox}>មុខរបរ</Text>
         <Divider/>
 
         { this.state.jobs.map((job, i) => {

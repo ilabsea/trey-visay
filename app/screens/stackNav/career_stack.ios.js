@@ -41,6 +41,12 @@ const CareerStack = createStackNavigator(
     InstitutionDetail: {
       screen: InstitutionDetail
     },
+    Description: {
+      screen: Description,
+      navigationOptions: ({navigation}) => ({
+        title: navigation.state.params.title
+      })
+    }
   },{
     navigationOptions: ({navigation}) => ({
       headerLeft: <BackButton navigation={navigation}/>,

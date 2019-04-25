@@ -33,6 +33,9 @@ export default StyleSheet.create({
     marginTop: 16,
     marginLeft: 16
   },
+  sectionTextInBox: {
+    fontSize: FontSetting.text,
+  },
   instructionContainer: {
     flexDirection: 'row',
     marginTop: 24,
