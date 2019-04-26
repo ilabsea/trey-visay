@@ -114,17 +114,17 @@ export default class Profile extends Component {
         </View>
 
         <View style={styles.item}>
-          <Text style={styles.itemLabel}>ខេត្ត</Text>
+          <Text style={styles.itemLabel}>ខេត្ត/ក្រុង</Text>
           <Text style={styles.itemValue}>: {provinceName}</Text>
         </View>
 
         <View style={styles.item}>
-          <Text style={styles.itemLabel}>ស្រុក</Text>
+          <Text style={styles.itemLabel}>ស្រុក/ខណ្ឌ</Text>
           <Text style={styles.itemValue}>: {districtName}</Text>
         </View>
 
         <View style={styles.item}>
-          <Text style={styles.itemLabel}>ឃុំ</Text>
+          <Text style={styles.itemLabel}>ឃុំ/សង្កាត់</Text>
           <Text style={styles.itemValue}>: {communeName}</Text>
         </View>
 

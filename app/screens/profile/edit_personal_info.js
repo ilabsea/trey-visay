@@ -157,11 +157,11 @@ export default class EditPersonalInfo extends Component {
           keyboardType: 'phone-pad'})
         }
         { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
-        { this._renderPicker({label: 'ខេត្ត', stateName: 'provinceCode',
+        { this._renderPicker({label: 'ខេត្ត/ក្រុង', stateName: 'provinceCode',
           options: noValue.concat(provinces) })}
-        { this._renderPicker({label: 'ស្រុក', stateName: 'districtCode',
+        { this._renderPicker({label: 'ស្រុក/ខណ្ឌ', stateName: 'districtCode',
             options: noValue.concat(this._getDistricts()) })}
-        { this._renderPicker({label: 'ឃុំ', stateName: 'communeCode',
+        { this._renderPicker({label: 'ឃុំ/សង្កាត់', stateName: 'communeCode',
             options: noValue.concat(this._getCommunes()) })}
         { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolCode',
             options: noValue.concat(this._getHighSchools()) })}
