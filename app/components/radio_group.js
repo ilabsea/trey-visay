@@ -46,7 +46,7 @@ class RadioGroup extends Component {
 
 const styles = StyleSheet.create({
   label: {
-    lineHeight: 28
+    lineHeight: 30
   },
   buttonWrapper: {
     marginTop: 5
