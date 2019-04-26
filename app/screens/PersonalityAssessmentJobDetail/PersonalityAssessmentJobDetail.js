@@ -3,23 +3,20 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { Container, Content, ListItem, Body, Card, CardItem, Right, Icon } from 'native-base';
 import listStyles from '../../assets/style_sheets/list';
+import te from '../../data/translates/km';
 
 export default class PersonalityAssessmentJobDetail extends Component {
   _renderDescription() {
     let job = this.props.navigation.getParam('job');
-    let description3 = (job.description3 || '').split(';');
-    let doms = description3.map((text, index) => {
-      return (<Text key={index}>{'\u2022' + " "} {text}</Text>);
+    let arr = ['duty', 'working_environment', 'training_level', 'salary'];
+    let doms = arr.map((item, index) => {
+      return (<Text key={index}>{'\u2022' + " "} {te[item]}: {job[item]}</Text>);
     })
-
-    if (!job.description2) {
-      return (null)
-    }
 
     return (
       <Card>
         <CardItem header bordered>
-          <Text>{job.description2}</Text>
+          <Text>{job.short_description}</Text>
         </CardItem>
 
         <CardItem>

@@ -9,6 +9,12 @@ import majorList from '../../data/json/personality_major';
 import characteristicList from '../../data/json/characteristic_jobs';
 
 export default class PersonalityAssessmentJobList extends Component {
+  _onPressListItem(job) {
+    if(!job.short_description) { return; }
+
+    this.props.navigation.navigate('PersonalityAssessmentJobDetailScreen', {title: job.name, job: job})
+  }
+
   _renderList() {
     let category = this.props.navigation.getParam('category');
     let id = category.group == 'science' ? 1 : 3;
@@ -19,13 +25,13 @@ export default class PersonalityAssessmentJobList extends Component {
         <ListItem
           key={index}
           button
-          onPress={() => {this.props.navigation.navigate('PersonalityAssessmentJobDetailScreen', {title: job.name, job: job})}}
+          onPress={() => this._onPressListItem(job)}
           >
           <Body>
             <Text>{job.name}</Text>
           </Body>
           <Right>
-            <Icon active name="arrow-forward" />
+            { job.short_description && <AwesomeIcon name='angle-right' size={24} color='#bbb' /> }
           </Right>
         </ListItem>
       )

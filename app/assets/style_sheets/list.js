@@ -1,3 +1,5 @@
+// https://stackoverflow.com/questions/40441877/react-native-bulleted-lists-using-flex-wrap?rq=1
+
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
