@@ -5,6 +5,7 @@ import {
   Text
 } from 'react-native';
 
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import realm from '../../schema';
 import User from '../../utils/user';
 import subjectList from '../../data/json/subject';
@@ -50,7 +51,7 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
         </Body>
 
         <Right>
-          <Icon name="arrow-forward" />
+          <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </Right>
       </CardItem>
     );

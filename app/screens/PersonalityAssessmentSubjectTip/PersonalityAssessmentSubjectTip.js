@@ -22,13 +22,18 @@ export default class PersonalityAssessmentSubjectTip extends Component {
 
   _renderTip() {
     let tipType = 'medium_tips';
+    let doms = this.state.subject[tipType].map((tip, i) => this._buildList('-', tip, i));
+
+    return doms;
+  }
+
+  _buildList(symbol, text, key) {
     return (
-      <View>
-        { this.state.subject[tipType].map((tip, i) => {
-          { return (<Text key={i} style={{marginLeft: 8}}>- {tip}</Text>) }
-        })}
+      <View style={[{flexDirection: 'row', width: '100%'}]} key={key}>
+        <Text style={{width: 16}}>{symbol}</Text>
+        <Text style={{flex: 1}}>{text}</Text>
       </View>
-    )
+    );
   }
 
   render() {
@@ -41,7 +46,9 @@ export default class PersonalityAssessmentSubjectTip extends Component {
             </CardItem>
 
             <CardItem bordered>
-              {this._renderTip()}
+              <Body>
+                {this._renderTip()}
+              </Body>
             </CardItem>
           </Card>
         </Content>
