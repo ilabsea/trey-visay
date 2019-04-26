@@ -17,7 +17,6 @@ import DashboardView from '../components/dashboard/dashboard_view';
 import styles from '../assets/style_sheets/dashboard/dashboard';
 
 import User from '../utils/user';
-import Task from '../utils/task';
 import API from '../api/schools';
 
 export default class Dashboard extends Component {
@@ -77,9 +76,6 @@ export default class Dashboard extends Component {
       <View style={styles.scrollContainer}>
         <StatusBar />
         <DashboardView>
-          <TouchableOpacity onPress={() => Task.syncToServer()}>
-            <Text>Click me</Text>
-          </TouchableOpacity>
           <View style={{flexDirection: 'row'}}>
             { this._renderButton({
                 title: 'វាយតម្លៃមុខរបរ',
