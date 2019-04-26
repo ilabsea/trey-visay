@@ -23,7 +23,7 @@ export default class PersonalityAssessmentMajorList extends Component {
             <Text>{major.name_km}</Text>
           </Body>
           <Right>
-            <Icon active name="arrow-forward" />
+            <AwesomeIcon name='angle-right' size={24} color='#bbb' />
           </Right>
         </ListItem>
       )

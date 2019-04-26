@@ -89,7 +89,7 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
             <Text>{option.label}</Text>
           </Body>
           <Right>
-            <Icon active name="arrow-forward" />
+            <AwesomeIcon name='angle-right' size={24} color='#bbb' />
           </Right>
         </ListItem>
       )
