@@ -12,7 +12,7 @@ import IOSPicker from 'react-native-ios-picker';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Utils
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
 import App from '../../utils/app';

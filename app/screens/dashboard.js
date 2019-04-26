@@ -3,7 +3,6 @@ import {
   View,
   Text,
   ScrollView,
-  StyleSheet,
   Platform,
   TouchableOpacity
 } from 'react-native';
@@ -14,8 +13,11 @@ import SplashScreen from 'react-native-splash-screen';
 
 import StatusBar from '../components/shared/status_bar';
 import DashboardView from '../components/dashboard/dashboard_view';
-import { FontSetting } from '../assets/style_sheets/font_setting';
+
+import styles from '../assets/style_sheets/dashboard/dashboard';
+
 import User from '../utils/user';
+import Task from '../utils/task';
 import API from '../api/schools';
 
 export default class Dashboard extends Component {
@@ -75,6 +77,9 @@ export default class Dashboard extends Component {
       <View style={styles.scrollContainer}>
         <StatusBar />
         <DashboardView>
+          <TouchableOpacity onPress={() => Task.syncToServer()}>
+            <Text>Click me</Text>
+          </TouchableOpacity>
           <View style={{flexDirection: 'row'}}>
             { this._renderButton({
                 title: 'វាយតម្លៃមុខរបរ',
@@ -98,7 +103,7 @@ export default class Dashboard extends Component {
           <View style={{flexDirection: 'row'}}>
             { this._renderButton({
                 title: 'ជំនាញវិជ្ជាជីវៈ',
-                url: 'VocationalJobStack',
+                url: 'CareerStack',
                 icon_bg_color: '#1aaf5d',
                 icon_name: 'photo-filter',
                 icon_type: 'material',
@@ -119,69 +124,3 @@ export default class Dashboard extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  scrollContainer: {
-    ...Platform.select({
-      android: {
-        padding: 8
-      },
-      ios: {
-        padding: 0
-      }
-    })
-  },
-  btnBox: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    ...Platform.select({
-      android:{
-        minHeight: 315,
-        margin: 10
-      },ios:{
-        borderColor: '#d3d3d3',
-        margin: 0,
-        borderWidth: 0.5,
-        minHeight: '50%',
-      }
-    })
-  },
-  btnLabel: {
-    color: '#1976d2',
-    width: '100%',
-    fontSize: FontSetting.big_title,
-    textAlign: 'center',
-    ...Platform.select({
-      android: {
-        lineHeight: 48,
-      }
-    })
-  },
-  btnDescription: {
-    fontSize: FontSetting.dashboard_subtitle,
-    ...Platform.select({
-      android: {
-        padding: 8,
-      },
-      ios:{
-        padding: 5,
-      }
-    })
-  },
-  btnFab: {
-    width: 80,
-    height: 80,
-    borderRadius: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-    ...Platform.select({
-      android: {
-        margin: 18
-      },
-      ios: {
-        margin: 24
-      }
-    })
-  }
-});

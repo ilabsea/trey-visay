@@ -8,7 +8,7 @@ import {
   Platform
 } from 'react-native';
 
-import realm from './app/schema';
+import realm from './app/db/schema';
 
 import { createStackNavigator } from 'react-navigation';
 import User from './app/utils/user';

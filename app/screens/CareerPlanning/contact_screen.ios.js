@@ -20,11 +20,10 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import SchoolListView from '../../components/schools/school_list';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
-import App from '../../utils/app';
-import schoolList from '../../data/json/schools';
+import schoolList from '../../data/json/universities';
 import Images from '../../assets/images';
 import characteristicList from '../../data/json/characteristic_jobs';
 
@@ -45,8 +44,10 @@ export default class ContactScreen extends Component {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);
-    let schools = schoolList.filter((school, pos) => { return currentJob.schools.includes(school.id) });
+    let currentJob = currentGroup.careers.find((career) => career.code == game.mostFavorableJobCode);
+    let schools = schoolList.filter((school, pos) => {
+      return currentJob.schools.includes(school.code)
+    });
     if(currentJob.unknown_schools)
       schools.push({universityName: currentJob.unknown_schools});
 

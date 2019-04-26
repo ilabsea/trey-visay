@@ -42,7 +42,8 @@ class LongText extends Component {
 
 const styles = {
   container: {
-    marginBottom: 8,
+    margin: 16,
+    marginBottom: 0,
     borderWidth: 1,
     borderColor: '#eee',
     padding: 16,

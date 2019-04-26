@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 
 import characteristicList from '../data/json/characteristic_jobs';
-import realm from '../schema';
+import realm from '../db/schema';
 import Sidekiq from '../utils/models/sidekiq';
 import { environment } from '../config/environment';
 import api from './../utils/api';
@@ -79,11 +79,11 @@ export default class UploadServices  {
 
     this.ignoreAttributes(attributes, false);
 
-    let careerIds = game.personalityCareers.map((obj) => obj.value);
-    attributes.career_games_attributes = careerIds.map((id) => {
+    let careerCodes = game.personalityCareers.map((obj) => obj.value);
+    attributes.career_games_attributes = careerCodes.map((code) => {
       return {
-        career_id: id,
-        is_goal: (id == game.mostFavorableJobId)
+        career_code: code,
+        is_goal: (code == game.mostFavorableJobCode)
       };
     })
 

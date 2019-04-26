@@ -18,7 +18,7 @@ import shareStyles from '../assets/style_sheets/profile_form';
 import styles from '../assets/style_sheets/login_form';
 import StatusBar from '../components/shared/status_bar';
 
-import realm from '../schema';
+import realm from '../db/schema';
 import User from '../utils/user';
 
 export default class ChangePasswordScreen extends Component {

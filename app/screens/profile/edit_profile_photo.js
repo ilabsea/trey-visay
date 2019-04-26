@@ -21,7 +21,7 @@ import ImagePicker from 'react-native-image-crop-picker';
 import StatusBar from '../../components/shared/status_bar';
 
 // Utils
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
 import styles from '../../assets/style_sheets/profile_form';

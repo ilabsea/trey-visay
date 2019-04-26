@@ -21,7 +21,7 @@ import FooterBar from '../../components/FooterBar';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 

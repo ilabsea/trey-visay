@@ -10,7 +10,7 @@ import {
 
 import mainStyles from '../../../assets/style_sheets/main/main';
 
-import realm from '../../../schema';
+import realm from '../../../db/schema';
 import User from '../../../utils/user';
 import subjectList from '../../../data/json/subject';
 import characteristicList from '../../../data/json/characteristic_jobs';
@@ -25,7 +25,7 @@ export default class RecommendationReport extends Component {
     let user = User.getCurrent();
     let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let currentJob = currentGroup.careers.find((obj) => obj.id == game.mostFavorableJobId);
+    let currentJob = currentGroup.careers.find((obj) => obj.code == game.mostFavorableJobCode);
 
     this.setState({
       currentJob: currentJob,

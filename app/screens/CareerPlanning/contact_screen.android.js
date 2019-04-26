@@ -19,11 +19,10 @@ import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
-import App from '../../utils/app';
-import schoolList from '../../data/json/schools';
+import universities from '../../data/json/universities';
 import Images from '../../assets/images';
 import characteristicList from '../../data/json/characteristic_jobs';
 
@@ -44,8 +43,10 @@ export default class ContactScreen extends Component {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let currentJob = currentGroup.careers.find((career) => career.id == game.mostFavorableJobId);
-    let schools = schoolList.filter((school, pos) => { return currentJob.schools.includes(school.id) });
+    let currentJob = currentGroup.careers.find((career) => career.code == game.mostFavorableJobCode);
+    let schools = universities.filter((school, pos) => {
+      return currentJob.schools.includes(school.code)
+    });
 
     this.state = {
       user: user,
@@ -205,10 +206,8 @@ export default class ContactScreen extends Component {
     setTimeout(() => {
       this.sound.play((success) => {
         if (success) {
-          console.log('successfully finished playing');
           this.setState({isPlaying: false});
         } else {
-          console.log('playback failed due to audio decoding errors');
           this.sound.reset();
         }
       });

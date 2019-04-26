@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import realm from '../schema';
+import realm from '../db/schema';
 
 let STORAGE_KEY = 'USER_ID';
 let TOKEN_KEY = 'TOKEN';

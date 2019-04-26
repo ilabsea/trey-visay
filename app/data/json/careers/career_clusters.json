@@ -1,0 +1,82 @@
+[
+  {
+    "code": "car_0001",
+    "name_kh": "ផ្នែកកសិកម្ម ស្បៀងអាហារ និងធនធានធម្មជាតិ",
+    "name_en": "Agriculture, Food & Natural Resources"
+  },
+  {
+    "code": "car_0002",
+    "name_kh": "ផ្នែកស្ថាបត្យកម្ម និងសំណង់",
+    "name_en": "Architecture & Construction"
+  },
+  {
+    "code": "car_0003",
+    "name_kh": "ផ្នែកសិល្បៈ បច្ចេកវិទ្យា A/V និងសារទូរគមនាគមន៍",
+    "name_en": "Arts, A/V Technology & Communications"
+  },
+  {
+    "code": "car_0004",
+    "name_kh": "ផ្នែកសេដ្ឋកិច្ចពាណិជ្ជកម្ម និងរដ្ឋបាល",
+    "name_en": "Business Management & Administration"
+  },
+  {
+    "code": "car_0005",
+    "name_kh": "ផ្នែកអប់រំ និងបណ្ដុះបណ្ដាល",
+    "name_en": "Education & Training"
+  },
+  {
+    "code": "car_0006",
+    "name_kh": "ផ្នែកធនាគារ ហិរញ្ញវត្ថុ និងធានារ៉ាប់រង",
+    "name_en": "Finance"
+  },
+  {
+    "code": "car_0007",
+    "name_kh": "ផ្នែករដ្ឋាភិបាល និងរដ្ឋបាលសាធារណៈ",
+    "name_en": "Government & Public Administration"
+  },
+  {
+    "code": "car_0008",
+    "name_kh": "ផ្នែកវិទ្យាសាស្ត្រសុខាភិបាល",
+    "name_en": "Health Science"
+  },
+  {
+    "code": "car_0009",
+    "name_kh": "ផ្នែកបដិសណ្ឋារកិច្ច ទេសចរណ៍ និងកម្សាន្ដ",
+    "name_en": "Hospitality & Tourism"
+  },
+  {
+    "code": "car_0010",
+    "name_kh": "ផ្នែកសេវាកម្មសម្រាប់សាធារណជន",
+    "name_en": "Human Services"
+  },
+  {
+    "code": "car_0011",
+    "name_kh": "ផ្នែកបច្ចេកវិទ្យាព័ត៌មានវិទ្យា",
+    "name_en": "Information Technology"
+  },
+  {
+    "code": "car_0012",
+    "name_kh": "ផ្នែកច្បាប់ និងសុវត្ថិភាពសង្គម",
+    "name_en": "Law, Public Safety, Correction & Security"
+  },
+  {
+    "code": "car_0013",
+    "name_kh": "ផ្នែកកម្មន្ដសាល",
+    "name_en": "Manufacturing"
+  },
+  {
+    "code": "car_0014",
+    "name_kh": "ផ្នែកទីផ្សារ និងសេវាកម្មអតិថិជន",
+    "name_en": "Marketing"
+  },
+  {
+    "code": "car_0015",
+    "name_kh": "ផ្នែកវិទ្យាសាស្ត្រ បច្ចេកវិទ្យា វិស្វកម្ម និងគណិតសាស្ត្រ",
+    "name_en": "Science, Technology, Engineering & Mathematics"
+  },
+  {
+    "code": "car_0016",
+    "name_kh": "ផ្នែកដឹកជញ្ជូន និងចែកចាយ",
+    "name_en": "Transportation, Distribution & Logistics"
+  }
+]

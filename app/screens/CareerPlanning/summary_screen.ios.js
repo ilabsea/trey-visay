@@ -22,7 +22,7 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import characteristicList from '../../data/json/characteristic_jobs';
 
@@ -54,8 +54,8 @@ export default class SummaryScreen extends Component {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let careerIds = game.personalityCareers.map((obj) => obj.value);
-    let userCareers = currentGroup.careers.filter((item, pos) => { return careerIds.includes(item.id) });
+    let careerCodes = game.personalityCareers.map((obj) => obj.value);
+    let userCareers = currentGroup.careers.filter((item, pos) => { return careerCodes.includes(item.code) });
 
     this.setState({
       userCareers: userCareers,
@@ -63,7 +63,7 @@ export default class SummaryScreen extends Component {
       user: user,
       game: game,
       confirmDialogVisible: false,
-      mostFavorableJob: game.mostFavorableJobId,
+      mostFavorableJob: game.mostFavorableJobCode,
     })
   }
 
@@ -103,8 +103,8 @@ export default class SummaryScreen extends Component {
   _buildData(step) {
     let obj =  {
       uuid: this.state.game.uuid,
-      mostFavorableJobId: this.state.mostFavorableJob || null,
-      goalCareer: this.state.mostFavorableJob && this.state.currentGroup.careers.find((obj) => obj.id == this.state.mostFavorableJob).name || null,
+      mostFavorableJobCode: this.state.mostFavorableJob || null,
+      goalCareer: this.state.mostFavorableJob && this.state.currentGroup.careers.find((obj) => obj.code == this.state.mostFavorableJob).name || null,
       step: step || 'RecommendationScreen'
     }
 
@@ -115,7 +115,7 @@ export default class SummaryScreen extends Component {
     let arr = [];
 
     for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].id, label: jobs[i].name })
+      arr.push({ value: jobs[i].code, label: jobs[i].name })
     }
     return arr;
   }

@@ -16,7 +16,7 @@ import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import subjectList from '../../data/json/subject';
 import characteristicList from '../../data/json/characteristic_jobs';
@@ -32,7 +32,7 @@ export default class RecommendationScreen extends Component {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let currentJob = currentGroup.careers.find((obj) => obj.id == game.mostFavorableJobId);
+    let currentJob = currentGroup.careers.find((obj) => obj.code == game.mostFavorableJobCode);
 
     this.setState({
       currentJob: currentJob,

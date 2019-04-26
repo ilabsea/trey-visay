@@ -11,7 +11,7 @@ import { Divider } from 'react-native-elements';
 import mainStyles from '../../../assets/style_sheets/main/main';
 import StatusBar from '../../../components/shared/status_bar';
 import characteristicList from '../../../data/json/characteristic_jobs';
-import realm from '../../../schema';
+import realm from '../../../db/schema';
 import User from '../../../utils/user';
 
 export default class PersonalityReport extends Component {
@@ -20,7 +20,7 @@ export default class PersonalityReport extends Component {
     let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
     let personalityCareers = game.personalityCareers.map(career => career.value);
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
-    let jobs = currentGroup.careers.filter(career => personalityCareers.includes(career.id));
+    let jobs = currentGroup.careers.filter(career => personalityCareers.includes(career.code));
 
     this.setState({
       user: user,
@@ -32,14 +32,14 @@ export default class PersonalityReport extends Component {
   _renderContent() {
     return (
       <View style={mainStyles.box}>
-        <Text style={mainStyles.sectionText}>មុខរបរ</Text>
+        <Text style={mainStyles.sectionTextInBox}>មុខរបរ</Text>
         <Divider/>
 
         { this.state.jobs.map((job, i) => {
           return (
             <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 8, marginLeft: 32}}>
               <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-              <Text style={{fontWeight: 'bold'}}>{job.name}</Text>
+              <Text>{job.name}</Text>
             </View>
           )
         })}

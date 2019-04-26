@@ -15,7 +15,7 @@ import {
 } from 'react-native-material-ui';
 
 // Utils
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 
 // Components

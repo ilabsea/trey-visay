@@ -12,7 +12,7 @@ import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Toast, { DURATION } from 'react-native-easy-toast';
 
 // Utils
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
 import App from '../../utils/app';

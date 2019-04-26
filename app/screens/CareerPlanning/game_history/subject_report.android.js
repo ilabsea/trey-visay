@@ -8,7 +8,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
-import realm from '../../../schema';
+import realm from '../../../db/schema';
 import User from '../../../utils/user';
 
 import headerStyles from '../../../assets/style_sheets/header';

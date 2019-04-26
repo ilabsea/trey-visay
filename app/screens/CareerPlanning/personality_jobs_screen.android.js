@@ -18,7 +18,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import characteristicList from '../../data/json/characteristic_jobs';
 
@@ -51,7 +51,11 @@ export default class PersonalityJobsScreen extends Component {
   }
 
   componentDidMount() {
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this), title: this.state.currentGroup.career_title, total: careers.length});
+    this.props.navigation.setParams({
+      _handleBack: this._handleBack.bind(this),
+      title: this.state.currentGroup.career_title,
+      total: careers.length
+    });
   }
 
   _initState() {
@@ -59,7 +63,12 @@ export default class PersonalityJobsScreen extends Component {
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
 
-    this.state = { user: user, game: game, currentGroup: currentGroup, jobs: []};
+    this.state = {
+      user: user,
+      game: game,
+      currentGroup: currentGroup,
+      jobs: []
+    };
   }
 
   _handleBack() {
@@ -96,7 +105,15 @@ export default class PersonalityJobsScreen extends Component {
       realm.create('Game', this._buildData('PersonalityJobsScreen'), true);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({
+        type: 'Navigation/RESET',
+        index: 0,
+        key: null,
+        actions: [{
+          type: 'Navigation/NAVIGATE',
+          routeName:'CareerCounsellorScreen'
+        }]
+      });
     });
   }
 
@@ -105,16 +122,23 @@ export default class PersonalityJobsScreen extends Component {
       realm.delete(this.state.game);
 
       this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this.props.navigation.dispatch({
+        type: 'Navigation/RESET',
+        index: 0,
+        key: null,
+        actions: [{
+          type: 'Navigation/NAVIGATE',
+          routeName:'CareerCounsellorScreen'
+        }]
+      });
     });
   }
 
   _handleSetSelectCareer() {
     let jobs = this.state.currentGroup.careers;
-    let selectedJobIds = this.state.game.personalityCareers.map((obj) => obj.value) || [];
-    let arr = jobs.filter(function (item, pos) { return selectedJobIds.includes(item.id) });
-    careers = arr.map((obj) => obj.id);
-
+    let selectedJobCodes = this.state.game.personalityCareers.map((obj) => obj.value) || [];
+    let arr = jobs.filter(function (item, pos) { return selectedJobCodes.includes(item.code) });
+    careers = arr.map((obj) => obj.code);
     this.setState({jobs: careers});
   }
 
@@ -158,7 +182,7 @@ export default class PersonalityJobsScreen extends Component {
     let arr = [];
 
     for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].id, label: jobs[i].name })
+      arr.push({ value: jobs[i].code, label: jobs[i].name })
     }
     return arr;
   }

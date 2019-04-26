@@ -11,7 +11,7 @@ import { Divider } from 'react-native-elements';
 import mainStyles from '../../../assets/style_sheets/main/main';
 import StatusBar from '../../../components/shared/status_bar';
 import characteristicList from '../../../data/json/characteristic_jobs';
-import realm from '../../../schema';
+import realm from '../../../db/schema';
 import User from '../../../utils/user';
 
 export default class StudentPersonalityReport extends Component {
@@ -28,13 +28,13 @@ export default class StudentPersonalityReport extends Component {
   _renderContent() {
     return (
       <View style={mainStyles.box}>
-        <Text style={mainStyles.sectionText}>ចម្លើយអំពីបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
+        <Text style={mainStyles.sectionTextInBox}>ចម្លើយអំពីបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
         <Divider />
         { this.state.game.characteristicEntries.map((entry, i) => {
           return (
             <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 8, marginLeft: 32}}>
               <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-              <Text style={{fontWeight: 'bold'}}>{entry.value}</Text>
+              <Text>{entry.value}</Text>
             </View>
           )
         })}

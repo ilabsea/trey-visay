@@ -4,7 +4,7 @@ import {
   AsyncStorage
 } from 'react-native';
 import { random, min, times } from 'lodash';
-import schoolList from '../data/json/schools';
+import universities from '../data/json/universities';
 import util from '../utils/math';
 
 const perPage = 15;
@@ -33,7 +33,7 @@ export default class API {
   static getSchools(page, option={}) {
     return new Promise(resolve => {
       setTimeout(() => {
-        let list = util.sortByName(schoolList, 'universityName');
+        let list = util.sortByName(universities, 'universityName');
         if (!!option.category) {
           list = list.filter(school => school.category == option.category);
         }
@@ -65,7 +65,7 @@ export default class API {
 
   static getProvinces(category) {
     return new Promise(resolve => {
-      let list = schoolList;
+      let list = universities;
       if (!!category) {
         list = list.filter(school => school.category == category);
       }
