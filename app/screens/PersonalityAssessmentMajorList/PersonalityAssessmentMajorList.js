@@ -8,6 +8,12 @@ import styles from '../../assets/style_sheets/list';
 import majorList from '../../data/json/personality_major';
 
 export default class PersonalityAssessmentMajorList extends Component {
+  _onPressItem(major) {
+    if (!major.basic_knowledge) { return; }
+
+    this.props.navigation.navigate('MajorDetailScreen', {title: major.name_km, major: major})
+  }
+
   _renderMajorList() {
     let category = this.props.navigation.getParam('category');
     let majors = majorList.filter(obj => category.majors.includes(obj.code));
@@ -17,13 +23,13 @@ export default class PersonalityAssessmentMajorList extends Component {
         <ListItem
           key={index}
           button
-          onPress={() => {this.props.navigation.navigate('MajorDetailScreen', {title: major.name_km, major: major})}}
+          onPress={() => this._onPressItem(major)}
           >
           <Body>
             <Text>{major.name_km}</Text>
           </Body>
           <Right>
-            <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+            { !!major.basic_knowledge && <AwesomeIcon name='angle-right' size={24} color='#bbb' /> }
           </Right>
         </ListItem>
       )
