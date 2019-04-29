@@ -15,7 +15,7 @@ import FooterBar from '../../components/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../assets/style_sheets/profile_form';
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import characteristicList from '../../data/json/characteristic_jobs';
 

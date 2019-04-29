@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import subjectList from '../../data/json/subject';
 import characteristicList from '../../data/json/characteristic_jobs';

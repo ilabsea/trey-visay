@@ -15,7 +15,7 @@ import formStyles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import BackButton from '../../components/shared/back_button';
 import { HorizontalBarChart, BarChart } from 'react-native-charts-wrapper';
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
 import categoryList from '../../data/json/personality_category';

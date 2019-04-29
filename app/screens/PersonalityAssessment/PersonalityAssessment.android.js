@@ -14,7 +14,7 @@ import styles from '../../assets/style_sheets/assessment';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import shareStyles from '../../assets/style_sheets/profile_form';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import {longDateFormat} from '../../utils/date';

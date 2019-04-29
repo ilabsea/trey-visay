@@ -19,7 +19,7 @@ import personalities from '../../data/json/personality';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import { NavigationActions } from 'react-navigation';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 
 export default class PersonalityAssessmentRealistic extends Component {

@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 
 import { HorizontalBarChart } from 'react-native-charts-wrapper';
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
 import categoryList from '../../data/json/personality_category';

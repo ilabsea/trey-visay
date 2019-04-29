@@ -17,7 +17,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import careerList from '../../data/json/characteristic_jobs';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 
-import realm from '../../schema';
+import realm from '../../db/schema';
 import User from '../../utils/user';
 
 export default class CareersScreen extends Component {
