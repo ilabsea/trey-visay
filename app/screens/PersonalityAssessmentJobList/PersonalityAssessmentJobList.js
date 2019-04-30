@@ -17,13 +17,14 @@ export default class PersonalityAssessmentJobList extends Component {
 
   _renderList() {
     let category = this.props.navigation.getParam('category');
-    let id = category.group == 'science' ? 1 : 3;
-    // let jobs = characteristicList.find((obj) => obj.id == id).careers;
     let jobs = characteristicList.map((obj) => obj.careers);
     jobs = [].concat.apply([], jobs);
     jobs = jobs.filter(obj => category.careers.includes(obj.code));
 
-    let doms = jobs.map((job, index) => {
+    let arr = jobs.filter(x => !!x.short_description);
+    arr = arr.concat(jobs.filter(x => !x.short_description));
+
+    let doms = arr.map((job, index) => {
       return (
         <ListItem
           key={index}
