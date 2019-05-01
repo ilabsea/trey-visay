@@ -1,18 +1,10 @@
 'use strict';
 
 import React, { Component } from 'react';
-import {
-  View,
-  AppRegistry,
-  Text,
-  Platform
-} from 'react-native';
-
-import realm from './app/db/schema';
-
+import { AppRegistry } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
-import User from './app/utils/user';
 import Task from './app/utils/task';
+import realm from './app/db/schema';
 
 // Screens
 import HomeScreen from './app/screens/home';
@@ -28,23 +20,10 @@ const HomeNavigator = createStackNavigator({
   initialRouteName: 'Home',
 });
 
-const AdminNavigator = createStackNavigator({
-  AdminHome: {
-    screen: ({ navigation }) => <AdminHomeNavigator screenProps={{ rootNavigation: navigation }} />,
-    navigationOptions: ({navigation}) => ({
-      header: null
-    })
-  }
-}, {
-  initialRouteName: 'AdminHome',
-});
-
 export default class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: null
-    }
+
     this.handlerPredefinedUser();
   }
 
