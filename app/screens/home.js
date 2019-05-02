@@ -11,7 +11,7 @@ import headerStyles from '../assets/style_sheets/header';
 import ProfileStack from './stackNav/profile_stack';
 import CareerStack from './stackNav/career_stack';
 import DashboardStack from './stackNav/dashboard_stack';
-import InstitutionStack from './school/institution_stack';
+import SchoolScreen from './school/school_screen';
 import AboutStack from './stackNav/about_stack';
 import ChangePasswordStack from './stackNav/change_password_stack';
 import AccountStack from './stackNav/account_stack';
@@ -26,8 +26,8 @@ const HomeScreen = createDrawerNavigator(
     AccountStack: { screen: AccountStack },
     About: { screen: AboutStack },
     ProfileStack: { screen: ProfileStack },
-    InstitutionStack: {
-      screen: ({ navigation }) => <InstitutionStack screenProps={{ drawerNavigation: navigation, category: 'សាលារដ្ឋ' }} /> },
+    SchoolScreen: {
+      screen: ({ navigation }) => <SchoolScreen/> },
     VideoScreen: {
       screen: VideoScreen,
       header: { visible:false }
