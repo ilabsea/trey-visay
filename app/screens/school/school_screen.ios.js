@@ -7,29 +7,15 @@ import {
   StyleSheet,
   Image,
   TouchableOpacity,
-  Picker,
-  Platform,
-  ListView,
-  RefreshControl,
   FlatList
 } from 'react-native';
-import IOSPicker from 'react-native-ios-picker';
-import { Divider } from 'react-native-elements';
 
 import API from '../../api/schools';
 import LoadingIndicator from '../../components/loading_indicator';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import headerStyles from '../../assets/style_sheets/header';
-import { FontSetting } from "../../assets/style_sheets/font_setting";
-import mainStyles from '../../assets/style_sheets/main/main';
-import shareStyles from '../../assets/style_sheets/profile_form';
-import StatusBar from '../../components/shared/status_bar';
-import Filter from '../../components/schools/filter';
 import SegmentView from '../../components/schools/segment_view';
 import School from '../../components/schools/school';
 
 import schoolList from '../../data/json/universities';
-import Images from '../../assets/images';
 
 export default class SchoolScreen extends Component {
   myProvince = '';
@@ -84,8 +70,6 @@ export default class SchoolScreen extends Component {
     options.province = this.myProvince;
     options.major = this.myMajor;
 
-    console.log('options.category: ', options);
-
     API
       .getSchools(page, options)
       .then(result => {
@@ -111,7 +95,7 @@ export default class SchoolScreen extends Component {
       return <LoadingIndicator loading={ school.loading } />
     }
     return(
-      <School school={school} showCategory={false}/>
+      <School school={school} showCategory={false} navigation={this.props.navigation}/>
     )
   }
 
@@ -181,16 +165,11 @@ export default class SchoolScreen extends Component {
 
   render() {
     return (
-      <SegmentView activePage={this.state.activePage} setContent={(active) => this.setContent(active)}>
+      <SegmentView
+        activePage={this.state.activePage}
+        setContent={(active) => this.setContent(active)}>
         {this.renderContent()}
       </SegmentView>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  image: {
-    width: 50,
-    height: 50
-  }
-})

@@ -1,32 +1,19 @@
 import React, {Component} from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Linking,
-  Platform
-} from 'react-native';
+import { StyleSheet, Text, View, Linking } from 'react-native';
 
-// Components
-import ScrollableHeader from '../../components/scrollable_header';
-import mainStyles from '../../assets/style_sheets/main/main';
-import {FontSetting} from '../../assets/style_sheets/font_setting';
+import {
+  Container, Header, Title, Button, Icon, Left, Right, Body, Content
+} from "native-base";
+
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import { Divider } from 'react-native-elements';
-import schoolList from '../../data/json/universities';
-import Images from '../../assets/images';
-import BackButton from '../../components/shared/back_button';
+
+import mainStyles from '../../assets/style_sheets/main/main';
+import ListItem from '../../components/schools/list_item';
+import Major from '../../components/schools/major';
 
 const PROFILE_SIZE = 120;
 
 export default class InstitutionDetail extends Component {
-  static navigationOptions = {
-    header: null
-  }
-
   componentWillMount() {
     this.setState({
       school: this.props.navigation.state.params.school
@@ -47,12 +34,12 @@ export default class InstitutionDetail extends Component {
     }
 
     return (
-      <View style={[mainStyles.box, { padding: 10,paddingLeft: 8}]}>
-        { this._renderCommunication({data: school.address, icon: 'map-marker'}) }
-        { this._renderCommunication({data: school.phoneNumbers, icon: 'phone'}) }
-        { this._renderCommunication({data: school.faxes, icon: 'fax', iconSize: 14}) }
-        { this._renderCommunication({data: school.emails, icon: 'envelope', iconSize: 14, isLink: true}) }
-        { this._renderCommunication({data: school.mailbox, icon: 'markunread-mailbox'}) }
+      <View style={{ padding: 10,paddingLeft: 8}}>
+        <ListItem contact={{data: school.address, icon: 'map-marker'}} />
+        <ListItem contact={{data: school.phoneNumbers, icon: 'phone'}} />
+        <ListItem contact={{data: school.faxes, icon: 'fax', iconSize: 14}}/>
+        <ListItem contact={{data: school.emails, icon: 'envelope', iconSize: 14, isLink: true}} />
+        <ListItem contact={{data: school.mailbox, icon: 'markunread-mailbox'}} />
         { this._renderWebsiteOrFacebook({data: school.websiteOrFacebook, icon: 'globe'}) }
       </View>
     )
@@ -87,45 +74,6 @@ export default class InstitutionDetail extends Component {
     )
   }
 
-  _renderCommunication(com) {
-    let iconSize = com.iconSize || 18;
-    let data = com.data;
-
-    if (Array.isArray(data)) {
-      data = data.join('; ');
-    }
-
-    return (
-      <View>
-        { !!data && !!data.length &&
-          <View style={styles.communicationWrapper}>
-            <View style={styles.iconWrapper}>
-              { com.icon != 'markunread-mailbox' &&
-                <AwesomeIcon name={com.icon} color='#8E8E93' size={iconSize} />
-              }
-              { com.icon == 'markunread-mailbox' &&
-                <MaterialIcon name={com.icon} color='#8E8E93' size={iconSize} />
-              }
-            </View>
-            { !!com.isLink && data!='មិនមាន' &&
-              <Text
-                onPress={()=> Linking.openURL('mailto:' + data)}
-                style={mainStyles.link}>
-                {data}
-              </Text>
-            }
-            { (!com.isLink || data=='មិនមាន') &&
-              <Text
-                style={mainStyles.text}>
-                {data}
-              </Text>
-            }
-
-          </View>
-        }
-      </View>
-    )
-  }
 
   _renderMajor() {
     if (!this.state.school.departments || !this.state.school.departments.length) {
@@ -133,47 +81,13 @@ export default class InstitutionDetail extends Component {
     }
 
     return (
-      <View style={mainStyles.box}>
-        <Text style={mainStyles.sectionText}>ជំនាញ</Text>
-
-        <Divider />
-        { this.state.school.departments.map((department, i) => {
-          return (
-            <View key={i} style={{flex:1, margin: 16, marginBottom: 6}}>
-              <Text style={mainStyles.text}>{department.name}</Text>
-              { department.majors.map((major, j) => {
-                return (
-                  <View style={styles.majorWrapper} key={j}>
-                    <View style={styles.iconWrapper}>
-                      <AwesomeIcon name='graduation-cap' color='#8E8E93' size={16} />
-                    </View>
-                    <Text style={[mainStyles.text, {marginLeft: 5}]}>{major}</Text>
-                  </View>
-                )
-              })}
-            </View>
-          )
-        }) }
-
-      </View>
+      <Major departments={this.state.school.departments}/>
     )
   }
 
-  _renderScrollViewContent() {
-    let photo = require('../../assets/images/schools/default.png');
-
-    if (!!this.state.school.logoName) {
-      photo = Images[this.state.school.logoName];
-    }
-
+  renderContent() {
     return (
       <View style={{paddingBottom: 40}}>
-        <View style={styles.avataContainer}>
-          <Image
-            style={styles.avata}
-            source={photo}
-          />
-        </View>
 
         <View style={styles.container}>
           { this._renderContact() }
@@ -183,29 +97,14 @@ export default class InstitutionDetail extends Component {
     )
   }
 
-  _renderHeader() {
-    return(
-      <BackButton navigation={this.props.navigation}/>
-    )
-  }
 
   render() {
-    let photo = require('../../assets/images/schools/default.png');
-    if (!!this.state.school.logoName) {
-      photo = Images[this.state.school.logoName];
-    }
-    let cover = require('../../assets/images/header_bg.jpg');
-
     return (
-      <ScrollableHeader
-        customView={ this._renderScrollViewContent.bind(this) }
-        imageBgSrc={ cover }
-        customHeader={ this._renderHeader.bind(this) }
-        profile={ photo }
-        profileSize={ PROFILE_SIZE }
-        title={this.state.school.universityName}
-        subTitle={this.state.school.category}
-      />
+      <Container>
+        <Content>
+          { this.renderContent() }
+        </Content>
+      </Container>
     )
   }
 }
@@ -224,16 +123,6 @@ const styles = StyleSheet.create({
     width: PROFILE_SIZE,
     height: PROFILE_SIZE,
     borderRadius: PROFILE_SIZE/2,
-  },
-  iconWrapper: {
-    width: 24,
-    marginTop: 2,
-    marginRight: 3
-  },
-  communicationWrapper: {
-    flexDirection: 'row',
-    padding: 6,
-    marginRight: 30
   },
   majorWrapper: {
     flexDirection: 'row',

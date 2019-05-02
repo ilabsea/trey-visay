@@ -3,14 +3,9 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
+import { Header, Left, Title, Body, Right, Button, Icon } from 'native-base';
 
-import {
-  createBottomTabNavigator,
-  createStackNavigator,
-} from 'react-navigation';
-import headerStyles from '../../assets/style_sheets/header';
-import { FontSetting } from '../../assets/style_sheets/font_setting';
-
+import { createStackNavigator } from 'react-navigation';
 import Filter from '../../components/schools/filter';
 import BackButton from '../../components/shared/back_button';
 import SaveButton from '../../components/shared/save_button';
@@ -21,48 +16,43 @@ import FilterScreen from './filter/filter_screen';
 import FilterProvinces from './filter/filter_provinces';
 import FilterMajors from './filter/filter_majors';
 
-const InstitutionTab = createBottomTabNavigator({
-  GovernmentSchoolScreen: {
-    screen: ({ navigation }) => <SchoolScreen screenProps={{category: 'សាលារដ្ឋ', navigation: navigation }} />,
-    navigationOptions: {tabBarLabel: 'សាលារដ្ឋ'}
-  },
-  PrivateSchoolScreen: {
-    screen: ({ navigation }) => <SchoolScreen screenProps={{category: 'សាលាឯកជន', navigation: navigation}}/> ,
-    navigationOptions: {tabBarLabel: 'សាលាឯកជន'}
-  },
-  NGOSchoolScreen: {
-    screen: ({ navigation }) => <SchoolScreen screenProps={{category: 'អង្គការ', navigation: navigation}}/>,
-    navigationOptions: {tabBarLabel: 'អង្គការ'}
-  },
-}, {
-  animationEnabled: true,
-  tabBarOptions: {
-    activeTintColor: '#007AFF',
-    showIcon: false,
-    allowFontScaling: true,
-    labelStyle: {
-      fontSize: FontSetting.tab_label,
-    },
-    style: {
-      backgroundColor: '#fff'
-    }
-  },
-});
-
 const InstitutionStack = createStackNavigator(
   {
     Root: {
-      screen: InstitutionTab,
-      navigationOptions: ({navigation, screenProps}) => ({
-        title: 'គ្រឹះស្ថានសិក្សា',
-        headerTitleStyle: [headerStyles.headerTitleStyle],
-        headerStyle: headerStyles.headerStyle,
-        headerLeft:(<BackButton navigation={screenProps.drawerNavigation}/>),
-        headerRight:(<Filter screenProps={{navigation: navigation}} />)
-      })
+      screen: SchoolScreen,
+      navigationOptions: ({navigation}) => ({
+        header: (
+          <Header hasSegment>
+            <Left>
+              <Button transparent onPress={() => navigation.goBack(null) }>
+                <Icon name="arrow-back" />
+              </Button>
+            </Left>
+            <Body>
+              <Title>គ្រឹះស្ថានសិក្សា</Title>
+            </Body>
+            <Right>
+            </Right>
+          </Header>
+        )
+      }),
     },
     InstitutionDetail: {
-      screen: InstitutionDetail
+      screen: InstitutionDetail,
+      navigationOptions: ({navigation}) => ({
+        header: (
+          <Header span>
+            <Left>
+              <Button transparent onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back" />
+              </Button>
+            </Left>
+            <Body>
+            </Body>
+            <Right />
+          </Header>
+        )
+      })
     },
     FilterScreen: {
       screen: FilterScreen
@@ -84,8 +74,6 @@ const InstitutionStack = createStackNavigator(
   },
   {
     navigationOptions: ({navigation}) => ({
-      headerTitleStyle: headerStyles.headerTitleStyle,
-      headerStyle: headerStyles.headerStyle,
       headerLeft: <BackButton navigation={navigation}/>
     })
   }

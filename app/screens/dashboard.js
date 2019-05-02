@@ -88,7 +88,7 @@ export default class Dashboard extends Component {
             }
             { this._renderButton({
                 title: 'គ្រឹះស្ថានសិក្សា',
-                url: 'SchoolScreen',
+                url: 'InstitutionStack',
                 icon_bg_color: '#009688',
                 icon_name: 'business',
                 icon_type: 'material',
