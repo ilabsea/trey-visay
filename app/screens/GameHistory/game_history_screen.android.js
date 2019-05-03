@@ -13,7 +13,6 @@ import Sound from 'react-native-sound';
 
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
-import shareStyles from './style';
 
 import BackButton from '../../components/shared/back_button';
 

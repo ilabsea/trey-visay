@@ -22,7 +22,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { AudioRecorder, AudioUtils } from 'react-native-audio';
 
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
-import FooterBar from '../../components/FooterBar';
+import FooterBar from '../../components/footer/FooterBar';
 import mainStyles from '../../assets/style_sheets/main/main';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';

@@ -1,0 +1,43 @@
+[
+  {
+    "title": "ភាសាខ្មែរ",
+    "groups": [
+      { "stateName": "khmerReading", "label": "ការអាន" },
+      { "stateName": "khmerWriting", "label": "ការសរសេរ" },
+    ]
+  },
+  {
+    "title": "ភាសាបរទេស",
+    "groups": [
+      { "stateName": "english", "label": "ភាសាអង់គ្លេស/ភាសាបារាំង" },
+    ]
+  },
+  {
+    "title": "សិក្សាសង្គម",
+    "groups": [
+      { "stateName": "socialStudyEthicsAndCitizenship", "label": "សីលធម៌ និង ពលរដ្ឋ" },
+      { "stateName": "socialStudyGeography", "label": "ភូមិវិទ្យា" },
+      { "stateName": "socialStudyHistory", "label": "ប្រវត្តិវិទ្យា" },
+    ]
+  },
+  {
+    "title": " វិទ្យាសាស្ត្រ",
+    "groups": [
+      { "stateName": "math", "label": "គណិតវិទ្យា" },
+      { "stateName": "sciencePhysics", "label":"រូបវិទ្យា" },
+      { "stateName": "scienceChemistry", "label": "គីមីវិទ្យា" },
+      { "stateName": "scienceBiology", "label": "ជីវៈវិទ្យា" },
+    ]
+  },
+  {
+    "title": "ជំនាញទន់",
+    "groups": [
+      { "stateName": "softSkillCommunication", "label": "ទំនាក់ទំនង" },
+      { "stateName": "softSkillBrave", "label": "ក្លាហាន" },
+      { "stateName": "softSkillTeamwork", "label": "ក្រុមការងារ" },
+      { "stateName": "softSkillProblemSolving", "label": "ដោះស្រាយបញ្ហា" },
+      { "stateName": "softSkillPublicSpeaking", "label": "ការនិយាយជាសាធារណៈ" },
+    ]
+  }
+
+]

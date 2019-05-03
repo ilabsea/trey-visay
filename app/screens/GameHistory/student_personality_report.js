@@ -8,11 +8,11 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
-import mainStyles from '../../../assets/style_sheets/main/main';
-import StatusBar from '../../../components/shared/status_bar';
-import characteristicList from '../../../data/json/characteristic_jobs';
-import realm from '../../../db/schema';
-import User from '../../../utils/user';
+import mainStyles from '../../assets/style_sheets/main/main';
+import StatusBar from '../../components/shared/status_bar';
+import characteristicList from '../../data/json/characteristic_jobs';
+import realm from '../../db/schema';
+import User from '../../utils/user';
 
 export default class StudentPersonalityReport extends Component {
   componentWillMount() {

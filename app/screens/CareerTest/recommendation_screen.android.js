@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
-import FooterBar from '../../components/FooterBar';
+import FooterBar from '../../components/footer/FooterBar';
 
-import mainStyles from '../../assets/style_sheets/main/main';
+import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -18,7 +18,7 @@ import { NavigationActions } from 'react-navigation';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
-import subjectList from '../../data/json/subject';
+import subjectList from '../../data/json/subjects/subject_tips';
 import characteristicList from '../../data/json/characteristic_jobs';
 import subjectTe from '../../data/translates/subject';
 
@@ -44,10 +44,7 @@ export default class RecommendationScreen extends Component {
       currentGroup: currentGroup,
     };
 
-    this.props.navigation.setParams({
-      _handleBack: this._handleBack.bind(this),
-      goNext: this._goNext.bind(this)
-    });
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
   }
 
   _handleBack() {
@@ -138,7 +135,7 @@ export default class RecommendationScreen extends Component {
   _renderSubject() {
     return (
       <View>
-        <Text style={[localStyle.paragraph, {color: '#1976d2'}]}>មុខវិជ្ជា</Text>
+        <Text style={[styles.subTitle, localStyle.paragraph, {color: '#1976d2'}]}>មុខវិជ្ជា</Text>
         <Text>ជា{this.state.currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖ </Text>
         <View>
           { this.state.currentGroup.concern_subjects.map((code, i) => {
@@ -172,7 +169,7 @@ export default class RecommendationScreen extends Component {
   _renderCharacteristic() {
     return (
       <View>
-        <Text style={[localStyle.paragraph, {color: '#1976d2'}]}>បុគ្គលិកលក្ខណៈ</Text>
+        <Text style={[styles.subTitle, localStyle.paragraph, {color: '#1976d2'}]}>បុគ្គលិកលក្ខណៈ</Text>
         <Text>ជា{this.state.currentJob.name} អ្នកគួរមានបុគ្គលិកលក្ខណៈជាមនុស្ស៖</Text>
         <View>
           { this.state.currentGroup.concern_entries.map((character, i) => {
@@ -196,7 +193,7 @@ export default class RecommendationScreen extends Component {
 
   _renderContent() {
     return (
-      <View style={[mainStyles.box, {padding: 16}]}>
+      <View style={styles.box}>
         <Text>
           <Text style={localStyle.boldText}>{this.state.user.fullName}</Text>! អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ
           <Text style={localStyle.boldText}> “{this.state.currentJob.name}” </Text>
@@ -222,12 +219,16 @@ export default class RecommendationScreen extends Component {
     return(
       <View style={{flex: 1}}>
         <ScrollView style={{flex: 1}}>
-          <View style={mainStyles.instructionContainer}>
-            <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-            <Text style={[mainStyles.text, {flex:1 }]}>ចូរប្អូនអានអនុសាសន៍ខាងក្រោម៖</Text>
+          <View style={{margin: 16, flex: 1}}>
+            <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>ចូរប្អូនអានអនុសាសន៍ខាងក្រោម៖</Text>
+            </View>
+            { this._renderContent() }
           </View>
-          { this._renderContent() }
         </ScrollView>
+
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -245,11 +246,10 @@ const localStyle = StyleSheet.create({
     fontWeight: 'bold'
   },
   paragraph: {
-    marginVertical: 10
+    marginTop: 16,
   },
   highlightBlue: {
     fontWeight: 'bold',
     color: '#1976d2'
-  },
-
+  }
 });

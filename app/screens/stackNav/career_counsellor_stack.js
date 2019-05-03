@@ -12,6 +12,7 @@ import OpenDrawer from '../../components/shared/open_drawer';
 
 import PersonalUnderstandingForm from '../PersonalUnderstanding/PersonalUnderstandingForm';
 import CareerCounsellor from '../CareerCounsellor/CareerCounsellor';
+<<<<<<< 6647ad6079a1280989f6cfd6715d4c631914f825:app/screens/stackNav/career_counsellor_stack.android.js
 import CareerDetailScreen from '../CareerPlanning/career_detail_screen';
 import SubjectScreen from '../CareerPlanning/subject_screen';
 import PersonalityScreen from '../CareerPlanning/personality_screen';
@@ -21,13 +22,24 @@ import RecommendationScreen from '../CareerPlanning/recommendation_screen';
 import GoalScreen from '../CareerPlanning/goal_screen';
 import ContactScreen from '../CareerPlanning/contact_screen';
 import CareersScreen from '../CareerPlanningForm/careers_screen';
+=======
+import CareerDetailScreen from '../CareerTest/career_detail_screen';
+import SubjectScreen from '../CareerTest/subject_screen';
+import PersonalityScreen from '../CareerTest/personality_screen';
+import PersonalityJobsScreen from '../CareerTest/personality_jobs_screen';
+import SummaryScreen from '../CareerTest/summary_screen';
+import RecommendationScreen from '../CareerTest/recommendation_screen';
+import GoalScreen from '../CareerTest/goal_screen';
+import ContactScreen from '../CareerTest/contact_screen';
+import CareersScreen from '../CareerTest/careers_screen';
+>>>>>>> ui on subject test:app/screens/stackNav/career_counsellor_stack.js
 import InstitutionDetail from '../school/institution_detail';
-import GameHistoryScreen from '../CareerPlanning/game_history_screen';
-import PersonalUnderstandingReport from '../CareerPlanning/game_history/personal_understanding_report';
-import SubjectReport from '../CareerPlanning/game_history/subject_report';
-import PersonalityReport from '../CareerPlanning/game_history/personality_report';
-import StudentPersonalityReport from '../CareerPlanning/game_history/student_personality_report';
-import RecommendationReport from '../CareerPlanning/game_history/recommendation_report';
+import GameHistoryScreen from '../GameHistory/game_history_screen';
+import PersonalUnderstandingReport from '../GameHistory/personal_understanding_report';
+import SubjectReport from '../GameHistory/subject_report';
+import PersonalityReport from '../GameHistory/personality_report';
+import StudentPersonalityReport from '../GameHistory/student_personality_report';
+import RecommendationReport from '../GameHistory/recommendation_report';
 
 import Assessment from '../Assessment/Assessment';
 import PersonalityAssessment from '../PersonalityAssessment/PersonalityAssessment';

@@ -10,14 +10,14 @@ import {
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import { NavigationActions } from 'react-navigation';
-import { Divider } from 'react-native-elements';
+import CloseButton from '../../components/shared/close_button';
 
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CheckboxGroup from '../../components/checkbox_group';
-import FooterBar from '../../components/FooterBar';
+import FooterBar from '../../components/footer/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import mainStyles from '../../assets/style_sheets/main/main';
+import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import realm from '../../db/schema';
@@ -25,6 +25,20 @@ import User from '../../utils/user';
 import characteristicList from '../../data/json/characteristic_jobs';
 
 export default class PersonalityJobsScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { goBack, state } = navigation;
+    let highlighStyle = (state.params && state.params.total > 3) ? {color: '#e94b35'} : {color: '#fff'};
+
+    return {
+      title: state.params && state.params.title,
+      headerTitleStyle: [headerStyles.headerTitleStyle],
+      headerLeft: <CloseButton navigation={navigation}/>,
+      headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
+                      <Text style={headerStyles.saveText}><Text style={highlighStyle}>{state.params && state.params.total || 0} </Text> / 3</Text>
+                    </TouchableOpacity>),
+    }
+  };
+
   constructor(props) {
     super(props);
 
@@ -48,8 +62,7 @@ export default class PersonalityJobsScreen extends Component {
     this.props.navigation.setParams({
       _handleBack: this._handleBack.bind(this),
       title: currentGroup.career_title,
-      total: selectedJobIds.length,
-      goNext: this._goNext.bind(this)
+      total: selectedJobIds.length
     });
   }
 
@@ -85,6 +98,7 @@ export default class PersonalityJobsScreen extends Component {
   _onYes() {
     realm.write(() => {
       realm.create('Game', this._buildData('PersonalityJobsScreen'), true);
+
       this._closeDialog();
     });
   }
@@ -97,6 +111,7 @@ export default class PersonalityJobsScreen extends Component {
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
+
       this._closeDialog();
     });
   }
@@ -105,9 +120,9 @@ export default class PersonalityJobsScreen extends Component {
     let checkboxes = this._formatDataForCheckbox(this.state.currentGroup.id);
 
     return(
-      <View style={mainStyles.box}>
-        <Text style={[mainStyles.title, {paddingLeft: 16, padding: 8}]}>មុខរបរ</Text>
-        <Divider />
+      <View style={styles.box}>
+        <Text style={styles.subTitle}>មុខរបរ</Text>
+
         <View>
           <CheckboxGroup
             onSelect={(selected) => {this._handleChecked(selected)}}
@@ -139,17 +154,18 @@ export default class PersonalityJobsScreen extends Component {
   _formatDataForCheckbox(id) {
     let jobs = characteristicList.find((obj) => obj.id == id).careers;
 
-    return jobs.map(job => {return {value: job.code, label: job.name}});
+    return jobs.map(job => {return {value: job.id, label: job.name}});
   }
 
-  _handleChecked(careers) {
+  _handleChecked(value) {
+    careers = value
     this.props.navigation.setParams({total: careers.length});
 
     if (careers.length > 3) {
       return this.refs.toast.show('សូមជ្រើសរើសមុខរបរចំនួន 3 ប៉ុណ្ណោះ!',  DURATION.SHORT);
     }
 
-    this.setState({jobs: careers});
+    this.setState({jobs: value});
   }
 
   _goNext() {
@@ -172,8 +188,11 @@ export default class PersonalityJobsScreen extends Component {
     return(
       <View style={{flex: 1}}>
         <ScrollView style={{flex: 1}}>
-          <View style={{marginTop: 24}}>
-            <Text style={mainStyles.instructionText}>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
+          <View style={{margin: 16}}>
+            <View style={{flexDirection: 'row', marginVertical: 16}}>
+              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
+              <Text>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
+            </View>
 
             { this._renderCheckBoxes() }
 
@@ -186,6 +205,7 @@ export default class PersonalityJobsScreen extends Component {
           </View>
         </ScrollView>
 
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
     );

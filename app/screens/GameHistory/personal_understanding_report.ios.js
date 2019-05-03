@@ -10,12 +10,12 @@ import {
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import realm from '../../../db/schema';
-import User from '../../../utils/user';
+import realm from '../../db/schema';
+import User from '../../utils/user';
 
-import mainStyles from '../../../assets/style_sheets/main/main';
-import StatusBar from '../../../components/shared/status_bar';
-import Question from '../../../data/json/personal_understanding.json';
+import mainStyles from '../../assets/style_sheets/main/main';
+import StatusBar from '../../components/shared/status_bar';
+import Question from '../../data/json/personal_understanding.json';
 
 export default class PersonalUnderstandingReport extends Component {
   componentWillMount() {
