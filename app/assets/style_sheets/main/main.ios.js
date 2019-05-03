@@ -2,6 +2,10 @@ import { StyleSheet , Platform } from 'react-native';
 import { FontSetting } from '../font_setting';
 
 export default StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor:'white'
+  },
   btnList: {
     flexDirection: 'row',
     alignItems: 'center',

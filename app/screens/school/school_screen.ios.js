@@ -1,19 +1,13 @@
 import React, {Component} from 'react';
 import { Container, Header, Left, Title, Body, Right, Button, Icon, Segment,
   Content, Text } from 'native-base';
-import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Image,
-  TouchableOpacity,
-  FlatList
-} from 'react-native';
+import { FlatList } from 'react-native';
 
 import API from '../../api/schools';
 import LoadingIndicator from '../../components/loading_indicator';
 import SegmentView from '../../components/schools/segment_view';
 import School from '../../components/schools/school';
+import FilterButton from '../../components/schools/filter_button';
 
 import schoolList from '../../data/json/universities';
 
@@ -157,7 +151,7 @@ export default class SchoolScreen extends Component {
         renderItem={ ({item}) => this._renderRow(item) }
         refreshing={false}
         onRefresh={ () => this._onRefresh() }
-        keyExtractor={this._keyExtractor}
+        keyExtractor={ this._keyExtractor }
         onEndReached={ () => this._onEndReached() }
       />
     )
@@ -165,11 +159,16 @@ export default class SchoolScreen extends Component {
 
   render() {
     return (
-      <SegmentView
-        activePage={this.state.activePage}
-        setContent={(active) => this.setContent(active)}>
-        {this.renderContent()}
-      </SegmentView>
+      <Container>
+        <SegmentView
+          activePage={this.state.activePage}
+          setContent={(active) => this.setContent(active)}>
+        </SegmentView>
+        <Content>
+          {this.renderContent()}
+        </Content>
+        <FilterButton navigation={this.props.navigation} />
+      </Container>
     )
   }
 }

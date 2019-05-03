@@ -1,12 +1,25 @@
 import React, { Component } from 'react';
 import {
-  View,
-  Text
-} from 'react-native';
+  View, Text, Container, Header, Left, Body, Right, Button, Icon, Title, Content
+} from 'native-base';
+import Accordion from 'react-native-collapsible/Accordion';
 
 import API from '../../../api/schools';
+import mainStyles from '../../../assets/style_sheets/main/main';
 
-import OneList from '../../../components/list/one_list';
+import ButtonList from '../../../components/list/button_list';
+
+const SECTIONS = [
+  {
+    title: 'ជ្រេីសរេីសទីតាំង',
+    content: 'Lorem ipsum...',
+  },
+  {
+    title: 'ជ្រេីសរេីសជំនាញ',
+    content: 'Lorem ipsum...',
+  },
+];
+
 
 class FilterScreen extends Component {
 
@@ -14,56 +27,38 @@ class FilterScreen extends Component {
     super(props);
 
     this.state ={
-      selectedProvince: '',
-      selectedMajor: ''
+      majors: []
     }
   }
 
   componentDidMount(){
-    this.refreshState();
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+
   }
-
-  _handleBack(){
-    this.props.navigation.state.params.refresh();
-  }
-
-  refreshState() {
-    API.getSelectedProvince((province) => {
-      this.setState({ selectedProvince: province });
-    });
-
-    API.getSelectedMajor((major) => {
-      this.setState({ selectedMajor: major });
-    });
-  }
-
   render(){
-    let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
-    let major = this.state.selectedMajor ? this.state.selectedMajor: "គ្រប់ជំនាញ";
     return (
-      <View>
-        <OneList onPress={() => {
-            this.props.navigation.navigate('FilterProvinces', {
-              title: 'ជ្រើសរើសទីតាំង',
-              category: this.props.navigation.state.params.category,
-              selectedProvince: province,
-              refresh: this.refreshState.bind(this)
-            })
-          }} text='ជ្រើសរើសទីតាំង' selectedValue={province}/>
+      <Container>
+        <Content>
+          <View style={[mainStyles.container , {marginTop: 26}]}>
+            <ButtonList
+              onPress={() => {
+                console.log('hello button list')
+              }}
+              title='ជ្រេីសរេីសទីតាំង'
+            />
 
-        <OneList onPress={() => {
-            this.props.navigation.navigate('FilterMajors', {
-              title: 'ជ្រើសរើសជំនាញ',
-              category: this.props.navigation.state.params.category,
-              selectedProvince: province,
-              selectedMajor: major,
-              refresh: this.refreshState.bind(this)
-            })
-          }} text='ជ្រើសរើសជំនាញ' selectedValue={major} />
-      </View>
+            <ButtonList
+              onPress={() => {
+                console.log('hello button list')
+              }}
+              title='ជ្រេីសរេីសជំនាញ'
+            />
+
+          </View>
+        </Content>
+      </Container>
     )
   }
 }
+
 
 export default FilterScreen;

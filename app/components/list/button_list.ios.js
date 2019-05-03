@@ -25,16 +25,10 @@ class ButtonList extends React.Component {
           <Text style={mainStyles.title}>{this.props.title}</Text>
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </TouchableOpacity>
-        <Divider style={styles.divider}/>
+        <Divider/>
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  divider: {
-    marginLeft: 16
-  }
-})
 
 export default ButtonList;
