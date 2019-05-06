@@ -105,8 +105,8 @@ export default class RegisterScreen extends Component {
               </View>
 
               <View>
-                <Text style={styles.whiteLabel}>ឈ្មោះគណនី</Text>
                 <TextInput
+                  placeholder='ឈ្មោះគណនី'
                   style={styles.inputText}
                   onChangeText={(text) => this.setState({username: text})}
                   value={this.state.username}
@@ -114,8 +114,8 @@ export default class RegisterScreen extends Component {
                   onSubmitEditing={() => this.passwordInput.focus()}
                   returnKeyType='next' />
 
-                <Text style={styles.whiteLabel}>លេខសម្ងាត់</Text>
                 <TextInput
+                  placeholder='លេខសម្ងាត់'
                   style={styles.inputText}
                   secureTextEntry={true}
                   onChangeText={(text) => this.setState({password: text})}
@@ -125,8 +125,8 @@ export default class RegisterScreen extends Component {
                   underlineColorAndroid='transparent'
                   returnKeyType='next' />
 
-                <Text style={styles.whiteLabel}>វាយលេខសម្ងាត់ម្តងទៀត</Text>
                 <TextInput
+                  placeholder='វាយលេខសម្ងាត់ម្តងទៀត'
                   style={styles.inputText}
                   secureTextEntry={true}
                   onChangeText={(text) => this.setState({passwordConfirmation: text})}
