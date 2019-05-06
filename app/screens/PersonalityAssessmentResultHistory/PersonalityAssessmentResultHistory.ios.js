@@ -62,7 +62,7 @@ export default class PersonalityAssessmentHistory extends Component {
     return (
       <View>
         <ListItem itemDivider>
-          <Text>ផ្នែកវិទ្យសាស្ត្រ</Text>
+          <Text>ផ្នែកវិទ្យាសាស្ត្រ</Text>
         </ListItem>
 
         { categoryList.filter(category => category.group == 'science').map((category, index) => this._renderListItem(category, index)) }

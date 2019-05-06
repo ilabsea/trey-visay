@@ -183,8 +183,8 @@ class PersonalityAssessmentResult extends Component {
   _renderPersonalityGroups() {
     return (
       <View>
-        <ListItem itemDivider>
-          <Text>ផ្នែកវិទ្យសាស្ត្រ</Text>
+        <ListItem itemDivider itemHeader>
+          <Text>ផ្នែកវិទ្យាសាស្ត្រ</Text>
         </ListItem>
 
         { categoryList.filter(category => category.group == 'science').map((category, index) => this._renderListItem(category, index)) }
