@@ -29,7 +29,7 @@ export default class Button extends Component {
 const styles = StyleSheet.create({
   button: {
     borderRadius: 3,
-    height: 48,
+    minHeight: 48,
     alignItems: 'center',
     justifyContent: 'center'
   }

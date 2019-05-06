@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ScrollView,
-  TouchableOpacity,
   BackHandler,
   Image,
   Platform
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
+import { NavigationActions } from 'react-navigation';
 
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CloseButton from '../../components/shared/close_button';
 
-import styles from '../../assets/style_sheets/profile_form';
+import mainStyles from '../../assets/style_sheets/main/main';
 import shareStyles from './style';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -37,7 +36,7 @@ export default class PersonalityScreen extends Component {
     confirmDialogVisible: false,
     user: '',
     game: '',
-    personalities: MathUtil.shuffle(entries),
+    personalities: entries,
     characteristicEntries: [],
   }
 
@@ -77,18 +76,19 @@ export default class PersonalityScreen extends Component {
   _onYes() {
     realm.write(() => {
       realm.create('Game', this._buildData('PersonalityScreen'), true);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
+  }
+
+  _closeDialog() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
   }
 
@@ -140,12 +140,7 @@ export default class PersonalityScreen extends Component {
   }
 
   _formatDataForCheckbox(personalities) {
-    let arr = [];
-
-    for(let i = 0; i < personalities.length; i++) {
-      arr.push({ value: personalities[i], label: personalities[i] })
-    }
-    return arr;
+    return personalities.map(obj => {return {value: obj, label: obj}})
   }
 
   _handleChecked(arr) {
@@ -156,8 +151,8 @@ export default class PersonalityScreen extends Component {
     let checkboxes = this._formatDataForCheckbox(this.state.personalities);
 
     return(
-      <View style={styles.box}>
-        <Text style={styles.subTitle}>បុគ្គលិកលក្ខណៈ</Text>
+      <View style={mainStyles.box}>
+        <Text style={mainStyles.sectionText}>បុគ្គលិកលក្ខណៈ</Text>
 
         <View>
           <CheckboxGroup

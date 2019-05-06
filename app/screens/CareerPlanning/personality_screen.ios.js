@@ -2,26 +2,22 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ScrollView,
-  TouchableOpacity,
   BackHandler,
   Image,
   Platform
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
+import { NavigationActions } from 'react-navigation';
 
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CloseButton from '../../components/shared/close_button';
 
 import mainStyles from '../../assets/style_sheets/main/main';
-import shareStyles from './style';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Images from '../../assets/images';
 import CheckboxGroup from '../../components/checkbox_group';
-import FooterBar from '../../components/FooterBar';
 import MathUtil from '../../utils/math';
 
 import realm from '../../db/schema';
@@ -80,18 +76,19 @@ export default class PersonalityScreen extends Component {
   _onYes() {
     realm.write(() => {
       realm.create('Game', this._buildData('PersonalityScreen'), true);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
+  }
+
+  _closeDialog() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
   }
 

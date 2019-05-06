@@ -46,7 +46,7 @@ export default class VideoScreen extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this._handleInternetConnection();
   }
 

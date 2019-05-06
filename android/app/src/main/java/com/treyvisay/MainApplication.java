@@ -3,8 +3,10 @@ package com.treyvisay;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
-import com.beefe.picker.PickerViewPackage;
+import com.github.wuxudong.rncharts.MPAndroidChartPackage;
 import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
+import com.horcrux.svg.SvgPackage;
+import com.beefe.picker.PickerViewPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -17,6 +19,9 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+
+import com.facebook.react.bridge.ReadableNativeArray;
+import com.facebook.react.bridge.ReadableNativeMap;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,8 +38,10 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new MPAndroidChartPackage(),
+            new RNBackgroundFetchPackage(),
+          new SvgPackage(),
           new PickerViewPackage(),
-          new RNBackgroundFetchPackage(),
           new PickerPackage(),
           new SplashScreenReactPackage(),
           new LinearGradientPackage(),
@@ -61,5 +68,7 @@ public class MainApplication extends Application implements ReactApplication {
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
+    ReadableNativeArray.setUseNativeAccessor(true);
+    ReadableNativeMap.setUseNativeAccessor(true);
   }
 }

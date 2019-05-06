@@ -11,42 +11,86 @@ import api from './../utils/api';
 
 export default class UploadServices  {
   static cursor;
+  static data = [];
 
   static syncToServer(){
     NetInfo.isConnected.fetch().then(isConnected => {
       api.get('/me').then((res) => {
         if(res.data && res.data.success){
           this.cursor = 0;
-          this.uploadSidekiqs()
+          this.data = realm.objects('Sidekiq').slice();
+          this.uploadSidekiq();
         }
       })
     });
   }
 
-  static uploadSidekiqs() {
-    let sidekiqs = realm.objects('Sidekiq');
-    let sidekiqsArr = sidekiqs.map((sidekiq) => (sidekiq));
-    if ( this.cursor < sidekiqsArr.length ) {
-      let sidekiq = sidekiqsArr[this.cursor];
+  static uploadSidekiq() {
+    if ( this.cursor < this.data.length ) {
+      let sidekiq = this.data[this.cursor];
       this.upload(sidekiq);
-      return;
     }
   }
 
   static upload(sidekiq) {
     if(sidekiq.attempt < environment.maxFailedAttempt){
-      let sidekidTable = realm.objects(sidekiq.tableName)
-        .filtered('uuid="' + sidekiq.paramUuid + '"')[0];
-      let postUrl = sidekiq.tableName == 'User' ? '/users' : "/games";
-      sidekidTable.version = sidekiq.version;
-      api.post(postUrl, this['build' + sidekiq.tableName](sidekidTable))
+      let record = realm.objects(sidekiq.tableName).filtered('uuid="' + sidekiq.paramUuid + '"')[0];
+      let postUrl = this.getPostUrl(sidekiq);
+      record.version = sidekiq.version;
+
+      api.post(postUrl, this['build' + sidekiq.tableName](record))
       .then((res) => {
         this.handleResponse(res, sidekiq);
       })
     } else{
       Sidekiq.delete(sidekiq);
-      this.uploadSidekiqs();
+      this.cursor++;
+      this.uploadSidekiq();
     }
+  }
+
+  static getPostUrl(sidekiq) {
+    let url = '';
+
+    switch(sidekiq.tableName) {
+      case 'User':
+        url = '/users';
+        break;
+      case 'Game':
+        url = '/games';
+        break;
+      default:
+        url = '/personality_tests';
+    }
+
+    return url;
+  }
+
+  static buildPersonalityAssessment(assessment) {
+    let categories = [
+      'realistic',
+      'investigative',
+      'artistic',
+      'social',
+      'enterprising',
+      'conventional'
+    ];
+
+    let personalityCodes = categories.map(category => assessment[category].map(obj => obj.value));
+    personalityCodes = [].concat.apply([], personalityCodes);
+    personalityCodes = personalityCodes.map(code => {
+      return { personality_code: code }
+    })
+
+    let obj = {
+      data: {
+        user_uuid: assessment.userUuid,
+        personality_selections_attributes: personalityCodes,
+        version: assessment.version
+      }
+    };
+
+    return obj;
   }
 
   static buildUser(user) {
@@ -119,13 +163,14 @@ export default class UploadServices  {
   }
 
   static handleResponse(res, sidekiq) {
-    if (res.data.success) {
+    if (res.ok) {
       Sidekiq.delete(sidekiq);
     } else{
-      this.cursor++;
       Sidekiq.increaseAttempt(sidekiq);
     }
-    this.uploadSidekiqs();
+
+    this.cursor++;
+    this.uploadSidekiq();
   }
 
   static renameAttributeKeys(obj) {

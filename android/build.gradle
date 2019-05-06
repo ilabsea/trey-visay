@@ -22,6 +22,9 @@ buildscript {
 
 allprojects {
     repositories {
+		maven {
+			url "$rootDir/../node_modules/react-native-background-fetch/android/libs"
+		}
         google()
         mavenLocal()
         jcenter()
@@ -35,10 +38,6 @@ allprojects {
 
         // ADD THIS
         maven { url "https://jitpack.io" }
-
-        maven {
-           url "$rootDir/../node_modules/react-native-background-fetch/android/libs"
-       }
     }
 }
 

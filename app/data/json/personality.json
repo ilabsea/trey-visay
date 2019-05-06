@@ -1,0 +1,650 @@
+[
+  {
+    "code": "artistic_01",
+    "name_km": "សិល្បៈនិយម",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_02",
+    "name_km": "មានភាពស្មុគស្មាញ",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_03",
+    "name_km": "មានគំនិតច្នៃប្រឌិត",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_04",
+    "name_km": "ស្រមើស្រមៃច្រើន",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_05",
+    "name_km": "មានមនោសញ្ចេតនាជ្រាលជ្រៅ",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_06",
+    "name_km": "ចូលចិត្តបង្ហាញគំនិត",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_07",
+    "name_km": "មានឧត្តមគតិ",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_08",
+    "name_km": "រវើរវាយច្រើន",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_09",
+    "name_km": "ឆាប់រំភើប/រំជួលចិត្ត",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_10",
+    "name_km": "ឯករាជ្យលើខ្លួនឯង",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_11",
+    "name_km": "បុគ្គលនិយម",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_12",
+    "name_km": "មានគំនិតបង្កើតថ្មី",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_13",
+    "name_km": "មានវិចារណញ្ញាណ",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_14",
+    "name_km": "មិនយល់ស្របជាមួយអ្នកដទៃ",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_15",
+    "name_km": "ចិត្តទូលាយ",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_16",
+    "name_km": "សាមញ្ញធម្មតាៗ",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_17",
+    "name_km": "មិនអាចគ្រប់គ្រងខ្លួនឯង",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "artistic_18",
+    "name_km": "មិនមានផែនការច្បាស់លាស់",
+    "name_en": null,
+    "category": "artistic"
+  },
+  {
+    "code": "conventional_01",
+    "name_km": "មានការប្រយ័ត្នប្រយែង",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_02",
+    "name_km": "យល់ពីអ្នកដទៃ",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_03",
+    "name_km": "មានមនសិការ",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_04",
+    "name_km": "អាចជឿទុកចិត្តបាន",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_05",
+    "name_km": "មានភាពហ្មត់ចត់",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_06",
+    "name_km": "ធ្វើកិច្ចការមានប្រសិទ្ធភាព",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_07",
+    "name_km": "មិនរាថយងាយៗ",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_08",
+    "name_km": "មិនរឹងរូស",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_09",
+    "name_km": "មានរបៀបរៀបរយ",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_10",
+    "name_km": "តស៊ូស្វិតស្វាញ",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_11",
+    "name_km": "អនុវត្តការងារជាក់ស្តែង",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_12",
+    "name_km": "មានភាពច្បាស់លាស់",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_13",
+    "name_km": "រមទម្យសុភាពរាបសារ",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_14",
+    "name_km": "គោរពពេលវេលា",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_15",
+    "name_km": "មានទំនុកចិត្តលើខ្លួនឯង",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_16",
+    "name_km": "មានផែនការច្បាស់លាស់",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_17",
+    "name_km": "មានចាយវាយប្រិតប្រៀង",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "conventional_18",
+    "name_km": "គ្មានការស្រមើស្រមៃច្រើន",
+    "name_en": null,
+    "category": "conventional"
+  },
+  {
+    "code": "enterprising_01",
+    "name_km": "ចង់តែបាន",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_02",
+    "name_km": "ចូលចិត្តផ្សងព្រេង",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_03",
+    "name_km": "ចូលចិត្តបង្ខំ",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_04",
+    "name_km": "មានមហិច្ឆតា",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_05",
+    "name_km": "មានតតាំងយោបល់",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_06",
+    "name_km": "មានបម្រុងប្រយ័ត្នខ្ពស់",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_07",
+    "name_km": "មានអំនួត",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_08",
+    "name_km": "មានឥទ្ធិពល/ភាពទាក់ទាញ",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_09",
+    "name_km": "ត្រួតត្រាអ្នកដទៃ",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_10",
+    "name_km": "ស្វាហាប់",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_11",
+    "name_km": "បង្ហាញអារម្មណ៍រីករាយ",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_12",
+    "name_km": "មានគោលដៅច្បាស់លាស់",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_13",
+    "name_km": "ឆាប់រំភើប/រជួលចិត្ត",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_14",
+    "name_km": "មានសុទិដ្ឋនិយម",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_15",
+    "name_km": "ពូកែបញ្ចុះបញ្ចូលអ្នកដទៃ",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_16",
+    "name_km": "មានប្រជាប្រិយភាព",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_17",
+    "name_km": "មានទំនុកចិត្តលើខ្លួនឯង",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "enterprising_18",
+    "name_km": "មានទំនាក់ទំនងល្អក្នុងសង្គម",
+    "name_en": null,
+    "category": "enterprising"
+  },
+  {
+    "code": "investigative_01",
+    "name_km": "ចូលចិត្តការវិភាគ",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_02",
+    "name_km": "យល់ពីអ្នកដទៃ",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_03",
+    "name_km": "សាំញ៉ាំច្រើន",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_04",
+    "name_km": "ពិចារណាជាក់លាក់",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_05",
+    "name_km": "ចង់ដឹងចង់ឃើញ",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_06",
+    "name_km": "ធ្វើការដោយឯករាជ្យ",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_07",
+    "name_km": "មានភាពវៃឆ្លាត",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_08",
+    "name_km": "លាក់គំនួច",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_09",
+    "name_km": "មានហេតុផល",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_10",
+    "name_km": "ធ្វើការដោយមានវិធីសាស្ត្រ",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_11",
+    "name_km": "សាមញ្ញ",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_12",
+    "name_km": "ទុទ្ទិដ្ឋិនិយម",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_13",
+    "name_km": "មានភាពច្បាស់លាស់",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_14",
+    "name_km": "មិនសូវខ្វល់ពីអ្នកដទៃ",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_15",
+    "name_km": "ស្រឡាញ់ការសិក្សាស្រាវជ្រាវ",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_16",
+    "name_km": "មានការត្រៀមបម្រុងទុកជាមុន",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_17",
+    "name_km": "បែបវិទ្យាសាស្ត្រ",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "investigative_18",
+    "name_km": "គ្រប់គ្រងខ្លួនឯងបានល្អ",
+    "name_en": null,
+    "category": "investigative"
+  },
+  {
+    "code": "realistic_01",
+    "name_km": "ស្វាហាប់មាំមួន",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_02",
+    "name_km": "យល់ពីអ្នកដទៃ",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_03",
+    "name_km": "រួសរាយរាក់ទាក់",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_04",
+    "name_km": "និយាយទៀងត្រង់",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_05",
+    "name_km": "រឹងរូស",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_06",
+    "name_km": "ស្មោះត្រង់",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_07",
+    "name_km": "ចេះបន្ទាបខ្លួន",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_08",
+    "name_km": "បច្ចេកទេស",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_09",
+    "name_km": "មិនសូវខ្វល់ច្រើន",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_10",
+    "name_km": "សាមញ្ញ",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_11",
+    "name_km": "ចូលចិត្តការងារខាងក្រៅ",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_12",
+    "name_km": "មានអំណត់តស៊ូ",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_13",
+    "name_km": "ធ្វើការដោយប្រើកម្លាំង",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_14",
+    "name_km": "អនុវត្តការងារជាក់ស្ដែង",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_15",
+    "name_km": "ធ្វើអ្វីច្រើនពឹងលើខ្លួនឯង",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_16",
+    "name_km": "មិនងាយរាថយ",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_17",
+    "name_km": "ខ្មាសអៀនច្រើន",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "realistic_18",
+    "name_km": "មានភាពនឹងនរ",
+    "name_en": null,
+    "category": "realistic"
+  },
+  {
+    "code": "social_01",
+    "name_km": "ជួយយកអាសារអ្នកដទៃ",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_02",
+    "name_km": "រួសរាយរាក់ទាក់",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_03",
+    "name_km": "មានមេត្តាចិត្ត",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_04",
+    "name_km": "ពូកែបញ្ចុះបញ្ចូលអ្នកដទៃ",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_05",
+    "name_km": "មានការសហការល្អ",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_06",
+    "name_km": "មានមេនោសញ្ចេតនាជ្រាលជ្រៅ",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_07",
+    "name_km": "មានចិត្តសប្បុរស",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_08",
+    "name_km": "មានប្រយោជន៍",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_09",
+    "name_km": "មានមនុស្សធម៌",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_10",
+    "name_km": "មានឧត្តមគតិ",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_11",
+    "name_km": "ចិត្តល្អ ចិត្តទូលាយ",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_12",
+    "name_km": "ពឺងលើការខិតខំខ្លួនឯង",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_13",
+    "name_km": "ចូលចិត្តណែនាំអ្នកដទៃ",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_14",
+    "name_km": "មានទំនួលខុសត្រូវ",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_15",
+    "name_km": "មានទំនាក់ទំនងល្អក្នុងសង្គម",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_16",
+    "name_km": "មានគំនិតជាយុទ្ធសាស្ត្រ",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_17",
+    "name_km": "យល់អធ្យាស្រ័យ",
+    "name_en": null,
+    "category": "social"
+  },
+  {
+    "code": "social_18",
+    "name_km": "មានភាពកក់ក្តៅ",
+    "name_en": null,
+    "category": "social"
+  }
+]

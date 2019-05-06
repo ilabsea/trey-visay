@@ -2,45 +2,28 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ScrollView,
-  TouchableOpacity,
   BackHandler,
-  Platform
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
+import { NavigationActions } from 'react-navigation';
 import { Divider } from 'react-native-elements';
 
-import CheckboxGroup from '../../components/checkbox_group';
 import RadioButtonGroup from '../../components/radio_button_group';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import FooterBar from '../../components/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import mainStyles from '../../assets/style_sheets/main/main';
-import headerStyles from '../../assets/style_sheets/header';
-import shareStyles from './style';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
 import characteristicList from '../../data/json/characteristic_jobs';
 
-let careers = [];
-let allCareers = [];
-
 export default class SummaryScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-
-    return {
-      title: 'ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល',
-    }
-  };
-
-  componentWillMount() {
-    careers = [];
-    allCareers = [];
+  constructor(props) {
+    super(props);
 
     this.props.navigation.setParams({
       _handleBack: this._handleBack.bind(this),
@@ -57,14 +40,14 @@ export default class SummaryScreen extends Component {
     let careerCodes = game.personalityCareers.map((obj) => obj.value);
     let userCareers = currentGroup.careers.filter((item, pos) => { return careerCodes.includes(item.code) });
 
-    this.setState({
+    this.state = {
       userCareers: userCareers,
       currentGroup: currentGroup,
       user: user,
       game: game,
       confirmDialogVisible: false,
       mostFavorableJob: game.mostFavorableJobCode,
-    })
+    };
   }
 
   _handleBack() {
@@ -85,18 +68,19 @@ export default class SummaryScreen extends Component {
   _onYes() {
     realm.write(() => {
       realm.create('Game', this._buildData('SummaryScreen'), true);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
+  }
+
+  _closeDialog() {
+    this.setState({confirmDialogVisible: false});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
-
-      this.setState({confirmDialogVisible: false});
-      this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+      this._closeDialog();
     });
   }
 
@@ -172,7 +156,7 @@ export default class SummaryScreen extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <Toast ref='toast' positionValue={ Platform.OS === 'ios' ? 120 : 140 }/>
+        <Toast ref='toast' positionValue={ 120 }/>
       </View>
     );
   };

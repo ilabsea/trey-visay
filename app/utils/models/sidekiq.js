@@ -23,9 +23,10 @@ export default class Sidekiq {
     }
   }
 
-  static delete(sidekiq){
+  static delete(sidekiq) {
     realm.write(() => {
-      realm.delete(sidekiq);
+      let obj = realm.objects('Sidekiq').filtered('paramUuid="' + sidekiq.paramUuid + '"')[0];
+      realm.delete(obj);
     });
   }
 }

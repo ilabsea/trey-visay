@@ -2,27 +2,20 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ScrollView,
   TouchableOpacity,
   Image,
   BackHandler,
-  Platform
 } from 'react-native';
 
 import { Divider } from 'react-native-elements';
+import { NavigationActions } from 'react-navigation';
 
 import mainStyles from '../../assets/style_sheets/main/main';
-import headerStyles from '../../assets/style_sheets/header';
-import shareStyles from './style';
 import Images from '../../assets/images';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import careerList from '../../data/json/characteristic_jobs';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
-import CloseButton from '../../components/shared/close_button';
-import FooterBar from '../../components/FooterBar';
-
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -67,15 +60,19 @@ export default class CareersScreen extends Component {
   }
 
   _onYes() {
+    this._closeDialog();
+  }
+
+  _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
     realm.write(() => {
       realm.delete(this.state.game);
 
-      this._onYes();
+      this._closeDialog();
     });
   }
 
@@ -111,8 +108,6 @@ export default class CareersScreen extends Component {
         <ScrollView style={{flex: 1}}>
           { this._renderContent() }
         </ScrollView>
-
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
