@@ -18,7 +18,7 @@ import Sidekiq from '../../utils/models/sidekiq';
 import App from '../../utils/app';
 import styles from '../../assets/style_sheets/profile_form';
 import DatePicker from 'react-native-datepicker';
-import InputTextContainer from '../../components/input_text_container';
+import InputTextContainer from '../../components/shared/input_text_container';
 import StatusBar from '../../components/shared/status_bar';
 import PickerSpecific from '../../components/picker/PickerSpecific';
 import grades from '../../data/json/grades.json';

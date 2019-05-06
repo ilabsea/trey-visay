@@ -6,8 +6,6 @@ import {
   StyleSheet,
   Platform
 } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
-import styles from '../assets/style_sheets/profile_form';
 
 class InputTextContainer extends Component {
   constructor(props) {
@@ -22,14 +20,9 @@ class InputTextContainer extends Component {
     const { ...props} = this.props;
 
     return (
-      <View style={styles.inputContainer}>
-        <TextField
-          baseColor="rgba(0, 0, 0, 1)"
-          tintColor="black"
-          label={this.props.label}
-          labelFontSize={16}
-          labelHeight={10}
-          labelPadding={12}
+      <View>
+        <TextInput
+          style={styles.input}
           onChangeText={ this.props.onChangeText }
           keyboardType={ this.props.keyboardType || 'default'}
           value={ this.props.value }
@@ -41,5 +34,19 @@ class InputTextContainer extends Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  input: {
+    backgroundColor: '#DCDCDC',
+    marginBottom: 10,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    height: 40
+  },
+  errorText: {
+    color: 'rgb(221,44,0)',
+    fontSize: 12
+  }
+})
 
 export default InputTextContainer;

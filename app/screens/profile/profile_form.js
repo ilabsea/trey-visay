@@ -4,7 +4,8 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  Platform
+  Platform,
+  TextInput
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -23,9 +24,10 @@ import StatusBar from '../../components/shared/status_bar';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Components
-import InputTextContainer from '../../components/input_text_container';
+import InputTextContainer from '../../components/shared/input_text_container';
 import SaveButton from '../../components/shared/save_button';
 import PickerSpecific from '../../components/picker/PickerSpecific';
+import PictureOptions from '../../components/account/picture_options';
 
 import grades from '../../data/json/grades.json';
 import provinces from '../../data/json/address/provinces.json';
@@ -226,19 +228,12 @@ export default class ProfileForm extends Component {
   }
 
   _renderPersonalInfo() {
-    let sexOptions = [
-      {label: 'ស្រី', value: 'ស្រី', code: 'ស្រី'},
-      {label: 'ប្រុស', value: 'ប្រុស', code: 'ប្រុស'},
-      {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ', code: 'ផ្សេងៗ'}
-    ]
     let noValue = [{ "code": "", "label": "គ្មានតម្លៃ" }]
     return (
       <View>
         { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ',
           nextFocusInput: 'usernameInput'}) }
-        { this._renderPicker({label: 'ភេទ', stateName: 'sex',
-          options: sexOptions})
-        }
+        <PictureOptions stateName='sex' user={this.state.user}/>
         { this._renderDatePicker() }
         { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ',
           keyboardType: 'phone-pad'})
@@ -277,13 +272,11 @@ export default class ProfileForm extends Component {
   }
 
   _renderInputTextContainer(params={}) {
-    let placeholder='វាយ' + params.label + 'នៅទីនេះ';
     let value = this.state.user[params.stateName] ? this.state.user[params.stateName]: '';
     return (
       <InputTextContainer
         onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
-        label={params.label}
-        placeholder={placeholder}
+        placeholder={params.label}
         value={value}
         errors={this.state.errors[params.stateName]}
         keyboardType={params.keyboardType || 'default' }
