@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {
-  NetInfo
+  NetInfo,
+  Platform
 } from 'react-native';
 
 import characteristicList from '../data/json/characteristic_jobs';
@@ -27,6 +28,7 @@ export default class UploadServices  {
 
   static uploadSidekiq() {
     if ( this.cursor < this.data.length ) {
+
       let sidekiq = this.data[this.cursor];
       this.upload(sidekiq);
     }
@@ -101,13 +103,16 @@ export default class UploadServices  {
     let userData = new FormData();
     userData.append('data', JSON.stringify(attributes));
 
-    if (user.photo) {
+    if (!!user.photo) {
       let uri = Platform.OS == 'ios' ? 'file://' + user.photo : user.photo;
+
       userData.append('photo', {
         uri: uri,
         type: 'image/jpeg',
         name: 'userPhoto'
       });
+    } else {
+      userData.append('photo', '');
     }
 
     return userData;
