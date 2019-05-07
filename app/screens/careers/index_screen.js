@@ -23,17 +23,22 @@ export default class CareerIndexScreen extends Component {
   }
 
   getCareers() {
-    let careerClusterCode = this.props.navigation.state.params.code;
-    let codes = mapping.filter(obj => obj.career_cluster_code == careerClusterCode);
-    codes = codes.map(x => x.career_code);
+    let currentCareerClusterCode = this.props.navigation.state.params.code;
+    let careerCodes = [];
+
+    for (let i = 0; i < mapping.length; i++) {
+      if (mapping[i].career_cluster_code == currentCareerClusterCode) {
+        careerCodes.push(mapping[i].career_code);
+      }
+    }
 
     let careerList = characteristicList.map(x => x.careers);
     careerList = [].concat.apply([], careerList);
 
     let allCareers = [...new Set(careerList.map(x => x.code))];
-    allCareers = allCareers.map(code => careerList.find(item => item.code == code));
+    allCareers = allCareers.map(code => careerList.find(career => career.code == code));
 
-    return allCareers.filter(x => codes.includes(x.code));
+    return allCareers.filter(x => careerCodes.includes(x.code));
   }
 
   renderCareer(career, i) {
