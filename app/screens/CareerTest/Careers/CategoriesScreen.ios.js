@@ -11,23 +11,27 @@ import {
 } from 'react-native';
 
 import { Divider } from 'react-native-elements';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
+import CloseButton from '../../components/shared/close_button';
+import FooterBar from '../../components/footer/FooterBar';
+import CardItem from '../../components/list/card_item';
+import CarouselItem from '../../components/shared/carousel_item';
+import ButtonList from '../../components/list/button_list';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from './style';
 import Images from '../../assets/images';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import careerList from '../../data/json/characteristic_jobs';
-import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
-import CloseButton from '../../components/shared/close_button';
-import FooterBar from '../../components/footer/FooterBar';
-
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
 
-export default class CareersScreen extends Component {
+import careerCategory from '../../data/json/characteristic_jobs';
+
+export default class CategoriesScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -79,27 +83,34 @@ export default class CareersScreen extends Component {
     });
   }
 
-  _renderCareer(career, i) {
+  renderItem(career, index){
+    return(
+      <CardItem text={career.name} index={index}
+        onPress={() => this.props.navigation.navigate('ShowCategoryScreen', {
+          career: career
+        })} />
+    )
+  }
+
+  renderCareer(careerTypeObj, i) {
     return (
-      <View key={i}>
-        <TouchableOpacity
-          style={mainStyles.btnList}
-          onPress={() => {this.props.navigation.navigate('CareerDetailScreen',{careerId: career.id})}}
-        >
-          <Image source={Images[career.logoName]} style={{width: 30, height: 30, marginRight: 16}} />
-          <Text style={mainStyles.title}>{career.career_title}</Text>
-          <AwesomeIcon name='angle-right' size={24} color='#bbb' />
-        </TouchableOpacity>
-        <Divider style={{marginLeft: 58}}/>
+      <View>
+        <ButtonList hasLine={false} title={careerTypeObj.career_title}
+          onPress={() => {
+            this.props.navigation.navigate('ShowCategoryScreen', {careerId: careerTypeObj.id})
+          }} />
+          <CarouselItem
+            data={careerTypeObj.careers}
+            renderItem={({item, index}) => this.renderItem(item, index)}/>
       </View>
     )
   }
 
-  _renderContent() {
+  renderContent() {
     return (
       <View>
-        { careerList.slice(0, 3).map((career, i) => {
-          { return (this._renderCareer(career, i))}
+        { careerCategory.slice(0, 3).map((careerType, i) => {
+          { return (this.renderCareer(careerType, i))}
         })}
       </View>
     )
@@ -109,7 +120,7 @@ export default class CareersScreen extends Component {
     return(
       <View style={{flex: 1, backgroundColor: 'white'}}>
         <ScrollView style={{flex: 1}}>
-          { this._renderContent() }
+          { this.renderContent() }
         </ScrollView>
 
         <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />

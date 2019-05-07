@@ -12,7 +12,6 @@ import OpenDrawer from '../../components/shared/open_drawer';
 
 import PersonalUnderstandingForm from '../PersonalUnderstanding/PersonalUnderstandingForm';
 import CareerCounsellor from '../CareerCounsellor/CareerCounsellor';
-<<<<<<< 6647ad6079a1280989f6cfd6715d4c631914f825:app/screens/stackNav/career_counsellor_stack.android.js
 import CareerDetailScreen from '../CareerPlanning/career_detail_screen';
 import SubjectScreen from '../CareerPlanning/subject_screen';
 import PersonalityScreen from '../CareerPlanning/personality_screen';
@@ -22,8 +21,7 @@ import RecommendationScreen from '../CareerPlanning/recommendation_screen';
 import GoalScreen from '../CareerPlanning/goal_screen';
 import ContactScreen from '../CareerPlanning/contact_screen';
 import CareersScreen from '../CareerPlanningForm/careers_screen';
-=======
-import CareerDetailScreen from '../CareerTest/career_detail_screen';
+import ShowCategoryScreen from '../CareerTest/Careers/ShowCategoryScreen';
 import SubjectScreen from '../CareerTest/subject_screen';
 import PersonalityScreen from '../CareerTest/personality_screen';
 import PersonalityJobsScreen from '../CareerTest/personality_jobs_screen';
@@ -31,8 +29,7 @@ import SummaryScreen from '../CareerTest/summary_screen';
 import RecommendationScreen from '../CareerTest/recommendation_screen';
 import GoalScreen from '../CareerTest/goal_screen';
 import ContactScreen from '../CareerTest/contact_screen';
-import CareersScreen from '../CareerTest/careers_screen';
->>>>>>> ui on subject test:app/screens/stackNav/career_counsellor_stack.js
+import CategoriesScreen from '../Careers/CategoriesScreen';
 import InstitutionDetail from '../school/institution_detail';
 import GameHistoryScreen from '../GameHistory/game_history_screen';
 import PersonalUnderstandingReport from '../GameHistory/personal_understanding_report';
@@ -184,7 +181,7 @@ const CareerCounsellorStack = createStackNavigator(
                       </Provider>
       })
     },
-    CareerDetailScreen: { screen: CareerDetailScreen },
+    ShowCategoryScreen: { screen: ShowCategoryScreen },
     SubjectScreen: {
       screen: SubjectScreen,
       navigationOptions: ({navigation}) => ({
@@ -234,8 +231,8 @@ const CareerCounsellorStack = createStackNavigator(
         headerLeft: <CloseButton navigation={navigation}/>,
       })
     },
-    CareersScreen: {
-      screen: CareersScreen,
+    CategoriesScreen: {
+      screen: CategoriesScreen,
       navigationOptions: ({navigation}) => ({
         title: 'យល់ដឹងអំពីមុខរបរ',
         headerLeft: <CloseButton navigation={navigation}/>,

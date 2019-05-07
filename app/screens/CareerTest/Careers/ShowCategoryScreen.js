@@ -17,7 +17,7 @@ import { Divider } from 'react-native-elements';
 import BackButton from '../../components/shared/back_button';
 
 let job;
-export default class CareerDetailScreen extends Component {
+export default class ShowCategoryScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
     return {

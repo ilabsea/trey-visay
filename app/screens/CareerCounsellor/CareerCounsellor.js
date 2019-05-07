@@ -172,7 +172,7 @@ export default class CareerCounsellor extends Component {
     }
 
     if (!this.state.game.step) {
-      this.props.navigation.navigate('CareersScreen');
+      this.props.navigation.navigate('CategoriesScreen');
     } else {
       this.props.navigation.navigate(this.state.game.step);
     }

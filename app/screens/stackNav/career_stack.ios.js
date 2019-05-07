@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
 import { createStackNavigator } from  'react-navigation';
-
-import {
-  Text
-} from 'react-native';
+import { Text } from 'react-native';
 
 import ClusterScreen from '../careers/cluster_screen';
 import CareerIndexScreen from '../careers/index_screen';

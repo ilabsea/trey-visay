@@ -23,7 +23,7 @@ import universities from '../../data/json/universities';
 import mapping from '../../data/json/careers/mapping';
 import videoList from '../../data/json/videos';
 
-export default class CareerDetailScreen extends Component {
+export default class ShowCategoryScreen extends Component {
   constructor(props){
     super(props);
   }
@@ -96,7 +96,6 @@ export default class CareerDetailScreen extends Component {
           renderItem={({item}) => this.renderItem(item)}
           sliderWidth={width}
           itemWidth={width-80}
-          layout={'default'}
         />
       </View>
     )

@@ -20,13 +20,12 @@ class ButtonList extends React.Component {
       <View>
         <TouchableOpacity
           style={mainStyles.btnList}
-          style={{flexDirection: 'row', alignItems: 'center', padding: 16}}
           onPress={this.props.onPress}
         >
           <Text style={mainStyles.title}>{this.props.title}</Text>
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </TouchableOpacity>
-        <Divider/>
+        { this.props.hasLine && <Divider /> }
       </View>
     )
   }

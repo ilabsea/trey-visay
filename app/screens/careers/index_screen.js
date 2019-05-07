@@ -46,7 +46,7 @@ export default class CareerIndexScreen extends Component {
       <View key={i}>
         <ButtonList
           onPress={() => {
-            this.props.navigation.navigate('CareerDetailScreen', {
+            this.props.navigation.navigate('ShowCategoryScreen', {
               career: career
             })
           }}

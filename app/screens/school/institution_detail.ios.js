@@ -9,7 +9,8 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 import ListItem from '../../components/schools/list_item';
-import Major from '../../components/schools/major';
+import CarouselItem from '../../components/shared/carousel_item';
+import CardItem from '../../components/list/card_item';
 
 const PROFILE_SIZE = 120;
 
@@ -20,7 +21,7 @@ export default class InstitutionDetail extends Component {
     })
   }
 
-  _renderContact() {
+  renderContact() {
     school = this.state.school;
     if(!school.id){
       school = {
@@ -74,14 +75,37 @@ export default class InstitutionDetail extends Component {
     )
   }
 
+  renderItem(item, index){
+    return(
+      <CardItem text={item} index={index}/>
+    )
+  }
 
-  _renderMajor() {
-    if (!this.state.school.departments || !this.state.school.departments.length) {
+  renderMajor(department, index){
+    return(
+      <View>
+        <Text style={mainStyles.sectionText}>{department.name}</Text>
+        <CarouselItem
+          data={department.majors}
+          renderItem={({item, index}) => this.renderItem(item, index)}/>
+      </View>
+    )
+  }
+
+  renderDepartments() {
+    let departments = this.state.school.departments;
+    if (!departments || !departments.length) {
       return (null);
     }
 
     return (
-      <Major departments={this.state.school.departments}/>
+      <View style={{backgroundColor: 'white'}}>
+        <Text style={mainStyles.sectionText}> ជំនាញ </Text>
+
+        { departments.map((department, i) => {
+          { return (this.renderMajor(department, i))}
+        })}
+      </View>
     )
   }
 
@@ -90,8 +114,8 @@ export default class InstitutionDetail extends Component {
       <View style={{paddingBottom: 40}}>
 
         <View style={styles.container}>
-          { this._renderContact() }
-          { this._renderMajor() }
+          { this.renderContact() }
+          { this.renderDepartments() }
         </View>
       </View>
     )

@@ -30,8 +30,8 @@ const CareerStack = createStackNavigator(
         title: navigation.state.params.title
       })
     },
-    CareerDetailScreen: {
-      screen: CareerDetailScreen,
+    ShowCategoryScreen: {
+      screen: ShowCategoryScreen,
       navigationOptions: ({navigation}) => ({
         title: navigation.state.params.career.name
       })
