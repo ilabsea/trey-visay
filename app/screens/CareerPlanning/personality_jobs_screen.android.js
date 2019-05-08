@@ -154,7 +154,7 @@ export default class PersonalityJobsScreen extends Component {
   _formatDataForCheckbox(id) {
     let jobs = characteristicList.find((obj) => obj.id == id).careers;
 
-    return jobs.map(job => {return {value: job.id, label: job.name}});
+    return jobs.map(job => {return {value: job.code, label: job.name}});
   }
 
   _handleChecked(value) {
