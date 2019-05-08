@@ -1,46 +1,28 @@
 import React, {Component} from 'react';
-import {
-  Image,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  Platform
-} from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
+import { Toolbar } from 'react-native-material-ui';
 
-import {
-  Toolbar,
-  Icon,
-  Avatar,
-} from 'react-native-material-ui';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Button, Icon } from 'native-base';
 
 // Utils
 import realm from '../../db/schema';
 import User from '../../utils/user';
+import uuidv4 from '../../utils/uuidv4';
 
-// Components
-import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
+
 import provinces from '../../data/json/address/provinces.json';
 import communes from '../../data/json/address/communes.json';
 import districts from '../../data/json/address/districts.json';
 import highSchools from '../../data/json/address/highSchools.json';
-import { FontSetting } from '../../assets/style_sheets/font_setting';
-import BackButton from '../../components/shared/back_button';
-
-const PROFILE_SIZE = 120;
+import te from '../../data/translates/km';
 
 export default class Profile extends Component {
   static navigationOptions = ({ navigation }) => ({
     header: null,
     title: 'ប្រវត្តិរូបសង្ខេប',
-    drawerIcon: ({ tintColor }) => (
-      <Icon name="person" color={tintColor} />
-    ),
   });
-
-  constructor(props) {
-    super(props);
-  }
 
   componentWillMount() {
     this.refreshState();
@@ -52,173 +34,121 @@ export default class Profile extends Component {
     this.setState({ user: user });
   }
 
-  _renderScrollViewContent() {
-    let photo = require('../../assets/images/default_profile.png');
-
-    if (!!this.state.user.photo) {
-      photo = {uri: this.state.user.photo};
-    }
+  _renderListItem(title, value) {
     return (
-      <View style={{paddingBottom: 24}}>
-        <View style={styles.avataContainer}>
-          <Image
-            style={styles.avata}
-            source={photo}
-          />
-        </View>
-
-        { this._renderPersonalInfo() }
-      </View>
-    )
+      <ListItem thumbnail key={uuidv4()}>
+        <Left>
+          <Icon name="medical" />
+        </Left>
+        <Body>
+          <Text>{title}</Text>
+        </Body>
+        <Right>
+          <Text>{value || '-'}</Text>
+        </Right>
+      </ListItem>
+    );
   }
 
-  _renderPersonalInfo() {
+  _renderStudy() {
     let user = this.state.user;
     let provinceName = user.provinceCode ? provinces.find((province) => province.code == user.provinceCode).label : '';
     let districtName = user.districtCode ? districts.find((district) => district.code == user.districtCode).label : '';
     let communeName = user.communeCode ? communes.find((commune) => commune.code == user.communeCode).label : '';
     let schoolName = user.highSchoolCode ? highSchools.find((school) => school.code == user.highSchoolCode).label : '';
 
+    let arr = [
+      {name: 'schoolName', value: schoolName},
+      {name: 'communeName', value: communeName},
+      {name: 'districtName', value: districtName},
+      {name: 'provinceName', value: provinceName}];
+
+    let doms = arr.map((item, i) => this._renderListItem(te[item.name], item.value))
+    doms.unshift(this._renderListItem('រៀនថ្នាក់ទី', this.state.user.grade));
+
+    return doms;
+  }
+
+  _renderPersonalInfo() {
+    let arr = ['fullName', 'username', 'sex', 'dateOfBirth', 'phoneNumber'];
+    let info = arr.map((item, i) => this._renderListItem(te[item], this.state.user[item]));
+
     return (
-      <View style={[styles.box, {marginTop: 60}]}>
-        <View style={styles.item}>
-          <Text style={styles.itemTitle}>ព័ត៌មានផ្ទាល់ខ្លួន</Text>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditPersonalInfo', { refresh: this.refreshState.bind(this) })}>
-            <Icon name="edit" />
-          </TouchableOpacity>
-        </View>
+      <List style={{}}>
+        <ListItem itemDivider itemHeader>
+          <Text style={{flex: 1}}>ប្រវត្តិរូបសង្ខេប</Text>
 
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ឈ្មោះពេញ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.fullName}</Text>
-        </View>
+          <Right>
+            <TouchableOpacity onPress={() => this.props.navigation.navigate('EditPersonalInfo', { refresh: this.refreshState.bind(this) })}>
+              <Text style={{color: 'blue'}}>កែតម្រូវ</Text>
+            </TouchableOpacity>
+          </Right>
+        </ListItem>
 
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ភេទ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.sex}</Text>
-        </View>
+        { info }
 
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ថ្ងៃខែឆ្នាំកំណើត</Text>
-          <Text style={styles.itemValue}>: {this.state.user.dateOfBirth}</Text>
-        </View>
+        <ListItem itemDivider itemHeader>
+          <Text>ប្រវត្តិការសិក្សា</Text>
+        </ListItem>
 
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>លេខទូរស័ព្ទ</Text>
-          <Text style={styles.itemValue}>: {this.state.user.phoneNumber || '-'}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>រៀនថ្នាក់ទី</Text>
-          <Text style={styles.itemValue}>: {this.state.user.grade}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ខេត្ត/ក្រុង</Text>
-          <Text style={styles.itemValue}>: {provinceName}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ស្រុក/ខណ្ឌ</Text>
-          <Text style={styles.itemValue}>: {districtName}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>ឃុំ/សង្កាត់</Text>
-          <Text style={styles.itemValue}>: {communeName}</Text>
-        </View>
-
-        <View style={styles.item}>
-          <Text style={styles.itemLabel}>រៀននៅសាលា</Text>
-          <Text style={styles.itemValue}>: {schoolName}</Text>
-        </View>
-      </View>
-    )
+        { this._renderStudy() }
+      </List>
+    );
   }
 
   _renderHeader() {
     return(
-      <Toolbar
-        leftElement={<BackButton navigation={this.props.navigation}/>}
-        rightElement={
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('EditProfilePhoto', { refresh: this.refreshState.bind(this) })} >
-            <Avatar icon='edit' size={30} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.26)'}}} />
-          </TouchableOpacity>
-        }
-        onLeftElementPress={() => this.props.navigation.goBack(null)}
-        style={{
-          container: {backgroundColor: 'transparent'}
-        }}
-      />
+      <Header>
+        <Toolbar
+          leftElement={<BackButton navigation={this.props.navigation}/>}
+          onLeftElementPress={() => this.props.navigation.goBack(null)}
+          style={{
+            container: {backgroundColor: 'transparent', flex: 1}
+          }}
+        />
+      </Header>
     )
   }
 
-  render() {
+  _renderPhoto() {
     let photo = require('../../assets/images/default_profile.png');
-    let cover = require('../../assets/images/header_bg.jpg');
 
     if (!!this.state.user.photo) {
       photo = {uri: this.state.user.photo};
     }
-    if (!!this.state.user.cover) {
-      cover = {uri: this.state.user.cover};
-    }
 
     return (
-      <ScrollableHeader
-        customView={ this._renderScrollViewContent.bind(this) }
-        imageBgSrc={ cover }
-        customHeader={ this._renderHeader.bind(this) }
-        profile={ photo }
-        profileSize={ PROFILE_SIZE }
-        title={this.state.user.fullName}
-      />
-    )
+      <ListItem avatar>
+        <Left>
+          <Thumbnail small source={photo} />
+        </Left>
+
+        <Body>
+          <Text>{this.state.user.username}</Text>
+          <Text note>កែតម្រូវ</Text>
+        </Body>
+
+        <Right>
+          <Button transparent onPress={() => this.props.navigation.navigate('EditProfilePhoto', { refresh: this.refreshState.bind(this) })}>
+            <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+          </Button>
+        </Right>
+      </ListItem>
+    );
+  }
+
+  render() {
+    return (
+      <Container>
+        { this._renderHeader() }
+
+        <Content>
+          <List>
+            { this._renderPhoto() }
+            { this._renderPersonalInfo() }
+          </List>
+        </Content>
+      </Container>
+    );
   }
 }
-
-const styles = StyleSheet.create({
-  box: {
-    marginTop: 10,
-    borderWidth: 1,
-    borderColor: '#eee',
-    backgroundColor: '#fff',
-    ...Platform.select({
-      android: {
-        marginHorizontal: 16,
-      },
-      ios: {
-        marginHorizontal: 0,
-      }
-    })
-  },
-  item: {
-    flexDirection: 'row',
-    padding: 16
-  },
-  itemTitle: {
-    flex: 1,
-    fontSize: FontSetting.medium_title,
-    color: '#111'
-  },
-  itemLabel: {
-    flex: 1,
-  },
-  itemValue: {
-    flex: 2,
-    fontSize: FontSetting.text,
-    fontWeight: 'bold',
-    color: '#111'
-  },
-  avataContainer: {
-    position: 'absolute',
-    left: 24,
-    top: -PROFILE_SIZE*2/3,
-    zIndex: 1
-  },
-  avata: {
-    width: PROFILE_SIZE,
-    height: PROFILE_SIZE,
-    borderRadius: PROFILE_SIZE/2,
-  }
-});
