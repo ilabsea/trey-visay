@@ -13,6 +13,7 @@ import Button from '../../components/shared/button';
 import StatusBar from '../../components/shared/status_bar';
 import myStyles from '../../assets/style_sheets/login_form';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 export default class Assessment extends Component {
   static navigationOptions = {
@@ -24,34 +25,33 @@ export default class Assessment extends Component {
 
   _renderInstruction() {
     return (
-      <View style={[styles.box, {flexDirection: 'row'}]}>
-        <View style={styles.logoWrapper}>
-          <Image source={require('../../assets/images/list.png')} style={styles.logo} />
+      <View style={[styles.box]}>
+        <View style={{flexDirection: 'row', marginBottom: 10}}>
+          <View style={styles.logoWrapper}>
+            <Image source={require('../../assets/images/list.png')} style={styles.logo} />
+          </View>
+          <Text style={[styles.title, {flex: 1}]}>ការធ្វើតេស្ដឆ្លុះបញ្ចាំងពីខ្លួនឯង</Text>
         </View>
 
-        <View style={{flex: 1}}>
-          <Text style={styles.title}>ការធ្វើតេស្ដឆ្លុះបញ្ចាំងពីខ្លួនឯង</Text>
+        <View>
+          <Button
+            style={{paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }}
+            onPress={()=> this.props.navigation.navigate('CareerCounsellorScreen')}
+            >
+            <Text style={styles.btnText}>
+              ការធ្វើតេស្តវាយតម្លៃ មុខរបរនិងអាជីព
+            </Text>
+          </Button>
 
-          <View>
-            <Button
-              style={{paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }}
-              onPress={()=> this.props.navigation.navigate('CareerCounsellorScreen')}
-              >
-              <Text style={[myStyles.submitText, { color: '#fff', fontSize: 20 }]}>
-                ការធ្វើតេស្តវាយតម្លៃ មុខរបរនិងអាជីព
-              </Text>
-            </Button>
+          <Button
+            style={{ paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }}
+            onPress={()=> this.props.navigation.navigate('PersonalityAssessmentScreen')}
+            >
+            <Text style={styles.btnText}>
+              ការធ្វើតេស្តស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ
+            </Text>
+          </Button>
 
-            <Button
-              style={{ paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }}
-              onPress={()=> this.props.navigation.navigate('PersonalityAssessmentScreen')}
-              >
-              <Text style={[myStyles.submitText, { color: '#fff', fontSize: 20 }]}>
-                ការធ្វើតេស្តស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ
-              </Text>
-            </Button>
-
-          </View>
         </View>
       </View>
     )
@@ -106,5 +106,10 @@ const styles = StyleSheet.create({
   },
   text: {
     fontWeight: 'bold'
+  },
+  btnText: {
+    fontWeight: 'bold',
+    fontSize: FontSetting.button_text,
+    color: '#fff',
   }
 });

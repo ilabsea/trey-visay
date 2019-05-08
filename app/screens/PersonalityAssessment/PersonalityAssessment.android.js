@@ -13,6 +13,7 @@ import formStyles from '../../assets/style_sheets/login_form';
 import styles from '../../assets/style_sheets/assessment';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import shareStyles from '../../assets/style_sheets/profile_form';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -43,7 +44,7 @@ export default class PersonalityAssessment extends Component {
             <Image source={require('../../assets/images/list.png')} style={styles.logo} />
           </View>
 
-          <Text style={styles.title}>ការធ្វើតេស្តស្វែងយល់អំពី បុគ្គលិកលក្ខណៈ</Text>
+          <Text style={[styles.title, {flex: 1}]}>ការធ្វើតេស្តស្វែងយល់អំពី បុគ្គលិកលក្ខណៈ</Text>
         </View>
 
         <View style={{flex: 1}}>
@@ -64,7 +65,7 @@ export default class PersonalityAssessment extends Component {
               style={[formStyles.btnSubmit, { paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }]}
               onPress={()=> this._startNewAssessment()}
               >
-              <Text style={[formStyles.submitText, { color: '#fff', fontSize: 20 }]}>
+              <Text style={[formStyles.submitText, { color: '#fff', fontSize: FontSetting.button_text }]}>
                 ចាប់ផ្ដើមថ្មី
               </Text>
             </Button>
@@ -74,7 +75,7 @@ export default class PersonalityAssessment extends Component {
                 style={[formStyles.btnSubmit, { paddingHorizontal: 20, marginRight: 20, backgroundColor: '#1976d2'}]}
                 onPress={()=> this._continueStep()}
                 >
-                <Text style={[formStyles.submitText, { color: '#fff', fontSize: 20 }]}>
+                <Text style={[formStyles.submitText, { color: '#fff', fontSize: FontSetting.button_text, }]}>
                   បន្តទៅវគ្គមុន
                 </Text>
               </Button>
