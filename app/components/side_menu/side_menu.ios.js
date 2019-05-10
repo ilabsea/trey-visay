@@ -167,7 +167,7 @@ export default class SideMenu extends Component {
           }
           { this._renderMenuItem({
               title: 'គ្រឹះស្ថានសិក្សា',
-              screenName: 'InstitutionStack',
+              screenName: 'SchoolStack',
               iconName: 'business',
               type: 'material',
               iconSize: 18
@@ -181,7 +181,7 @@ export default class SideMenu extends Component {
           }
           { this._renderMenuItem({
               title: 'ជំនាញវិជ្ជាជីវៈ',
-              screenName: 'CareerStack',
+              screenName: 'VocationalStack',
               iconName: 'photo-filter',
               type: 'material',
               iconSize: 18

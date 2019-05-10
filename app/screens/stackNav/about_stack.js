@@ -4,7 +4,7 @@ import { createStackNavigator } from  'react-navigation';
 import headerStyles from '../../assets/style_sheets/header';
 import BackButton from '../../components/shared/back_button';
 
-import About from '../about';
+import About from '../About/About';
 
 const AboutStack = createStackNavigator(
   {

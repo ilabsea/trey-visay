@@ -8,16 +8,16 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import headerStyles from '../assets/style_sheets/header';
 
 // Screens
-import ProfileStack from './stackNav/profile_stack';
-import CareerStack from './stackNav/career_stack';
-import DashboardStack from './stackNav/dashboard_stack';
-import InstitutionStack from './school/institution_stack';
-import AboutStack from './stackNav/about_stack';
-import ChangePasswordStack from './stackNav/change_password_stack';
-import AccountStack from './stackNav/account_stack';
-import CareerCounsellorStack from './stackNav/career_counsellor_stack';
+import ProfileStack from './StackNav/profile_stack';
+import VocationalStack from './StackNav/Vocational/VocationalStack';
+import DashboardStack from './StackNav/dashboard_stack';
+import SchoolStack from './StackNav/School/SchoolStack';
+import AboutStack from './StackNav/about_stack';
+import ChangePasswordStack from './StackNav/change_password_stack';
+import AccountStack from './StackNav/account_stack';
+import CareerCounsellorStack from './StackNav/CareerCounsellor/CareerCounsellorStack';
 
-import VideoScreen from './video_screen';
+import VideoScreen from './Video/VideoScreen';
 import SideMenu from '../components/side_menu/side_menu';
 
 const HomeScreen = createDrawerNavigator(
@@ -26,12 +26,12 @@ const HomeScreen = createDrawerNavigator(
     AccountStack: { screen: AccountStack },
     About: { screen: AboutStack },
     ProfileStack: { screen: ProfileStack },
-    InstitutionStack: { screen: InstitutionStack},
+    SchoolStack: { screen: SchoolStack},
     VideoScreen: {
       screen: VideoScreen,
       header: { visible:false }
     },
-    CareerStack: { screen: CareerStack },
+    VocationalStack: { screen: VocationalStack },
     ChangePasswordStack: { screen: ChangePasswordStack },
     CareerCounsellorStack: { screen: CareerCounsellorStack }
   },

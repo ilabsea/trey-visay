@@ -19,7 +19,7 @@ class SchoolListView extends Component {
 
   renderSchool(school, i) {
     return (
-      <School school={school} index={i} showCategory={true}/>
+      <School school={school} index={i} showCategory={true} navigation={this.props.navigation}/>
     )
   }
 

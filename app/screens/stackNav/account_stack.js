@@ -10,7 +10,7 @@ import Login from '../Account/login';
 import IntroStack from './intro_stack';
 import HomeScreen from '../home';
 import Register from '../Account/register';
-import CareerCounsellorStack from './career_counsellor_stack';
+import CareerCounsellorStack from './CareerCounsellor/CareerCounsellorStack';
 
 const AccountStack = createStackNavigator(
   {

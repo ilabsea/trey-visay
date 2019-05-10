@@ -88,7 +88,7 @@ export default class Dashboard extends Component {
             }
             { this._renderButton({
                 title: 'គ្រឹះស្ថានសិក្សា',
-                url: 'InstitutionStack',
+                url: 'SchoolStack',
                 icon_bg_color: '#009688',
                 icon_name: 'business',
                 icon_type: 'material',
@@ -100,7 +100,7 @@ export default class Dashboard extends Component {
           <View style={{flexDirection: 'row'}}>
             { this._renderButton({
                 title: 'ជំនាញវិជ្ជាជីវៈ',
-                url: 'CareerStack',
+                url: 'VocationalStack',
                 icon_bg_color: '#1aaf5d',
                 icon_name: 'photo-filter',
                 icon_type: 'material',
