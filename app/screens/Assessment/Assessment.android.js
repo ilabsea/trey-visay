@@ -35,7 +35,7 @@ export default class Assessment extends Component {
 
         <View>
           <Button
-            style={{paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }}
+            style={{paddingHorizontal: 20, marginRight: 20, marginBottom: 10, width: '100%' }}
             onPress={()=> this.props.navigation.navigate('CareerCounsellorScreen')}
             >
             <Text style={styles.btnText}>
@@ -44,7 +44,7 @@ export default class Assessment extends Component {
           </Button>
 
           <Button
-            style={{ paddingHorizontal: 20, marginRight: 20, marginBottom: 10 }}
+            style={{ paddingHorizontal: 20, marginRight: 20, marginBottom: 10, width: '100%' }}
             onPress={()=> this.props.navigation.navigate('PersonalityAssessmentScreen')}
             >
             <Text style={styles.btnText}>
