@@ -55,7 +55,7 @@ export default class CareerClusterScreen extends Component {
   renderCareerCluster(cluster, i) {
     careers = this.getCareers(cluster);
     return (
-      <View>
+      <View key={i}>
         <ButtonList hasLine={false} title={cluster.name_kh}
           onPress={() => {
             this.props.navigation.navigate('CareerIndexScreen', {

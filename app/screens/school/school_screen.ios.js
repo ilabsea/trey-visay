@@ -144,6 +144,8 @@ export default class SchoolScreen extends Component {
     this._getSchools(1, { active: active });
   }
 
+  _keyExtractor = (item, index) => index.toString();
+
   renderContent() {
     return (
       <FlatList
