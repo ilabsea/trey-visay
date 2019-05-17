@@ -8,7 +8,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import realm from '../../db/schema';
 import User from '../../utils/user';
-import subjectList from '../../data/json/subject';
+import subjectList from '../../data/json/subjects/subjects';
 import characteristicList from '../../data/json/characteristic_jobs';
 import subjectTe from '../../data/translates/subject';
 import translate from '../../data/translates/km';

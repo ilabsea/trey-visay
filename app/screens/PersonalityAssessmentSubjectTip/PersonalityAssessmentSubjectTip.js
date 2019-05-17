@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { View, Text } from 'react-native';
 import { Container, Content, ListItem, Body, Card, CardItem } from 'native-base';
-import subjectList from '../../data/json/subject';
+import subjectList from '../../data/json/subjects/subjects';
 import subjectTe from '../../data/translates/subject';
 
 export default class PersonalityAssessmentSubjectTip extends Component {

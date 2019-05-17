@@ -13,7 +13,7 @@ import {
 import { Container, Content } from 'native-base';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import FooterBar from '../../components/FooterBar';
+import FooterBar from '../../components/footer/FooterBar';
 import styles from '../../assets/style_sheets/profile_form';
 import headerStyles from '../../assets/style_sheets/header';
 import CheckboxGroup from '../../components/checkbox_group';

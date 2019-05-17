@@ -14,7 +14,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import formStyles from '../../assets/style_sheets/profile_form';
-import FooterBar from '../../components/FooterBar';
+import FooterBar from '../../components/footer/FooterBar';
 import { NavigationActions } from 'react-navigation';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import {HorizontalBarChart} from 'react-native-charts-wrapper';

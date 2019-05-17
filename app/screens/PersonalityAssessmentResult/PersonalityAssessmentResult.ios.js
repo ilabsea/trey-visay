@@ -7,7 +7,7 @@ import {
 
 import { Container, Content, ListItem, Text, Left, Body, Right, Button, Icon } from 'native-base';
 
-import FooterBar from '../../components/FooterBar';
+import FooterBar from '../../components/footer/FooterBar';
 import { NavigationActions } from 'react-navigation';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import {HorizontalBarChart} from 'react-native-charts-wrapper';
