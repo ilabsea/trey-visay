@@ -16,6 +16,7 @@ import AboutStack from './StackNav/about_stack';
 import ChangePasswordStack from './StackNav/change_password_stack';
 import AccountStack from './StackNav/account_stack';
 import CareerCounsellorStack from './StackNav/CareerCounsellor/CareerCounsellorStack';
+import PersonalityAssessmentStack from './StackNav/Assessment/PersonalityAssessmentStack';
 
 import VideoScreen from './Video/VideoScreen';
 import SideMenu from '../components/side_menu/side_menu';
@@ -33,7 +34,8 @@ const HomeScreen = createDrawerNavigator(
     },
     VocationalStack: { screen: VocationalStack },
     ChangePasswordStack: { screen: ChangePasswordStack },
-    CareerCounsellorStack: { screen: CareerCounsellorStack }
+    CareerCounsellorStack: { screen: CareerCounsellorStack },
+    PersonalityAssessmentStack: { screen: PersonalityAssessmentStack },
   },
   {
     initialRouteName: 'Dashboard',

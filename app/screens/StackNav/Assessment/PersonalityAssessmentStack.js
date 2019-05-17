@@ -148,7 +148,7 @@ const AssessmentStack = createStackNavigator(
       headerStyle: headerStyles.headerStyle,
       headerLeft: <BackButton navigation={navigation}/>
     }),
-    initialRouteName: 'AssessmentScreen'
+    initialRouteName: 'PersonalityAssessmentScreen'
   }
 );
 

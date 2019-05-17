@@ -25,8 +25,6 @@ import RecommendationScreen from '../../CareerTest/Recommendation/recommendation
 import GoalScreen from '../../CareerTest/Goal/goal_screen';
 import ContactScreen from '../../CareerTest/Contact/contact_screen';
 
-import AssessmentStack from '../Assessment/AssessmentStack';
-
 import InstitutionDetail from '../../school/institution_detail';
 
 import GameHistoryScreen from '../../GameHistory/game_history_screen';
@@ -157,9 +155,6 @@ const CareerCounsellorStack = createStackNavigator(
       navigationOptions: ({
         title: 'ការផ្តល់អនុសាសន៍'
       })
-    },
-    AssessmentStack: {
-      screen: AssessmentStack
     }
   },
   {

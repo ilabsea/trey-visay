@@ -11,6 +11,7 @@ import IntroStack from './intro_stack';
 import HomeScreen from '../home';
 import Register from '../Account/register';
 import CareerCounsellorStack from './CareerCounsellor/CareerCounsellorStack';
+import PersonalityAssessmentStack from './Assessment/PersonalityAssessmentStack';
 
 const AccountStack = createStackNavigator(
   {
@@ -39,6 +40,12 @@ const AccountStack = createStackNavigator(
     },
     CareerCounsellorStack: {
       screen: CareerCounsellorStack,
+      navigationOptions: ({ navigation }) => ({
+        header: null
+      })
+    },
+    PersonalityAssessmentStack: {
+      screen: PersonalityAssessmentStack,
       navigationOptions: ({ navigation }) => ({
         header: null
       })

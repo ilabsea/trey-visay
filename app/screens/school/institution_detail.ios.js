@@ -15,10 +15,12 @@ import CardItem from '../../components/list/card_item';
 const PROFILE_SIZE = 120;
 
 export default class InstitutionDetail extends Component {
-  componentWillMount() {
-    this.setState({
+
+  constructor(props) {
+    super(props);
+    this.state = {
       school: this.props.navigation.state.params.school
-    })
+    }
   }
 
   renderContact() {
@@ -83,7 +85,7 @@ export default class InstitutionDetail extends Component {
 
   renderMajor(department, index){
     return(
-      <View>
+      <View key={index}>
         <Text style={mainStyles.sectionText}>{department.name}</Text>
         <CarouselItem
           data={department.majors}
