@@ -122,8 +122,8 @@ export default class ScrollableHeader extends Component {
           >
 
             { this.props.title &&
-              <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), right: 5, bottom: titleBottom}}>
-                <Text style={{fontSize: 20, color: '#fff'}}>{this.props.title}</Text>
+              <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 10), right: 5,  bottom: titleBottom}}>
+                <Text style={{fontSize: 20, color: '#fff', flex: 1}}>{this.props.title}</Text>
               </View>
             }
 

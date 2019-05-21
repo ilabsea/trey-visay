@@ -27,14 +27,16 @@ export default class InstitutionDetail extends Component {
     header: null
   }
 
-  componentWillMount() {
-    this.setState({
-      school: this.props.navigation.state.params.school
-    })
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      school: props.navigation.state.params.school
+    };
   }
 
   _renderContact() {
-    school = this.state.school;
+    let school = this.state.school;
     if(!school.id){
       school = {
         address: 'មិនមាន',
@@ -51,15 +53,10 @@ export default class InstitutionDetail extends Component {
         { this._renderCommunication({data: school.address, icon: 'map-marker'}) }
         { this._renderCommunication({data: school.phoneNumbers, icon: 'phone'}) }
         { this._renderCommunication({data: school.faxes, icon: 'fax', iconSize: 14}) }
-        { this._renderCommunication({data: school.emails, icon: 'envelope', iconSize: 14, isLink: true}) }
-        { this._renderCommunication({data: school.mailbox, icon: 'markunread-mailbox'}) }
+        { this._renderEmail({data: school.emails})}
         { this._renderWebsiteOrFacebook({data: school.websiteOrFacebook, icon: 'globe'}) }
       </View>
     )
-  }
-
-  _openLink(url) {
-    Linking.openURL('http://' + url);
   }
 
   _renderWebsiteOrFacebook(com) {
@@ -73,16 +70,49 @@ export default class InstitutionDetail extends Component {
           <AwesomeIcon name={com.icon} color='#8E8E93' size={18} />
         </View>
 
-        { com.data.map((data, i) => {
-            return (
-              <Text key={i}
-                onPress={() => this._openLink(data)}
-                style={mainStyles.link}>
-                {data} { (i < com.data.length - 1) && <Text>; </Text> }
-              </Text>
-            )
-          })
-        }
+        <View style={{flex: 1}}>
+          { com.data.map((data, i) => {
+              return (
+                <Text key={i}
+                  onPress={() => {
+                    Linking.openURL(`http://${data}`)
+                  }}
+                  style={mainStyles.link}>
+                  {data} { (i < com.data.length - 1) && <Text>; </Text> }
+                </Text>
+              )
+            })
+          }
+        </View>
+      </View>
+    )
+  }
+
+  _renderEmail(com) {
+    if (!com.data.length) {
+      return (null);
+    }
+
+    let doms = com.data.map((item, index) => {
+      return (
+        <Text
+          key={index}
+          onPress={()=> Linking.openURL('mailto:' + item)}
+          style={mainStyles.link}>
+          {item}
+        </Text>
+      )
+     });
+
+    return (
+      <View style={styles.communicationWrapper}>
+        <View style={styles.iconWrapper}>
+          <AwesomeIcon name='envelope' color='#8E8E93' size={14} />
+        </View>
+
+        <View style={{flex: 1}}>
+          {doms}
+        </View>
       </View>
     )
   }
@@ -100,27 +130,13 @@ export default class InstitutionDetail extends Component {
         { !!data && !!data.length &&
           <View style={styles.communicationWrapper}>
             <View style={styles.iconWrapper}>
-              { com.icon != 'markunread-mailbox' &&
-                <AwesomeIcon name={com.icon} color='#8E8E93' size={iconSize} />
-              }
-              { com.icon == 'markunread-mailbox' &&
-                <MaterialIcon name={com.icon} color='#8E8E93' size={iconSize} />
-              }
+              <AwesomeIcon name={com.icon} color='#8E8E93' size={iconSize} />
             </View>
-            { !!com.isLink && data!='មិនមាន' &&
-              <Text
-                onPress={()=> Linking.openURL('mailto:' + data)}
-                style={mainStyles.link}>
-                {data}
-              </Text>
-            }
-            { (!com.isLink || data=='មិនមាន') &&
-              <Text
-                style={mainStyles.text}>
-                {data}
-              </Text>
-            }
 
+            <Text
+              style={[mainStyles.text, {flex: 1}]}>
+              {data}
+            </Text>
           </View>
         }
       </View>
@@ -140,14 +156,14 @@ export default class InstitutionDetail extends Component {
         { this.state.school.departments.map((department, i) => {
           return (
             <View key={i} style={{flex:1, margin: 16, marginBottom: 6}}>
-              <Text style={mainStyles.text}>{department.name}</Text>
+              { !!department.name && <Text style={mainStyles.text}>{department.name}</Text> }
               { department.majors.map((major, j) => {
                 return (
                   <View style={styles.majorWrapper} key={j}>
                     <View style={styles.iconWrapper}>
                       <AwesomeIcon name='graduation-cap' color='#8E8E93' size={16} />
                     </View>
-                    <Text style={[mainStyles.text, {marginLeft: 5}]}>{major}</Text>
+                    <Text style={[mainStyles.text, {marginLeft: 5, flex: 1}]}>{major}</Text>
                   </View>
                 )
               })}
@@ -233,7 +249,8 @@ const styles = StyleSheet.create({
   communicationWrapper: {
     flexDirection: 'row',
     padding: 6,
-    marginRight: 30
+    marginRight: 30,
+    width: '100%'
   },
   majorWrapper: {
     flexDirection: 'row',
