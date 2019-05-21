@@ -3,13 +3,12 @@ import {
   Text,
   View,
   Button,
-  ScrollView,
   StyleSheet,
   Image,
   TouchableOpacity,
   Picker,
   Platform,
-  ListView,
+  FlatList,
   RefreshControl,
 } from 'react-native';
 import IOSPicker from 'react-native-ios-picker';
@@ -43,15 +42,13 @@ export default class SchoolScreen extends Component {
       majors: [],
       currentProvince: '',
       currentMajor: '',
-      ds: new ListView.DataSource({ rowHasChanged: this._rowHasChanged })
     }
-  }
 
-  componentWillMount() {
-    this.props.screenProps.navigation.addListener('willFocus', (route) => {
+    props.screenProps.navigation.addListener('willFocus', (route) => {
       this.refreshState();
     });
-    this.props.screenProps.navigation.setParams({
+
+    props.screenProps.navigation.setParams({
       refresh: this.refreshState.bind(this),
       category: this.myCategory,
     });
@@ -81,9 +78,16 @@ export default class SchoolScreen extends Component {
 
   _getSchoolsSuccess(result) {
     const pagination = { ...result.pagination, loading: false }
-    const schools = pagination.page === 1 ? result.records : [ ...this.state.schools, ...result.records ]
 
-    this._update(pagination, schools)
+    let schools = result.records
+
+    if (pagination.page != 1) {
+      let arr = [ ...this.state.schools, ...result.records ];
+      let uniqCodes = [...new Set(arr.map(x => x.code))];
+      schools = uniqCodes.map(code => arr.find(school => school.code == code));
+    }
+
+    this._update(pagination, schools);
   }
 
   _getSchoolsFailure(error) {
@@ -107,10 +111,6 @@ export default class SchoolScreen extends Component {
       .catch(error => this._getSchoolsFailure(error))
   }
 
-  _rowHasChanged(r1, r2) {
-    return r1 !== r2
-  }
-
   _update(pagination, schools) {
     const loading = {
       type: 'Loading',
@@ -119,7 +119,6 @@ export default class SchoolScreen extends Component {
     this.setState({
       pagination: pagination,
       schools: schools,
-      ds: this.state.ds.cloneWithRows([ ...schools, loading ])
     })
   }
 
@@ -177,19 +176,16 @@ export default class SchoolScreen extends Component {
     }
   }
 
+  _keyExtractor = (item, index) => index.toString();
+
   _renderContent() {
     return (
-      <ListView
-        enableEmptySections={ true }
-        automaticallyAdjustContentInsets={ false }
-        dataSource={ this.state.ds }
-        renderRow={ row => this._renderRow(row) }
-        refreshControl={
-          <RefreshControl
-            refreshing={ false }
-            onRefresh={ () => this._onRefresh() }
-          />
-        }
+      <FlatList
+        data={ this.state.schools }
+        renderItem={ ({item}) => this._renderRow(item) }
+        refreshing={!!this.state.loading}
+        onRefresh={ () => this._onRefresh() }
+        keyExtractor={this._keyExtractor}
         onEndReached={ () => this._onEndReached() }
       />
     )
