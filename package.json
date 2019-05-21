@@ -29,6 +29,7 @@
     "react-native-elements": "^0.19.1",
     "react-native-global-props": "^1.1.5",
     "react-native-image-crop-picker": "^0.21.3",
+    "react-native-image-header-scroll-view": "^0.10.2",
     "react-native-ios-picker": "^1.0.0",
     "react-native-keyboard-aware-scroll-view": "^0.8.0",
     "react-native-linear-gradient": "^2.4.3",
