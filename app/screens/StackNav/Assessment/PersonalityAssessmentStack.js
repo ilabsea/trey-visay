@@ -35,6 +35,7 @@ const AssessmentStack = createStackNavigator(
       screen: PersonalityAssessment,
       navigationOptions: ({navigation}) => ({
         title: 'វាយតម្លៃមុខរបរនិងអាជីព',
+        header: null
       })
     },
     RealisticScreen: {

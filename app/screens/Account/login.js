@@ -90,7 +90,8 @@ export default class Login extends Component {
           index: 0,
           actions: [{
             type: 'Navigation/NAVIGATE',
-            routeName:'CareerCounsellorStack',
+            // routeName:'CareerCounsellorStack',
+            routeName:'PersonalityAssessmentStack',
           }]
         })
       }
