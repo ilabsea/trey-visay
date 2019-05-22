@@ -12,15 +12,14 @@ import {
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import FooterBar from '../../components/footer/FooterBar';
 import styles from '../../assets/style_sheets/profile_form';
+import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 import headerStyles from '../../assets/style_sheets/header';
 import CheckboxGroup from '../../components/checkbox_group';
 import personalities from '../../data/json/personality';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import { NavigationActions } from 'react-navigation';
-import { Container, Header, Content, ListItem, Thumbnail, Left, Body, Right, Icon, Card, CardItem, Title, Button } from 'native-base';
+import { Container, Header, Content, Left, Body, Right, Icon, Title, Button } from 'native-base';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
-import CloseButton from '../../components/shared/close_button';
-import NextButton from '../../components/NextButton';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -181,12 +180,12 @@ export default class PersonalityAssessmentRealistic extends Component {
 
   _renderNumberIcon(num) {
     let number = (this.state.index || 0) + 1;
-    let iconStyle = number == num ? {} : comStyles.inactiveIcon;
+    let iconStyle = number == num ? {} : scrollHeaderStyles.inactiveIcon;
 
     return (
-      <View style={comStyles.numberWrapper}>
-        <View style={[comStyles.numberIcon, iconStyle]}>
-          <Text style={comStyles.iconText}>{num}</Text>
+      <View style={scrollHeaderStyles.numberWrapper}>
+        <View style={[scrollHeaderStyles.numberIcon, iconStyle]}>
+          <Text style={scrollHeaderStyles.iconText}>{num}</Text>
         </View>
       </View>
     )
@@ -194,7 +193,7 @@ export default class PersonalityAssessmentRealistic extends Component {
 
   _renderLine() {
     return (
-      <View style={comStyles.line}></View>
+      <View style={scrollHeaderStyles.line}></View>
     )
   }
 
@@ -209,7 +208,7 @@ export default class PersonalityAssessmentRealistic extends Component {
           iosBarStyle='light-content'
           renderTouchableFixedForeground={() => {
             return (
-              <Header noShadow style={comStyles.header}>
+              <Header noShadow style={scrollHeaderStyles.header}>
                 <Left>
                   <Button transparent onPress={() => this._handleBack()}>
                     <Icon name='arrow-back' style={{color: '#fff'}} />
@@ -227,7 +226,7 @@ export default class PersonalityAssessmentRealistic extends Component {
             )
           }}
           renderForeground={() =>  (
-              <Header span style={comStyles.header}>
+              <Header span style={scrollHeaderStyles.header}>
                 <View style={{ width: '100%', position: 'absolute', bottom: 10, flexDirection: 'row', alignItems: 'center'}}>
                   { this._renderNumberIcon(1) }
                   { this._renderLine() }
@@ -244,10 +243,7 @@ export default class PersonalityAssessmentRealistic extends Component {
               </Header>
           )}>
 
-          <Content padder contentContainerStyle={{backgroundColor: '#f7f7f7'}}>
-            <TriggeringView onHide={() => this.setState({showMe: true})} onDisplay={() => this.setState({showMe: false})}>
-            </TriggeringView>
-
+          <Content padder contentContainerStyle={scrollHeaderStyles.grayBg}>
             <View style={{flexDirection: 'row'}}>
               <Text style={{flex: 1}}>សូមបំពេញក្នុងប្រអប់ខាងមុខឃ្លាទាំងឡាយណាដែល បរិយាយពីអត្តចរិករបស់អ្នក!</Text>
             </View>
@@ -276,35 +272,3 @@ export default class PersonalityAssessmentRealistic extends Component {
   }
 }
 
-const comStyles = StyleSheet.create({
-  numberWrapper: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  numberIcon: {
-    backgroundColor: '#fff',
-    width: 30, height: 30,
-    borderRadius: 15,
-    overflow: 'hidden',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  inactiveIcon: {
-    backgroundColor: 'rgb(13,82,150)'
-  },
-  iconText: {
-    fontSize: 20,
-    color: 'rgb(24,118,211)'
-  },
-  header: {
-    backgroundColor: 'rgb(24,118,211)',
-    borderBottomWidth: 0
-  },
-  line: {
-    flex: 0.8,
-    height: 3,
-    backgroundColor: 'rgb(13,82,150)',
-    margin: 5
-  }
-});

@@ -9,7 +9,7 @@ import {
 // import Button from '../../components/shared/button';
 import StatusBar from '../../components/shared/status_bar';
 import formStyles from '../../assets/style_sheets/login_form';
-// import styles from '../../assets/style_sheets/assessment';
+import styles from '../../assets/style_sheets/assessment';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -18,19 +18,10 @@ import { longDateFormat } from '../../utils/date';
 import { Container, Header, Content, ListItem, Thumbnail, Text, Left, Body, Right, Icon, Card, CardItem, Title, Button } from 'native-base';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 
+import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
+
 // import Icon from 'react-native-vector-icons/MaterialIcons';
-import ReactNativeParallaxHeader from 'react-native-parallax-header';
-
-
-const SCREEN_HEIGHT = 1000
-const IS_IPHONE_X = SCREEN_HEIGHT === 812 || SCREEN_HEIGHT === 896;
-const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 44 : 20) : 0;
-const HEADER_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 88 : 64) : 64;
-const NAV_BAR_HEIGHT = HEADER_HEIGHT - STATUS_BAR_HEIGHT;
-
-const images = {
-  background: require('../../assets/images/list.png'), // Put your own image here
-};
+import ReactNativeParallaxHeader, {HEADER_HEIGHT} from 'react-native-parallax-header';
 
 export default class PersonalityAssessment extends Component {
   constructor(props) {
@@ -199,7 +190,7 @@ export default class PersonalityAssessment extends Component {
                   </Button>
                 </Left>
 
-                { this.state.showMe &&
+                { this.state.showTitle &&
                   <Body>
                     <Title>Header</Title>
                   </Body>
@@ -220,7 +211,7 @@ export default class PersonalityAssessment extends Component {
           >
           <StatusBar />
           <Content>
-            <TriggeringView onHide={() => this.setState({showMe: true})} onDisplay={() => this.setState({showMe: false})}>
+            <TriggeringView onHide={() => this.setState({showTitle: true})} onDisplay={() => this.setState({showTitle: false})}>
             </TriggeringView>
             { this._renderInstruction() }
             { this._renderHistory() }
@@ -249,27 +240,26 @@ export default class PersonalityAssessment extends Component {
     return (
       <Content>
         { this._renderInstruction() }
-        { this._renderInstruction() }
       </Content>
     )
   }
 
   render() {
     // return (
-    //   <View style={styles.container}>
+    //   <View style={scrollHeaderStyles.container}>
     //     <ReactNativeParallaxHeader
     //       headerMinHeight={HEADER_HEIGHT}
     //       headerMaxHeight={150}
     //       extraScrollHeight={20}
     //       navbarColor="#3498db"
     //       title="Parallax Header"
-    //       titleStyle={styles.titleStyle}
+    //       titleStyle={scrollHeaderStyles.titleStyle}
     //       backgroundImageScale={1.2}
     //       renderNavBar={this.renderNavBar}
     //       renderContent={this.renderContent}
-    //       containerStyle={styles.container}
-    //       contentContainerStyle={styles.contentContainer}
-    //       innerContainerStyle={styles.container}
+    //       containerStyle={scrollHeaderStyles.container}
+    //       contentContainerStyle={scrollHeaderStyles.contentContainer}
+    //       innerContainerStyle={scrollHeaderStyles.container}
     //       scrollViewProps={{
     //         onScrollBeginDrag: () => console.log('onScrollBeginDrag'),
     //         onScrollEndDrag: () => console.log('onScrollEndDrag'),
@@ -293,32 +283,3 @@ export default class PersonalityAssessment extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  contentContainer: {
-    flexGrow: 1,
-  },
-  navContainer: {
-    height: HEADER_HEIGHT,
-    marginHorizontal: 10,
-  },
-  statusBar: {
-    height: STATUS_BAR_HEIGHT,
-    backgroundColor: 'transparent',
-  },
-  navBar: {
-    height: NAV_BAR_HEIGHT,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: 'transparent',
-  },
-  titleStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 18,
-  },
-});

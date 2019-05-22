@@ -97,7 +97,8 @@ const AssessmentStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         title: 'បង្ហាញលទ្ធផល',
         headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation} text='រួចរាល់' icon='done'/>
+        headerRight: <NextButton navigation={navigation} text='រួចរាល់' icon='done'/>,
+        header: null
       })
     },
     AssessmentResultHistoryScreen: {
