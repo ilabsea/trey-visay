@@ -4,13 +4,11 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  Button,
+  // Button,
   Platform,
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
-
-import { Container, Content } from 'native-base';
 
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import FooterBar from '../../components/footer/FooterBar';
@@ -20,9 +18,14 @@ import CheckboxGroup from '../../components/checkbox_group';
 import personalities from '../../data/json/personality';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import { NavigationActions } from 'react-navigation';
+import { Container, Header, Content, ListItem, Thumbnail, Left, Body, Right, Icon, Card, CardItem, Title, Button } from 'native-base';
+import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
+import CloseButton from '../../components/shared/close_button';
+import NextButton from '../../components/NextButton';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
+import te from '../../data/translates/km';
 
 export default class PersonalityAssessmentRealistic extends Component {
   // static navigationOptions = ({ navigation }) => {
@@ -62,7 +65,8 @@ export default class PersonalityAssessmentRealistic extends Component {
     this.state = {
       personalities: personalities.filter(item => item.category == this.screen.category),
       data: data,
-      assessment: assessment
+      assessment: assessment,
+      index: index
     }
 
     this._backHandler();
@@ -176,19 +180,90 @@ export default class PersonalityAssessmentRealistic extends Component {
     });
   }
 
-  render() {
+  _renderNumberIcon(num) {
+    let number = (this.state.index || 0) + 1;
+    let iconStyle = number == num ? {} : comStyles.inactiveIcon;
+
+    return (
+      <View style={comStyles.numberWrapper}>
+        <View style={[comStyles.numberIcon, iconStyle]}>
+          <Text style={comStyles.iconText}>{num}</Text>
+        </View>
+      </View>
+    )
+  }
+
+  _renderLine() {
+    return (
+      <View style={comStyles.line}></View>
+    )
+  }
+
+  _renderHeader() {
     return(
-      <View style={{flex: 1}}>
-        <Container>
+      <Container style={{flex: 1}}>
+        <HeaderImageScrollView
+          minHeight={64}
+          maxOverlayOpacity={0}
+          disableHeaderGrow='true'
+          androidStatusBarColor='rgb(24,118,211)'
+          iosBarStyle='light-content'
+          renderTouchableFixedForeground={() => {
+            return (
+              <Header noShadow style={comStyles.header}>
+                <Left>
+                  <Button transparent onPress={() => this._handleBack()}>
+                    <Icon name='arrow-back' style={{color: '#fff'}} />
+                  </Button>
+                </Left>
+
+                <Body>
+                  <Title style={{color: '#fff'}}>តេស្ត{te[this.screen.category]}</Title>
+                </Body>
+
+                <Right>
+                  <Text style={{color: '#fff'}}>{this.state.data.length} / 18</Text>
+                </Right>
+              </Header>
+            )
+          }}
+          renderForeground={() =>  (
+              <Header span style={comStyles.header}>
+                <View style={{ width: '100%', position: 'absolute', bottom: 10, flexDirection: 'row', alignItems: 'center'}}>
+                  { this._renderNumberIcon(1) }
+                  { this._renderLine() }
+                  { this._renderNumberIcon(2) }
+                  { this._renderLine() }
+                  { this._renderNumberIcon(3) }
+                  { this._renderLine() }
+                  { this._renderNumberIcon(4) }
+                  { this._renderLine() }
+                  { this._renderNumberIcon(5) }
+                  { this._renderLine() }
+                  { this._renderNumberIcon(6) }
+                </View>
+              </Header>
+          )}>
+
           <Content padder>
+            <TriggeringView onHide={() => this.setState({showMe: true})} onDisplay={() => this.setState({showMe: false})}>
+            </TriggeringView>
+
             <View style={{flexDirection: 'row'}}>
-              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
               <Text style={{flex: 1}}>សូមបំពេញក្នុងប្រអប់ខាងមុខឃ្លាទាំងឡាយណាដែល បរិយាយពីអត្តចរិករបស់អ្នក!</Text>
             </View>
 
             { this._renderCheckBoxes() }
           </Content>
-        </Container>
+        </HeaderImageScrollView>
+      </Container>
+    )
+  }
+
+  render() {
+    return(
+      <View style={{flex: 1}}>
+        { this._renderHeader() }
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -196,7 +271,41 @@ export default class PersonalityAssessmentRealistic extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext} />
       </View>
     )
   }
 }
+
+const comStyles = StyleSheet.create({
+  numberWrapper: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  numberIcon: {
+    backgroundColor: '#fff',
+    width: 30, height: 30,
+    borderRadius: 15,
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  inactiveIcon: {
+    backgroundColor: 'rgb(13,82,150)'
+  },
+  iconText: {
+    fontSize: 20,
+    color: 'rgb(24,118,211)'
+  },
+  header: {
+    backgroundColor: 'rgb(24,118,211)',
+    borderBottomWidth: 0
+  },
+  line: {
+    flex: 1,
+    height: 3,
+    backgroundColor: 'rgb(13,82,150)',
+    margin: 5
+  }
+});

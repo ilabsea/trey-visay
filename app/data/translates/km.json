@@ -4,5 +4,11 @@
   "duty": "តួនាទីភារកិច្ច",
   "working_environment": "បរិយាកាសការងារ",
   "training_level": "កម្រិតអប់រំបណ្ដុះបណ្ដាល",
-  "salary": "ប្រាក់បៀវត្សទទួលបាន"
+  "salary": "ប្រាក់បៀវត្សទទួលបាន",
+  "realistic": "ប្រាកដនិយម",
+  "investigative": "ពូកែអង្កេត",
+  "artistic": "សិល្បៈនិយម",
+  "social": "សង្គម",
+  "enterprising": "ត្រិះរិះពិចារណា",
+  "conventional": "សណ្ដាប់ធ្នាប់"
 }

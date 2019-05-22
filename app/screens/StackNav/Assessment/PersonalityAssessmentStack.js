@@ -43,7 +43,8 @@ const AssessmentStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តប្រាកដនិយម',
         headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>
+        headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     InvestigativeScreen: {
@@ -51,7 +52,8 @@ const AssessmentStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តពូកែអង្កេត',
         headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>
+        headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     ArtisticScreen: {
@@ -59,7 +61,8 @@ const AssessmentStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសិល្បៈនិយម',
         headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>
+        headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     SocialScreen: {
@@ -67,7 +70,8 @@ const AssessmentStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសង្គម',
         headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>
+        headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     EnterprisingScreen: {
@@ -75,7 +79,8 @@ const AssessmentStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តត្រិះរិះពិចារណា',
         headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>
+        headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     ConventionalScreen: {
@@ -83,7 +88,8 @@ const AssessmentStack = createStackNavigator(
       navigationOptions: ({navigation}) => ({
         title: 'អនុវត្តតេស្តសណ្ដាប់ធ្នាប់',
         headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>
+        headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     AssessmentResultScreen: {

@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import {
   View,
-  TouchableOpacity
+  TouchableOpacity,
+  StyleSheet,
+  Platform
 } from 'react-native';
 
 // import Button from '../../components/shared/button';
 import StatusBar from '../../components/shared/status_bar';
 import formStyles from '../../assets/style_sheets/login_form';
-import styles from '../../assets/style_sheets/assessment';
+// import styles from '../../assets/style_sheets/assessment';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -15,6 +17,20 @@ import uuidv4 from '../../utils/uuidv4';
 import { longDateFormat } from '../../utils/date';
 import { Container, Header, Content, ListItem, Thumbnail, Text, Left, Body, Right, Icon, Card, CardItem, Title, Button } from 'native-base';
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
+
+// import Icon from 'react-native-vector-icons/MaterialIcons';
+import ReactNativeParallaxHeader from 'react-native-parallax-header';
+
+
+const SCREEN_HEIGHT = 1000
+const IS_IPHONE_X = SCREEN_HEIGHT === 812 || SCREEN_HEIGHT === 896;
+const STATUS_BAR_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 44 : 20) : 0;
+const HEADER_HEIGHT = Platform.OS === 'ios' ? (IS_IPHONE_X ? 88 : 64) : 64;
+const NAV_BAR_HEIGHT = HEADER_HEIGHT - STATUS_BAR_HEIGHT;
+
+const images = {
+  background: require('../../assets/images/list.png'), // Put your own image here
+};
 
 export default class PersonalityAssessment extends Component {
   constructor(props) {
@@ -167,25 +183,19 @@ export default class PersonalityAssessment extends Component {
     );
   }
 
-  _renderContent() {
+  _renderHeader() {
     return(
       <Container style={{flex: 1}}>
         <HeaderImageScrollView
           minHeight={64}
           maxOverlayOpacity={0}
           disableHeaderGrow='true'
-          headerContainerStyle={{
-            borderBottomColor: '#ccc',
-            borderBottomWidth: 1,
-            backgroundColor: 'rgba(248,248,248,0.82)'
-          }}
-
-          renderFixedForeground={() => {
+          renderTouchableFixedForeground={() => {
             return (
-              <Header transparent>
+              <Header noShadow style={{borderBottomWidth: 0}}>
                 <Left>
-                  <Button transparent>
-                    <Text>ត្រលប់ក្រោយ</Text>
+                  <Button transparent onPress={() => this.props.navigation.goBack(null)}>
+                    <Icon name='arrow-back' />
                   </Button>
                 </Left>
 
@@ -200,7 +210,7 @@ export default class PersonalityAssessment extends Component {
           }}
 
           renderForeground={() => (
-            <Header transparent span>
+            <Header span>
               <Body>
                 <Title>Header</Title>
               </Body>
@@ -221,9 +231,94 @@ export default class PersonalityAssessment extends Component {
     )
   }
 
-  render() {
-    return(
-      this._renderContent()
+  renderNavBar = () => (
+    <View style={styles.navContainer}>
+      <View style={styles.statusBar} />
+      <View style={styles.navBar}>
+        <TouchableOpacity style={styles.iconLeft} onPress={() => {}}>
+          <Icon name="add" size={25} color="#fff" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconRight} onPress={() => {}}>
+          <Icon name="search" size={25} color="#fff" />
+        </TouchableOpacity>
+      </View>
+    </View>
+  )
+
+  renderContent = () => {
+    return (
+      <Content>
+        { this._renderInstruction() }
+        { this._renderInstruction() }
+      </Content>
     )
   }
+
+  render() {
+    // return (
+    //   <View style={styles.container}>
+    //     <ReactNativeParallaxHeader
+    //       headerMinHeight={HEADER_HEIGHT}
+    //       headerMaxHeight={150}
+    //       extraScrollHeight={20}
+    //       navbarColor="#3498db"
+    //       title="Parallax Header"
+    //       titleStyle={styles.titleStyle}
+    //       backgroundImageScale={1.2}
+    //       renderNavBar={this.renderNavBar}
+    //       renderContent={this.renderContent}
+    //       containerStyle={styles.container}
+    //       contentContainerStyle={styles.contentContainer}
+    //       innerContainerStyle={styles.container}
+    //       scrollViewProps={{
+    //         onScrollBeginDrag: () => console.log('onScrollBeginDrag'),
+    //         onScrollEndDrag: () => console.log('onScrollEndDrag'),
+    //       }}
+    //     />
+    //   </View>
+    // );
+
+    return(
+      this._renderHeader()
+    )
+
+    return (
+      <Container style={{flex: 1}}>
+        <StatusBar />
+        <Content>
+          { this._renderInstruction() }
+          { this._renderHistory() }
+        </Content>
+      </Container>
+    );
+  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+  contentContainer: {
+    flexGrow: 1,
+  },
+  navContainer: {
+    height: HEADER_HEIGHT,
+    marginHorizontal: 10,
+  },
+  statusBar: {
+    height: STATUS_BAR_HEIGHT,
+    backgroundColor: 'transparent',
+  },
+  navBar: {
+    height: NAV_BAR_HEIGHT,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+  },
+  titleStyle: {
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+});
