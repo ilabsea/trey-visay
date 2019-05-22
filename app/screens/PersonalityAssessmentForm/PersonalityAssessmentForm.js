@@ -4,7 +4,6 @@ import {
   Text,
   StyleSheet,
   ScrollView,
-  // Button,
   Platform,
   TouchableOpacity,
   BackHandler,
@@ -245,7 +244,7 @@ export default class PersonalityAssessmentRealistic extends Component {
               </Header>
           )}>
 
-          <Content padder>
+          <Content padder contentContainerStyle={{backgroundColor: '#f7f7f7'}}>
             <TriggeringView onHide={() => this.setState({showMe: true})} onDisplay={() => this.setState({showMe: false})}>
             </TriggeringView>
 
@@ -303,7 +302,7 @@ const comStyles = StyleSheet.create({
     borderBottomWidth: 0
   },
   line: {
-    flex: 1,
+    flex: 0.8,
     height: 3,
     backgroundColor: 'rgb(13,82,150)',
     margin: 5
