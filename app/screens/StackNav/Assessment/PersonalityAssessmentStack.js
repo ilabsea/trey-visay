@@ -119,6 +119,7 @@ const AssessmentStack = createStackNavigator(
       screen: PersonalityAssessmentHighSchoolStudyOption,
       navigationOptions: ({navigation}) => ({
         title: `ជម្រើសនៃការសិក្សាកម្រិតមធ្យមសិក្សាទុតិយភូមិ`,
+        header: null
       })
     },
     MajorListScreen: {
@@ -149,6 +150,7 @@ const AssessmentStack = createStackNavigator(
       screen: PersonalityAssessmentSubjectTip,
       navigationOptions: ({navigation}) => ({
         title: `គន្លឹះពង្រឹងមុខវិជ្ជា${navigation.getParam('title')}`,
+        header: null
       })
     },
   },

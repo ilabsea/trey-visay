@@ -174,7 +174,7 @@ class ScrollableHeader extends Component {
 
     return (
       <View style={{position: 'absolute', left: 56, right: 5, bottom: 4}}>
-        <Text style={{fontSize: 20, color: '#fff'}} numberOfLines={1}>{this.props.title}</Text>
+        <Text style={{fontSize: 18, color: '#fff'}} numberOfLines={1}>{this.props.title}</Text>
       </View>
     )
   }
@@ -207,7 +207,7 @@ class ScrollableHeader extends Component {
         ]}
       >
         <View style={{position: 'absolute', left: 20, right: 0, bottom: 10}}>
-          <Text style={{fontSize: 28, color: '#fff', lineHeight: 50}}>{this.props.largeTitle}</Text>
+          <Text style={[{fontSize: 28, color: '#fff', lineHeight: 50}]}>{this.props.largeTitle}</Text>
         </View>
       </Animated.View>
     )

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import {
-  View,
   StyleSheet,
   Text
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import realm from '../../db/schema';
-import User from '../../utils/user';
+
 import characteristicList from '../../data/json/characteristic_jobs';
 import subjectTe from '../../data/translates/subject';
 import translate from '../../data/translates/km';
@@ -15,6 +13,8 @@ import personalityCatgoryList from '../../data/json/personality_category';
 import personalityList from '../../data/json/personality';
 
 import { Container, Content, ListItem, Left, Body, Icon, Right, Card, CardItem } from 'native-base';
+import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
 
 export default class PersonalityAssessmentHighSchoolStudyOption extends Component {
   constructor(props) {
@@ -111,9 +111,9 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
     );
   }
 
-  _renderContent() {
+  _renderContent = () => {
     return (
-      <View>
+      <Content padder>
         <Card>
           <CardItem>
             <Body>
@@ -124,18 +124,23 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
 
         { this._renderSubject() }
         { this._renderCharacteristic() }
-      </View>
+      </Content>
     )
   }
 
   render() {
-    return(
+    let title = 'ជម្រើសនៃការសិក្សាកម្រិតមធ្យមសិក្សាទុតិយភូមិ';
+
+    return (
       <Container>
-        <Content padder>
-          { this._renderContent() }
-        </Content>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+          title={title}
+          renderForeground={() => <Text style={{color: '#fff', fontSize: 18}}>{title}</Text>}
+        />
       </Container>
-    );
+    )
   };
 }
 

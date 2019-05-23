@@ -192,8 +192,8 @@ export default class PersonalityAssessment extends Component {
   render() {
     return (
       <ScrollableHeader
-        renderContent={ this._renderContent.bind(this) }
-        renderNavigation={ this._renderNavigation.bind(this) }
+        renderContent={ this._renderContent }
+        renderNavigation={ this._renderNavigation }
         title={'ចំណងជើង'}
         largeTitle={'ចំណងជើង'}
       />
