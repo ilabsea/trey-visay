@@ -12,7 +12,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 
-const DEFAULT_HEADER_MAX_HEIGHT = 160;
+const DEFAULT_HEADER_MAX_HEIGHT = 140;
 const DEFAULT_HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 64 : 74;
 const DEFAULT_HEADER_SCROLL_DISTANCE = DEFAULT_HEADER_MAX_HEIGHT - DEFAULT_HEADER_MIN_HEIGHT;
 const DEFAULT_HEADER_COLOR = '#1976d2';
@@ -79,7 +79,7 @@ class ScrollableHeader extends Component {
 
   getHeaderMaxHeight() {
     const { headerMaxHeight } = this.props;
-    return headerMaxHeight;
+    return headerMaxHeight || DEFAULT_HEADER_MAX_HEIGHT;
   }
 
   getHeaderScrollDistance() {

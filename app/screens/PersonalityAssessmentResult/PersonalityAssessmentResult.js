@@ -228,7 +228,6 @@ class PersonalityAssessmentResult extends Component {
         <ScrollableHeader
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
-          headerMaxHeight={160}
           largeTitle={'លទ្ធផលតេស្ត'}
           title={'លទ្ធផលតេស្ត'}
         />

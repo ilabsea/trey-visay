@@ -196,7 +196,6 @@ export default class PersonalityAssessment extends Component {
         renderNavigation={ this._renderNavigation.bind(this) }
         title={'ចំណងជើង'}
         largeTitle={'ចំណងជើង'}
-        headerMaxHeight={160}
       />
     )
   }

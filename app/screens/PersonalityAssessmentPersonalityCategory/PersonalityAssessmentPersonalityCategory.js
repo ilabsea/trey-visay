@@ -6,6 +6,8 @@ import { View, Text } from 'react-native';
 import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
 import styles from '../../assets/style_sheets/list';
 import majorList from '../../data/json/personality_major';
+import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
 
 export default class PersonalityAssessmentPersonalityCategory extends Component {
   constructor(props) {
@@ -103,15 +105,34 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
     );
   }
 
-  render() {
+  _renderNavigation = () => {
     return (
-      <Container>
-        <Content>
-          { this._renderList() }
-          { this._renderDescription() }
-          { this._renderButtonList() }
-        </Content>
+      <BackButton navigation={this.props.navigation}/>
+    )
+  }
+
+  _renderContent = () => {
+    return (
+      <Content>
+        { this._renderList() }
+        { this._renderDescription() }
+        { this._renderButtonList() }
+      </Content>
+    )
+  }
+
+  render() {
+    let title = `លទ្ធផលតេស្តបែប${this.props.navigation.getParam('title')}`
+
+    return (
+      <Container style={{flex: 1}}>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+          largeTitle={title}
+          title={title}
+        />
       </Container>
-    );
+    )
   }
 }

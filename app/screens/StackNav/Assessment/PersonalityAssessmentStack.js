@@ -112,6 +112,7 @@ const AssessmentStack = createStackNavigator(
       screen: PersonalityAssessmentPersonalityCategory,
       navigationOptions: ({navigation}) => ({
         title: `លទ្ធផលតេស្តបែប${navigation.getParam('title')}`,
+        header: null
       })
     },
     HighSchoolStudyOptionScreen: {
