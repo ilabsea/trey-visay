@@ -205,7 +205,7 @@ export default class PersonalityAssessmentRealistic extends Component {
           <Icon name='arrow-back' style={{color: '#fff'}} />
         </Button>
 
-        <Title style={{color: '#fff', flex: 1}}>តេស្ត{te[this.screen.category]}</Title>
+        <Text style={{color: '#fff', fontSize: 20, flex: 1}}>តេស្ត{te[this.screen.category]}</Text>
         <Text style={{color: '#fff', marginRight: 20}}>{this.state.data.length} / 18</Text>
       </View>
     )

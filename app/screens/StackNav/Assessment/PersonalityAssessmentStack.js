@@ -105,6 +105,7 @@ const AssessmentStack = createStackNavigator(
       screen: PersonalityAssessmentResultHistory,
       navigationOptions: ({navigation}) => ({
         title: 'លទ្ធផលតេស្ត',
+        header: null
       })
     },
     PersonalityCategoryScreen: {

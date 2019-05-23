@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   processColor,
+  Text
 } from 'react-native';
 
 import { HorizontalBarChart } from 'react-native-charts-wrapper';
@@ -10,7 +11,10 @@ import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
 import categoryList from '../../data/json/personality_category';
 
-import { Container, Content, ListItem, Text, Left, Body, Right, Button, Icon, Badge } from 'native-base';
+import { Container, Content, ListItem, Left, Body, Right, Button, Icon, Badge } from 'native-base';
+import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
+import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 
 export default class PersonalityAssessmentHistory extends Component {
   constructor(props) {
@@ -135,22 +139,40 @@ export default class PersonalityAssessmentHistory extends Component {
     );
   }
 
+  _renderContent = () => {
+    return (
+      <Content>
+        <Content padder>
+          <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
+        </Content>
+
+        <ListItem itemDivider>
+          <Text>ជម្រើសរបស់អ្នក</Text>
+        </ListItem>
+
+        { this._renderChart() }
+        { this._renderPersonalityGroups() }
+      </Content>
+    )
+  }
+
+  _renderNavigation = () => {
+    return (
+      <BackButton navigation={this.props.navigation}/>
+    )
+  }
+
   render () {
     return (
-        <Container>
-          <Content>
-            <Content padder>
-              <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
-            </Content>
-
-            <ListItem itemDivider>
-              <Text>លទ្ធផលរបស់អ្នក</Text>
-            </ListItem>
-
-            { this._renderChart() }
-            { this._renderPersonalityGroups() }
-          </Content>
-        </Container>
-    );
+      <Container>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ this._renderNavigation }
+          headerMaxHeight={160}
+          largeTitle={'លទ្ធផលតេស្ត'}
+          title={'លទ្ធផលតេស្ត'}
+        />
+      </Container>
+    )
   }
 }
