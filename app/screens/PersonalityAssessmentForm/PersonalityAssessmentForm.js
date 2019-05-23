@@ -19,25 +19,14 @@ import personalities from '../../data/json/personality';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import { NavigationActions } from 'react-navigation';
 import { Container, Header, Content, Left, Body, Right, Icon, Title, Button } from 'native-base';
-import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
+
+import ScrollableHeader from '../../components/scrollable_header';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
 import te from '../../data/translates/km';
 
 export default class PersonalityAssessmentRealistic extends Component {
-  // static navigationOptions = ({ navigation }) => {
-  //   const { state } = navigation;
-
-  //   return {
-  //     title: state.params && state.params.title,
-  //     headerTitleStyle: [headerStyles.headerTitleStyle],
-  //     headerRight: (<TouchableOpacity style={headerStyles.actionWrapper}>
-  //                     <Text style={headerStyles.saveText}><Text>{state.params && state.params.total || 0} </Text> / 18</Text>
-  //                   </TouchableOpacity>)
-  //   }
-  // };
-
   screens = [
     { category: 'realistic', nextCategory: 'investigative', nextScreen: 'InvestigativeScreen' },
     { category: 'investigative', nextCategory: 'artistic', nextScreen: 'ArtisticScreen' },
@@ -183,7 +172,7 @@ export default class PersonalityAssessmentRealistic extends Component {
     let iconStyle = number == num ? {} : scrollHeaderStyles.inactiveIcon;
 
     return (
-      <View style={scrollHeaderStyles.numberWrapper}>
+      <View style={scrollHeaderStyles.numberWrapper} key={num}>
         <View style={[scrollHeaderStyles.numberIcon, iconStyle]}>
           <Text style={scrollHeaderStyles.iconText}>{num}</Text>
         </View>
@@ -191,74 +180,66 @@ export default class PersonalityAssessmentRealistic extends Component {
     )
   }
 
-  _renderLine() {
+  _renderLine(key) {
     return (
-      <View style={scrollHeaderStyles.line}></View>
+      <View style={scrollHeaderStyles.line} key={key}></View>
     )
   }
 
-  _renderHeader() {
-    return(
-      <Container style={{flex: 1}}>
-        <HeaderImageScrollView
-          minHeight={64}
-          maxOverlayOpacity={0}
-          disableHeaderGrow='true'
-          androidStatusBarColor='rgb(24,118,211)'
-          iosBarStyle='light-content'
-          renderTouchableFixedForeground={() => {
-            return (
-              <Header noShadow style={scrollHeaderStyles.header}>
-                <Left>
-                  <Button transparent onPress={() => this._handleBack()}>
-                    <Icon name='arrow-back' style={{color: '#fff'}} />
-                  </Button>
-                </Left>
+  _renderContent = () => {
+    return (
+      <Content padder>
+        <View style={{flexDirection: 'row'}}>
+          <Text style={{flex: 1}}>សូមបំពេញក្នុងប្រអប់ខាងមុខឃ្លាទាំងឡាយណាដែល បរិយាយពីអត្តចរិករបស់អ្នក!</Text>
+        </View>
 
-                <Body>
-                  <Title style={{color: '#fff'}}>តេស្ត{te[this.screen.category]}</Title>
-                </Body>
+        { this._renderCheckBoxes() }
+      </Content>
+    )
+  }
 
-                <Right>
-                  <Text style={{color: '#fff'}}>{this.state.data.length} / 18</Text>
-                </Right>
-              </Header>
-            )
-          }}
-          renderForeground={() =>  (
-              <Header span style={scrollHeaderStyles.header}>
-                <View style={{ width: '100%', position: 'absolute', bottom: 10, flexDirection: 'row', alignItems: 'center'}}>
-                  { this._renderNumberIcon(1) }
-                  { this._renderLine() }
-                  { this._renderNumberIcon(2) }
-                  { this._renderLine() }
-                  { this._renderNumberIcon(3) }
-                  { this._renderLine() }
-                  { this._renderNumberIcon(4) }
-                  { this._renderLine() }
-                  { this._renderNumberIcon(5) }
-                  { this._renderLine() }
-                  { this._renderNumberIcon(6) }
-                </View>
-              </Header>
-          )}>
+  _renderNavigation = () => {
+    return (
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <Button transparent onPress={() => this._handleBack()}>
+          <Icon name='arrow-back' style={{color: '#fff'}} />
+        </Button>
 
-          <Content padder contentContainerStyle={scrollHeaderStyles.grayBg}>
-            <View style={{flexDirection: 'row'}}>
-              <Text style={{flex: 1}}>សូមបំពេញក្នុងប្រអប់ខាងមុខឃ្លាទាំងឡាយណាដែល បរិយាយពីអត្តចរិករបស់អ្នក!</Text>
-            </View>
+        <Title style={{color: '#fff', flex: 1}}>តេស្ត{te[this.screen.category]}</Title>
+        <Text style={{color: '#fff', marginRight: 20}}>{this.state.data.length} / 18</Text>
+      </View>
+    )
+  }
 
-            { this._renderCheckBoxes() }
-          </Content>
-        </HeaderImageScrollView>
-      </Container>
+  _renderForeground = () => {
+    let arr = [1, 2, 3, 4, 5, 6];
+    let doms = [];
+
+    for(let i=0; i<arr.length; i++) {
+      doms.push(this._renderNumberIcon(i+1))
+
+      if (i != arr.length-1) {
+        let key = arr.length + i
+        doms.push(this._renderLine(key))
+      }
+    }
+
+    return (
+      <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center'}}>
+        { doms }
+      </View>
     )
   }
 
   render() {
-    return(
+    return (
       <View style={{flex: 1}}>
-        { this._renderHeader() }
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ this._renderNavigation }
+          headerMaxHeight={160}
+          renderForeground={this._renderForeground }
+        />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -271,4 +252,3 @@ export default class PersonalityAssessmentRealistic extends Component {
     )
   }
 }
-

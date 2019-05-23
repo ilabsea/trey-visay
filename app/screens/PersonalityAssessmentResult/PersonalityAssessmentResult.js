@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 
 import { Container, Header, Content, ListItem, Left, Body, Right, Button, Icon, Title} from 'native-base';
-import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view';
 
 import FooterBar from '../../components/footer/FooterBar';
 import { NavigationActions } from 'react-navigation';
@@ -19,7 +18,7 @@ import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
 import categoryList from '../../data/json/personality_category';
 import Sidekiq from '../../utils/models/sidekiq';
-import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
+import ScrollableHeader from '../../components/scrollable_header';
 
 class PersonalityAssessmentResult extends Component {
   constructor(props) {
@@ -202,64 +201,37 @@ class PersonalityAssessmentResult extends Component {
     );
   }
 
-  _renderHeader() {
-    return(
-        <HeaderImageScrollView
-          minHeight={64}
-          maxOverlayOpacity={0}
-          disableHeaderGrow='true'
-          androidStatusBarColor='rgb(24,118,211)'
-          iosBarStyle='light-content'
-          renderTouchableFixedForeground={() => {
-            return (
-              <Header noShadow style={scrollHeaderStyles.header}>
-                <Left>
-                  <Button transparent onPress={() => this._handleBack()}>
-                    <Icon name='arrow-back' style={{color: '#fff'}} />
-                  </Button>
-                </Left>
+  _renderNavigation = () => {
+    return (
+      <Button transparent onPress={() => this._handleBack()}>
+        <Icon name='arrow-back' style={{color: '#fff'}} />
+      </Button>
+    )
+  }
 
-                { this.state.showTitle &&
-                  <View style={{justifyContent: 'center', alignItem: 'flex-end'}}>
-                    <Title style={{color: '#fff'}}>លទ្ធផលតេស្ត</Title>
-                  </View>
-                }
+  _renderContent = () => {
+    return (
+      <Content>
+        <ListItem itemDivider>
+          <Text>ជម្រើសរបស់អ្នក</Text>
+        </ListItem>
 
-                <Right>
-                  <Button transparent onPress={() => {}}>
-                    <Icon name='ios-information-circle' style={{color: '#fff'}} />
-                  </Button>
-                </Right>
-              </Header>
-            )
-          }}
-          renderForeground={() =>  (
-            <Header span style={scrollHeaderStyles.header}>
-              <View style={scrollHeaderStyles.bigTitleLocation}>
-                <Title style={{color: '#fff'}}>លទ្ធផលតេស្ត</Title>
-              </View>
-            </Header>
-          )}>
-
-          <Content>
-            <TriggeringView onHide={() => this.setState({showTitle: true})} onDisplay={() => this.setState({showTitle: false})}>
-            </TriggeringView>
-
-            <ListItem itemDivider>
-              <Text>ជម្រើសរបស់អ្នក</Text>
-            </ListItem>
-
-            { this._renderChart() }
-            { this._renderPersonalityGroups() }
-          </Content>
-        </HeaderImageScrollView>
+        { this._renderChart() }
+        { this._renderPersonalityGroups() }
+      </Content>
     )
   }
 
   render() {
-    return(
-      <View style={{flex: 1}}>
-        { this._renderHeader() }
+    return (
+      <Container style={{flex: 1}}>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ this._renderNavigation }
+          headerMaxHeight={160}
+          largeTitle={'លទ្ធផលតេស្ត'}
+          title={'លទ្ធផលតេស្ត'}
+        />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -268,33 +240,8 @@ class PersonalityAssessmentResult extends Component {
           onPressNo={() => this._onNo()}
         />
         <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext} />
-      </View>
+      </Container>
     )
-
-    // return(
-    //   <Container>
-    //     <Content>
-    //         <Content padder>
-    //           <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
-    //         </Content>
-
-    //         <ListItem itemDivider>
-    //           <Text>លទ្ធផលរបស់អ្នក</Text>
-    //         </ListItem>
-
-    //         { this._renderChart() }
-    //         { this._renderPersonalityGroups() }
-    //     </Content>
-
-    //     <BackConfirmDialog
-    //       visible={this.state.confirmDialogVisible}
-    //       onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-    //       onPressYes={() => this._onYes()}
-    //       onPressNo={() => this._onNo()}
-    //     />
-    //   </Container>
-    // );
-
   }
 }
 

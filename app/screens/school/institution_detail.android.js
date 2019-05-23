@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 
 // Components
-import ScrollableHeader from '../../components/scrollable_header';
+import ScrollableHeader from '../../components/scrollable_logo_header';
 import shareStyles from '../../assets/style_sheets/profile_form';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
