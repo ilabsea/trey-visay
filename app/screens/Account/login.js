@@ -125,7 +125,7 @@ export default class Login extends Component {
     return (
       <Form>
         <Item regular style={styles.textInput}>
-          <Icon active name='person' />
+          <Icon active name='md-person' />
           <Input
             onChangeText={(text) => this.setState({username: text})}
             returnKeyType='next'
@@ -137,7 +137,7 @@ export default class Login extends Component {
         </Item>
 
         <Item regular style={styles.textInput}>
-          <Icon name='key' />
+          <Icon name='md-key' />
           <Input
             secureTextEntry={true}
             returnKeyType='next'
@@ -152,7 +152,7 @@ export default class Login extends Component {
 
         { !this.state.isLogin &&
           <Item regular style={styles.textInput}>
-            <Icon name='key' />
+            <Icon name='md-key' />
             <Input
               secureTextEntry={true}
               returnKeyType='next'
