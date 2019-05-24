@@ -23,16 +23,16 @@ const FooterBar = (props) => {
 const styles = StyleSheet.create({
   button: {
     flexDirection: 'row',
-    backgroundColor: 'gray',
+    backgroundColor: '#1976d2',
     width: '90%',
     margin: 5,
     borderRadius: 10,
     justifyContent: 'center'
   },
   btnText: {
-    color: 'black',
+    color: '#fff',
     fontSize: 22,
-    marginTop: 7
+    marginTop: 7,
   },
 })
 
