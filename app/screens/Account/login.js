@@ -4,7 +4,7 @@ import {
   ScrollView,
   Alert,
   Image,
-  StyleSheet
+  StyleSheet,
 } from 'react-native';
 
 // Utils
@@ -17,6 +17,7 @@ import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import { Container, Content, Icon, Button, Input, Item, Form, Text } from 'native-base';
+import { NavigationActions } from 'react-navigation';
 
 export default class Login extends Component {
   static navigationOptions = {
@@ -130,6 +131,7 @@ export default class Login extends Component {
             returnKeyType='next'
             autoCorrect={false}
             value={this.state.username}
+            onSubmitEditing={() => this.passwordInput._root.focus()}
             placeholderTextColor='rgba(0,0,0,0.7)'
             placeholder='ឈ្មោះគណនី'/>
         </Item>
@@ -138,9 +140,11 @@ export default class Login extends Component {
           <Icon name='key' />
           <Input
             secureTextEntry={true}
+            returnKeyType='next'
             onChangeText={(text) => this.setState({password: text})}
             ref={(input) => this.passwordInput = input}
             value={this.state.password}
+            onSubmitEditing={() => this.passwordConfirmationInput._root.focus()}
             placeholderTextColor='rgba(0,0,0,0.7)'
             placeholder='លេខសម្ងាត់'/>
           <Icon name='eye' style={{color: 'gray'}} />
@@ -151,6 +155,7 @@ export default class Login extends Component {
             <Icon name='key' />
             <Input
               secureTextEntry={true}
+              returnKeyType='next'
               value={this.state.passwordConfirmation}
               onChangeText={(text) => this.setState({passwordConfirmation: text})}
               ref={(input) => this.passwordConfirmationInput = input}
@@ -183,33 +188,27 @@ export default class Login extends Component {
     }
 
     let user = realm.objects('User').filtered('username="' + this.state.username + '"')[0];
+
     if (!!user) {
       return Alert.alert(
         'គណនីមានរួចហើយ',
         "ឈ្មោះគណនីធ្លាប់មានរួចមកហើយ សូមប្តូរឈ្មោះគណនីម្តងទៀត។");
     }
+
     try {
       realm.write(() => {
-        let user = realm.create('User', this.buildData());
+        let user = realm.create('User', this._buildData());
 
         User.setLogin(user.uuid, ()=> {
-          this.props.navigation.dispatch({
-            type: 'Navigation/RESET',
-            index: 0,
-            actions: [{
-              type: 'Navigation/NAVIGATE',
-              routeName:'ProfileForm'
-            }]
-          })
+          this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileForm' })]);
         });
-
       });
     } catch (e) {
       alert(e);
     }
   }
 
-  buildData() {
+  _buildData() {
     return {
       uuid: uuidv4(),
       fullName: this.state.username,
@@ -228,26 +227,11 @@ export default class Login extends Component {
 
     User.setLogin(user.uuid, ()=>{
       if (!!user.dateOfBirth) {
-
-        return this.props.navigation.dispatch({
-          type: 'Navigation/RESET',
-          index: 0,
-          actions: [{
-            type: 'Navigation/NAVIGATE',
-            // routeName:'CareerCounsellorStack',
-            routeName:'PersonalityAssessmentStack',
-          }]
-        })
+        // return this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorStack' })]);
+        return this.props.navigation.reset([NavigationActions.navigate({ routeName: 'PersonalityAssessmentStack' })]);
       }
 
-      this.props.navigation.dispatch({
-        type: 'Navigation/RESET',
-        index: 0,
-        actions: [{
-          type: 'Navigation/NAVIGATE',
-          routeName:'ProfileForm'
-        }]
-      })
+      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileForm' })]);
     });
   }
 
