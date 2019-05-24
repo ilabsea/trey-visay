@@ -7,6 +7,9 @@ import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-ba
 import styles from '../../assets/style_sheets/list';
 import majorList from '../../data/json/personality_major';
 
+import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
+
 export default class PersonalityAssessmentMajorList extends Component {
   _onPressItem(major) {
     if (!major.basic_knowledge) { return; }
@@ -14,7 +17,7 @@ export default class PersonalityAssessmentMajorList extends Component {
     this.props.navigation.navigate('MajorDetailScreen', {title: major.name_km, major: major})
   }
 
-  _renderMajorList() {
+  _renderMajorList = () => {
     let category = this.props.navigation.getParam('category');
     let majors = majorList.filter(obj => category.majors.includes(obj.code));
     let arr = majors.filter(x => !!x.basic_knowledge);
@@ -38,21 +41,25 @@ export default class PersonalityAssessmentMajorList extends Component {
     });
 
     return (
-      <View>
+      <Content>
         <ListItem itemDivider><Text>ជំនាញសិក្សានៅសាកលវិទ្យាល័យ</Text></ListItem>
         <Text style={{paddingHorizontal: 16}}>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរជ្រើសយកការសិក្សាលើមុខជំនាញពាក់ព័ន្ធដូចជា៖</Text>
         { doms }
-      </View>
+      </Content>
     );
   }
 
   render() {
+    let title = 'ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា';
     return (
       <Container>
-        <Content>
-          { this._renderMajorList() }
-        </Content>
+        <ScrollableHeader
+          renderContent={ this._renderMajorList }
+          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+          title={title}
+          renderForeground={() => <Text style={{color: '#fff', fontSize: 20}}>{title}</Text>}
+        />
       </Container>
-    );
+    )
   }
 }

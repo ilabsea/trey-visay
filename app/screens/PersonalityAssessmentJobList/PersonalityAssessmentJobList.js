@@ -8,6 +8,9 @@ import styles from '../../assets/style_sheets/list';
 import majorList from '../../data/json/personality_major';
 import characteristicList from '../../data/json/characteristic_jobs';
 
+import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
+
 export default class PersonalityAssessmentJobList extends Component {
   _onPressListItem(job) {
     if(!job.short_description) { return; }
@@ -15,7 +18,7 @@ export default class PersonalityAssessmentJobList extends Component {
     this.props.navigation.navigate('PersonalityAssessmentJobDetailScreen', {title: job.name, job: job})
   }
 
-  _renderList() {
+  _renderList = () => {
     let category = this.props.navigation.getParam('category');
     let jobs = characteristicList.map((obj) => obj.careers);
     jobs = [].concat.apply([], jobs);
@@ -42,20 +45,24 @@ export default class PersonalityAssessmentJobList extends Component {
     });
 
     return (
-      <View>
+      <Content>
         <ListItem itemDivider><Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរចាប់យកអាជីពការងារជា៖</Text></ListItem>
         { doms }
-      </View>
+      </Content>
     );
   }
 
   render() {
+    let title = 'ជម្រើសអាជីពការងារសក្ដិសម';
     return (
       <Container>
-        <Content>
-          { this._renderList() }
-        </Content>
+        <ScrollableHeader
+          renderContent={ this._renderList }
+          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+          title={title}
+          largeTitle={title}
+        />
       </Container>
-    );
+    )
   }
 }

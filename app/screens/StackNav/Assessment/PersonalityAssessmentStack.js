@@ -126,24 +126,28 @@ const AssessmentStack = createStackNavigator(
       screen: PersonalityAssessmentMajorList,
       navigationOptions: ({navigation}) => ({
         title: `ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា`,
+        header: null
       })
     },
     MajorDetailScreen: {
       screen: PersonalityAssessmentMajorDetail,
       navigationOptions: ({navigation}) => ({
         title: `ការសិក្សាជំនាញ${navigation.getParam('title')}`,
+        header: null
       })
     },
     PersonalityAssessmentJobListScreen: {
       screen: PersonalityAssessmentJobList,
       navigationOptions: ({navigation}) => ({
         title: `ជម្រើសអាជីពការងារសក្ដិសម`,
+        header: null
       })
     },
     PersonalityAssessmentJobDetailScreen: {
       screen: PersonalityAssessmentJobDetail,
       navigationOptions: ({navigation}) => ({
         title: `ទំព័រលម្អិតពីអាជីព`,
+        header: null
       })
     },
     PersonalityAssessmentSubjectTipScreen: {

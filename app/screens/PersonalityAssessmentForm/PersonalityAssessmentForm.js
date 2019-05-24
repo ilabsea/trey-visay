@@ -219,7 +219,7 @@ export default class PersonalityAssessmentRealistic extends Component {
       doms.push(this._renderNumberIcon(i+1))
 
       if (i != arr.length-1) {
-        let key = arr.length + i
+        let key = arr.length + i + 1;
         doms.push(this._renderLine(key))
       }
     }

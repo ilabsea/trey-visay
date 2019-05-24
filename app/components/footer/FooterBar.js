@@ -12,7 +12,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 const FooterBar = (props) => {
   return(
-    <Footer>
+    <Footer style={{backgroundColor: '#fff'}}>
       <TouchableOpacity onPress={props.onPress} style={styles.button}>
         <Text style={styles.btnText}>{props.text}</Text>
       </TouchableOpacity>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'gray',
     width: '90%',
-    margin: 3,
+    margin: 5,
     borderRadius: 10,
     justifyContent: 'center'
   },
