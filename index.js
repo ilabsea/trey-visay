@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, AppRegistry } from 'react-native';
+import { Platform, AppRegistry} from 'react-native';
 
 import {
   setCustomView,
@@ -13,6 +13,10 @@ import BackgroundFetch from "react-native-background-fetch";
 
 import App from './app';
 import Task from './app/utils/task';
+
+import { Container, Content, Button, Text, StyleProvider } from 'native-base';
+import getTheme from './native-base-theme/components';
+import commonColor from './native-base-theme/variables/commonColor';
 
 const customTextProps = {
   style: {
@@ -53,7 +57,11 @@ setCustomTextInput(customTextInputProps);
 
 export default class TreyVisay extends Component {
   render() {
-    return(<App/>)
+    return(
+      <StyleProvider style={getTheme(commonColor)}>
+        <App/>
+      </StyleProvider>
+    )
   }
 }
 

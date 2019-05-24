@@ -30,53 +30,15 @@ export default StyleSheet.create({
     fontSize: 20,
     color: 'rgb(24,118,211)'
   },
-  header: {
-    backgroundColor: 'rgb(24,118,211)',
-    borderBottomWidth: 0
-  },
-  flatHeader: {
-    borderBottomWidth: 0
-  },
   line: {
     flex: 0.8,
     height: 3,
     backgroundColor: 'rgb(13,82,150)',
     margin: 5
   },
-  bigTitleLocation: {
-    width: '100%', position: 'absolute', bottom: 10, flexDirection: 'row', alignItems: 'center'
-  },
-  // <Content contentContainerStyle={scrollHeaderStyles.grayBg}>
-  grayBg: {
-    // backgroundColor: '#f7f7f7'
-    backgroundColor: 'rgb(239,240,244)'
-  },
-
-  // parallax view
-  container: {
-    flex: 1,
-  },
-  contentContainer: {
-    flexGrow: 1,
-  },
-  navContainer: {
-    height: HEADER_HEIGHT,
-    marginHorizontal: 10,
-  },
-  statusBar: {
-    height: STATUS_BAR_HEIGHT,
-    backgroundColor: 'transparent',
-  },
-  navBar: {
-    height: NAV_BAR_HEIGHT,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: 'transparent',
-  },
-  titleStyle: {
-    color: 'white',
-    fontWeight: 'bold',
+  title: {
+    color: '#fff',
     fontSize: 18,
   }
+
 });
