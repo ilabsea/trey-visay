@@ -88,7 +88,12 @@ class ScrollableHeader extends Component {
 
   getInputRange() {
    return [0, this.getHeaderScrollDistance()];
- }
+  }
+
+  getOverlayBgColor() {
+    const { overlayBgColor } = this.props;
+    return overlayBgColor || DEFAULT_HEADER_COLOR;
+  }
 
   getHeaderTranslate() {
     const { scrollY } = this.state;
@@ -187,6 +192,7 @@ class ScrollableHeader extends Component {
           {
             height: this.getHeaderMaxHeight(),
             opacity: this.getOverlayOpacity(),
+            backgroundColor: this.getOverlayBgColor(),
             transform: [{ translateY: this.getOverlayTranslate() }],
           },
         ]}
@@ -287,6 +293,7 @@ ScrollableHeader.propTypes = {
   largeTitle: PropTypes.string,
   renderForeground: PropTypes.func,
   headerMaxHeight: PropTypes.number,
+  backgroundColor: PropTypes.string
 };
 
 ScrollableHeader.defaultProps = {
@@ -296,6 +303,7 @@ ScrollableHeader.defaultProps = {
   largeTitle: null,
   renderForeground: null,
   headerMaxHeight: DEFAULT_HEADER_MAX_HEIGHT,
+  backgroundColor: null,
 };
 
 export default ScrollableHeader;
