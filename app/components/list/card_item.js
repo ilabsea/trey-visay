@@ -15,6 +15,7 @@ const CardItem = (props) => {
         source={require('../../assets/images/careers/civil.png')}
       />
       <View style={[styles.textContainer, { width: wp(props.width) }]}>
+
         <Text>{ props.text }</Text>
       </View>
     </TouchableOpacity>
