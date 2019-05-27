@@ -2,32 +2,21 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  ScrollView,
-  TouchableOpacity,
   Platform,
-  TextInput
 } from 'react-native';
 import DatePicker from 'react-native-datepicker';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import { ConfirmDialog } from 'react-native-simple-dialogs';
 import Toast, { DURATION } from 'react-native-easy-toast';
 
 // Utils
 import realm from '../../db/schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
-import App from '../../utils/app';
 import mainStyles from '../../assets/style_sheets/main/main';
 import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
-import StatusBar from '../../components/shared/status_bar';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Components
-import InputTextContainer from '../../components/shared/input_text_container';
-import SaveButton from '../../components/shared/save_button';
 import PickerSpecific from '../../components/picker/PickerSpecific';
-import PictureOptions from '../../components/account/picture_options';
+import SexOptions from '../../components/account/sex_options';
 
 import grades from '../../data/json/grades.json';
 import provinces from '../../data/json/address/provinces.json';
@@ -35,22 +24,17 @@ import communes from '../../data/json/address/communes.json';
 import districts from '../../data/json/address/districts.json';
 import highSchools from '../../data/json/address/highSchools.json';
 
+import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
+import ScrollableHeader from '../../components/scrollable_header';
+import { Container, Content, Icon, Button, Item, Form, Input } from 'native-base';
+import FooterBar from '../../components/footer/FooterBar';
+import { NavigationActions } from 'react-navigation';
+
 let formError = {};
 
 export default class ProfileForm extends Component {
-  static navigationOptions = ({ navigation }) => {
-    return {
-      title: 'បំពេញប្រវត្តិរូបសង្ខេប',
-      headerStyle: headerStyles.headerStyle,
-      headerTitleStyle: headerStyles.headerTitleStyle,
-      headerRight: (<SaveButton navigation={navigation}/>),
-    }
-  }
-
   constructor(props) {
     super(props);
-
-    this.props.navigation.setParams({handleSubmit: this.handleSubmit.bind(this)});
 
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     user = Object.assign({}, user, { sex: 'ស្រី', grade: '9'})
@@ -58,116 +42,25 @@ export default class ProfileForm extends Component {
     this.state = {
       user: user,
       errors: {},
-      confirmDialogVisible: false
     }
   }
 
   _skip() {
     try {
       realm.write(() => {
-        realm.create('User', {
-          uuid: this.state.user.uuid,
-          grade: 'other'
-        }, true);
+        realm.create('User', { uuid: this.state.user.uuid, grade: 'other'}, true);
         Sidekiq.create(User.getID(), 'User');
-        this.props.navigation.dispatch({
-          type: 'Navigation/RESET',
-          index: 0,
-          actions: [{
-            type: 'Navigation/NAVIGATE',
-            routeName:'CareerCounsellorStack'
-          }]
-        })
+        this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorStack' })]);
       });
     } catch (e) {
       alert(e);
     }
   }
 
-  _renderContent() {
-    return (
-      <View>
-        <View style={mainStyles.instructionContainer}>
-          <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-          <Text style={{flex: 1}}>
-            អ្នកអាចបំពេញពត៌មានផ្ទាល់ខ្លួនខាងក្រោម ឬក៏បំពេញនៅ ពេលក្រោយដោយចុចលេី
-          </Text>
-        </View>
-
-        <View style={[styles.inlineBlock, {paddingLeft: 45}]}>
-          <TouchableOpacity onPress={() => this._skip()}>
-            <Text style={{color: '#4caf50', fontWeight: 'bold', paddingRight: 8}}>រំលង</Text>
-          </TouchableOpacity>
-
-          <Text>
-            ឬ
-          </Text>
-
-          <TouchableOpacity onPress={() => this.setState({confirmDialogVisible: true})}>
-            <Text style={{color: '#4caf50', fontWeight: 'bold', paddingLeft: 8}}>ចាកចេញពីគណនី</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={[mainStyles.box, {padding: 16}]}>
-          {this._renderPersonalInfo()}
-        </View>
-
-      </View>
-    )
-  }
-
-  _onYes() {
-    User.logout();
-    this.props.navigation.dispatch({
-      type: 'Navigation/RESET',
-      index: 0,
-      actions: [{ type: 'Navigation/NAVIGATE', routeName:'Login'}],
-      key: null
-    });
-  }
-
-  _onNo() {
-    this.setState({confirmDialogVisible: false});
-  }
-
-  render() {
-    return (
-      <View style={{flex: 1}}>
-        <StatusBar />
-        <KeyboardAwareScrollView>
-          { this._renderContent() }
-        </KeyboardAwareScrollView>
-
-        <ConfirmDialog
-          title="អ្នកពិតជាចង់ចាកចេញមែនទេ?"
-          message="បើអ្នកចាកចេញពត័មានដែលអ្នកបានបំពេញនឹងមិនត្រូវបានរក្សារទុកឡើយ!"
-          visible={this.state.confirmDialogVisible}
-          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-          positiveButton={{
-            title: "ចាកចេញ",
-            onPress: this._onYes.bind(this),
-            titleStyle: styles.dialogButtonText
-          }}
-          negativeButton={{
-            title: "អត់ទេ",
-            onPress: this._onNo.bind(this),
-            titleStyle: styles.dialogButtonText
-          }}
-        />
-
-        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
-
-      </View>
-    )
-  }
-
   _setUserState(field, value) {
     let user = {...this.state.user};
     user[field] = value;
-    this.setState({
-      ...this.state,
-      user: user
-    });
+    this.setState({...this.state, user: user});
   }
 
   checkRequire(field) {
@@ -198,14 +91,7 @@ export default class ProfileForm extends Component {
       realm.write(() => {
         realm.create('User', this.state.user, true);
         Sidekiq.create(this.state.user.uuid, 'User');
-        this.props.navigation.dispatch({
-          type: 'Navigation/RESET',
-          index: 0,
-          actions: [{
-            type: 'Navigation/NAVIGATE',
-            routeName:'CareerCounsellorStack'
-          }]
-        })
+        this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorStack' })]);
       });
     } catch (e) {
       alert(e);
@@ -227,26 +113,63 @@ export default class ProfileForm extends Component {
     return highSchools.filter((highSchool) => highSchool.parent_code == districtCode);
   }
 
-  _renderPersonalInfo() {
-    let noValue = [{ "code": "", "label": "គ្មានតម្លៃ" }]
+  _renderContent = () => {
+    let noValue = [{ "code": "", "label": "គ្មានតម្លៃ" }];
+
+    return (
+      <View style={[mainStyles.box, {padding: 16}]}>
+        <Form>
+          { this._renderFullName() }
+          <SexOptions user={this.state.user} />
+          { this._renderDatePicker() }
+          { this._renderPhoneNumber() }
+          { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
+          { this._renderPicker({label: 'ខេត្ត/ក្រុង', stateName: 'provinceCode',
+            options: noValue.concat(provinces) })}
+          { this._renderPicker({label: 'ស្រុក/ខ័ណ្ឌ', stateName: 'districtCode',
+              options: noValue.concat(this._getDistricts()) })}
+          { this._renderPicker({label: 'ឃុំ/សង្កាត់', stateName: 'communeCode',
+              options: noValue.concat(this._getCommunes()) })}
+          { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolCode',
+              options: noValue.concat(this._getHighSchools()) })}
+        </Form>
+      </View>
+    )
+  }
+
+  _renderFullName() {
+    return (
+      <View style={{marginBottom: 16}}>
+        <Item regular>
+          <Icon active name='md-person' />
+          <Input
+            onChangeText={(text) => this._setUserState('fullName', text)}
+            returnKeyType='next'
+            autoCorrect={false}
+            value={this.state.user.fullName}
+            placeholderTextColor='rgba(0,0,0,0.7)'
+            placeholder='ឈ្មោះពេញ'/>
+        </Item>
+
+        { !!this.state.errors.fullName && <Text style={styles.errorText}>{this.state.errors.fullName}</Text> }
+      </View>
+    )
+  }
+
+  _renderPhoneNumber() {
     return (
       <View>
-        { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ',
-          nextFocusInput: 'usernameInput'}) }
-        <PictureOptions stateName='sex' user={this.state.user}/>
-        { this._renderDatePicker() }
-        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ',
-          keyboardType: 'phone-pad'})
-        }
-        { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
-        { this._renderPicker({label: 'ខេត្ត/ក្រុង', stateName: 'provinceCode',
-          options: noValue.concat(provinces) })}
-        { this._renderPicker({label: 'ស្រុក/ខ័ណ្ឌ', stateName: 'districtCode',
-            options: noValue.concat(this._getDistricts()) })}
-        { this._renderPicker({label: 'ឃុំ/សង្កាត់', stateName: 'communeCode',
-            options: noValue.concat(this._getCommunes()) })}
-        { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolCode',
-            options: noValue.concat(this._getHighSchools()) })}
+        <Item regular>
+          <Icon active name='call' />
+          <Input
+            onChangeText={(text) => this._setUserState('phoneNumber', text)}
+            returnKeyType='next'
+            autoCorrect={false}
+            value={this.state.user.phoneNumber}
+            keyboardType='phone-pad'
+            placeholderTextColor='rgba(0,0,0,0.7)'
+            placeholder='លេខទូរស័ព្ទ'/>
+        </Item>
       </View>
     )
   }
@@ -271,27 +194,41 @@ export default class ProfileForm extends Component {
     )
   }
 
-  _renderInputTextContainer(params={}) {
-    let value = this.state.user[params.stateName] ? this.state.user[params.stateName]: '';
-    return (
-      <InputTextContainer
-        onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
-        placeholder={params.label}
-        value={value}
-        errors={this.state.errors[params.stateName]}
-        keyboardType={params.keyboardType || 'default' }
-        inputRef={(input) => this[params.stateName + 'Input'] = input}
-        onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
-        returnKeyType='next'/>
-    )
-  }
-
   _renderPicker(params={}) {
     return (
       <PickerSpecific
         data={params}
         user={this.state.user}
         onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue) } />
+    )
+  }
+
+  _renderNavigation = () => {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <View style={{flex: 1}} />
+
+        <Button transparent onPress={() => this._skip()}>
+          <Text style={{color: '#fff'}}>រំលង</Text>
+          <Icon name='ios-arrow-forward' style={{color: '#fff'}} />
+        </Button>
+      </View>
+    )
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ this._renderNavigation }
+          title={'បំពេញប្រវត្តិរូបសង្ខេប'}
+          largeTitle={'បំពេញប្រវត្តិរូបសង្ខេប'}
+        />
+
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+        <FooterBar icon='keyboard-arrow-right' text='ចូលកម្មវិធី' onPress={() => this.handleSubmit()} />
+      </View>
     )
   }
 }

@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import {
   View,
-  ScrollView,
   Alert,
   Image,
-  StyleSheet,
 } from 'react-native';
 
 // Utils
@@ -144,7 +142,7 @@ export default class Login extends Component {
             onChangeText={(text) => this.setState({password: text})}
             ref={(input) => this.passwordInput = input}
             value={this.state.password}
-            onSubmitEditing={() => this.passwordConfirmationInput._root.focus()}
+            onSubmitEditing={() => !! this.passwordConfirmationInput && this.passwordConfirmationInput._root.focus()}
             placeholderTextColor='rgba(0,0,0,0.7)'
             placeholder='លេខសម្ងាត់'/>
           <Icon name='eye' style={{color: 'gray'}} />
@@ -270,7 +268,6 @@ export default class Login extends Component {
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         renderForeground={ this._renderForeground }
-        headerMaxHeight={160}
       />
     )
   }

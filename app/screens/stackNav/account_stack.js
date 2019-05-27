@@ -36,6 +36,7 @@ const AccountStack = createStackNavigator(
         headerStyle: headerStyles.headerStyle,
         headerTitleStyle: headerStyles.headerTitleStyle,
         headerRight: (<SaveButton navigation={navigation}/>),
+        header: null
       })
     },
     CareerCounsellorStack: {

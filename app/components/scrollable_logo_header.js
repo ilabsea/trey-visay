@@ -1,3 +1,14 @@
+/* @usage
+<ScrollableHeader
+  customView={ this._renderScrollViewContent.bind(this) }
+  imageBgSrc={ cover }
+  customHeader={ this._renderHeader.bind(this) }
+  profile={ photo }
+  profileSize={ PROFILE_SIZE }
+  title={this.state.user.fullName}
+/>
+*/
+
 // https://github.com/janicduplessis/react-native-scrollable-header
 import React, { Component } from 'react';
 import {
