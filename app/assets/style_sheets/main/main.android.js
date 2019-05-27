@@ -53,4 +53,10 @@ export default StyleSheet.create({
     fontSize: FontSetting.text,
     height: 26
   },
+  grid: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
+  }
 })

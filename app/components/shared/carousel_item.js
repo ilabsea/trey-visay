@@ -14,6 +14,8 @@ const CarouselItem = (props) =>  {
         sliderWidth={width}
         itemWidth={wp('45%')}
         activeSlideAlignment='start'
+        inactiveSlideOpacity={1}
+        inactiveSlideScale={1}
       />
     </View>
   )

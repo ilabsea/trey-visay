@@ -9,6 +9,7 @@ import {
 import mainStyles from '../../assets/style_sheets/main/main';
 import ButtonList from '../../components/list/button_list';
 import StatusBar from '../../components/shared/status_bar';
+import CardItem from '../../components/list/card_item';
 import characteristicList from '../../data/json/characteristic_jobs';
 import mapping from '../../data/json/careers/mapping';
 
@@ -43,14 +44,11 @@ export default class CareerIndexScreen extends Component {
 
   renderCareer(career, i) {
     return(
-      <View key={i}>
-        <ButtonList
-          onPress={() => {
-            this.props.navigation.navigate('CareerDetailScreen', {
-              career: career
-            })
-          }}
-          title={career.name} />
+      <View style={{marginBottom: 20}}>
+        <CardItem text={career.name} index={i} width={'42%'} height={'20%'}
+          onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
+            career: career
+          })}/>
       </View>
     )
   }
@@ -61,7 +59,7 @@ export default class CareerIndexScreen extends Component {
         <StatusBar />
 
         <ScrollView>
-          <View style={mainStyles.box}>
+          <View style={mainStyles.grid}>
             { this.state.careers.map((career, i) => {
               { return(this.renderCareer(career, i)) }
             })}

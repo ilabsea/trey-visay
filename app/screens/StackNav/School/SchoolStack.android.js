@@ -14,7 +14,7 @@ import { FontSetting } from '../../../assets/style_sheets/font_setting';
 import BackButton from '../../../components/shared/back_button';
 
 import SchoolScreen from '../../school/school_screen';
-import InstitutionDetail from '../school/institution_detail';
+import InstitutionDetail from '../../school/institution_detail';
 
 const InstitutionTab = createMaterialTopTabNavigator({
   GovernmentSchoolScreen: {

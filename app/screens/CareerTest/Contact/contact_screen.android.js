@@ -145,7 +145,7 @@ export default class ContactScreen extends Component {
   }
 
   _renderSchool(school, i) {
-    let logo = require('../../assets/images/schools/default.png');
+    let logo = require('../../../assets/images/schools/default.png');
     if (school.logoName) {
       logo = Images[school.logoName];
     }

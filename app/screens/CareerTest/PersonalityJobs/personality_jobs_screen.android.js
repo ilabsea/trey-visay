@@ -1,4 +1,4 @@
-../import React, { Component } from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -18,7 +18,7 @@ import FooterBar from '../../../components/footer/FooterBar';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import styles from '../../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
+import headerStyles from '../../../assets/style_sheets/header';
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
 import characteristicList from '../../../data/json/characteristic_jobs';

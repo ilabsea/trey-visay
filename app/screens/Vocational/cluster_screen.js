@@ -45,7 +45,7 @@ export default class CareerClusterScreen extends Component {
 
   renderItem(item, index){
     return(
-      <CardItem text={item.name} index={index}
+      <CardItem text={item.name} index={index} width={'40%'} height={'18%'}
         onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
           career: item
         })} />
@@ -55,7 +55,7 @@ export default class CareerClusterScreen extends Component {
   renderCareerCluster(cluster, i) {
     careers = this.getCareers(cluster);
     return (
-      <View key={i}>
+      <View key={i} style={mainStyles.carouselBox}>
         <ButtonList hasLine={false} title={cluster.name_kh}
           onPress={() => {
             this.props.navigation.navigate('CareerIndexScreen', {
@@ -63,16 +63,16 @@ export default class CareerClusterScreen extends Component {
               title: cluster.name_kh
             })
           }} />
-          <CarouselItem
-            data={careers}
-            renderItem={({item, index}) => this.renderItem(item, index)}/>
+        <CarouselItem
+          data={careers}
+          renderItem={({item, index}) => this.renderItem(item, index)}/>
       </View>
     )
   }
 
   renderContent() {
     return (
-      <View style={{backgroundColor: 'white'}}>
+      <View style={{backgroundColor: 'paleGrey'}}>
         <LongText text={this.state.currentGroup.recommendation} />
 
         <Text style={mainStyles.sectionText}>

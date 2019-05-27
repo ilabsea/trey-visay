@@ -21,7 +21,7 @@ const VocationalStack = createStackNavigator(
       screen: ClusterScreen,
       navigationOptions: ({navigation}) => ({
         title: "ជំនាញវិជ្ជាជីវៈ",
-        headerLeft: <BackButton navigation={navigation}/>,
+        headerLeft: <BackButton navigation={navigation}/>
       })
     },
     CareerIndexScreen: {
@@ -30,8 +30,8 @@ const VocationalStack = createStackNavigator(
         title: navigation.state.params.title
       })
     },
-    ShowCategoryScreen: {
-      screen: ShowCategoryScreen,
+    CareerDetailScreen: {
+      screen: CareerDetailScreen,
       navigationOptions: ({navigation}) => ({
         title: navigation.state.params.career.name
       })

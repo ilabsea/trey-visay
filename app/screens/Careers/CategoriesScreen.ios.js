@@ -98,9 +98,9 @@ export default class CareerCategoriesScreen extends Component {
           onPress={() => {
             this.props.navigation.navigate('ShowCareerCategoryScreen', {careerId: careerTypeObj.id})
           }} />
-          <CarouselItem
-            data={careerTypeObj.careers}
-            renderItem={({item, index}) => this.renderItem(item, index)}/>
+        <CarouselItem
+          data={careerTypeObj.careers}
+          renderItem={({item, index}) => this.renderItem(item, index)}/>
       </View>
     )
   }

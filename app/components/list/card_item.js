@@ -1,13 +1,20 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const CardItem = (props) => {
+  let width = props.width ? props.width : '40%';
+  let height = props.height ? props.height : '18%';
   return(
-    <TouchableOpacity style={styles.btnBox} onPress={props.onPress} key={props.key}>
-      <View style={styles.btnImage} >
-      </View>
-      <View style={styles.textContainer}>
+    <TouchableOpacity
+      style={[styles.btnBox, {width: wp(width), height: hp(height) + hp('10%')}]}
+      onPress={props.onPress} key={props.key}>
+      <Image
+        resizeMode="stretch"
+        style={[styles.btnImage, {width: wp(width), height: hp(height) }]}
+        source={require('../../assets/images/careers/civil.png')}
+      />
+      <View style={[styles.textContainer, { width: wp(props.width) }]}>
         <Text>{ props.text }</Text>
       </View>
     </TouchableOpacity>
@@ -16,22 +23,16 @@ const CardItem = (props) => {
 
 const styles = StyleSheet.create({
   btnBox: {
-    backgroundColor: '#D0D0D0',
-    borderRadius:16,
-    height: hp('28%')
+    borderRadius:12,
+    backgroundColor: 'white'
   },
   btnImage: {
-    width: wp('45%'),
-    height: hp('20%'),
-    borderTopLeftRadius:16,
-    borderTopRightRadius:16,
-    backgroundColor: 'gray',
+    alignSelf: 'center'
   },
   textContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
-    width: wp('40%'),
     alignSelf: 'center'
   }
 });

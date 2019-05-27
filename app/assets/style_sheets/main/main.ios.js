@@ -58,4 +58,15 @@ export default StyleSheet.create({
     fontSize: FontSetting.text,
     height: 26
   },
+  carouselBox: {
+    marginBottom: 20,
+    backgroundColor: 'white'
+  },
+  grid: {
+    flex: 1,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    margin: 20
+  }
 })
