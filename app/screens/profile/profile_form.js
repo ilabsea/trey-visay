@@ -24,7 +24,6 @@ import communes from '../../data/json/address/communes.json';
 import districts from '../../data/json/address/districts.json';
 import highSchools from '../../data/json/address/highSchools.json';
 
-import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 import ScrollableHeader from '../../components/scrollable_header';
 import { Container, Content, Icon, Button, Item, Form, Input } from 'native-base';
 import FooterBar from '../../components/footer/FooterBar';

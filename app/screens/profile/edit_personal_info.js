@@ -2,23 +2,18 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  ScrollView,
   TouchableOpacity,
   Picker,
   Platform
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
-import IOSPicker from 'react-native-ios-picker';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 // Utils
 import realm from '../../db/schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
-import App from '../../utils/app';
 import styles from '../../assets/style_sheets/profile_form';
 import DatePicker from 'react-native-datepicker';
-import InputTextContainer from '../../components/shared/input_text_container';
 import StatusBar from '../../components/shared/status_bar';
 import PickerSpecific from '../../components/picker/PickerSpecific';
 import grades from '../../data/json/grades.json';
@@ -27,41 +22,38 @@ import communes from '../../data/json/address/communes.json';
 import districts from '../../data/json/address/districts.json';
 import highSchools from '../../data/json/address/highSchools.json';
 
+import { Container, Content, Icon, Item, Form, Input } from 'native-base';
+import FooterBar from '../../components/footer/FooterBar';
+import SexOptions from '../../components/account/sex_options';
+
 let formError = {};
 
 export default class EditPersonalInfo extends Component {
+  static navigationOptions = ({ navigation }) => ({
+    title: 'កែតម្រូវប្រវត្តិរូបសង្ខេប',
+    headerLeft: (
+      <TouchableOpacity onPress={() => { navigation.state.params._handleBack()}} style={{marginHorizontal: 16}}>
+        <Icon name='arrow-back' style={{color: '#fff'}} size={24} />
+      </TouchableOpacity>
+    ),
+    headerRight: null
+  });
 
   constructor(props) {
     super(props)
-    this.state = { user: '', errors: {} };
-  }
 
-  componentWillMount() {
+    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
+    user = Object.assign({}, user, { sex: user.sex || 'ស្រី', grade: user.grade || '9' })
+
+    this.state = { user: user, errors: {} };
     this.props.navigation.setParams({
       handleSubmit: this.handleSubmit.bind(this),
       _handleBack: this._handleBack.bind(this)
     });
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    user = Object.assign({}, user, {sex: user.sex || 'ស្រី',
-                                    grade: user.grade || '9'})
-    this.setState({user: user});
   }
 
   _handleBack() {
     this.props.navigation.goBack();
-  }
-
-  render() {
-    return (
-      <View style={{flex: 1}}>
-        <StatusBar />
-        <KeyboardAwareScrollView>
-          {this._renderPersonalInfo()}
-
-        </KeyboardAwareScrollView>
-        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
-       </View>
-    )
   }
 
   checkRequire(field) {
@@ -138,24 +130,15 @@ export default class EditPersonalInfo extends Component {
     return highSchools.filter((highSchool) => highSchool.parent_code == districtCode);
   }
 
-  _renderPersonalInfo() {
-    let sexOptions = [
-      {label: 'ស្រី', value: 'ស្រី', code: 'ស្រី'},
-      {label: 'ប្រុស', value: 'ប្រុស', code: 'ប្រុស'},
-      {label: 'ផ្សេងៗ', value: 'ផ្សេងៗ', code: 'ផ្សេងៗ'}
-    ]
+  _renderContent = () => {
     let noValue = [{ "code": "", "label": "គ្មានតម្លៃ" }]
+
     return (
-      <View style={[styles.container, {padding: 16, backgroundColor: '#fff'}]}>
-        { this._renderInputTextContainer({stateName: 'fullName', label: 'ឈ្មោះពេញ',
-          nextFocusInput: 'usernameInput'}) }
-        { this._renderPicker({label: 'ភេទ', stateName: 'sex',
-          options: sexOptions})
-        }
+      <View style={[styles.container]}>
+        { this._renderFullName() }
+        <SexOptions user={this.state.user} />
         { this._renderDatePicker() }
-        { this._renderInputTextContainer({stateName: 'phoneNumber', label: 'លេខទូរស័ព្ទ',
-          keyboardType: 'phone-pad'})
-        }
+        { this._renderPhoneNumber() }
         { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
         { this._renderPicker({label: 'ខេត្ត/ក្រុង', stateName: 'provinceCode',
           options: noValue.concat(provinces) })}
@@ -165,6 +148,43 @@ export default class EditPersonalInfo extends Component {
             options: noValue.concat(this._getCommunes()) })}
         { this._renderPicker({label: 'រៀននៅសាលា', stateName: 'highSchoolCode',
             options: noValue.concat(this._getHighSchools()) })}
+      </View>
+    )
+  }
+
+  _renderFullName() {
+    return (
+      <View style={{marginBottom: 16}}>
+        <Item regular>
+          <Icon active name='md-person' />
+          <Input
+            onChangeText={(text) => this._setUserState('fullName', text)}
+            returnKeyType='next'
+            autoCorrect={false}
+            value={this.state.user.fullName}
+            placeholderTextColor='rgba(0,0,0,0.7)'
+            placeholder='ឈ្មោះពេញ'/>
+        </Item>
+
+        { !!this.state.errors.fullName && <Text style={styles.errorText}>{this.state.errors.fullName}</Text> }
+      </View>
+    )
+  }
+
+  _renderPhoneNumber() {
+    return (
+      <View>
+        <Item regular>
+          <Icon active name='call' />
+          <Input
+            onChangeText={(text) => this._setUserState('phoneNumber', text)}
+            returnKeyType='next'
+            autoCorrect={false}
+            value={this.state.user.phoneNumber}
+            keyboardType='phone-pad'
+            placeholderTextColor='rgba(0,0,0,0.7)'
+            placeholder='លេខទូរស័ព្ទ'/>
+        </Item>
       </View>
     )
   }
@@ -189,23 +209,6 @@ export default class EditPersonalInfo extends Component {
     )
   }
 
-  _renderInputTextContainer(params={}) {
-    let placeholder='វាយ' + params.label + 'នៅទីនេះ';
-    let value = this.state.user[params.stateName] ? this.state.user[params.stateName]: '';
-    return (
-      <InputTextContainer
-        onChangeText={((text) => this._setUserState(params.stateName, text)).bind(this)}
-        label={params.label}
-        placeholder={placeholder}
-        value={value}
-        errors={this.state.errors[params.stateName]}
-        keyboardType={params.keyboardType || 'default' }
-        inputRef={(input) => this[params.stateName + 'Input'] = input}
-        onSubmitEditing={() => !!params.nextFocusInput && this[params.nextFocusInput].focus()}
-        returnKeyType='next'/>
-    )
-  }
-
   _renderPicker(params={}) {
     return (
       <PickerSpecific
@@ -213,5 +216,21 @@ export default class EditPersonalInfo extends Component {
         user={this.state.user}
         onValueChange={(itemValue, itemIndex) => this._setUserState(params.stateName, itemValue) } />
     )
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <StatusBar />
+        <Container>
+          <Content>
+            { this._renderContent() }
+          </Content>
+
+          <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+          <FooterBar icon='keyboard-arrow-right' text='រក្សាទុក' onPress={() => this.handleSubmit()} />
+        </Container>
+      </View>
+    );
   }
 }
