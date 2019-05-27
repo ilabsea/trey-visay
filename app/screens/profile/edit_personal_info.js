@@ -40,7 +40,7 @@ export default class EditPersonalInfo extends Component {
   });
 
   constructor(props) {
-    super(props)
+    super(props);
 
     let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
     user = Object.assign({}, user, { sex: user.sex || 'ស្រី', grade: user.grade || '9' })
@@ -134,7 +134,7 @@ export default class EditPersonalInfo extends Component {
     let noValue = [{ "code": "", "label": "គ្មានតម្លៃ" }]
 
     return (
-      <View style={[styles.container]}>
+      <View>
         { this._renderFullName() }
         <SexOptions user={this.state.user} />
         { this._renderDatePicker() }
@@ -223,7 +223,7 @@ export default class EditPersonalInfo extends Component {
       <View style={{flex: 1}}>
         <StatusBar />
         <Container>
-          <Content>
+          <Content padder>
             { this._renderContent() }
           </Content>
 
