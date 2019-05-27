@@ -8,17 +8,16 @@ import {
   StyleSheet,
   NetInfo,
   Linking,
-  Dimensions
+  Dimensions,
+  FlatList
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import Carousel from 'react-native-snap-carousel';
-import { Divider } from 'react-native-elements';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 import StatusBar from '../../components/shared/status_bar';
 import SchoolListView from '../../components/schools/school_list';
-import VideoView from '../../components/careers/video_view';
+import VideoListView from '../../components/video/video_list';
 import universities from '../../data/json/universities';
 import mapping from '../../data/json/careers/mapping';
 import videoList from '../../data/json/videos';
@@ -56,7 +55,7 @@ export default class ShowCategoryScreen extends Component {
     return (
       <View>
         <Text style={mainStyles.sectionText}>
-          សាលាខាងក្រោមមានបង្រៀនជំនាញនេះ ៖
+          សាលា ៖
         </Text>
 
         <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
@@ -76,8 +75,8 @@ export default class ShowCategoryScreen extends Component {
 
   renderItem(item) {
     return (
-      <VideoView
-        onPress={() => this.onOpenUrl(item.url)}
+      <VideoListView
+        onPress={() => this._onOpenUrl(item.url)}
         item={item} />
     )
   }
@@ -87,15 +86,13 @@ export default class ShowCategoryScreen extends Component {
     return(
       <View>
         <Text style={mainStyles.sectionText}>
-          សូមមេីលវីដេអូខាងក្រោមដេីម្បីស្វែងយល់ពីជំនាញនេះ ៖
+          វីដេអូ ៖
         </Text>
 
-        <Carousel
-          ref={(c) => { this._carousel = c; }}
-          data={this.state.videos}
-          renderItem={({item}) => this.renderItem(item)}
-          sliderWidth={width}
-          itemWidth={width-80}
+        <FlatList
+          data={ this.state.videos }
+          renderItem={ ({item}) => this.renderItem(item) }
+          keyExtractor={this._keyExtractor}
         />
       </View>
     )

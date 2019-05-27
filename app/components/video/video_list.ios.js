@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
 export default class VideoList extends Component  {
@@ -32,6 +33,9 @@ export default class VideoList extends Component  {
             <Text style={styles.source}>{ this.props.item.author }</Text>
           </View>
 
+          <View style={{alignSelf: 'center'}}>
+            <AwesomeIcon name='angle-right' size={24} color='#bbb'/>
+          </View>
         </TouchableOpacity>
         <Divider style={styles.divider}/>
       </View>
@@ -42,16 +46,14 @@ export default class VideoList extends Component  {
 const styles = StyleSheet.create({
   row: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
     backgroundColor: 'white',
     flexDirection: 'row',
+    padding: 16
   },
   textContainer: {
     flex: 1,
-    padding: 8,
-    backgroundColor: '#fff',
-    alignSelf: 'flex-start',
+    marginLeft: 8,
+    marginRight: 16
   },
   title: {
     fontSize: FontSetting.title
@@ -59,9 +61,11 @@ const styles = StyleSheet.create({
   source: {
     fontSize: FontSetting.sub_title,
     color: '#3A3A3A',
-    textAlign: 'justify',
+  },
+  icon: {
+    alignSelf: 'center',
   },
   divider: {
-    marginLeft: 16
+    marginLeft: 100
   }
 });

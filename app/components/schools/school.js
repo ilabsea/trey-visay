@@ -28,7 +28,9 @@ class School extends Component {
           onPress={() => { this.props.navigation.navigate('InstitutionDetail', {school: school})} }
           >
 
-          <Image source={logo} style={styles.image} />
+          <View style={styles.imageContainer}>
+            <Image source={logo} style={styles.image} />
+          </View>
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 8}}>
             <Text numberOfLines={1} style={mainStyles.title}>
@@ -37,34 +39,49 @@ class School extends Component {
 
             { this.props.showCategory &&
               <View style={{flexDirection: 'row'}}>
-                <AwesomeIcon name='building-o' color='#1976d2' size={16} />
+                <Image
+                  source={require('../../assets/icons/building.png')}
+                  resizeMode='contain'
+                  style={{width: 16, height: 16}}
+                />
                 <Text style={styles.schoolAddress}>{school.category || 'មិនមាន'}</Text>
               </View>
             }
 
             <View style={{flexDirection: 'row'}}>
-              <AwesomeIcon name='map-marker' color='#1976d2' size={18} />
-              <Text numberOfLines={1} style={styles.schoolAddress}>{school.address || 'មិនមាន'}</Text>
+              <Image
+                source={require('../../assets/icons/pin.png')}
+                resizeMode='contain'
+                style={{width: 16, height: 16}}
+              />
+              <Text numberOfLines={1} style={[styles.schoolAddress, {color: 'rgb(74, 74, 74)'}]}>{school.address || 'មិនមាន'}</Text>
             </View>
           </View>
 
-          <View style={{justifyContent: 'center'}}>
-            <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+          <View style={{ alignSelf: 'center'}}>
+            <AwesomeIcon name='angle-right' size={24} color='#bbb'/>
           </View>
         </TouchableOpacity>
-        <Divider style={{marginLeft: 80}}/>
+        <Divider style={{marginLeft: 90}}/>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  imageContainer: {
+    borderWidth: 1,
+    borderRadius: 16,
+    padding: 4,
+    borderColor: 'rgb(151,151, 151)'
+  },
   image: {
     width: 50,
     height: 50
   },
   schoolAddress: {
     marginLeft: 8,
+    marginRight: 16,
     fontSize: FontSetting.sub_title
   }
 })

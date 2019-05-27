@@ -8,7 +8,7 @@ export default StyleSheet.create({
   },
   btnList: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     padding: 8,
     paddingLeft: 16,
     paddingRight: 16

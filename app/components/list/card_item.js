@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image } from 'rea
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 const CardItem = (props) => {
-  let width = props.width ? props.width : '40%';
+  let width = props.width ? props.width : '38%';
   let height = props.height ? props.height : '18%';
   return(
     <TouchableOpacity
