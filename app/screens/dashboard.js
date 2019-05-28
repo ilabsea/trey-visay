@@ -43,8 +43,8 @@ export default class Dashboard extends Component {
   }
 
   getRoute(){
-    // return this.state.user ? 'CareerCounsellorStack' : 'AccountStack';
-    return this.state.user ? 'PersonalityAssessmentStack' : 'AccountStack';
+    return this.state.user ? 'CareerCounsellorStack' : 'AccountStack';
+    // return this.state.user ? 'PersonalityAssessmentStack' : 'AccountStack';
   }
 
   _clearSelectedValues(){

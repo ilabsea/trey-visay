@@ -5,7 +5,6 @@ import {
   TouchableOpacity,
   StyleSheet,
   Image,
-  ScrollView,
   Platform
 } from 'react-native';
 import { Divider } from 'react-native-elements';
@@ -15,23 +14,17 @@ import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 
 import Button from '../../components/shared/button';
-import StatusBar from '../../components/shared/status_bar';
-import myStyles from '../../assets/style_sheets/login_form';
 
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import headerStyles from '../../assets/style_sheets/header';
-import shareStyles from '../../assets/style_sheets/profile_form';
 import mainStyles from '../../assets/style_sheets/main/main';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
+import { longDateFormat as dateFomart } from '../../utils/date';
+
+import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
+import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
+import { Container, Header, Content, ListItem, Left, Body, Right, Icon, Card, CardItem, Footer } from 'native-base';
 
 export default class CareerCounsellor extends Component {
-  static navigationOptions = {
-    drawerLabel: 'វាយតម្លៃមុខរបរនិងអាជីព',
-    drawerIcon: ({ tintColor }) => (
-      <AwesomeIcon name="briefcase" size={16} color={tintColor} />
-    ),
-  };
-
   componentWillMount() {
     this.refreshState();
   }
@@ -43,7 +36,6 @@ export default class CareerCounsellor extends Component {
                                     (!!game.personalUnderstandings.length &&
                                     game.personalUnderstandings[0].score > 11
                                     || game.personalUnderstandings.length > 1);
-
     this.setState({
       user: user,
       game: game,
@@ -54,115 +46,67 @@ export default class CareerCounsellor extends Component {
 
   _renderInstruction() {
     return (
-      <View style={styles.box}>
-        <View style={{flex:1, flexDirection: 'row'}}>
-          <View style={styles.logoWrapper}>
-            <Image source={require('../../assets/images/list.png')} style={styles.logo} />
-          </View>
+      <View >
+        <CardItem>
+          <Body>
+            <Text>សួរស្តីសាជាថ្មី </Text>
+            <Text>ការធ្វើតេស្តវាយតម្លៃមុររបរ និងអាជីព </Text>
+          </Body>
+        </CardItem>
 
-          <View style={{flex: 1}}>
-            <Text style={styles.title}>ការធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព</Text>
-          </View>
-        </View>
-
-        <View style={{flex: 1, flexDirection: 'column'}}>
-          <Text style={[styles.text, {marginTop: 20, marginBottom: 24}]}>
-            ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចំណូលចិត្ត ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់អ្នកនៅពេលអនាគត
-          </Text>
-
-          <View>
-            <Text style={styles.text}>មាន២ជំហានៈ</Text>
-            <Text style={styles.text}>1) ស្វែងយល់អំពីខ្លួនឯង</Text>
-            <Text style={styles.text}>2) វាយតម្លៃផែនការមុខរបរ</Text>
-          </View>
-          <View style={{marginTop: 16}}>
+        <CardItem>
+          <Body>
             <Button
-              style={styles.button}
+              style={[styles.button, {width: '100%'}]}
               onPress={this._goToPersonalUnderstandingForm.bind(this)}>
-              <Text style={styles.btnText}>
-                ចាប់ផ្តើមថ្មី
-              </Text>
+
+              <Text style={styles.btnText}>ចាប់ផ្តើមថ្មី</Text>
             </Button>
 
             { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
               <Button
-                style={[styles.button, { backgroundColor: '#1976d2' , marginTop: 16}]}
-                onPress={this._handleGoingNextStep.bind(this)}
-                >
+                style={[styles.button, { backgroundColor: '#1976d2', marginTop: 18, width: '100%'}]}
+                onPress={this._handleGoingNextStep.bind(this)}>
+
                 <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
               </Button>
             }
-          </View>
-        </View>
-      </View>
+          </Body>
+        </CardItem>
+      </View >
     )
-  }
-
-  _getFullDate(createdAt) {
-    let days = ['អាទិត្យ', 'ច័ន្ទ', 'អង្គារ', 'ពុធ', 'ព្រហស្បតិ៍', 'សុក្រ', 'សៅរ៍'];
-    let months = ['មករា', 'កុម្ភៈ', 'មិនា', 'មេសា', 'ឧសភា', 'មិថុនា', 'កក្តដា', 'សីហា', 'កញ្ញា', 'តុលា', 'វិច្ឆិកា', 'ធ្នូ'];
-    let time = new Date(createdAt);
-    return "ថ្ងៃ" + days[time.getDay()] + ' ទី' + time.getDate() + ' ខែ' + months[time.getMonth()] + ' ឆ្នាំ' + time.getFullYear();
   }
 
   _renderGameHistory() {
     let count = this.state.completedGames.length;
 
     return (
-      <View >
+      <Content padder>
         { !!this.state.completedGames.length &&
           <Text style={mainStyles.sectionText}>លទ្ធផលធ្វើតេស្ត</Text>
         }
 
         { this.state.completedGames.map((game, i) => {
           return (
-            <View style={{backgroundColor: 'white'}} key={i}>
-              <TouchableOpacity
-                key={i}
-                style={mainStyles.btnList}
-                onPress={() => this.props.navigation.navigate('GameHistoryScreen', {num: (count - i), gameUuid: game.uuid})}
-                >
+            <TouchableOpacity
+              key={i}
+              style={{flexDirection: 'row', borderRadius: 10, overflow: 'hidden', backgroundColor: '#fff', marginBottom: 10}}
+              onPress={() => this.props.navigation.navigate('GameHistoryScreen', {num: (count - i), gameUuid: game.uuid})}>
 
-                <View>
-                  <Image source={require('../../assets/images/checklist.png')} style={styles.logo} />
+                <View style={styles.logo}>
+                  <Text style={{color: '#fff', fontSize: 24}}>{count - i}</Text>
                 </View>
 
-                <View style={{flex: 1, marginLeft: 16, marginRight: 16}}>
-                  <Text style={mainStyles.title}>
-                    តេស្តលើកទី {count - i}
-                  </Text>
-
-                  <Text style={mainStyles.subTitle}>
-                    ធ្វើនៅ: {this._getFullDate(game.createdAt)}
-                  </Text>
+                <View style={{flex: 1, paddingHorizontal: 16, paddingVertical: 10}}>
+                  <Text style={mainStyles.title}>តេស្តលើកទី {count - i}</Text>
+                  <Text style={mainStyles.subTitle}>ធ្វើនៅ: {dateFomart(game.createdAt)}</Text>
                 </View>
-
-                <View style={{justifyContent: 'center'}}>
-                  <AwesomeIcon name='angle-right' size={24} color='#bbb' />
-                </View>
-              </TouchableOpacity>
-              <Divider />
-            </View>
+            </TouchableOpacity>
           )
         })}
 
-      </View>
+      </Content>
     )
-  }
-
-  render() {
-    let background = this.state.completedGames.length ? {}:{backgroundColor: '#fff'}
-    return (
-      <View style={{flex: 1}}>
-        <StatusBar />
-        <ScrollView style={background}>
-          <View style={styles.container}>
-            { this._renderInstruction() }
-            { this._renderGameHistory() }
-          </View>
-        </ScrollView>
-      </View>
-    );
   }
 
   _handleGoingNextStep() {
@@ -199,6 +143,37 @@ export default class CareerCounsellor extends Component {
       this.props.navigation.navigate('PersonalUnderstandingFormScreen', { refresh: this.refreshState.bind(this) });
     });
   }
+
+  _renderContent = () => {
+    return (
+      <View>
+        { this._renderInstruction() }
+        { this._renderGameHistory() }
+      </View>
+    )
+  }
+
+  _renderForeground = () => {
+    return (
+      <View style={{marginBottom: -4}}>
+        <Text style={scrollHeaderStyles.largeTitle}>វាយតម្លៃមុខរបរនិងអាជីព</Text>
+        <Text style={{fontSize: 13, lineHeight: 24, color: '#fff'}}>ការធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព</Text>
+      </View>
+    )
+  }
+
+  render() {
+    return(
+      <ScrollableHeader
+        renderContent={ this._renderContent }
+        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        title={'វាយតម្លៃមុខរបរនិងអាជីព'}
+        renderForeground={this._renderForeground}
+        headerMaxHeight={150}
+      />
+    )
+  }
+
 }
 
 const styles = StyleSheet.create({
@@ -222,17 +197,12 @@ const styles = StyleSheet.create({
       }
     })
   },
-  logoWrapper: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginRight: 20,
-  },
   logo: {
-    width: 60,
-    height: 60
-  },
-  text: {
-    fontWeight: 'bold'
+    width: 80,
+    height: 99,
+    backgroundColor: 'rgb(24, 118, 211)',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   button: {
     borderRadius: 3,

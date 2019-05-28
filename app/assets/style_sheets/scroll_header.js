@@ -31,6 +31,10 @@ export default StyleSheet.create({
   title: {
     color: '#fff',
     fontSize: 18,
+  },
+  largeTitle: {
+    color: '#fff',
+    fontSize: 28,
+    lineHeight: 48
   }
-
 });

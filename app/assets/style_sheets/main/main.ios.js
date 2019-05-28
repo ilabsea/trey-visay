@@ -33,8 +33,8 @@ export default StyleSheet.create({
   sectionText: {
     fontWeight: 'bold',
     fontSize: FontSetting.text,
-    marginTop: 16,
-    marginLeft: 16
+    // marginTop: 16,
+    // marginLeft: 16
   },
   sectionTextInBox: {
     fontSize: FontSetting.text,

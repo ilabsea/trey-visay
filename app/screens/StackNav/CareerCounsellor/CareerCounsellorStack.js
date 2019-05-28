@@ -40,6 +40,7 @@ const CareerCounsellorStack = createStackNavigator(
       screen: CareerCounsellor,
       navigationOptions: ({navigation}) => ({
         title: 'វាយតម្លៃមុខរបរនិងអាជីព',
+        header: null
       })
     },
     PersonalUnderstandingFormScreen: {
