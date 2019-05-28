@@ -9,6 +9,8 @@ import ButtonList from '../../components/list/button_list';
 import CardItem from '../../components/list/card_item';
 import CarouselItem from '../../components/shared/carousel_item';
 import LongText from '../../components/careers/long_text';
+import BackButton from '../../components/shared/back_button';
+import ScrollableHeader from '../../components/scrollable_header';
 import characteristicList from '../../data/json/characteristic_jobs';
 import careersClusters from '../../data/json/careers/career_clusters';
 import mapping from '../../data/json/careers/mapping';
@@ -70,15 +72,9 @@ export default class CareerClusterScreen extends Component {
     )
   }
 
-  renderContent() {
+  renderContent = () => {
     return (
-      <View style={{backgroundColor: 'paleGrey'}}>
-        <LongText text={this.state.currentGroup.recommendation} />
-
-        <Text style={mainStyles.sectionText}>
-          មុខរបរមានដូចខាងក្រោម៖
-        </Text>
-
+      <View style={{backgroundColor: 'paleGrey', marginTop: 20}}>
         { careersClusters.map((cluster, i) => {
           { return (this.renderCareerCluster(cluster, i))}
         })}
@@ -86,15 +82,22 @@ export default class CareerClusterScreen extends Component {
     )
   }
 
+  renderNavigation = () => {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <BackButton navigation={this.props.navigation} text='ត្រលប់ក្រោយ'/>
+      </View>
+    )
+  }
+
   render() {
     return (
-      <View style={{flex: 1}}>
-        <StatusBar />
-
-        <ScrollView>
-          { this.renderContent() }
-        </ScrollView>
-      </View>
+      <ScrollableHeader
+        renderContent={ this.renderContent }
+        renderNavigation={ this.renderNavigation }
+        title={'ជំនាញវិជ្ជាជីវៈ'}
+        largeTitle={'ជំនាញវិជ្ជាជីវៈ'}
+      />
     );
   }
 }

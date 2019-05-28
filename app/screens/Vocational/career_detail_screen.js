@@ -15,6 +15,9 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import mainStyles from '../../assets/style_sheets/main/main';
+import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
+import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
 import StatusBar from '../../components/shared/status_bar';
 import SchoolListView from '../../components/schools/school_list';
 import VideoListView from '../../components/video/video_list';
@@ -98,30 +101,44 @@ export default class ShowCategoryScreen extends Component {
     )
   }
 
-  renderNoData(){
-    return(
-      <View style={{flex:1, alignItems: 'center', marginTop: 24}}>
-        <Text >
-          គ្មានទិន្នន័យ
-        </Text>
+  _renderForeground = () => {
+    return (
+      <View style={{backgroundColor: 'transparent', height: 50, justifyContent: 'center', alignItems: 'flex-end', marginBottom: 16, flexDirection: 'row'}}>
+        { !this.state.isLogin &&
+          <Image
+            style={{width: 50, height: 48}}
+            source={require('../../assets/images/account/register.png')}/>
+        }
+      </View>
+    )
+  }
+
+  _renderNavigation = () => {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <BackButton navigation={this.props.navigation}/>
+      </View>
+    )
+  }
+
+  _renderContent = () => {
+    return (
+      <View>
+        {this.renderSchoolList()}
+        {this.renderVideoList()}
       </View>
     )
   }
 
   render() {
     return (
-      <View style={{flex: 1}}>
-        <StatusBar />
-        <ScrollView style={{flex: 1}}>
-          { this.state.schools.length > 0 && this.renderSchoolList() }
-
-          { this.state.videos.length > 0 && this.renderVideoList() }
-          { this.state.schools.length == 0
-            && this.state.videos.length == 0
-            && this.renderNoData() }
-
-        </ScrollView>
-      </View>
+      <ScrollableHeader
+        renderContent={ this._renderContent }
+        renderNavigation={ this._renderNavigation }
+        renderForeground={ this._renderForeground }
+        title={this.state.career.name}
+        largeTitle={this.state.career.name}
+      />
     );
   }
 }
