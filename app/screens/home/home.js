@@ -16,13 +16,6 @@ import User from '../../utils/user';
 import API from '../../api/schools';
 
 export default class Home extends Component {
-  static navigationOptions = {
-    drawerLabel: 'ទំព័រដើម',
-    drawerIcon: ({ tintColor }) => (
-      <MaterialIcon name="home" color={tintColor} />
-    )
-  };
-
   constructor(props){
     super(props);
     this.state = {

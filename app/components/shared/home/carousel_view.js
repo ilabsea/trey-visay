@@ -32,6 +32,7 @@ class CarouselView extends Component {
   }
 
   renderItem(options) {
+    console.log('this.props.navigation : ', this.props.screenProps)
     if(!!this.props.user && options.url=='CareerCounsellorStack'){
       options.url = 'AccountStack';
     }

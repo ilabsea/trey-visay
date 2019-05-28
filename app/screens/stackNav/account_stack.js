@@ -8,7 +8,7 @@ import SaveButton from '../../components/shared/save_button';
 import ProfileForm from '../profile/profile_form';
 import Login from '../Account/login';
 import IntroStack from './intro_stack';
-import HomeScreen from '../home';
+import HomeScreen from '../home/home';
 import Register from '../Account/register';
 import CareerCounsellorStack from './CareerCounsellor/CareerCounsellorStack';
 import PersonalityAssessmentStack from './Assessment/PersonalityAssessmentStack';
