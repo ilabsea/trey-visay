@@ -14,7 +14,8 @@ const ChangePasswordStack = createStackNavigator(
         headerTitleStyle: [headerStyles.headerTitleStyle],
         headerStyle: headerStyles.headerStyle,
         title: 'ប្តូរលេខសម្ងាត់',
-        headerLeft: <BackButton navigation={navigation}/>
+        headerLeft: <BackButton navigation={navigation}/>,
+        header: null
       })
     }
   }
