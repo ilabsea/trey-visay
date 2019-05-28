@@ -6,16 +6,18 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 const { width, height } = Dimensions.get('window');
 
 const CarouselItem = (props) =>  {
+  let itemWidth = props.width ? wp(props.width) : wp('45%');
   return(
     <View style={{paddingLeft: 16}}>
       <Carousel
         data={props.data}
         renderItem={props.renderItem}
         sliderWidth={width}
-        itemWidth={wp('45%')}
+        itemWidth={itemWidth}
         activeSlideAlignment='start'
         inactiveSlideOpacity={1}
         inactiveSlideScale={1}
+        onSnapToItem={props.onSnapToItem}
       />
     </View>
   )

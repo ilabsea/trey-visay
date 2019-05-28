@@ -7,13 +7,13 @@ import Task from './app/utils/task';
 import realm from './app/db/schema';
 
 // Screens
-import HomeScreen from './app/screens/home';
+import HomeScreen from './app/screens/home/home';
 
 const HomeNavigator = createStackNavigator({
   Home: {
     screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
     navigationOptions: ({navigation}) => ({
-      header: null
+      title: 'ទំព័រដេីម'
     }),
   },
 }, {
