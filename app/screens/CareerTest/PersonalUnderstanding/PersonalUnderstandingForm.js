@@ -4,38 +4,29 @@ import {
   View,
   ScrollView,
   TouchableOpacity,
-  TouchableHighlight,
   Modal,
-  KeyboardAvoidingView,
   Platform
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { Provider } from 'react-redux';
 import store from '../../../redux/store';
-
 import PersonalUnderstandingScore from './PersonalUnderstandingScore';
-import CloseButton from '../../../components/shared/close_button';
-import SaveButton from '../../../components/shared/save_button';
-
 import Form from './_Form';
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
 import uuidv4 from '../../../utils/uuidv4';
-import headerStyles from '../../../assets/style_sheets/header';
 import styles from './styles';
 
-export default class PersonalUnderstandingForm extends Component {
+import { Container, Header, Content, ListItem, Thumbnail, Left, Body, Right, Icon, Card, CardItem, Title, Button } from 'native-base';
 
-  static navigationOptions = ({ navigation }) => ({
-    drawerIcon: ({ tintColor }) => (
-      <AwesomeIcon name="briefcase" size={16}  color={tintColor} />
-    ),
-  });
+import ScrollableHeader from '../../../components/scrollable_header';
+import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
+import * as Progress from 'react-native-progress';
+import FooterBar from '../../../components/footer/FooterBar';
+
+export default class PersonalUnderstandingForm extends Component {
 
   constructor(props) {
     super(props);
@@ -45,6 +36,8 @@ export default class PersonalUnderstandingForm extends Component {
       modalVisible: false,
       testCount: 0,
     };
+
+    this.formRef = React.createRef();
   };
 
   _handleBack() {
@@ -64,7 +57,7 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   handleSubmit = () => {
-    let formValues = this.parseFormValue(this.refs.form.selector.props.values);
+    let formValues = this.parseFormValue(this.formRef.current.selector.props.values);
 
     if (!formValues) {
       return this.refs.toast.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
@@ -142,7 +135,7 @@ export default class PersonalUnderstandingForm extends Component {
         </View>
 
         <View style={[styles.paragraph, {flexDirection: 'row', justifyContent: 'center'}]}>
-          <TouchableHighlight onPress={() => {
+          <TouchableOpacity onPress={() => {
               this.setModalVisible(!this.state.modalVisible)
               store.dispatch({type: 'RESET'})
             }} style={styles.button}
@@ -152,7 +145,7 @@ export default class PersonalUnderstandingForm extends Component {
               {this.state.testCount < 2 && 'សូម'}
               សាកល្បងធ្វើតេស្តម្តងទៀត
             </Text>
-          </TouchableHighlight>
+          </TouchableOpacity>
 
           { this.state.testCount > 1 &&
             <TouchableOpacity onPress={() => {
@@ -191,7 +184,7 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   parseFormValue(values){
-    if(values){
+    if(!!values){
       values['uuid'] = uuidv4();
       if(values['everTalkedWithAnyoneAboutCareer']) {
         values['everTalkedWithAnyoneAboutCareer'] = values['everTalkedWithAnyoneAboutCareer'].map(function(i){ return {value: i }; } );
@@ -200,36 +193,72 @@ export default class PersonalUnderstandingForm extends Component {
     return values;
   };
 
-  render() {
+
+  _renderContent = () => {
+    return (
+      <Provider store={store}>
+        <Form ref={this.formRef} />
+      </Provider>
+    )
+  }
+
+  _renderNavigation = () => {
+    return (
+      <Button transparent onPress={() => this._handleBack()}>
+        <Icon name='arrow-back' style={{color: '#fff'}} />
+      </Button>
+    )
+  }
+
+  _renderForeground = () => {
     return (
       <View>
-        <KeyboardAwareScrollView>
-          <Modal
-            animationType="slide"
-            transparent={false}
-            visible={this.state.modalVisible}
-            onRequestClose={() => { this.refs.toast.show('សូមចុចលើប៊ូតុង...!', DURATION.SHORT) } }>
+        <Text style={scrollHeaderStyles.largeTitle}>ស្វែងយល់ពីខ្លួនឯង</Text>
+        <View style={{borderTopLeftRadius: 10, borderTopRightRadius: 10, paddingHorizontal: 5, paddingTop: 6, width: 110, backgroundColor: 'rgb(22, 99, 176)'}}>
+          <Text style={{color: '#fff', fontSize: 13, lineHeight: 22}}>ឆ្លើយរួចរាល់</Text>
+        </View>
+        <Progress.Bar progress={0.3} width={null} color='#fff' unfilledColor='rgb(19, 93, 153)' borderColor='transparent' />
+      </View>
+    )
+  }
 
-            <ScrollView>
-              <View style={{margin: 16, padding: 16, backgroundColor: '#fff'}}>
-                <View>
-                  <Text style={styles.subTitle}>លទ្ធផលនៃការស្វែងយល់អំពីខ្លួនឯង</Text>
-                </View>
+  _renderModal() {
+    return (
+      <Modal
+        animationType="slide"
+        transparent={false}
+        visible={this.state.modalVisible}
+        onRequestClose={() => { this.refs.toast.show('សូមចុចលើប៊ូតុង...!', DURATION.SHORT) } }>
 
-                { this.state.score < 12 && this._renderFailTest() }
-                { this.state.score >= 12 && this._renderPassTest() }
+        <ScrollView>
+          <View style={{margin: 16, padding: 16, backgroundColor: '#fff'}}>
+            <View>
+              <Text style={styles.subTitle}>លទ្ធផលនៃការស្វែងយល់អំពីខ្លួនឯង</Text>
+            </View>
 
-              </View>
-            </ScrollView>
-          </Modal>
+            { this.state.score < 12 && this._renderFailTest() }
+            { this.state.score >= 12 && this._renderPassTest() }
+          </View>
+        </ScrollView>
+      </Modal>
+    )
+  }
 
-          <Provider store={store}>
-            <Form ref={'form'} />
-          </Provider>
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ this._renderNavigation }
+          renderForeground={ this._renderForeground }
+          title={'ស្វែងយល់ពីខ្លួនឯង'}
+          largeTitle={'ស្វែងយល់ពីខ្លួនឯង'}
+        />
 
-        </KeyboardAwareScrollView>
+        { this._renderModal() }
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this.handleSubmit} />
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
-    );
+    )
   };
 }

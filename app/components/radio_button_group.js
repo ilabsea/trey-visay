@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import { View, Text, StyleSheet , Platform} from 'react-native';
+import { View, Text} from 'react-native';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
-import { Divider } from 'react-native-elements';
+import {FontSetting} from '../assets/style_sheets/font_setting';
 
 class RadioButtonGroup extends Component {
 
@@ -17,7 +17,6 @@ class RadioButtonGroup extends Component {
         { this.props.radio_props.map((obj, i) => {
           return(
             <View key={i}>
-              <Divider/>
               <View  style={{alignItems: 'flex-start'}}>
                 <RadioButton labelHorizontal={true} key={i} >
                   <RadioButtonInput
@@ -35,8 +34,8 @@ class RadioButtonGroup extends Component {
                     index={i}
                     labelHorizontal={true}
                     onPress={this.props.onPress}
-                    labelStyle={[this.props.labelStyle,{fontSize: 16, lineHeight: 28}]}
-                    labelWrapStyle={{width: '95%', padding: 15, paddingBottom: Platform.OS == 'ios' ? 5 : 15}}
+                    labelStyle={[this.props.labelStyle,{fontSize: FontSetting.text, lineHeight: 26}]}
+                    labelWrapStyle={{width: '95%', paddingVertical: 15, paddingBottom: 5}}
                   />
                 </RadioButton>
               </View>

@@ -50,7 +50,8 @@ const CareerCounsellorStack = createStackNavigator(
         headerLeft: <CloseButton navigation={navigation}/>,
         headerRight: <Provider store={store}>
                         <SaveButton navigation={navigation}/>
-                      </Provider>
+                      </Provider>,
+        header: null
       })
     },
     ShowCareerCategoryScreen: { screen: ShowCareerCategoryScreen },

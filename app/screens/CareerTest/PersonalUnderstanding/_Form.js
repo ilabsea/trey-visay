@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import {
   reduxForm,
@@ -29,17 +29,14 @@ function Form(props) {
   const getTextColor = props.haveEverThoughtOfCareerIsYes ? styles.labelGroup : [styles.labelGroup, {color: '#ccc'}];
   const labelStyle = props.haveEverThoughtOfCareerIsYes ? {} : {color: '#ccc'};
   const buttonColor = props.haveEverThoughtOfCareerIsYes ? '#4caf50' : '#ccc';
-  return (
 
+  return (
     <View style={styles.scrollContainer}>
       <View>
-        <View style={styles.instruction}>
-          <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-          <Text style={{flex: 1}}>
-            ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។
-            ករណីសិស្ស ទទួលបានពិន្ទុក្រោម ៥០% សិស្សត្រូវតម្រូវឲ្យធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។
-          </Text>
-        </View>
+        <Text style={{flex: 1}}>
+          ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។
+          ករណីសិស្ស ទទួលបានពិន្ទុក្រោម ៥០% សិស្សត្រូវតម្រូវឲ្យធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។
+        </Text>
 
         <Text style={styles.hintLable}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
       </View>
@@ -105,7 +102,7 @@ function Form(props) {
         <View style={styles.formSubGroup3}>
           <Text
             style={getTextColor}
-            onPress={() => {this.howToReachCareerGoal.focus()}}> { Question.howToReachJobVacancy } </Text>
+            onPress={() => {this.howToReachCareerGoal.focus()}}> { Question.howToReachCareerGoal } </Text>
 
           <Field
             name={'howToReachCareerGoal'}
@@ -169,10 +166,11 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 16,
     backgroundColor: '#fff',
+    borderRadius: 10
   },
   labelGroup: {
     marginBottom: 10,
-    fontSize: 20,
+    fontSize: 16,
   },
   hintLable: {
     fontSize: 16,
