@@ -4,6 +4,7 @@ const HomeOptions = [
     url: 'CareerCounsellorStack', // this was this.getRoute()
     background_color: 'rgb(53, 174, 235)',
     source_image: require('../../../assets/images/home/personal_test.png'),
+    has_start_btn: true,
     description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក'
   },
   {

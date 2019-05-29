@@ -49,7 +49,17 @@ class CarouselView extends Component {
         </View>
         <View style={styles.textWrapper}>
           <Text style={styles.btnLabel}>{options.title}</Text>
-          <Text style={styles.btnDescription}>{options.description}</Text>
+          { options.has_start_btn &&
+            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+              <Text style={{width: wp('54%')}}>{options.description}</Text>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate(options.url)} style={styles.btnStart}>
+                <Text style={{color: '#fff'}}>ចាប់ផ្តេីម</Text>
+              </TouchableOpacity>
+            </View>
+          }
+
+          { !options.has_start_btn && <Text>{options.description}</Text> }
+
         </View>
       </TouchableOpacity>
     )
@@ -85,10 +95,11 @@ class CarouselView extends Component {
       <View style={styles.container}>
         <StatusBar />
         <CarouselItem
-          width='92%'
+          width='90%'
           data={HomeOptions}
           renderItem={({item}) => this.renderItem(item)}
-          onSnapToItem={(index) => this.setState({ activeSlide: index }) }/>
+          onSnapToItem={(index) => this.setState({ activeSlide: index }) }
+          activeSlideAlignment='center'/>
 
         { this.pagination() }
       </View>
@@ -104,10 +115,12 @@ const styles = StyleSheet.create({
     borderRadius:12,
     backgroundColor: 'white',
     width: wp('88%'),
-    height: hp('64%'),
+    height: hp('68%'),
   },
   textWrapper:{
-    padding: 16
+    marginLeft: 16,
+    marginTop: 16,
+    justifyContent: 'center'
   },
   btnLabel: {
     fontSize: FontSetting.big_title,
@@ -117,9 +130,6 @@ const styles = StyleSheet.create({
       }
     })
   },
-  btnDescription: {
-    fontSize: FontSetting.dashboard_subtitle,
-  },
   imageWrapper: {
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12
@@ -127,6 +137,15 @@ const styles = StyleSheet.create({
   btnImage: {
     width: wp('84%'),
     height: hp('44%'),
+    alignSelf: 'center'
+  },
+  btnStart: {
+    backgroundColor: 'rgb(24, 118, 211)',
+    borderRadius: 12,
+    width: wp('26%'),
+    height: hp('8%'),
+    alignItems: 'center',
+    justifyContent: 'center',
     alignSelf: 'center'
   }
 });

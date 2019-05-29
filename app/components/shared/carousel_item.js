@@ -7,19 +7,19 @@ const { width, height } = Dimensions.get('window');
 
 const CarouselItem = (props) =>  {
   let itemWidth = props.width ? wp(props.width) : wp('45%');
+  let activeSlideAlignment = props.activeSlideAlignment ? props.activeSlideAlignment: 'start';
   return(
-    <View style={{paddingLeft: 16}}>
-      <Carousel
-        data={props.data}
-        renderItem={props.renderItem}
-        sliderWidth={width}
-        itemWidth={itemWidth}
-        activeSlideAlignment='start'
-        inactiveSlideOpacity={1}
-        inactiveSlideScale={1}
-        onSnapToItem={props.onSnapToItem}
-      />
-    </View>
+    <Carousel
+      data={props.data}
+      renderItem={props.renderItem}
+      sliderWidth={width}
+      itemWidth={itemWidth}
+      activeSlideAlignment={activeSlideAlignment}
+      inactiveSlideOpacity={1}
+      inactiveSlideScale={1}
+      onSnapToItem={props.onSnapToItem}
+      layout={'default'}
+    />
   )
 }
 
