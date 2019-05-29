@@ -22,6 +22,10 @@ import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CloseButton from '../../components/shared/close_button';
 import FooterBar from '../../components/footer/FooterBar';
 
+import ScrollableHeader from '../../components/scrollable_header';
+import ButtonList from '../../components/list/button_list';
+import CarouselItem from '../../components/shared/carousel_item';
+import CardItem from '../../components/list/card_item';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -78,38 +82,52 @@ export default class CategoriesScreen extends Component {
     });
   }
 
-  _renderCareer(career, i) {
+  renderItem(career, index){
+    return(
+      <CardItem
+        text={career.item.name}
+        index={index}
+        width={'40%'}
+        height={'18%'}
+        onPress={() => this.props.navigation.navigate('ShowCareerCategoryScreen', {
+          career: career
+        })} />
+    )
+  }
+
+  _renderCategory(category, i) {
     return (
-      <View key={i}>
-        <TouchableOpacity
-          style={mainStyles.btnList}
-          onPress={() => {this.props.navigation.navigate('ShowCategoryScreen',{careerId: career.id})}}
-        >
-          <Image source={Images[career.logoName]} style={{width: 30, height: 30, marginRight: 16}} />
-          <Text style={mainStyles.title}>{career.career_title}</Text>
-          <AwesomeIcon name='angle-right' size={24} color='#bbb' />
-        </TouchableOpacity>
-        <Divider style={{marginLeft: 58}}/>
+      <View key={i} style={[mainStyles.carouselBox, {backgroundColor: '#fff', marginTop: 14}]}>
+        <ButtonList hasLine={false} title={category.career_title}
+          onPress={() => {
+            this.props.navigation.navigate('ShowCareerCategoryScreen', {careerId: category.id})
+          }} />
+        <CarouselItem
+          data={category.careers}
+          renderItem={(career, index) => this.renderItem(career, index)}/>
       </View>
     )
   }
 
-  _renderContent() {
+  _renderContent = () => {
     return (
       <View>
-        { careerList.slice(0, 3).map((career, i) => {
-          { return (this._renderCareer(career, i))}
+        { careerList.slice(0, 3).map((category, i) => {
+          { return (this._renderCategory(category, i))}
         })}
       </View>
     )
   }
 
   render() {
-    return(
-      <View style={{flex: 1, backgroundColor: 'white'}}>
-        <ScrollView style={{flex: 1}}>
-          { this._renderContent() }
-        </ScrollView>
+    return (
+      <View style={{flex: 1}}>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ () => <CloseButton navigation={this.props.navigation}/> }
+          title={'យល់ដឹងពីមុខរបរ'}
+          largeTitle={'យល់ដឹងពីមុខរបរ'}
+        />
 
         <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 

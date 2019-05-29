@@ -58,7 +58,12 @@ const HomeStack = createStackNavigator({
       title: 'ទំព័រដេីម'
     }),
   },
-  AccountStack: { screen: AccountStack },
+  AccountStack: {
+    screen: AccountStack,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    }),
+  },
   SchoolStack: { screen: SchoolStack},
   VideoScreen: {
     screen: VideoScreen,

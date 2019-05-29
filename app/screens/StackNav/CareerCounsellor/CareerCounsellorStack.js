@@ -117,6 +117,7 @@ const CareerCounsellorStack = createStackNavigator(
         title: 'យល់ដឹងអំពីមុខរបរ',
         headerLeft: <CloseButton navigation={navigation}/>,
         headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     InstitutionDetail: {

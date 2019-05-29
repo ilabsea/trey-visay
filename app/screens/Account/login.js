@@ -55,24 +55,10 @@ export default class Login extends Component {
     }
 
     if (this.isUserInfoCompleted(user)) {
-      return this.props.navigation.dispatch({
-        type: 'Navigation/RESET',
-        index: 0,
-        actions: [{
-          type: 'Navigation/NAVIGATE',
-          routeName:'Home'
-        }]
-      })
+      return this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorStack' })]);
     }
 
-    this.props.navigation.dispatch({
-      type: 'Navigation/RESET',
-      index: 0,
-      actions: [{
-        type: 'Navigation/NAVIGATE',
-        routeName:'ProfileForm'
-      }]
-    })
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileForm' })]);
   }
 
   _renderNavigation = () => {
