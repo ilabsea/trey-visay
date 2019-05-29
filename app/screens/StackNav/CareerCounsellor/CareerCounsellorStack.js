@@ -13,6 +13,7 @@ import OpenDrawer from '../../../components/shared/open_drawer';
 
 import CareerCategoriesScreen from '../../Careers/CategoriesScreen';
 import ShowCareerCategoryScreen from '../../Careers/ShowCategoryScreen';
+import CareerDetailScreen from '../../Careers/DetailScreen';
 
 import CareerCounsellor from '../../CareerCounsellor/CareerCounsellor';
 
@@ -55,6 +56,12 @@ const CareerCounsellorStack = createStackNavigator(
       })
     },
     ShowCareerCategoryScreen: { screen: ShowCareerCategoryScreen },
+    CareerDetailScreen: {
+      screen: CareerDetailScreen,
+      navigationOptions: ({navigation}) => ({
+        header: null
+      })
+    },
     SubjectScreen: {
       screen: SubjectScreen,
       navigationOptions: ({navigation}) => ({

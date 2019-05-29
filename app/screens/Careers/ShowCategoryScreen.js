@@ -2,20 +2,17 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  Image,
   ScrollView,
+  Dimensions,
+  TouchableOpacity,
 } from 'react-native';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Container, Content, Accordion } from "native-base";
 
-import styles from '../../assets/style_sheets/profile_form';
-import headerStyles from '../../assets/style_sheets/header';
-import careers from '../../data/json/characteristic_jobs';
-import IonicIcon from 'react-native-vector-icons/Ionicons';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Divider } from 'react-native-elements';
+import categoryList from '../../data/json/characteristic_jobs';
+import StatusBar from '../../components/shared/status_bar';
 
-import BackButton from '../../components/shared/back_button';
-
-let job;
 export default class ShowCategoryScreen extends Component {
   static navigationOptions = ({ navigation }) => {
     const { goBack, state } = navigation;
@@ -24,66 +21,67 @@ export default class ShowCategoryScreen extends Component {
     }
   };
 
-  state = {
-    activeSections: []
-  };
+  constructor(props) {
+    super(props);
 
-  componentWillMount() {
     let id = this.props.navigation.state.params.careerId || '1';
-    job = careers.find((obj) => obj.id == id);
-    this.props.navigation.setParams({title: job.career_title});
-  }
+    category = categoryList.find((obj) => obj.id == id);
+    this.props.navigation.setParams({title: category.career_title});
 
-  _renderHeader(career, index, isActive) {
-    let myStyle = {borderBottomWidth: 0.5, marginTop: 10};
-
-    if (isActive) {
-      myStyle = {};
+    this.state = {
+      careers: category.careers
     }
+  }
 
-    return (
-      <View>
-        <View style={[{flexDirection: 'row', alignItems: 'center'}]}>
-          <IonicIcon name='md-briefcase' size={24} color='#1976d2' style={{marginRight: 10}}/>
-          <Text style={[styles.subTitle, {flex: 1}]}>{career.name}</Text>
+  _renderItems() {
+    let {width} = Dimensions.get('window');
+    let totalMargin = 60;
+    let height = (width/2 - totalMargin) * 1.6;
 
-          { !isActive && <AwesomeIcon name='caret-down' size={24} color='#1976d2' /> }
-          { isActive && <AwesomeIcon name='caret-up' size={24} color='#1976d2' /> }
+    let doms = this.state.careers.map((career, index) => {
+      return (
+        <View key={index} style={{width: '50%', height: height, padding: 10}}>
+          <TouchableOpacity onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career: career})}>
+            <View style={{backgroundColor: '#fff', height: '100%', borderRadius: 8}}>
+              <Image
+                resizeMode="cover"
+                style={{width: '100%', height: '70%', borderTopLeftRadius: 8, borderTopRightRadius: 8}}
+                source={require('../../assets/images/careers/civil.png')} />
+
+              <View style={{padding: 5, flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                <Text style={{fontSize: 13, lineHeight: 24}} numberOfLines={2}>{career.name}</Text>
+              </View>
+            </View>
+          </TouchableOpacity>
+
         </View>
-
-        { !isActive && <Divider style={{marginLeft: 34}}/>}
-      </View>
-    );
-  }
-
-  _renderContent(career) {
-    return (
-      <View>
-        <Text>{career.description || 'content is not available'}</Text>
-        <Divider style={{marginLeft: 34, marginVertical: 10}}/>
-      </View>
-    );
-  }
-
-  _updateSections = activeSections => {
-    this.setState({ activeSections });
-  };
-
-  rebuildCareers(jobs){
-    let careers = jobs.map(career => {
-      return { title : career.name, content: career.description ? career.description : 'content is not available'}
+      )
     })
-    return careers;
+
+    return (
+      <View style={{flexWrap: 'wrap', flexDirection: 'row', padding: 10}}>
+        {doms}
+      </View>
+    );
+  }
+
+  _renderContent() {
+    return (
+      <ScrollView>
+        <Content>
+          { this._renderItems() }
+        </Content>
+      </ScrollView>
+    )
   }
 
   render() {
-    let careers = this.rebuildCareers(job.careers)
     return(
-      <Container>
-        <Content padder>
-          <Accordion dataArray={careers} icon="add" expandedIcon="remove" />
-        </Content>
-      </Container>
+      <View style={{flex: 1}}>
+        <StatusBar translucent={false} />
+
+        { this._renderContent() }
+      </View>
     );
   };
 }

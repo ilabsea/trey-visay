@@ -3,17 +3,12 @@ import {
   Text,
   ScrollView,
   View,
-  TouchableOpacity,
   Image,
-  StyleSheet,
-  NetInfo,
   Linking,
   Dimensions
 } from 'react-native';
 
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import Carousel from 'react-native-snap-carousel';
-import { Divider } from 'react-native-elements';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 import StatusBar from '../../components/shared/status_bar';

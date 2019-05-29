@@ -2,21 +2,10 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-  Image,
   BackHandler,
-  Platform
 } from 'react-native';
 
-import { Divider } from 'react-native-elements';
-
 import mainStyles from '../../assets/style_sheets/main/main';
-import headerStyles from '../../assets/style_sheets/header';
-import Images from '../../assets/images';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import careerList from '../../data/json/characteristic_jobs';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import CloseButton from '../../components/shared/close_button';
@@ -89,8 +78,8 @@ export default class CategoriesScreen extends Component {
         index={index}
         width={'40%'}
         height={'18%'}
-        onPress={() => this.props.navigation.navigate('ShowCareerCategoryScreen', {
-          career: career
+        onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
+          career: career.item
         })} />
     )
   }

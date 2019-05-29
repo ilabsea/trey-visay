@@ -53,7 +53,8 @@ const AccountStack = createStackNavigator(
     }
   },
   {
-    initialRouteName: 'Intro',
+    // initialRouteName: 'Intro',
+    initialRouteName: 'Login',
   }
 );
 
