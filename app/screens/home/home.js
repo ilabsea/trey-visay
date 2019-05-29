@@ -1,13 +1,4 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  ScrollView,
-  StyleSheet,
-  Platform,
-  TouchableOpacity,
-  Dimensions
-} from 'react-native';
 
 import SplashScreen from 'react-native-splash-screen';
 import CarouselView from '../../components/shared/home/carousel_view';

@@ -3,9 +3,11 @@ import {
   View,
   Text,
   TouchableOpacity,
-  StyleSheet
+  StyleSheet,
+  Image
 } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import IonicIcon from 'react-native-vector-icons/Ionicons';
 import { Divider } from 'react-native-elements';
 
 import mainStyles from "../../assets/style_sheets/main/main";
@@ -19,10 +21,18 @@ class ButtonList extends React.Component {
     return (
       <View>
         <TouchableOpacity
-          style={mainStyles.btnList}
-          style={{flexDirection: 'row', alignItems: 'center', padding: 16}}
+          style={[mainStyles.btnList, {alignItems: 'center'}]}
           onPress={this.props.onPress}
         >
+          { this.props.icon &&
+            <View style={{ width: 32, height: 32, borderRadius: 12, backgroundColor: this.props.icon.color, marginRight: 16}}>
+              <Image
+                source={this.props.icon.src}
+                resizeMode='contain'
+                style={{width: 20, height: 20, margin: 6}}
+              />
+            </View>
+          }
           <Text style={mainStyles.title}>{this.props.title}</Text>
           <AwesomeIcon name='angle-right' size={24} color='#bbb' />
         </TouchableOpacity>

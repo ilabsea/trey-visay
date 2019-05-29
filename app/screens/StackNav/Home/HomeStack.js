@@ -13,6 +13,7 @@ import SchoolStack from '../School/SchoolStack';
 import AccountStack from '../account_stack';
 import CareerCounsellorStack from '../CareerCounsellor/CareerCounsellorStack';
 import ProfileStack from '../profile_stack';
+import OthersStack from '../Others/OthersStack';
 
 import VideoScreen from '../../Video/VideoScreen';
 
@@ -37,8 +38,9 @@ const HomeTab = createBottomTabNavigator({
     }
   },
   Others: {
-    screen: ({ navigation }) => <SchoolScreen screenProps={{category: 'អង្គការ', navigation: navigation}}/>,
+    screen: OthersStack,
     navigationOptions: {
+      headerTitle: 'ផ្សេងៗ',
       tabBarLabel: 'ផ្សេងៗ',
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         return <AwesomeIcon name='ellipsis-h' size={24} color={tintColor} />;
