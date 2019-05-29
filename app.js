@@ -5,7 +5,7 @@ import { AppRegistry } from 'react-native';
 import Task from './app/utils/task';
 import realm from './app/db/schema';
 
-import HomeStack from './app/screens/StackNav/Home/HomeStack';
+import HomeStackNav from './app/screens/StackNav/Home/HomeStackNav';
 
 export default class App extends Component {
   constructor(props) {
@@ -31,6 +31,6 @@ export default class App extends Component {
   }
 
   render() {
-    return (<HomeStack/>);
+    return (<HomeStackNav/>);
   }
 }
