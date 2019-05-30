@@ -9,12 +9,12 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 import { NavigationActions } from 'react-navigation';
 import { Divider } from 'react-native-elements';
 
+import mainStyles from '../../../assets/style_sheets/main/main';
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import CheckboxGroup from '../../../components/checkbox_group';
 import FooterBar from '../../../components/footer/FooterBar';
 import CloseButton from '../../../components/shared/close_button';
 
-import mainStyles from '../../../assets/style_sheets/main/main';
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
 import characteristicList from '../../../data/json/characteristic_jobs';
@@ -105,7 +105,7 @@ export default class PersonalityJobsScreen extends Component {
     let checkboxes = this._formatDataForCheckbox(this.state.currentGroup.id);
 
     return (
-      <View style={mainStyles.box}>
+      <View style={[mainStyles.box, {borderRadius: 0}]}>
         <Text style={[mainStyles.title, {paddingLeft: 16, padding: 8}]}>មុខរបរ</Text>
         <Divider />
 

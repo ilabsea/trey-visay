@@ -95,6 +95,7 @@ const CareerCounsellorStack = createStackNavigator(
         title: 'ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល',
         headerLeft: <CloseButton navigation={navigation}/>,
         headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     RecommendationScreen: {

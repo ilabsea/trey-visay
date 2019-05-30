@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  ScrollView,
   BackHandler,
+  Platform,
+  Image,
+  TouchableOpacity,
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -13,13 +15,19 @@ import { Divider } from 'react-native-elements';
 import RadioButtonGroup from '../../../components/radio_button_group';
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import FooterBar from '../../../components/footer/FooterBar';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
 
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
 import characteristicList from '../../../data/json/characteristic_jobs';
+
+import ScrollableHeader from '../../../components/scrollable_header';
+import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
+import * as Progress from 'react-native-progress';
+import ProgressStep from '../ProgressStep/ProgressStep';
+import CloseButton from '../../../components/shared/close_button';
+import { Radio } from 'native-base';
 
 export default class SummaryScreen extends Component {
   constructor(props) {
@@ -96,12 +104,7 @@ export default class SummaryScreen extends Component {
   }
 
   _formatDataForCheckbox(jobs) {
-    let arr = [];
-
-    for(let i = 0; i < jobs.length; i++) {
-      arr.push({ value: jobs[i].code, label: jobs[i].name })
-    }
-    return arr;
+    return jobs.map(job => { return { value: job.code, label: job.name }})
   }
 
   _goNext() {
@@ -120,35 +123,78 @@ export default class SummaryScreen extends Component {
     });
   }
 
-  _renderRadioGroups() {
-    return(
-      <View style={mainStyles.box}>
-        <Text style={[mainStyles.sectionText, {paddingBottom: 8}]}>ចូរជ្រើសរើស មុខរបរតែមួយគត់ដែលអ្នកពេញចិត្តបំផុត</Text>
-        <Divider />
-        <View style={{margin: 16}}>
-          <RadioButtonGroup
-            radio_props={this._formatDataForCheckbox(this.state.userCareers)}
-            onPress={(text) => this.setState({ mostFavorableJob: text })}
-            value={this.state.mostFavorableJob} >
-          </RadioButtonGroup>
-        </View>
+  _renderList = () => {
+    let careers = this._formatDataForCheckbox(this.state.userCareers);
+
+    return (
+      <View style={{paddingHorizontal: 20}}>
+        { careers.map((career, index)=>{
+          return (
+            <TouchableOpacity onPress={() => this.setState({mostFavorableJob: career.value})} key={index} style={{flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 8, paddingRight: 17, marginBottom: 20}}>
+              <Image
+                style={{width: 78, height: 78}}
+                source={require('../../../assets/images/careers/civil.png')} />
+              <Text style={{flex: 1, paddingHorizontal: 18}}>{career.label}</Text>
+              <Radio selected={career.value == this.state.mostFavorableJob} />
+            </TouchableOpacity>
+          )
+        })}
       </View>
     )
+  }
+
+  _renderContent = () => {
+    return (
+      <View>
+        <View style={mainStyles.instructionContainer}>
+          <Text style={[mainStyles.text, {flex: 1}]}>
+            ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!
+          </Text>
+        </View>
+
+        { this._renderList() }
+      </View>
+    )
+  }
+
+  _renderNavigation = () => {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <CloseButton navigation={this.props.navigation}/>
+        <Text style={{color: '#fff'}}>ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល</Text>
+      </View>
+    )
+  }
+
+  _renderForeground = () => {
+    return (
+      <View>
+        <ProgressStep progressIndex={3} />
+
+        <View>
+          <View style={scrollHeaderStyles.progressTextWrapper}>
+            <Text style={scrollHeaderStyles.progressText}>ឆ្លើយរួចរាល់</Text>
+          </View>
+
+          <Progress.Bar progress={!!this.state.mostFavorableJob + 0} width={null} color='#fff' unfilledColor='rgb(19, 93, 153)' borderColor='transparent' />
+        </View>
+      </View>
+    );
   }
 
   render() {
     return(
       <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          <View style={mainStyles.instructionContainer}>
-            <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-            <Text style={[mainStyles.text, {flex: 1}]}>
-              ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!
-            </Text>
-          </View>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ this._renderNavigation }
+          renderForeground={this._renderForeground }
+          headerMaxHeight={180}
+          enableProgressBar={true}
+          progressValue={!!this.state.mostFavorableJob + 0}
+        />
 
-          { this._renderRadioGroups() }
-        </ScrollView>
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -156,8 +202,8 @@ export default class SummaryScreen extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <Toast ref='toast' positionValue={ 120 }/>
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
-    );
+    )
   };
 }
