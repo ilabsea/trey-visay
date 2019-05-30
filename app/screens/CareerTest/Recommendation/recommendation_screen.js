@@ -11,8 +11,6 @@ import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import FooterBar from '../../../components/footer/FooterBar';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
-import headerStyles from '../../../assets/style_sheets/header';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { NavigationActions } from 'react-navigation';
 
 import realm from '../../../db/schema';
@@ -20,6 +18,9 @@ import User from '../../../utils/user';
 import subjectList from '../../../data/json/subjects/subject_tips';
 import characteristicList from '../../../data/json/characteristic_jobs';
 import subjectTe from '../../../data/translates/subject';
+
+import ScrollableHeader from '../../../components/scrollable_header';
+import CloseButton from '../../../components/shared/close_button';
 
 export default class RecommendationScreen extends Component {
   constructor(props) {
@@ -193,22 +194,25 @@ export default class RecommendationScreen extends Component {
     )
   }
 
-  _renderContent() {
+  _renderContent = () => {
     return (
-      <View style={[mainStyles.box, {padding: 16}]}>
-        <Text>
-          <Text style={localStyle.boldText}>{this.state.user.fullName}</Text>! អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ
-          <Text style={localStyle.boldText}> “{this.state.currentJob.name}” </Text>
-          ដែលមុខរបរនេះជា
-          <Text style={localStyle.boldText}> {this.state.currentGroup.career_title}។ </Text>
-        </Text>
+      <View style={{padding: 20}}>
+        <View>
+          <Text style={{fontSize: 24, lineHeight: 48}}>សួរស្តី {this.state.user.fullName}</Text>
+          <Text>
+            អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ
+            <Text style={localStyle.boldText}> “{this.state.currentJob.name}” </Text>
+            ដែលមុខរបរនេះជា
+            <Text style={localStyle.boldText}> {this.state.currentGroup.career_title}។ </Text>
+          </Text>
 
-        <Text style={localStyle.paragraph}>{this.state.currentGroup.recommendation}</Text>
-        <Text style={localStyle.paragraph}>
-          <Text style={[localStyle.boldText, {color: '#d0021b'}]}>បញ្ជាក់៖ </Text>
-          សិស្សានុសិស្សត្រូវប្រឡងជាប់ថ្នាក់ទី ១២ និងរៀនឲ្យពូកែ ទើបអាចសម្រេចបានគោលបំណង ឬគោលដៅ ។
-        </Text>
-        <Text style={localStyle.paragraph}>ដូចនេះសូមអ្នកផ្ទៀងផ្ទាត់យ៉ាងលម្អិតរវាង ការវាយតម្លៃលើមុខវិជ្ជាដែលអ្នកបានរៀន និង បុគ្គលិកលក្ខណៈរបស់អ្នកជា មួយនឹងមុខរបរដែលអ្នកពេញចិត្តដូចខាងក្រោម៖</Text>
+          <Text style={localStyle.paragraph}>{this.state.currentGroup.recommendation}</Text>
+          <Text style={localStyle.paragraph}>
+            <Text style={[localStyle.boldText, {color: '#d0021b'}]}>បញ្ជាក់៖ </Text>
+            សិស្សានុសិស្សត្រូវប្រឡងជាប់ថ្នាក់ទី ១២ និងរៀនឲ្យពូកែ ទើបអាចសម្រេចបានគោលបំណង ឬគោលដៅ ។
+          </Text>
+          <Text style={localStyle.paragraph}>ដូចនេះសូមអ្នកផ្ទៀងផ្ទាត់យ៉ាងលម្អិតរវាង ការវាយតម្លៃលើមុខវិជ្ជាដែលអ្នកបានរៀន និង បុគ្គលិកលក្ខណៈរបស់អ្នកជា មួយនឹងមុខរបរដែលអ្នកពេញចិត្តដូចខាងក្រោម៖</Text>
+        </View>
 
         { this._renderSubject() }
         { this._renderCharacteristic() }
@@ -218,15 +222,18 @@ export default class RecommendationScreen extends Component {
   }
 
   render() {
-    return(
+    let title = 'ការផ្តល់អនុសាសន៍';
+
+    return (
       <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          <View style={mainStyles.instructionContainer}>
-            <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-            <Text style={[mainStyles.text, {flex:1 }]}>ចូរប្អូនអានអនុសាសន៍ខាងក្រោម៖</Text>
-          </View>
-          { this._renderContent() }
-        </ScrollView>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ () => <CloseButton navigation={this.props.navigation}/> }
+          title={title}
+          largeTitle={title}
+        />
+
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -235,7 +242,7 @@ export default class RecommendationScreen extends Component {
           onPressNo={() => this._onNo()}
         />
       </View>
-    );
+    )
   };
 }
 

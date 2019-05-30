@@ -104,6 +104,7 @@ const CareerCounsellorStack = createStackNavigator(
         title: 'ការផ្តល់អនុសាសន៍',
         headerLeft: <CloseButton navigation={navigation}/>,
         headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     GoalScreen: {
