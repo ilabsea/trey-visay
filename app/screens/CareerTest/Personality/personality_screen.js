@@ -250,5 +250,5 @@ export default class PersonalityScreen extends Component {
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
     )
-  };
+  }
 }

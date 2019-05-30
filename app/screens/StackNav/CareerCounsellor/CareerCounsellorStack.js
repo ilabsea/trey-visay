@@ -86,6 +86,7 @@ const CareerCounsellorStack = createStackNavigator(
         title: `${navigation.getParam('title')}`,
         headerLeft: <CloseButton navigation={navigation}/>,
         headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     SummaryScreen: {

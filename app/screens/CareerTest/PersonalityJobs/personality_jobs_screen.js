@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
   BackHandler,
   Platform
 } from 'react-native';
@@ -15,13 +12,17 @@ import { Divider } from 'react-native-elements';
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import CheckboxGroup from '../../../components/checkbox_group';
 import FooterBar from '../../../components/footer/FooterBar';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import CloseButton from '../../../components/shared/close_button';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
-import headerStyles from '../../../assets/style_sheets/header';
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
 import characteristicList from '../../../data/json/characteristic_jobs';
+
+import ScrollableHeader from '../../../components/scrollable_header';
+import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
+import * as Progress from 'react-native-progress';
+import ProgressStep from '../ProgressStep/ProgressStep';
 
 export default class PersonalityJobsScreen extends Component {
   constructor(props) {
@@ -103,15 +104,17 @@ export default class PersonalityJobsScreen extends Component {
   _renderCheckBoxes() {
     let checkboxes = this._formatDataForCheckbox(this.state.currentGroup.id);
 
-    return(
+    return (
       <View style={mainStyles.box}>
         <Text style={[mainStyles.title, {paddingLeft: 16, padding: 8}]}>មុខរបរ</Text>
         <Divider />
+
         <View>
           <CheckboxGroup
             onSelect={(selected) => {this._handleChecked(selected)}}
             items={checkboxes}
             checked={this.state.jobs}
+            limitCheckedItems={3}
             style={{
               icon: {
                 color: '#4caf50',
@@ -142,12 +145,11 @@ export default class PersonalityJobsScreen extends Component {
   }
 
   _handleChecked(careers) {
-    this.props.navigation.setParams({total: careers.length});
-
     if (careers.length > 3) {
-      return this.refs.toast.show('សូមជ្រើសរើសមុខរបរចំនួន 3 ប៉ុណ្ណោះ!',  DURATION.SHORT);
+      return this.refs.toast.show('អ្នកអាចជ្រើសរើសមុខរបរចំនួន 3 ប៉ុណ្ណោះ!',  DURATION.SHORT);
     }
 
+    this.props.navigation.setParams({total: careers.length});
     this.setState({jobs: careers});
   }
 
@@ -167,26 +169,65 @@ export default class PersonalityJobsScreen extends Component {
     });
   }
 
-  render() {
-    return(
-      <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          <View style={{marginTop: 24}}>
-            <Text style={mainStyles.instructionText}>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
+  _renderContent = () => {
+    return (
+      <View>
+        <View style={{flexDirection: 'row', padding: 16, paddingBottom: 0, flex: 1}}>
+          <Text style={{flex: 1}}>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
+        </View>
 
-            { this._renderCheckBoxes() }
+        { this._renderCheckBoxes() }
+      </View>
+    )
+  }
 
-            <BackConfirmDialog
-              visible={this.state.confirmDialogVisible}
-              onTouchOutside={() => this.setState({confirmDialogVisible: false})}
-              onPressYes={() => this._onYes()}
-              onPressNo={() => this._onNo()}
-            />
+  _renderNavigation = () => {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <CloseButton navigation={this.props.navigation}/>
+        <Text style={{color: '#fff'}}>{this.props.navigation.getParam('title')}</Text>
+      </View>
+    )
+  }
+
+  _renderForeground = () => {
+    return (
+      <View>
+        <ProgressStep progressIndex={2} />
+
+        <View>
+          <View style={scrollHeaderStyles.progressTextWrapper}>
+            <Text style={scrollHeaderStyles.progressText}>ឆ្លើយរួចរាល់</Text>
           </View>
-        </ScrollView>
 
-        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+          <Progress.Bar progress={this.state.jobs.length/3} width={null} color='#fff' unfilledColor='rgb(19, 93, 153)' borderColor='transparent' />
+        </View>
       </View>
     );
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ this._renderNavigation }
+          renderForeground={this._renderForeground }
+          headerMaxHeight={180}
+          enableProgressBar={true}
+          progressValue={this.state.jobs.length/3}
+        />
+
+        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
+
+        <BackConfirmDialog
+          visible={this.state.confirmDialogVisible}
+          onTouchOutside={() => this.setState({confirmDialogVisible: false})}
+          onPressYes={() => this._onYes()}
+          onPressNo={() => this._onNo()}
+        />
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+      </View>
+    )
   };
 }
