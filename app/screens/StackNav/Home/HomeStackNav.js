@@ -58,15 +58,19 @@ const HomeStackNav = createStackNavigator({
     screen: HomeTab,
     navigationOptions: ({navigation}) => ({
       header: null
-    }),
+    })
   },
   AccountStack: {
     screen: AccountStack,
     navigationOptions: ({navigation}) => ({
       header: null
-    }),
+    })
   },
-  SchoolStack: { screen: SchoolStack},
+  SchoolStack: { screen: SchoolStack,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
+  },
   VideoScreen: {
     screen: VideoScreen,
     header: { visible:false }

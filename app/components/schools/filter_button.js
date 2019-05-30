@@ -1,6 +1,7 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Image } from 'react-native';
 import { Button, Text } from 'native-base';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 class FilterButton extends React.Component {
   constructor(props) {
@@ -12,9 +13,12 @@ class FilterButton extends React.Component {
       <Button
         style={styles.btn}
         rounded
-        dark block
+        primary block
         onPress={ () => this.props.navigation.navigate('FilterScreen') }>
-        <Text>Filter</Text>
+        <Image
+          source={require('../../assets/icons/school/filter.png')}
+          style={{width: 18, height: 18}} />
+        <Text style={{lineHeight: 38}}>ស្វែងរក</Text>
       </Button>
     )
   }
@@ -24,9 +28,12 @@ const styles = StyleSheet.create({
   btn: {
     flex: 1,
     alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
     position: 'absolute',
-    bottom: 10,
-    padding: 16
+    bottom: 16,
+    padding: 16,
+    backgroundColor: 'rgb(24, 118, 211)'
   }
 })
 
