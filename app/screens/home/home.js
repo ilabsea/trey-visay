@@ -17,6 +17,9 @@ export default class Home extends Component {
   componentWillMount() {
     SplashScreen.hide();
     User.isLoggedin(() => {
+      // if (!user) {
+      //   return this.props.navigation.navigate('AccountStack');
+      // }
       let user = User.getCurrent();
       this.setState({ user: user});
     });

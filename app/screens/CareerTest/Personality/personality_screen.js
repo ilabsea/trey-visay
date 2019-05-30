@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  ScrollView,
   BackHandler,
-  Image,
   Platform
 } from 'react-native';
 
@@ -15,12 +13,15 @@ import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import CloseButton from '../../../components/shared/close_button';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import Images from '../../../assets/images';
 import CheckboxGroup from '../../../components/checkbox_group';
 import FooterBar from '../../../components/footer/FooterBar';
 import MathUtil from '../../../utils/math';
+
+import ScrollableHeader from '../../../components/scrollable_header';
+import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
+import { Container, Content, Icon } from 'native-base';
+import * as Progress from 'react-native-progress';
+import ProgressStep from '../ProgressStep/ProgressStep';
 
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
@@ -186,22 +187,57 @@ export default class PersonalityScreen extends Component {
     this.props.navigation.navigate('PersonalityJobsScreen', { title: title, groupNumber: groupNumber})
   }
 
-  render() {
-    return(
-      <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16}}>
-            <View style={{flexDirection: 'row', marginVertical: 16, marginRight: 16, flex: 1}}>
-              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-              <Text>
-                ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបាន យ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់
-                និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយ ជាក់លាក់នាពេលអនាគត។
-              </Text>
-            </View>
+  _renderContent = () => {
+    return (
+      <View>
+        <View style={{flexDirection: 'row', padding: 16, paddingBottom: 0, flex: 1}}>
+          <Text>
+            ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឲ្យបាន យ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់
+            និងអាចជួយប្អូនក្នុងការជ្រើសរើស អាជីពមួយ ជាក់លាក់នាពេលអនាគត។
+          </Text>
+        </View>
 
-            { this._renderPersonalities() }
+        { this._renderPersonalities() }
+      </View>
+    )
+  }
+
+  _renderNavigation = () => {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <CloseButton navigation={this.props.navigation}/>
+        <Text style={{color: '#fff'}}>បំពេញបុគ្គលិកលក្ខណៈ</Text>
+      </View>
+    )
+  }
+
+  _renderForeground = () => {
+    return (
+      <View>
+        <ProgressStep progressIndex={1} />
+
+        <View>
+          <View style={scrollHeaderStyles.progressTextWrapper}>
+            <Text style={scrollHeaderStyles.progressText}>ឆ្លើយយ៉ាងតិច5</Text>
           </View>
-        </ScrollView>
+
+          <Progress.Bar progress={this.state.characteristicEntries.length/5} width={null} color='#fff' unfilledColor='rgb(19, 93, 153)' borderColor='transparent' />
+        </View>
+      </View>
+    );
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ this._renderNavigation }
+          renderForeground={this._renderForeground }
+          headerMaxHeight={180}
+          enableProgressBar={true}
+          progressValue={this.state.characteristicEntries.length/5}
+        />
 
         <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
@@ -213,6 +249,6 @@ export default class PersonalityScreen extends Component {
         />
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
-    );
+    )
   };
 }

@@ -77,6 +77,7 @@ const CareerCounsellorStack = createStackNavigator(
         title: 'បំពេញបុគ្គលិកលក្ខណៈ',
         headerLeft: <CloseButton navigation={navigation}/>,
         headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     PersonalityJobsScreen: {

@@ -33,6 +33,19 @@ export default StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'
   },
+  progressTextWrapper: {
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    paddingHorizontal: 5,
+    paddingTop: 6,
+    width: 110,
+    backgroundColor: 'rgb(22, 99, 176)'
+  },
+  progressText: {
+    color: '#fff',
+    fontSize: 13,
+    lineHeight: 22
+  },
   iconText: {
     fontSize: 20,
     color: 'rgb(24,118,211)'

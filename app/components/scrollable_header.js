@@ -256,10 +256,10 @@ class ScrollableHeader extends Component {
   }
 
   renderProgress() {
-    if (this.props.enableProgressBar && this.props.progressValue > -1) {
+    if (!!this.props.enableProgressBar && this.props.progressValue > -1) {
       return (
         <View style={{position: 'absolute', left: 0, right: 0, bottom: -4}}>
-          <Progress.Bar progress={this.props.progressValue} width={null} color='red' unfilledColor='rgb(19, 93, 153)' borderColor='transparent' />
+          <Progress.Bar progress={this.props.progressValue} borderRadius={0} width={null} color='red' unfilledColor='rgb(19, 93, 153)' borderColor='transparent' />
         </View>
       )
     } else {
@@ -307,7 +307,7 @@ ScrollableHeader.propTypes = {
   renderForeground: PropTypes.func,
   headerMaxHeight: PropTypes.number,
   backgroundColor: PropTypes.string,
-  enableProgressBar: PropTypes.boolean,
+  enableProgressBar: PropTypes.bool,
   progressValue: PropTypes.number,
 };
 

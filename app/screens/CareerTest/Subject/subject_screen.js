@@ -21,6 +21,7 @@ import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
 import { Container, Content, Icon } from 'native-base';
 import * as Progress from 'react-native-progress';
 import ProgressStep from '../ProgressStep/ProgressStep';
+import subjectGroups from '../../../data/json/subjects/subject_groups';
 
 import styles from '../../../assets/style_sheets/profile_form';
 
@@ -125,9 +126,9 @@ export default class SubjectScreen extends Component {
     )
   }
 
-  _renderRadioGroups(obj) {
+  _renderRadioGroups(obj, index) {
     return(
-      <View style={[styles.box, {marginVertical: 10}]}>
+      <View key={index} style={[styles.box, {marginVertical: 10}]}>
         <View style={{marginHorizontal: -16, marginTop: -16, backgroundColor: 'rgba(24, 118, 211, 0.2)', height: 54, justifyContent: 'center', paddingHorizontal: 16, borderTopLeftRadius: 8, borderTopRightRadius: 8}}>
           <Text style={[styles.subTitle, {color: 'rgb(24, 118, 211)'}]}>{obj.title}</Text>
         </View>
@@ -153,71 +154,6 @@ export default class SubjectScreen extends Component {
     let progress = arr.length / this.subjectKeys.length;
 
     return progress;
-  }
-
-  _renderKhmer() {
-    let obj = {
-      title: 'ភាសាខ្មែរ',
-      groups: [
-        { stateName: 'khmerReading', label: 'ការអាន' },
-        { stateName: 'khmerWriting', label: 'ការសរសេរ' },
-      ]
-    }
-
-    return this._renderRadioGroups(obj);
-  }
-
-  _renderEnglish() {
-    let obj = {
-      title: 'ភាសាបរទេស',
-      groups: [
-        { stateName: 'english', label: 'ភាសាអង់គ្លេស/ភាសាបារាំង' },
-      ]
-    }
-
-    return this._renderRadioGroups(obj);
-  }
-
-  _renderSocialStudies() {
-    let obj = {
-      title: 'សិក្សាសង្គម',
-      groups: [
-        { stateName: 'socialStudyEthicsAndCitizenship', label: 'សីលធម៌ និង ពលរដ្ឋ' },
-        { stateName: 'socialStudyGeography', label: 'ភូមិវិទ្យា' },
-        { stateName: 'socialStudyHistory', label: 'ប្រវត្តិវិទ្យា' },
-      ]
-    }
-
-    return this._renderRadioGroups(obj);
-  }
-
-  _renderScience() {
-    let obj = {
-      title: " វិទ្យាសាស្ត្រ",
-      groups: [
-        { stateName: 'math', label: 'គណិតវិទ្យា' },
-        { stateName: 'sciencePhysics', label: 'រូបវិទ្យា' },
-        { stateName: 'scienceChemistry', label: 'គីមីវិទ្យា' },
-        { stateName: 'scienceBiology', label: 'ជីវៈវិទ្យា' },
-      ]
-    }
-
-    return this._renderRadioGroups(obj);
-  }
-
-  _renderSoftSkill() {
-    let obj = {
-      title: 'ជំនាញទន់',
-      groups: [
-        { stateName: 'softSkillCommunication', label: 'ទំនាក់ទំនង' },
-        { stateName: 'softSkillBrave', label: 'ក្លាហាន' },
-        { stateName: 'softSkillTeamwork', label: 'ក្រុមការងារ' },
-        { stateName: 'softSkillProblemSolving', label: 'ដោះស្រាយបញ្ហា' },
-        { stateName: 'softSkillPublicSpeaking', label: 'ការនិយាយជាសាធារណៈ' },
-      ]
-    }
-
-    return this._renderRadioGroups(obj);
   }
 
   _goNext() {
@@ -274,15 +210,14 @@ export default class SubjectScreen extends Component {
   }
 
   _renderContent = () => {
+    let doms = subjectGroups.map((group, index) => {
+      return this._renderRadioGroups(group, index);
+    })
+
     return (
       <View style={{margin: 20}} >
         <Text>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
-
-        { this._renderKhmer() }
-        { this._renderEnglish() }
-        { this._renderSocialStudies() }
-        { this._renderScience() }
-        { this._renderSoftSkill() }
+        {doms}
       </View>
     )
   }
@@ -302,8 +237,8 @@ export default class SubjectScreen extends Component {
         <ProgressStep progressIndex={0} />
 
         <View>
-          <View style={{borderTopLeftRadius: 10, borderTopRightRadius: 10, paddingHorizontal: 5, paddingTop: 6, width: 110, backgroundColor: 'rgb(22, 99, 176)'}}>
-            <Text style={{color: '#fff', fontSize: 13, lineHeight: 22}}>ឆ្លើយរួចរាល់</Text>
+          <View style={scrollHeaderStyles.progressTextWrapper}>
+            <Text style={scrollHeaderStyles.progressText}>ឆ្លើយរួចរាល់</Text>
           </View>
 
           <Progress.Bar progress={this.state.progress} width={null} color='#fff' unfilledColor='rgb(19, 93, 153)' borderColor='transparent' />
