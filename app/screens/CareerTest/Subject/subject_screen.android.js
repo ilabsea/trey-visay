@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  ScrollView,
   BackHandler,
   Platform
 } from 'react-native';
@@ -12,11 +11,16 @@ import { NavigationActions } from 'react-navigation';
 
 import { Divider } from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import RadioGroup from '../../../components/radio_group';
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import CloseButton from '../.././../components/shared/close_button';
 import FooterBar from '../../../components/footer/FooterBar';
+
+import ScrollableHeader from '../../../components/scrollable_header';
+import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
+import { Container, Content, Icon } from 'native-base';
+import * as Progress from 'react-native-progress';
+import ProgressStep from '../ProgressStep/ProgressStep';
 
 import styles from '../../../assets/style_sheets/profile_form';
 
@@ -25,7 +29,7 @@ import User from '../../../utils/user';
 import uuidv4 from '../../../utils/uuidv4';
 
 export default class SubjectScreen extends Component {
-  state = {
+  subjects = {
     khmerReading: '',
     khmerWriting: '',
     english: '',
@@ -41,14 +45,32 @@ export default class SubjectScreen extends Component {
     softSkillTeamwork: '',
     softSkillProblemSolving: '',
     softSkillPublicSpeaking: '',
-    confirmDialogVisible: false,
-    user: '',
-    game: ''
-  }
+  };
 
-  componentWillMount() {
-    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
-    this._initState();
+  subjectKeys = Object.keys(this.subjects);
+
+  constructor(props) {
+    super(props);
+
+    props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
+
+    let user = User.getCurrent();
+    let game = user.games[user.games.length - 1];
+    let gameSubject = game.gameSubject;
+    let subjects = this.subjects;
+
+    if (!!gameSubject) {
+      subjects = gameSubject;
+    }
+
+    this.state = {
+      ...subjects,
+      confirmDialogVisible: false,
+      user: user,
+      game: game,
+      progress: this._getProgress(gameSubject),
+    }
+
     this._backHandler();
   }
 
@@ -67,23 +89,14 @@ export default class SubjectScreen extends Component {
     return true
   }
 
-  _initState() {
-    let user = User.getCurrent();
-    let game = user.games[user.games.length - 1];
+  _getProgress(gameSubject) {
+    if (!gameSubject) { return 0 }
 
-    if (!!game.gameSubject) {
-      this._handleAssignGameSubject(game.gameSubject);
+    for(const key of this.subjectKeys) {
+      this.subjects[key] = gameSubject[key]
     }
 
-    this.setState({user: user, game: game});
-  }
-
-  _handleAssignGameSubject(gameSubject) {
-    let obj = {};
-    for (var key in gameSubject) {
-      obj[key] = gameSubject[key];
-    }
-    this.setState(obj);
+    this._calCulateProgress();
   }
 
   _renderRadioItem(group, i) {
@@ -96,8 +109,10 @@ export default class SubjectScreen extends Component {
     }
 
     return(
-      <View key={i} style={{paddingVertical: 16}}>
+      <View key={i} style={{paddingVertical: 8}}>
         <Text>{group.label}</Text>
+
+        <Divider style={borderStyle}/>
 
         <LinearGradient style={styles.container} colors={['transparent', gradientColor]}>
           <RadioGroup
@@ -106,18 +121,16 @@ export default class SubjectScreen extends Component {
             value={this.state[group.stateName]} >
           </RadioGroup>
         </LinearGradient>
-
-        <Divider style={borderStyle}/>
       </View>
     )
   }
 
   _renderRadioGroups(obj) {
     return(
-      <View style={styles.box}>
-        <Text style={styles.subTitle}>{obj.title}</Text>
-
-        <Divider/>
+      <View style={[styles.box, {marginVertical: 10}]}>
+        <View style={{marginHorizontal: -16, marginTop: -16, backgroundColor: 'rgba(24, 118, 211, 0.2)', height: 54, justifyContent: 'center', paddingHorizontal: 16, borderTopLeftRadius: 8, borderTopRightRadius: 8}}>
+          <Text style={[styles.subTitle, {color: 'rgb(24, 118, 211)'}]}>{obj.title}</Text>
+        </View>
 
         { obj.groups.map((group, i) => {
           { return(this._renderRadioItem(group, i)) }
@@ -128,9 +141,18 @@ export default class SubjectScreen extends Component {
 
   _handleSetState(stateName, text) {
     let obj = {};
+    this.subjects[stateName] = text;
     obj[stateName] = text;
+    obj.progress = this._calCulateProgress();
 
     this.setState(obj);
+  }
+
+  _calCulateProgress() {
+    let arr = this.subjectKeys.filter(key => !!this.subjects[key]);
+    let progress = arr.length / this.subjectKeys.length;
+
+    return progress;
   }
 
   _renderKhmer() {
@@ -251,23 +273,56 @@ export default class SubjectScreen extends Component {
     });
   }
 
-  render() {
-    return(
-      <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          <View style={{margin: 16}}>
-            <View style={{flexDirection: 'row', marginVertical: 16}}>
-              <MaterialIcon name='stars' color='#e94b35' size={24} style={{marginRight: 8}} />
-              <Text>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
-            </View>
+  _renderContent = () => {
+    return (
+      <View style={{margin: 20}} >
+        <Text>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
 
-            { this._renderKhmer() }
-            { this._renderEnglish() }
-            { this._renderSocialStudies() }
-            { this._renderScience() }
-            { this._renderSoftSkill() }
+        { this._renderKhmer() }
+        { this._renderEnglish() }
+        { this._renderSocialStudies() }
+        { this._renderScience() }
+        { this._renderSoftSkill() }
+      </View>
+    )
+  }
+
+  _renderNavigation = () => {
+    return (
+      <View style={{flexDirection: 'row'}}>
+        <CloseButton navigation={this.props.navigation}/>
+        <Text style={{color: '#fff'}}>បំពេញមុខវិជ្ជា</Text>
+      </View>
+    )
+  }
+
+  _renderForeground = () => {
+    return (
+      <View>
+        <ProgressStep progressIndex={0} />
+
+        <View>
+          <View style={{borderTopLeftRadius: 10, borderTopRightRadius: 10, paddingHorizontal: 5, paddingTop: 6, width: 110, backgroundColor: 'rgb(22, 99, 176)'}}>
+            <Text style={{color: '#fff', fontSize: 13, lineHeight: 22}}>ឆ្លើយរួចរាល់</Text>
           </View>
-        </ScrollView>
+
+          <Progress.Bar progress={this.state.progress} width={null} color='#fff' unfilledColor='rgb(19, 93, 153)' borderColor='transparent' />
+        </View>
+      </View>
+    );
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1}}>
+        <ScrollableHeader
+          renderContent={ this._renderContent }
+          renderNavigation={ this._renderNavigation }
+          renderForeground={this._renderForeground }
+          headerMaxHeight={180}
+          enableProgressBar={true}
+          progressValue={this.state.progress}
+        />
 
         <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
@@ -279,6 +334,6 @@ export default class SubjectScreen extends Component {
         />
         <Toast ref='toast' positionValue={Platform.OS == 'ios' ? 120 : 140}/>
       </View>
-    );
+    )
   };
 }

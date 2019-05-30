@@ -7,10 +7,10 @@ import {
   StyleSheet,
   Text,
   View,
-  Image,
 } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
+import * as Progress from 'react-native-progress';
 
 const DEFAULT_HEADER_MAX_HEIGHT = 140;
 const DEFAULT_HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 64 : 74;
@@ -255,6 +255,18 @@ class ScrollableHeader extends Component {
     )
   }
 
+  renderProgress() {
+    if (this.props.enableProgressBar && this.props.progressValue > -1) {
+      return (
+        <View style={{position: 'absolute', left: 0, right: 0, bottom: -4}}>
+          <Progress.Bar progress={this.props.progressValue} width={null} color='red' unfilledColor='rgb(19, 93, 153)' borderColor='transparent' />
+        </View>
+      )
+    } else {
+      return (null)
+    }
+  }
+
   renderHeader() {
     let bgColor = this.props.backgroundColor || DEFAULT_HEADER_COLOR;
 
@@ -267,6 +279,7 @@ class ScrollableHeader extends Component {
         ]}
       >
         { this.renderTitle() }
+        { this.renderProgress() }
         { this.renderOverlay() }
         { this.renderLargeTitle() }
         { this.renderForeground() }
@@ -293,7 +306,9 @@ ScrollableHeader.propTypes = {
   largeTitle: PropTypes.string,
   renderForeground: PropTypes.func,
   headerMaxHeight: PropTypes.number,
-  backgroundColor: PropTypes.string
+  backgroundColor: PropTypes.string,
+  enableProgressBar: PropTypes.boolean,
+  progressValue: PropTypes.number,
 };
 
 ScrollableHeader.defaultProps = {
@@ -304,6 +319,8 @@ ScrollableHeader.defaultProps = {
   renderForeground: null,
   headerMaxHeight: DEFAULT_HEADER_MAX_HEIGHT,
   backgroundColor: null,
+  enableProgressBar: false,
+  progressValue: 0
 };
 
 export default ScrollableHeader;

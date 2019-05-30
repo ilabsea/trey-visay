@@ -18,6 +18,21 @@ export default StyleSheet.create({
   inactiveIcon: {
     backgroundColor: 'rgb(13,82,150)'
   },
+  doneIconWrapper: {
+    position: 'absolute',
+    right: -2,
+    top: -2,
+    zIndex: 1
+  },
+  doneIcon: {
+    backgroundColor: '#fff',
+    width: 14,
+    height: 14,
+    borderRadius: 7,
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   iconText: {
     fontSize: 20,
     color: 'rgb(24,118,211)'
