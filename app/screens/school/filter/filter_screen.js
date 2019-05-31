@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
+import { Container, Content, Footer } from 'native-base';
+
+import API from '../../../api/schools';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
 
-import ButtonList from '../../../components/list/button_list';
+import OneList from '../../../components/list/one_list';
 import GridList from '../../../components/list/grid_list';
 import universities from '../../../data/json/universities.json';
+import FooterBar from '../../../components/footer/FooterBar';
 
 class FilterScreen extends Component {
 
@@ -14,17 +18,26 @@ class FilterScreen extends Component {
     super(props);
     this.state={
       majors: [],
-      selectedValue: 'គ្រប់ជំនាញ'
+      selectedValue: '',
+      selectedProvince: '',
+      category: props.navigation.state.params.category
     }
   }
 
   componentWillMount(){
-    this.getMajors();
+    API.getSelectedProvince((province) => {
+      this.setState({ selectedProvince: province });
+      this.getMajors();
+      API.getSelectedMajor((major) => {
+        major = major == 'គ្រប់ជំនាញ' ? '': major;
+        this.setState({ selectedValue: major });
+      });
+    });
   }
 
   getMajors(){
-    let category = "សាលារដ្ឋ";
-    let province = "ត្បូងឃ្មុំ";
+    let category = this.state.category;
+    let province = this.state.selectedProvince;
     let departments = [];
     universities.map(school => {
       if(school.category == category && school.province == province){
@@ -40,6 +53,18 @@ class FilterScreen extends Component {
 
   setActive(value){
     this.setState({selectedValue: value});
+  }
+
+  setFilterValues(){
+    API.setSelectedMajor(this.state.selectedValue);
+    this.props.navigation.state.params.refreshValue();
+    this.props.navigation.goBack();
+  }
+
+  refreshProvinceValue() {
+    API.getSelectedProvince((province) => {
+      this.setState({ selectedProvince: province });
+    });
   }
 
   renderButton(major,i){
@@ -64,26 +89,37 @@ class FilterScreen extends Component {
   }
 
   render(){
+    let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
     let majors = ['គ្រប់ជំនាញ'].concat(this.state.majors);
     return (
-      <ScrollView>
-        <View style={{marginTop: 16, backgroundColor: 'white'}}>
-          <ButtonList
-            hasLine={true}
-            onPress={() => {
-              console.log('hello button list')
-            }}
-            title='ជ្រេីសរេីសទីតាំង'
-          />
-        </View>
+      <Container>
+        <Content style={{ backgroundColor: 'rgb(239, 240, 244)' }}>
+          <ScrollView>
+            <OneList onPress={() => {
+                this.props.navigation.navigate('FilterProvinces', {
+                  title: 'ជ្រើសរើសទីតាំង',
+                  category: this.state.category,
+                  selectedProvince: province,
+                  refreshValue: this.refreshProvinceValue.bind(this)
+                })
+              }} text='ជ្រើសរើសទីតាំង' selectedValue={province} />
 
-        <Text style={[mainStyles.sectionText, { margin: 16 }]}>ជ្រេីសរេីសជំនាញ</Text>
-        <View style={[mainStyles.grid, {justifyContent: 'flex-start',margin: 0}]}>
-          { majors.map((major , i) => {
-            { return (this.renderButton(major,i))}
-          })}
-        </View>
-      </ScrollView>
+            <Text style={[ mainStyles.sectionText, { margin: 16, marginBottom: 0 }]}>
+              ជ្រេីសរេីសជំនាញ
+            </Text>
+
+            <View style={[ mainStyles.grid, { justifyContent: 'flex-start', margin: 0 }]}>
+              { majors.map((major , i) => {
+                { return (this.renderButton(major,i))}
+              })}
+            </View>
+
+          </ScrollView>
+        </Content>
+        <Footer>
+          <FooterBar text='យល់ព្រម' onPress={this.setFilterValues.bind(this)} />
+        </Footer>
+      </Container>
     )
   }
 }

@@ -20,7 +20,7 @@ export default class API {
     })
   }
 
-  static setSelectedMajor(major, callback){
+  static setSelectedMajor(major){
     AsyncStorage.setItem('selectedMajor', major);
   }
 

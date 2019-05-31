@@ -5,9 +5,12 @@ import {
   Text,
   TouchableOpacity
 } from 'react-native';
+import { Container, Content, Footer } from 'native-base';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
+
+import FooterBar from '../../../components/footer/FooterBar';
 
 import API from '../../../api/schools';
 import mainStyles from '../../../assets/style_sheets/main/main';
@@ -18,15 +21,13 @@ class FilterProvinces extends Component {
 
     this.state = {
       provinces: [],
+      category: props.navigation.state.params.category,
       selectedProvince: props.navigation.state.params.selectedProvince
     }
   };
 
   componentWillMount(){
     this.getProvinces();
-    this.props.navigation.setParams({
-      handleSubmit: this._handleSubmit.bind(this)
-    });
   }
 
   getProvinces() {
@@ -40,9 +41,9 @@ class FilterProvinces extends Component {
     this.setState({ selectedProvince: province });
   }
 
-  _handleSubmit(){
+  setFilterValue(){
     API.setSelectedProvince(this.state.selectedProvince);
-    this.props.navigation.state.params.refresh();
+    this.props.navigation.state.params.refreshValue();
     this.props.navigation.goBack();
   }
 
@@ -67,11 +68,19 @@ class FilterProvinces extends Component {
   render(){
     let provinces = ['គ្រប់ទីកន្លែង'].concat(this.state.provinces)
     return(
-      <ScrollView style={mainStyles.box}>
-        { provinces.map((province, i) => {
-          { return (this.renderProvinces(province, i))}
-        })}
-      </ScrollView>
+
+      <Container>
+        <Content style={{ backgroundColor: 'rgb(239, 240, 244)' }}>
+          <ScrollView style={mainStyles.box}>
+            { provinces.map((province, i) => {
+              { return (this.renderProvinces(province, i))}
+            })}
+          </ScrollView>
+        </Content>
+        <Footer>
+          <FooterBar text='យល់ព្រម' onPress={this.setFilterValue.bind(this)} />
+        </Footer>
+      </Container>
     )
   }
 }

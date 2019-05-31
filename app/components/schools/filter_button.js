@@ -14,7 +14,12 @@ class FilterButton extends React.Component {
         style={styles.btn}
         rounded
         primary block
-        onPress={ () => this.props.navigation.navigate('FilterScreen') }>
+        onPress={ () =>
+          this.props.navigation.navigate('FilterScreen', {
+            category: this.props.category,
+            refreshValue: this.props.refreshValue
+          })
+        }>
         <Image
           source={require('../../assets/icons/school/filter.png')}
           style={{width: 18, height: 18}} />

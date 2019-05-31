@@ -30,8 +30,21 @@ export default class SchoolScreen extends Component {
   }
 
   componentWillMount() {
-    this._getProvinces();
-    this._getSchools(1);
+    this.refreshState();
+  }
+
+  refreshState() {
+    API.getSelectedProvince((province) => {
+      API.getSelectedMajor((major) => {
+        province = province == 'គ្រប់ទីកន្លែង' ? '': province;
+        major = major == 'គ្រប់ជំនាញ' ? '': major;
+        console.log('province : ', province);
+        console.log('major : ', major)
+        this.setState({ currentProvince: province,currentMajor: major });
+        this._onChangeProvince(province);
+        this._onChangeMajor(major);
+      });
+    });
   }
 
   _getProvinces() {
@@ -167,9 +180,13 @@ export default class SchoolScreen extends Component {
           setContent={(active) => this.setContent(active)}>
         </SegmentView>
         <Content>
-          {this.renderContent()}
+          { this.renderContent() }
         </Content>
-        <FilterButton navigation={this.props.navigation} />
+        <FilterButton
+          navigation={this.props.navigation}
+          category={this.segments[this.state.activePage]}
+          refreshValue={ this.refreshState.bind(this)}
+          />
       </Container>
     )
   }
