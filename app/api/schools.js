@@ -76,4 +76,9 @@ export default class API {
       resolve({ provinces });
     })
   }
+
+  static clearSelectedValues(){
+    this.setSelectedProvince('');
+    this.setSelectedMajor('');
+  }
 }

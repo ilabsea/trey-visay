@@ -14,6 +14,8 @@ import FilterScreen from '../../school/filter/filter_screen';
 import FilterProvinces from '../../school/filter/filter_provinces';
 import FilterMajors from '../../school/filter/filter_majors';
 
+import API from '../../../api/schools';
+
 const SchoolStack = createStackNavigator(
   {
     Root: {
@@ -22,7 +24,10 @@ const SchoolStack = createStackNavigator(
         header: (
           <Header hasSegment>
             <Left>
-              <Button transparent onPress={() => navigation.goBack(null) }>
+              <Button transparent onPress={() => {
+                navigation.goBack(null);
+                API.clearSelectedValues();
+              }}>
                 <Icon name="arrow-back" />
               </Button>
             </Left>

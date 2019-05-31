@@ -23,15 +23,11 @@ export default class Home extends Component {
       let user = User.getCurrent();
       this.setState({ user: user});
     });
+    API.clearSelectedValues();
   }
 
-  clearSelectedValues(){
-    API.setSelectedProvince('');
-    API.setSelectedMajor('');
-  }
 
   render() {
-    this.clearSelectedValues();
     return (
       <CarouselView navigation={this.props.navigation} user={this.state.user}/>
     );

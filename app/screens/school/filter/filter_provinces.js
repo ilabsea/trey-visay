@@ -34,7 +34,7 @@ class FilterProvinces extends Component {
     API
       .getProvinces(this.props.navigation.state.params.category)
       .then(result => this.setState({provinces: result.provinces}))
-      .catch(error => {console.log(error)})
+      .catch(error => { console.log(error)} )
   }
 
   setSelectedProvince(province){
