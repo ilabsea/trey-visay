@@ -138,33 +138,40 @@ export default class RecommendationScreen extends Component {
   _renderSubject() {
     return (
       <View>
-        <Text style={[localStyle.paragraph, {color: '#1976d2'}]}>មុខវិជ្ជា</Text>
-        <Text>ជា{this.state.currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖ </Text>
-        <View>
-          { this.state.currentGroup.concern_subjects.map((code, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`}</Text>)
-          })}
-        </View>
+        <View style={localStyle.box}>
+          <Text style={[localStyle.boxHeader]}>មុខវិជ្ជា</Text>
 
-        <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>ចម្លើយរបស់អ្នក</Text>
-        <View>
-          { this.state.currentGroup.concern_subjects.map((code, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`} <Text style={localStyle.boldText}>({this.state.gameSubject[code]})</Text></Text>)
-          })}
-        </View>
-
-        { this._isStrongForAllSubject() &&
-          <Text style={[localStyle.paragraph]}>សូមអបអរសាទរ ការជ្រើសរើសរបស់ប្អូនសាកសមទៅនឹងសមត្ថភាពរបស់ប្អូនហើយ។</Text>
-        }
-
-        { !this._isStrongForAllSubject() &&
+          <Text>ជា{this.state.currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖ </Text>
           <View>
-            <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
             { this.state.currentGroup.concern_subjects.map((code, i) => {
-               { return (this._renderSubjectToImproveTip(code, i)) }
+              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`}</Text>)
             })}
           </View>
-        }
+        </View>
+
+        <View style={localStyle.box}>
+          <Text style={[localStyle.highlightBlue, localStyle.boxHeader]}>ចម្លើយរបស់អ្នក</Text>
+          <View>
+            { this.state.currentGroup.concern_subjects.map((code, i) => {
+              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`} <Text style={localStyle.boldText}>({this.state.gameSubject[code]})</Text></Text>)
+            })}
+          </View>
+        </View>
+
+        <View style={localStyle.box}>
+          { this._isStrongForAllSubject() &&
+            <Text style={[localStyle.paragraph]}>សូមអបអរសាទរ ការជ្រើសរើសរបស់ប្អូនសាកសមទៅនឹងសមត្ថភាពរបស់ប្អូនហើយ។</Text>
+          }
+
+          { !this._isStrongForAllSubject() &&
+            <View>
+              <Text style={[localStyle.highlightBlue, localStyle.boxHeader]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
+              { this.state.currentGroup.concern_subjects.map((code, i) => {
+                 { return (this._renderSubjectToImproveTip(code, i)) }
+              })}
+            </View>
+          }
+        </View>
       </View>
     )
   }
@@ -172,33 +179,40 @@ export default class RecommendationScreen extends Component {
   _renderCharacteristic() {
     return (
       <View>
-        <Text style={[localStyle.paragraph, {color: '#1976d2'}]}>បុគ្គលិកលក្ខណៈ</Text>
-        <Text>ជា{this.state.currentJob.name} អ្នកគួរមានបុគ្គលិកលក្ខណៈជាមនុស្ស៖</Text>
-        <View>
-          { this.state.currentGroup.concern_entries.map((character, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${character}`}</Text>)
-          })}
+        <View style={localStyle.box}>
+          <Text style={[localStyle.boxHeader]}>បុគ្គលិកលក្ខណៈ</Text>
+          <Text>ជា{this.state.currentJob.name} អ្នកគួរមានបុគ្គលិកលក្ខណៈជាមនុស្ស៖</Text>
+
+          <View>
+            { this.state.currentGroup.concern_entries.map((character, i) => {
+              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${character}`}</Text>)
+            })}
+          </View>
         </View>
 
-        <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>ចម្លើយរបស់អ្នក</Text>
-        <View>
-          { this.state.game.characteristicEntries.map((entry, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${entry.value}`}</Text>)
-          })}
-        </View>
+        <View style={localStyle.box}>
+          <Text style={[localStyle.boxHeader, localStyle.highlightBlue]}>ចម្លើយរបស់អ្នក</Text>
 
-        <Text style={localStyle.paragraph}>
-          បុគ្គលិកលក្ខណៈឆ្លុះបញ្ចាំងពីអត្តចរិករបស់មនុស្ស ដូចគ្នានេះដែរការងារនិមួយៗក៏ត្រូវការមនុស្សដែលមានបុគ្គលិកលក្ខណៈឲ្យស៊ីនឹងវាផងដែរ ទើបយើងបំពេញការងារនោះបានប្រសើរ និងរីកចម្រើនចំពោះខ្លួនឯង ដូចនេះសូម អ្នកផ្ទៀងផ្ទាត់ពីបុគ្គលិកលក្ខណៈរបស់ប្អូន ថាតើវាសាកសមសម្រាប់អ្នកហើយឬនៅ។
-        </Text>
+          <View>
+            { this.state.game.characteristicEntries.map((entry, i) => {
+              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${entry.value}`}</Text>)
+            })}
+          </View>
+
+          <Text style={localStyle.paragraph}>
+            បុគ្គលិកលក្ខណៈឆ្លុះបញ្ចាំងពីអត្តចរិករបស់មនុស្ស ដូចគ្នានេះដែរការងារនិមួយៗក៏ត្រូវការមនុស្សដែលមានបុគ្គលិកលក្ខណៈឲ្យស៊ីនឹងវាផងដែរ ទើបយើងបំពេញការងារនោះបានប្រសើរ និងរីកចម្រើនចំពោះខ្លួនឯង ដូចនេះសូម អ្នកផ្ទៀងផ្ទាត់ពីបុគ្គលិកលក្ខណៈរបស់ប្អូន ថាតើវាសាកសមសម្រាប់អ្នកហើយឬនៅ។
+          </Text>
+        </View>
       </View>
     )
   }
 
   _renderContent = () => {
     return (
-      <View style={{padding: 20}}>
-        <View>
+      <View>
+        <View style={{padding: 20, paddingBottom: 0}}>
           <Text style={{fontSize: 24, lineHeight: 48}}>សួរស្តី {this.state.user.fullName}</Text>
+
           <Text>
             អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ
             <Text style={localStyle.boldText}> “{this.state.currentJob.name}” </Text>
@@ -207,10 +221,12 @@ export default class RecommendationScreen extends Component {
           </Text>
 
           <Text style={localStyle.paragraph}>{this.state.currentGroup.recommendation}</Text>
+
           <Text style={localStyle.paragraph}>
             <Text style={[localStyle.boldText, {color: '#d0021b'}]}>បញ្ជាក់៖ </Text>
             សិស្សានុសិស្សត្រូវប្រឡងជាប់ថ្នាក់ទី ១២ និងរៀនឲ្យពូកែ ទើបអាចសម្រេចបានគោលបំណង ឬគោលដៅ ។
           </Text>
+
           <Text style={localStyle.paragraph}>ដូចនេះសូមអ្នកផ្ទៀងផ្ទាត់យ៉ាងលម្អិតរវាង ការវាយតម្លៃលើមុខវិជ្ជាដែលអ្នកបានរៀន និង បុគ្គលិកលក្ខណៈរបស់អ្នកជា មួយនឹងមុខរបរដែលអ្នកពេញចិត្តដូចខាងក្រោម៖</Text>
         </View>
 
@@ -257,5 +273,21 @@ const localStyle = StyleSheet.create({
     fontWeight: 'bold',
     color: '#1976d2'
   },
-
+  box: {
+    marginBottom: 8,
+    padding: 16,
+    margin: 16,
+    borderRadius: 8,
+    backgroundColor: '#fff',
+    borderWidth: 1,
+    borderColor: '#d3d3d3',
+    overflow: 'hidden'
+  },
+  boxHeader: {
+    marginHorizontal: -16,
+    marginTop: -16,
+    paddingHorizontal: 16,
+    paddingVertical: 5,
+    backgroundColor: 'rgba(24, 118, 211, 0.2)'
+  }
 });
