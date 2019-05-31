@@ -6,11 +6,13 @@ import {
 } from "native-base";
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-
 import mainStyles from '../../assets/style_sheets/main/main';
+import Images from '../../assets/images';
 import ListItem from '../../components/schools/list_item';
 import CarouselItem from '../../components/shared/carousel_item';
 import CardItem from '../../components/list/card_item';
+import BackButton from '../../components/shared/back_button';
+import ScrollableHeader from '../../components/scrollable_logo_header';
 
 const PROFILE_SIZE = 120;
 
@@ -40,41 +42,16 @@ export default class InstitutionDetail extends Component {
       <View style={{ padding: 10,paddingLeft: 8}}>
         <ListItem contact={{data: school.address, icon: 'map-marker'}} />
         <ListItem contact={{data: school.phoneNumbers, icon: 'phone'}} />
-        <ListItem contact={{data: school.faxes, icon: 'fax', iconSize: 14}}/>
-        <ListItem contact={{data: school.emails, icon: 'envelope', iconSize: 14, isLink: true}} />
+        <ListItem contact={{data: school.faxes, icon: 'fax'}}/>
+        <ListItem contact={{data: school.emails, icon: 'envelope', isLink: true}} />
         <ListItem contact={{data: school.mailbox, icon: 'markunread-mailbox'}} />
-        { this._renderWebsiteOrFacebook({data: school.websiteOrFacebook, icon: 'globe'}) }
+        <ListItem contact={{data: school.websiteOrFacebook, icon: 'globe', isLink: true}} />
       </View>
     )
   }
 
   _openLink(url) {
     Linking.openURL('http://' + url);
-  }
-
-  _renderWebsiteOrFacebook(com) {
-    if(!com.data.length) {
-      return (null)
-    }
-
-    return (
-      <View style={styles.communicationWrapper}>
-        <View style={styles.iconWrapper}>
-          <AwesomeIcon name={com.icon} color='#8E8E93' size={18} />
-        </View>
-
-        { com.data.map((data, i) => {
-            return (
-              <Text key={i}
-                onPress={() => this._openLink(data)}
-                style={mainStyles.link}>
-                {data} { (i < com.data.length - 1) && <Text>; </Text> }
-              </Text>
-            )
-          })
-        }
-      </View>
-    )
   }
 
   renderItem(item, index){
@@ -101,7 +78,7 @@ export default class InstitutionDetail extends Component {
     }
 
     return (
-      <View style={{backgroundColor: 'white'}}>
+      <View style={{marginLeft: 16}}>
         <Text style={mainStyles.sectionText}> ជំនាញ </Text>
 
         { departments.map((department, i) => {
@@ -111,9 +88,15 @@ export default class InstitutionDetail extends Component {
     )
   }
 
-  renderContent() {
-    return (
-      <View style={{paddingBottom: 40}}>
+  _renderHeader() {
+    return(
+      <BackButton navigation={this.props.navigation}/>
+    )
+  }
+
+  renderContent(){
+    return(
+      <View style={{paddingBottom: 40, backgroundColor: 'white'}}>
 
         <View style={styles.container}>
           { this.renderContact() }
@@ -123,21 +106,27 @@ export default class InstitutionDetail extends Component {
     )
   }
 
-
   render() {
+    let photo = require('../../assets/images/schools/default.png');
+    if (!!this.state.school.logoName) {
+      photo = Images[this.state.school.logoName];
+    }
     return (
-      <Container>
-        <Content>
-          { this.renderContent() }
-        </Content>
-      </Container>
+      <ScrollableHeader
+        customView={ this.renderContent.bind(this) }
+        customHeader={ this._renderHeader.bind(this) }
+        profileSize={ PROFILE_SIZE }
+        profile={ photo }
+        title={this.state.school.universityName}
+        subTitle={this.state.school.category}
+      />
     )
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 60
+    marginTop: 150
   },
   avataContainer: {
     position: 'absolute',

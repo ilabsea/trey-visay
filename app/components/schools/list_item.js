@@ -19,7 +19,7 @@ class ListItem extends Component {
 
   render(){
     let contactParams = this.props.contact;
-    let iconSize = contactParams.iconSize || 18;
+    let iconSize = contactParams.iconSize || 28;
     let data = contactParams.data;
 
     if (Array.isArray(data)) {
@@ -32,10 +32,10 @@ class ListItem extends Component {
             <View style={styles.container}>
               <View style={styles.iconWrapper}>
                 { contactParams.icon != 'markunread-mailbox' &&
-                  <AwesomeIcon name={contactParams.icon} color='#8E8E93' size={iconSize} />
+                  <AwesomeIcon name={contactParams.icon} color='rgb(24, 118, 211)' size={iconSize} />
                 }
                 { contactParams.icon == 'markunread-mailbox' &&
-                  <MaterialIcon name={contactParams.icon} color='#8E8E93' size={iconSize} />
+                  <MaterialIcon name={contactParams.icon} color='rgb(24, 118, 211)' size={iconSize} />
                 }
               </View>
               { !!contactParams.isLink && data!='មិនមាន' &&
@@ -52,7 +52,7 @@ class ListItem extends Component {
                 </Text>
               }
             </View>
-            <Divider style={{marginLeft: 30}} />
+            <Divider style={{marginLeft: 50}} />
           </View>
         }
       </View>
@@ -63,13 +63,14 @@ class ListItem extends Component {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    padding: 6,
+    padding: 10,
     marginRight: 30
   },
   iconWrapper: {
-    width: 24,
-    marginTop: 2,
-    marginRight: 3
+    width: 28,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 16
   }
 });
 

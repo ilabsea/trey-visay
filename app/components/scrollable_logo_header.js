@@ -22,7 +22,7 @@ import {
 } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-const HEADER_MAX_HEIGHT = 300;
+const HEADER_MAX_HEIGHT = 200;
 const HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 60 : 73;
 const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
 
@@ -110,7 +110,7 @@ export default class ScrollableLogoHeader extends Component {
             </View>
           }
 
-          <Animated.Image
+          <Animated.View
             style={[
               styles.backgroundImage,
               {
@@ -118,13 +118,23 @@ export default class ScrollableLogoHeader extends Component {
                 transform: [{ translateY: imageTranslate }],
               },
             ]}
-            source={this.props.imageBgSrc || require('../assets/images/cat.jpg')}
           />
 
-          {this.props.profile && <Animated.Image
-            style={{opacity: imageOpacity, borderRadius: this.props.profileSize/2, position: 'absolute', left: 24, bottom: -this.props.profileSize/3, width: this.props.profileSize, height: this.props.profileSize}}
-            source={this.props.profile}
-          />}
+          { this.props.profile &&
+            <View style={[styles.profileWrapper, { width: this.props.profileSize + 16, height: this.props.profileSize + 16 }]}>
+              <Animated.Image
+                style={{
+                  opacity: imageOpacity,
+                  borderRadius: this.props.profileSize/2,
+                  position: 'absolute',
+                  alignSelf: 'center',
+                  width: this.props.profileSize,
+                  height: this.props.profileSize
+                }}
+                source={this.props.profile}
+              />
+            </View>
+          }
 
           <Animated.View
             style={[
@@ -133,15 +143,14 @@ export default class ScrollableLogoHeader extends Component {
           >
 
             { this.props.title &&
-              <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 10), right: 5,  bottom: titleBottom}}>
-                <Text style={{fontSize: 20, color: '#fff', flex: 1}}>{this.props.title}</Text>
+              <View style={[styles.titleTextWrapper, { bottom: titleBottom}]}>
+                <Text> {this.props.title}</Text>
               </View>
             }
 
             { this.props.subTitle &&
-              <View style={{position: 'absolute', left: (this.props.profileSize + 24 + 20), bottom: 0, flexDirection: 'row'}}>
-                <AwesomeIcon name='building-o' color='#fff' size={20} />
-                <Text style={{marginLeft: 8, fontSize: 16, color: '#fff'}}>{this.props.subTitle}</Text>
+              <View style={[styles.titleTextWrapper, { bottom: 0}]}>
+                <Text style={{color: 'rgb(155, 155, 155)'}}>{this.props.subTitle}</Text>
               </View>
             }
 
@@ -179,7 +188,6 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: '#03A9F4',
-    overflow: 'hidden',
     height: HEADER_MAX_HEIGHT,
   },
   backgroundImage: {
@@ -189,7 +197,6 @@ const styles = StyleSheet.create({
     right: 0,
     width: null,
     height: HEADER_MAX_HEIGHT,
-    resizeMode: 'cover',
   },
   bar: {
     backgroundColor: 'transparent',
@@ -214,4 +221,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  profileWrapper: {
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    borderRadius: 12,
+    padding: 8,
+    top: 130,
+    borderColor: 'rgba(193, 193, 193, 0.47)',
+    borderWidth: 1
+  },
+  titleTextWrapper: {
+    position: 'absolute',
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+    width: '70%'
+  }
 });

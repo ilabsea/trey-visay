@@ -43,18 +43,7 @@ const SchoolStack = createStackNavigator(
     InstitutionDetail: {
       screen: InstitutionDetail,
       navigationOptions: ({navigation}) => ({
-        header: (
-          <Header span>
-            <Left>
-              <Button transparent onPress={() => navigation.goBack()}>
-                <Icon name="arrow-back" />
-              </Button>
-            </Left>
-            <Body>
-            </Body>
-            <Right />
-          </Header>
-        )
+        header: null
       })
     },
     FilterScreen: {
