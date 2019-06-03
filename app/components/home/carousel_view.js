@@ -13,9 +13,9 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Pagination } from 'react-native-snap-carousel';
 
-import StatusBar from '../status_bar';
-import { FontSetting } from '../../../assets/style_sheets/font_setting';
-import CarouselItem from '../carousel_item';
+import StatusBar from '../shared/status_bar';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
+import CarouselItem from '../shared/carousel_item';
 import HomeOptions from './home_options';
 
 const { width, height } = Dimensions.get('window');
@@ -32,7 +32,7 @@ class CarouselView extends Component {
   }
 
   renderItem(options) {
-    if(!!this.props.user && options.url=='CareerCounsellorStack'){
+    if(!this.props.user && options.url=='CareerCounsellorStack'){
       options.url = 'AccountStack';
     }
     return (
