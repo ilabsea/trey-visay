@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
   ScrollView,
   TouchableOpacity,
   Image,
@@ -14,20 +13,19 @@ import { NavigationActions } from 'react-navigation';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
-import { Divider } from 'react-native-elements';
 import FooterBar from '../../../components/footer/FooterBar';
-import { FontSetting } from "../../../assets/style_sheets/font_setting";
 
-import mainStyles from '../../../assets/style_sheets/main/main';
+import styles from '../../../assets/style_sheets/profile_form';
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
-import SchoolListView from '../../../components/schools/school_list';
 
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
 import Sidekiq from '../../../utils/models/sidekiq';
-import schoolList from '../../../data/json/universities';
+import universities from '../../../data/json/universities';
 import Images from '../../../assets/images';
 import characteristicList from '../../../data/json/characteristic_jobs';
+
+import ScrollableHeader from '../../../components/scrollable_header';
 
 export default class ContactScreen extends Component {
   constructor(props) {
@@ -36,7 +34,6 @@ export default class ContactScreen extends Component {
     this._initState();
     this._backHandler();
   }
-
 
   componentWillUnmount() {
     if (!!this.sound) {
@@ -50,11 +47,9 @@ export default class ContactScreen extends Component {
     let game = user.games[user.games.length - 1];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((career) => career.code == game.mostFavorableJobCode);
-    let schools = schoolList.filter((school, pos) => {
+    let schools = universities.filter((school, pos) => {
       return currentJob.schools.includes(school.code)
     });
-    if(currentJob.unknown_schools)
-      schools.push({universityName: currentJob.unknown_schools});
 
     this.state = {
       user: user,
@@ -76,10 +71,7 @@ export default class ContactScreen extends Component {
       this.setState({time: time});
     });
 
-    this.props.navigation.setParams({
-      _handleBack: this._handleBack.bind(this),
-      goNext: this._goNext.bind(this)
-    });
+    this.props.navigation.setParams({_handleBack: this._handleBack.bind(this)});
   }
 
   _handleBack() {
@@ -103,7 +95,7 @@ export default class ContactScreen extends Component {
 
   _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentStack' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
   }
 
   _onNo() {
@@ -137,11 +129,56 @@ export default class ContactScreen extends Component {
     }
 
     return (
-      <View>
-        <Text style={mainStyles.sectionText}>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
+      <View style={{marginTop: 20}}>
+        <Text>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
 
-         <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
+        { !!this.state.currentJob.unknown_schools &&
+          <View style={styles.box}>
+            <Text style={styles.subTitle}>{this.state.currentJob.unknown_schools}</Text>
+          </View>
+        }
+
+        { this.state.schools.map((school, i) => {
+          { return(this._renderSchool(school, i)) }
+        })}
       </View>
+    )
+  }
+
+  _renderSchool(school, i) {
+    let logo = require('../../../assets/images/schools/default.png');
+    if (school.logoName) {
+      logo = Images[school.logoName];
+    }
+
+    return (
+      <TouchableOpacity
+        style={[styles.box, {flexDirection: 'row'}]}
+        onPress={() => {this.props.navigation.navigate('InstitutionDetail', {school: school})}}
+        key={i}>
+
+        <View>
+          <Image source={logo} style={{width: 100, height: 100}} />
+        </View>
+
+        <View style={{flex: 1, marginLeft: 16}}>
+          <Text style={styles.subTitle}>{school.universityName}</Text>
+
+          <View style={{flexDirection: 'row'}}>
+            <AwesomeIcon name='building-o' color='#1976d2' size={20} />
+            <Text style={{marginLeft: 8}}>{school.category}</Text>
+          </View>
+
+          <View style={{flexDirection: 'row'}}>
+            <AwesomeIcon name='map-marker' color='#1976d2' size={24} />
+            <Text style={{marginLeft: 8}}>{school.address}</Text>
+          </View>
+        </View>
+
+        <View style={{justifyContent: 'center'}}>
+          <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+        </View>
+      </TouchableOpacity>
     )
   }
 
@@ -153,10 +190,8 @@ export default class ContactScreen extends Component {
     setTimeout(() => {
       this.sound.play((success) => {
         if (success) {
-          console.log('successfully finished playing');
           this.setState({isPlaying: false});
         } else {
-          console.log('playback failed due to audio decoding errors');
           this.sound.reset();
         }
       });
@@ -171,16 +206,16 @@ export default class ContactScreen extends Component {
   _renderVoiceRecord() {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <View style={{marginRight: 16}}>
+        <View style={{marginRight: 16, marginTop: -25}}>
           { !this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._play()}>
-              <MaterialIcon style={mainStyles.icon} name='play-circle-outline' size={40} color='#4caf50'/>
+              <MaterialIcon style={styles.icon} name='play-circle-outline' size={40} color='#4caf50'/>
             </TouchableOpacity>
           }
 
           { this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._stop()}>
-              <MaterialIcon style={mainStyles.icon} name='pause-circle-outline' size={40} color='#e94b35'/>
+              <MaterialIcon style={styles.icon} name='pause-circle-outline' size={40} color='#e94b35'/>
             </TouchableOpacity>
           }
         </View>
@@ -205,12 +240,10 @@ export default class ContactScreen extends Component {
   _renderGoal() {
     return (
       <View>
-        <Text style={[mainStyles.instructionText, {marginTop: 24}]}>
-          ដាក់គោលដៅមួយ និងមូលហេតុ
-        </Text>
+        <Text>ដាក់គោលដៅមួយ និងមូលហេតុ</Text>
 
-        <View style={[mainStyles.box, {padding: 16}]}>
-          <Text style={mainStyles.text}>{this.state.game.goalCareer}</Text>
+        <View style={styles.box}>
+          <Text style={styles.subTitle}>{this.state.game.goalCareer}</Text>
 
           { !!this.state.game.reason && this._renderReason()}
           { !!this.state.game.voiceRecord && this._renderVoiceRecord()}
@@ -220,13 +253,27 @@ export default class ContactScreen extends Component {
     )
   }
 
+  _renderAllContent = () => {
+    return (
+      <View style={{margin: 16, flex: 1}}>
+        { this._renderGoal() }
+        { this._renderContent() }
+      </View>
+    )
+  }
+
   render() {
-    return(
+    let title = 'ព័ត៌មានសាលា និងទំនាក់ទំនង';
+    return (
       <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
-          { this._renderGoal() }
-          { this._renderContent() }
-        </ScrollView>
+        <ScrollableHeader
+          renderContent={ this._renderAllContent }
+          renderNavigation={ () => {} }
+          title={title}
+          largeTitle={title}
+        />
+
+        <FooterBar icon='done' text='រួចរាល់' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}
@@ -235,17 +282,6 @@ export default class ContactScreen extends Component {
           onPressNo={() => this._onNo()}
         />
       </View>
-    );
+    )
   };
 }
-
-const styles = StyleSheet.create({
-  image: {
-    width: 70,
-    height: 70
-  },
-  schoolAddress: {
-    marginLeft: 8,
-    fontSize: FontSetting.sub_title
-  }
-})

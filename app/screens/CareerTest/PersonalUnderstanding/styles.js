@@ -17,15 +17,21 @@ export default StyleSheet.create({
     marginVertical: 10
   },
   button: {
-    backgroundColor: 'green',
-    padding: 16,
+    backgroundColor: '#fff',
+    paddingHorizontal: 16,
+    paddingVertical: 10,
     alignItems: 'center',
-    borderRadius: 3
+    borderRadius: 8,
   },
   btnText: {
     fontWeight: 'bold',
     fontSize: 16,
-    color: '#fff',
+  },
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left:0,
+    right: 0,
   }
-
 });

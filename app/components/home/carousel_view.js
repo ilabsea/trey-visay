@@ -23,9 +23,7 @@ const { width, height } = Dimensions.get('window');
 class CarouselView extends Component {
   constructor(props) {
     super(props);
-  }
 
-  componentWillMount(){
     this.state = {
       activeSlide: 0
     }

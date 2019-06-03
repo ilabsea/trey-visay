@@ -43,7 +43,7 @@ export default class GoalScreen extends Component {
       game: game,
       reasonText: game.reason,
       voiceRecord: game.voiceRecord,
-      visibleTourtip: false
+      visibleTourtip: true
     };
 
     this.props.navigation.setParams({
@@ -117,7 +117,7 @@ export default class GoalScreen extends Component {
       <View style={styles.overlay}>
         <ScrollView style={{flex: 1}}>
           <View style={{margin: 16}}>
-            <Text style={[styles.paragraph, {marginTop: 54,fontSize: 24, fontFamily: 'KantumruyBold', color: '#fff'}]}>ការណែនាំ</Text>
+            <Text style={[styles.paragraph, {marginTop: 54,fontSize: 24, color: '#fff'}]}>ការណែនាំ</Text>
             <Text style={{color: '#fff'}}>
               អ្នកអាចដាក់គោលដៅ និងមូលហេតុដោយការសរសេរ ឬក៏ថតជាសំលេង! បន្ទាប់ពីប្អូនជ្រើសរើសមុខរបរមួយរួចហើយ។ ចូរប្អូនរៀបរាប់បន្ថែមពីមូលហេតុដែលប្អូនបានជ្រើសរើសមុខរបរនោះ ដោយគិតអំពី៖ ចំនុចខ្លាំងដែលប្អូនបានជ្រើសរើសចេញពីបុគ្គលិកលក្ខណៈ ដើម្បីឆ្លុះបញ្ចាំងពីគោលបំណងមួយដែលមានន័យពេញលេញ។ វាកាន់តែប្រសើរ ប្រសិនបើប្អូនសរសេរពីសាប្រយោជន៍នៃគោលបំណងនោះ ដែលបង្ហាញពី ការជួយ ផ្តល់ឲ្យ ចែករំលែក ឬស្ម័គ្រចិត្ត ដែលបំរើឲ្យ ប្រយោជន៍រួម (សហគមន៍/សង្គម យុវជន កុមារ ឬគ្រួសារជាដើម) ជាជាងប្រយោជន៍បុគ្គល ។
             </Text>
@@ -128,7 +128,7 @@ export default class GoalScreen extends Component {
           <TouchableOpacity
             onPress={() => this.setState({visibleTourtip: false})}
             style={{borderRadius: 8, flex: 1, paddingHorizontal: 24, paddingVertical: 5, backgroundColor: 'rgb(255,255,255)'}}>
-            <Text style={{textAlign: 'center', color: 'rgb(24, 118, 211)', fontFamily: 'KantumruyBold'}}>ចាប់ផ្ដើមបំពេញ</Text>
+            <Text style={{textAlign: 'center', color: 'rgb(24, 118, 211)'}}>ចាប់ផ្ដើមបំពេញ</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -179,9 +179,8 @@ export default class GoalScreen extends Component {
           largeTitle={title}
         />
 
+        { !this.state.visibleTourtip && <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} /> }
         { this.state.visibleTourtip && this._renderTourtip() }
-
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext.bind(this)} />
 
         <BackConfirmDialog
           visible={this.state.confirmDialogVisible}

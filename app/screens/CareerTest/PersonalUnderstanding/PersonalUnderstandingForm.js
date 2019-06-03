@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  ScrollView,
-  TouchableOpacity,
-  Modal,
   Platform
 } from 'react-native';
 
@@ -17,7 +14,6 @@ import Form from './_Form';
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
 import uuidv4 from '../../../utils/uuidv4';
-import styles from './styles';
 
 import { Container, Header, Content, ListItem, Thumbnail, Left, Body, Right, Icon, Card, CardItem, Title, Button } from 'native-base';
 
@@ -25,19 +21,23 @@ import ScrollableHeader from '../../../components/scrollable_header';
 import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
 import * as Progress from 'react-native-progress';
 import FooterBar from '../../../components/footer/FooterBar';
+import Result from './Result';
 
 export default class PersonalUnderstandingForm extends Component {
-
   constructor(props) {
     super(props);
 
     this.state = {
-      score: 0,
       modalVisible: false,
+      score: 0,
       testCount: 0,
     };
 
     this.formRef = React.createRef();
+    this.props.navigation.setParams({
+      handleSubmit: this.handleSubmit,
+      _handleBack: this._handleBack.bind(this)
+    });
   };
 
   _handleBack() {
@@ -45,15 +45,8 @@ export default class PersonalUnderstandingForm extends Component {
     this.props.navigation.goBack();
   }
 
-  setModalVisible(visible) {
+  setModalVisible = (visible) => {
     this.setState({modalVisible: visible});
-  }
-
-  componentDidMount() {
-    this.props.navigation.setParams({
-      handleSubmit: this.handleSubmit,
-      _handleBack: this._handleBack.bind(this)
-    });
   }
 
   handleSubmit = () => {
@@ -85,105 +78,11 @@ export default class PersonalUnderstandingForm extends Component {
       list.push(values);
 
       this.setState({testCount: list.length, score: values.score});
-      this.setModalVisible(!this.state.modalVisible);
+      this.setModalVisible(true);
     });
   };
 
-  _renderFailTest() {
-    return (
-      <View>
-        <View style={styles.paragraph}>
-          { this.state.testCount < 2 &&
-            <Text>
-              ពិន្ទុរបស់ប្អូននៅទាបជាង 50% ដូចនេះយើងតម្រូវឲ្យប្អូនត្រូវធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។
-            </Text>
-          }
-
-          { this.state.testCount > 1 &&
-            <Text>
-              ពិន្ទុរបស់ប្អូននៅទាបជាង 50% តែយើងលើកទឹកចិត្តប្អូនឲ្យបន្តទៅវគ្គបន្ទាប់។
-            </Text>
-          }
-        </View>
-
-        <View style={styles.paragraph}>
-          <Text>
-            ការជ្រើសរើសជំនាញនិង អាជីពមួយនាពេលអនាគត គឺមានសារៈសំខាន់ណាស់សម្រាប់បុគ្គលម្នាក់ៗ
-            ដើម្បីទទួលបានចំណេះដឹង និងវិជ្ជាជីវៈគ្រប់គ្រាន់ និងឈានទៅប្រកួតប្រជែងទីផ្សារការងារនាពេលបច្ចុប្បន្ន។​
-            ដូច្នេះការកំណត់ផែនការអាជីព និងការសម្រេចចិត្តជ្រើសរើស យក​ជំនាញ
-            ជាកត្តាជំរុញឆ្ពោះទៅរកជំនាញជាក់លាក់។
-          </Text>
-        </View>
-
-        <View style={styles.paragraph}>
-          <Text>
-            យើងសង្ឈឹមថា ប្អូនៗបំពេញកម្រងសំណួរនេះឡើងវិញដោយពិចារណាយ៉ាងល្អិតល្អន់
-            និងអាចកំណត់ជ្រើសរើសមុខរបរមួយដែលខ្លួនពេញចិត្ត។​
-            ក្នុងនាមយើងជាយុវជនម្នាក់ត្រូវមានភាពក្លាហានក្នុងការបង្កើតក្ដីសុបិន្តឲ្យបានធំទូលាយ និង វែងឆ្ងាយ ប្រសើរជាង
-            បុគ្គលដែលរស់នៅដែលគ្មានគោលដៅច្បាស់លាស់។​ (សូមសែ្វងយល់សុភាសិតអប់រំខាងក្រោម៖)
-          </Text>
-        </View>
-
-        <View style={styles.paragraph}>
-          <Text>
-            ១) មនុស្សម្នាក់ៗមិនអាចជ្រើសរើសកំណើតក្នុងគ្រួសារអ្នកមាន ឬអ្នកក្របានទេ
-            ប៉ុន្ដែបុគ្គលនោះអាចកំណត់ជីវភាពរស់នៅបានប្រសើរ តាមរយៈការមានអាជីពមួយដ៏ល្អ។
-          </Text>
-          <Text>
-            ២) តាំងចិត្តឲ្យបានខ្ពស់ រស់នៅជាមួយក្ដីសង្ឈឹម ទើបជីវិតមានតម្លៃពិតៗ
-          </Text>
-        </View>
-
-        <View style={[styles.paragraph, {flexDirection: 'row', justifyContent: 'center'}]}>
-          <TouchableOpacity onPress={() => {
-              this.setModalVisible(!this.state.modalVisible)
-              store.dispatch({type: 'RESET'})
-            }} style={styles.button}
-            underlayColor="rgba(0, 128, 0, 0.2)"
-          >
-            <Text style={styles.btnText}>
-              {this.state.testCount < 2 && 'សូម'}
-              សាកល្បងធ្វើតេស្តម្តងទៀត
-            </Text>
-          </TouchableOpacity>
-
-          { this.state.testCount > 1 &&
-            <TouchableOpacity onPress={() => {
-              this.props.navigation.navigate('CareerCategoriesScreen');
-              this.setModalVisible(!this.state.modalVisible)
-            }} style={[styles.button, {marginLeft: 20}]}>
-              <Text style={styles.btnText}>ចូលទៅកាន់វគ្គបន្ត</Text>
-            </TouchableOpacity>
-          }
-        </View>
-      </View>
-    )
-  }
-
-  _renderPassTest() {
-    return (
-      <View>
-        <View style={styles.paragraph}>
-          <Text>
-            សូមអបអរសាទរ ពិន្ទុរបស់ប្អូននៅលើសពី 50% ហើយ ដូចនេះប្អូនអាចបន្តទៅវគ្គបន្ត។
-          </Text>
-        </View>
-
-        <View>
-          <TouchableOpacity
-            onPress={() => {
-              this.props.navigation.navigate('CareerCategoriesScreen');
-              this.setModalVisible(!this.state.modalVisible)
-            }}
-            style={styles.button}>
-            <Text style={styles.btnText}>ចូលទៅកាន់វគ្គបន្ត</Text>
-          </TouchableOpacity>
-        </View>
-      </View>
-    )
-  }
-
-  parseFormValue(values){
+  parseFormValue(values) {
     if(!!values){
       values['uuid'] = uuidv4();
       if(values['everTalkedWithAnyoneAboutCareer']) {
@@ -192,7 +91,6 @@ export default class PersonalUnderstandingForm extends Component {
     }
     return values;
   };
-
 
   _renderContent = () => {
     return (
@@ -222,25 +120,19 @@ export default class PersonalUnderstandingForm extends Component {
     )
   }
 
-  _renderModal() {
+  _resetStore = () => {
+    store.dispatch({type: 'RESET'});
+  }
+
+  _renderResult() {
     return (
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={this.state.modalVisible}
-        onRequestClose={() => { this.refs.toast.show('សូមចុចលើប៊ូតុង...!', DURATION.SHORT) } }>
-
-        <ScrollView>
-          <View style={{margin: 16, padding: 16, backgroundColor: '#fff'}}>
-            <View>
-              <Text style={styles.subTitle}>លទ្ធផលនៃការស្វែងយល់អំពីខ្លួនឯង</Text>
-            </View>
-
-            { this.state.score < 12 && this._renderFailTest() }
-            { this.state.score >= 12 && this._renderPassTest() }
-          </View>
-        </ScrollView>
-      </Modal>
+      <Result
+        modalVisible={this.state.modalVisible}
+        setModalVisible={this.setModalVisible}
+        callback={this._resetStore}
+        score={this.state.score}
+        navigation={this.props.navigation}
+        testCount={this.state.testCount}/>
     )
   }
 
@@ -255,8 +147,8 @@ export default class PersonalUnderstandingForm extends Component {
           largeTitle={'ស្វែងយល់ពីខ្លួនឯង'}
         />
 
-        { this._renderModal() }
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this.handleSubmit} />
+        { this._renderResult() }
+        { !this.state.modalVisible && <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this.handleSubmit} /> }
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
     )

@@ -122,6 +122,7 @@ const CareerCounsellorStack = createStackNavigator(
         title: 'ព័ត៌មានសាលា និងទំនាក់ទំនង',
         headerLeft: <CloseButton navigation={navigation}/>,
         headerRight: <NextButton navigation={navigation} text='រួចរាល់' icon='done'/>,
+        header: null
       })
     },
     CareerCategoriesScreen: {
