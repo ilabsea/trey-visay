@@ -25,14 +25,7 @@ class FilterScreen extends Component {
   }
 
   componentWillMount(){
-    API.getSelectedProvince((province) => {
-      this.setState({ selectedProvince: province });
-      this.getMajors();
-      API.getSelectedMajor((major) => {
-        major = major == 'គ្រប់ជំនាញ' ? '': major;
-        this.setState({ selectedValue: major });
-      });
-    });
+    this.refreshProvinceValue();
   }
 
   getMajors(){
@@ -40,8 +33,14 @@ class FilterScreen extends Component {
     let province = this.state.selectedProvince;
     let departments = [];
     universities.map(school => {
-      if(school.category == category && school.province == province){
-        departments.push(school.departments);
+      if(province){
+        if((school.category == category) && (school.province == province)){
+          departments.push(school.departments);
+        }
+      }else{
+        if(school.category == category){
+          departments.push(school.departments);
+        }
       }
     });
     departments = [].concat.apply([], departments);
@@ -63,7 +62,13 @@ class FilterScreen extends Component {
 
   refreshProvinceValue() {
     API.getSelectedProvince((province) => {
+      province = province == 'គ្រប់ទីកន្លែង'? '' : province;
       this.setState({ selectedProvince: province });
+      this.getMajors();
+      API.getSelectedMajor((major) => {
+        major = major == 'គ្រប់ជំនាញ' ? '': major;
+        this.setState({ selectedValue: major });
+      });
     });
   }
 

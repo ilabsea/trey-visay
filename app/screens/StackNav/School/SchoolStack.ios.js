@@ -12,7 +12,6 @@ import SchoolScreen from '../../school/school_screen';
 import InstitutionDetail from '../../school/institution_detail';
 import FilterScreen from '../../school/filter/filter_screen';
 import FilterProvinces from '../../school/filter/filter_provinces';
-import FilterMajors from '../../school/filter/filter_majors';
 
 import API from '../../../api/schools';
 
@@ -72,13 +71,6 @@ const SchoolStack = createStackNavigator(
       screen: FilterProvinces,
       navigationOptions: ({navigation, screenProps}) => ({
         title: 'ជ្រេីសរេីសទីតាំង',
-        headerRight:(<SaveButton noIcon={true} navigation={navigation} />)
-      })
-    },
-    FilterMajors: {
-      screen: FilterMajors,
-      navigationOptions: ({navigation, screenProps}) => ({
-        title: 'ជ្រេីសរេីសជំនាញ',
         headerRight:(<SaveButton noIcon={true} navigation={navigation} />)
       })
     }
