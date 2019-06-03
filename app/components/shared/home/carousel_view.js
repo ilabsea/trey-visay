@@ -135,7 +135,7 @@ const styles = StyleSheet.create({
   },
   btnImage: {
     width: wp('84%'),
-    height: hp('44%'),
+    height: hp('42%'),
     alignSelf: 'center'
   },
   btnStart: {

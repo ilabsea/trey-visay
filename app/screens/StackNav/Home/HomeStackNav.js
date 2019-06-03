@@ -3,6 +3,8 @@ import {
   createBottomTabNavigator,
   createStackNavigator
 } from 'react-navigation';
+
+import { Platform } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
@@ -48,8 +50,9 @@ const HomeTab = createBottomTabNavigator({
     }
   },
 }, {
-  tabBarPosition: 'top',
-  animationEnabled: true,
+    tabBarOptions: {
+      labelStyle: { lineHeight: Platform.OS == 'android' ? 20 : 0}
+    }
 });
 
 
