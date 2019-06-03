@@ -113,6 +113,7 @@ const CareerCounsellorStack = createStackNavigator(
         title: 'ដាក់គោលដៅមួយ និងមូលហេតុ',
         headerLeft: <CloseButton navigation={navigation}/>,
         headerRight: <NextButton navigation={navigation}/>,
+        header: null
       })
     },
     ContactScreen: {
