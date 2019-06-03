@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Linking } from 'react-native';
+import { StyleSheet, Text, View, Linking, TouchableOpacity, Image } from 'react-native';
 
 import {
   Container, Header, Title, Button, Icon, Left, Right, Body, Content
 } from "native-base";
+import { Divider } from 'react-native-elements';
 
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import mainStyles from '../../assets/style_sheets/main/main';
 import Images from '../../assets/images';
@@ -39,13 +41,14 @@ export default class InstitutionDetail extends Component {
     }
 
     return (
-      <View style={{ padding: 10,paddingLeft: 8}}>
+      <View style={{ paddingLeft: 8 }}>
         <ListItem contact={{data: school.address, icon: 'map-marker'}} />
         <ListItem contact={{data: school.phoneNumbers, icon: 'phone'}} />
         <ListItem contact={{data: school.faxes, icon: 'fax'}}/>
         <ListItem contact={{data: school.emails, icon: 'envelope', isLink: true}} />
         <ListItem contact={{data: school.mailbox, icon: 'markunread-mailbox'}} />
         <ListItem contact={{data: school.websiteOrFacebook, icon: 'globe', isLink: true}} />
+        <Divider />
       </View>
     )
   }
@@ -54,19 +57,34 @@ export default class InstitutionDetail extends Component {
     Linking.openURL('http://' + url);
   }
 
-  renderItem(item, index){
+  renderItem(item, i){
     return(
-      <CardItem text={item} index={index}/>
+      <TouchableOpacity
+        style={styles.btn}
+        key={i}>
+        <View style={styles.iconWrapper}>
+          <Image
+            source={require("../../assets/icons/school/major.png")}
+            resizeMode='contain'
+            style={styles.icon}
+          />
+        </View>
+        <Text style={{ flex: 1 , paddingRight: 16}}>{item}</Text>
+      </TouchableOpacity>
     )
   }
 
   renderMajor(department, index){
+    let padding = department.name ? 16: 0;
     return(
-      <View key={index}>
-        <Text style={mainStyles.sectionText}>{department.name}</Text>
-        <CarouselItem
-          data={department.majors}
-          renderItem={({item, index}) => this.renderItem(item, index)}/>
+      <View key={index} style={mainStyles.box}>
+        <Text style={[mainStyles.sectionText, { padding: padding }]}>{department.name}</Text>
+        <View style={[mainStyles.grid, { justifyContent: 'flex-start', margin: 0 }]}>
+          { department.majors.map((major, i) => {
+              { return (this.renderItem(major, i))}
+            })
+          }
+        </View>
       </View>
     )
   }
@@ -76,11 +94,9 @@ export default class InstitutionDetail extends Component {
     if (!departments || !departments.length) {
       return (null);
     }
-
     return (
-      <View style={{marginLeft: 16}}>
-        <Text style={mainStyles.sectionText}> ជំនាញ </Text>
-
+      <View style={{backgroundColor: 'rgb(239, 240, 244)'}}>
+        <Text style={[mainStyles.sectionText, {marginLeft: 16, padding: 8, marginTop: 16}]}> ជំនាញ </Text>
         { departments.map((department, i) => {
           { return (this.renderMajor(department, i))}
         })}
@@ -96,8 +112,7 @@ export default class InstitutionDetail extends Component {
 
   renderContent(){
     return(
-      <View style={{paddingBottom: 40, backgroundColor: 'white'}}>
-
+      <View style={{backgroundColor: 'white'}}>
         <View style={styles.container}>
           { this.renderContact() }
           { this.renderDepartments() }
@@ -142,5 +157,30 @@ const styles = StyleSheet.create({
   majorWrapper: {
     flexDirection: 'row',
     paddingLeft: 16,
+  },
+  btn: {
+    flexDirection: 'row',
+    width: wp('49.8%'),
+    height: hp('10%'),
+    backgroundColor: 'white',
+    borderBottomColor: 'rgb(200, 199, 204)',
+    borderRightColor: 'rgb(200, 199, 204)',
+    alignItems: 'center',
+    borderBottomWidth: 0.5,
+    borderRightWidth: 0.5,
+  },
+  iconWrapper:{
+    width: 32,
+    height: 32,
+    borderRadius: 12,
+    marginRight: 16,
+    marginLeft: 16,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor:  'rgb(24, 118, 211)'
+  },
+  icon:{
+    width: 18,
+    height: 18
   }
 });

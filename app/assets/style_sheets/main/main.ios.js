@@ -27,7 +27,7 @@ export default StyleSheet.create({
     marginBottom: 8,
     padding: 0,
     backgroundColor: '#fff',
-    borderWidth: 1,
+    borderWidth: 0.5,
     borderColor: '#d3d3d3',
   },
   sectionText: {

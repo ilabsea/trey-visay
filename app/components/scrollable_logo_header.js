@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     backgroundColor: '#03A9F4',
-    height: HEADER_MAX_HEIGHT,
+    height: HEADER_MAX_HEIGHT
   },
   backgroundImage: {
     position: 'absolute',
