@@ -23,7 +23,6 @@ export default class Home extends Component {
     API.clearSelectedValues();
   }
 
-
   render() {
     return (
       <CarouselView navigation={this.props.navigation} user={this.state.user}/>

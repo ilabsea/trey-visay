@@ -3,10 +3,17 @@ import {
   View
 } from 'react-native';
 import ButtonList from '../../components/list/button_list';
+import User from '../../utils/user';
 
 export default class Others extends Component {
   constructor(props){
     super(props);
+  }
+
+  _logOut() {
+    User.logout(() => {
+      this.props.navigation.navigate('Home');
+    })
   }
 
   render() {
@@ -37,7 +44,7 @@ export default class Others extends Component {
           <ButtonList
             hasLine={true}
             icon={{color: 'rgb(238, 18, 45)', src: require('../../assets/icons/others/logout.png')}}
-            onPress={() => { this.props.navigation.navigate('TermsCondition') }}
+            onPress={() => { this._logOut() }}
             title='ចាកចេញ' />
         </View>
       </View>
