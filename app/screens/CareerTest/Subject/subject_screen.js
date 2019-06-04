@@ -97,7 +97,7 @@ export default class SubjectScreen extends Component {
       this.subjects[key] = gameSubject[key]
     }
 
-    this._calCulateProgress();
+    return this._calCulateProgress();
   }
 
   _renderRadioItem(group, i) {

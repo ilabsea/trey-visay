@@ -229,7 +229,7 @@ export default class Audio extends Component {
     let icon = this.state.recording ? 'pause' : 'microphone';
     return (
       <TouchableOpacity style={styles.button} onPress={this._handleRecording}>
-        <AwesomeIcon name={icon} color='#fff' size={24} />
+        <AwesomeIcon name={icon} color='#fff' size={36} />
       </TouchableOpacity>
     );
   }
@@ -312,14 +312,12 @@ export default class Audio extends Component {
       <View style={[mainStyles.box, {marginTop: 13, marginHorizontal: 0, flexDirection: 'row', alignItems: 'center', padding: 10}]}>
         <TouchableOpacity onPress={() => this._handlePlaying()}>
           { this.state.isPlaying &&
-            <MaterialIcon style={styles.icon} name='pause-circle-outline' size={40} color='#e94b35'/>
+            <MaterialIcon style={styles.icon} name='pause-circle-filled' size={48} color='#e94b35'/>
           }
           {
             !this.state.isPlaying &&
-            <MaterialIcon style={{height: 50, lineHeight: 50}} name='play-circle-outline' size={48} color='#4caf50'/>
+            <MaterialIcon style={styles.icon} name='play-circle-filled' size={48} color='rgb(24,118,211)'/>
           }
-
-
         </TouchableOpacity>
 
         <View style={{flex: 1, paddingHorizontal: 10}}>
@@ -371,4 +369,8 @@ var styles = StyleSheet.create({
     borderRadius: 37,
     backgroundColor: PRIMARYC_COLOR
   },
+  icon: {
+    height: 50,
+    lineHeight: 50
+  }
 });

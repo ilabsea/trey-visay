@@ -12,6 +12,7 @@ import { Container, Content, Accordion } from "native-base";
 
 import categoryList from '../../data/json/characteristic_jobs';
 import StatusBar from '../../components/shared/status_bar';
+import Images from '../../assets/images';
 
 export default class ShowCategoryScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -39,6 +40,9 @@ export default class ShowCategoryScreen extends Component {
     let height = (width/2 - totalMargin) * 1.6;
 
     let doms = this.state.careers.map((career, index) => {
+      let imageUrl = require('../../assets/images/careers/default.png');
+      if (career.image) { imageUrl = Images[career.image] }
+
       return (
         <View key={index} style={{width: '50%', height: height, padding: 10}}>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career: career})}>
@@ -46,7 +50,7 @@ export default class ShowCategoryScreen extends Component {
               <Image
                 resizeMode="cover"
                 style={{width: '100%', height: '70%', borderTopLeftRadius: 8, borderTopRightRadius: 8}}
-                source={require('../../assets/images/careers/civil.png')} />
+                source={imageUrl} />
 
               <View style={{padding: 5, flex: 1, justifyContent: 'center', alignItems: 'center'}}>
                 <Text style={{fontSize: 13, lineHeight: 24}} numberOfLines={2}>{career.name}</Text>

@@ -28,6 +28,7 @@ import * as Progress from 'react-native-progress';
 import ProgressStep from '../ProgressStep/ProgressStep';
 import CloseButton from '../../../components/shared/close_button';
 import { Radio } from 'native-base';
+import Images from '../../../assets/images';
 
 export default class SummaryScreen extends Component {
   constructor(props) {
@@ -82,7 +83,7 @@ export default class SummaryScreen extends Component {
 
   _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })])
   }
 
   _onNo() {
@@ -128,12 +129,15 @@ export default class SummaryScreen extends Component {
 
     return (
       <View style={{paddingHorizontal: 20}}>
-        { careers.map((career, index)=>{
+        { careers.map((career, index)=> {
+          let imageUrl = require('../../../assets/images/careers/default.png');
+          if (!!career.image) { imageUrl = Images[career.image] }
+
           return (
             <TouchableOpacity onPress={() => this.setState({mostFavorableJob: career.value})} key={index} style={{flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 8, paddingRight: 17, marginBottom: 20}}>
               <Image
-                style={{width: 78, height: 78}}
-                source={require('../../../assets/images/careers/civil.png')} />
+                style={{width: 78, height: 78, borderTopLeftRadius: 8, borderBottomLeftRadius: 8}}
+                source={imageUrl} />
               <Text style={{flex: 1, paddingHorizontal: 18}}>{career.label}</Text>
               <Radio selected={career.value == this.state.mostFavorableJob} />
             </TouchableOpacity>

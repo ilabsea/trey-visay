@@ -29,10 +29,7 @@ export default StyleSheet.create({
     borderColor: '#d3d3d3',
   },
   sectionText: {
-    fontWeight: 'bold',
     fontSize: FontSetting.text,
-    // marginTop: 16,
-    // marginLeft: 16
   },
   sectionTextInBox: {
     fontSize: FontSetting.text,

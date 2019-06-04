@@ -71,7 +71,7 @@ export default class RecommendationScreen extends Component {
 
   _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })])
   }
 
   _onNo() {
@@ -139,7 +139,7 @@ export default class RecommendationScreen extends Component {
     return (
       <View>
         <View style={localStyle.box}>
-          <Text style={[localStyle.boxHeader]}>មុខវិជ្ជា</Text>
+          <Text style={localStyle.boxHeader}>មុខវិជ្ជា</Text>
 
           <Text>ជា{this.state.currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖ </Text>
           <View>
@@ -150,7 +150,7 @@ export default class RecommendationScreen extends Component {
         </View>
 
         <View style={localStyle.box}>
-          <Text style={[localStyle.highlightBlue, localStyle.boxHeader]}>ចម្លើយរបស់អ្នក</Text>
+          <Text style={localStyle.boxHeader}>ចម្លើយរបស់អ្នក</Text>
           <View>
             { this.state.currentGroup.concern_subjects.map((code, i) => {
               return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`} <Text style={localStyle.boldText}>({this.state.gameSubject[code]})</Text></Text>)
@@ -165,7 +165,7 @@ export default class RecommendationScreen extends Component {
 
           { !this._isStrongForAllSubject() &&
             <View>
-              <Text style={[localStyle.highlightBlue, localStyle.boxHeader]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
+              <Text style={localStyle.boxHeader}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
               { this.state.currentGroup.concern_subjects.map((code, i) => {
                  { return (this._renderSubjectToImproveTip(code, i)) }
               })}
@@ -180,7 +180,7 @@ export default class RecommendationScreen extends Component {
     return (
       <View>
         <View style={localStyle.box}>
-          <Text style={[localStyle.boxHeader]}>បុគ្គលិកលក្ខណៈ</Text>
+          <Text style={localStyle.boxHeader}>បុគ្គលិកលក្ខណៈ</Text>
           <Text>ជា{this.state.currentJob.name} អ្នកគួរមានបុគ្គលិកលក្ខណៈជាមនុស្ស៖</Text>
 
           <View>
@@ -191,7 +191,7 @@ export default class RecommendationScreen extends Component {
         </View>
 
         <View style={localStyle.box}>
-          <Text style={[localStyle.boxHeader, localStyle.highlightBlue]}>ចម្លើយរបស់អ្នក</Text>
+          <Text style={localStyle.boxHeader}>ចម្លើយរបស់អ្នក</Text>
 
           <View>
             { this.state.game.characteristicEntries.map((entry, i) => {
@@ -221,13 +221,15 @@ export default class RecommendationScreen extends Component {
           </Text>
 
           <Text style={localStyle.paragraph}>{this.state.currentGroup.recommendation}</Text>
+        </View>
 
-          <Text style={localStyle.paragraph}>
-            <Text style={[localStyle.boldText, {color: '#d0021b'}]}>បញ្ជាក់៖ </Text>
+        <View style={localStyle.box}>
+          <Text style={localStyle.boxHeader}>បញ្ជាក់៖</Text>
+          <Text>
             សិស្សានុសិស្សត្រូវប្រឡងជាប់ថ្នាក់ទី ១២ និងរៀនឲ្យពូកែ ទើបអាចសម្រេចបានគោលបំណង ឬគោលដៅ ។
           </Text>
 
-          <Text style={localStyle.paragraph}>ដូចនេះសូមអ្នកផ្ទៀងផ្ទាត់យ៉ាងលម្អិតរវាង ការវាយតម្លៃលើមុខវិជ្ជាដែលអ្នកបានរៀន និង បុគ្គលិកលក្ខណៈរបស់អ្នកជា មួយនឹងមុខរបរដែលអ្នកពេញចិត្តដូចខាងក្រោម៖</Text>
+          <Text style={localStyle.paragraph}>ដូចនេះសូមអ្នកផ្ទៀងផ្ទាត់យ៉ាងលម្អិតរវាង ការវាយតម្លៃលើមុខវិជ្ជាដែលអ្នកបានរៀន និង បុគ្គលិកលក្ខណៈរបស់អ្នកជា មួយនឹងមុខរបរដែលអ្នកពេញចិត្តដូចខាងក្រោម</Text>
         </View>
 
         { this._renderSubject() }
@@ -288,6 +290,7 @@ const localStyle = StyleSheet.create({
     marginTop: -16,
     paddingHorizontal: 16,
     paddingVertical: 5,
-    backgroundColor: 'rgba(24, 118, 211, 0.2)'
+    backgroundColor: 'rgba(24, 118, 211, 0.2)',
+    color: 'rgb(24, 118, 211)'
   }
 });

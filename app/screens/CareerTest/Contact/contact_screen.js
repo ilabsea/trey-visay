@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
   Image,
   BackHandler,
@@ -38,12 +37,27 @@ export default class ContactScreen extends Component {
     this._backHandler();
   }
 
-
   componentWillUnmount() {
     if (!!this.sound) {
       this.sound.stop();
       this.sound.release();
     }
+  }
+
+  componentDidMount() {
+    if (!this.state.game.voiceRecord) { return }
+
+    this.sound = new Sound(this.state.game.voiceRecord, '', (error) => {
+      if (error) {
+        console.log('failed to load the sound', error);
+      }
+
+      let date = new Date(null);
+      date.setSeconds(Math.ceil(this.sound.getDuration()));
+      let time = date.toISOString().substr(11, 8);
+
+      this.setState({time: time});
+    });
   }
 
   _initState() {
@@ -65,17 +79,6 @@ export default class ContactScreen extends Component {
       schools: schools,
       currentJob: currentJob
     };
-
-    this.sound = new Sound(this.state.game.voiceRecord, '', (error) => {
-      if (error) {
-        console.log('failed to load the sound', error);
-      }
-
-      let date = new Date(null);
-      date.setSeconds(Math.ceil(this.sound.getDuration()));
-      let time = date.toISOString().substr(11, 8);
-      this.setState({time: time});
-    });
 
     this.props.navigation.setParams({
       _handleBack: this._handleBack.bind(this),
@@ -104,7 +107,7 @@ export default class ContactScreen extends Component {
 
   _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentStack' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })])
   }
 
   _onNo() {
@@ -139,7 +142,7 @@ export default class ContactScreen extends Component {
 
     return (
       <View >
-        <Text style={[mainStyles.sectionText, {paddingHorizontal: 20}]}>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
+        <Text style={[mainStyles.sectionText, {paddingHorizontal: 20, marginTop: 16}]}>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
 
          <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
       </View>
@@ -169,24 +172,30 @@ export default class ContactScreen extends Component {
     this.setState({isPlaying: false});
   }
 
+  _handlePlaying() {
+    if (this.state.isPlaying) {
+      return this._stop();
+    }
+    this._play();
+  }
+
   _renderVoiceRecord() {
     return (
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <View style={{marginRight: 16}}>
-          { !this.state.isPlaying &&
-            <TouchableOpacity onPress={() => this._play()}>
-              <MaterialIcon style={mainStyles.icon} name='play-circle-outline' size={40} color='#4caf50'/>
-            </TouchableOpacity>
-          }
-
+      <View style={[mainStyles.box, {marginTop: 13, flexDirection: 'row', alignItems: 'center', padding: 10, overflow: 'hidden'}]}>
+        <TouchableOpacity onPress={() => this._handlePlaying()}>
           { this.state.isPlaying &&
-            <TouchableOpacity onPress={() => this._stop()}>
-              <MaterialIcon style={mainStyles.icon} name='pause-circle-outline' size={40} color='#e94b35'/>
-            </TouchableOpacity>
+            <MaterialIcon style={styles.icon} name='pause-circle-filled' size={48} color='#e94b35'/>
           }
-        </View>
+          {
+            !this.state.isPlaying &&
+            <MaterialIcon style={styles.icon} name='play-circle-filled' size={48} color='rgb(24,118,211)'/>
+          }
+        </TouchableOpacity>
 
-        <Text style={styles.textTime}>{this.state.time}</Text>
+        <View style={{flex: 1, paddingHorizontal: 10}}>
+          <Text>លេង</Text>
+          <Text style={{lineHeight: 20}}>{ this.state.time }</Text>
+        </View>
       </View>
     )
   }
@@ -210,13 +219,13 @@ export default class ContactScreen extends Component {
           ដាក់គោលដៅមួយ និងមូលហេតុ
         </Text>
 
-        <View style={[mainStyles.box, {padding: 16}]}>
+        <View style={[mainStyles.box, {marginTop: 0}]}>
+          <Text style={styles.boxHeader}>ចម្លើយរបស់អ្នក</Text>
           <Text style={mainStyles.text}>{this.state.game.goalCareer}</Text>
-
           { !!this.state.game.reason && this._renderReason()}
-          { !!this.state.game.voiceRecord && this._renderVoiceRecord()}
-
         </View>
+
+        { !!this.state.game.voiceRecord && this._renderVoiceRecord()}
       </View>
     )
   }
@@ -262,5 +271,19 @@ const styles = StyleSheet.create({
   schoolAddress: {
     marginLeft: 8,
     fontSize: FontSetting.sub_title
+  },
+  icon: {
+    height: 50,
+    lineHeight: 50
+  },
+  boxHeader: {
+    marginHorizontal: -16,
+    marginTop: -16,
+    paddingHorizontal: 16,
+    paddingVertical: 5,
+    backgroundColor: 'rgba(24, 118, 211, 0.2)',
+    color: 'rgb(24, 118, 211)',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
   }
 })

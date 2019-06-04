@@ -82,7 +82,7 @@ export default class PersonalityScreen extends Component {
 
   _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })], 1)
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })])
   }
 
   _onNo() {
@@ -152,32 +152,28 @@ export default class PersonalityScreen extends Component {
 
     return(
       <View style={mainStyles.box}>
-        <Text style={mainStyles.sectionText}>បុគ្គលិកលក្ខណៈ</Text>
-
-        <View>
-          <CheckboxGroup
-            onSelect={(selected) => {this._handleChecked(selected)}}
-            items={checkboxes}
-            checked={this.state.characteristicEntries}
-            style={{
-              icon: {
-                color: '#4caf50',
-                size: 30
-              },
-              container: {
-                flexDirection: 'row',
-                borderTopWidth: 0.5,
-                borderColor: '#ccc',
-                paddingVertical: 8,
-              },
-              label: {
-                color: '#333',
-                fontSize: 16,
-                marginLeft: 10
-              }
-            }}
-          />
-        </View>
+        <CheckboxGroup
+          onSelect={(selected) => {this._handleChecked(selected)}}
+          items={checkboxes}
+          checked={this.state.characteristicEntries}
+          style={{
+            icon: {
+              color: '#4caf50',
+              size: 30
+            },
+            container: {
+              flexDirection: 'row',
+              borderBottomWidth: 0.5,
+              borderColor: '#ccc',
+              paddingVertical: 8,
+            },
+            label: {
+              color: '#333',
+              fontSize: 16,
+              marginLeft: 10
+            }
+          }}
+        />
       </View>
     )
   }
