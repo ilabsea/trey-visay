@@ -16,6 +16,7 @@ import CareerCounsellorStack from '../CareerCounsellor/CareerCounsellorStack';
 import ProfileStack from '../profile_stack';
 import OthersStack from '../Others/OthersStack';
 import HomeStack from '../Home/HomeStack';
+import PersonalityAssessmentStack from '../Assessment/PersonalityAssessmentStack';
 
 import VideoScreen from '../../Video/VideoScreen';
 
@@ -76,9 +77,22 @@ const HomeStackNav = createStackNavigator({
   },
   VideoScreen: {
     screen: VideoScreen,
-    header: { visible:false }
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
   },
-  CareerCounsellorStack: { screen: CareerCounsellorStack },
+  CareerCounsellorStack: {
+    screen: CareerCounsellorStack,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
+  },
+  PersonalityAssessmentStack: {
+    screen: PersonalityAssessmentStack,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
+  },
   VocationalStack: { screen: VocationalStack }
 }, {
   initialRouteName: 'Home',

@@ -15,6 +15,7 @@ import { Container, Content, ListItem, Left, Body, Right, Button, Icon, Badge } 
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
+import ButtonList from '../../components/list/button_list';
 
 export default class PersonalityAssessmentHistory extends Component {
   constructor(props) {
@@ -56,13 +57,15 @@ export default class PersonalityAssessmentHistory extends Component {
         </Body>
         <Right>
           <Text>{this.state.assessment[category.name_en].length}</Text>
-          <Icon name="arrow-forward" />
+          <Icon name="ios-arrow-forward" />
         </Right>
       </ListItem>
     );
   }
 
   _renderPersonalityGroups() {
+
+
     return (
       <View>
         <ListItem itemDivider>

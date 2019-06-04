@@ -3,23 +3,22 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  Platform,
   Text
 } from 'react-native';
 
-// import Button from '../../components/shared/button';
-import StatusBar from '../../components/shared/status_bar';
-import formStyles from '../../assets/style_sheets/login_form';
-import styles from '../../assets/style_sheets/assessment';
+import Button from '../../components/shared/button';
 
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 import realm from '../../db/schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
-import { longDateFormat } from '../../utils/date';
-import { Container, Header, Content, ListItem, Thumbnail, Left, Body, Right, Icon, Card, CardItem, Title, Button } from 'native-base';
+import mainStyles from '../../assets/style_sheets/main/main';
+import { longDateFormat as dateFormat } from '../../utils/date';
+import { Content, Body, Icon, CardItem } from 'native-base';
 
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
+import ButtonList from '../../components/list/button_list';
 
 export default class PersonalityAssessment extends Component {
   constructor(props) {
@@ -39,58 +38,17 @@ export default class PersonalityAssessment extends Component {
 
   _renderInstruction() {
     return (
-      <Card transparent>
-        <CardItem header bordered>
-          <Left>
-            <Thumbnail source={require('../../assets/images/list.png')} />
-            <Body>
-              <Text>ការធ្វើតេស្តស្វែងយល់អំពី បុគ្គលិកលក្ខណៈ</Text>
-            </Body>
-          </Left>
-        </CardItem>
-
+      <View>
         <CardItem>
           <Body>
-            <Text>តាមការសិក្សាស្រាវជ្រាវរបស់អ្នកឯកទេសខាងចិត្តសាស្ត្របង្ហាញថា បុគ្គលិកលក្ខណៈរបស់មនុស្ស ត្រូវបានចែកចេញជា ៦ ប្រភេទ៖</Text>
-
-            <View style={{flexDirection: 'row', paddingLeft: 20, marginBottom: 12}}>
-              <View style={{flex: 1}}>
-                <Text>1. ប្រាកដនិយម</Text>
-                <Text>(Realistic)</Text>
-              </View>
-              <View style={{flex: 1}}>
-                <Text>4. សង្គម</Text>
-                <Text>(Social)</Text>
-              </View>
-            </View>
-
-            <View style={{flexDirection: 'row', paddingLeft: 20, marginBottom: 12}}>
-              <View style={{flex: 1}}>
-                <Text>2. ពូកែអង្កេត</Text>
-                <Text>(Investigative)</Text>
-              </View>
-              <View style={{flex: 1}}>
-                <Text>5. ត្រិះរិះពិចារណា</Text>
-                <Text>(Enterprising)</Text>
-              </View>
-            </View>
-
-            <View style={{flexDirection: 'row', paddingLeft: 20}}>
-              <View style={{flex: 1}}>
-                <Text>3. សិល្បៈនិយម</Text>
-                <Text>(Artisitc)</Text>
-              </View>
-              <View style={{flex: 1}}>
-                <Text>6. សណ្ដាប់ធ្នាប់</Text>
-                <Text>(Conventional)</Text>
-              </View>
-            </View>
+            <Text>សួរស្តីសាជាថ្មី </Text>
+            <Text>ការធ្វើតេស្តស្វែងយល់អំពី បុគ្គលិកលក្ខណៈ </Text>
           </Body>
         </CardItem>
 
         <CardItem footer style={{flexDirection: 'column'}}>
           <Button
-            style={styles.button}
+            style={[styles.button]}
             onPress={this._startNewAssessment.bind(this)}>
             <Text style={styles.btnText}>
               ចាប់ផ្តើមថ្មី
@@ -99,7 +57,7 @@ export default class PersonalityAssessment extends Component {
 
           { this.state.isContinued &&
             <Button
-              style={[styles.button, { backgroundColor: '#1976d2' , marginTop: 16}]}
+              style={[styles.button, { backgroundColor: '#1976d2', marginTop: 18}]}
               onPress={this._continueStep.bind(this)}
               >
               <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
@@ -107,7 +65,7 @@ export default class PersonalityAssessment extends Component {
           }
 
         </CardItem>
-      </Card>
+      </View>
     )
   }
 
@@ -139,42 +97,53 @@ export default class PersonalityAssessment extends Component {
     let count = this.state.completedAssessments.length;
 
     return(
-      <Card>
+      <Content padder style={{marginHorizontal: 8}}>
         { !!count &&
-          <ListItem itemDivider>
+          <Text style={mainStyles.sectionText}>
             <Text>លទ្ធផលធ្វើតេស្ត</Text>
-          </ListItem>
+          </Text>
         }
 
         { this.state.completedAssessments.map((assessment, i) => this._renderListItem(assessment, i, count)) }
-      </Card>
+      </Content>
     );
   }
 
-  _renderListItem(assessment, index, count) {
+  _renderListItem = (assessment, index, count) => {
     return (
-      <ListItem
+      <TouchableOpacity
         key={index}
-        button={true}
-        onPress={() => this.props.navigation.navigate('AssessmentResultHistoryScreen', {num: (count - index), assessmentUuid: assessment.uuid})}
-        thumbnail>
-        <Left>
-          <Thumbnail square source={require('../../assets/images/checklist.png')} />
-        </Left>
-        <Body>
-          <Text>តេស្តលើកទី {count - index}</Text>
-          <Text note numberOfLines={1}>ធ្វើនៅ: {longDateFormat(assessment.createdAt)}</Text>
-        </Body>
-        <Right>
-          <Icon name="arrow-forward" />
-        </Right>
-      </ListItem>
-    );
+        style={{flexDirection: 'row', borderRadius: 10, overflow: 'hidden', backgroundColor: '#fff', marginBottom: 10}}
+        onPress={() => this.props.navigation.navigate('AssessmentResultHistoryScreen', {num: (count - index), assessmentUuid: assessment.uuid})}>
+
+          <View style={styles.logo}>
+            <Text style={{color: '#fff', fontSize: 24}}>{count - index}</Text>
+          </View>
+
+          <View style={{flex: 1, paddingHorizontal: 16, paddingVertical: 10}}>
+            <Text>តេស្តលើកទី {count - index}</Text>
+            <Text note numberOfLines={1}>ធ្វើនៅ: {dateFormat(assessment.createdAt)}</Text>
+          </View>
+      </TouchableOpacity>
+    )
+  }
+
+  _renderAbout() {
+    return (
+      <View style={{marginVertical: 12, backgroundColor: 'white'}}>
+        <ButtonList
+          hasLine={true}
+          icon={{color: 'rgb(24, 118, 211)', src: require('../../assets/icons/others/info.png')}}
+          onPress={() => { this.props.navigation.navigate('AboutPersonalityAssessment') }}
+          title='អំពីការធ្វើតេស្តស្វែងយល់បុគ្គលិកលក្ខណៈ' />
+      </View>
+    )
   }
 
   _renderContent = () => {
     return (
       <Content>
+        { this._renderAbout() }
         { this._renderInstruction() }
         { this._renderHistory() }
       </Content>
@@ -190,13 +159,38 @@ export default class PersonalityAssessment extends Component {
   }
 
   render() {
+    let title = 'ស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ';
+
     return (
       <ScrollableHeader
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
-        title={'ចំណងជើង'}
-        largeTitle={'ចំណងជើង'}
+        title={title}
+        largeTitle={title}
       />
     )
   }
 }
+
+const styles = StyleSheet.create({
+  logo: {
+    width: 80,
+    height: 99,
+    backgroundColor: 'rgb(24, 118, 211)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  button: {
+    borderRadius: 3,
+    height: 48,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+    width: '100%'
+  },
+  btnText: {
+    fontWeight: 'bold',
+    fontSize: FontSetting.button_text,
+    color: '#fff',
+  }
+});

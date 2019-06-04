@@ -88,7 +88,7 @@ export default class PersonalityAssessmentRealistic extends Component {
 
   _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'AssessmentScreen' }), NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })], 1);
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })]);
   }
 
   _onNo() {

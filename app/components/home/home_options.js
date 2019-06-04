@@ -1,5 +1,13 @@
 const HomeOptions = [
   {
+    title: 'ស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ',
+    url: 'PersonalityAssessmentStack',
+    background_color: 'rgb(254, 255, 94)',
+    source_image: require('../../assets/images/home/video.png'),
+    has_start_btn: true,
+    description: 'ការធ្វើតេស្តស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ'
+  },
+  {
     title: 'វាយតម្លៃមុខរបរ',
     url: 'CareerCounsellorStack',
     background_color: 'rgb(53, 174, 235)',
@@ -27,7 +35,7 @@ const HomeOptions = [
     background_color: 'rgb(254, 191, 94)',
     source_image: require('../../assets/images/home/video.png'),
     description: 'យល់ដឹងអំពីមុខរបរ និងអាជីព តាមរយះវីដេអូ'
-  }
+  },
 ]
 
 export default HomeOptions;

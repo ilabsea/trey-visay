@@ -9,8 +9,8 @@ import SaveButton from '../../../components/shared/save_button';
 import BackButton from '../../../components/shared/back_button';
 import OpenDrawer from '../../../components/shared/open_drawer';
 
-import Assessment from '../../Assessment/Assessment';
 import PersonalityAssessment from '../../PersonalityAssessment/PersonalityAssessment';
+import AboutPersonalityAssessment from '../../PersonalityAssessment/About';
 import PersonalityAssessmentForm from '../../PersonalityAssessmentForm/PersonalityAssessmentForm';
 import PersonalityAssessmentResult from '../../PersonalityAssessmentResult/PersonalityAssessmentResult';
 import PersonalityAssessmentResultHistory from '../../PersonalityAssessmentResultHistory/PersonalityAssessmentResultHistory';
@@ -24,13 +24,6 @@ import PersonalityAssessmentSubjectTip from '../../PersonalityAssessmentSubjectT
 
 const AssessmentStack = createStackNavigator(
   {
-    AssessmentScreen: {
-      screen: Assessment,
-      navigationOptions: ({navigation}) => ({
-        title: 'វាយតម្លៃមុខរបរនិងអាជីព',
-        headerLeft: <OpenDrawer navigation={navigation}/>
-      })
-    },
     PersonalityAssessmentScreen: {
       screen: PersonalityAssessment,
       navigationOptions: ({navigation}) => ({
@@ -38,6 +31,13 @@ const AssessmentStack = createStackNavigator(
         header: null
       })
     },
+    AboutPersonalityAssessment: {
+      screen: AboutPersonalityAssessment,
+      navigationOptions: ({navigation}) => ({
+        header: null
+      })
+    },
+
     RealisticScreen: {
       screen: PersonalityAssessmentForm,
       navigationOptions: ({navigation}) => ({

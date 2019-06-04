@@ -76,7 +76,7 @@ export default class CareerCounsellor extends Component {
 
             { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
               <Button
-                style={[styles.button, { backgroundColor: '#1976d2', marginTop: 18, width: '100%'}]}
+                style={[styles.button, { backgroundColor: '#1976d2', marginTop: 18}]}
                 onPress={this._handleGoingNextStep.bind(this)}>
 
                 <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
@@ -115,7 +115,6 @@ export default class CareerCounsellor extends Component {
             </TouchableOpacity>
           )
         })}
-
       </Content>
     )
   }
