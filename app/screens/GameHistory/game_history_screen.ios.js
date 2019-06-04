@@ -177,11 +177,11 @@ export default class GameHistoryScreen extends Component {
             <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
             <Text style={[mainStyles.title, { paddingLeft: 8 }]}>ចម្លេីយរបស់អ្នក</Text>
           </View>
-          <View style={mainStyles.subTitleBox}>
+          <View style={[mainStyles.subTitleBox, {height: 64}]}>
             <Text style={ mainStyles.text }>{this.state.game.goalCareer}</Text>
           </View>
 
-          <View style={mainStyles.curveBox}>
+          <View style={[mainStyles.curveBox, {height: 64}]}>
             { !!this.state.game.reason && this._renderReason() }
             { !!this.state.game.voiceRecord && this._renderVoiceRecord() }
           </View>

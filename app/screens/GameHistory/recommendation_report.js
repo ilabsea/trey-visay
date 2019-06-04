@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   BackHandler,
 } from 'react-native';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 
@@ -15,6 +16,7 @@ import User from '../../utils/user';
 import subjectList from '../../data/json/subjects/subject_tips';
 import characteristicList from '../../data/json/characteristic_jobs';
 import subjectTe from '../../data/translates/subject';
+import { FontSetting} from '../../assets/style_sheets/font_setting';
 
 export default class RecommendationReport extends Component {
   componentWillMount() {
@@ -91,19 +93,31 @@ export default class RecommendationReport extends Component {
   _renderSubject() {
     return (
       <View>
-        <Text style={[mainStyles.text, localStyle.paragraph, {color: '#1976d2'}]}>មុខវិជ្ជា</Text>
-        <Text>ជា{this.state.currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖ </Text>
-        <View>
-          { this.state.currentGroup.concern_subjects.map((code, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`}</Text>)
-          })}
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>មុខវិជ្ជា</Text>
         </View>
 
-        <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>ចម្លើយរបស់អ្នក</Text>
-        <View>
-          { this.state.currentGroup.concern_subjects.map((code, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`} <Text style={localStyle.boldText}>({this.state.gameSubject[code]})</Text></Text>)
-          })}
+        <View style={mainStyles.subTitleBox}>
+          <Text style={ mainStyles.text }>ជា{this.state.currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖</Text>
+          <View>
+            { this.state.currentGroup.concern_subjects.map((code, i) => {
+              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`}</Text>)
+            })}
+          </View>
+        </View>
+
+        <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
+          <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>ចម្លើយរបស់អ្នក</Text>
+        </View>
+
+        <View style={mainStyles.subTitleBox}>
+          <View>
+            { this.state.currentGroup.concern_subjects.map((code, i) => {
+              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`} <Text style={localStyle.boldText}>({this.state.gameSubject[code]})</Text></Text>)
+            })}
+          </View>
         </View>
 
         { this._isStrongForAllSubject() &&
@@ -112,10 +126,15 @@ export default class RecommendationReport extends Component {
 
         { !this._isStrongForAllSubject() &&
           <View>
-            <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
-            { this.state.currentGroup.concern_subjects.map((code, i) => {
-               { return (this._renderSubjectToImproveTip(code, i)) }
-            })}
+            <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
+              <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+              <Text style={[mainStyles.title, { paddingLeft: 8 }]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
+            </View>
+            <View style={mainStyles.subTitleBox}>
+              { this.state.currentGroup.concern_subjects.map((code, i) => {
+                 { return (this._renderSubjectToImproveTip(code, i)) }
+              })}
+            </View>
           </View>
         }
       </View>
@@ -125,23 +144,37 @@ export default class RecommendationReport extends Component {
   _renderCharacteristic() {
     return (
       <View>
-        <Text style={[mainStyles.text, localStyle.paragraph, {color: '#1976d2'}]}>បុគ្គលិកលក្ខណៈ</Text>
-        <Text>ជា{this.state.currentJob.name} អ្នកគួរមានបុគ្គលិកលក្ខណៈជាមនុស្ស៖</Text>
-        <View>
-          { this.state.currentGroup.concern_entries.map((character, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${character}`}</Text>)
-          })}
+        <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
+          <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>បុគ្គលិកលក្ខណៈ</Text>
         </View>
 
-        <Text style={[localStyle.paragraph, localStyle.highlightBlue]}>ចម្លើយរបស់អ្នក</Text>
-        <View>
-          { this.state.game.characteristicEntries.map((entry, i) => {
-            return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${entry.value}`}</Text>)
-          })}
+        <View style={mainStyles.subTitleBox}>
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>ជា{this.state.currentJob.name} អ្នកគួរមានបុគ្គលិកលក្ខណៈជាមនុស្ស៖</Text>
+          <View>
+            { this.state.currentGroup.concern_entries.map((character, i) => {
+              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${character}`}</Text>)
+            })}
+          </View>
         </View>
 
-        <Text style={localStyle.paragraph}>
-          បុគ្គលិកលក្ខណៈឆ្លុះបញ្ចាំងពីអត្តចរិករបស់មនុស្ស ដូចគ្នានេះដែរការងារនិមួយៗក៏ត្រូវការមនុស្សដែលមានបុគ្គលិកលក្ខណៈឲ្យស៊ីនឹងវាផងដែរ ទើបយើងបំពេញការងារនោះបានប្រសើរ និងរីកចម្រើនចំពោះខ្លួនឯង ដូចនេះសូម អ្នកផ្ទៀងផ្ទាត់ពីបុគ្គលិកលក្ខណៈរបស់ប្អូន ថាតើវាសាកសមសម្រាប់អ្នកហើយឬនៅ។
+
+        <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
+          <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>ចម្លើយរបស់អ្នក</Text>
+        </View>
+
+        <View style={mainStyles.subTitleBox}>
+          <View>
+            { this.state.game.characteristicEntries.map((entry, i) => {
+              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${entry.value}`}</Text>)
+            })}
+          </View>
+        </View>
+
+        <Text style={[localStyle.paragraph, {paddingLeft: 20, paddingRight: 20}]}>
+          បុគ្គលិកលក្ខណៈឆ្លុះបញ្ចាំងពីអត្តចរិករបស់មនុស្ស ដូចគ្នានេះដែរការងារនិមួយៗក៏ត្រូវការមនុស្សដែលមានបុគ្គលិកលក្ខណៈឲ្យស៊ីនឹងវាផងដែរ
+          ទើបយើងបំពេញការងារនោះបានប្រសើរ និងរីកចម្រើនចំពោះខ្លួនឯង ដូចនេះសូម អ្នកផ្ទៀងផ្ទាត់ពីបុគ្គលិកលក្ខណៈរបស់ប្អូន ថាតើវាសាកសមសម្រាប់អ្នកហើយឬនៅ។
         </Text>
       </View>
     )
@@ -149,20 +182,26 @@ export default class RecommendationReport extends Component {
 
   _renderContent() {
     return (
-      <View style={[mainStyles.box, {padding: 16}]}>
-        <Text>
-          <Text style={localStyle.boldText}>{this.state.user.fullName}</Text>! អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ
-          <Text style={localStyle.boldText}> “{this.state.currentJob.name}” </Text>
-          ដែលមុខរបរនេះជា
-          <Text style={localStyle.boldText}> {this.state.currentGroup.career_title}។ </Text>
-        </Text>
+      <View>
+        <View style={{padding: 20}}>
+          <Text style={localStyle.bigText}>សួស្តី {this.state.user.fullName}</Text>
+          <Text style={localStyle.boldText}>
+            អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ “{this.state.currentJob.name}” ដែលមុខរបរនេះជា
+            {this.state.currentGroup.career_title}។
+          </Text>
+          <Text style={localStyle.paragraph}>{this.state.currentGroup.recommendation}</Text>
+        </View>
 
-        <Text style={localStyle.paragraph}>{this.state.currentGroup.recommendation}</Text>
-        <Text style={localStyle.paragraph}>
-          <Text style={[localStyle.boldText, {color: '#d0021b'}]}>បញ្ជាក់៖ </Text>
-          សិស្សានុសិស្សត្រូវប្រឡងជាប់ថ្នាក់ទី ១២ និងរៀនឲ្យពូកែ ទើបអាចសម្រេចបានគោលបំណង ឬគោលដៅ ។
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>បញ្ជាក់៖</Text>
+        </View>
+        <View style={mainStyles.subTitleBox}>
+          <Text style={ mainStyles.text }>សិស្សានុសិស្សត្រូវប្រឡងជាប់ថ្នាក់ទី ១២ និងរៀនឲ្យពូកែ ទើបអាចសម្រេចបានគោលបំណង ឬគោលដៅ ។</Text>
+        </View>
+        <Text style={[localStyle.paragraph, { paddingLeft: 20, paddingRight: 20 }]}>
+          ដូចនេះសូមអ្នកផ្ទៀងផ្ទាត់យ៉ាងលម្អិតរវាង ការវាយតម្លៃលើមុខវិជ្ជាដែលអ្នកបានរៀន និង បុគ្គលិកលក្ខណៈរបស់អ្នកជា មួយនឹងមុខរបរដែលអ្នកពេញចិត្តដូចខាងក្រោម៖
         </Text>
-        <Text style={localStyle.paragraph}>ដូចនេះសូមអ្នកផ្ទៀងផ្ទាត់យ៉ាងលម្អិតរវាង ការវាយតម្លៃលើមុខវិជ្ជាដែលអ្នកបានរៀន និង បុគ្គលិកលក្ខណៈរបស់អ្នកជា មួយនឹងមុខរបរដែលអ្នកពេញចិត្តដូចខាងក្រោម៖</Text>
 
         { this._renderSubject() }
         { this._renderCharacteristic() }
@@ -183,6 +222,9 @@ export default class RecommendationReport extends Component {
 }
 
 const localStyle = StyleSheet.create({
+  bigText: {
+    fontSize: FontSetting.big_title
+  },
   boldText: {
     fontWeight: 'bold'
   },

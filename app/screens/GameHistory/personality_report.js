@@ -3,6 +3,7 @@ import {
   Text,
   View,
   ScrollView,
+  Image
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -31,18 +32,21 @@ export default class PersonalityReport extends Component {
 
   _renderContent() {
     return (
-      <View style={mainStyles.box}>
-        <Text style={mainStyles.sectionTextInBox}>មុខរបរ</Text>
+      <View>
+        <Text style={mainStyles.sectionText}>មុខរបរ</Text>
         <Divider/>
-
-        { this.state.jobs.map((job, i) => {
-          return (
-            <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 8, marginLeft: 32}}>
-              <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-              <Text>{job.name}</Text>
-            </View>
-          )
-        })}
+        <View style={{paddingHorizontal: 20}}>
+          { this.state.jobs.map((job, i) => {
+            return (
+              <View key={i} style={mainStyles.thumnailList}>
+                <Image
+                  style={{width: 78, height: 78}}
+                  source={require('../../assets/images/careers/civil.png')} />
+                <Text style={{flex: 1, paddingHorizontal: 18}}>{job.name}</Text>
+              </View>
+            )
+          })}
+        </View>
       </View>
     )
   }

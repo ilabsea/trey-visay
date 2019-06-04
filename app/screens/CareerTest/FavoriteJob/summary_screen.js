@@ -134,7 +134,7 @@ export default class SummaryScreen extends Component {
           if (!!career.image) { imageUrl = Images[career.image] }
 
           return (
-            <TouchableOpacity onPress={() => this.setState({mostFavorableJob: career.value})} key={index} style={{flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 8, paddingRight: 17, marginBottom: 20}}>
+            <TouchableOpacity onPress={() => this.setState({mostFavorableJob: career.value})} key={index} style={mainStyles.thumnailList}>
               <Image
                 style={{width: 78, height: 78, borderTopLeftRadius: 8, borderBottomLeftRadius: 8}}
                 source={imageUrl} />

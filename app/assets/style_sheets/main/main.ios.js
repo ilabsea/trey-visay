@@ -83,22 +83,28 @@ export default StyleSheet.create({
   },
   subTitleBox: {
     backgroundColor: 'white',
-    height: 64,
     justifyContent: 'center',
     alignSelf: 'center',
     width: '90%',
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
-    paddingLeft: 16
+    padding: 16
   },
   curveBox: {
     backgroundColor: 'white',
-    height: 64,
     borderRadius: 8,
     paddingLeft: 16,
     margin: 20,
     paddingLeft: 16,
     justifyContent: 'center',
     marginBottom: 0
+  },
+  thumnailList: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    paddingRight: 17,
+    marginBottom: 20
   }
 })

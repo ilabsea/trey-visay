@@ -14,10 +14,11 @@ import {
 } from 'react-native';
 
 import CustomTextInput from '../../../components/CustomTextInput'
-import CustomRadioGroup from '../../../components/CustomRadioGroup'
-import CustomCheckbox from '../../../components/CustomCheckbox'
+import CustomCheckbox from '../../../components/CustomCheckbox';
+import CustomRadioGroup from '../../../components/CustomRadioGroup';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Question from '../../../data/json/personal_understanding.json';
+import FormRadio from '../../../components/PersonalUnderstanding/FormRadio';
 
 import submit from './submit'
 
@@ -41,49 +42,12 @@ function Form(props) {
         <Text style={styles.hintLable}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
       </View>
 
-      <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>{ Question.areYouGoingToStudyTillGrade12 }</Text>
-        <Field
-          name={'areYouGoingToStudyTillGrade12'}
-          component={CustomRadioGroup}
-          radio_props={
-                        [
-                          {label: 'បាទ/ចាស', value: 'Yes' },
-                          {label: 'ទេ', value: 'No'},
-                          {label: 'មិនដឹង', value: 'Don_Know'}
-                        ]
-                      }
-        />
-      </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>{ Question.areYourParentsAllowYouToStudyTillGrade12 }</Text>
-        <Field
-          name={'areYourParentsAllowYouToStudyTillGrade12'}
-          component={CustomRadioGroup}
-          radio_props={
-                        [
-                          {label: 'បាទ/ចាស', value: 'Yes' },
-                          {label: 'ទេ', value: 'No'},
-                          {label: 'មិនដឹង', value: 'Don_Know'}
-                        ]
-                      }
-        />
-      </View>
-
-      <View style={styles.formGroup}>
-        <Text style={styles.labelGroup}>{ Question.haveYouEverThoughtOfCareer }</Text>
-        <Field
-          name={'haveYouEverThoughtOfCareer'}
-          component={CustomRadioGroup}
-          radio_props={
-                        [
-                          {label: 'បាទ/ចាស', value: 'Yes' },
-                          {label: 'ទេ', value: 'No'}
-                        ]
-                      }
-        />
-
+      <FormRadio
+        questionKey={'areYouGoingToStudyTillGrade12'}/>
+      <FormRadio
+        questionKey={'areYourParentsAllowYouToStudyTillGrade12'}/>
+      <FormRadio
+        questionKey={'haveYouEverThoughtOfCareer'}>
         <View style={styles.formSubGroup3}>
           <Text style={getTextColor} onPress={() => {this.careerName.focus()}}>
             { Question.careerName }
@@ -113,24 +77,13 @@ function Form(props) {
           />
         </View>
 
-
-        <View pointerEvents={ props.haveEverThoughtOfCareerIsYes ? "auto" : "none"}>
-          <Text style={getTextColor}>{ Question.doesParentsAgreeWith }</Text>
-          <Field
-            name={'doesParentsAgreeWith'}
-            component={CustomRadioGroup}
-            labelStyle={labelStyle}
-            buttonColor={buttonColor}
-            radio_props={
-                          [
-                            {label: 'បាទ/ចាស', value: 'Yes' },
-                            {label: 'ទេ', value: 'No'},
-                            {label: 'មិនដឹង', value: 'Don_Know'},
-                          ]
-                        }
-          />
-        </View>
-      </View>
+        <FormRadio
+          questionKey={'doesParentsAgreeWith'}
+          pointerEvents={ props.haveEverThoughtOfCareerIsYes ? "auto" : "none"}
+          textStyle={getTextColor}
+          labelStyle={labelStyle}
+          buttonColor={buttonColor} />
+      </FormRadio>
 
       <View style={styles.formGroup}>
         <Text style={styles.labelGroup} >{ Question.everTalkedWithAnyoneAboutCareer }</Text>
@@ -170,7 +123,6 @@ const styles = StyleSheet.create({
   },
   labelGroup: {
     marginBottom: 10,
-    fontSize: 16,
   },
   hintLable: {
     fontSize: 16,

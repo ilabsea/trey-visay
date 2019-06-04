@@ -7,11 +7,13 @@ import {
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
+import LinearGradient from 'react-native-linear-gradient';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
 
 import mainStyles from '../../assets/style_sheets/main/main';
+import RadioGroup from '../../components/radio_group';
 import StatusBar from '../../components/shared/status_bar';
 
 export default class SubjectReport extends Component {
@@ -28,25 +30,33 @@ export default class SubjectReport extends Component {
 
   _renderGroups(obj) {
     return (
-      <View style={mainStyles.box}>
-        <Text style={mainStyles.sectionText}>{obj.title}</Text>
-        <Divider />
-        { obj.groups.map((group, i) => {
-          if (!this.state.gameSubject[group.stateName]) {
-            return (null)
-          }
+      <View>
+        <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
+          <Text style={[mainStyles.title, { paddingLeft: 8, color: 'rgb(24, 118, 211)' }]}>{obj.title}</Text>
+        </View>
 
-          return (
-            <View key={i} style={{margin: 16, marginTop: 8}}>
-              <Text style={{fontWeight: 'bold'}}>{ group.label }</Text>
+        <View style={mainStyles.subTitleBox}>
+          { obj.groups.map((group, i) => {
+            if (!this.state.gameSubject[group.stateName]) {
+              return (null)
+            }
 
-              <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 16}}>
-                <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-                <Text>{ this.state.gameSubject[group.stateName] }</Text>
+            return (
+              <View key={i} style={{paddingVertical: 8}}>
+                <Text>{group.label}</Text>
+
+                <Divider style={{marginLeft: 2}}/>
+                <View style={{paddingTop: 8}}>
+                  <RadioGroup
+                    disabled={true}
+                    options={[{ label: 'ខ្លាំង', value: 'ខ្លាំង' }, { label: 'មធ្យម', value: 'មធ្យម' }, { label: 'ខ្សោយ', value: 'ខ្សោយ' }]}
+                    value={this.state.gameSubject[group.stateName]} >
+                  </RadioGroup>
+                </View>
               </View>
-            </View>
-          )
-        })}
+            )
+          })}
+        </View>
       </View>
     )
   }

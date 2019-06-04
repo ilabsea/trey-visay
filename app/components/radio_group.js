@@ -9,26 +9,31 @@ class RadioGroup extends Component {
 
   render() {
     const {style, formVertical, ...props} = this.props;
-
+    let disabled = this.props.disabled ? this.props.disabled : false;
+    console.log('disabled : ', disabled);
     return (
       <RadioForm formHorizontal={!formVertical} animation={true} style={style}>
         { this.props.options.map((obj, i) => {
           return(
             <View key={i}>
               <View  style={{alignItems: 'flex-start'}}>
-                <RadioButton labelHorizontal={true} key={i} >
+                <RadioButton
+                  labelHorizontal={true}
+                  key={i} >
                   <RadioButtonInput
                     obj={obj}
                     index={i}
                     isSelected={this.props.value == obj.value}
                     onPress={this.props.onPress}
                     buttonSize={8}
-                    buttonColor='#4caf50'
+                    buttonColor='rgb(24, 118, 211)'
+                    disabled={disabled }
                     buttonWrapStyle={styles.buttonWrapper}
                   />
                   <RadioButtonLabel
                     obj={obj}
                     index={i}
+                    disabled={disabled }
                     labelHorizontal={true}
                     onPress={this.props.onPress}
                     labelStyle={styles.label}

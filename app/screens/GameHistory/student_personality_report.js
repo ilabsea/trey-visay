@@ -27,17 +27,22 @@ export default class StudentPersonalityReport extends Component {
 
   _renderContent() {
     return (
-      <View style={mainStyles.box}>
-        <Text style={mainStyles.sectionTextInBox}>ចម្លើយអំពីបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
-        <Divider />
-        { this.state.game.characteristicEntries.map((entry, i) => {
-          return (
-            <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 8, marginLeft: 32}}>
-              <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-              <Text>{entry.value}</Text>
-            </View>
-          )
-        })}
+      <View>
+        <Text style={mainStyles.sectionText}>ចម្លើយអំពីបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
+        <View style={[mainStyles.curveBox, { marginTop: 0 }]}>
+          { this.state.game.characteristicEntries.map((entry, i) => {
+            return (
+              <View>
+                <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 10}}>
+                  <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' style={{marginRight: 8}} />
+                  <Text>{entry.value}</Text>
+
+                </View>
+                <Divider style={{marginLeft: 2}}/>
+              </View>
+            )
+          })}
+        </View>
       </View>
     )
   }
