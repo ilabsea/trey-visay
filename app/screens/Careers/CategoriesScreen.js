@@ -86,6 +86,8 @@ export default class CategoriesScreen extends Component {
   }
 
   _renderCategory(category, i) {
+    let data = category.careers.slice(0, 5);
+
     return (
       <View key={i} style={[mainStyles.carouselBox, {backgroundColor: '#fff', marginTop: 14}]}>
         <ButtonList hasLine={false} title={category.career_title}
@@ -94,7 +96,7 @@ export default class CategoriesScreen extends Component {
           }} />
         <View style={{marginLeft: 16}}>
         <CarouselItem
-          data={category.careers}
+          data={data}
           renderItem={(career, index) => this.renderItem(career, index)}/>
         </View>
       </View>
