@@ -6,6 +6,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 const { width, height } = Dimensions.get('window');
 
 const CarouselItem = (props) =>  {
+  let style = props.noStyle ? '' : { paddingLeft: 28 };
   let itemWidth = props.width ? wp(props.width) : wp('45%');
   let activeSlideAlignment = props.activeSlideAlignment ? props.activeSlideAlignment: 'start';
   return(
@@ -19,6 +20,7 @@ const CarouselItem = (props) =>  {
       inactiveSlideScale={1}
       onSnapToItem={props.onSnapToItem}
       layout={'default'}
+      containerCustomStyle={style}
     />
   )
 }

@@ -113,6 +113,7 @@ class CarouselView extends Component {
       <View style={styles.container}>
         <StatusBar />
         <CarouselItem
+          noStyle={true}
           width='90%'
           data={HomeOptions}
           renderItem={({item}) => this.renderItem(item)}

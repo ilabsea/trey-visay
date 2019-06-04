@@ -94,11 +94,9 @@ export default class CategoriesScreen extends Component {
           onPress={() => {
             this.props.navigation.navigate('ShowCareerCategoryScreen', {careerId: category.id})
           }} />
-        <View style={{marginLeft: 16}}>
         <CarouselItem
           data={data}
           renderItem={(career, index) => this.renderItem(career, index)}/>
-        </View>
       </View>
     )
   }

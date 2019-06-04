@@ -11,7 +11,6 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import mainStyles from '../../assets/style_sheets/main/main';
 import Images from '../../assets/images';
 import ListItem from '../../components/schools/list_item';
-import CarouselItem from '../../components/shared/carousel_item';
 import CardItem from '../../components/list/card_item';
 import BackButton from '../../components/shared/back_button';
 import ScrollableHeader from '../../components/scrollable_logo_header';

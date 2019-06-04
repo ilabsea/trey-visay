@@ -65,11 +65,9 @@ export default class CareerClusterScreen extends Component {
               title: cluster.name_kh
             })
           }} />
-        <View style={{marginLeft: 16}}>
-          <CarouselItem
-            data={careers}
-            renderItem={({item, index}) => this.renderItem(item, index)}/>
-        </View>
+        <CarouselItem
+          data={careers}
+          renderItem={({item, index}) => this.renderItem(item, index)}/>
       </View>
     )
   }
