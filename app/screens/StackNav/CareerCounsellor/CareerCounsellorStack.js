@@ -35,6 +35,7 @@ import SubjectReport from '../../GameHistory/subject_report';
 import PersonalityReport from '../../GameHistory/personality_report';
 import StudentPersonalityReport from '../../GameHistory/student_personality_report';
 import RecommendationReport from '../../GameHistory/recommendation_report';
+import SchoolListScreen from '../../GameHistory/school_list';
 
 const CareerCounsellorStack = createStackNavigator(
   {
@@ -144,7 +145,10 @@ const CareerCounsellorStack = createStackNavigator(
       })
     },
     InstitutionDetail: {
-      screen: InstitutionDetail
+      screen: InstitutionDetail,
+      navigationOptions: ({navigation}) => ({
+        header: null
+      })
     },
     GameHistoryScreen: {
       screen: GameHistoryScreen,
@@ -180,6 +184,12 @@ const CareerCounsellorStack = createStackNavigator(
       screen: RecommendationReport,
       navigationOptions: ({
         title: 'ការផ្តល់អនុសាសន៍'
+      })
+    },
+    SchoolListScreen: {
+      screen: SchoolListScreen,
+      navigationOptions: ({
+        title: 'គ្រឺះស្ថានសិក្សា'
       })
     }
   },

@@ -112,11 +112,7 @@ export default class ScrollableLogoHeader extends Component {
 
           <Animated.View
             style={[
-              styles.backgroundImage,
-              {
-                opacity: imageOpacity,
-                transform: [{ translateY: imageTranslate }],
-              },
+              { transform: [{ translateY: titleScale }] },
             ]}
           />
 

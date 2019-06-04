@@ -32,7 +32,9 @@ export default StyleSheet.create({
   },
   sectionText: {
     fontWeight: 'bold',
-    fontSize: FontSetting.text
+    fontSize: FontSetting.text,
+    marginLeft: 20,
+    marginTop: 16
   },
   sectionTextInBox: {
     fontSize: FontSetting.text,
@@ -66,5 +68,37 @@ export default StyleSheet.create({
     flexWrap: 'wrap',
     justifyContent: 'space-between',
     margin: 20
+  },
+  blueTitleBox: {
+    backgroundColor: 'rgba(24, 118, 211, 0.2)',
+    height: 64,
+    alignItems: 'center',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    width: '90%',
+    marginLeft: 20,
+    marginRight: 20,
+    flexDirection: 'row',
+    paddingLeft: 16
+  },
+  subTitleBox: {
+    backgroundColor: 'white',
+    height: 64,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    width: '90%',
+    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    paddingLeft: 16
+  },
+  curveBox: {
+    backgroundColor: 'white',
+    height: 64,
+    borderRadius: 8,
+    paddingLeft: 16,
+    margin: 20,
+    paddingLeft: 16,
+    justifyContent: 'center',
+    marginBottom: 0
   }
 })

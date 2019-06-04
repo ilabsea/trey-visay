@@ -47,7 +47,7 @@ export default class GameHistoryScreen extends Component {
     let schools = schoolList.filter((school, pos) => {
       return currentJob.schools.includes(school.code)
     });
-    
+
     if(currentJob.unknown_schools)
       schools.push({universityName: currentJob.unknown_schools});
 
@@ -93,16 +93,24 @@ export default class GameHistoryScreen extends Component {
     });
   }
 
-  _renderContent() {
+  _renderSchool() {
     if (!this.state.schools.length && !this.state.currentJob.unknown_schools) {
       return (null)
     }
 
     return (
       <View>
-        <Text style={mainStyles.sectionText}>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
-
-        <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
+        <Text style={mainStyles.sectionText}>គ្រឹះស្ថានសិក្សា</Text>
+        <View style={mainStyles.box}>
+          <ButtonList
+            onPress={() => {
+              this.props.navigation.navigate('SchoolListScreen', {
+                schools: this.state.schools
+              })
+            }}
+            icon={{color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-building.png')}}
+            title='គ្រឹះស្ថានសិក្សា' />
+        </View>
       </View>
     )
   }
@@ -126,21 +134,23 @@ export default class GameHistoryScreen extends Component {
   _renderVoiceRecord() {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <View style={{marginRight: 16}}>
+        <View style={{marginRight: 8}}>
           { !this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._play()}>
-              <MaterialIcon name='play-circle-outline' size={40} color='#4caf50'/>
+              <MaterialIcon name='play-circle-outline' size={60} color='rgb(24, 118, 211)'/>
             </TouchableOpacity>
           }
 
           { this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._stop()}>
-              <MaterialIcon name='pause-circle-outline' size={40} color='#e94b35'/>
+              <MaterialIcon name='pause-circle-outline' size={60} color='rgb(24, 118, 211)'/>
             </TouchableOpacity>
           }
         </View>
-
-        <Text style={mainStyles.text}>{this.state.time}</Text>
+        <View style={{flexDirection: 'column'}}>
+          <Text style={mainStyles.text}>លេង</Text>
+          <Text style={mainStyles.subTitle}>{this.state.time}</Text>
+        </View>
       </View>
     )
   }
@@ -162,51 +172,64 @@ export default class GameHistoryScreen extends Component {
       <View>
         <Text style={mainStyles.sectionText}>ការដាក់គោលដៅ និងមូលហេតុ</Text>
 
-        <View style={[mainStyles.box, {padding: 16}]}>
-          <Text style={mainStyles.text}>{this.state.game.goalCareer}</Text>
+        <View>
+          <View style={mainStyles.blueTitleBox}>
+            <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+            <Text style={[mainStyles.title, { paddingLeft: 8 }]}>ចម្លេីយរបស់អ្នក</Text>
+          </View>
+          <View style={mainStyles.subTitleBox}>
+            <Text style={ mainStyles.text }>{this.state.game.goalCareer}</Text>
+          </View>
 
-          { !!this.state.game.reason && this._renderReason() }
-          { !!this.state.game.voiceRecord && this._renderVoiceRecord() }
+          <View style={mainStyles.curveBox}>
+            { !!this.state.game.reason && this._renderReason() }
+            { !!this.state.game.voiceRecord && this._renderVoiceRecord() }
+          </View>
 
         </View>
       </View>
     )
   }
 
-  _renderButton(label, screenName) {
+  _renderButton(label, screenName, icon) {
     return (
       <ButtonList
+        icon={icon}
         onPress={() => {
           this.props.navigation.navigate(screenName, {
             gameUuid: this.state.gameUuid
           })
         }}
+        hasLine={true}
         title={label} />
     )
   }
 
   _renderTest1Trigger() {
+    let icon = {color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-user.png')};
     return (
       <View>
-        <Text style={[mainStyles.sectionText, {marginBottom: -24}]}>ធ្វើតេស្តដំណាក់កាលទី 1</Text>
-        <OneList onPress={() => {
-            this.props.navigation.navigate('PersonalUnderstandingReport', {
-              gameUuid: this.state.gameUuid
-            })
-          }} text='ស្វែងយល់អំពីខ្លួនឯង'/>
+        <Text style={mainStyles.sectionText}>ធ្វើតេស្តដំណាក់កាលទី 1</Text>
+        <View style={mainStyles.box}>
+          { this._renderButton('ស្វែងយល់អំពីខ្លួនឯង', 'PersonalUnderstandingReport', icon) }
+        </View>
       </View>
     )
   }
 
   _renderTest2Trigger() {
+    let subjectIcon = {color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-book.png')};
+    let personalityIcon = {color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-user.png')};
+    let choiceIcon = {color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-suitcase.png')};
+    let recommendationIcon = {color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-comment.png')};
     return (
       <View>
         <Text style={mainStyles.sectionText}>ធ្វើតេស្តដំណាក់កាលទី 2</Text>
         <View style={mainStyles.box}>
-          { this._renderButton('ការបំពេញមុខវិជ្ជា', 'SubjectReport') }
-          { this._renderButton('ការបំពេញបុគ្គលិកលក្ខណៈ', 'StudentPersonalityReport') }
-          { this._renderButton('ការជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណៈ', 'PersonalityReport') }
-          { this._renderButton('ការផ្តល់អនុសាសន៍', 'RecommendationReport') }
+          { this._renderButton('ការបំពេញមុខវិជ្ជា', 'SubjectReport', subjectIcon) }
+          { this._renderButton('ការបំពេញបុគ្គលិកលក្ខណៈ', 'StudentPersonalityReport', personalityIcon) }
+          { this._renderButton('ការជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណៈ', 'PersonalityReport', choiceIcon) }
+          { this._renderButton('ការផ្តល់អនុសាសន៍', 'RecommendationReport', recommendationIcon) }
         </View>
       </View>
     )
@@ -216,10 +239,10 @@ export default class GameHistoryScreen extends Component {
     return(
       <View style={{flex: 1}}>
         <ScrollView style={{flex: 1}}>
+          { this._renderGoal() }
+          { this._renderSchool() }
           { this._renderTest1Trigger() }
           { this._renderTest2Trigger() }
-          { this._renderGoal() }
-          { this._renderContent() }
         </ScrollView>
       </View>
     );
