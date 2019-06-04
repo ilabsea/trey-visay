@@ -168,7 +168,7 @@ class PersonalityAssessmentResult extends Component {
         icon
         onPress={() => this._handleButtonClick(category)}>
         <Left>
-          <Button style={{ backgroundColor: "#4caf50" }}>
+          <Button style={{ backgroundColor: "#1976d2" }}>
             <Icon active name="bulb" />
           </Button>
         </Left>
@@ -177,7 +177,7 @@ class PersonalityAssessmentResult extends Component {
         </Body>
         <Right>
           <Text>{this.state.assessment[category.name_en].length}</Text>
-          <Icon name="arrow-forward" />
+          <Icon name="ios-arrow-forward" />
         </Right>
       </ListItem>
     );

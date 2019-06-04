@@ -11,7 +11,7 @@ import User from '../../utils/user';
 import personalityList from '../../data/json/personality';
 import categoryList from '../../data/json/personality_category';
 
-import { Container, Content, ListItem, Left, Body, Right, Button, Icon, Badge } from 'native-base';
+import { Container, Content, ListItem, Left, Body, Right, Button, Icon } from 'native-base';
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
@@ -48,7 +48,7 @@ export default class PersonalityAssessmentHistory extends Component {
         icon
         onPress={() => this._handleButtonClick(category)}>
         <Left>
-          <Button style={{ backgroundColor: "#4caf50" }}>
+          <Button style={{ backgroundColor: "#1976d2" }}>
             <Icon active name="bulb" />
           </Button>
         </Left>
