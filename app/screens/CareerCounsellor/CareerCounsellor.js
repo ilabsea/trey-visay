@@ -22,7 +22,7 @@ import { longDateFormat as dateFomart } from '../../utils/date';
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
-import { Container, Header, Content, ListItem, Left, Body, Right, Icon, Card, CardItem, Footer } from 'native-base';
+import { Container, Header, Content, List, ListItem, Left, Body, Right, Icon, Card, CardItem, Separator } from 'native-base';
 
 export default class CareerCounsellor extends Component {
   componentWillMount() {
@@ -44,9 +44,40 @@ export default class CareerCounsellor extends Component {
     });
   }
 
+  _renderAboutCareerCounsellor() {
+    return (
+      <List>
+        <ListItem itemDivider />
+
+        <ListItem
+          icon
+          button
+          onPress={() => this.props.navigation.navigate('AboutCareerCounsellorScreen')}
+          style={{marginLeft: 0, paddingLeft: 16, backgroundColor: '#fff'}}>
+
+          <Left>
+            <View style={{backgroundColor: 'rgb(24, 118, 211)', justifyContent: 'center', alignItems: 'center', width: 30, height: 30, borderRadius: 8}}>
+              <Icon active name="information" style={{width: 5,alignSelf: 'center', color: '#fff'}}/>
+            </View>
+          </Left>
+          <Body>
+            <Text>អំពីការធ្វើតេសវាយតម្លៃមុខរបរ​ នឹង អាជីព</Text>
+          </Body>
+          <Right>
+            <Icon active name="ios-arrow-forward" />
+          </Right>
+        </ListItem>
+
+        <ListItem itemDivider />
+      </List>
+    )
+  }
+
   _renderInstruction() {
     return (
-      <View >
+      <Content>
+        { this._renderAboutCareerCounsellor() }
+
         <CardItem>
           <Body>
             <Text>សួរស្តីសាជាថ្មី </Text>
@@ -73,7 +104,7 @@ export default class CareerCounsellor extends Component {
             }
           </Body>
         </CardItem>
-      </View >
+      </Content >
     )
   }
 

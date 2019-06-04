@@ -16,6 +16,7 @@ import ShowCareerCategoryScreen from '../../Careers/ShowCategoryScreen';
 import CareerDetailScreen from '../../Careers/DetailScreen';
 
 import CareerCounsellor from '../../CareerCounsellor/CareerCounsellor';
+import AboutCareerCounsellor from '../../CareerCounsellor/AboutCareerCounsellor';
 
 import PersonalUnderstandingForm from '../../CareerTest/PersonalUnderstanding/PersonalUnderstandingForm';
 import SubjectScreen from '../../CareerTest/Subject/subject_screen';
@@ -44,6 +45,14 @@ const CareerCounsellorStack = createStackNavigator(
         header: null
       })
     },
+    AboutCareerCounsellorScreen: {
+      screen: AboutCareerCounsellor,
+      navigationOptions: ({navigation}) => ({
+        title: 'ការធ្វើតេសវាយតម្លៃមុខរបរ​ និងអាជីព',
+        header: null
+      })
+    },
+
     PersonalUnderstandingFormScreen: {
       screen: PersonalUnderstandingForm,
       navigationOptions: ({navigation}) => ({
