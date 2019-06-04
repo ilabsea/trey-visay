@@ -4,17 +4,13 @@ import {
   Text,
   TouchableOpacity,
   StyleSheet,
-  Image,
-  Platform
 } from 'react-native';
-import { Divider } from 'react-native-elements';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 
 import Button from '../../components/shared/button';
-
 import mainStyles from '../../assets/style_sheets/main/main';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import { longDateFormat as dateFomart } from '../../utils/date';
@@ -22,7 +18,8 @@ import { longDateFormat as dateFomart } from '../../utils/date';
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
-import { Container, Header, Content, List, ListItem, Left, Body, Right, Icon, Card, CardItem, Separator } from 'native-base';
+import { Content, Body, Right, Icon, CardItem } from 'native-base';
+import ButtonList from '../../components/list/button_list';
 
 export default class CareerCounsellor extends Component {
   componentWillMount() {
@@ -46,30 +43,13 @@ export default class CareerCounsellor extends Component {
 
   _renderAboutCareerCounsellor() {
     return (
-      <List>
-        <ListItem itemDivider />
-
-        <ListItem
-          icon
-          button
-          onPress={() => this.props.navigation.navigate('AboutCareerCounsellorScreen')}
-          style={{marginLeft: 0, paddingLeft: 16, backgroundColor: '#fff'}}>
-
-          <Left>
-            <View style={{backgroundColor: 'rgb(24, 118, 211)', justifyContent: 'center', alignItems: 'center', width: 30, height: 30, borderRadius: 8}}>
-              <Icon active name="information" style={{width: 5,alignSelf: 'center', color: '#fff'}}/>
-            </View>
-          </Left>
-          <Body>
-            <Text>អំពីការធ្វើតេសវាយតម្លៃមុខរបរ​ នឹង អាជីព</Text>
-          </Body>
-          <Right>
-            <Icon active name="ios-arrow-forward" />
-          </Right>
-        </ListItem>
-
-        <ListItem itemDivider />
-      </List>
+      <View style={{marginVertical: 12, backgroundColor: 'white'}}>
+        <ButtonList
+          hasLine={true}
+          icon={{color: 'rgb(24, 118, 211)', src: require('../../assets/icons/others/info.png')}}
+          onPress={() => { this.props.navigation.navigate('AboutCareerCounsellorScreen') }}
+          title='អំពីការធ្វើតេសវាយតម្លៃមុខរបរ​ និងអាជីព' />
+      </View>
     )
   }
 
@@ -88,7 +68,7 @@ export default class CareerCounsellor extends Component {
         <CardItem>
           <Body>
             <Button
-              style={[styles.button, {width: '100%'}]}
+              style={[styles.button]}
               onPress={this._goToPersonalUnderstandingForm.bind(this)}>
 
               <Text style={styles.btnText}>ចាប់ផ្តើមថ្មី</Text>
@@ -112,7 +92,7 @@ export default class CareerCounsellor extends Component {
     let count = this.state.completedGames.length;
 
     return (
-      <Content padder>
+      <Content padder style={{marginHorizontal: 8}}>
         { !!this.state.completedGames.length &&
           <Text style={mainStyles.sectionText}>លទ្ធផលធ្វើតេស្ត</Text>
         }
@@ -204,30 +184,9 @@ export default class CareerCounsellor extends Component {
       />
     )
   }
-
 }
 
 const styles = StyleSheet.create({
-  container: {
-    ...Platform.select({
-      android: {
-        margin: 16
-      }
-    })
-  },
-  box: {
-    backgroundColor: '#fff',
-    padding: 24,
-  },
-  title: {
-    fontSize: FontSetting.big_title,
-    color: '#1976d2',
-    ...Platform.select({
-      android: {
-        lineHeight: 48
-      }
-    })
-  },
   logo: {
     width: 80,
     height: 99,
@@ -240,7 +199,8 @@ const styles = StyleSheet.create({
     height: 48,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
+    width: '100%'
   },
   btnText: {
     fontWeight: 'bold',
