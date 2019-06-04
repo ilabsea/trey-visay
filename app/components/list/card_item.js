@@ -10,12 +10,12 @@ const CardItem = (props) => {
       style={[styles.btnBox, {width: wp(width), height: hp(height) + hp('10%')}]}
       onPress={props.onPress} key={props.key}>
       <Image
-        resizeMode="stretch"
-        style={[styles.btnImage, {width: wp(width), height: hp(height) }]}
+        resizeMode="cover"
+        style={[styles.btnImage, {width: wp(width), height: hp(height), borderRadius: 8 }]}
         source={require('../../assets/images/careers/civil.png')}
       />
-      <View style={[styles.textContainer, { width: wp(props.width) }]}>
 
+      <View style={[styles.textContainer, { width: wp(props.width) }]}>
         <Text>{ props.text }</Text>
       </View>
     </TouchableOpacity>

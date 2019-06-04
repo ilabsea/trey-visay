@@ -7,7 +7,7 @@ class RadioButtonGroup extends Component {
 
   render() {
     const { labelStyle } = this.props;
-    const buttonColor = this.props.buttonColor || '#4caf50';
+    const buttonColor = this.props.buttonColor || 'rgb(24, 118, 211)';
     return (
 
       <RadioForm

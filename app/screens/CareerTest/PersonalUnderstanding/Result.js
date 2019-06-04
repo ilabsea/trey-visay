@@ -74,7 +74,7 @@ export default class Result extends Component{
     return (
       <View style={[styles.paragraph, {padding: 20}]}>
         <Text style={{color: '#fff', textAlign: 'center'}}>
-          សូមអបអរសាទរ ពិន្ទុរបស់ប្អូននៅលើសពី 50% ហើយ ដូចនេះប្អូនអាចបន្តទៅវគ្គបន្ត។
+          សូមអបអរសាទរ ពិន្ទុរបស់ប្អូនមានលើសពី 50% ហើយ ដូចនេះប្អូនអាចបន្តទៅវគ្គបន្ត។
         </Text>
       </View>
     )

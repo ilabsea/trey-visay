@@ -28,7 +28,7 @@ function Form(props) {
 
   const getTextColor = props.haveEverThoughtOfCareerIsYes ? styles.labelGroup : [styles.labelGroup, {color: '#ccc'}];
   const labelStyle = props.haveEverThoughtOfCareerIsYes ? {} : {color: '#ccc'};
-  const buttonColor = props.haveEverThoughtOfCareerIsYes ? '#4caf50' : '#ccc';
+  const buttonColor = props.haveEverThoughtOfCareerIsYes ? 'rgb(24, 118, 211)' : '#ccc';
 
   return (
     <View style={styles.scrollContainer}>

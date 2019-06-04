@@ -22,7 +22,7 @@ export default function CustomCheckbox(props) {
         checkedVip={input.value || []}
         style={{
           icon: {
-            color: '#4caf50',
+            color: 'rgb(24, 118, 211)',
             size: 30
           },
           container: {

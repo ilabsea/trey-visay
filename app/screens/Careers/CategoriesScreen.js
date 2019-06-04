@@ -18,6 +18,7 @@ import CardItem from '../../components/list/card_item';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
+import { NavigationActions } from 'react-navigation';
 
 export default class CategoriesScreen extends Component {
   constructor(props) {
@@ -60,7 +61,7 @@ export default class CategoriesScreen extends Component {
 
   _onYes() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.dispatch({type: 'Navigation/RESET', index: 0, key: null, actions: [{ type: 'Navigation/NAVIGATE', routeName:'CareerCounsellorScreen'}]});
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })])
   }
 
   _onNo() {
@@ -78,9 +79,8 @@ export default class CategoriesScreen extends Component {
         index={index}
         width={'40%'}
         height={'18%'}
-        onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
-          career: career.item
-        })} />
+        onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career: career.item})}
+      />
     )
   }
 
@@ -91,9 +91,11 @@ export default class CategoriesScreen extends Component {
           onPress={() => {
             this.props.navigation.navigate('ShowCareerCategoryScreen', {careerId: category.id})
           }} />
+        <View style={{marginLeft: 16}}>
         <CarouselItem
           data={category.careers}
           renderItem={(career, index) => this.renderItem(career, index)}/>
+        </View>
       </View>
     )
   }
