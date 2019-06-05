@@ -8,16 +8,34 @@ import User from '../../utils/user';
 export default class Others extends Component {
   constructor(props){
     super(props);
+
+    this.state = {
+      user: User.getCurrent()
+    }
+  }
+
+  componentDidMount() {
+    this.subs = [
+      this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload)),
+    ];
+  }
+
+  componentDidFocus() {
+    this.setState({user: User.getCurrent()});
+  }
+
+  componentWillUnmount() {
+    this.subs.forEach(sub => sub.remove());
   }
 
   _logOut() {
     User.logout(() => {
+      this.setState({user: false})
       this.props.navigation.navigate('Home');
     })
   }
 
   render() {
-    let user = User.getCurrent();
     return (
       <View>
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
@@ -26,7 +44,7 @@ export default class Others extends Component {
             icon={{color: 'rgb(24, 118, 211)', src: require('../../assets/icons/others/info.png')}}
             onPress={() => { this.props.navigation.navigate('About') }}
             title='អំពីកម្មវិធី' />
-          { !!user &&
+          { !!this.state.user &&
             <ButtonList
               hasLine={true}
               icon={{color: 'rgb(245, 166, 35)', src: require('../../assets/icons/others/key.png')}}
@@ -43,7 +61,7 @@ export default class Others extends Component {
             title='Terms & Conditions' />
         </View>
 
-        { !!user &&
+        { !!this.state.user &&
           <View style={{marginTop: 16, backgroundColor: 'white'}}>
             <ButtonList
               hasLine={true}

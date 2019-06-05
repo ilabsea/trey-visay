@@ -28,7 +28,7 @@ const HomeTab = createBottomTabNavigator({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         return <MaterialIcon name='home' size={22} color={tintColor} />;
       },
-    }),
+    })
   },
   Profile: {
     screen: ProfileStack ,
@@ -95,7 +95,7 @@ const HomeStackNav = createStackNavigator({
   },
   VocationalStack: { screen: VocationalStack }
 }, {
-  initialRouteName: 'Home',
+  initialRouteName: 'Home'
 });
 
 export default HomeStackNav;

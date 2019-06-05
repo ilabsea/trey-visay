@@ -18,10 +18,6 @@ import { Container, Content, Icon, Button, Input, Item, Form, Text } from 'nativ
 import { NavigationActions } from 'react-navigation';
 
 export default class Login extends Component {
-  static navigationOptions = {
-    header: null
-  };
-
   constructor(props) {
     super(props);
 

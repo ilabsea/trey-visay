@@ -23,12 +23,22 @@ export default class Profile extends Component {
 
   componentWillMount() {
     this.refreshState();
+
+    this.subs = [
+      this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload)),
+    ];
+  }
+
+  componentDidFocus() {
+    this.refreshState();
+  }
+
+  componentWillUnmount(){
+    this.subs.forEach(sub => sub.remove());
   }
 
   refreshState() {
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-
-    this.setState({ user: user });
+    this.setState({ user: User.getCurrent() });
   }
 
   _renderListItem(title, value, icon) {
@@ -70,8 +80,8 @@ export default class Profile extends Component {
     let info = arr.map((item, i) => this._renderListItem(te[item.name], this.state.user[item.name], item.icon));
 
     return (
-      <List style={{}}>
-        <ListItem >
+      <List style={{backgroundColor: '#fff'}}>
+        <ListItem>
           <Text style={{flex: 1}}>ប្រវត្តិរូបសង្ខេប</Text>
 
           <Right>
@@ -95,7 +105,11 @@ export default class Profile extends Component {
     }
 
     return (
-      <ListItem thumbnail button onPress={() => this.props.navigation.navigate('EditProfilePhoto', { refresh: this.refreshState.bind(this) })}>
+      <ListItem
+        thumbnail
+        button
+        style={{marginTop: 16, marginBottom: 20, marginLeft: 0, paddingLeft: 16, backgroundColor: '#fff'}}
+        onPress={() => this.props.navigation.navigate('EditProfilePhoto', { refresh: this.refreshState.bind(this) })}>
         <Left>
           <Thumbnail large source={photo} />
         </Left>
@@ -117,12 +131,8 @@ export default class Profile extends Component {
   _renderContent = () => {
     return (
       <Content>
-        <List>
-          <Separator bordered />
-          { this._renderPhoto() }
-          <Separator bordered />
-          { this._renderPersonalInfo() }
-        </List>
+        { this._renderPhoto() }
+        { this._renderPersonalInfo() }
       </Content>
     )
   }
@@ -136,14 +146,12 @@ export default class Profile extends Component {
     }
 
     return (
-      <Container>
-        <ScrollableHeader
-          renderContent={ this._renderContent }
-          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-          title={title}
-          largeTitle={title}
-        />
-      </Container>
+      <ScrollableHeader
+        renderContent={ this._renderContent }
+        renderNavigation={ () => {} }
+        title={title}
+        largeTitle={title}
+      />
     )
   }
 }
