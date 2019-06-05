@@ -10,8 +10,6 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import ButtonList from '../../components/list/button_list';
 import StatusBar from '../../components/shared/status_bar';
 import CardItem from '../../components/list/card_item';
-import characteristicList from '../../data/json/characteristic_jobs';
-import mapping from '../../data/json/careers/mapping';
 
 export default class CareerIndexScreen extends Component {
 
@@ -19,27 +17,8 @@ export default class CareerIndexScreen extends Component {
     super(props);
 
     this.state = {
-      careers: this.getCareers()
+      careers: this.props.navigation.state.params.careers
     }
-  }
-
-  getCareers() {
-    let currentCareerClusterCode = this.props.navigation.state.params.code;
-    let careerCodes = [];
-
-    for (let i = 0; i < mapping.length; i++) {
-      if (mapping[i].career_cluster_code == currentCareerClusterCode) {
-        careerCodes.push(mapping[i].career_code);
-      }
-    }
-
-    let careerList = characteristicList.map(x => x.careers);
-    careerList = [].concat.apply([], careerList);
-
-    let allCareers = [...new Set(careerList.map(x => x.code))];
-    allCareers = allCareers.map(code => careerList.find(career => career.code == code));
-
-    return allCareers.filter(x => careerCodes.includes(x.code));
   }
 
   renderCareer(career, i) {

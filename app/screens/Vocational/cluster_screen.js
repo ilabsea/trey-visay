@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 // Utils
@@ -11,38 +11,20 @@ import CarouselItem from '../../components/shared/carousel_item';
 import LongText from '../../components/careers/long_text';
 import BackButton from '../../components/shared/back_button';
 import ScrollableHeader from '../../components/scrollable_header';
-import characteristicList from '../../data/json/characteristic_jobs';
-import careersClusters from '../../data/json/careers/career_clusters';
-import mapping from '../../data/json/careers/mapping';
+import CareersClusterObj from '../../utils/Vocational/CareerCluster';
 
 export default class CareerClusterScreen extends Component {
-  componentWillMount() {
-    let currentGroup = characteristicList.find((obj) => obj.id == 4);
+  careersClusters = [];
+  _keyExtractor = (item, index) => index.toString();
 
-    this.setState({
-      currentGroup: currentGroup,
-    });
-    this.props.navigation.setParams({
-      title: 'ជំនាញវិជ្ជាជីវៈ',
-      content: currentGroup.recommendation
-    })
-  }
-
-  getCareers(cluster){
-    codes = mapping.filter(obj => { return obj.career_cluster_code == cluster.code });
-    careers = [];
-    characteristicList.map(obj => {
-      for (let i = 0 ; i < codes.length; i++) {
-        careerCode = codes[i].career_code;
-        obj.careers.filter(c => {
-          if (c.code == careerCode ){
-            careers.push(c)
-          }
-        })
-      }
-    });
-
-    return careers;
+  constructor(props){
+    super(props);
+    CareersClusterObj.setCareersClusters();
+    this.careersClusters = CareersClusterObj.getCareersClusters();
+    this.state = {
+      loading: false,
+      size: 3
+    }
   }
 
   renderItem(item, index){
@@ -55,29 +37,39 @@ export default class CareerClusterScreen extends Component {
   }
 
   renderCareerCluster(cluster, i) {
-    careers = this.getCareers(cluster);
     return (
       <View key={i} style={mainStyles.carouselBox}>
         <ButtonList hasLine={false} title={cluster.name_kh}
           onPress={() => {
             this.props.navigation.navigate('CareerIndexScreen', {
               code: cluster.code,
-              title: cluster.name_kh
+              title: cluster.name_kh,
+              careers: cluster.careers
             })
           }} />
         <CarouselItem
-          data={careers}
+          data={cluster.careers}
           renderItem={({item, index}) => this.renderItem(item, index)}/>
       </View>
     )
   }
 
+  handleLoadMore = () => {
+    size = this.state.size + 3;
+    this.setState({size: size})
+  }
+
   renderContent = () => {
     return (
       <View style={{backgroundColor: 'paleGrey', marginTop: 20}}>
-        { careersClusters.map((cluster, i) => {
-          { return (this.renderCareerCluster(cluster, i))}
-        })}
+        <FlatList
+          data={ this.careersClusters.slice(0, this.state.size) }
+          renderItem={ ({item, i}) => this.renderCareerCluster(item, i) }
+          refreshing={false}
+          keyExtractor={this._keyExtractor}
+          onEndReached={this.handleLoadMore.bind(this)}
+          onEndReachedThreshold={0.4}
+        />
       </View>
     )
   }
