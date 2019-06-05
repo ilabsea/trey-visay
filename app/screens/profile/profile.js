@@ -14,31 +14,44 @@ import highSchools from '../../data/json/address/highSchools.json';
 import te from '../../data/translates/km';
 
 import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
+import { NavigationActions } from 'react-navigation';
 
 export default class Profile extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    header: null,
-  });
-
   componentWillMount() {
     this.refreshState();
 
-    this.subs = [
-      this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload)),
-    ];
-  }
-
-  componentDidFocus() {
-    this.refreshState();
+    this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))];
   }
 
   componentWillUnmount(){
     this.subs.forEach(sub => sub.remove());
   }
 
+  componentDidFocus() {
+    this.refreshState();
+  }
+
   refreshState() {
-    this.setState({ user: User.getCurrent() });
+    this.setState({loaded: false});
+    this.handleUser();
+  }
+
+  handleUser() {
+    let user = User.getCurrent();
+
+    if (!!user) {
+      return this.setState({loaded: true, user: user});
+    }
+
+    this.props.navigation.reset([
+      NavigationActions.navigate({
+        routeName: 'Login',
+        params: {
+          from: 'ProfileScreen',
+          disableNavigationBar: true
+        }
+      })
+    ]);
   }
 
   _renderListItem(title, value, icon) {
@@ -141,7 +154,7 @@ export default class Profile extends Component {
     let title = 'ប្រវត្តិរូបសង្ខេប';
     let user = User.getCurrent();
 
-    if (!user) {
+    if (!this.state.loaded) {
       return (null)
     }
 

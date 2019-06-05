@@ -6,13 +6,10 @@ import EditProfilePhoto from '../profile/edit_profile_photo';
 import EditPersonalInfo from '../profile/edit_personal_info';
 import ProfileForm from '../profile/profile_form';
 import Login from '../Account/login';
-import CareerCounsellorStack from './CareerCounsellor/CareerCounsellorStack';
-import PersonalityAssessmentStack from './Assessment/PersonalityAssessmentStack';
 
 import SaveButton from '../../components/shared/save_button';
 import CloseButton from '../../components/shared/close_button';
 import headerStyles from '../../assets/style_sheets/header';
-
 
 const ProfileStack = createStackNavigator(
   {
@@ -28,8 +25,7 @@ const ProfileStack = createStackNavigator(
         title: 'កែសម្រួល',
         headerTitleStyle: headerStyles.headerTitleStyle,
         headerStyle: headerStyles.headerStyleProfile,
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <SaveButton navigation={navigation}/>,
+        headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     EditPersonalInfo: {
@@ -38,8 +34,7 @@ const ProfileStack = createStackNavigator(
         title: 'កែសម្រួល',
         headerTitleStyle: headerStyles.headerTitleStyle,
         headerStyle: headerStyles.headerStyleProfile,
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <SaveButton navigation={navigation}/>,
+        headerLeft: <CloseButton navigation={navigation}/>
       })
     },
     ProfileForm: {
@@ -54,18 +49,7 @@ const ProfileStack = createStackNavigator(
         header: null
       })
     },
-    // CareerCounsellorStack: {
-    //   screen: CareerCounsellorStack,
-    //   navigationOptions: ({ navigation }) => ({
-    //     header: null
-    //   })
-    // },
-    // PersonalityAssessmentStack: {
-    //   screen: PersonalityAssessmentStack,
-    //   navigationOptions: ({ navigation }) => ({
-    //     header: null
-    //   })
-    // }
   }
 );
+
 export default ProfileStack;

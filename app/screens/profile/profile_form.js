@@ -50,7 +50,6 @@ export default class ProfileForm extends Component {
         realm.create('User', { uuid: this.state.user.uuid, grade: 'other'}, true);
         Sidekiq.create(User.getID(), 'User');
         this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from') })]);
-        // this.props.navigation.reset([NavigationActions.navigate({ routeName: 'PersonalityAssessmentStack' })]);
       });
     } catch (e) {
       alert(e);
