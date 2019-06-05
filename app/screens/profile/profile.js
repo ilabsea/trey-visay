@@ -129,6 +129,11 @@ export default class Profile extends Component {
 
   render() {
     let title = 'ប្រវត្តិរូបសង្ខេប';
+    let user = User.getCurrent();
+
+    if (!user) {
+      return (null)
+    }
 
     return (
       <Container>

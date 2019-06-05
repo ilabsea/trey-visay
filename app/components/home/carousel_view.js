@@ -29,9 +29,24 @@ class CarouselView extends Component {
     }
   }
 
+  _handleLoginOption(option) {
+    option.url='AccountStack'
+
+    if(options.url == 'CareerCounsellorStack') {
+      option.params = {from: 'CareerCounsellorStack'}
+      return option
+    }
+
+    options.params = {from: 'PersonalityAssessmentStack'};
+    return option
+  }
+
   renderItem(options) {
-    if(!this.props.user && options.url=='CareerCounsellorStack'){
+    options.params = {}
+
+    if(!this.props.user && (options.url=='CareerCounsellorStack' || options.url == 'PersonalityAssessmentStack')){
       options.url = 'AccountStack';
+      options.params = {from: 'CareerCounsellorStack'}
     }
     return (
       <TouchableOpacity
