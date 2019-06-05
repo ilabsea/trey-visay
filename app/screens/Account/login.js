@@ -55,7 +55,7 @@ export default class Login extends Component {
     }
 
     if (this.isUserInfoCompleted(user)) {
-      return this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorStack' })]);
+      return this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from', 'CareerCounsellorStack') })]);
     }
 
     this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileForm' })]);
@@ -184,7 +184,7 @@ export default class Login extends Component {
         let user = realm.create('User', this._buildData());
 
         User.setLogin(user.uuid, ()=> {
-          this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileForm' })]);
+          return this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from', 'CareerCounsellorStack') })]);
         });
       });
     } catch (e) {
@@ -211,8 +211,7 @@ export default class Login extends Component {
 
     User.setLogin(user.uuid, ()=>{
       if (!!user.dateOfBirth) {
-        // return this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorStack' })]);
-        return this.props.navigation.reset([NavigationActions.navigate({ routeName: 'PersonalityAssessmentStack' })]);
+        return this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from', 'CareerCounsellorStack') })]);
       }
 
       this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileForm' })]);

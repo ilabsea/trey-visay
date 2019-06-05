@@ -17,6 +17,7 @@ import StatusBar from '../shared/status_bar';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import CarouselItem from '../shared/carousel_item';
 import HomeOptions from './home_options';
+import User from '../../utils/user';
 
 const { width, height } = Dimensions.get('window');
 
@@ -29,48 +30,53 @@ class CarouselView extends Component {
     }
   }
 
-  _handleLoginOption(option) {
-    option.url='AccountStack'
+  _handleLoginOption(item) {
+    let option = item;
+    option.params = {};
 
-    if(options.url == 'CareerCounsellorStack') {
-      option.params = {from: 'CareerCounsellorStack'}
-      return option
+    if (option.url != 'CareerCounsellorStack' && option.url != 'PersonalityAssessmentStack') {
+      return option;
     }
 
-    options.params = {from: 'PersonalityAssessmentStack'};
+    if (!!User.getCurrent()) {
+      return option;
+    }
+
+    option.params = { from: option.url + "" };
+    option.url = 'AccountStack';
+
     return option
   }
 
-  renderItem(options) {
-    options.params = {}
+  onPressButton(item) {
+    let option = this._handleLoginOption(item);
+    this.props.navigation.navigate(option.url, option.params);
+  }
 
-    if(!this.props.user && (options.url=='CareerCounsellorStack' || options.url == 'PersonalityAssessmentStack')){
-      options.url = 'AccountStack';
-      options.params = {from: 'CareerCounsellorStack'}
-    }
+  renderItem(option) {
     return (
       <TouchableOpacity
-        onPress={() => this.props.navigation.navigate(options.url)}
+        onPress={ () => this.onPressButton(option) }
         style={styles.btnBox}>
-        <View style={[styles.imageWrapper, { backgroundColor: options.background_color }]}>
+        <View style={[styles.imageWrapper, { backgroundColor: option.background_color }]}>
           <Image
             style={styles.btnImage}
             resizeMode="contain"
-            source={options.source_image}
+            source={option.source_image}
           />
         </View>
         <View style={styles.textWrapper}>
-          <Text style={styles.btnLabel}>{options.title}</Text>
-          { options.has_start_btn &&
+          <Text style={styles.btnLabel}>{option.title}</Text>
+          { option.has_start_btn &&
             <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-              <Text style={{width: wp('54%')}}>{options.description}</Text>
-              <TouchableOpacity onPress={() => this.props.navigation.navigate(options.url)} style={styles.btnStart}>
+              <Text style={{width: wp('54%')}}>{option.description}</Text>
+              <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
                 <Text style={{color: '#fff'}}>ចាប់ផ្តេីម</Text>
               </TouchableOpacity>
             </View>
           }
 
-          { !options.has_start_btn && <Text>{options.description}</Text> }
+          { !option.has_start_btn && <Text>{option.description}</Text> }
 
         </View>
       </TouchableOpacity>
