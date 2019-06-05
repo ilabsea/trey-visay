@@ -31,7 +31,7 @@ class CarouselView extends Component {
   }
 
   _handleLoginOption(item) {
-    let option = item;
+    let option = Object.assign({}, item);
     option.params = {};
 
     if (option.url != 'CareerCounsellorStack' && option.url != 'PersonalityAssessmentStack') {

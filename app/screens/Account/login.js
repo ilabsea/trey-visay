@@ -25,42 +25,26 @@ export default class Login extends Component {
       username: '',
       password: '',
       passwordConfirmation: '',
-      loaded: false,
       isLogin: true
     };
   }
 
-  componentDidMount() {
-    User.isLoggedin(this.handleUser.bind(this));
-  }
-
-  isUserInfoCompleted(user) {
+  _isUserInfoCompleted(user) {
     return !!user && !!user.dateOfBirth;
   }
 
-  handleUser(userId) {
-    if (!userId) {
-      return this.setState({loaded: true});
-    }
-
-    let user = realm.objects('User').filtered('uuid="' + userId + '"')[0];
-
-    if (!user) {
-      User.logout();
-      return this.setState({loaded: true});
-    }
-
-    if (this.isUserInfoCompleted(user)) {
-      return this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from', 'CareerCounsellorStack') })]);
-    }
-
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileForm' })]);
-  }
-
   _renderNavigation = () => {
+    if (this.props.navigation.getParam('disableNavigationBar')) {
+      return (null)
+    }
+
     return (
       <View style={{flexDirection: 'row'}}>
-        <BackButton navigation={this.props.navigation}/>
+
+        <Button transparent onPress={() => this.props.navigation.goBack(null)}>
+          <Icon name='arrow-back' style={{color: '#fff'}} />
+        </Button>
+
         <Text style={scrollHeaderStyles.title}>សូមស្វាគមន៍</Text>
       </View>
     )
@@ -160,6 +144,14 @@ export default class Login extends Component {
     )
   }
 
+  _handleNavigation = (user) => {
+    if (!this._isUserInfoCompleted(user)) {
+      return this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileForm', params: {from: this.props.navigation.getParam('from')} })]);
+    }
+
+    this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from') })]);
+  }
+
   _register = () => {
     if (this.state.password !== this.state.passwordConfirmation) {
       return Alert.alert(
@@ -180,7 +172,7 @@ export default class Login extends Component {
         let user = realm.create('User', this._buildData());
 
         User.setLogin(user.uuid, ()=> {
-          return this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from', 'CareerCounsellorStack') })]);
+          return this._handleNavigation(user);
         });
       });
     } catch (e) {
@@ -205,12 +197,8 @@ export default class Login extends Component {
         'ឈ្មោះគណនី ឬលេខសម្ងាត់ដែលអ្នកបានបញ្ចូលមិនត្រឹមត្រូវ។ សូមព្យាយាមម្តងទៀត។');
     }
 
-    User.setLogin(user.uuid, ()=>{
-      if (!!user.dateOfBirth) {
-        return this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from', 'CareerCounsellorStack') })]);
-      }
-
-      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileForm' })]);
+    User.setLogin(user.uuid, () => {
+      this._handleNavigation(user);
     });
   }
 
@@ -242,8 +230,6 @@ export default class Login extends Component {
   }
 
   render() {
-    if (!this.state.loaded) { return(null)}
-
     return (
       <ScrollableHeader
         renderContent={ this._renderContent }

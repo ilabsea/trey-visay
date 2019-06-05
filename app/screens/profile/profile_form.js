@@ -49,7 +49,8 @@ export default class ProfileForm extends Component {
       realm.write(() => {
         realm.create('User', { uuid: this.state.user.uuid, grade: 'other'}, true);
         Sidekiq.create(User.getID(), 'User');
-        this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorStack' })]);
+        this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from') })]);
+        // this.props.navigation.reset([NavigationActions.navigate({ routeName: 'PersonalityAssessmentStack' })]);
       });
     } catch (e) {
       alert(e);
@@ -90,7 +91,7 @@ export default class ProfileForm extends Component {
       realm.write(() => {
         realm.create('User', this.state.user, true);
         Sidekiq.create(this.state.user.uuid, 'User');
-        this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorStack' })]);
+        this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from') })]);
       });
     } catch (e) {
       alert(e);
@@ -226,7 +227,7 @@ export default class ProfileForm extends Component {
         />
 
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
-        <FooterBar icon='keyboard-arrow-right' text='ចូលកម្មវិធី' onPress={() => this.handleSubmit()} />
+        <FooterBar icon='keyboard-arrow-right' text='រក្សាទុក' onPress={() => this.handleSubmit()} />
       </View>
     )
   }
