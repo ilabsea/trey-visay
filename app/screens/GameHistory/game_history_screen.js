@@ -134,9 +134,9 @@ export default class GameHistoryScreen extends Component {
   _renderVoiceRecord() {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <View style={{marginRight: 8}}>
+        <View style={{marginRight: 8 }}>
           { !this.state.isPlaying &&
-            <TouchableOpacity onPress={() => this._play()}>
+            <TouchableOpacity onPress={() => this._play() }>
               <MaterialIcon name='play-circle-outline' size={60} color='rgb(24, 118, 211)'/>
             </TouchableOpacity>
           }
@@ -155,18 +155,6 @@ export default class GameHistoryScreen extends Component {
     )
   }
 
-  _renderReason() {
-    return (
-      <View style={{flexDirection: 'row'}}>
-        <Text style={{flex: 1}}>
-          <AwesomeIcon name='quote-left' color='#1976d2' size={14} />
-          <Text> {this.state.game.reason} </Text>
-          <AwesomeIcon name='quote-right' color='#1976d2' size={14} />
-        </Text>
-      </View>
-    )
-  }
-
   _renderGoal() {
     return (
       <View>
@@ -175,15 +163,22 @@ export default class GameHistoryScreen extends Component {
         <View>
           <View style={mainStyles.blueTitleBox}>
             <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
-            <Text style={[mainStyles.title, { paddingLeft: 8 }]}>ចម្លេីយរបស់អ្នក</Text>
+            <Text style={[mainStyles.title, { paddingLeft: 8 }]}>គោលដៅរបស់អ្នក</Text>
           </View>
           <View style={[mainStyles.subTitleBox, {height: 64}]}>
             <Text style={ mainStyles.text }>{this.state.game.goalCareer}</Text>
           </View>
 
-          <View style={[mainStyles.curveBox, {height: 64}]}>
-            { !!this.state.game.reason && this._renderReason() }
-            { !!this.state.game.voiceRecord && this._renderVoiceRecord() }
+          <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
+            <AwesomeIcon name='microphone' color='rgb(24, 118, 211)' size={24} />
+            <Text style={[mainStyles.title, { paddingLeft: 8 }]}>មូលហេតុរបស់អ្នក</Text>
+          </View>
+          <View style={mainStyles.subTitleBox}>
+            { this.state.game.reason &&
+              <Text style={ mainStyles.text }>{this.state.game.reason}</Text>
+            }
+            <Divider style={{marginLeft: -20, marginRight: -20}}/>
+            { this.state.game.voiceRecord && this._renderVoiceRecord() }
           </View>
 
         </View>
