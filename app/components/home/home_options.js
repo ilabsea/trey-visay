@@ -30,7 +30,7 @@ const HomeOptions = [
     description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាច រៀនជំនាញវិជ្ជាជីវៈរយៈពេលខ្លី'
   },
   {
-    title: 'វីដេអូមុខរបរ',
+    title: ' វីដេអូមុខរបរ',
     url: 'VideoScreen',
     background_color: 'rgb(254, 191, 94)',
     source_image: require('../../assets/images/home/video.png'),

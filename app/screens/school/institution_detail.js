@@ -74,10 +74,11 @@ export default class InstitutionDetail extends Component {
   }
 
   renderMajor(department, index){
-    let padding = department.name ? 16: 0;
     return(
       <View key={index} style={mainStyles.box}>
-        <Text style={[mainStyles.sectionText, { padding: padding }]}>{department.name}</Text>
+        { !!department.name &&
+          <Text style={mainStyles.sectionText}> {department.name} </Text>
+        }
         <View style={[mainStyles.grid, { justifyContent: 'flex-start', margin: 0 }]}>
           { department.majors.map((major, i) => {
               { return (this.renderItem(major, i))}
@@ -95,7 +96,7 @@ export default class InstitutionDetail extends Component {
     }
     return (
       <View style={{backgroundColor: 'rgb(239, 240, 244)'}}>
-        <Text style={[mainStyles.sectionText, {marginLeft: 16, padding: 8, marginTop: 16}]}> ជំនាញ </Text>
+        <Text style={[mainStyles.sectionText, {marginLeft: 16, padding: 8}]}> ជំនាញ </Text>
         { departments.map((department, i) => {
           { return (this.renderMajor(department, i))}
         })}

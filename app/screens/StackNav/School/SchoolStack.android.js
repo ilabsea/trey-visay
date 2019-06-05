@@ -56,7 +56,10 @@ const SchoolStack = createStackNavigator(
       })
     },
     InstitutionDetail: {
-      screen: InstitutionDetail
+      screen: InstitutionDetail,
+      navigationOptions: ({navigation}) => ({
+        header: null
+      })
     },
   },
   {

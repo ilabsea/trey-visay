@@ -211,7 +211,7 @@ export default class RecommendationScreen extends Component {
     return (
       <View>
         <View style={{padding: 20, paddingBottom: 0}}>
-          <Text style={{fontSize: 24, lineHeight: 48}}>សួរស្តី {this.state.user.fullName}</Text>
+          <Text style={{fontSize: 24, lineHeight: 48}}>សួស្តី {this.state.user.fullName}</Text>
 
           <Text>
             អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ
