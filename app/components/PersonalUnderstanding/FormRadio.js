@@ -15,7 +15,7 @@ class FormRadio extends React.Component {
 
   render() {
     return (
-      <View style={styles.formGroup} pointerEvent={this.props.pointerEvents}>
+      <View style={[styles.formGroup, this.props.style]} pointerEvent={this.props.pointerEvents}>
         <Text style={[styles.labelGroup, this.props.textStyle]}>{ Question[this.props.questionKey] }</Text>
         <Field
           name={this.props.questionKey}

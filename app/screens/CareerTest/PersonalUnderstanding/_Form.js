@@ -80,6 +80,7 @@ function Form(props) {
         <FormRadio
           questionKey={'doesParentsAgreeWith'}
           pointerEvents={ props.haveEverThoughtOfCareerIsYes ? "auto" : "none"}
+          style={{padding: 0, marginBottom: 0}}
           textStyle={getTextColor}
           labelStyle={labelStyle}
           buttonColor={buttonColor} />
