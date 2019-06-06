@@ -4,6 +4,7 @@ import {
 } from 'react-native';
 import ButtonList from '../../components/list/button_list';
 import User from '../../utils/user';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 export default class Others extends Component {
   constructor(props){
@@ -41,7 +42,7 @@ export default class Others extends Component {
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
           <ButtonList
             hasLine={true}
-            icon={{color: 'rgb(24, 118, 211)', src: require('../../assets/icons/others/info.png')}}
+            icon={{color: Colors.blue, src: require('../../assets/icons/others/info.png')}}
             onPress={() => { this.props.navigation.navigate('About') }}
             title='អំពីកម្មវិធី' />
           { !!this.state.user &&

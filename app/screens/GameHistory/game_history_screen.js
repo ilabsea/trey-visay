@@ -13,6 +13,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
 import { Divider } from 'react-native-elements';
 
+import { Colors } from '../../assets/style_sheets/main/colors';
 import mainStyles from '../../assets/style_sheets/main/main';
 
 import BackButton from '../../components/shared/back_button';
@@ -108,7 +109,7 @@ export default class GameHistoryScreen extends Component {
                 schools: this.state.schools
               })
             }}
-            icon={{color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-building.png')}}
+            icon={{color: Colors.blue, src: require('../../assets/icons/result/white-building.png')}}
             title='គ្រឹះស្ថានសិក្សា' />
         </View>
       </View>
@@ -137,13 +138,13 @@ export default class GameHistoryScreen extends Component {
         <View style={{marginRight: 8 }}>
           { !this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._play() }>
-              <MaterialIcon name='play-circle-outline' size={60} color='rgb(24, 118, 211)'/>
+              <MaterialIcon name='play-circle-outline' size={60} color={Colors.blue}/>
             </TouchableOpacity>
           }
 
           { this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._stop()}>
-              <MaterialIcon name='pause-circle-outline' size={60} color='rgb(24, 118, 211)'/>
+              <MaterialIcon name='pause-circle-outline' size={60} color={Colors.blue}/>
             </TouchableOpacity>
           }
         </View>
@@ -161,23 +162,25 @@ export default class GameHistoryScreen extends Component {
         <Text style={mainStyles.sectionText}>ការដាក់គោលដៅ និងមូលហេតុ</Text>
 
         <View>
-          <View style={mainStyles.blueTitleBox}>
-            <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+          <View style={[mainStyles.blueTitleBox, {marginTop: 0}]}>
+            <AwesomeIcon name='globe' color={Colors.blue} size={24} />
             <Text style={[mainStyles.title, { paddingLeft: 8 }]}>គោលដៅរបស់អ្នក</Text>
           </View>
           <View style={[mainStyles.subTitleBox, {height: 64}]}>
             <Text style={ mainStyles.text }>{this.state.game.goalCareer}</Text>
           </View>
 
-          <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
-            <AwesomeIcon name='microphone' color='rgb(24, 118, 211)' size={24} />
+          <View style={mainStyles.blueTitleBox}>
+            <AwesomeIcon name='microphone' color={Colors.blue} size={24} />
             <Text style={[mainStyles.title, { paddingLeft: 8 }]}>មូលហេតុរបស់អ្នក</Text>
           </View>
           <View style={mainStyles.subTitleBox}>
             { this.state.game.reason &&
-              <Text style={ mainStyles.text }>{this.state.game.reason}</Text>
+              <View>
+                <Text>{this.state.game.reason}</Text>
+                <Divider style={{marginLeft: -20, marginRight: -20}}/>
+              </View>
             }
-            <Divider style={{marginLeft: -20, marginRight: -20}}/>
             { this.state.game.voiceRecord && this._renderVoiceRecord() }
           </View>
 
@@ -201,7 +204,7 @@ export default class GameHistoryScreen extends Component {
   }
 
   _renderTest1Trigger() {
-    let icon = {color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-user.png')};
+    let icon = {color: Colors.blue, src: require('../../assets/icons/result/white-user.png')};
     return (
       <View>
         <Text style={mainStyles.sectionText}>ធ្វើតេស្តដំណាក់កាលទី 1</Text>
@@ -213,10 +216,10 @@ export default class GameHistoryScreen extends Component {
   }
 
   _renderTest2Trigger() {
-    let subjectIcon = {color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-book.png')};
-    let personalityIcon = {color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-user.png')};
-    let choiceIcon = {color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-suitcase.png')};
-    let recommendationIcon = {color: 'rgb(24, 118, 211)', src: require('../../assets/icons/result/white-comment.png')};
+    let subjectIcon = {color: Colors.blue, src: require('../../assets/icons/result/white-book.png')};
+    let personalityIcon = {color: Colors.blue, src: require('../../assets/icons/result/white-user.png')};
+    let choiceIcon = {color: Colors.blue, src: require('../../assets/icons/result/white-suitcase.png')};
+    let recommendationIcon = {color: Colors.blue, src: require('../../assets/icons/result/white-comment.png')};
     return (
       <View>
         <Text style={mainStyles.sectionText}>ធ្វើតេស្តដំណាក់កាលទី 2</Text>
@@ -233,7 +236,7 @@ export default class GameHistoryScreen extends Component {
   render() {
     return(
       <View style={{flex: 1}}>
-        <ScrollView style={{flex: 1}}>
+        <ScrollView>
           { this._renderGoal() }
           { this._renderSchool() }
           { this._renderTest1Trigger() }

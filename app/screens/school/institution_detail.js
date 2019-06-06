@@ -9,6 +9,7 @@ import { Divider } from 'react-native-elements';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import mainStyles from '../../assets/style_sheets/main/main';
+import { Colors } from '../../assets/style_sheets/main/colors';
 import Images from '../../assets/images';
 import ListItem from '../../components/schools/list_item';
 import CardItem from '../../components/list/card_item';
@@ -177,7 +178,7 @@ const styles = StyleSheet.create({
     marginLeft: 16,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor:  'rgb(24, 118, 211)'
+    backgroundColor:  Colors.blue
   },
   icon:{
     width: 18,

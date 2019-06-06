@@ -39,7 +39,6 @@ export default StyleSheet.create({
   sectionTextInBox: {
     fontSize: FontSetting.text,
     marginTop: 16,
-    marginLeft: 16
   },
   instructionContainer: {
     flexDirection: 'row',
@@ -76,8 +75,8 @@ export default StyleSheet.create({
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     width: '90%',
-    marginLeft: 20,
-    marginRight: 20,
+    margin: 20,
+    marginBottom: 0,
     flexDirection: 'row',
     paddingLeft: 16
   },

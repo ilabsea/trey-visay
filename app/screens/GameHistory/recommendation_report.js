@@ -10,6 +10,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import mainStyles from '../../assets/style_sheets/main/main';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -93,8 +94,8 @@ export default class RecommendationReport extends Component {
   _renderSubject() {
     return (
       <View>
-        <View style={mainStyles.blueTitleBox}>
-          <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+        <View style={[mainStyles.blueTitleBox, {marginTop: 0}]}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
           <Text style={[mainStyles.title, { paddingLeft: 8 }]}>មុខវិជ្ជា</Text>
         </View>
 
@@ -107,8 +108,8 @@ export default class RecommendationReport extends Component {
           </View>
         </View>
 
-        <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
-          <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
           <Text style={[mainStyles.title, { paddingLeft: 8 }]}>ចម្លើយរបស់អ្នក</Text>
         </View>
 
@@ -126,8 +127,8 @@ export default class RecommendationReport extends Component {
 
         { !this._isStrongForAllSubject() &&
           <View>
-            <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
-              <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+            <View style={mainStyles.blueTitleBox}>
+              <AwesomeIcon name='globe' color={Colors.blue} size={24} />
               <Text style={[mainStyles.title, { paddingLeft: 8 }]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
             </View>
             <View style={mainStyles.subTitleBox}>
@@ -144,8 +145,8 @@ export default class RecommendationReport extends Component {
   _renderCharacteristic() {
     return (
       <View>
-        <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
-          <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
           <Text style={[mainStyles.title, { paddingLeft: 8 }]}>បុគ្គលិកលក្ខណៈ</Text>
         </View>
 
@@ -159,8 +160,8 @@ export default class RecommendationReport extends Component {
         </View>
 
 
-        <View style={[mainStyles.blueTitleBox, {marginTop: 20}]}>
-          <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
           <Text style={[mainStyles.title, { paddingLeft: 8 }]}>ចម្លើយរបស់អ្នក</Text>
         </View>
 
@@ -192,8 +193,8 @@ export default class RecommendationReport extends Component {
           <Text style={localStyle.paragraph}>{this.state.currentGroup.recommendation}</Text>
         </View>
 
-        <View style={mainStyles.blueTitleBox}>
-          <AwesomeIcon name='globe' color='rgb(24, 118, 211)' size={24} />
+        <View style={[mainStyles.blueTitleBox, {marginTop: 0}]}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
           <Text style={[mainStyles.title, { paddingLeft: 8 }]}>បញ្ជាក់៖</Text>
         </View>
         <View style={mainStyles.subTitleBox}>

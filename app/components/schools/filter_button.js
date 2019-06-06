@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Image } from 'react-native';
 import { Button, Text } from 'native-base';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 class FilterButton extends React.Component {
   constructor(props) {
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 16,
     padding: 16,
-    backgroundColor: 'rgb(24, 118, 211)'
+    backgroundColor: Colors.blue
   }
 })
 

@@ -24,6 +24,7 @@ import ProgressStep from '../ProgressStep/ProgressStep';
 import subjectGroups from '../../../data/json/subjects/subject_groups';
 
 import styles from '../../../assets/style_sheets/profile_form';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
@@ -130,7 +131,7 @@ export default class SubjectScreen extends Component {
     return(
       <View key={index} style={[styles.box, {marginVertical: 10}]}>
         <View style={{marginHorizontal: -16, marginTop: -16, backgroundColor: 'rgba(24, 118, 211, 0.2)', height: 54, justifyContent: 'center', paddingHorizontal: 16, borderTopLeftRadius: 8, borderTopRightRadius: 8}}>
-          <Text style={[styles.subTitle, {color: 'rgb(24, 118, 211)'}]}>{obj.title}</Text>
+          <Text style={[styles.subTitle, {color: Colors.blue}]}>{obj.title}</Text>
         </View>
 
         { obj.groups.map((group, i) => {

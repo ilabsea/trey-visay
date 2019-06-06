@@ -13,6 +13,7 @@ import realm from '../../db/schema';
 import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import mainStyles from '../../assets/style_sheets/main/main';
+import { Colors } from '../../assets/style_sheets/main/colors';
 import { longDateFormat as dateFormat } from '../../utils/date';
 import { Content, Body, Icon, CardItem } from 'native-base';
 
@@ -133,7 +134,7 @@ export default class PersonalityAssessment extends Component {
       <View style={{marginVertical: 12, backgroundColor: 'white'}}>
         <ButtonList
           hasLine={true}
-          icon={{color: 'rgb(24, 118, 211)', src: require('../../assets/icons/others/info.png')}}
+          icon={{color: Colors.blue, src: require('../../assets/icons/others/info.png')}}
           onPress={() => { this.props.navigation.navigate('AboutPersonalityAssessment') }}
           title='អំពីការធ្វើតេស្តស្វែងយល់បុគ្គលិកលក្ខណៈ' />
       </View>
@@ -176,7 +177,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 80,
     height: 99,
-    backgroundColor: 'rgb(24, 118, 211)',
+    backgroundColor: Colors.blue,
     alignItems: 'center',
     justifyContent: 'center',
   },

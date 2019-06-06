@@ -12,6 +12,7 @@ import uuidv4 from '../../utils/uuidv4';
 
 import Button from '../../components/shared/button';
 import mainStyles from '../../assets/style_sheets/main/main';
+import { Colors } from '../../assets/style_sheets/main/colors';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import { longDateFormat as dateFomart } from '../../utils/date';
 
@@ -46,7 +47,7 @@ export default class CareerCounsellor extends Component {
       <View style={{marginVertical: 12, backgroundColor: 'white'}}>
         <ButtonList
           hasLine={true}
-          icon={{color: 'rgb(24, 118, 211)', src: require('../../assets/icons/others/info.png')}}
+          icon={{color: Colors.blue, src: require('../../assets/icons/others/info.png')}}
           onPress={() => { this.props.navigation.navigate('AboutCareerCounsellorScreen') }}
           title='អំពីការធ្វើតេសវាយតម្លៃមុខរបរ​ និងអាជីព' />
       </View>
@@ -189,7 +190,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 80,
     height: 99,
-    backgroundColor: 'rgb(24, 118, 211)',
+    backgroundColor: Colors.blue,
     alignItems: 'center',
     justifyContent: 'center',
   },

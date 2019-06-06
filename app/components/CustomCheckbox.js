@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import CheckboxGroup from '../components/checkbox_group';
+import { Colors } from '../assets/style_sheets/main/colors';
 
 export default function CustomCheckbox(props) {
   const { input, meta, ...checkboxProps } = props;
@@ -22,7 +23,7 @@ export default function CustomCheckbox(props) {
         checkedVip={input.value || []}
         style={{
           icon: {
-            color: 'rgb(24, 118, 211)',
+            color: Colors.blue,
             size: 30
           },
           container: {

@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import { View, Text, Platform } from 'react-native';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 import {FontSetting} from '../assets/style_sheets/font_setting';
+import { Colors } from '../assets/style_sheets/main/colors';
 
 class RadioButtonGroup extends Component {
 
   render() {
     const { labelStyle } = this.props;
-    const buttonColor = this.props.buttonColor || 'rgb(24, 118, 211)';
+    const buttonColor = this.props.buttonColor || Colors.blue;
     return (
 
       <RadioForm

@@ -11,6 +11,7 @@ import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import FooterBar from '../../../components/footer/FooterBar';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 import { NavigationActions } from 'react-navigation';
 
 import realm from '../../../db/schema';
@@ -291,6 +292,6 @@ const localStyle = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 5,
     backgroundColor: 'rgba(24, 118, 211, 0.2)',
-    color: 'rgb(24, 118, 211)'
+    color: Colors.blue
   }
 });

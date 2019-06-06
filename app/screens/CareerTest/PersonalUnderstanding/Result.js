@@ -14,6 +14,8 @@ import {
 } from 'react-native';
 
 import styles from './styles';
+import { Colors } from '../../../assets/style_sheets/main/colors';
+
 import LinearGradient from 'react-native-linear-gradient';
 
 export default class Result extends Component{
@@ -81,7 +83,7 @@ export default class Result extends Component{
   }
 
   _renderBtnActions(isPass) {
-    let color = isPass ? 'rgb(24, 118, 211)' : 'rgb(232, 92, 89)';
+    let color = isPass ? Colors.blue : 'rgb(232, 92, 89)';
     let button = !isPass && this.props.testCount > 1 ? {marginRight: 20} : {flex: 1}
 
     return (
@@ -105,7 +107,7 @@ export default class Result extends Component{
             this.props.navigation.navigate('CareerCategoriesScreen');
             this.props.setModalVisible(false);
           }} style={[styles.button, {flex: 1}]}>
-            <Text style={[styles.btnText, {color: 'rgb(24, 118, 211)'}]}>ចូលទៅកាន់វគ្គបន្ត</Text>
+            <Text style={[styles.btnText, {color: Colors.blue}]}>ចូលទៅកាន់វគ្គបន្ត</Text>
           </TouchableOpacity>
         }
       </View>
@@ -130,7 +132,7 @@ export default class Result extends Component{
     let isPass = this.props.score >= 12;
     // let isPass = true;
     let imageUrl = isPass ? require('../../../assets/images/success.png') : require('../../../assets/images/fail.png')
-    let colors = isPass ? ['rgb(53, 174, 235)', 'rgb(24, 118, 211)'] : [rgb(255, 130, 97), rgb(255, 102, 98)]
+    let colors = isPass ? ['rgb(53, 174, 235)', Colors.blue] : [rgb(255, 130, 97), rgb(255, 102, 98)]
     let {width} = Dimensions.get('window');
 
 

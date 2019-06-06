@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import { Divider } from 'react-native-elements';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import realm from '../../db/schema';
@@ -16,6 +17,7 @@ import User from '../../utils/user';
 import mainStyles from '../../assets/style_sheets/main/main';
 import StatusBar from '../../components/shared/status_bar';
 import Question from '../../data/json/personal_understanding.json';
+import Card from '../../components/GameHistory/PersonalUnderstanding/Card';
 
 export default class PersonalUnderstandingReport extends Component {
   componentWillMount() {
@@ -30,35 +32,15 @@ export default class PersonalUnderstandingReport extends Component {
 
   yesNoValue = { Yes: 'បាទ/ចាស', No: 'ទេ', Don_Know: 'មិនដឹង' };
 
-  _renderQuestion1(personalUnderstanding) {
-    if (!personalUnderstanding.areYouGoingToStudyTillGrade12) {
+  _renderQuestion(personalUnderstanding, questionKey) {
+    if (!personalUnderstanding[questionKey]) {
       return (null);
     }
 
     return (
-      <View style={[mainStyles.box, {padding: 16}]}>
-        <Text style={mainStyles.text}>{Question.areYouGoingToStudyTillGrade12}</Text>
-        <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 16}}>
-          <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-          <Text>{this.yesNoValue[personalUnderstanding.areYouGoingToStudyTillGrade12]}</Text>
-        </View>
-      </View>
-    );
-  }
-
-  _renderQuestion2(personalUnderstanding) {
-    if (!personalUnderstanding.areYourParentsAllowYouToStudyTillGrade12) {
-      return (null);
-    }
-
-    return (
-      <View style={[mainStyles.box, {padding: 16}]}>
-        <Text style={mainStyles.text}>{Question.areYourParentsAllowYouToStudyTillGrade12}</Text>
-        <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 16}}>
-          <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-          <Text>{this.yesNoValue[personalUnderstanding.areYourParentsAllowYouToStudyTillGrade12]}</Text>
-        </View>
-      </View>
+      <Card
+        question={Question[questionKey]}
+        response={this.yesNoValue[personalUnderstanding[questionKey]]}/>
     );
   }
 
@@ -68,37 +50,32 @@ export default class PersonalUnderstandingReport extends Component {
     }
 
     return (
-      <View style={[mainStyles.box, {padding: 16}]}>
-        <Text style={mainStyles.text}>{Question.haveYouEverThoughtOfCareer}</Text>
-        <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 16}}>
-          <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-          <Text>{this.yesNoValue[personalUnderstanding.haveYouEverThoughtOfCareer]}</Text>
+      <Card
+        question={Question.haveYouEverThoughtOfCareer}
+        response={this.yesNoValue[personalUnderstanding.haveYouEverThoughtOfCareer]}>
+
+        <View style={{marginLeft: -20, marginTop: -20}}>
+          { !!personalUnderstanding.careerName &&
+            <Card
+              noIcon={true}
+              question={Question.careerName}
+              response={personalUnderstanding.careerName}/>
+          }
+
+          { !!personalUnderstanding.howToReachCareerGoal &&
+            <Card
+              noIcon={true}
+              question={Question.howToReachCareerGoal}
+              response={personalUnderstanding.howToReachCareerGoal}/>
+          }
+
+          { !!personalUnderstanding.doesParentsAgreeWith &&
+            <Card
+              question={Question.doesParentsAgreeWith}
+              response={this.yesNoValue[personalUnderstanding.doesParentsAgreeWith]}/>
+          }
         </View>
-
-        { !!personalUnderstanding.careerName &&
-          <View>
-            <Text style={[mainStyles.text, {marginTop: 30}]}>{Question.careerName}</Text>
-            <Text style={[mainStyles.text, {marginLeft: 16}]}>{personalUnderstanding.careerName}</Text>
-          </View>
-        }
-
-        { !!personalUnderstanding.howToReachCareerGoal &&
-          <View>
-            <Text style={[mainStyles.text, {marginTop: 30}]}>{ Question.howToReachCareerGoal}</Text>
-            <Text style={[mainStyles.text, {marginLeft: 16}]}>{personalUnderstanding.howToReachCareerGoal}</Text>
-          </View>
-        }
-
-        { !!personalUnderstanding.doesParentsAgreeWith &&
-          <View>
-            <Text style={[mainStyles.text, {marginTop: 30}]}>{ Question.doesParentsAgreeWith }</Text>
-            <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: 16}}>
-              <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-              <Text>{this.yesNoValue[personalUnderstanding.doesParentsAgreeWith]}</Text>
-            </View>
-          </View>
-        }
-      </View>
+      </Card>
     );
   }
 
@@ -110,15 +87,14 @@ export default class PersonalUnderstandingReport extends Component {
     let arr = { 1: 'ឳពុកម្តាយ', 2: 'បងប្អូន', 3: 'ក្រុមប្រឹក្សាកុមារ', 4: 'នាយកសាលា', 5: 'គ្រូ', 6: 'មិត្តភក្តិ' };
 
     return (
-      <View style={[mainStyles.box, {padding: 16}]}>
-        <Text style={mainStyles.text}>{ Question.everTalkedWithAnyoneAboutCareer}</Text>
+      <View style={[mainStyles.curveBox, { marginTop: 20 }]}>
+        <Text style={mainStyles.sectionTextInBox}>{ Question.everTalkedWithAnyoneAboutCareer}</Text>
+        <Divider style={{marginLeft: 16}}/>
         { personalUnderstanding.everTalkedWithAnyoneAboutCareer.map((obj, i) => {
           return (
-            <View key={i}>
-              <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 8, marginLeft: 16}}>
-                <AwesomeIcon name='check-circle' size={24} color='#4caf50' style={{marginRight: 8}} />
-                <Text>{arr[obj.value]}</Text>
-              </View>
+            <View key={i} style={{flexDirection: 'row', margin: 16, marginBottom: 8}}>
+              <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' style={{marginRight: 8}} />
+              <Text>{arr[obj.value]}</Text>
             </View>
           )
         })}
@@ -132,10 +108,10 @@ export default class PersonalUnderstandingReport extends Component {
     }
 
     return (
-      <View style={[mainStyles.box, {padding: 16}]}>
-        <Text style={mainStyles.text}>{ Question.howToReachJobVacancy }</Text>
-        <Text style={[mainStyles.text, {marginLeft: 16}]} >{personalUnderstanding.howToReachJobVacancy}</Text>
-      </View>
+      <Card
+        noIcon={true}
+        question={Question.howToReachJobVacancy}
+        response={personalUnderstanding.howToReachJobVacancy}/>
     );
   }
 
@@ -146,8 +122,8 @@ export default class PersonalUnderstandingReport extends Component {
           ការស្វែងយល់អំពីខ្លួនឯងលើកទី { i + 1 }
         </Text>
 
-        { this._renderQuestion1(obj) }
-        { this._renderQuestion2(obj) }
+        { this._renderQuestion(obj, 'areYouGoingToStudyTillGrade12') }
+        { this._renderQuestion(obj, 'areYourParentsAllowYouToStudyTillGrade12') }
         { this._renderQuestion3(obj) }
         { this._renderQuestion4(obj) }
         { this._renderQuestion5(obj) }
@@ -159,7 +135,7 @@ export default class PersonalUnderstandingReport extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar />
-        <ScrollView style={{flex: 1}}>
+        <ScrollView>
           { this.state.game.personalUnderstandings.map((obj, i) => {
             { return (this._renderContent(obj, i)) }
           })}

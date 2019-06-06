@@ -17,6 +17,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import FooterBar from '../../../components/footer/FooterBar';
 import mainStyles from '../../../assets/style_sheets/main/main';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
@@ -128,7 +129,7 @@ export default class GoalScreen extends Component {
           <TouchableOpacity
             onPress={() => this.setState({visibleTourtip: false})}
             style={{borderRadius: 8, flex: 1, paddingHorizontal: 24, paddingVertical: 5, backgroundColor: 'rgb(255,255,255)'}}>
-            <Text style={{textAlign: 'center', color: 'rgb(24, 118, 211)'}}>ចាប់ផ្ដើមបំពេញ</Text>
+            <Text style={{textAlign: 'center', color: Colors.blue}}>ចាប់ផ្ដើមបំពេញ</Text>
           </TouchableOpacity>
         </View>
       </View>

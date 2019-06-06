@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
 import { Container, Content, Icon } from 'native-base';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 
 export default class ProgressStep extends Component {
   _renderIcon(image, index) {
@@ -15,7 +16,7 @@ export default class ProgressStep extends Component {
         { this.props.progressIndex > index &&
           <View style={[scrollHeaderStyles.numberWrapper, scrollHeaderStyles.doneIconWrapper]} >
             <View style={[scrollHeaderStyles.doneIcon]}>
-              <Icon name='checkmark' style={{fontSize: 12, color: 'rgb(24, 118, 211)'}} />
+              <Icon name='checkmark' style={{fontSize: 12, color: Colors.blue}} />
             </View>
           </View>
         }

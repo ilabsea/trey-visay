@@ -19,6 +19,7 @@ import CustomRadioGroup from '../../../components/CustomRadioGroup';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Question from '../../../data/json/personal_understanding.json';
 import FormRadio from '../../../components/PersonalUnderstanding/FormRadio';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 
 import submit from './submit'
 
@@ -29,7 +30,7 @@ function Form(props) {
 
   const getTextColor = props.haveEverThoughtOfCareerIsYes ? styles.labelGroup : [styles.labelGroup, {color: '#ccc'}];
   const labelStyle = props.haveEverThoughtOfCareerIsYes ? {} : {color: '#ccc'};
-  const buttonColor = props.haveEverThoughtOfCareerIsYes ? 'rgb(24, 118, 211)' : '#ccc';
+  const buttonColor = props.haveEverThoughtOfCareerIsYes ? Colors.blue : '#ccc';
 
   return (
     <View style={styles.scrollContainer}>

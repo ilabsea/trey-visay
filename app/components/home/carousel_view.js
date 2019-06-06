@@ -15,6 +15,8 @@ import { Pagination } from 'react-native-snap-carousel';
 
 import StatusBar from '../shared/status_bar';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
+import { Colors } from '../../assets/style_sheets/main/colors';
+
 import CarouselItem from '../shared/carousel_item';
 import HomeOptions from './home_options';
 import User from '../../utils/user';
@@ -94,7 +96,7 @@ class CarouselView extends Component {
           height: 12,
           borderRadius: 8,
           marginHorizontal: 1,
-          backgroundColor: 'rgb(24, 118, 211)'
+          backgroundColor: Colors.blue
         }}
         inactiveDotStyle={{
           width: 12,
@@ -159,7 +161,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center'
   },
   btnStart: {
-    backgroundColor: 'rgb(24, 118, 211)',
+    backgroundColor: Colors.blue,
     borderRadius: 12,
     width: wp('26%'),
     height: hp('8%'),

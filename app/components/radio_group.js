@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import { View, Platform, StyleSheet } from 'react-native';
 import RadioForm, { RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
+import { Colors } from '../assets/style_sheets/main/colors';
+
 class RadioGroup extends Component {
   constructor(props) {
     super(props);
@@ -10,7 +12,6 @@ class RadioGroup extends Component {
   render() {
     const {style, formVertical, ...props} = this.props;
     let disabled = this.props.disabled ? this.props.disabled : false;
-    console.log('disabled : ', disabled);
     return (
       <RadioForm formHorizontal={!formVertical} animation={true} style={style}>
         { this.props.options.map((obj, i) => {
@@ -26,7 +27,7 @@ class RadioGroup extends Component {
                     isSelected={this.props.value == obj.value}
                     onPress={this.props.onPress}
                     buttonSize={8}
-                    buttonColor='rgb(24, 118, 211)'
+                    buttonColor={Colors.blue}
                     disabled={disabled }
                     buttonWrapStyle={styles.buttonWrapper}
                   />

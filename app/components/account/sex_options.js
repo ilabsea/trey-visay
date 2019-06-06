@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 class SexOptions extends Component {
   constructor(props) {
@@ -22,7 +23,7 @@ class SexOptions extends Component {
   }
 
   isActive(item) {
-    let activeStyle = { borderColor: 'rgb(24, 118, 211)' };
+    let activeStyle = { borderColor: Colors.blue };
 
     return this.state.currentSex == item ? activeStyle : {};
   }

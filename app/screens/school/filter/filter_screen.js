@@ -74,8 +74,8 @@ class FilterScreen extends Component {
 
   renderButton(major,i){
     let active = this.state.selectedValue == major;
-    let activeIconBg = active ? { backgroundColor: 'rgb(24, 118, 211)' }: { backgroundColor:  'rgb(155, 155, 155)' };
-    let activeText = active ? { color: 'rgb(24, 118, 211)' }: '';
+    let activeIconBg = active ? { backgroundColor: Colors.blue }: { backgroundColor:  'rgb(155, 155, 155)' };
+    let activeText = active ? { color: Colors.blue }: '';
     return(
       <TouchableOpacity
         style={styles.btn}

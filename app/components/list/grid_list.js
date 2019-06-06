@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import mainStyles from "../../assets/style_sheets/main/main";
+import { Colors } from "../../assets/style_sheets/main/colors";
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 class GridList extends React.Component {
@@ -21,8 +22,8 @@ class GridList extends React.Component {
     let icon = this.props.icon ? require('../../assets/icons/school/all_major.png') : require('../../assets/icons/school/major.png');
     let active = this.state.selectedValue == this.props.data;
     console.log('this.state.selectedValue : ', this.state.selectedValue);
-    let activeIconBg = active ? {backgroundColor: 'rgb(24, 118, 211)'}: null;
-    let activeText = active ? {color: 'rgb(24, 118, 211)'}: null;
+    let activeIconBg = active ? { backgroundColor: Colors.blue }: null;
+    let activeText = active ? { color: Colors.blue }: null;
     console.log('activeIconBg : ', activeIconBg);
     return (
       <TouchableOpacity

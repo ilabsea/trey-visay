@@ -16,7 +16,7 @@ import Sound from 'react-native-sound';
 import { Divider } from 'react-native-elements';
 import FooterBar from '../../../components/footer/FooterBar';
 import { FontSetting } from "../../../assets/style_sheets/font_setting";
-
+import { Colors } from '../../../assets/style_sheets/main/colors';
 import mainStyles from '../../../assets/style_sheets/main/main';
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import SchoolListView from '../../../components/schools/school_list';
@@ -282,7 +282,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingVertical: 5,
     backgroundColor: 'rgba(24, 118, 211, 0.2)',
-    color: 'rgb(24, 118, 211)',
+    color: Colors.blue,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
   }
