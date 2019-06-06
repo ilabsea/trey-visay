@@ -47,9 +47,8 @@ export default StyleSheet.create({
     fontWeight: 'bold'
   },
   submitText: {
-    fontWeight: 'bold',
     fontSize: 20,
-    color: '#fff'
+    color: '#fff',
   },
   btnLogin: {
     marginTop: 24,

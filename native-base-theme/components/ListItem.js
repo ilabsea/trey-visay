@@ -5,11 +5,14 @@ import { Platform, PixelRatio } from "react-native";
 import pickerTheme from "./Picker";
 import variable from "./../variables/platform";
 
+const fontFamily = Platform.OS === "ios" ? 'HelveticaNeue' : 'Kantumruy';
+
 export default (variables /*: * */ = variable) => {
   const platform = variables.platform;
   const selectedStyle = {
     "NativeBase.Text": {
-      color: variables.listItemSelected
+      color: variables.listItemSelected,
+      fontFamily: fontFamily
     },
     "NativeBase.Icon": {
       color: variables.listItemSelected
@@ -65,7 +68,8 @@ export default (variables /*: * */ = variable) => {
       "NativeBase.Button": {
         ".transparent": {
           "NativeBase.Text": {
-            fontWeight: "500"
+            fontWeight: "500",
+            fontFamily: fontFamily
           },
           paddingHorizontal: null,
           paddingLeft: platform === "ios" ? 10 : null
@@ -103,7 +107,8 @@ export default (variables /*: * */ = variable) => {
       borderColor: variables.listBorderColor,
       "NativeBase.Text": {
         fontSize: 14,
-        color: platform === "ios" ? undefined : variables.listNoteColor
+        color: platform === "ios" ? undefined : variables.listNoteColor,
+        fontFamily: fontFamily
       }
     },
     ".itemDivider": {
@@ -134,7 +139,8 @@ export default (variables /*: * */ = variable) => {
             color: variables.listNoteColor,
             fontWeight: "200"
           },
-          fontWeight: "600"
+          fontWeight: "600",
+          fontFamily: fontFamily
         },
         marginLeft: 10,
         alignItems: null,
@@ -156,6 +162,7 @@ export default (variables /*: * */ = variable) => {
     "NativeBase.Body": {
       "NativeBase.Text": {
         marginHorizontal: variables.listItemPadding,
+        fontFamily: fontFamily,
         ".note": {
           color: variables.listNoteColor,
           fontWeight: "200"
@@ -172,7 +179,8 @@ export default (variables /*: * */ = variable) => {
         "NativeBase.Button": {
           marginRight: -15,
           "NativeBase.Text": {
-            color: variables.topTabBarActiveTextColor
+            color: variables.topTabBarActiveTextColor,
+            fontFamily: fontFamily
           }
         }
       },
@@ -180,7 +188,8 @@ export default (variables /*: * */ = variable) => {
         alignSelf: null,
         ".transparent": {
           "NativeBase.Text": {
-            color: variables.topTabBarActiveTextColor
+            color: variables.topTabBarActiveTextColor,
+            fontFamily: fontFamily
           }
         }
       },
@@ -199,7 +208,8 @@ export default (variables /*: * */ = variable) => {
           color: variables.listNoteColor,
           fontWeight: "200"
         },
-        alignSelf: null
+        alignSelf: null,
+        fontFamily: fontFamily
       },
       "NativeBase.Thumbnail": {
         alignSelf: null
@@ -224,7 +234,8 @@ export default (variables /*: * */ = variable) => {
         color: variables.listNoteColor,
         fontWeight: "200"
       },
-      alignSelf: "center"
+      alignSelf: "center",
+      fontFamily: fontFamily
     },
     ".last": {
       marginLeft: -(variables.listItemPadding + 5),
@@ -239,19 +250,21 @@ export default (variables /*: * */ = variable) => {
       },
       "NativeBase.Body": {
         "NativeBase.Text": {
-          marginLeft: null
+          marginLeft: null,
+          fontFamily: fontFamily
         },
         flex: 1,
         paddingVertical: variables.listItemPadding,
         borderBottomWidth: variables.borderWidth,
         borderColor: variables.listBorderColor,
-        marginLeft: variables.listItemPadding + 5
+        marginLeft: variables.listItemPadding + 5,
       },
       "NativeBase.Right": {
         "NativeBase.Text": {
           ".note": {
             fontSize: variables.noteFontSize - 2
-          }
+          },
+          fontFamily: fontFamily
         },
         flex: 0,
         paddingRight: variables.listItemPadding + 5,
@@ -278,7 +291,8 @@ export default (variables /*: * */ = variable) => {
       },
       "NativeBase.Body": {
         "NativeBase.Text": {
-          marginLeft: null
+          marginLeft: null,
+          fontFamily: fontFamily
         },
         flex: 1,
         paddingVertical: variables.listItemPadding + 8,
@@ -291,7 +305,8 @@ export default (variables /*: * */ = variable) => {
           ".transparent": {
             "NativeBase.Text": {
               fontSize: variables.listNoteSize,
-              color: variables.sTabBarActiveTextColor
+              color: variables.sTabBarActiveTextColor,
+              fontFamily: fontFamily
             }
           },
           height: null
@@ -363,7 +378,8 @@ export default (variables /*: * */ = variable) => {
       "NativeBase.Body": {
         "NativeBase.Text": {
           marginLeft: null,
-          fontSize: 17
+          fontSize: 17,
+          fontFamily: fontFamily
         },
         flex: 1,
         height: 44,
@@ -375,7 +391,8 @@ export default (variables /*: * */ = variable) => {
         "NativeBase.Text": {
           textAlign: "center",
           color: "#8F8E95",
-          fontSize: 17
+          fontSize: 17,
+          fontFamily: fontFamily
         },
         "NativeBase.IconNB": {
           color: "#C8C7CC",

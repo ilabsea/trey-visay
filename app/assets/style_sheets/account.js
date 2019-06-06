@@ -25,7 +25,7 @@ export default StyleSheet.create({
     fontSize: 12,
     textAlign: 'center',
     paddingHorizontal: 30,
-    lineHeight: 14,
+    lineHeight: 16,
     color: 'rgb(111, 123, 135)'
   }
 })

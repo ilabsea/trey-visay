@@ -3,6 +3,7 @@ import {
   View,
   Alert,
   Image,
+  Text,
 } from 'react-native';
 
 // Utils
@@ -14,7 +15,7 @@ import uuidv4 from '../../utils/uuidv4';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
-import { Container, Content, Icon, Button, Input, Item, Form, Text } from 'native-base';
+import { Container, Content, Icon, Button, Input, Item, Form } from 'native-base';
 import { NavigationActions } from 'react-navigation';
 
 export default class Login extends Component {
@@ -40,11 +41,7 @@ export default class Login extends Component {
 
     return (
       <View style={{flexDirection: 'row'}}>
-
-        <Button transparent onPress={() => this.props.navigation.goBack(null)}>
-          <Icon name='arrow-back' style={{color: '#fff'}} />
-        </Button>
-
+        <BackButton navigation={this.props.navigation} />
         <Text style={scrollHeaderStyles.title}>សូមស្វាគមន៍</Text>
       </View>
     )
@@ -52,14 +49,14 @@ export default class Login extends Component {
 
   _renderForeground = () => {
     return (
-      <View style={{backgroundColor: 'transparent', height: 50, justifyContent: 'center', alignItems: 'flex-end', marginBottom: 16, flexDirection: 'row'}}>
+      <View style={{height: 50, justifyContent: 'center', alignItems: 'flex-end', marginBottom: 10, flexDirection: 'row'}}>
         { !this.state.isLogin &&
           <Image
             style={{width: 50, height: 48}}
             source={require('../../assets/images/account/register.png')}/>
         }
 
-        { this.state.isLogin && <Icon name="ios-log-in" style={{color: '#fff', fontSize: 44}}/> }
+        { this.state.isLogin && <Icon name="ios-log-in" style={{color: '#fff', fontSize: 50, lineHeight: 52}}/> }
       </View>
     )
   }
@@ -208,7 +205,7 @@ export default class Login extends Component {
 
     return (
       <Button block style={{marginTop: 32}} onPress={action}>
-        <Text>{title}</Text>
+        <Text style={{color: '#fff'}}>{title}</Text>
       </Button>
     )
   }

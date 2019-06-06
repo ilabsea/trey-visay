@@ -10,6 +10,7 @@ const platform = Platform.OS;
 const platformStyle = undefined;
 const isIphoneX =
 platform === "ios" && (deviceHeight === 812 || deviceWidth === 812 || deviceHeight === 896 || deviceWidth === 896);
+const fontFamily = platform === "ios" ? 'HelveticaNeue' : 'Kantumruy'
 
 export default {
   platformStyle,
@@ -34,7 +35,8 @@ export default {
   badgePadding: platform === "ios" ? 3 : 0,
 
   // Button
-  btnFontFamily: platform === "ios" ? "System" : "Roboto_medium",
+  // btnFontFamily: platform === "ios" ? "System" : "Roboto_medium",
+  btnFontFamily: fontFamily,
   btnDisabledBg: "#b5b5b5",
   buttonPadding: 6,
   get btnPrimaryBg() {
@@ -123,7 +125,8 @@ export default {
 
   // Font
   DefaultFontSize: 16,
-  fontFamily: platform === "ios" ? "System" : "Roboto",
+  // fontFamily: platform === "ios" ? "System" : "Roboto",
+  fontFamily: fontFamily,
   fontSizeBase: 15,
   get fontSizeH1() {
     return this.fontSizeBase * 1.8;
@@ -249,7 +252,8 @@ export default {
   },
 
   // Title
-  titleFontfamily: platform === "ios" ? "System" : "Roboto_medium",
+  // titleFontfamily: platform === "ios" ? "System" : "Roboto_medium",
+  titleFontfamily: fontFamily,
   titleFontSize: platform === "ios" ? 17 : 19,
   subTitleFontSize: platform === "ios" ? 11 : 14,
   subtitleColor: platform === "ios" ? "#8e8e93" : "#FFF",

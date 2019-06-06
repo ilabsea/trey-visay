@@ -1,6 +1,7 @@
 // @flow
 
 import variable from './../variables/platform';
+import { Platform } from "react-native";
 
 export default (variables /*: * */ = variable) => {
   const inputTheme = {
@@ -12,7 +13,8 @@ export default (variables /*: * */ = variable) => {
     paddingLeft: 5,
     paddingRight: 5,
     flex: 1,
-    fontSize: variables.inputFontSize
+    fontSize: variables.inputFontSize,
+    fontFamily: Platform.OS === "ios" ? 'HelveticaNeue' : 'Kantumruy'
   };
 
   return inputTheme;

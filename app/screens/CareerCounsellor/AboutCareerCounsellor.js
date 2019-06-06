@@ -25,8 +25,8 @@ export default class AboutCareerCounsellor extends Component {
 
           <Text>១. ស្វែងយល់អំពីខ្លួន</Text>
         </View>
-        <View style={[styles.rowWrapper, mainStyles.boxShadow]}>
-          <View style={styles.imageWrapper}>
+        <View style={styles.rowWrapper}>
+          <View style={[styles.imageWrapper, mainStyles.boxShadow]}>
             <Image source={require('../../assets/images/career_tests/careers.png')} />
           </View>
           <Text>២. វាយតម្លៃផែនការមុខរបរ</Text>
