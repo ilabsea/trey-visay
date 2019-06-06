@@ -1,20 +1,15 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Linking, TouchableOpacity, Image } from 'react-native';
-
-import {
-  Container, Header, Title, Button, Icon, Left, Right, Body, Content
-} from "native-base";
+import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import { Divider } from 'react-native-elements';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import mainStyles from '../../assets/style_sheets/main/main';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import Images from '../../assets/images';
 import ListItem from '../../components/schools/list_item';
-import CardItem from '../../components/list/card_item';
 import BackButton from '../../components/shared/back_button';
-import ScrollableHeader from '../../components/scrollable_logo_header';
+import ScrollableHeader from '../../components/scrollable_header';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 const PROFILE_SIZE = 120;
 
@@ -22,13 +17,14 @@ export default class InstitutionDetail extends Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
-      school: this.props.navigation.state.params.school
+      school: props.navigation.getParam('school')
     }
   }
 
   renderContact() {
-    school = this.state.school;
+    let school = this.state.school;
     if(!school.id){
       school = {
         address: 'មិនមាន',
@@ -45,16 +41,12 @@ export default class InstitutionDetail extends Component {
         <ListItem contact={{data: school.address, icon: 'map-marker'}} />
         <ListItem contact={{data: school.phoneNumbers, icon: 'phone'}} />
         <ListItem contact={{data: school.faxes, icon: 'fax'}}/>
-        <ListItem contact={{data: school.emails, icon: 'envelope', isLink: true}} />
+        <ListItem contact={{data: school.emails, icon: 'envelope', isLink: true, isEmail: true}} />
         <ListItem contact={{data: school.mailbox, icon: 'markunread-mailbox'}} />
         <ListItem contact={{data: school.websiteOrFacebook, icon: 'globe', isLink: true}} />
         <Divider />
       </View>
     )
-  }
-
-  _openLink(url) {
-    Linking.openURL('http://' + url);
   }
 
   renderItem(item, i){
@@ -105,60 +97,66 @@ export default class InstitutionDetail extends Component {
     )
   }
 
-  _renderHeader() {
-    return(
-      <BackButton navigation={this.props.navigation}/>
-    )
-  }
+  _renderProfile() {
+    return (
+      <View>
+        <View style={styles.bottomLogo}>
+          { this._buildAvata() }
+        </View>
 
-  renderContent(){
-    return(
-      <View style={{backgroundColor: 'white'}}>
-        <View style={styles.container}>
-          { this.renderContact() }
-          { this.renderDepartments() }
+        <View style={{marginTop: 67}}>
+          <Text style={styles.largeTitle}>{this.state.school.universityName}</Text>
+          <Text style={styles.subTitle}>{this.state.school.category}</Text>
         </View>
       </View>
     )
   }
 
-  render() {
-    let photo = require('../../assets/images/schools/default.png');
-    if (!!this.state.school.logoName) {
-      photo = Images[this.state.school.logoName];
+  _renderLogo() {
+    return (
+      <View style={styles.topLogo}>
+        { this._buildAvata() }
+      </View>
+    )
+  }
+
+  _buildAvata() {
+    let schoolLogo = require('../../assets/images/schools/default.png');
+
+    if (this.state.school.logoName) {
+      schoolLogo = Images[this.state.school.logoName];
     }
+
+    return (
+      <View style={styles.logoWrapper}>
+        <Image source={schoolLogo} style={{width: 106, height: 106}} />
+      </View>
+    )
+  }
+
+  renderContent = () => {
+    return(
+      <View style={[{backgroundColor: 'white'}]}>
+        { this._renderProfile() }
+        { this.renderContact() }
+        { this.renderDepartments() }
+      </View>
+    )
+  }
+
+  render() {
     return (
       <ScrollableHeader
-        customView={ this.renderContent.bind(this) }
-        customHeader={ this._renderHeader.bind(this) }
-        profileSize={ PROFILE_SIZE }
-        profile={ photo }
+        renderContent={ this.renderContent }
+        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
         title={this.state.school.universityName}
-        subTitle={this.state.school.category}
+        renderLogo={ () => this._renderLogo() }
       />
     )
   }
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 150
-  },
-  avataContainer: {
-    position: 'absolute',
-    left: 24,
-    top: -PROFILE_SIZE*2/3,
-    zIndex: 1,
-  },
-  avata: {
-    width: PROFILE_SIZE,
-    height: PROFILE_SIZE,
-    borderRadius: PROFILE_SIZE/2,
-  },
-  majorWrapper: {
-    flexDirection: 'row',
-    paddingLeft: 16,
-  },
   btn: {
     flexDirection: 'row',
     width: wp('49.8%'),
@@ -183,5 +181,42 @@ const styles = StyleSheet.create({
   icon:{
     width: 18,
     height: 18
+  },
+  logoWrapper: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.18,
+    shadowRadius: 1.00,
+    elevation: 1,
+    width: PROFILE_SIZE,
+    height: PROFILE_SIZE,
+    padding: 7,
+    borderRadius: 8,
+    backgroundColor: '#fff'
+  },
+  bottomLogo: {
+    position: 'absolute',
+    top: -PROFILE_SIZE/2,
+    width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-end'
+  },
+  topLogo: {
+    height: PROFILE_SIZE/2,
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+  largeTitle: {
+    textAlign: 'center',
+    fontSize: FontSetting.big_title,
+    paddingHorizontal: 30
+  },
+  subTitle: {
+    textAlign: 'center',
+    color: 'rgb(155, 155, 155)'
   }
 });

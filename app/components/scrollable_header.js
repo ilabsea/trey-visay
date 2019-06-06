@@ -220,7 +220,7 @@ class ScrollableHeader extends Component {
   }
 
   renderForeground() {
-    if (!!this.props.largeTitle || !this.props.renderForeground) {
+    if (!!this.props.largeTitle || !!this.props.renderLogo || !this.props.renderForeground) {
       return null
     }
 
@@ -238,7 +238,31 @@ class ScrollableHeader extends Component {
     )
   }
 
+  renderLogo() {
+    if (!!this.props.largeTitle || !this.props.renderLogo) {
+      return null
+    }
+
+    return (
+      <Animated.View
+        style={[
+          { transform: [{ translateY: 0 }]},
+          { bottom: -this.getHeaderMaxHeight() },
+          { opacity: this.getOverlayOpacity() }
+        ]}>
+
+        <View style={{position: 'absolute', left: 20, right: 20, bottom: 0}}>
+          { this.props.renderLogo() }
+        </View>
+      </Animated.View>
+    )
+  }
+
   renderNavigation() {
+    if (!this.props.renderNavigation) {
+      return (null)
+    }
+
     return (
       <Animated.View
         style={[
@@ -282,6 +306,7 @@ class ScrollableHeader extends Component {
         { this.renderProgress() }
         { this.renderOverlay() }
         { this.renderLargeTitle() }
+        { this.renderLogo() }
         { this.renderForeground() }
       </Animated.View>
     )
@@ -305,6 +330,7 @@ ScrollableHeader.propTypes = {
   title: PropTypes.string,
   largeTitle: PropTypes.string,
   renderForeground: PropTypes.func,
+  renderLogo: PropTypes.func,
   headerMaxHeight: PropTypes.number,
   backgroundColor: PropTypes.string,
   enableProgressBar: PropTypes.bool,
@@ -316,6 +342,7 @@ ScrollableHeader.defaultProps = {
   renderNavigation: null,
   title: null,
   largeTitle: null,
+  renderLogo: null,
   renderForeground: null,
   headerMaxHeight: DEFAULT_HEADER_MAX_HEIGHT,
   backgroundColor: null,

@@ -4,7 +4,8 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  StyleSheet
+  StyleSheet,
+  Linking
 } from 'react-native';
 import { Divider } from 'react-native-elements';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -16,6 +17,12 @@ import { Colors } from '../../assets/style_sheets/main/colors';
 class ListItem extends Component {
   constructor(props){
     super(props);
+  }
+
+  onPressLink() {
+    let prefix = this.props.contact.isEmail ? 'mailto:' : '';
+
+    Linking.openURL(prefix + this.props.contact.data);
   }
 
   render(){
@@ -41,7 +48,7 @@ class ListItem extends Component {
               </View>
               { !!contactParams.isLink && data!='មិនមាន' &&
                 <Text
-                  onPress={()=> Linking.openURL('mailto:' + data)}
+                  onPress={ () => this.onPressLink() }
                   style={mainStyles.link}>
                   {data}
                 </Text>

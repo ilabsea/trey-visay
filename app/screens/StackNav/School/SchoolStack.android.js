@@ -48,11 +48,11 @@ const SchoolStack = createStackNavigator(
   {
     Root: {
       screen: InstitutionTab,
-      navigationOptions: ({navigation, screenProps}) => ({
+      navigationOptions: ({navigation}) => ({
         title: 'គ្រឹះស្ថានសិក្សា',
         headerTitleStyle: [headerStyles.headerTitleStyle],
         headerStyle: headerStyles.headerStyle,
-        headerLeft:(<BackButton navigation={screenProps.drawerNavigation}/>),
+        headerLeft:(<BackButton navigation={navigation}/>),
       })
     },
     InstitutionDetail: {
