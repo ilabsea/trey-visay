@@ -42,12 +42,6 @@ const VocationalStack = createStackNavigator(
         title: navigation.state.params.title
       })
     }
-  },{
-    navigationOptions: ({navigation}) => ({
-      headerLeft: <BackButton navigation={navigation}/>,
-      headerTitleStyle: headerStyles.headerTitleStyle,
-      headerStyle: headerStyles.headerStyle,
-    })
   }
 );
 
