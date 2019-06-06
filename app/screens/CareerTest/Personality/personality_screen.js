@@ -13,6 +13,7 @@ import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import CloseButton from '../../../components/shared/close_button';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 import CheckboxGroup from '../../../components/checkbox_group';
 import FooterBar from '../../../components/footer/FooterBar';
 import MathUtil from '../../../utils/math';
@@ -151,14 +152,14 @@ export default class PersonalityScreen extends Component {
     let checkboxes = this._formatDataForCheckbox(this.state.personalities);
 
     return(
-      <View style={mainStyles.box}>
+      <View style={[mainStyles.curveBox, { paddingLeft: 0}]}>
         <CheckboxGroup
           onSelect={(selected) => {this._handleChecked(selected)}}
           items={checkboxes}
           checked={this.state.characteristicEntries}
           style={{
             icon: {
-              color: '#4caf50',
+              color: Colors.blue,
               size: 30
             },
             container: {

@@ -10,6 +10,7 @@ import { NavigationActions } from 'react-navigation';
 import { Divider } from 'react-native-elements';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
+import {Colors} from '../../../assets/style_sheets/main/colors';
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import CheckboxGroup from '../../../components/checkbox_group';
 import FooterBar from '../../../components/footer/FooterBar';
@@ -105,35 +106,30 @@ export default class PersonalityJobsScreen extends Component {
     let checkboxes = this._formatDataForCheckbox(this.state.currentGroup.id);
 
     return (
-      <View style={[mainStyles.box, {borderRadius: 0}]}>
-        <Text style={[mainStyles.title, {paddingLeft: 16, padding: 8}]}>មុខរបរ</Text>
-        <Divider />
-
-        <View>
-          <CheckboxGroup
-            onSelect={(selected) => {this._handleChecked(selected)}}
-            items={checkboxes}
-            checked={this.state.jobs}
-            limitCheckedItems={3}
-            style={{
-              icon: {
-                color: '#4caf50',
-                size: 30
-              },
-              container: {
-                flexDirection: 'row',
-                borderTopWidth: 0.5,
-                borderColor: '#ccc',
-                paddingVertical: 8,
-              },
-              label: {
-                color: '#333',
-                fontSize: 16,
-                marginLeft: 10
-              }
-            }}
-          />
-        </View>
+      <View style={[mainStyles.curveBox, {paddingLeft: 0}]}>
+        <CheckboxGroup
+          onSelect={(selected) => {this._handleChecked(selected)}}
+          items={checkboxes}
+          checked={this.state.jobs}
+          limitCheckedItems={3}
+          style={{
+            icon: {
+              color: Colors.blue,
+              size: 30
+            },
+            container: {
+              flexDirection: 'row',
+              borderTopWidth: 0.5,
+              borderColor: '#ccc',
+              paddingVertical: 8,
+            },
+            label: {
+              color: '#333',
+              fontSize: 16,
+              marginLeft: 10
+            }
+          }}
+        />
       </View>
     )
   }

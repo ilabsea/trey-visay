@@ -7,6 +7,7 @@ import {
 import { Field } from 'redux-form';
 import CustomRadioGroup from '../CustomRadioGroup';
 import Question from '../../data/json/personal_understanding.json';
+import { Divider } from 'react-native-elements';
 
 class FormRadio extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class FormRadio extends React.Component {
     return (
       <View style={[styles.formGroup, this.props.style]} pointerEvent={this.props.pointerEvents}>
         <Text style={[styles.labelGroup, this.props.textStyle]}>{ Question[this.props.questionKey] }</Text>
+        <Divider />
         <Field
           name={this.props.questionKey}
           component={CustomRadioGroup}

@@ -142,9 +142,11 @@ export default class ContactScreen extends Component {
 
     return (
       <View >
-        <Text style={[mainStyles.sectionText, {paddingHorizontal: 20, marginTop: 16}]}>ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖</Text>
+        <Text style={[mainStyles.sectionText, {marginTop: 16}]}>
+          ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖
+        </Text>
 
-         <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
+        <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
       </View>
     )
   }
@@ -181,20 +183,23 @@ export default class ContactScreen extends Component {
 
   _renderVoiceRecord() {
     return (
-      <View style={[mainStyles.box, {marginTop: 13, flexDirection: 'row', alignItems: 'center', padding: 10, overflow: 'hidden'}]}>
-        <TouchableOpacity onPress={() => this._handlePlaying()}>
-          { this.state.isPlaying &&
-            <MaterialIcon style={styles.icon} name='pause-circle-filled' size={48} color='#e94b35'/>
+      <View style={{flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{marginRight: 8 }}>
+          { !this.state.isPlaying &&
+            <TouchableOpacity onPress={() => this._handlePlaying() }>
+              <MaterialIcon name='play-circle-filled' size={48} color={Colors.blue}/>
+            </TouchableOpacity>
           }
-          {
-            !this.state.isPlaying &&
-            <MaterialIcon style={styles.icon} name='play-circle-filled' size={48} color='rgb(24,118,211)'/>
-          }
-        </TouchableOpacity>
 
-        <View style={{flex: 1, paddingHorizontal: 10}}>
-          <Text>លេង</Text>
-          <Text style={{lineHeight: 20}}>{ this.state.time }</Text>
+          { this.state.isPlaying &&
+            <TouchableOpacity onPress={() => this._stop()}>
+              <MaterialIcon name='pause-circle-filled' size={60} color={Colors.blue}/>
+            </TouchableOpacity>
+          }
+        </View>
+        <View style={{flexDirection: 'column'}}>
+          <Text style={mainStyles.text}>លេង</Text>
+          <Text style={mainStyles.subTitle}>{this.state.time}</Text>
         </View>
       </View>
     )
@@ -215,17 +220,32 @@ export default class ContactScreen extends Component {
   _renderGoal() {
     return (
       <View>
-        <Text style={[mainStyles.instructionText, {marginTop: 24}]}>
-          ដាក់គោលដៅមួយ និងមូលហេតុ
-        </Text>
+        <Text style={mainStyles.sectionText}>ការដាក់គោលដៅ និងមូលហេតុ</Text>
 
-        <View style={[mainStyles.box, {marginTop: 0}]}>
-          <Text style={styles.boxHeader}>ចម្លើយរបស់អ្នក</Text>
-          <Text style={mainStyles.text}>{this.state.game.goalCareer}</Text>
-          { !!this.state.game.reason && this._renderReason()}
+        <View>
+          <View style={[mainStyles.blueTitleBox, {marginTop: 0}]}>
+            <AwesomeIcon name='globe' color={Colors.blue} size={24} />
+            <Text style={[mainStyles.title, { paddingLeft: 8 }]}>គោលដៅរបស់អ្នក</Text>
+          </View>
+          <View style={[mainStyles.subTitleBox, {height: 64}]}>
+            <Text style={ mainStyles.text }>{this.state.game.goalCareer}</Text>
+          </View>
+
+          <View style={mainStyles.blueTitleBox}>
+            <AwesomeIcon name='microphone' color={Colors.blue} size={24} />
+            <Text style={[mainStyles.title, { paddingLeft: 8 }]}>មូលហេតុរបស់អ្នក</Text>
+          </View>
+          <View style={mainStyles.subTitleBox}>
+            { this.state.game.reason &&
+              <View>
+                <Text>{this.state.game.reason}</Text>
+                <Divider style={{marginLeft: -20, marginRight: -20}}/>
+              </View>
+            }
+            { this.state.game.voiceRecord && this._renderVoiceRecord() }
+          </View>
+
         </View>
-
-        { !!this.state.game.voiceRecord && this._renderVoiceRecord()}
       </View>
     )
   }
@@ -262,28 +282,3 @@ export default class ContactScreen extends Component {
     )
   };
 }
-
-const styles = StyleSheet.create({
-  image: {
-    width: 70,
-    height: 70
-  },
-  schoolAddress: {
-    marginLeft: 8,
-    fontSize: FontSetting.sub_title
-  },
-  icon: {
-    height: 50,
-    lineHeight: 50
-  },
-  boxHeader: {
-    marginHorizontal: -16,
-    marginTop: -16,
-    paddingHorizontal: 16,
-    paddingVertical: 5,
-    backgroundColor: 'rgba(24, 118, 211, 0.2)',
-    color: Colors.blue,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
-  }
-})

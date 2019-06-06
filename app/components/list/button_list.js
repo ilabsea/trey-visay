@@ -34,7 +34,7 @@ class ButtonList extends React.Component {
             </View>
           }
           <Text style={mainStyles.title}>{this.props.title}</Text>
-          <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+          <AwesomeIcon name='angle-right' size={30} color='#bbb' />
         </TouchableOpacity>
         { this.props.hasLine && <Divider/> }
       </View>

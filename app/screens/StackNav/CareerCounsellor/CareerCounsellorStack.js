@@ -67,10 +67,7 @@ const CareerCounsellorStack = createStackNavigator(
     },
     ShowCareerCategoryScreen: { screen: ShowCareerCategoryScreen },
     CareerDetailScreen: {
-      screen: CareerDetailScreen,
-      navigationOptions: ({navigation}) => ({
-        header: null
-      })
+      screen: CareerDetailScreen
     },
     SubjectScreen: {
       screen: SubjectScreen,
@@ -194,11 +191,6 @@ const CareerCounsellorStack = createStackNavigator(
     }
   },
   {
-    navigationOptions: ({navigation}) => ({
-      headerTitleStyle: headerStyles.headerTitleStyle,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <BackButton navigation={navigation}/>
-    }),
     initialRouteName: 'CareerCounsellorScreen'
   }
 );

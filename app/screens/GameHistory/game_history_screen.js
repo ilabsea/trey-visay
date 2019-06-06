@@ -138,13 +138,13 @@ export default class GameHistoryScreen extends Component {
         <View style={{marginRight: 8 }}>
           { !this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._play() }>
-              <MaterialIcon name='play-circle-outline' size={60} color={Colors.blue}/>
+              <MaterialIcon name='pause-circle-filled' size={48} color={Colors.blue}/>
             </TouchableOpacity>
           }
 
           { this.state.isPlaying &&
             <TouchableOpacity onPress={() => this._stop()}>
-              <MaterialIcon name='pause-circle-outline' size={60} color={Colors.blue}/>
+              <MaterialIcon name='play-circle-filled' size={60} color={Colors.blue}/>
             </TouchableOpacity>
           }
         </View>

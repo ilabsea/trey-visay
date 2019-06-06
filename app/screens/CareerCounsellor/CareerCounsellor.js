@@ -69,7 +69,7 @@ export default class CareerCounsellor extends Component {
         <CardItem>
           <Body>
             <Button
-              style={[styles.button]}
+              style={styles.button}
               onPress={this._goToPersonalUnderstandingForm.bind(this)}>
 
               <Text style={styles.btnText}>ចាប់ផ្តើមថ្មី</Text>
@@ -77,7 +77,7 @@ export default class CareerCounsellor extends Component {
 
             { this.state.game && !this.state.game.isDone && !!this.state.game.personalUnderstandings.length &&
               <Button
-                style={[styles.button, { backgroundColor: '#1976d2', marginTop: 18}]}
+                style={[styles.button, { backgroundColor: Colors.blue, marginTop: 18}]}
                 onPress={this._handleGoingNextStep.bind(this)}>
 
                 <Text style={styles.btnText}>បន្តទៅវគ្គមុន</Text>
@@ -95,7 +95,7 @@ export default class CareerCounsellor extends Component {
     return (
       <Content padder style={{marginHorizontal: 8}}>
         { !!this.state.completedGames.length &&
-          <Text style={mainStyles.sectionText}>លទ្ធផលធ្វើតេស្ត</Text>
+          <Text style={[mainStyles.sectionText, {marginLeft: 0}]}>លទ្ធផលធ្វើតេស្ត</Text>
         }
 
         { this.state.completedGames.map((game, i) => {
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   button: {
-    borderRadius: 3,
+    borderRadius: 8,
     height: 48,
     alignItems: 'center',
     justifyContent: 'center',

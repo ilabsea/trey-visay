@@ -3,10 +3,9 @@ import {
   Text,
   View,
   Image,
+  ScrollView
 } from 'react-native';
-
-import ScrollableHeader from '../../components/scrollable_header';
-import { Container, Content, Button, Icon } from "native-base";
+import mainStyles from '../../assets/style_sheets/main/main';
 
 export default class DetailScreen extends Component {
   constructor(props){
@@ -21,51 +20,26 @@ export default class DetailScreen extends Component {
   }
 
   _renderContent = () => {
-    return (
-      <Container>
-        <Content padder>
-          <Text>{this.state.career.description || 'មិនទាន់មានទិន្នន័យ'}</Text>
-        </Content>
-      </Container>
-    )
-  }
-
-  _renderNavigation = () => {
-    return (
-      <Button transparent onPress={() => this.props.navigation.goBack()}>
-        <Icon name='arrow-back' style={{color: '#fff'}} />
-      </Button>
-    )
-  }
-
-  _renderForeground = () => {
     let imageHeight = 160;
-
     return (
-      <View style={{flexDirection: 'row'}}>
-        <View style={{flex: 1, justifyContent: 'flex-end'}}>
-          <Text style={{fontSize: 18, color: '#fff'}}>{this.state.title}</Text>
-        </View>
-
-        <View style={{marginRight: -20}}>
+      <View style={{margin: 20}}>
+        <View style={{flex: 1, alignItems: 'center'}}>
           <Image
             resizeMode="cover"
             style={{width: imageHeight, height: imageHeight}}
-            source={require('../../assets/images/careers/edu_hat.png')}/>
+            source={require('../../assets/images/careers/default.png')}/>
+            <Text style={mainStyles.sectionText}>{this.state.title}</Text>
         </View>
+        <Text>{this.state.career.description || 'មិនទាន់មានទិន្នន័យ'}</Text>
       </View>
-    );
+    )
   }
 
   render() {
     return (
-      <ScrollableHeader
-        renderContent={ this._renderContent }
-        renderNavigation={ this._renderNavigation }
-        renderForeground={ this._renderForeground }
-        title={this.state.title}
-        headerMaxHeight={200}
-      />
+      <ScrollView style={{flex: 1, backgroundColor: '#fff'}}>
+        { this._renderContent() }
+      </ScrollView>
     )
   }
 }
