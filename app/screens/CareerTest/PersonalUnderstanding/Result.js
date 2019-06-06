@@ -27,20 +27,6 @@ export default class Result extends Component{
     return (
       <View style={{padding: 20}}>
         <View style={styles.paragraph}>
-          { this.props.testCount < 2 &&
-            <Text style={{color: '#fff', fontSize: 15}}>
-              ពិន្ទុរបស់ប្អូននៅទាបជាង 50% ដូចនេះយើងតម្រូវឲ្យប្អូនត្រូវធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។
-            </Text>
-          }
-
-          { this.props.testCount > 1 &&
-            <Text style={{color: '#fff', fontSize: 15}}>
-              ពិន្ទុរបស់ប្អូននៅទាបជាង 50% តែយើងលើកទឹកចិត្តប្អូនឲ្យបន្តទៅវគ្គបន្ទាប់។
-            </Text>
-          }
-        </View>
-
-        <View style={styles.paragraph}>
           <Text style={{color: '#fff', fontSize: 15}}>
             ការជ្រើសរើសជំនាញនិង អាជីពមួយនាពេលអនាគត គឺមានសារៈសំខាន់ណាស់សម្រាប់បុគ្គលម្នាក់ៗ
             ដើម្បីទទួលបានចំណេះដឹង និងវិជ្ជាជីវៈគ្រប់គ្រាន់ និងឈានទៅប្រកួតប្រជែងទីផ្សារការងារនាពេលបច្ចុប្បន្ន។​
@@ -115,11 +101,9 @@ export default class Result extends Component{
   }
 
   _renderText(isPass, screenWidth) {
-    let text = isPass ? 'លើសពី 50%' : 'ទាបជាង 50%';
-
     return (
       <View style={{alignItems: 'center', marginTop: screenWidth/2-50}}>
-        <Text style={{color: '#fff', fontSize: 50, lineHeight: 100}}>{text}</Text>
+        <Text style={{color: '#fff', fontSize: 50, lineHeight: 100}}>50%</Text>
       </View>
     )
   }
@@ -130,7 +114,6 @@ export default class Result extends Component{
     }
 
     let isPass = this.props.score >= 12;
-    // let isPass = true;
     let imageUrl = isPass ? require('../../../assets/images/success.png') : require('../../../assets/images/fail.png')
     let colors = isPass ? ['rgb(53, 174, 235)', Colors.blue] : [rgb(255, 130, 97), rgb(255, 102, 98)]
     let {width} = Dimensions.get('window');
