@@ -1,19 +1,19 @@
 const HomeOptions = [
   {
-    title: 'ស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ',
-    url: 'PersonalityAssessmentStack',
-    background_color: 'rgb(254, 255, 94)',
-    source_image: require('../../assets/images/home/video.png'),
-    has_start_btn: true,
-    description: 'ការធ្វើតេស្តស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ'
-  },
-  {
     title: 'វាយតម្លៃមុខរបរ',
     url: 'CareerCounsellorStack',
     background_color: 'rgb(53, 174, 235)',
     source_image: require('../../assets/images/home/personal_test.png'),
     has_start_btn: true,
     description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក'
+  },
+  {
+    title: 'ស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ',
+    url: 'PersonalityAssessmentStack',
+    background_color: 'rgb(254, 255, 94)',
+    source_image: require('../../assets/images/home/video.png'),
+    has_start_btn: true,
+    description: 'ការធ្វើតេស្តស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ'
   },
   {
     title: 'គ្រឹះស្ថានសិក្សា',
@@ -30,7 +30,7 @@ const HomeOptions = [
     description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាច រៀនជំនាញវិជ្ជាជីវៈរយៈពេលខ្លី'
   },
   {
-    title: ' វីដេអូមុខរបរ',
+    title: 'វីដេអូមុខរបរ',
     url: 'VideoScreen',
     background_color: 'rgb(254, 191, 94)',
     source_image: require('../../assets/images/home/video.png'),

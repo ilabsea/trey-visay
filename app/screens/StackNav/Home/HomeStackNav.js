@@ -93,7 +93,12 @@ const HomeStackNav = createStackNavigator({
       header: null
     })
   },
-  VocationalStack: { screen: VocationalStack }
+  VocationalStack: {
+    screen: VocationalStack,
+    navigationOptions: ({navigation}) => ({
+      header: null
+    })
+  }
 }, {
   initialRouteName: 'Home'
 });

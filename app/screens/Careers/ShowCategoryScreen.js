@@ -46,7 +46,7 @@ export default class ShowCategoryScreen extends Component {
       return (
         <View key={index} style={{width: '50%', height: height, padding: 10}}>
           <TouchableOpacity onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career: career})}>
-            <View style={{backgroundColor: '#fff', height: '100%', borderRadius: 8}}>
+            <View style={{backgroundColor: '#fff', height: '100%', borderRadius: 8, overflow: 'hidden'}}>
               <Image
                 resizeMode="cover"
                 style={{width: '100%', height: '70%', borderTopLeftRadius: 8, borderTopRightRadius: 8}}

@@ -8,6 +8,8 @@ import {
 
 import ScrollableHeader from '../../components/scrollable_header';
 import { Content, Button, Icon } from 'native-base';
+import BackButton from '../../components/shared/back_button';
+import mainStyles from '../../assets/style_sheets/main/main';
 
 export default class AboutCareerCounsellor extends Component {
   _renderContent = () => {
@@ -17,13 +19,13 @@ export default class AboutCareerCounsellor extends Component {
           ធ្វើតេស្តវាយតម្លៃមុខរបរ​ និងអាជីព ដើម្បីដឹងពីចំណង់​ចូលចិត្ត​​ ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់ អ្នកនៅពេលអនាគត
         </Text>
         <View style={styles.rowWrapper}>
-          <View style={styles.imageWrapper}>
+          <View style={[styles.imageWrapper, mainStyles.boxShadow]}>
             <Image style={{width: 18, height: 24}} source={require('../../assets/images/career_tests/personality.png')} />
           </View>
 
           <Text>១. ស្វែងយល់អំពីខ្លួន</Text>
         </View>
-        <View style={styles.rowWrapper}>
+        <View style={[styles.rowWrapper, mainStyles.boxShadow]}>
           <View style={styles.imageWrapper}>
             <Image source={require('../../assets/images/career_tests/careers.png')} />
           </View>
@@ -35,9 +37,7 @@ export default class AboutCareerCounsellor extends Component {
 
   _renderNavigation = () => {
     return (
-      <Button transparent onPress={() => this.props.navigation.goBack()}>
-        <Icon name='arrow-back' style={{color: '#fff'}} />
-      </Button>
+      <BackButton navigation={this.props.navigation} />
     )
   }
 
@@ -45,6 +45,7 @@ export default class AboutCareerCounsellor extends Component {
     let title = 'ការធ្វើតេសវាយតម្លៃមុខរបរ​ និងអាជីព';
     return (
       <ScrollableHeader
+        style={{backgroundColor: '#fff'}}
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         title={title}

@@ -7,6 +7,7 @@ import {
 
 import ScrollableHeader from '../../components/scrollable_header';
 import { Content, Button, Icon, Card, CardItem, Body, Left, Thumbnail } from 'native-base';
+import BackButton from '../../components/shared/back_button';
 
 export default class About extends Component {
   _renderContent = () => {
@@ -54,9 +55,7 @@ export default class About extends Component {
 
   _renderNavigation = () => {
     return (
-      <Button transparent onPress={() => this.props.navigation.goBack()}>
-        <Icon name='arrow-back' style={{color: '#fff'}} />
-      </Button>
+      <BackButton navigation={this.props.navigation} />
     )
   }
 
@@ -64,6 +63,7 @@ export default class About extends Component {
     let title = 'អំពីការធ្វើតេស្តស្វែងយល់បុគ្គលិកលក្ខណៈ';
     return (
       <ScrollableHeader
+        style={{backgroundColor: '#fff'}}
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         title={title}

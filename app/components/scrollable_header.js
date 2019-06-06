@@ -146,6 +146,18 @@ class ScrollableHeader extends Component {
     });
   }
 
+  getNavigationTranslate() {
+    const { scrollY } = this.state;
+    let distance = this.getHeaderScrollDistance();
+    let z = Platform.OS === 'ios' ? -4 : -8
+
+    return scrollY.interpolate({
+      inputRange: [0, distance / 2, distance],
+      outputRange: [0, 0, z],
+      extrapolate: 'clamp',
+    });
+  }
+
   renderStatusBar() {
     return (
       <StatusBar
@@ -159,7 +171,7 @@ class ScrollableHeader extends Component {
   renderContent() {
     return (
       <Animated.ScrollView
-        style={styles.fill}
+        style={[styles.fill, this.props.style]}
         scrollEventThrottle={1}
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
@@ -269,7 +281,7 @@ class ScrollableHeader extends Component {
           styles.bar,
           {
             transform: [
-              { translateY: this.getTitleTranslate() },
+              { translateY: this.getNavigationTranslate() },
             ],
           },
         ]}
