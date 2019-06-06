@@ -57,11 +57,6 @@ const CareerCounsellorStack = createStackNavigator(
     PersonalUnderstandingFormScreen: {
       screen: PersonalUnderstandingForm,
       navigationOptions: ({navigation}) => ({
-        title: 'ស្វែងយល់អំពីខ្លួនឯង',
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <Provider store={store}>
-                        <SaveButton navigation={navigation}/>
-                      </Provider>,
         header: null
       })
     },
@@ -72,72 +67,48 @@ const CareerCounsellorStack = createStackNavigator(
     SubjectScreen: {
       screen: SubjectScreen,
       navigationOptions: ({navigation}) => ({
-        title: 'បំពេញមុខវិជ្ជា',
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>,
         header: null
       })
     },
     PersonalityScreen: {
       screen: PersonalityScreen,
       navigationOptions: ({navigation}) => ({
-        title: 'បំពេញបុគ្គលិកលក្ខណៈ',
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>,
         header: null
       })
     },
     PersonalityJobsScreen: {
       screen: PersonalityJobsScreen,
       navigationOptions: ({navigation}) => ({
-        title: `${navigation.getParam('title')}`,
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>,
         header: null
       })
     },
     SummaryScreen: {
       screen: SummaryScreen,
       navigationOptions: ({navigation}) => ({
-        title: 'ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល',
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>,
         header: null
       })
     },
     RecommendationScreen: {
       screen: RecommendationScreen,
       navigationOptions: ({navigation}) => ({
-        title: 'ការផ្តល់អនុសាសន៍',
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>,
         header: null
       })
     },
     GoalScreen: {
       screen: GoalScreen,
       navigationOptions: ({navigation}) => ({
-        title: 'ដាក់គោលដៅមួយ និងមូលហេតុ',
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>,
         header: null
       })
     },
     ContactScreen: {
       screen: ContactScreen,
       navigationOptions: ({navigation}) => ({
-        title: 'ព័ត៌មានសាលា និងទំនាក់ទំនង',
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation} text='រួចរាល់' icon='done'/>,
         header: null
       })
     },
     CareerCategoriesScreen: {
       screen: CareerCategoriesScreen,
       navigationOptions: ({navigation}) => ({
-        title: 'យល់ដឹងអំពីមុខរបរ',
-        headerLeft: <CloseButton navigation={navigation}/>,
-        headerRight: <NextButton navigation={navigation}/>,
         header: null
       })
     },
@@ -186,7 +157,7 @@ const CareerCounsellorStack = createStackNavigator(
     SchoolListScreen: {
       screen: SchoolListScreen,
       navigationOptions: ({
-        title: 'គ្រឺះស្ថានសិក្សា'
+        title: 'គ្រឹះស្ថានសិក្សា'
       })
     }
   },
