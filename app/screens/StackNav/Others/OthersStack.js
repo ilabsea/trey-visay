@@ -25,7 +25,7 @@ const OthersStack = createStackNavigator({
   ChangePassword: {
     screen: ChangePassword,
     navigationOptions: ({navigation}) => ({
-      title: 'ផ្លាស់ប្តូរលេខសម្ងាត់'
+      header: null
     }),
   },
   TermsCondition: {
@@ -37,5 +37,16 @@ const OthersStack = createStackNavigator({
 }, {
   initialRouteName: 'Others',
 });
+
+OthersStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible = true;
+  if (navigation.state.index > 0) {
+    tabBarVisible = false;
+  }
+
+  return {
+    tabBarVisible,
+  };
+};
 
 export default OthersStack;
