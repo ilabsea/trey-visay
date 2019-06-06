@@ -32,7 +32,7 @@ export default class Others extends Component {
   _logOut() {
     User.logout(() => {
       this.setState({user: false})
-      this.props.navigation.navigate('Home');
+      // this.props.navigation.navigate('Home');
     })
   }
 

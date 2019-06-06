@@ -15,8 +15,19 @@ import te from '../../data/translates/km';
 
 import ScrollableHeader from '../../components/scrollable_header';
 import { NavigationActions } from 'react-navigation';
+import Login from '../Account/login';
 
 export default class Profile extends Component {
+  constructor(props) {
+    super(props);
+
+    this.handleParamForLoginPage();
+  }
+
+  handleParamForLoginPage() {
+    this.props.navigation.setParams({from: 'ProfileScreen', disableNavigationBar: true});
+  }
+
   componentWillMount() {
     this.refreshState();
 
@@ -32,26 +43,11 @@ export default class Profile extends Component {
   }
 
   refreshState() {
-    this.setState({loaded: false});
     this.handleUser();
   }
 
   handleUser() {
-    let user = User.getCurrent();
-
-    if (!!user) {
-      return this.setState({loaded: true, user: user});
-    }
-
-    this.props.navigation.reset([
-      NavigationActions.navigate({
-        routeName: 'Login',
-        params: {
-          from: 'ProfileScreen',
-          disableNavigationBar: true
-        }
-      })
-    ]);
+    this.setState({user: User.getCurrent()});
   }
 
   _renderListItem(title, value, icon) {
@@ -151,17 +147,15 @@ export default class Profile extends Component {
   }
 
   render() {
-    let title = 'ប្រវត្តិរូបសង្ខេប';
-    let user = User.getCurrent();
-
-    if (!this.state.loaded) {
-      return (null)
+    if (!this.state.user) {
+      return ( <Login navigation={this.props.navigation} /> );
     }
+
+    let title = 'ប្រវត្តិរូបសង្ខេប';
 
     return (
       <ScrollableHeader
         renderContent={ this._renderContent }
-        renderNavigation={ () => {} }
         title={title}
         largeTitle={title}
       />
