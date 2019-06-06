@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { Platform } from 'react-native';
 import { createStackNavigator } from  'react-navigation';
 import { Provider } from 'react-redux';
 import store from '../../../redux/store';
@@ -162,6 +162,11 @@ const CareerCounsellorStack = createStackNavigator(
     }
   },
   {
+    navigationOptions: ({
+      headerStyle: {
+        marginTop: Platform.OS == 'android' ? 24: 0
+      }
+    }),
     initialRouteName: 'CareerCounsellorScreen'
   }
 );
