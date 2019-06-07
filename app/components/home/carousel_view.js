@@ -69,17 +69,12 @@ class CarouselView extends Component {
         </View>
         <View style={styles.textWrapper}>
           <Text style={styles.btnLabel}>{option.title}</Text>
-          { option.has_start_btn &&
-            <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-              <Text style={{width: wp('54%')}}>{option.description}</Text>
-              <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
-                <Text style={{color: '#fff'}}>ចាប់ផ្តេីម</Text>
-              </TouchableOpacity>
-            </View>
-          }
-
-          { !option.has_start_btn && <Text>{option.description}</Text> }
-
+          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
+            <Text style={{width: wp('54%')}}>{option.description}</Text>
+            <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
+              <Text style={{color: '#fff'}}>{option.button_text}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </TouchableOpacity>
     )
@@ -166,8 +161,7 @@ const styles = StyleSheet.create({
     width: wp('26%'),
     height: hp('8%'),
     alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center'
+    justifyContent: 'center'
   }
 });
 

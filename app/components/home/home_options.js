@@ -4,7 +4,7 @@ const HomeOptions = [
     url: 'CareerCounsellorStack',
     background_color: 'rgb(53, 174, 235)',
     source_image: require('../../assets/images/home/personal_test.png'),
-    has_start_btn: true,
+    button_text: 'ចាប់ផ្តេីម',
     description: 'ធ្វើតេស្តមុខរបរ ឬអាជីព ដោយផ្អែកលើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក'
   },
   {
@@ -12,7 +12,7 @@ const HomeOptions = [
     url: 'PersonalityAssessmentStack',
     background_color: 'rgb(254, 255, 94)',
     source_image: require('../../assets/images/home/video.png'),
-    has_start_btn: true,
+    button_text: 'ចាប់ផ្តេីម',
     description: 'ការធ្វើតេស្តស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ'
   },
   {
@@ -20,6 +20,7 @@ const HomeOptions = [
     url: 'SchoolStack',
     background_color: 'rgb(255, 222, 70)',
     source_image: require('../../assets/images/home/school.png'),
+    button_text: 'ពិសារ',
     description: 'អ្នកអាចមើលពត៌មានសាលា លេខទំនាក់ទំនង និង មុខវិជ្ជា ដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២'
   },
   {
@@ -27,6 +28,7 @@ const HomeOptions = [
     url: 'VocationalStack',
     background_color: 'rgb(236, 135, 192)',
     source_image: require('../../assets/images/home/vocational_job.png'),
+    button_text: 'ពិសារ',
     description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សាបរិញ្ញាប័ត្រ អ្នកអាច រៀនជំនាញវិជ្ជាជីវៈរយៈពេលខ្លី'
   },
   {
@@ -34,6 +36,7 @@ const HomeOptions = [
     url: 'VideoScreen',
     background_color: 'rgb(254, 191, 94)',
     source_image: require('../../assets/images/home/video.png'),
+    button_text: 'ពិសារ',
     description: 'យល់ដឹងអំពីមុខរបរ និងអាជីព តាមរយះវីដេអូ'
   },
 ]
