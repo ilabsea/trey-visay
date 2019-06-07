@@ -132,14 +132,12 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
     let title = 'ជម្រើសនៃការសិក្សាកម្រិតមធ្យមសិក្សាទុតិយភូមិ';
 
     return (
-      <Container>
-        <ScrollableHeader
-          renderContent={ this._renderContent }
-          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-          title={title}
-          renderForeground={() => <Text style={{color: '#fff', fontSize: 18}}>{title}</Text>}
-        />
-      </Container>
+      <ScrollableHeader
+        renderContent={ this._renderContent }
+        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        title={title}
+        largeTitle={title}
+      />
     )
   };
 }

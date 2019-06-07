@@ -168,7 +168,7 @@ export default class CareerCounsellor extends Component {
     return (
       <View style={{marginBottom: -4}}>
         <Text style={scrollHeaderStyles.largeTitle}>វាយតម្លៃមុខរបរនិងអាជីព</Text>
-        <Text style={{fontSize: 13, lineHeight: 24, color: '#fff'}}>ការធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព</Text>
+        <Text style={scrollHeaderStyles.subTitle}>ការធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព</Text>
       </View>
     )
   }

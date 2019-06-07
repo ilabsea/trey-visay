@@ -59,14 +59,12 @@ export default class PersonalityAssessmentSubjectTip extends Component {
     let title = `គន្លឹះពង្រឹងមុខវិជ្ជា${this.props.navigation.getParam('title')}`;
 
     return (
-      <Container>
-        <ScrollableHeader
-          renderContent={ this._renderContent }
-          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-          title={title}
-          largeTitle={title}
-        />
-      </Container>
+      <ScrollableHeader
+        renderContent={ this._renderContent }
+        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        title={title}
+        largeTitle={title}
+      />
     )
 
     return (

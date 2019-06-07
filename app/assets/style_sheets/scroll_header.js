@@ -68,5 +68,8 @@ export default StyleSheet.create({
     color: '#fff',
     fontSize: FontSetting.big_title,
     lineHeight: 48
+  },
+  subTitle: {
+    fontSize: 13, lineHeight: 24, color: '#fff'
   }
 });

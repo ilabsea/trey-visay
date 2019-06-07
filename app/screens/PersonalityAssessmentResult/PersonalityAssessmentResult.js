@@ -129,7 +129,7 @@ class PersonalityAssessmentResult extends Component {
     }
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
         <View style={{height: 220, paddingVertical: 10}}>
           <HorizontalBarChart
             style={{flex: 1}}
@@ -190,13 +190,17 @@ class PersonalityAssessmentResult extends Component {
           <Text>ផ្នែកវិទ្យាសាស្ត្រ</Text>
         </ListItem>
 
-        { categoryList.filter(category => category.group == 'science').map((category, index) => this._renderListItem(category, index)) }
+        <View style={{backgroundColor: '#fff'}}>
+          { categoryList.filter(category => category.group == 'science').map((category, index) => this._renderListItem(category, index)) }
+        </View>
 
         <ListItem itemDivider>
           <Text>ផ្នែកវិទ្យាសាស្ត្រសង្គម</Text>
         </ListItem>
 
-        { categoryList.filter(category => category.group == 'social').map((category, index) => this._renderListItem(category, index)) }
+        <View style={{backgroundColor: '#fff'}}>
+          { categoryList.filter(category => category.group == 'social').map((category, index) => this._renderListItem(category, index)) }
+        </View>
       </View>
     );
   }
@@ -211,20 +215,20 @@ class PersonalityAssessmentResult extends Component {
 
   _renderContent = () => {
     return (
-      <Content>
+      <View>
         <ListItem itemDivider>
           <Text>ជម្រើសរបស់អ្នក</Text>
         </ListItem>
 
         { this._renderChart() }
         { this._renderPersonalityGroups() }
-      </Content>
+      </View>
     )
   }
 
   render() {
     return (
-      <Container style={{flex: 1}}>
+      <View style={{flex: 1}}>
         <ScrollableHeader
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
@@ -239,7 +243,7 @@ class PersonalityAssessmentResult extends Component {
           onPressNo={() => this._onNo()}
         />
         <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext} />
-      </Container>
+      </View>
     )
   }
 }

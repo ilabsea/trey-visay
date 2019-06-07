@@ -47,7 +47,10 @@ export default class PersonalityAssessmentJobList extends Component {
     return (
       <Content>
         <ListItem itemDivider><Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរចាប់យកអាជីពការងារជា៖</Text></ListItem>
-        { doms }
+
+        <View style={{backgroundColor: '#fff'}}>
+          { doms }
+        </View>
       </Content>
     );
   }
@@ -55,14 +58,12 @@ export default class PersonalityAssessmentJobList extends Component {
   render() {
     let title = 'ជម្រើសអាជីពការងារសក្ដិសម';
     return (
-      <Container>
-        <ScrollableHeader
-          renderContent={ this._renderList }
-          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-          title={title}
-          largeTitle={title}
-        />
-      </Container>
+      <ScrollableHeader
+        renderContent={ this._renderList }
+        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        title={title}
+        largeTitle={title}
+      />
     )
   }
 }

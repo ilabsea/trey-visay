@@ -64,21 +64,23 @@ export default class PersonalityAssessmentHistory extends Component {
   }
 
   _renderPersonalityGroups() {
-
-
     return (
       <View>
         <ListItem itemDivider>
           <Text>ផ្នែកវិទ្យាសាស្ត្រ</Text>
         </ListItem>
 
-        { categoryList.filter(category => category.group == 'science').map((category, index) => this._renderListItem(category, index)) }
+        <View style={{backgroundColor: '#fff'}}>
+          { categoryList.filter(category => category.group == 'science').map((category, index) => this._renderListItem(category, index)) }
+        </View>
 
         <ListItem itemDivider>
           <Text>ផ្នែកវិទ្យាសាស្ត្រសង្គម</Text>
         </ListItem>
 
-        { categoryList.filter(category => category.group == 'social').map((category, index) => this._renderListItem(category, index)) }
+        <View style={{backgroundColor: '#fff'}}>
+          { categoryList.filter(category => category.group == 'social').map((category, index) => this._renderListItem(category, index)) }
+        </View>
       </View>
     );
   }
@@ -123,7 +125,7 @@ export default class PersonalityAssessmentHistory extends Component {
     };
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, backgroundColor: '#fff'}}>
         <View style={{height: 220, paddingVertical: 6}}>
           <HorizontalBarChart
             style={{flex: 1}}
@@ -144,10 +146,8 @@ export default class PersonalityAssessmentHistory extends Component {
 
   _renderContent = () => {
     return (
-      <Content>
-        <Content padder>
-          <Text>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
-        </Content>
+      <View>
+        <Text style={{padding: 16}}>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
 
         <ListItem itemDivider>
           <Text>ជម្រើសរបស់អ្នក</Text>
@@ -155,7 +155,7 @@ export default class PersonalityAssessmentHistory extends Component {
 
         { this._renderChart() }
         { this._renderPersonalityGroups() }
-      </Content>
+      </View>
     )
   }
 
@@ -167,14 +167,12 @@ export default class PersonalityAssessmentHistory extends Component {
 
   render () {
     return (
-      <Container>
-        <ScrollableHeader
-          renderContent={ this._renderContent }
-          renderNavigation={ this._renderNavigation }
-          largeTitle={'លទ្ធផលតេស្ត'}
-          title={'លទ្ធផលតេស្ត'}
-        />
-      </Container>
+      <ScrollableHeader
+        renderContent={ this._renderContent }
+        renderNavigation={ this._renderNavigation }
+        largeTitle={'លទ្ធផលតេស្ត'}
+        title={'លទ្ធផលតេស្ត'}
+      />
     )
   }
 }

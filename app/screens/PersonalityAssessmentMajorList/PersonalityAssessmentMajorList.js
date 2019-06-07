@@ -9,6 +9,7 @@ import majorList from '../../data/json/personality_major';
 
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
+import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 
 export default class PersonalityAssessmentMajorList extends Component {
   _onPressItem(major) {
@@ -41,25 +42,34 @@ export default class PersonalityAssessmentMajorList extends Component {
     });
 
     return (
-      <Content>
-        <ListItem itemDivider><Text>ជំនាញសិក្សានៅសាកលវិទ្យាល័យ</Text></ListItem>
-        <Text style={{paddingHorizontal: 16}}>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរជ្រើសយកការសិក្សាលើមុខជំនាញពាក់ព័ន្ធដូចជា៖</Text>
-        { doms }
-      </Content>
+      <View>
+        <Text style={{padding: 16}}>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរជ្រើសយកការសិក្សាលើមុខជំនាញពាក់ព័ន្ធដូចជា៖</Text>
+
+        <Content style={{backgroundColor: '#fff'}}>
+          { doms }
+        </Content>
+      </View>
     );
+  }
+
+  _renderForeground = () => {
+    return (
+      <View style={{marginBottom: -4}}>
+        <Text style={scrollHeaderStyles.largeTitle}>ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា</Text>
+        <Text style={scrollHeaderStyles.subTitle}>ជំនាញសិក្សានៅសាកលវិទ្យាល័យ</Text>
+      </View>
+    )
   }
 
   render() {
     let title = 'ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា';
     return (
-      <Container>
-        <ScrollableHeader
-          renderContent={ this._renderMajorList }
-          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-          title={title}
-          renderForeground={() => <Text style={{color: '#fff', fontSize: 20}}>{title}</Text>}
-        />
-      </Container>
+      <ScrollableHeader
+        renderContent={ this._renderMajorList }
+        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        title={title}
+        renderForeground={ this._renderForeground }
+      />
     )
   }
 }
