@@ -2,27 +2,22 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  ScrollView,
-  Platform,
-  TouchableOpacity,
   BackHandler,
 } from 'react-native';
 
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import FooterBar from '../../components/footer/FooterBar';
 import styles from '../../assets/style_sheets/profile_form';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
-import headerStyles from '../../assets/style_sheets/header';
 import CheckboxGroup from '../../components/checkbox_group';
 import personalities from '../../data/json/personality';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
 import { NavigationActions } from 'react-navigation';
-import { Container, Header, Content, Left, Body, Right, Icon, Title, Button } from 'native-base';
+import { Content, Left, Body, Right, Icon, Title, Button } from 'native-base';
 
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
+import ProgressStep from './ProgressStep';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -168,25 +163,6 @@ export default class PersonalityAssessmentRealistic extends Component {
     });
   }
 
-  _renderNumberIcon(num) {
-    let number = (this.state.index || 0) + 1;
-    let iconStyle = number == num ? {} : scrollHeaderStyles.inactiveIcon;
-
-    return (
-      <View style={scrollHeaderStyles.numberWrapper} key={num}>
-        <View style={[scrollHeaderStyles.numberIcon, iconStyle]}>
-          <Text style={scrollHeaderStyles.iconText}>{num}</Text>
-        </View>
-      </View>
-    )
-  }
-
-  _renderLine(key) {
-    return (
-      <View style={scrollHeaderStyles.line} key={key}></View>
-    )
-  }
-
   _renderContent = () => {
     return (
       <Content padder>
@@ -209,26 +185,6 @@ export default class PersonalityAssessmentRealistic extends Component {
     )
   }
 
-  _renderForeground = () => {
-    let arr = [1, 2, 3, 4, 5, 6];
-    let doms = [];
-
-    for(let i=0; i<arr.length; i++) {
-      doms.push(this._renderNumberIcon(i+1))
-
-      if (i != arr.length-1) {
-        let key = arr.length + i + 1;
-        doms.push(this._renderLine(key))
-      }
-    }
-
-    return (
-      <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center'}}>
-        { doms }
-      </View>
-    )
-  }
-
   render() {
     return (
       <View style={{flex: 1}}>
@@ -236,7 +192,7 @@ export default class PersonalityAssessmentRealistic extends Component {
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
           headerMaxHeight={160}
-          renderForeground={this._renderForeground }
+          renderForeground={ () => <ProgressStep step={this.state.index+1} /> }
         />
 
         <BackConfirmDialog
