@@ -138,7 +138,6 @@ export default class PersonalityAssessmentRealistic extends Component {
             checked={this.state.data}
             style={{
               icon: {
-                color: '#4caf50',
                 size: 30
               },
               container: {
