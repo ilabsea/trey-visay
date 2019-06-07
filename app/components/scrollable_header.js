@@ -11,11 +11,13 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 import * as Progress from 'react-native-progress';
+import { FontSetting } from '../assets/style_sheets/font_setting';
 
 const DEFAULT_HEADER_MAX_HEIGHT = 140;
 const DEFAULT_HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 64 : 74;
 const DEFAULT_HEADER_SCROLL_DISTANCE = DEFAULT_HEADER_MAX_HEIGHT - DEFAULT_HEADER_MIN_HEIGHT;
 const DEFAULT_HEADER_COLOR = '#1976d2';
+const NAVIGATION_BUTTON_WIDTH = Platform.OS === 'ios' ? 30 : 44;
 
 const styles = StyleSheet.create({
   fill: {
@@ -46,15 +48,18 @@ const styles = StyleSheet.create({
   bar: {
     backgroundColor: 'transparent',
     marginTop: Platform.OS === 'ios' ? 28 : 38,
-    // height: 32,
+    height: 40,
     position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
+    justifyContent: 'center'
   },
   title: {
+    fontSize: FontSetting.nav_title,
     color: 'white',
-    fontSize: 18
+    paddingHorizontal: 16,
+    textAlign: Platform.OS === 'ios' ? 'center' : 'left',
   },
   scrollViewContent: {
     marginTop: DEFAULT_HEADER_MAX_HEIGHT,
@@ -66,6 +71,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  largeTitle: {
+    fontSize: FontSetting.big_title,
+    color: '#fff',
+    lineHeight: 50
+  }
 });
 
 class ScrollableHeader extends Component {
@@ -190,8 +200,8 @@ class ScrollableHeader extends Component {
     if (!this.props.title) { return null }
 
     return (
-      <View style={{position: 'absolute', left: 56, right: 5, bottom: 4}}>
-        <Text style={{fontSize: 18, color: '#fff'}} numberOfLines={1}>{this.props.title}</Text>
+      <View style={{position: 'absolute', left: NAVIGATION_BUTTON_WIDTH, right: NAVIGATION_BUTTON_WIDTH, bottom: 2}}>
+        <Text numberOfLines={1} style={styles.title} numberOfLines={1}>{this.props.title}</Text>
       </View>
     )
   }
@@ -225,7 +235,7 @@ class ScrollableHeader extends Component {
         ]}
       >
         <View style={{position: 'absolute', left: 20, right: 0, bottom: 10}}>
-          <Text style={[{fontSize: 28, color: '#fff', lineHeight: 50}]}>{this.props.largeTitle}</Text>
+          <Text style={styles.largeTitle}>{this.props.largeTitle}</Text>
         </View>
       </Animated.View>
     )

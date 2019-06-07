@@ -22,6 +22,7 @@ import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
 import * as Progress from 'react-native-progress';
 import FooterBar from '../../../components/footer/FooterBar';
 import Result from './Result';
+import BackButton from '../../../components/shared/back_button';
 
 export default class PersonalUnderstandingForm extends Component {
   constructor(props) {
@@ -101,11 +102,7 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   _renderNavigation = () => {
-    return (
-      <Button transparent onPress={() => this._handleBack()}>
-        <Icon name='arrow-back' style={{color: '#fff'}} />
-      </Button>
-    )
+    return (<BackButton navigation={this.props.navigation}/>)
   }
 
   _renderForeground = () => {

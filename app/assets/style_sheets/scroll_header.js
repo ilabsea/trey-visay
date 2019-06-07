@@ -58,11 +58,15 @@ export default StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 18,
+    fontSize: FontSetting.title,
+  },
+  navTitle: {
+    color: '#fff',
+    fontSize: FontSetting.nav_title,
   },
   largeTitle: {
     color: '#fff',
-    fontSize: 28,
+    fontSize: FontSetting.big_title,
     lineHeight: 48
   }
 });

@@ -203,7 +203,6 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   btnText: {
-    fontWeight: 'bold',
     fontSize: FontSetting.button_text,
     color: '#fff',
   }

@@ -15,10 +15,11 @@ class BackButton extends React.Component {
   }
 
   render() {
-    let width = Platform.OS === 'ios' ? 30 : 40;
+    let width = Platform.OS === 'ios' ? 30 : 44;
+    let paddingHorizontal = Platform.OS === 'ios' ? 8 : 12
     let iconName = Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back';
     return <TouchableOpacity onPress={this.handleOnPress}
-                style={{marginHorizontal: 16, paddingRight: 20, width: width}}>
+                style={[{paddingHorizontal: paddingHorizontal, width: width}, this.props.style]}>
               <IonicIcon name={iconName} color='#fff' size={28} />
             </TouchableOpacity>;
   }
