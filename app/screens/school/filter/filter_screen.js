@@ -58,7 +58,8 @@ class FilterScreen extends Component {
   }
 
   setFilterValues(){
-    API.setSelectedMajor(this.state.selectedValue);
+    let selectedValue = this.state.selectedValue == null ? '' : this.state.selectedValue;
+    API.setSelectedMajor(selectedValue);
     this.props.navigation.state.params.refreshValue();
     this.props.navigation.goBack();
   }
