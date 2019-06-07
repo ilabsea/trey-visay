@@ -76,9 +76,13 @@ class Recommendation extends Component {
           <View>
             { currentGroup.concern_subjects.map((code, i) => {
               return (
-                <Text key={i} style={{marginLeft: 8}}>{ `\u2022 ${subjectTe[code]}` }
-                  <Text style={styles.boldText}> ({ gameSubject[code] }) </Text>
-                </Text>)
+                <View key={i} style={styles.wrapper}>
+                  <Text style={{marginLeft: 8}}>{ `\u2022 ${subjectTe[code]}` }</Text>
+                  <View style={styles.rightWrapper}>
+                    <Text style={styles.rightText}>{ gameSubject[code] }</Text>
+                  </View>
+
+                </View>)
             })}
           </View>
         </View>
@@ -188,6 +192,24 @@ const styles = StyleSheet.create({
   },
   paragraph: {
     marginTop: 16,
+  },
+  wrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: 10,
+    paddingLeft: 16,
+    justifyContent: 'space-between',
+  },
+  rightWrapper: {
+    backgroundColor: Colors.blue,
+    padding: 10,
+    paddingTop: 2,
+    paddingBottom: 2,
+    borderRadius: 8,
+  },
+  rightText: {
+    color: '#fff'
   }
 });
 
