@@ -49,11 +49,10 @@ class FilterProvinces extends Component {
 
   renderProvinces(province, i) {
     return (
-      <View>
+      <View key={i}>
         <TouchableOpacity
           style={mainStyles.btnList}
           onPress={()=> this.setSelectedProvince(province)}
-          key={i}
         >
           <Text style={mainStyles.title}>{province}</Text>
           { this.state.selectedProvince == province &&
@@ -70,13 +69,12 @@ class FilterProvinces extends Component {
     return(
 
       <Container>
-        <Content style={{ backgroundColor: 'rgb(239, 240, 244)' }}>
-          <ScrollView style={mainStyles.box}>
-            { provinces.map((province, i) => {
-              { return (this.renderProvinces(province, i))}
-            })}
-          </ScrollView>
+        <Content style={mainStyles.box}>
+          { provinces.map((province, i) => {
+            { return (this.renderProvinces(province, i))}
+          })}
         </Content>
+
         <Footer>
           <FooterBar text='យល់ព្រម' onPress={this.setFilterValue.bind(this)} />
         </Footer>

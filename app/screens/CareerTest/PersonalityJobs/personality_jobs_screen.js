@@ -106,7 +106,7 @@ export default class PersonalityJobsScreen extends Component {
     let checkboxes = this._formatDataForCheckbox(this.state.currentGroup.id);
 
     return (
-      <View style={[mainStyles.curveBox, {paddingLeft: 0}]}>
+      <View style={[mainStyles.curveBox, {paddingLeft: 0, backgroundColor: '#fff'}]}>
         <CheckboxGroup
           onSelect={(selected) => {this._handleChecked(selected)}}
           items={checkboxes}

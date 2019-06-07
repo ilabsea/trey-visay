@@ -70,17 +70,18 @@ export default class Result extends Component{
 
   _renderBtnActions(isPass) {
     let color = isPass ? Colors.blue : 'rgb(232, 92, 89)';
-    let button = !isPass && this.props.testCount > 1 ? {marginRight: 20} : {flex: 1}
+    let button = {flex: 1, marginVertical: 8}
 
     return (
-      <View style={{flexDirection: 'row', paddingVertical: 16, paddingHorizontal: 20}}>
+      <View style={{paddingVertical: 8, paddingHorizontal: 20}}>
         { !isPass &&
-          <TouchableOpacity onPress={() => {
+          <TouchableOpacity
+            onPress={() => {
               this.props.setModalVisible(false);
               this.props.callback();
             }} style={[styles.button, button]}
-            underlayColor="rgba(0, 128, 0, 0.2)"
-          >
+            underlayColor="rgba(0, 128, 0, 0.2)">
+
             <Text style={[styles.btnText, {color: color}]}>
               {this.props.testCount < 2 && 'សូម'}
               សាកល្បងធ្វើតេស្តម្តងទៀត
@@ -89,10 +90,13 @@ export default class Result extends Component{
         }
 
         { (this.props.testCount > 1 || isPass) &&
-          <TouchableOpacity onPress={() => {
-            this.props.navigation.navigate('CareerCategoriesScreen');
-            this.props.setModalVisible(false);
-          }} style={[styles.button, {flex: 1}]}>
+          <TouchableOpacity
+            onPress={() => {
+              this.props.navigation.navigate('CareerCategoriesScreen');
+              this.props.setModalVisible(false);
+            }}
+            style={[styles.button, button]}>
+
             <Text style={[styles.btnText, {color: Colors.blue}]}>ចូលទៅកាន់វគ្គបន្ត</Text>
           </TouchableOpacity>
         }
@@ -100,10 +104,10 @@ export default class Result extends Component{
     )
   }
 
-  _renderText(isPass, screenWidth) {
+  _renderText(screenWidth) {
     return (
-      <View style={{alignItems: 'center', marginTop: screenWidth/2-50}}>
-        <Text style={{color: '#fff', fontSize: 50, lineHeight: 100}}>50%</Text>
+      <View style={{alignItems: 'center', marginTop: screenWidth/2-40}}>
+        <Text style={{color: '#fff', fontSize: 60, lineHeight: 100}}>៥០%</Text>
       </View>
     )
   }
@@ -124,15 +128,14 @@ export default class Result extends Component{
         <ScrollView style={{flex: 1}}>
           <ImageBackground style={{width: width, height: width}} source={imageUrl}>
             <View style={{padding: 16}}>
-              { this._renderText(isPass, width) }
+              { this._renderText(width) }
             </View>
           </ImageBackground>
 
           { !isPass && this._renderFailTest() }
           { isPass && this._renderPassTest() }
+          { this._renderBtnActions(isPass) }
         </ScrollView>
-
-        { this._renderBtnActions(isPass) }
 
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </LinearGradient>

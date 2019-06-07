@@ -24,7 +24,6 @@ export default StyleSheet.create({
     borderRadius: 8,
   },
   btnText: {
-    fontWeight: 'bold',
     fontSize: 16,
   },
   overlay: {
