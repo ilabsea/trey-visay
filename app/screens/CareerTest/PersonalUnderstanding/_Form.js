@@ -34,14 +34,7 @@ function Form(props) {
 
   return (
     <View style={styles.scrollContainer}>
-      <View>
-        <Text style={{flex: 1}}>
-          ប្រសិនបើពិន្ទុសិស្សលើសពី ៥០% សិស្សមានសិទ្ធិបន្តបំពេញទំរង់រៀបចំផែនការមុខរបរ។
-          ករណីសិស្ស ទទួលបានពិន្ទុក្រោម ៥០% សិស្សត្រូវតម្រូវឲ្យធ្វើតេស្តឡើងវិញម្តងទៀតមុននឹងឈានទៅវគ្គបន្ទាប់។
-        </Text>
-
-        <Text style={styles.hintLable}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
-      </View>
+      <Text style={styles.hintLable}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
 
       <FormRadio
         questionKey={'areYouGoingToStudyTillGrade12'}/>
@@ -127,8 +120,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   hintLable: {
-    fontSize: 16,
-    color: 'rgba(0,0,0,0.54)',
     marginBottom: 8
   },
   formSubGroup3: {
