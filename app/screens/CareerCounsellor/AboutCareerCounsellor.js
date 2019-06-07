@@ -36,9 +36,7 @@ export default class AboutCareerCounsellor extends Component {
   }
 
   _renderNavigation = () => {
-    return (
-      <BackButton navigation={this.props.navigation} />
-    )
+    return ( <BackButton navigation={this.props.navigation} /> )
   }
 
   render() {
@@ -49,7 +47,7 @@ export default class AboutCareerCounsellor extends Component {
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         title={title}
-        renderForeground={() => <Text style={styles.largeTitle}>{title}</Text>}
+        largeTitle={title}
       />
     )
   }

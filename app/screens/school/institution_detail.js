@@ -128,7 +128,7 @@ export default class InstitutionDetail extends Component {
     }
 
     return (
-      <View style={styles.logoWrapper}>
+      <View style={[mainStyles.boxShadow, styles.logoWrapper]}>
         <Image source={schoolLogo} style={{width: 106, height: 106}} />
       </View>
     )
@@ -183,14 +183,6 @@ const styles = StyleSheet.create({
     height: 18
   },
   logoWrapper: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 1,
-    },
-    shadowOpacity: 0.18,
-    shadowRadius: 1.00,
-    elevation: 1,
     width: PROFILE_SIZE,
     height: PROFILE_SIZE,
     padding: 7,

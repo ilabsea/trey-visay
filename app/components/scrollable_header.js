@@ -235,7 +235,7 @@ class ScrollableHeader extends Component {
         ]}
       >
         <View style={{position: 'absolute', left: 20, right: 0, bottom: 10}}>
-          <Text style={styles.largeTitle}>{this.props.largeTitle}</Text>
+          <Text numberOfLines={1} style={styles.largeTitle}>{this.props.largeTitle}</Text>
         </View>
       </Animated.View>
     )

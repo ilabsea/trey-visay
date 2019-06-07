@@ -67,7 +67,7 @@ export default class About extends Component {
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         title={title}
-        renderForeground={() => <Text style={styles.largeTitle}>{title}</Text>}
+        largeTitle={title}
       />
     )
   }
