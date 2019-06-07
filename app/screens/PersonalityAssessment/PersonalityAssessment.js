@@ -14,12 +14,12 @@ import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import mainStyles from '../../assets/style_sheets/main/main';
 import { Colors } from '../../assets/style_sheets/main/colors';
-import { longDateFormat as dateFormat } from '../../utils/date';
 import { Content, Body, Icon, CardItem } from 'native-base';
 
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import ButtonList from '../../components/list/button_list';
+import TestListItem from '../../components/GameHistory/TestListItem';
 
 export default class PersonalityAssessment extends Component {
   constructor(props) {
@@ -112,20 +112,12 @@ export default class PersonalityAssessment extends Component {
 
   _renderListItem = (assessment, index, count) => {
     return (
-      <TouchableOpacity
+      <TestListItem
         key={index}
-        style={{flexDirection: 'row', borderRadius: 10, overflow: 'hidden', backgroundColor: '#fff', marginBottom: 10}}
-        onPress={() => this.props.navigation.navigate('AssessmentResultHistoryScreen', {num: (count - index), assessmentUuid: assessment.uuid})}>
-
-          <View style={styles.logo}>
-            <Text style={{color: '#fff', fontSize: 24}}>{count - index}</Text>
-          </View>
-
-          <View style={{flex: 1, paddingHorizontal: 16, paddingVertical: 10}}>
-            <Text>តេស្តលើកទី {count - index}</Text>
-            <Text note numberOfLines={1}>ធ្វើនៅ: {dateFormat(assessment.createdAt)}</Text>
-          </View>
-      </TouchableOpacity>
+        number={count - index}
+        createdAt={assessment.createdAt}
+        onPress={() => this.props.navigation.navigate('AssessmentResultHistoryScreen', {num: (count - index), assessmentUuid: assessment.uuid})}
+      />
     )
   }
 
@@ -174,13 +166,6 @@ export default class PersonalityAssessment extends Component {
 }
 
 const styles = StyleSheet.create({
-  logo: {
-    width: 80,
-    height: 99,
-    backgroundColor: Colors.blue,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   button: {
     borderRadius: 3,
     height: 48,
@@ -190,7 +175,6 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   btnText: {
-    fontWeight: 'bold',
     fontSize: FontSetting.button_text,
     color: '#fff',
   }

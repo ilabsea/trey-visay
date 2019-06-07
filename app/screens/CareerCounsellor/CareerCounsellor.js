@@ -14,13 +14,13 @@ import Button from '../../components/shared/button';
 import mainStyles from '../../assets/style_sheets/main/main';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
-import { longDateFormat as dateFomart } from '../../utils/date';
 
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 import { Content, Body, Right, Icon, CardItem } from 'native-base';
 import ButtonList from '../../components/list/button_list';
+import TestListItem from '../../components/GameHistory/TestListItem';
 
 export default class CareerCounsellor extends Component {
   componentWillMount() {
@@ -100,20 +100,12 @@ export default class CareerCounsellor extends Component {
 
         { this.state.completedGames.map((game, i) => {
           return (
-            <TouchableOpacity
+            <TestListItem
               key={i}
-              style={{flexDirection: 'row', borderRadius: 10, overflow: 'hidden', backgroundColor: '#fff', marginBottom: 10}}
-              onPress={() => this.props.navigation.navigate('GameHistoryScreen', {num: (count - i), gameUuid: game.uuid})}>
-
-                <View style={styles.logo}>
-                  <Text style={{color: '#fff', fontSize: 24}}>{count - i}</Text>
-                </View>
-
-                <View style={{flex: 1, paddingHorizontal: 16, paddingVertical: 10}}>
-                  <Text style={mainStyles.title}>តេស្តលើកទី {count - i}</Text>
-                  <Text style={mainStyles.subTitle}>ធ្វើនៅ: {dateFomart(game.createdAt)}</Text>
-                </View>
-            </TouchableOpacity>
+              number={count - i}
+              createdAt={game.createdAt}
+              onPress={() => this.props.navigation.navigate('GameHistoryScreen', {num: (count - i), gameUuid: game.uuid})}
+            />
           )
         })}
       </Content>
@@ -187,13 +179,6 @@ export default class CareerCounsellor extends Component {
 }
 
 const styles = StyleSheet.create({
-  logo: {
-    width: 80,
-    height: 99,
-    backgroundColor: Colors.blue,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
   button: {
     borderRadius: 8,
     height: 48,
