@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Container, Content, Footer } from 'native-base';
 
 import API from '../../../api/schools';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 
 import OneList from '../../../components/list/one_list';
 import GridList from '../../../components/list/grid_list';
@@ -13,6 +14,7 @@ import universities from '../../../data/json/universities.json';
 import FooterBar from '../../../components/footer/FooterBar';
 
 class FilterScreen extends Component {
+  _keyExtractor = (item, index) => index.toString();
 
   constructor(props){
     super(props);
@@ -20,7 +22,8 @@ class FilterScreen extends Component {
       majors: [],
       selectedValue: '',
       selectedProvince: '',
-      category: props.navigation.state.params.category
+      category: props.navigation.state.params.category,
+      size: 10
     }
   }
 
@@ -74,7 +77,7 @@ class FilterScreen extends Component {
 
   renderButton(major,i){
     let active = this.state.selectedValue == major;
-    let activeIconBg = active ? { backgroundColor: Colors.blue }: { backgroundColor:  'rgb(155, 155, 155)' };
+    let activeIconBg = active ? { backgroundColor: Colors.blue }: { backgroundColor: Colors.gray };
     let activeText = active ? { color: Colors.blue }: '';
     return(
       <TouchableOpacity
@@ -93,9 +96,31 @@ class FilterScreen extends Component {
     )
   }
 
+  handleLoadMore = () => {
+    size = this.state.size + 6;
+    this.setState({size: size})
+  }
+
+  renderMajors(){
+    let majors = ['គ្រប់ជំនាញ'].concat(this.state.majors);
+    return(
+      <View style={[ mainStyles.grid, { justifyContent: 'flex-start', margin: 0 }]}>
+        <FlatList
+          data={ majors.slice(0, this.state.size) }
+          renderItem={ ({item, i}) => this.renderButton(item, i) }
+          refreshing={false}
+          keyExtractor={this._keyExtractor}
+          onEndReached={this.handleLoadMore.bind(this)}
+          onEndReachedThreshold={0.4}
+          horizontal={false}
+          numColumns={2}
+        />
+      </View>
+    )
+  }
+
   render(){
     let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
-    let majors = ['គ្រប់ជំនាញ'].concat(this.state.majors);
     return (
       <Container>
         <Content style={{ backgroundColor: 'rgb(239, 240, 244)' }}>
@@ -113,11 +138,7 @@ class FilterScreen extends Component {
               ជ្រេីសរេីសជំនាញ
             </Text>
 
-            <View style={[ mainStyles.grid, { justifyContent: 'flex-start', margin: 0 }]}>
-              { majors.map((major , i) => {
-                { return (this.renderButton(major,i))}
-              })}
-            </View>
+            { this.renderMajors() }
 
           </ScrollView>
         </Content>
