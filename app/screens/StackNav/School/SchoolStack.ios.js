@@ -2,7 +2,8 @@ import React from 'react';
 import {
   TouchableOpacity
 } from 'react-native';
-import { Header, Left, Title, Body, Right, Button, Icon, Text } from 'native-base';
+import { View, Header, Left, Title, Body, Right, Button, Icon, Text } from 'native-base';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { createStackNavigator } from 'react-navigation';
 import BackButton from '../../../components/shared/back_button';
@@ -59,8 +60,8 @@ const SchoolStack = createStackNavigator(
               <Title>គ្រឹះស្ថានសិក្សា</Title>
             </Body>
             <Right>
-              <Button transparent>
-                <Text>Reset</Text>
+              <Button transparent onPress={() => navigation.state.params.handleReset()} >
+                <Text style={{width: wp('30%')}}>កំណត់ឡេីងវិញ</Text>
               </Button>
             </Right>
           </Header>

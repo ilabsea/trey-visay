@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
+
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Container, Content, Footer } from 'native-base';
 
@@ -29,6 +30,17 @@ class FilterScreen extends Component {
 
   componentWillMount(){
     this.refreshProvinceValue();
+  }
+
+  componentDidMount() {
+    this.props.navigation.setParams({
+      handleReset: this.resetValues
+    });
+  }
+
+  resetValues = () => {
+    API.clearSelectedValues();
+    this.setState({ selectedValue: '', selectedProvince: '' })
   }
 
   getMajors(){
