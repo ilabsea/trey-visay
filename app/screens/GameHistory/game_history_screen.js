@@ -132,23 +132,24 @@ export default class GameHistoryScreen extends Component {
     this.setState({isPlaying: false});
   }
 
-  _renderVoiceRecord() {
-    return (
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <View style={{marginRight: 8 }}>
-          { !this.state.isPlaying &&
-            <TouchableOpacity onPress={() => this._play() }>
-              <MaterialIcon name='pause-circle-filled' size={48} color={Colors.blue}/>
-            </TouchableOpacity>
-          }
+  _handlePlaying() {
+    if (this.state.isPlaying) {
+      return this._stop();
+    }
+    this._play();
+  }
 
-          { this.state.isPlaying &&
-            <TouchableOpacity onPress={() => this._stop()}>
-              <MaterialIcon name='play-circle-filled' size={60} color={Colors.blue}/>
-            </TouchableOpacity>
-          }
-        </View>
-        <View style={{flexDirection: 'column'}}>
+  _renderVoiceRecord() {
+    let iconName = this.state.isPlaying ? 'pause-circle-filled' : 'play-circle-filled';
+    let iconColor = this.state.isPlaying ? '#e94b35' : 'rgb(24,118,211)';
+
+    return (
+      <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: -4}}>
+        <TouchableOpacity onPress={() => this._handlePlaying() }>
+          <MaterialIcon style={{height: 52, lineHeight: 52}} name={iconName} size={50} color={iconColor}/>
+        </TouchableOpacity>
+
+        <View style={{flexDirection: 'column', marginLeft: 8}}>
           <Text style={mainStyles.text}>លេង</Text>
           <Text style={mainStyles.subTitle}>{this.state.time}</Text>
         </View>
@@ -159,31 +160,28 @@ export default class GameHistoryScreen extends Component {
   _renderGoal() {
     return (
       <View>
-        <Text style={mainStyles.sectionText}>ការដាក់គោលដៅ និងមូលហេតុ</Text>
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>គោលដៅរបស់អ្នក</Text>
+        </View>
+        <View style={[mainStyles.subTitleBox, {height: 64}]}>
+          <Text style={ mainStyles.text }>{this.state.game.goalCareer}</Text>
+        </View>
 
-        <View>
-          <View style={[mainStyles.blueTitleBox, {marginTop: 0}]}>
-            <AwesomeIcon name='globe' color={Colors.blue} size={24} />
-            <Text style={[mainStyles.title, { paddingLeft: 8 }]}>គោលដៅរបស់អ្នក</Text>
-          </View>
-          <View style={[mainStyles.subTitleBox, {height: 64}]}>
-            <Text style={ mainStyles.text }>{this.state.game.goalCareer}</Text>
-          </View>
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='microphone' color={Colors.blue} size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>មូលហេតុរបស់អ្នក</Text>
+        </View>
 
-          <View style={mainStyles.blueTitleBox}>
-            <AwesomeIcon name='microphone' color={Colors.blue} size={24} />
-            <Text style={[mainStyles.title, { paddingLeft: 8 }]}>មូលហេតុរបស់អ្នក</Text>
-          </View>
-          <View style={mainStyles.subTitleBox}>
-            { this.state.game.reason &&
-              <View>
-                <Text>{this.state.game.reason}</Text>
-                <Divider style={{marginLeft: -20, marginRight: -20}}/>
-              </View>
-            }
-            { this.state.game.voiceRecord && this._renderVoiceRecord() }
-          </View>
+        <View style={mainStyles.subTitleBox}>
+          { this.state.game.reason &&
+            <View>
+              <Text>{this.state.game.reason}</Text>
+              <Divider style={{marginVertical: 12, marginHorizontal: -16}}/>
+            </View>
+          }
 
+          { this.state.game.voiceRecord && this._renderVoiceRecord() }
         </View>
       </View>
     )
@@ -205,6 +203,7 @@ export default class GameHistoryScreen extends Component {
 
   _renderTest1Trigger() {
     let icon = {color: Colors.blue, src: require('../../assets/icons/result/white-user.png')};
+
     return (
       <View>
         <Text style={mainStyles.sectionText}>ធ្វើតេស្តដំណាក់កាលទី 1</Text>

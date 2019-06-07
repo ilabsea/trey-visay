@@ -22,14 +22,14 @@ const Card = (props) => {
           }
 
           return (
-            <View>
-              <View key={i} style={styles.wrapper}>
+            <View key={i}>
+              <View style={styles.wrapper}>
                 <Text>{group.label}</Text>
                 <View style={styles.rightWrapper}>
                   <Text style={styles.rightText}>{props.gameSubject[group.stateName]}</Text>
                 </View>
-
               </View>
+
               <Divider style={{marginLeft: 16}}/>
             </View>
           )
@@ -57,8 +57,10 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     borderRadius: 8,
+    width: 65
   },
   rightText: {
+    textAlign: 'center',
     color: '#fff'
   }
 });

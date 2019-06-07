@@ -32,12 +32,12 @@ export default class StudentPersonalityReport extends Component {
         <View style={[mainStyles.curveBox, { marginTop: 0 }]}>
           { this.state.game.characteristicEntries.map((entry, i) => {
             return (
-              <View>
-                <View key={i} style={{flexDirection: 'row', alignItems: 'center', marginVertical: 10}}>
+              <View key={i}>
+                <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 10}}>
                   <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' style={{marginRight: 8}} />
                   <Text>{entry.value}</Text>
-
                 </View>
+
                 <Divider style={{marginLeft: 2}}/>
               </View>
             )

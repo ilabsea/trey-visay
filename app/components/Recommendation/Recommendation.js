@@ -207,8 +207,10 @@ const styles = StyleSheet.create({
     paddingTop: 2,
     paddingBottom: 2,
     borderRadius: 8,
+    width: 65
   },
   rightText: {
+    textAlign: 'center',
     color: '#fff'
   }
 });

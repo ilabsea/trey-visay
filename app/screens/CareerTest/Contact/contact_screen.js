@@ -184,7 +184,7 @@ export default class ContactScreen extends Component {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: -4}}>
         <TouchableOpacity onPress={() => this._handlePlaying() }>
-          <MaterialIcon style={{height: 62, lineHeight: 62}} name={iconName} size={60} color={iconColor}/>
+          <MaterialIcon style={{height: 52, lineHeight: 52}} name={iconName} size={50} color={iconColor}/>
         </TouchableOpacity>
 
         <View style={{flexDirection: 'column', marginLeft: 8}}>
