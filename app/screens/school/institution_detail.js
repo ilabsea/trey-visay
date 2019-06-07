@@ -51,7 +51,7 @@ export default class InstitutionDetail extends Component {
 
   renderItem(item, i){
     return(
-      <TouchableOpacity
+      <View
         style={styles.btn}
         key={i}>
         <View style={styles.iconWrapper}>
@@ -62,7 +62,7 @@ export default class InstitutionDetail extends Component {
           />
         </View>
         <Text style={{ flex: 1 , paddingRight: 16}}>{item}</Text>
-      </TouchableOpacity>
+      </View>
     )
   }
 
