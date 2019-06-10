@@ -7,7 +7,9 @@ import {
 import SchoolListView from '../../components/schools/school_list';
 
 export default class SchoolListScreen extends Component {
-  componentWillMount() {
+  constructor(props) {
+    super(props);
+
     this.state = {
       schools: this.props.navigation.state.params.schools
     }

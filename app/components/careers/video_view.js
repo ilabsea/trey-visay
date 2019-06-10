@@ -10,9 +10,6 @@ import { Thumbnail } from 'react-native-thumbnail-video';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 
 export default class VideoView extends Component  {
-  constructor(props){
-    super(props);
-  }
   render(){
     let { width } = Dimensions.get('window');
     let imageWidth = width-80;

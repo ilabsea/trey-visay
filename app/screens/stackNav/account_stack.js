@@ -7,6 +7,7 @@ import Login from '../Account/login';
 import HomeScreen from '../home/home';
 import CareerCounsellorStack from './CareerCounsellor/CareerCounsellorStack';
 import PersonalityAssessmentStack from './Assessment/PersonalityAssessmentStack';
+import TermsCondition from '../TermsCondition/TermsCondition';
 
 const AccountStack = createStackNavigator(
   {
@@ -39,6 +40,12 @@ const AccountStack = createStackNavigator(
       navigationOptions: ({ navigation }) => ({
         header: null
       })
+    },
+    TermsCondition: {
+      screen: TermsCondition,
+      navigationOptions: ({navigation}) => ({
+        title: 'Terms & Condition'
+      }),
     }
   },
   {

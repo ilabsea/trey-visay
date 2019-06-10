@@ -4,6 +4,7 @@ import {
   Alert,
   Image,
   Text,
+  TouchableOpacity,
 } from 'react-native';
 
 // Utils
@@ -135,9 +136,17 @@ export default class Login extends Component {
     }
 
     return (
-      <Text style={styles.agreementTerm}>
-        By signing up you agree with Trey Visay Terms of Service and Privacy Policy
-      </Text>
+      <View style={[styles.note,{alignItems: 'center'}]}>
+        <Text style={styles.agreementTerm}>
+          By signing up you agree with Trey Visay
+        </Text>
+
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('TermsCondition')} style={{flexDirection: 'row'}}>
+          <Text style={[styles.agreementTerm, {fontWeight: 'bold'}]}>Terms of Service</Text>
+          <Text style={[styles.agreementTerm]}> and</Text>
+          <Text style={[styles.agreementTerm, {fontWeight: 'bold'}]}> Privacy Policy</Text>
+        </TouchableOpacity>
+      </View>
     )
   }
 

@@ -21,11 +21,12 @@ export default StyleSheet.create({
     marginTop: 18
   },
   agreementTerm: {
-    marginTop: 24,
     fontSize: 12,
-    textAlign: 'center',
-    paddingHorizontal: 30,
     lineHeight: 16,
     color: 'rgb(111, 123, 135)'
+  },
+  note: {
+    marginTop: 24,
+    paddingHorizontal: 30,
   }
 })

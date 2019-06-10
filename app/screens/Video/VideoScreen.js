@@ -4,12 +4,10 @@ import {
   Text,
   Button,
   StyleSheet,
-  Dimensions,
   NetInfo,
   Linking,
   ActivityIndicator,
   FlatList,
-  RefreshControl,
   Platform
 } from 'react-native';
 

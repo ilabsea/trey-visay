@@ -32,7 +32,7 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
           key={index}
           icon>
           <Left>
-            <AwesomeIcon name='check-circle' size={24} color='#4caf50' />
+            <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' />
           </Left>
           <Body>
             <Text>{entry.name_km}</Text>
