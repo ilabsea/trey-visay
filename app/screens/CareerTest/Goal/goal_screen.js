@@ -153,7 +153,7 @@ export default class GoalScreen extends Component {
           </Text>
 
           <TextInput
-            style={[{textAlignVertical: 'top', height: 198, backgroundColor: 'rgb(239, 239, 239)', borderRadius: 8}]}
+            style={[{textAlignVertical: 'top', height: 198, backgroundColor: 'rgb(239, 239, 239)', borderRadius: 8, padding: 16}]}
             onChangeText={(text) => this.setState({reasonText: text})}
             value={this.state.reasonText}
             placeholder='សរសេរចំលើយរបស់អ្នក'

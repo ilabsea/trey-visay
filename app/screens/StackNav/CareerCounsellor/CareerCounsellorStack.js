@@ -165,7 +165,8 @@ const CareerCounsellorStack = createStackNavigator(
     navigationOptions: ({
       headerStyle: {
         marginTop: Platform.OS == 'android' ? 24: 0
-      }
+      },
+      headerBackTitle: null
     }),
     initialRouteName: 'CareerCounsellorScreen'
   }
