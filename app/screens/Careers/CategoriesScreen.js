@@ -32,7 +32,7 @@ export default class CategoriesScreen extends Component {
   componentWillMount() {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
-    this.setState({game : game});
+    this.setState({ game : game });
     this.props.navigation.setParams({
       _handleBack: this._handleBack.bind(this),
       goNext: this._goNext.bind(this)
@@ -86,10 +86,10 @@ export default class CategoriesScreen extends Component {
   }
 
   _renderCategory(category, i) {
-    let data = category.careers.slice(0, 5);
+    let data = category.careers;
 
     return (
-      <View key={i} style={[mainStyles.carouselBox, {backgroundColor: '#fff', marginTop: 14}]}>
+      <View key={i} style={[mainStyles.carouselBox, { backgroundColor: '#fff', marginTop: 14 }]}>
         <ButtonList hasLine={false} title={category.career_title}
           onPress={() => {
             this.props.navigation.navigate('ShowCareerCategoryScreen', {careerId: category.id})
