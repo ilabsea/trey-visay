@@ -82,6 +82,7 @@ export default class PersonalityAssessment extends Component {
       realm.delete(uncompletedAssessments);
       realm.create('PersonalityAssessment', this._buildData());
 
+      this.setState({isContinued: false});
       this.props.navigation.navigate('RealisticScreen');
     });
   }
