@@ -5,6 +5,7 @@ import {
 import ButtonList from '../../components/list/button_list';
 import User from '../../utils/user';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import ScrollableHeader from '../../components/scrollable_header';
 
 export default class Others extends Component {
   constructor(props){
@@ -36,7 +37,7 @@ export default class Others extends Component {
     })
   }
 
-  render() {
+  renderContent = () => {
     return (
       <View>
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
@@ -73,5 +74,15 @@ export default class Others extends Component {
         }
       </View>
     );
+  }
+
+  render(){
+    return(
+      <ScrollableHeader
+        renderContent={ this.renderContent }
+        title={'ផ្សេងៗ'}
+        largeTitle={'ផ្សេងៗ'}
+      />
+    )
   }
 }

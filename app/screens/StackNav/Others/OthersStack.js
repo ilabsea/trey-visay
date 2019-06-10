@@ -13,7 +13,7 @@ const OthersStack = createStackNavigator({
   Others: {
     screen: Others,
     navigationOptions: ({navigation}) => ({
-      title: 'ផ្សេងៗ'
+      header: null
     }),
   },
   About: {

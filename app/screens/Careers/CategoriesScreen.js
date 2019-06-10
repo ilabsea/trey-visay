@@ -89,7 +89,7 @@ export default class CategoriesScreen extends Component {
     let data = category.careers;
 
     return (
-      <View key={i} style={[mainStyles.carouselBox, { backgroundColor: '#fff', marginTop: 14 }]}>
+      <View key={i} style={[mainStyles.carouselBox, { backgroundColor: '#fff' }]}>
         <ButtonList hasLine={false} title={category.career_title}
           onPress={() => {
             this.props.navigation.navigate('ShowCareerCategoryScreen', {careerId: category.id})
@@ -103,7 +103,7 @@ export default class CategoriesScreen extends Component {
 
   _renderContent = () => {
     return (
-      <View>
+      <View style={{marginTop: 20}}>
         { careerList.slice(0, 3).map((category, i) => {
           { return (this._renderCategory(category, i))}
         })}

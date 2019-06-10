@@ -15,7 +15,7 @@ export default class DetailScreen extends Component {
 
     this.state = {
       career: career,
-      title: `អំពី${career.name}`
+      title: career.name
     }
   }
 
