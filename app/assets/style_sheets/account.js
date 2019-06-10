@@ -4,7 +4,8 @@ export default StyleSheet.create({
   tabTitleWrapper: {
     flexDirection: 'row',
     height: 54,
-    alignItems: 'center'
+    alignItems: 'center',
+    backgroundColor: 'rgba(155, 155, 155, 0.11)'
   },
   tabtitleText: {
     fontSize: 17,

@@ -224,13 +224,11 @@ export default class Login extends Component {
       <View>
         { this._renderTabTitle() }
 
-        <Container>
-          <Content padder>
-            { this._renderForm() }
-            { this._renderSubmitButton() }
-            { this._renderAgreementTerm() }
-          </Content>
-        </Container>
+        <View>
+          { this._renderForm() }
+          { this._renderSubmitButton() }
+          { this._renderAgreementTerm() }
+        </View>
       </View>
     )
   }
@@ -238,6 +236,7 @@ export default class Login extends Component {
   render() {
     return (
       <ScrollableHeader
+        style={{backgroundColor: '#fff'}}
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         renderForeground={ this._renderForeground }
