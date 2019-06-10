@@ -4,7 +4,7 @@ PODS:
     - Charts/Core (= 3.2.2)
   - Charts/Core (3.2.2)
   - DoubleConversion (1.1.5)
-  - Folly (2016.10.31.00):
+  - Folly (2018.10.22.00):
     - boost-for-react-native
     - DoubleConversion
     - glog
@@ -14,47 +14,55 @@ PODS:
   - Picker/Core (4.3.7):
     - React
   - QBImagePickerController (3.4.0)
-  - React (0.57.4):
-    - React/Core (= 0.57.4)
-  - React/Core (0.57.4):
-    - yoga (= 0.57.4.React)
-  - React/CxxBridge (0.57.4):
-    - Folly (= 2016.10.31.00)
+  - React (0.59.9):
+    - React/Core (= 0.59.9)
+  - React/Core (0.59.9):
+    - yoga (= 0.59.9.React)
+  - React/CxxBridge (0.59.9):
+    - Folly (= 2018.10.22.00)
     - React/Core
     - React/cxxreact
-  - React/cxxreact (0.57.4):
+    - React/jsiexecutor
+  - React/cxxreact (0.59.9):
     - boost-for-react-native (= 1.63.0)
-    - Folly (= 2016.10.31.00)
-    - React/jschelpers
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
     - React/jsinspector
-  - React/fishhook (0.57.4)
-  - React/jschelpers (0.57.4):
-    - Folly (= 2016.10.31.00)
-    - React/PrivateDatabase
-  - React/jsinspector (0.57.4)
-  - React/PrivateDatabase (0.57.4)
-  - React/RCTActionSheet (0.57.4):
+  - React/fishhook (0.59.9)
+  - React/jsi (0.59.9):
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+  - React/jsiexecutor (0.59.9):
+    - DoubleConversion
+    - Folly (= 2018.10.22.00)
+    - glog
+    - React/cxxreact
+    - React/jsi
+  - React/jsinspector (0.59.9)
+  - React/RCTActionSheet (0.59.9):
     - React/Core
-  - React/RCTAnimation (0.57.4):
+  - React/RCTAnimation (0.59.9):
     - React/Core
-  - React/RCTBlob (0.57.4):
+  - React/RCTBlob (0.59.9):
     - React/Core
-  - React/RCTGeolocation (0.57.4):
+  - React/RCTGeolocation (0.59.9):
     - React/Core
-  - React/RCTImage (0.57.4):
+  - React/RCTImage (0.59.9):
     - React/Core
     - React/RCTNetwork
-  - React/RCTLinkingIOS (0.57.4):
+  - React/RCTLinkingIOS (0.59.9):
     - React/Core
-  - React/RCTNetwork (0.57.4):
+  - React/RCTNetwork (0.59.9):
     - React/Core
-  - React/RCTSettings (0.57.4):
+  - React/RCTSettings (0.59.9):
     - React/Core
-  - React/RCTText (0.57.4):
+  - React/RCTText (0.59.9):
     - React/Core
-  - React/RCTVibration (0.57.4):
+  - React/RCTVibration (0.59.9):
     - React/Core
-  - React/RCTWebSocket (0.57.4):
+  - React/RCTWebSocket (0.59.9):
     - React/Core
     - React/fishhook
     - React/RCTBlob
@@ -66,7 +74,7 @@ PODS:
     - RSKImageCropper
   - RSKImageCropper (2.2.1)
   - SwiftyJSON (4.0.0)
-  - yoga (0.57.4.React)
+  - yoga (0.59.9.React)
 
 DEPENDENCIES:
   - Charts (= 3.2.2)
@@ -117,16 +125,16 @@ SPEC CHECKSUMS:
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   Charts: f69cf0518b6d1d62608ca504248f1bbe0b6ae77e
   DoubleConversion: e22e0762848812a87afd67ffda3998d9ef29170c
-  Folly: c89ac2d5c6ab169cd7397ef27485c44f35f742c7
+  Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: 1de0bb937dccdc981596d3b5825ebfb765017ded
   Picker: 67a2566d9ff6b141d505d88b9177f905aaa5f1a6
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
-  React: 1fe0eb13d90b625d94c3b117c274dcfd2e760e11
+  React: 1d605e098d69bdf08960787f3446f0a9dc2e2ccf
   RNBackgroundFetch: 8c4f77f83c398c659bce82af2f0a885079417b9e
   RNImageCropPicker: 32ca4b9fef4e1b7b85ba69494242122948117e06
   RSKImageCropper: 98296ad26b41753f796b6898d015509598f13d97
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
-  yoga: b1ce48b6cf950b98deae82838f5173ea7cf89e85
+  yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
 PODFILE CHECKSUM: 3e06158ea28a53ff19be54afbde220019a1e23e0
 
