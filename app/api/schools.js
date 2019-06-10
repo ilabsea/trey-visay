@@ -59,7 +59,7 @@ export default class API {
         const records = list.slice(offset, endPoint);
 
         resolve({ pagination, records, provinces });
-      }, random(100, 500))
+      }, 10)
     })
   }
 
