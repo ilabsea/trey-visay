@@ -34,7 +34,10 @@ const VocationalStack = createStackNavigator(
       })
     },
     InstitutionDetail: {
-      screen: InstitutionDetail
+      screen: InstitutionDetail,
+      navigationOptions: ({navigation}) => ({
+        header: null
+      })
     },
     Description: {
       screen: Description,
