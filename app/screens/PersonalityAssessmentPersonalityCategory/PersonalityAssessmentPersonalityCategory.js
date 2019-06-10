@@ -5,8 +5,6 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
 import majorList from '../../data/json/personality_major';
-import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
 
 export default class PersonalityAssessmentPersonalityCategory extends Component {
   constructor(props) {
@@ -41,7 +39,10 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     return (
       <View>
-        <Text style={styles.sectionHeader}>បុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
+        <ListItem itemDivider style={styles.header}>
+          <Text>ចម្លើយបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
+        </ListItem>
+
         <View style={{backgroundColor: '#fff'}}>
           {doms}
         </View>
@@ -62,8 +63,10 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     return (
       <View>
-        <Text style={styles.sectionHeader}>មនុស្សបែប{this.props.navigation.getParam('title')}</Text>
-        <View style={{backgroundColor: '#fff', padding: 16, marginHorizontal: 16, borderRadius: 8}}>{doms}</View>
+        <ListItem itemDivider style={styles.header}>
+          <Text>មនុស្សបែប{this.props.navigation.getParam('title')}</Text>
+        </ListItem>
+        <View style={{backgroundColor: '#fff', padding: 16}}>{doms}</View>
       </View>
     );
   }
@@ -98,21 +101,18 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     return (
       <View>
-        <Text style={styles.sectionHeader}>ព័ត៌មានបន្ថែម</Text>
+        <ListItem itemDivider style={styles.header}>
+          <Text>ព័ត៌មានបន្ថែម</Text>
+        </ListItem>
+
         <View style={{backgroundColor: '#fff'}}>{ doms }</View>
       </View>
     );
   }
 
-  _renderNavigation = () => {
-    return (
-      <BackButton navigation={this.props.navigation}/>
-    )
-  }
-
   _renderContent = () => {
     return (
-      <Content>
+      <Content style={{padding: 16, paddingTop: 0}}>
         { this._renderList() }
         { this._renderDescription() }
         { this._renderButtonList() }
@@ -130,8 +130,10 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 }
 
 const styles = StyleSheet.create({
-  sectionHeader: {
-    padding: 16,
-    paddingBottom: 8
-  }
-});
+  header: {
+    backgroundColor: 'rgba(24, 118, 211, 0.2)',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+    marginTop: 16
+  },
+})

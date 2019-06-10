@@ -4,8 +4,6 @@ import { View, Text, ScrollView } from 'react-native';
 import { Container, Content, ListItem, Body, Card, CardItem, Right, Icon } from 'native-base';
 import listStyles from '../../assets/style_sheets/list';
 import te from '../../data/translates/km';
-import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
 
 export default class PersonalityAssessmentJobDetail extends Component {
   _renderDescription = () => {
@@ -17,21 +15,20 @@ export default class PersonalityAssessmentJobDetail extends Component {
 
     return (
       <Content padder>
-      <Card>
-        <CardItem header bordered>
-          <Text>{job.short_description}</Text>
-        </CardItem>
+        <Card>
+          <CardItem header bordered>
+            <Text>{job.short_description}</Text>
+          </CardItem>
 
-        <CardItem>
-          <Body>
-            { doms }
-          </Body>
-        </CardItem>
-      </Card>
+          <CardItem>
+            <Body>
+              { doms }
+            </Body>
+          </CardItem>
+        </Card>
       </Content>
     );
   }
-
 
   render() {
     return (

@@ -3,13 +3,8 @@ import React, { Component } from 'react';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
-import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
-import styles from '../../assets/style_sheets/list';
+import { Content, ListItem, Left, Body, Icon, Right, Card, CardItem } from 'native-base';
 import majorList from '../../data/json/personality_major';
-
-import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
-import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 
 export default class PersonalityAssessmentMajorList extends Component {
   _onPressItem(major) {
@@ -26,9 +21,10 @@ export default class PersonalityAssessmentMajorList extends Component {
 
     let doms = arr.map((major, index) => {
       return (
-        <ListItem
+        <CardItem
           key={index}
           button
+          bordered
           onPress={() => this._onPressItem(major)}
           >
           <Body>
@@ -37,27 +33,24 @@ export default class PersonalityAssessmentMajorList extends Component {
           <Right>
             { !!major.basic_knowledge && <AwesomeIcon name='angle-right' size={24} color='#bbb' /> }
           </Right>
-        </ListItem>
+        </CardItem>
       )
     });
 
     return (
-      <View>
-        <Text style={{padding: 16}}>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរជ្រើសយកការសិក្សាលើមុខជំនាញពាក់ព័ន្ធដូចជា៖</Text>
+      <Content padder>
+        <Card>
+          <CardItem>
+            <Body>
+              <Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរជ្រើសយកការសិក្សាលើមុខជំនាញពាក់ព័ន្ធដូចជា៖</Text>
+            </Body>
+          </CardItem>
+        </Card>
 
-        <Content style={{backgroundColor: '#fff'}}>
+        <Card>
           { doms }
-        </Content>
-      </View>
-    );
-  }
-
-  _renderForeground = () => {
-    return (
-      <View style={{marginBottom: -4}}>
-        <Text style={scrollHeaderStyles.largeTitle}>ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា</Text>
-        <Text style={scrollHeaderStyles.subTitle}>ជំនាញសិក្សានៅសាកលវិទ្យាល័យ</Text>
-      </View>
+        </Card>
+      </Content>
     )
   }
 
@@ -66,16 +59,6 @@ export default class PersonalityAssessmentMajorList extends Component {
       <ScrollView>
         { this._renderMajorList() }
       </ScrollView>
-    )
-
-    let title = 'ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា';
-    return (
-      <ScrollableHeader
-        renderContent={ this._renderMajorList }
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-        title={title}
-        renderForeground={ this._renderForeground }
-      />
     )
   }
 }

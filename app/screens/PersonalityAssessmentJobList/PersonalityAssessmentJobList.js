@@ -2,14 +2,10 @@ import React, { Component } from 'react';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
-import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
-import styles from '../../assets/style_sheets/list';
+import { View, Text, ScrollView } from 'react-native';
+import { Content, ListItem, Left, Body, Icon, Right, Card, CardItem } from 'native-base';
 import majorList from '../../data/json/personality_major';
 import characteristicList from '../../data/json/characteristic_jobs';
-
-import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
 
 export default class PersonalityAssessmentJobList extends Component {
   _onPressListItem(job) {
@@ -29,8 +25,9 @@ export default class PersonalityAssessmentJobList extends Component {
 
     let doms = arr.map((job, index) => {
       return (
-        <ListItem
+        <CardItem
           key={index}
+          bordered
           button
           onPress={() => this._onPressListItem(job)}
           >
@@ -40,17 +37,23 @@ export default class PersonalityAssessmentJobList extends Component {
           <Right>
             { job.short_description && <AwesomeIcon name='angle-right' size={24} color='#bbb' /> }
           </Right>
-        </ListItem>
+        </CardItem>
       )
     });
 
     return (
-      <Content>
-        <ListItem itemDivider><Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរចាប់យកអាជីពការងារជា៖</Text></ListItem>
+      <Content padder>
+        <Card>
+          <CardItem>
+            <Body>
+              <Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរចាប់យកអាជីពការងារជា៖</Text>
+            </Body>
+          </CardItem>
+        </Card>
 
-        <View style={{backgroundColor: '#fff'}}>
+        <Card>
           { doms }
-        </View>
+        </Card>
       </Content>
     );
   }

@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 
 import { View, Text, ScrollView } from 'react-native';
 import { Container, Content, ListItem, Body, Card, CardItem } from 'native-base';
-import listStyles from '../../assets/style_sheets/list';
 import uuidv4 from '../../utils/uuidv4';
-
-import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
 
 export default class MajorDetail extends Component {
   _buildListWithTitle(title, items) {
