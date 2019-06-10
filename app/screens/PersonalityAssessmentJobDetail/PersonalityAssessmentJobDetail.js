@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { Container, Content, ListItem, Body, Card, CardItem, Right, Icon } from 'native-base';
 import listStyles from '../../assets/style_sheets/list';
 import te from '../../data/translates/km';
@@ -34,14 +34,10 @@ export default class PersonalityAssessmentJobDetail extends Component {
 
 
   render() {
-    let title = 'ទំព័រលម្អិតពីអាជីព';
     return (
-      <ScrollableHeader
-        renderContent={ this._renderDescription }
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-        title={title}
-        largeTitle={title}
-      />
+      <ScrollView>
+        { this._renderDescription() }
+      </ScrollView>
     )
   }
 }

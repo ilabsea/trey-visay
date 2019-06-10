@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
 import styles from '../../assets/style_sheets/list';
 import majorList from '../../data/json/personality_major';
@@ -62,6 +62,12 @@ export default class PersonalityAssessmentMajorList extends Component {
   }
 
   render() {
+    return (
+      <ScrollView>
+        { this._renderMajorList() }
+      </ScrollView>
+    )
+
     let title = 'ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា';
     return (
       <ScrollableHeader

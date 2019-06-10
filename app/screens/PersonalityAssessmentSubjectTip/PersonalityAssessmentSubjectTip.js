@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { Container, Content, ListItem, Body, Card, CardItem } from 'native-base';
 import subjectList from '../../data/json/subjects/subject_tips';
 import subjectTe from '../../data/translates/subject';
@@ -56,33 +56,10 @@ export default class PersonalityAssessmentSubjectTip extends Component {
   }
 
   render() {
-    let title = `គន្លឹះពង្រឹងមុខវិជ្ជា${this.props.navigation.getParam('title')}`;
-
-    return (
-      <ScrollableHeader
-        renderContent={ this._renderContent }
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-        title={title}
-        largeTitle={title}
-      />
+    return(
+      <ScrollView>
+        { this._renderContent() }
+      </ScrollView>
     )
-
-    return (
-      <Container>
-        <Content padder>
-          <Card>
-            <CardItem header bordered>
-              <Text>គន្លឹះសម្រាប់{ subjectTe[this.state.subjectCode] }</Text>
-            </CardItem>
-
-            <CardItem bordered>
-              <Body>
-                {this._renderTip()}
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
-    );
   }
 }

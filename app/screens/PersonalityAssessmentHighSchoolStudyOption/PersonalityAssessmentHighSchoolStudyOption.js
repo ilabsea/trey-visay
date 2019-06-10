@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text
+  Text,
+  ScrollView
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -129,15 +130,10 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
   }
 
   render() {
-    let title = 'ជម្រើសនៃការសិក្សាកម្រិតមធ្យមសិក្សាទុតិយភូមិ';
-
     return (
-      <ScrollableHeader
-        renderContent={ this._renderContent }
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-        title={title}
-        largeTitle={title}
-      />
+      <ScrollView>
+        { this._renderContent() }
+      </ScrollView>
     )
   };
 }

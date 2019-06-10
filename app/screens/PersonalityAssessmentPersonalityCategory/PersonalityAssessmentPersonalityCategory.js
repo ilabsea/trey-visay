@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
-import styles from '../../assets/style_sheets/list';
 import majorList from '../../data/json/personality_major';
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
@@ -22,14 +21,13 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
   _renderList() {
     let entries = this.props.navigation.getParam('entries');
 
-    if (!entries.length) {
-      return (null);
-    }
+    if (!entries.length) { return (null); }
 
     let doms = entries.map((entry, index) => {
       return (
         <ListItem
           key={index}
+          style={{backgroundColor: '#fff'}}
           icon>
           <Left>
             <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' />
@@ -41,9 +39,14 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
       )
     });
 
-    doms.unshift(<ListItem itemDivider key={'header'}><Text>បុគ្គលិកលក្ខណៈរបស់អ្នក</Text></ListItem>)
-
-    return doms;
+    return (
+      <View>
+        <Text style={styles.sectionHeader}>បុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
+        <View style={{backgroundColor: '#fff'}}>
+          {doms}
+        </View>
+      </View>
+    );
   }
 
   _renderDescription() {
@@ -53,18 +56,14 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     let doms = this.state.category.description.split(';').map((text, index) => {
       return (
-        <ListItem key={index}>
-          <Body>
-              <Text>{text}</Text>
-          </Body>
-        </ListItem>
+        <Text key={index}>{text}</Text>
       );
     })
 
     return (
       <View>
-        <ListItem itemDivider><Text>មនុស្សបែប{this.props.navigation.getParam('title')}</Text></ListItem>
-        {doms}
+        <Text style={styles.sectionHeader}>មនុស្សបែប{this.props.navigation.getParam('title')}</Text>
+        <View style={{backgroundColor: '#fff', padding: 16, marginHorizontal: 16, borderRadius: 8}}>{doms}</View>
       </View>
     );
   }
@@ -99,8 +98,8 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     return (
       <View>
-        <ListItem itemDivider><Text>ព័ត៌មានបន្ថែម</Text></ListItem>
-        { doms }
+        <Text style={styles.sectionHeader}>ព័ត៌មានបន្ថែម</Text>
+        <View style={{backgroundColor: '#fff'}}>{ doms }</View>
       </View>
     );
   }
@@ -122,17 +121,17 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
   }
 
   render() {
-    let title = `លទ្ធផលតេស្តបែប${this.props.navigation.getParam('title')}`
-
     return (
-      <Container style={{flex: 1}}>
-        <ScrollableHeader
-          renderContent={ this._renderContent }
-          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-          largeTitle={title}
-          title={title}
-        />
-      </Container>
+      <ScrollView>
+        { this._renderContent() }
+      </ScrollView>
     )
   }
 }
+
+const styles = StyleSheet.create({
+  sectionHeader: {
+    padding: 16,
+    paddingBottom: 8
+  }
+});

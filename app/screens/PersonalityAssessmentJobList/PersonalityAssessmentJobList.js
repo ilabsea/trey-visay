@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
 import styles from '../../assets/style_sheets/list';
 import majorList from '../../data/json/personality_major';
@@ -56,14 +56,10 @@ export default class PersonalityAssessmentJobList extends Component {
   }
 
   render() {
-    let title = 'ជម្រើសអាជីពការងារសក្ដិសម';
     return (
-      <ScrollableHeader
-        renderContent={ this._renderList }
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-        title={title}
-        largeTitle={title}
-      />
+      <ScrollView>
+        { this._renderList() }
+      </ScrollView>
     )
   }
 }

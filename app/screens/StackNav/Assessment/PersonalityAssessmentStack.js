@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import { Platform } from 'react-native';
 import { createStackNavigator } from  'react-navigation';
 
 import headerStyles from '../../../assets/style_sheets/header';
@@ -105,64 +106,57 @@ const AssessmentStack = createStackNavigator(
       screen: PersonalityAssessmentResultHistory,
       navigationOptions: ({navigation}) => ({
         title: 'លទ្ធផលតេស្ត',
-        header: null
       })
     },
     PersonalityCategoryScreen: {
       screen: PersonalityAssessmentPersonalityCategory,
       navigationOptions: ({navigation}) => ({
         title: `លទ្ធផលតេស្តបែប${navigation.getParam('title')}`,
-        header: null
       })
     },
     HighSchoolStudyOptionScreen: {
       screen: PersonalityAssessmentHighSchoolStudyOption,
       navigationOptions: ({navigation}) => ({
         title: `ជម្រើសនៃការសិក្សាកម្រិតមធ្យមសិក្សាទុតិយភូមិ`,
-        header: null
       })
     },
     MajorListScreen: {
       screen: PersonalityAssessmentMajorList,
       navigationOptions: ({navigation}) => ({
         title: `ជម្រើសនៃការសិក្សាកម្រិតឧត្តមសិក្សា`,
-        header: null
       })
     },
     MajorDetailScreen: {
       screen: PersonalityAssessmentMajorDetail,
       navigationOptions: ({navigation}) => ({
         title: `ការសិក្សាជំនាញ${navigation.getParam('title')}`,
-        header: null
       })
     },
     PersonalityAssessmentJobListScreen: {
       screen: PersonalityAssessmentJobList,
       navigationOptions: ({navigation}) => ({
         title: `ជម្រើសអាជីពការងារសក្ដិសម`,
-        header: null
       })
     },
     PersonalityAssessmentJobDetailScreen: {
       screen: PersonalityAssessmentJobDetail,
       navigationOptions: ({navigation}) => ({
         title: `ទំព័រលម្អិតពីអាជីព`,
-        header: null
       })
     },
     PersonalityAssessmentSubjectTipScreen: {
       screen: PersonalityAssessmentSubjectTip,
       navigationOptions: ({navigation}) => ({
         title: `គន្លឹះពង្រឹងមុខវិជ្ជា${navigation.getParam('title')}`,
-        header: null
       })
     },
   },
   {
-    navigationOptions: ({navigation}) => ({
-      headerTitleStyle: headerStyles.headerTitleStyle,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <BackButton navigation={navigation}/>
+    navigationOptions: ({
+      headerStyle: {
+        marginTop: Platform.OS == 'android' ? 24: 0
+      },
+      headerBackTitle: null
     }),
     initialRouteName: 'PersonalityAssessmentScreen'
   }

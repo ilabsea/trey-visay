@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
 import {
-  View,
   BackHandler,
-  processColor,
+  View,
   Text,
-  TouchableOpacity
 } from 'react-native';
 
-import { Container, Header, Content, ListItem, Left, Body, Right, Button, Icon, Title} from 'native-base';
+import { ListItem, Left, Body, Right, Button, Icon} from 'native-base';
 
 import FooterBar from '../../components/footer/FooterBar';
 import { NavigationActions } from 'react-navigation';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
-import {HorizontalBarChart} from 'react-native-charts-wrapper';
 import realm from '../../db/schema';
 import User from '../../utils/user';
-import personalityList from '../../data/json/personality';
-import categoryList from '../../data/json/personality_category';
 import Sidekiq from '../../utils/models/sidekiq';
 import ScrollableHeader from '../../components/scrollable_header';
+import Result from './Result';
 
-class PersonalityAssessmentResult extends Component {
+export default class PersonalityAssessmentResult extends Component {
   constructor(props) {
     super(props);
 
@@ -89,122 +85,6 @@ class PersonalityAssessmentResult extends Component {
     };
   }
 
-  _renderChart() {
-    let arr = categoryList.map(category => {return {y: this.state.assessment[category.name_en].length}});
-    let option = {
-      legend: {
-        enabled: true,
-        textSize: 14,
-        form: 'SQUARE',
-        formSize: 14,
-        xEntrySpace: 10,
-        yEntrySpace: 5,
-        formToTextSpace: 5,
-        wordWrapEnabled: true,
-        maxSizePercent: 0.5
-      },
-      data: {
-        dataSets: [{
-          values: arr,
-          label: 'បុគ្គលិកលក្ខណៈ',
-          config: {
-            color: processColor('teal'),
-            barShadowColor: processColor('lightgrey'),
-            highlightAlpha: 90,
-            highlightColor: processColor('red'),
-          }
-        }],
-        config: {
-          barWidth: 0.7,
-        }
-      },
-      xAxis: {
-        valueFormatter: categoryList.map(x => x.name_km),
-        granularityEnabled: true,
-        granularity : 1,
-        position: 'BOTTOM',
-        labelCount: 6,
-      },
-      yAxis: {left:{axisMinimum: 0}}
-    }
-
-    return (
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
-        <View style={{height: 220, paddingVertical: 10}}>
-          <HorizontalBarChart
-            style={{flex: 1}}
-            data={option.data}
-            xAxis={option.xAxis}
-            animation={{durationX: 1000}}
-            legend={option.legend}
-            gridBackgroundColor={processColor('#ffffff')}
-            visibleRange={{x: { min: 6, max: 6 }}}
-            drawBarShadow={false}
-            drawValueAboveBar={true}
-            drawHighlightArrow={true}
-          />
-        </View>
-      </View>
-    );
-  }
-
-  _handleButtonClick(category) {
-    let codes = this.state.assessment[category.name_en].map(x => x.value);
-    let personalities = personalityList.filter(x => codes.includes(x.code));
-
-    this.props.navigation.navigate('PersonalityCategoryScreen', {
-      title: category.name_km,
-      entries: personalities,
-      category: category,
-      assessment: this.state.assessment
-    });
-  }
-
-  _renderListItem(category, index) {
-    return (
-      <ListItem
-        key={index}
-        button={true}
-        icon
-        onPress={() => this._handleButtonClick(category)}>
-        <Left>
-          <Button style={{ backgroundColor: "#1976d2" }}>
-            <Icon active name="bulb" />
-          </Button>
-        </Left>
-        <Body>
-          <Text>{category.name_km}</Text>
-        </Body>
-        <Right>
-          <Text>{this.state.assessment[category.name_en].length}</Text>
-          <Icon name="ios-arrow-forward" />
-        </Right>
-      </ListItem>
-    );
-  }
-
-  _renderPersonalityGroups() {
-    return (
-      <View>
-        <ListItem itemDivider>
-          <Text>ផ្នែកវិទ្យាសាស្ត្រ</Text>
-        </ListItem>
-
-        <View style={{backgroundColor: '#fff'}}>
-          { categoryList.filter(category => category.group == 'science').map((category, index) => this._renderListItem(category, index)) }
-        </View>
-
-        <ListItem itemDivider>
-          <Text>ផ្នែកវិទ្យាសាស្ត្រសង្គម</Text>
-        </ListItem>
-
-        <View style={{backgroundColor: '#fff'}}>
-          { categoryList.filter(category => category.group == 'social').map((category, index) => this._renderListItem(category, index)) }
-        </View>
-      </View>
-    );
-  }
-
   _renderNavigation = () => {
     return (
       <Button transparent onPress={() => this._handleBack()}>
@@ -215,14 +95,10 @@ class PersonalityAssessmentResult extends Component {
 
   _renderContent = () => {
     return (
-      <View>
-        <ListItem itemDivider>
-          <Text>ជម្រើសរបស់អ្នក</Text>
-        </ListItem>
-
-        { this._renderChart() }
-        { this._renderPersonalityGroups() }
-      </View>
+      <Result
+        assessment={this.state.assessment}
+        navigation={this.props.navigation}
+      />
     )
   }
 
@@ -247,5 +123,3 @@ class PersonalityAssessmentResult extends Component {
     )
   }
 }
-
-export default PersonalityAssessmentResult;

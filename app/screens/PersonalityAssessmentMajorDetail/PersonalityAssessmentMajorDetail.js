@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { Container, Content, ListItem, Body, Card, CardItem } from 'native-base';
 import listStyles from '../../assets/style_sheets/list';
 import uuidv4 from '../../utils/uuidv4';
@@ -55,14 +55,10 @@ export default class MajorDetail extends Component {
   }
 
   render() {
-    let title = `ការសិក្សាជំនាញ${this.props.navigation.getParam('title')}`;
     return (
-      <ScrollableHeader
-        renderContent={ this._renderContent }
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-        title={title}
-        largeTitle={title}
-      />
+      <ScrollView>
+        { this._renderContent() }
+      </ScrollView>
     )
   }
 }
