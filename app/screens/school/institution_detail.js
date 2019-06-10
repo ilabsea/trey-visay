@@ -163,10 +163,10 @@ const styles = StyleSheet.create({
     height: hp('10%'),
     backgroundColor: 'white',
     borderBottomColor: 'rgb(200, 199, 204)',
-    borderRightColor: 'rgb(200, 199, 204)',
+    borderLeftColor: 'rgb(200, 199, 204)',
     alignItems: 'center',
     borderBottomWidth: 0.5,
-    borderRightWidth: 0.5,
+    borderLeftWidth: 0.5,
   },
   iconWrapper:{
     width: 32,
