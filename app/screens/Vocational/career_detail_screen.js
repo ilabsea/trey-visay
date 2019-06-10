@@ -66,7 +66,7 @@ export default class ShowCategoryScreen extends Component {
     )
   }
 
-  onOpenUrl(url) {
+  _onOpenUrl(url) {
     Linking.canOpenURL(url).then((supported) => {
       if (!supported) {
         return;
