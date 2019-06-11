@@ -13,6 +13,7 @@
     ]
   },
   "dependencies": {
+    "@react-native-community/async-storage": "^1.4.2",
     "apisauce": "^1.0.0",
     "base-64": "^0.1.0",
     "native-base": "^2.12.1",

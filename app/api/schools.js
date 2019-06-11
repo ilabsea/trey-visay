@@ -1,8 +1,6 @@
 // totalCount is totalEntries
 // pageCount is total items in the current page
-import {
-  AsyncStorage
-} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 import { random, min, times } from 'lodash';
 import universities from '../data/json/universities';
 import util from '../utils/math';

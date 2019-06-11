@@ -68,6 +68,8 @@ PODS:
     - React/RCTBlob
   - RNBackgroundFetch (2.5.4):
     - React
+  - RNCAsyncStorage (1.4.2):
+    - React
   - RNImageCropPicker (0.21.3):
     - QBImagePickerController
     - React/Core
@@ -93,6 +95,7 @@ DEPENDENCIES:
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - RNBackgroundFetch (from `../node_modules/react-native-background-fetch`)
+  - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - SwiftyJSON (= 4.0.0)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
@@ -116,6 +119,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native"
   RNBackgroundFetch:
     :path: "../node_modules/react-native-background-fetch"
+  RNCAsyncStorage:
+    :path: "../node_modules/@react-native-community/async-storage"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   yoga:
@@ -131,11 +136,12 @@ SPEC CHECKSUMS:
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: 1d605e098d69bdf08960787f3446f0a9dc2e2ccf
   RNBackgroundFetch: 8c4f77f83c398c659bce82af2f0a885079417b9e
+  RNCAsyncStorage: 6ae5aba8a41bfe0a9f21885ec91faf23ca3fe7ee
   RNImageCropPicker: 32ca4b9fef4e1b7b85ba69494242122948117e06
   RSKImageCropper: 98296ad26b41753f796b6898d015509598f13d97
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-PODFILE CHECKSUM: 3e06158ea28a53ff19be54afbde220019a1e23e0
+PODFILE CHECKSUM: 153935dc54a707b461ddbeb90da9d1050a4e9282
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.5.2

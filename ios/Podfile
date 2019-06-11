@@ -25,6 +25,8 @@ target 'TreyVisay' do
   pod 'RNBackgroundFetch', :path => '../node_modules/react-native-background-fetch'
   pod 'SwiftyJSON', '4.0.0'
   pod 'Charts', '3.2.2'
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
 end
 
 swift4 = ['Charts']
