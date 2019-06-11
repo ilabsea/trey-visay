@@ -5,6 +5,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { Content, ListItem, Left, Body, Icon, Right, Card, CardItem } from 'native-base';
 import majorList from '../../data/json/personality_major';
+import styles from '../../assets/style_sheets/assessment';
 
 export default class PersonalityAssessmentMajorList extends Component {
   _onPressItem(major) {
@@ -38,16 +39,14 @@ export default class PersonalityAssessmentMajorList extends Component {
     });
 
     return (
-      <Content padder>
-        <Card>
-          <CardItem>
+      <Content style={{padding: 20, paddingTop: 4}}>
+        <Card style={styles.curveBox}>
+          <CardItem bordered style={styles.header}>
             <Body>
               <Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរជ្រើសយកការសិក្សាលើមុខជំនាញពាក់ព័ន្ធដូចជា៖</Text>
             </Body>
           </CardItem>
-        </Card>
 
-        <Card>
           { doms }
         </Card>
       </Content>

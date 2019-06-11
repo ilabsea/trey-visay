@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-import { View, Text, ScrollView } from 'react-native';
-import { Container, Content, ListItem, Body, Card, CardItem } from 'native-base';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { Content, ListItem, Body, Card, CardItem } from 'native-base';
 import subjectList from '../../data/json/subjects/subject_tips';
 import subjectTe from '../../data/translates/subject';
-import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
+import styles from '../../assets/style_sheets/assessment';
 
 export default class PersonalityAssessmentSubjectTip extends Component {
   constructor(props) {
@@ -39,9 +38,9 @@ export default class PersonalityAssessmentSubjectTip extends Component {
 
   _renderContent = () => {
     return (
-      <Content padder>
-        <Card>
-          <CardItem header bordered>
+      <Content style={{padding: 20, paddingTop: 4}}>
+        <Card style={styles.curveBox}>
+          <CardItem header bordered style={styles.header}>
             <Text>គន្លឹះសម្រាប់{ subjectTe[this.state.subjectCode] }</Text>
           </CardItem>
 

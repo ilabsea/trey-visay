@@ -11,6 +11,8 @@ import { ListItem, Left, Body, Right, Button, Icon} from 'native-base';
 import { HorizontalBarChart } from 'react-native-charts-wrapper';
 import personalityList from '../../data/json/personality';
 import categoryList from '../../data/json/personality_category';
+import mainStyles from '../../assets/style_sheets/main/main';
+import styles from '../../assets/style_sheets/assessment';
 
 export default class Result extends Component {
   _renderChart() {
@@ -53,7 +55,11 @@ export default class Result extends Component {
     }
 
     return (
-      <View style={{flex: 1, backgroundColor: '#fff'}}>
+      <View style={[styles.curveBox, {marginHorizontal: 20, marginVertical: 16}]}>
+        <ListItem itemDivider style={styles.header}>
+          <Text>ជម្រើសរបស់អ្នក</Text>
+        </ListItem>
+
         <View style={{height: 220, paddingVertical: 10}}>
           <HorizontalBarChart
             style={{flex: 1}}
@@ -110,19 +116,15 @@ export default class Result extends Component {
   _renderPersonalityGroups() {
     return (
       <View>
-        <ListItem itemDivider style={styles.header}>
-          <Text>ផ្នែកវិទ្យាសាស្ត្រ</Text>
-        </ListItem>
+        <Text style={mainStyles.sectionText}>ផ្នែកវិទ្យាសាស្ត្រ</Text>
 
-        <View style={{backgroundColor: '#fff'}}>
+        <View style={[mainStyles.box]}>
           { categoryList.filter(category => category.group == 'science').map((category, index) => this._renderListItem(category, index)) }
         </View>
 
-        <ListItem itemDivider style={styles.header}>
-          <Text>ផ្នែកវិទ្យាសាស្ត្រសង្គម</Text>
-        </ListItem>
+        <Text style={mainStyles.sectionText}>ផ្នែកវិទ្យាសាស្ត្រសង្គម</Text>
 
-        <View style={{backgroundColor: '#fff'}}>
+        <View style={[mainStyles.box]}>
           { categoryList.filter(category => category.group == 'social').map((category, index) => this._renderListItem(category, index)) }
         </View>
       </View>
@@ -131,11 +133,7 @@ export default class Result extends Component {
 
   _renderContent = () => {
     return (
-      <View style={{padding: 16, paddingTop: 0}}>
-        <ListItem itemDivider style={styles.header}>
-          <Text>ជម្រើសរបស់អ្នក</Text>
-        </ListItem>
-
+      <View style={{paddingTop: 0}}>
         { this._renderChart() }
         { this._renderPersonalityGroups() }
       </View>
@@ -146,12 +144,3 @@ export default class Result extends Component {
     return ( this._renderContent() )
   }
 }
-
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: 'rgba(24, 118, 211, 0.2)',
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
-    marginTop: 16
-  },
-})

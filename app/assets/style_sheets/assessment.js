@@ -49,5 +49,16 @@ export default StyleSheet.create({
     fontWeight: 'bold',
     fontSize: FontSetting.button_text,
     color: '#fff',
+  },
+  header: {
+    backgroundColor: 'rgba(24, 118, 211, 0.2)',
+    borderTopLeftRadius: 8,
+    borderTopRightRadius: 8,
+  },
+  curveBox: {
+    borderRadius: 8,
+    overflow: 'hidden',
+    marginTop: 16,
+    backgroundColor: '#fff'
   }
 })

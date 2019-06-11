@@ -6,6 +6,7 @@ import { View, Text, ScrollView } from 'react-native';
 import { Content, ListItem, Left, Body, Icon, Right, Card, CardItem } from 'native-base';
 import majorList from '../../data/json/personality_major';
 import characteristicList from '../../data/json/characteristic_jobs';
+import styles from '../../assets/style_sheets/assessment';
 
 export default class PersonalityAssessmentJobList extends Component {
   _onPressListItem(job) {
@@ -42,16 +43,14 @@ export default class PersonalityAssessmentJobList extends Component {
     });
 
     return (
-      <Content padder>
-        <Card>
-          <CardItem>
+      <Content style={{padding: 20, paddingTop: 4}}>
+        <Card style={styles.curveBox}>
+          <CardItem header bordered style={styles.header}>
             <Body>
               <Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរចាប់យកអាជីពការងារជា៖</Text>
             </Body>
           </CardItem>
-        </Card>
 
-        <Card>
           { doms }
         </Card>
       </Content>

@@ -5,6 +5,8 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
 import majorList from '../../data/json/personality_major';
+import mainStyles from '../../assets/style_sheets/main/main';
+import styles from '../../assets/style_sheets/assessment';
 
 export default class PersonalityAssessmentPersonalityCategory extends Component {
   constructor(props) {
@@ -25,7 +27,6 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
       return (
         <ListItem
           key={index}
-          style={{backgroundColor: '#fff'}}
           icon>
           <Left>
             <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' />
@@ -38,12 +39,12 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
     });
 
     return (
-      <View>
+      <View style={[styles.curveBox, {marginHorizontal: 20, marginTop: 20}]}>
         <ListItem itemDivider style={styles.header}>
           <Text>ចម្លើយបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
         </ListItem>
 
-        <View style={{backgroundColor: '#fff'}}>
+        <View>
           {doms}
         </View>
       </View>
@@ -62,7 +63,7 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
     })
 
     return (
-      <View>
+      <View style={[styles.curveBox, {marginHorizontal: 20, marginTop: 20}]}>
         <ListItem itemDivider style={styles.header}>
           <Text>មនុស្សបែប{this.props.navigation.getParam('title')}</Text>
         </ListItem>
@@ -101,18 +102,16 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     return (
       <View>
-        <ListItem itemDivider style={styles.header}>
-          <Text>ព័ត៌មានបន្ថែម</Text>
-        </ListItem>
+        <Text style={mainStyles.sectionText}>ព័ត៌មានបន្ថែម</Text>
 
-        <View style={{backgroundColor: '#fff'}}>{ doms }</View>
+        <View style={{backgroundColor: '#fff', marginBottom: 16}}>{ doms }</View>
       </View>
     );
   }
 
   _renderContent = () => {
     return (
-      <Content style={{padding: 16, paddingTop: 0}}>
+      <Content>
         { this._renderList() }
         { this._renderDescription() }
         { this._renderButtonList() }
@@ -128,12 +127,3 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
     )
   }
 }
-
-const styles = StyleSheet.create({
-  header: {
-    backgroundColor: 'rgba(24, 118, 211, 0.2)',
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
-    marginTop: 16
-  },
-})

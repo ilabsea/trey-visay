@@ -94,7 +94,6 @@ export default StyleSheet.create({
     borderRadius: 8,
     paddingLeft: 16,
     margin: 20,
-    paddingLeft: 16,
     justifyContent: 'center',
     marginBottom: 0
   },

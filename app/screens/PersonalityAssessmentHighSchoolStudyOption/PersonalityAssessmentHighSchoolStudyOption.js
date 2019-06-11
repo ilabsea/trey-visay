@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
   StyleSheet,
   Text,
-  ScrollView
+  ScrollView,
+  View
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -16,6 +17,7 @@ import personalityList from '../../data/json/personality';
 import { Container, Content, ListItem, Left, Body, Icon, Right, Card, CardItem } from 'native-base';
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
+import styles from '../../assets/style_sheets/assessment';
 
 export default class PersonalityAssessmentHighSchoolStudyOption extends Component {
   constructor(props) {
@@ -59,9 +61,9 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
 
   _renderSubject() {
     return (
-      <Card>
-        <CardItem header bordered>
-          <Text style={[localStyle.highlightBlue]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
+      <Card style={styles.curveBox}>
+        <CardItem header bordered style={styles.header}>
+          <Text style={[styles.highlightBlue]}>អ្នកអាចពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗទាំងនោះតាមរយៈគន្លឹះខាងក្រោម៖</Text>
         </CardItem>
 
         { this.state.currentGroup.concern_subjects.map((code, i) => {
@@ -77,51 +79,51 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
     let list = personalityList.filter(item => personalities.includes(item.code));
 
     return (
-      <Card>
-        <CardItem header bordered>
-          <Text style={[localStyle.highlightBlue]}>បុគ្គលិកលក្ខណៈសម្រាប់ថ្នាក់{this.state.categoryGroupLabel}</Text>
-        </CardItem>
+      <View>
+        <Card style={styles.curveBox}>
+          <CardItem header bordered style={styles.header}>
+            <Text style={[styles.highlightBlue]}>បុគ្គលិកលក្ខណៈសម្រាប់ថ្នាក់{this.state.categoryGroupLabel}</Text>
+          </CardItem>
 
-        <CardItem bordered>
-          <Body>
-            { this.state.currentGroup.concern_entries.map((character, i) => {
-              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${character}`}</Text>)
-            })}
-          </Body>
-        </CardItem>
+          <CardItem bordered>
+            <Body>
+              { this.state.currentGroup.concern_entries.map((character, i) => {
+                return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${character}`}</Text>)
+              })}
+            </Body>
+          </CardItem>
+        </Card>
 
-        <CardItem header bordered>
-          <Text style={[localStyle.highlightBlue]}>ចម្លើយរបស់អ្នកសម្រាប់ថ្នាក់{this.state.categoryGroupLabel}</Text>
-        </CardItem>
+        <Card style={styles.curveBox}>
+          <CardItem header bordered style={styles.header}>
+            <Text style={[styles.highlightBlue]}>ចម្លើយរបស់អ្នកសម្រាប់ថ្នាក់{this.state.categoryGroupLabel}</Text>
+          </CardItem>
 
-        <CardItem bordered>
-          <Body>
-            { list.map((entry, i) => {
-              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${entry.name_km}`}</Text>)
-            })}
-          </Body>
-        </CardItem>
+          <CardItem bordered>
+            <Body>
+              { list.map((entry, i) => {
+                return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${entry.name_km}`}</Text>)
+              })}
+            </Body>
+          </CardItem>
 
-        <CardItem bordered>
-          <Body>
-            <Text>បុគ្គលិកលក្ខណៈឆ្លុះបញ្ចាំងពីអត្តចរិករបស់មនុស្ស ដូចគ្នានេះដែរការងារនិមួយៗក៏ត្រូវការមនុស្សដែលមានបុគ្គលិកលក្ខណៈឲ្យស៊ីនឹងវាផងដែរ ទើបយើងបំពេញការងារនោះបានប្រសើរ និងរីកចម្រើនចំពោះខ្លួនឯង ដូចនេះសូម អ្នកផ្ទៀងផ្ទាត់ពីបុគ្គលិកលក្ខណៈរបស់ប្អូន ថាតើវាសាកសមសម្រាប់អ្នកហើយឬនៅ។</Text>
-          </Body>
-        </CardItem>
+        </Card>
 
-      </Card>
+        <Card style={styles.curveBox}>
+          <CardItem bordered>
+            <Body>
+              <Text>បុគ្គលិកលក្ខណៈឆ្លុះបញ្ចាំងពីអត្តចរិករបស់មនុស្ស ដូចគ្នានេះដែរការងារនិមួយៗក៏ត្រូវការមនុស្សដែលមានបុគ្គលិកលក្ខណៈឲ្យស៊ីនឹងវាផងដែរ ទើបយើងបំពេញការងារនោះបានប្រសើរ និងរីកចម្រើនចំពោះខ្លួនឯង ដូចនេះសូម អ្នកផ្ទៀងផ្ទាត់ពីបុគ្គលិកលក្ខណៈរបស់ប្អូន ថាតើវាសាកសមសម្រាប់អ្នកហើយឬនៅ។</Text>
+            </Body>
+          </CardItem>
+        </Card>
+      </View>
     );
   }
 
   _renderContent = () => {
     return (
-      <Content padder>
-        <Card>
-          <CardItem>
-            <Body>
-              <Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{this.state.category.name_km} គួរជ្រើសយកការសិក្សាក្នុងថ្នាក់{this.state.categoryGroupLabel}</Text>
-            </Body>
-          </CardItem>
-        </Card>
+      <Content style={{paddingHorizontal: 20, paddingVertical: 16}}>
+        <Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{this.state.category.name_km} គួរជ្រើសយកការសិក្សាក្នុងថ្នាក់{this.state.categoryGroupLabel}</Text>
 
         { this._renderSubject() }
         { this._renderCharacteristic() }
@@ -137,9 +139,3 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
     )
   };
 }
-
-const localStyle = StyleSheet.create({
-  highlightBlue: {
-    color: '#1976d2'
-  }
-});

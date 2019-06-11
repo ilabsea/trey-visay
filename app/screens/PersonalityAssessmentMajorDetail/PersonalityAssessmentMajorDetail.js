@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 import { Container, Content, ListItem, Body, Card, CardItem } from 'native-base';
 import uuidv4 from '../../utils/uuidv4';
+import styles from '../../assets/style_sheets/assessment';
 
 export default class MajorDetail extends Component {
   _buildListWithTitle(title, items) {
@@ -31,9 +32,9 @@ export default class MajorDetail extends Component {
     let major = this.props.navigation.getParam('major');
 
     return (
-      <Content padder>
-        <Card>
-          <CardItem bordered>
+      <Content style={{padding: 20, paddingTop: 4}}>
+        <Card style={styles.curveBox}>
+          <CardItem bordered style={styles.header}>
             <Text>មុខជំនាញ{major.name_km}</Text>
           </CardItem>
 

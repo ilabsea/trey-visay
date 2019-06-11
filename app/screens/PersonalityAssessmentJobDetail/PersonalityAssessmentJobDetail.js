@@ -4,6 +4,7 @@ import { View, Text, ScrollView } from 'react-native';
 import { Container, Content, ListItem, Body, Card, CardItem, Right, Icon } from 'native-base';
 import listStyles from '../../assets/style_sheets/list';
 import te from '../../data/translates/km';
+import styles from '../../assets/style_sheets/assessment';
 
 export default class PersonalityAssessmentJobDetail extends Component {
   _renderDescription = () => {
@@ -14,9 +15,9 @@ export default class PersonalityAssessmentJobDetail extends Component {
     })
 
     return (
-      <Content padder>
-        <Card>
-          <CardItem header bordered>
+      <Content style={{padding: 20, paddingTop: 4}}>
+        <Card style={styles.curveBox}>
+          <CardItem header bordered style={styles.header}>
             <Text>{job.short_description}</Text>
           </CardItem>
 
