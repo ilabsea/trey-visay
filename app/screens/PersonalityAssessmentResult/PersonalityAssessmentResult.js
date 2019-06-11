@@ -5,7 +5,7 @@ import {
   Text,
 } from 'react-native';
 
-import { ListItem, Left, Body, Right, Button, Icon} from 'native-base';
+import { Button, Icon } from 'native-base';
 
 import FooterBar from '../../components/footer/FooterBar';
 import { NavigationActions } from 'react-navigation';
@@ -95,21 +95,24 @@ export default class PersonalityAssessmentResult extends Component {
 
   _renderContent = () => {
     return (
-      <Result
-        assessment={this.state.assessment}
-        navigation={this.props.navigation}
-      />
+      <View style={{paddingTop: 4}}>
+        <Result
+          assessment={this.state.assessment}
+          navigation={this.props.navigation}/>
+      </View>
     )
   }
 
   render() {
+    let title = 'លទ្ធផលតេស្ត';
+
     return (
       <View style={{flex: 1}}>
         <ScrollableHeader
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
-          largeTitle={'លទ្ធផលតេស្ត'}
-          title={'លទ្ធផលតេស្ត'}
+          largeTitle={title}
+          title={title}
         />
 
         <BackConfirmDialog

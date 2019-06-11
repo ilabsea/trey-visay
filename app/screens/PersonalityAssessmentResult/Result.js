@@ -3,7 +3,6 @@ import {
   View,
   processColor,
   Text,
-  StyleSheet
 } from 'react-native';
 
 import { ListItem, Left, Body, Right, Button, Icon} from 'native-base';
