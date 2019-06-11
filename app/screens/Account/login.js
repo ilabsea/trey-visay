@@ -5,6 +5,7 @@ import {
   Image,
   Text,
   TouchableOpacity,
+  Platform
 } from 'react-native';
 
 // Utils
@@ -40,24 +41,23 @@ export default class Login extends Component {
       return (null)
     }
 
+    let marginRight = Platform.OS === 'ios' ? 30 : 44;
+
     return (
       <View style={{flexDirection: 'row'}}>
         <BackButton navigation={this.props.navigation} />
-        <Text style={scrollHeaderStyles.title}>សូមស្វាគមន៍</Text>
+        <Text style={[scrollHeaderStyles.title, {textAlign: 'center', flex: 1, marginRight: marginRight}]}>សូមស្វាគមន៍</Text>
       </View>
     )
   }
 
   _renderForeground = () => {
+    let imageUrl = this.state.isLogin ? require('../../assets/images/account/login.png') : require('../../assets/images/account/register.png');
     return (
       <View style={{height: 50, justifyContent: 'center', alignItems: 'flex-end', marginBottom: 10, flexDirection: 'row'}}>
-        { !this.state.isLogin &&
-          <Image
-            style={{width: 50, height: 48}}
-            source={require('../../assets/images/account/register.png')}/>
-        }
-
-        { this.state.isLogin && <Icon name="ios-log-in" style={{color: '#fff', fontSize: 50, lineHeight: 52}}/> }
+        <Image
+          style={{width: 50, height: 48}}
+          source={imageUrl}/>
       </View>
     )
   }
@@ -224,7 +224,7 @@ export default class Login extends Component {
       <View>
         { this._renderTabTitle() }
 
-        <View>
+        <View style={{padding: 20}}>
           { this._renderForm() }
           { this._renderSubmitButton() }
           { this._renderAgreementTerm() }
@@ -240,6 +240,7 @@ export default class Login extends Component {
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         renderForeground={ this._renderForeground }
+        headerMaxHeight={160}
       />
     )
   }

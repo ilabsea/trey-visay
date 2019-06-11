@@ -61,7 +61,7 @@ export default class InstitutionDetail extends Component {
             style={styles.icon}
           />
         </View>
-        <Text numberOfLines={2} style={{ flex: 1 , paddingRight: 16}}>{item}</Text>
+        <Text numberOfLines={2} style={{ flex: 1 , paddingRight: 16, lineHeight: 28}}>{item}</Text>
       </View>
     )
   }
