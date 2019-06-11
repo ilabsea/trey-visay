@@ -4,13 +4,13 @@ import {
   Text,
   Button,
   StyleSheet,
-  NetInfo,
   Linking,
   ActivityIndicator,
   FlatList,
   Platform
 } from 'react-native';
 
+import NetInfo from "@react-native-community/netinfo";
 import Toast, { DURATION } from 'react-native-easy-toast';
 
 import { ThemeContext, getTheme, Toolbar } from 'react-native-material-ui';

@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {
-  NetInfo,
   Platform
 } from 'react-native';
 
+import NetInfo from "@react-native-community/netinfo";
 import characteristicList from '../data/json/characteristic_jobs';
 import realm from '../db/schema';
 import Sidekiq from '../utils/models/sidekiq';
