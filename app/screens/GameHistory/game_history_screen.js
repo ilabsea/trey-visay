@@ -224,7 +224,7 @@ export default class GameHistoryScreen extends Component {
         <View style={mainStyles.box}>
           { this._renderButton('ការបំពេញមុខវិជ្ជា', 'SubjectReport', subjectIcon) }
           { this._renderButton('ការបំពេញបុគ្គលិកលក្ខណៈ', 'StudentPersonalityReport', personalityIcon) }
-          { this._renderButton('ការជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណៈ', 'PersonalityReport', choiceIcon) }
+          { this._renderButton('ការជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណៈ', 'PersonalityJobsReport', choiceIcon) }
           { this._renderButton('ការផ្តល់អនុសាសន៍', 'RecommendationReport', recommendationIcon) }
         </View>
       </View>

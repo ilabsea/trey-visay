@@ -23,7 +23,7 @@ import InstitutionDetail from '../../school/institution_detail';
 import GameHistoryScreen from '../../GameHistory/game_history_screen';
 import PersonalUnderstandingReport from '../../GameHistory/personal_understanding_report';
 import SubjectReport from '../../GameHistory/subject_report';
-import PersonalityReport from '../../GameHistory/personality_report';
+import PersonalityJobsReport from '../../GameHistory/personality_jobs_report';
 import StudentPersonalityReport from '../../GameHistory/student_personality_report';
 import RecommendationReport from '../../GameHistory/recommendation_report';
 import SchoolListScreen from '../../GameHistory/school_list';
@@ -127,8 +127,8 @@ const CareerCounsellorStack = createStackNavigator(
         title: 'ការបំពេញមុខវិជ្ជា'
       })
     },
-    PersonalityReport: {
-      screen: PersonalityReport,
+    PersonalityJobsReport: {
+      screen: PersonalityJobsReport,
       navigationOptions: ({
         title: 'ការជ្រើសរើសមុខរបរផ្អែកលើបុគ្គលិកលក្ខណៈ'
       })

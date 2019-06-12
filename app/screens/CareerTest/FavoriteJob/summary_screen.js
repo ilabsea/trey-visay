@@ -131,7 +131,7 @@ export default class SummaryScreen extends Component {
       <View style={{paddingHorizontal: 20}}>
         { careers.map((career, index)=> {
           let imageUrl = require('../../../assets/images/careers/default.png');
-          if (!!career.image) { imageUrl = Images[career.image] }
+          if (!!career.image_name) { imageUrl = Images[career.image_name] }
 
           return (
             <TouchableOpacity onPress={() => this.setState({mostFavorableJob: career.value})} key={index} style={mainStyles.thumnailList}>

@@ -103,7 +103,8 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
     borderRadius: 8,
     paddingRight: 17,
-    marginBottom: 20
+    marginBottom: 20,
+    overflow: 'hidden'
   },
   boxShadow: {
     shadowColor: "#000",
