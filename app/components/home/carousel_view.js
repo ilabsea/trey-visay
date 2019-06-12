@@ -70,7 +70,7 @@ class CarouselView extends Component {
         <View style={styles.textWrapper}>
           <Text style={styles.btnLabel}>{option.title}</Text>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <Text style={{width: wp('54%')}}>{option.description}</Text>
+            <Text style={{width: wp('54%'), paddingRight: 4}}>{option.description}</Text>
             <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
               <Text style={{color: '#fff'}}>{option.button_text}</Text>
             </TouchableOpacity>
