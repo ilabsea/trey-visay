@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   largeTitle: {
-    fontSize: FontSetting.big_title,
+    fontSize: FontSetting.nav_large_title,
     color: '#fff',
     lineHeight: 50
   }

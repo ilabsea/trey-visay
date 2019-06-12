@@ -1,6 +1,7 @@
 import RF from "react-native-responsive-fontsize";
 
 export const FontSetting = {
+  nav_large_title: RF(4),
   big_title: RF(3),
   nav_title: RF(2.8),
   tab_label: RF(2.5),

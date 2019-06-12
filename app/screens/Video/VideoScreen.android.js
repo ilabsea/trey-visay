@@ -167,13 +167,12 @@ export default class VideoScreen extends Component {
   }
 
   render() {
-    let iconName = Platform.OS === 'ios' ? 'keyboard-arrow-left' : 'arrow-back';
     return(
       <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={styles.container} ref="myRef">
           <StatusBar />
           <Toolbar
-            leftElement={ iconName }
+            leftElement={ 'arrow-back' }
             centerElement={'វីដេអូមុខរបរ'}
             searchable={{
               autoFocus: true,
