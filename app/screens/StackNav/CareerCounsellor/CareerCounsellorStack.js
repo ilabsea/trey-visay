@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import { Platform } from 'react-native';
 import { createStackNavigator } from  'react-navigation';
-import { Provider } from 'react-redux';
-import store from '../../../redux/store';
-
-import headerStyles from '../../../assets/style_sheets/header';
-import CloseButton from '../../../components/shared/close_button';
-import NextButton from '../../../components/NextButton';
-import SaveButton from '../../../components/shared/save_button';
-import BackButton from '../../../components/shared/back_button';
-import OpenDrawer from '../../../components/shared/open_drawer';
 
 import CareerCategoriesScreen from '../../Careers/CategoriesScreen';
 import ShowCareerCategoryScreen from '../../Careers/ShowCategoryScreen';

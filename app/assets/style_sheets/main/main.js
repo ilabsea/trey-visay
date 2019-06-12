@@ -114,5 +114,13 @@ export default StyleSheet.create({
     shadowOpacity: 0.18,
     shadowRadius: 1.00,
     elevation: 1,
+  },
+  overlay: {
+    position: 'absolute',
+    backgroundColor: 'rgba(25, 118, 210, 0.9)',
+    top: 0,
+    bottom: 0,
+    left:0,
+    right: 0,
   }
 })

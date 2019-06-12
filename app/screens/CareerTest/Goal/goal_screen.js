@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  StyleSheet,
   ScrollView,
   Platform,
   BackHandler,
@@ -115,7 +114,7 @@ export default class GoalScreen extends Component {
 
   _renderTourtip() {
     return (
-      <View style={styles.overlay}>
+      <View style={mainStyles.overlay}>
         <ScrollView style={{flex: 1}}>
           <View style={{margin: 16}}>
             <Text style={[styles.paragraph, { marginTop: 54, fontSize: 24, color: '#fff'}]}>ការណែនាំ</Text>
@@ -194,14 +193,3 @@ export default class GoalScreen extends Component {
     )
   };
 }
-
-var styles = StyleSheet.create({
-  overlay: {
-    position: 'absolute',
-    backgroundColor: 'rgba(25, 118, 210, 0.9)',
-    top: 0,
-    bottom: 0,
-    left:0,
-    right: 0,
-  }
-});
