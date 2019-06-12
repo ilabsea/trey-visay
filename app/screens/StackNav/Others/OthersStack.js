@@ -1,4 +1,6 @@
 import React from 'react';
+import { Platform } from 'react-native';
+
 import {
   createStackNavigator
 } from 'react-navigation';
@@ -34,7 +36,13 @@ const OthersStack = createStackNavigator({
       title: 'Terms & Condition'
     }),
   }
-}, {
+},
+{
+  navigationOptions: ({
+    headerStyle: {
+      marginTop: Platform.OS == 'android' ? 24: 0
+    },
+  }),
   initialRouteName: 'Others',
 });
 

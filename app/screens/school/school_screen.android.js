@@ -242,9 +242,9 @@ export default class SchoolScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <StatusBar />
+        <StatusBar translucent={false}/>
 
-        <View style={{flex: 1}}>
+        <View>
           { this._renderFilters() }
           { this._renderContent() }
         </View>

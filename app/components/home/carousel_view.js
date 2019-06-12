@@ -13,7 +13,6 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Pagination } from 'react-native-snap-carousel';
 
-import StatusBar from '../shared/status_bar';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import { Colors } from '../../assets/style_sheets/main/colors';
 
@@ -70,7 +69,7 @@ class CarouselView extends Component {
         <View style={styles.textWrapper}>
           <Text style={styles.btnLabel}>{option.title}</Text>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <Text style={{width: wp('54%'), paddingRight: 4}}>{option.description}</Text>
+            <Text style={{width: wp('58%'), paddingRight: 4}}>{option.description}</Text>
             <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
               <Text style={{color: '#fff'}}>{option.button_text}</Text>
             </TouchableOpacity>
@@ -108,7 +107,6 @@ class CarouselView extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar />
         <CarouselItem
           noStyle={true}
           width='90%'
@@ -131,7 +129,7 @@ const styles = StyleSheet.create({
     borderRadius:12,
     backgroundColor: 'white',
     width: wp('88%'),
-    height: hp('68%'),
+    height: hp('70%'),
   },
   textWrapper:{
     marginLeft: 16,
@@ -158,7 +156,7 @@ const styles = StyleSheet.create({
   btnStart: {
     backgroundColor: Colors.blue,
     borderRadius: 12,
-    width: wp('26%'),
+    width: wp('20%'),
     height: hp('8%'),
     alignItems: 'center',
     justifyContent: 'center'

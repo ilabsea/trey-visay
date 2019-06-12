@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-
+import { View } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import CarouselView from '../../components/home/carousel_view';
+import StatusBar from '../../components/shared/status_bar';
 
 import User from '../../utils/user';
 import API from '../../api/schools';
@@ -25,7 +26,10 @@ export default class Home extends Component {
 
   render() {
     return (
-      <CarouselView navigation={this.props.navigation} user={this.state.user}/>
+      <View>
+        <StatusBar translucent={true}/>
+        <CarouselView navigation={this.props.navigation} user={this.state.user}/>
+      </View>
     );
   }
 }

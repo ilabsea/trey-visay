@@ -1,7 +1,8 @@
 import React from 'react';
 import {
   Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 
 import {
@@ -63,11 +64,11 @@ const SchoolStack = createStackNavigator(
     },
   },
   {
-    navigationOptions: ({navigation}) => ({
-      headerTitleStyle: headerStyles.headerTitleStyle,
-      headerStyle: headerStyles.headerStyle,
-      headerLeft: <BackButton navigation={navigation}/>
-    })
+    navigationOptions: ({
+      headerStyle: {
+        marginTop: Platform.OS == 'android' ? 24: 0
+      },
+    }),
   }
 );
 
