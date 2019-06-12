@@ -7,7 +7,8 @@ import {
   Linking,
   ActivityIndicator,
   FlatList,
-  Platform
+  Platform,
+  TouchableOpacity
 } from 'react-native';
 
 import NetInfo from "@react-native-community/netinfo";
@@ -166,19 +167,21 @@ export default class VideoScreen extends Component {
   }
 
   render() {
+    let iconName = Platform.OS === 'ios' ? 'keyboard-arrow-left' : 'arrow-back';
     return(
       <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={styles.container} ref="myRef">
           <StatusBar />
           <Toolbar
-            leftElement={<BackButton navigation={this.props.navigation}/>}
-            centerElement={<Text style={[headerStyles.headerTitleStyle, styles.headerTitleText]}> វីដេអូមុខរបរ</Text>}
+            leftElement={ iconName }
+            centerElement={'វីដេអូមុខរបរ'}
             searchable={{
               autoFocus: true,
               placeholder: 'ស្វែងរក',
               onChangeText: this._onChangeText.bind(this),
               onSearchClosed: this._onSearchClosed.bind(this)
             }}
+            onLeftElementPress={() => this.props.navigation.goBack()}
           />
 
           { this.state.isLoaded && this.state.isConnected && this._renderContent() }
