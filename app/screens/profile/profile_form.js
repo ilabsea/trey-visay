@@ -34,14 +34,15 @@ let formError = {};
 export default class ProfileForm extends Component {
   constructor(props) {
     super(props);
-
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    user = Object.assign({}, user, { sex: 'ស្រី', grade: '9'})
-
+    let user = User.getCurrent();
     this.state = {
       user: user,
       errors: {},
     }
+  }
+
+  componentWillMount(){
+    this._setUserState('sex', 'ស្រី');
   }
 
   _skip() {
