@@ -5,7 +5,7 @@ const HomeOptions = [
     background_color: 'rgb(53, 174, 235)',
     source_image: require('../../assets/images/home/personal_test.png'),
     button_text: 'ចាប់ផ្តេីម',
-    description: 'ធ្វើតេស្តមុខរបរ ឬអាជីពដោយផ្អែក លើបុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក'
+    description: 'ធ្វើតេស្តមុខរបរ ឬអាជីពដោយផ្អែក លើបុគ្គលិកលក្ខណៈដើម្បី ជ្រើសរើសមុខរបរសាកសមនឹងអ្នក'
   },
   {
     title: 'ស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ',
@@ -21,7 +21,7 @@ const HomeOptions = [
     background_color: 'rgb(255, 222, 70)',
     source_image: require('../../assets/images/home/school.png'),
     button_text: 'ពិស្តារ',
-    description: 'អ្នកអាចមើលពត៌មានសាលាលេខ ទំនាក់ទំនង និង មុខវិជ្ជា ដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២'
+    description: 'អ្នកអាចមើលពត៌មានសាលាលេខ   ទំនាក់ទំនង និង មុខវិជ្ជា ដែលអ្នកចង់បន្តការសិក្សាបន្ទាប់ពីបញ្ចប់ថ្នាក់ទី១២'
   },
   {
     title: 'ជំនាញវិជ្ជាជីវៈ',
