@@ -21,7 +21,7 @@ const CardItem = (props) => {
       />
 
       <View style={[styles.textContainer, { width: wp(props.width) }]}>
-        <Text>{ props.text }</Text>
+        <Text numberOfLines={2}>{ props.text }</Text>
       </View>
     </TouchableOpacity>
   )
@@ -39,6 +39,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     flex: 1,
+    padding: 8,
     alignSelf: 'center'
   }
 });
