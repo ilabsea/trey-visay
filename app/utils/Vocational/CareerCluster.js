@@ -20,11 +20,12 @@ export default class CareerCluster {
       characteristicList.map(obj => {
         for (let i = 0 ; i < codes.length; i++) {
           careerCode = codes[i].career_code;
-          obj.careers.filter(c => {
-            if (c.code == careerCode ){
-              cluster.careers.push(c)
+          for(let j=0;j<obj.careers.length; j++){
+            if(obj.careers[j].code == careerCode){
+              cluster.careers.push(obj.careers[j]);
+              break;
             }
-          })
+          }
         }
       });
       return cluster;
