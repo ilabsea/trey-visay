@@ -8,15 +8,13 @@ import {
   StyleSheet
 } from 'react-native';
 
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-import Sound from 'react-native-sound';
 import { Divider } from 'react-native-elements';
 
 import { Colors } from '../../assets/style_sheets/main/colors';
 import mainStyles from '../../assets/style_sheets/main/main';
 
 import ButtonList from '../../components/list/button_list';
+import Goal from '../../components/GameHistory/Goal/Goal';
 import OneList from '../../components/list/one_list';
 import SchoolListView from '../../components/schools/school_list';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
@@ -30,13 +28,6 @@ import Images from '../../assets/images';
 export default class GameHistoryScreen extends Component {
   componentWillMount() {
     this._initState();
-  }
-
-  componentWillUnmount() {
-    if (!!this.sound) {
-      this.sound.stop();
-      this.sound.release();
-    }
   }
 
   _initState() {
@@ -54,23 +45,9 @@ export default class GameHistoryScreen extends Component {
     this.setState({
       user: user,
       game: game,
-      time: '',
-      isPlaying: false,
       gameUuid: this.props.navigation.state.params.gameUuid,
       schools: schools,
       currentJob: currentJob
-    });
-    if (!game.voiceRecord) { return }
-
-    this.sound = new Sound(game.voiceRecord, '', (error) => {
-      if (error) {
-        console.log('failed to load the sound', error);
-      }
-
-      let date = new Date(null);
-      date.setSeconds(Math.ceil(this.sound.getDuration()));
-      let time = date.toISOString().substr(11, 8);
-      this.setState({time: time});
     });
   }
 
@@ -110,77 +87,6 @@ export default class GameHistoryScreen extends Component {
             }}
             icon={{color: Colors.blue, src: require('../../assets/icons/result/white-building.png')}}
             title='គ្រឹះស្ថានសិក្សា' />
-        </View>
-      </View>
-    )
-  }
-
-  async _play() {
-    this.setState({isPlaying: true});
-    this.sound.play((success) => {
-      if (success) {
-        this.setState({isPlaying: false});
-      } else {
-        this.sound.reset();
-      }
-    });
-  }
-
-  async _stop() {
-    this.sound.stop();
-    this.setState({isPlaying: false});
-  }
-
-  _handlePlaying() {
-    if (this.state.isPlaying) {
-      return this._stop();
-    }
-    this._play();
-  }
-
-  _renderVoiceRecord() {
-    let iconName = this.state.isPlaying ? 'pause-circle-filled' : 'play-circle-filled';
-    let iconColor = this.state.isPlaying ? '#e94b35' : 'rgb(24,118,211)';
-
-    return (
-      <View style={{flexDirection: 'row', alignItems: 'center', marginLeft: -4}}>
-        <TouchableOpacity onPress={() => this._handlePlaying() }>
-          <MaterialIcon style={{height: 52, lineHeight: 52}} name={iconName} size={50} color={iconColor}/>
-        </TouchableOpacity>
-
-        <View style={{flexDirection: 'column', marginLeft: 8}}>
-          <Text style={mainStyles.text}>លេង</Text>
-          <Text style={mainStyles.subTitle}>{this.state.time}</Text>
-        </View>
-      </View>
-    )
-  }
-
-  _renderGoal() {
-    return (
-      <View>
-        <View style={mainStyles.blueTitleBox}>
-          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
-          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>គោលដៅរបស់អ្នក</Text>
-        </View>
-        <View style={[mainStyles.subTitleBox, {height: 64}]}>
-          <Text style={ mainStyles.text }>{this.state.game.goalCareer}</Text>
-        </View>
-
-        <View style={mainStyles.blueTitleBox}>
-          <AwesomeIcon name='microphone' color={Colors.blue} size={24} />
-          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>មូលហេតុរបស់អ្នក</Text>
-        </View>
-
-        <View style={mainStyles.subTitleBox}>
-          { this.state.game.reason &&
-            <View>
-              <Text>{this.state.game.reason}</Text>
-              <Divider style={{marginVertical: 12, marginHorizontal: -16}}/>
-            </View>
-          }
-
-          { this.state.game.voiceRecord && this._renderVoiceRecord() }
         </View>
       </View>
     )
@@ -235,7 +141,7 @@ export default class GameHistoryScreen extends Component {
     return(
       <View style={{flex: 1}}>
         <ScrollView>
-          { this._renderGoal() }
+          <Goal game={this.state.game}/>
           { this._renderSchool() }
           { this._renderTest1Trigger() }
           { this._renderTest2Trigger() }
