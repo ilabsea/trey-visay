@@ -3,10 +3,13 @@ import React, { Component } from 'react';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
+import { Divider } from 'react-native-elements';
+
 import majorList from '../../data/json/personality_major';
 import mainStyles from '../../assets/style_sheets/main/main';
+import { Colors } from '../../assets/style_sheets/main/colors';
 import styles from '../../assets/style_sheets/assessment';
+import ButtonList from '../../components/list/button_list';
 
 export default class PersonalityAssessmentPersonalityCategory extends Component {
   constructor(props) {
@@ -25,26 +28,27 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     let doms = entries.map((entry, index) => {
       return (
-        <ListItem
-          key={index}
-          icon>
-          <Left>
-            <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' />
-          </Left>
-          <Body>
+        <View key={index}>
+          <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 10}}>
+            <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' style={{marginRight: 8}} />
             <Text>{entry.name_km}</Text>
-          </Body>
-        </ListItem>
+          </View>
+
+          <Divider style={{marginLeft: 2}}/>
+        </View>
       )
     });
 
     return (
-      <View style={[styles.curveBox, {marginHorizontal: 20, marginTop: 20}]}>
-        <ListItem itemDivider style={styles.header}>
-          <Text>ចម្លើយបុគ្គលិកលក្ខណៈរបស់អ្នក</Text>
-        </ListItem>
+      <View>
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>
+            ចម្លើយបុគ្គលិកលក្ខណៈរបស់អ្នក
+          </Text>
+        </View>
 
-        <View>
+        <View style={[mainStyles.subTitleBox, {paddingTop: 0}]}>
           {doms}
         </View>
       </View>
@@ -63,11 +67,17 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
     })
 
     return (
-      <View style={[styles.curveBox, {marginHorizontal: 20, marginTop: 20}]}>
-        <ListItem itemDivider style={styles.header}>
-          <Text>មនុស្សបែប{this.props.navigation.getParam('title')}</Text>
-        </ListItem>
-        <View style={{backgroundColor: '#fff', padding: 16}}>{doms}</View>
+      <View>
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>
+            មនុស្សបែប{this.props.navigation.getParam('title')}
+          </Text>
+        </View>
+
+        <View style={mainStyles.subTitleBox}>
+          {doms}
+        </View>
       </View>
     );
   }
@@ -81,22 +91,16 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     let doms = options.map((option, index) => {
       return (
-        <ListItem
-          key={index}
-          button
+        <ButtonList
           onPress={() => {
             this.props.navigation.navigate(option.screen, {
               category: this.state.category,
               assessment: this.props.navigation.getParam('assessment')
             })}
-          }>
-          <Body>
-            <Text>{option.label}</Text>
-          </Body>
-          <Right>
-            <AwesomeIcon name='angle-right' size={24} color='#bbb' />
-          </Right>
-        </ListItem>
+          }
+          index={index}
+          title={option.label}
+          hasLine={true}/>
       )
     });
 
@@ -111,11 +115,11 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
   _renderContent = () => {
     return (
-      <Content>
+      <View>
         { this._renderList() }
         { this._renderDescription() }
         { this._renderButtonList() }
-      </Content>
+      </View>
     )
   }
 

@@ -4,14 +4,16 @@ import {
   processColor,
   Text,
 } from 'react-native';
+import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { ListItem, Left, Body, Right, Button, Icon} from 'native-base';
+import ButtonList from '../../components/list/button_list';
 
 import { HorizontalBarChart } from 'react-native-charts-wrapper';
 import personalityList from '../../data/json/personality';
 import categoryList from '../../data/json/personality_category';
 import mainStyles from '../../assets/style_sheets/main/main';
 import styles from '../../assets/style_sheets/assessment';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 export default class Result extends Component {
   _renderChart() {
@@ -54,12 +56,15 @@ export default class Result extends Component {
     }
 
     return (
-      <View style={[styles.curveBox, {marginHorizontal: 20, marginVertical: 16}]}>
-        <ListItem itemDivider style={styles.header}>
-          <Text>ជម្រើសរបស់អ្នក</Text>
-        </ListItem>
+      <View>
+        <View style={[mainStyles.blueTitleBox]}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>
+            ជម្រើសរបស់អ្នក
+          </Text>
+        </View>
 
-        <View style={{height: 220, paddingVertical: 10}}>
+        <View style={[mainStyles.subTitleBox, {height: 220, paddingVertical: 10}]}>
           <HorizontalBarChart
             style={{flex: 1}}
             data={option.data}
@@ -91,25 +96,13 @@ export default class Result extends Component {
 
   _renderListItem(category, index) {
     return (
-      <ListItem
-        style={{height: 48}}
-        key={index}
-        button={true}
-        icon
-        onPress={() => this._handleButtonClick(category)}>
-        <Left style={{height: 48}}>
-          <Button style={{ backgroundColor: "#1976d2" }}>
-            <Icon active name="bulb" />
-          </Button>
-        </Left>
-        <Body style={{height: 48}}>
-          <Text>{category.name_km}</Text>
-        </Body>
-        <Right style={{height: 48}}>
-          <Text>{this.props.assessment[category.name_en].length}</Text>
-          <Icon name="ios-arrow-forward" style={{fontSize: 28, color: '#bbb'}} />
-        </Right>
-      </ListItem>
+      <ButtonList
+        onPress={() => this._handleButtonClick(category)}
+        index={index}
+        numberAtRight={this.props.assessment[category.name_en].length}
+        icon={{color: Colors.blue, src: require('../../assets/icons/result/white-user.png')}}
+        title={category.name_km}
+        hasLine={true}/>
     );
   }
 

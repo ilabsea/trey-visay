@@ -87,7 +87,9 @@ export default StyleSheet.create({
     width: '90%',
     borderBottomLeftRadius: 8,
     borderBottomRightRadius: 8,
-    padding: 16
+    padding: 16,
+    margin: 20,
+    marginTop: 0
   },
   curveBox: {
     backgroundColor: 'white',

@@ -101,7 +101,7 @@ export default class PersonalityAssessment extends Component {
     return(
       <Content padder style={{marginHorizontal: 8}}>
         { !!count &&
-          <Text style={mainStyles.sectionText}>
+          <Text style={[mainStyles.sectionText, {marginLeft: 0}]}>
             <Text>លទ្ធផលធ្វើតេស្ត</Text>
           </Text>
         }

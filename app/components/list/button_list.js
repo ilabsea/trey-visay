@@ -23,6 +23,7 @@ class ButtonList extends React.Component {
         <TouchableOpacity
           style={[mainStyles.btnList, {alignItems: 'center'}]}
           onPress={this.props.onPress}
+          index={this.props.index}
         >
           { this.props.icon &&
             <View style={{ width: 32, height: 32, borderRadius: 12, backgroundColor: this.props.icon.color, marginRight: 16}}>
@@ -34,6 +35,7 @@ class ButtonList extends React.Component {
             </View>
           }
           <Text style={mainStyles.title}>{this.props.title}</Text>
+          <Text style={{paddingRight: 8}}>{this.props.numberAtRight}</Text>
           <AwesomeIcon name='angle-right' size={30} color='#bbb' />
         </TouchableOpacity>
         { this.props.hasLine && <Divider/> }
