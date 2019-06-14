@@ -48,7 +48,8 @@ const CareerCounsellorStack = createStackNavigator(
     PersonalUnderstandingFormScreen: {
       screen: PersonalUnderstandingForm,
       navigationOptions: ({navigation}) => ({
-        header: null
+        header: null,
+        gesturesEnabled: false
       })
     },
     ShowCareerCategoryScreen: { screen: ShowCareerCategoryScreen },
