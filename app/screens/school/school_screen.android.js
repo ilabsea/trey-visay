@@ -9,14 +9,12 @@ import {
   TouchableOpacity,
   Picker,
   Platform,
-  ListView,
-  RefreshControl,
+  FlatList,
 } from 'react-native';
 import IOSPicker from 'react-native-ios-picker';
 import { FontSetting} from '../../assets/style_sheets/font_setting';
 
 import API from '../../api/schools';
-import LoadingIndicator from '../../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
@@ -28,7 +26,7 @@ import StatusBar from '../../components/shared/status_bar';
 import Images from '../../assets/images';
 
 export default class SchoolScreen extends Component {
-
+  _keyExtractor = (item, index) => index.toString();
   myProvince = '';
   myMajor = '';
   myCategory = this.props.screenProps.category;
@@ -42,8 +40,7 @@ export default class SchoolScreen extends Component {
       provinces: [],
       majors: [],
       currentProvince: '',
-      currentMajor: '',
-      ds: new ListView.DataSource({ rowHasChanged: this._rowHasChanged })
+      currentMajor: ''
     }
   }
 
@@ -60,21 +57,19 @@ export default class SchoolScreen extends Component {
   }
 
   _getSchoolsRequest() {
-    const pagination = { ...this.state.pagination, loading: true }
+    const pagination = { ...this.state.pagination  }
     this._update(pagination, this.state.schools)
   }
 
   _getSchoolsSuccess(result) {
-    const pagination = { ...result.pagination, loading: false }
+    const pagination = { ...result.pagination }
     const schools = pagination.page === 1 ? result.records : [ ...this.state.schools, ...result.records ]
-
     this._update(pagination, schools)
   }
 
   _getSchoolsFailure(error) {
-    const pagination = { ...this.state.pagination, loading: false }
+    const pagination = { ...this.state.pagination  }
     this._update(pagination, this.state.schools)
-    console.error(error)
   }
 
   _getSchools(page, options={}) {
@@ -92,27 +87,14 @@ export default class SchoolScreen extends Component {
       .catch(error => this._getSchoolsFailure(error))
   }
 
-  _rowHasChanged(r1, r2) {
-    return r1 !== r2
-  }
-
   _update(pagination, schools) {
-    const loading = {
-      type: 'Loading',
-      loading: pagination.loading
-    }
     this.setState({
       pagination: pagination,
       schools: schools,
-      ds: this.state.ds.cloneWithRows([ ...schools, loading ])
     })
   }
 
   _renderRow(school) {
-    if (school.type === 'Loading') {
-      return <LoadingIndicator loading={ school.loading } />
-    }
-
     let logo = require('../../assets/images/schools/default.png');
     if (!!school.logoName) {
       logo = Images[school.logoName];
@@ -146,28 +128,19 @@ export default class SchoolScreen extends Component {
 
   _onEndReached() {
     const { pagination } = this.state
-    const { page, perPage, pageCount, totalCount } = pagination
-    const lastPage = totalCount <= (page - 1) * perPage + pageCount
-
-    if (!pagination.loading && !lastPage) {
-      this._getSchools(page + 1)
-    }
+    const { page } = pagination
+    this._getSchools(page + 1)
   }
 
   _renderContent() {
     return (
-      <ListView
-        enableEmptySections={ true }
-        automaticallyAdjustContentInsets={ false }
-        dataSource={ this.state.ds }
-        renderRow={ row => this._renderRow(row) }
-        refreshControl={
-          <RefreshControl
-            refreshing={ false }
-            onRefresh={ () => this._onRefresh() }
-          />
-        }
-        onEndReached={ () => this._onEndReached() }
+      <FlatList
+        data={ this.state.schools }
+        renderItem={ ({item}) => this._renderRow(item) }
+        refreshing={false}
+        onRefresh={ () => this._onRefresh() }
+        keyExtractor={this._keyExtractor}
+        onEndReached={() => this._onEndReached()}
       />
     )
   }

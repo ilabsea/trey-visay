@@ -4,7 +4,6 @@ import { Container, Header, Left, Title, Body, Right, Button, Icon, Segment,
 import { FlatList } from 'react-native';
 
 import API from '../../api/schools';
-import LoadingIndicator from '../../components/loading_indicator';
 import SegmentView from '../../components/schools/segment_view';
 import School from '../../components/schools/school';
 import FilterButton from '../../components/schools/filter_button';
@@ -38,8 +37,6 @@ export default class SchoolScreen extends Component {
       API.getSelectedMajor((major) => {
         province = province == 'គ្រប់ទីកន្លែង' ? '': province;
         major = major == 'គ្រប់ជំនាញ' ? '': major;
-        console.log('province : ', province);
-        console.log('major : ', major)
         this.setState({ currentProvince: province,currentMajor: major });
         this._onChangeProvince(province);
         this._onChangeMajor(major);
@@ -55,19 +52,19 @@ export default class SchoolScreen extends Component {
   }
 
   _getSchoolsRequest() {
-    const pagination = { ...this.state.pagination, loading: true }
+    const pagination = { ...this.state.pagination }
     this._update(pagination, this.state.schools)
   }
 
   _getSchoolsSuccess(result) {
-    const pagination = { ...result.pagination, loading: false }
+    const pagination = { ...result.pagination }
     const schools = pagination.page === 1 ? result.records : [ ...this.state.schools, ...result.records ]
 
     this._update(pagination, schools)
   }
 
   _getSchoolsFailure(error) {
-    const pagination = { ...this.state.pagination, loading: false }
+    const pagination = { ...this.state.pagination }
     this._update(pagination, this.state.schools);
   }
 
@@ -87,10 +84,6 @@ export default class SchoolScreen extends Component {
   }
 
   _update(pagination, schools) {
-    const loading = {
-      type: 'Loading',
-      loading: pagination.loading
-    }
     this.setState({
       pagination: pagination,
       schools: schools,
@@ -98,9 +91,6 @@ export default class SchoolScreen extends Component {
   }
 
   _renderRow(school) {
-    if (school.type === 'Loading') {
-      return <LoadingIndicator loading={ school.loading } />
-    }
     return(
       <School school={school} showCategory={false} navigation={this.props.navigation}/>
     )
@@ -112,12 +102,8 @@ export default class SchoolScreen extends Component {
 
   _onEndReached() {
     const { pagination } = this.state
-    const { page, perPage, pageCount, totalCount } = pagination
-    const lastPage = totalCount <= (page - 1) * perPage + pageCount
-
-    if (!pagination.loading && !lastPage) {
-      this._getSchools(page + 1)
-    }
+    const { page } = pagination
+    this._getSchools(page + 1)
   }
 
   _onChangeProvince(province) {
