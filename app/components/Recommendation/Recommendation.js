@@ -45,6 +45,21 @@ class Recommendation extends Component {
     return arr.length == this.props.currentGroup.concern_subjects.length;
   }
 
+  _getTextColorStyle(value) {
+    switch (value) {
+      case 'ខ្លាំង':
+        style = {color: Colors.blue}
+        break;
+      case 'មធ្យម':
+        style = {color: Colors.orange}
+        break;
+      default:
+        style = {color: Colors.red}
+    }
+
+    return style;
+  }
+
   renderSubject(){
     let currentJob = this.props.currentJob;
     let currentGroup = this.props.currentGroup;
@@ -57,29 +72,24 @@ class Recommendation extends Component {
         </View>
 
         <View style={mainStyles.subTitleBox}>
-          <Text style={ mainStyles.text }>
-            ជា{currentJob.name} អ្នកគួរពូកែលើមុខវិជ្ជាដូចខាងក្រោម៖
-          </Text>
-          <View>
-            { currentGroup.concern_subjects.map((code, i) => {
-              return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${subjectTe[code]}`}</Text>)
-            })}
+          <View style={{flexDirection: 'row'}}>
+            <Text style={ [mainStyles.text, {flex:1}] }>
+              មុខវិជ្ជាតម្រង់ទិស
+            </Text>
+
+            <Text style={ [mainStyles.text, {flex:1, textAlign: 'right'}] }>
+              ចម្លើយរបស់អ្នក
+            </Text>
           </View>
-        </View>
 
-        <View style={mainStyles.blueTitleBox}>
-          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
-          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>ចម្លើយរបស់អ្នក</Text>
-        </View>
-
-        <View style={mainStyles.subTitleBox}>
           <View>
             { currentGroup.concern_subjects.map((code, i) => {
+
               return (
                 <View key={i} style={styles.wrapper}>
-                  <Text style={{marginLeft: 8}}>{ `\u2022 ${subjectTe[code]}` }</Text>
+                  <Text style={{flex: 1}}>{ `\u2022 ${subjectTe[code]}` }</Text>
                   <View style={styles.rightWrapper}>
-                    <Text style={styles.rightText}>{ gameSubject[code] }</Text>
+                    <Text style={this._getTextColorStyle(gameSubject[code])}>{ gameSubject[code] }</Text>
                   </View>
 
                 </View>)
@@ -198,20 +208,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     padding: 10,
-    paddingLeft: 16,
-    justifyContent: 'space-between',
   },
   rightWrapper: {
-    backgroundColor: Colors.blue,
-    padding: 10,
-    paddingTop: 2,
-    paddingBottom: 2,
-    borderRadius: 8,
+    paddingRight: 10,
     width: 65
-  },
-  rightText: {
-    textAlign: 'center',
-    color: '#fff'
   }
 });
 
