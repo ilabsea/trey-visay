@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  Button,
   StyleSheet,
   Linking,
   ActivityIndicator,
@@ -23,10 +22,13 @@ import uiThemeIOS from '../../assets/style_sheets/uiThemeIOS.js';
 
 import StatusBar from '../../components/shared/status_bar';
 import BackButton from '../../components/shared/back_button';
+import ScrollableHeader from '../../components/scrollable_header';
 import VideoListView from '../../components/video/video_list';
 import LoadingIndicator from '../../components/loading_indicator';
 
 import videoList from '../../data/json/videos';
+import scrollHeaderStyle from '../../assets/style_sheets/scroll_header';
+import { Item, Input, Icon } from 'native-base';
 
 const uiTheme = Platform.select({
   ios: uiThemeIOS,
@@ -37,11 +39,12 @@ export default class VideoScreen extends Component {
   _keyExtractor = (item, index) => index.toString();
 
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       pagination: {},
-      videos: videoList
+      videos: videoList,
+      textSearch: ''
     }
   }
 
@@ -115,17 +118,21 @@ export default class VideoScreen extends Component {
 
   _renderContent() {
     return (
-      <FlatList
-        data={ this.state.videos }
-        renderItem={ ({item}) => this._renderItem(item) }
-        refreshing={false}
-        onRefresh={ () => this._onRefresh() }
-        keyExtractor={this._keyExtractor}
-      />
+      <View>
+        <FlatList
+          data={ this.state.videos }
+          renderItem={ ({item}) => this._renderItem(item) }
+          refreshing={false}
+          onRefresh={ () => this._onRefresh() }
+          keyExtractor={this._keyExtractor}
+        />
+      </View>
     )
   }
 
   _onChangeText(val) {
+    this.setState({textSearch: val});
+
     if (!val) {
       this._onRefresh();
     }
@@ -139,6 +146,7 @@ export default class VideoScreen extends Component {
   }
 
   _onSearchClosed() {
+    this.setState({textSearch: ''});
     this._onRefresh();
   }
 
@@ -166,43 +174,56 @@ export default class VideoScreen extends Component {
     });
   }
 
-  render() {
-    return(
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <View style={styles.container} ref="myRef">
-          <StatusBar />
-          <Toolbar
-            leftElement={ 'arrow-back' }
-            centerElement={'វីដេអូមុខរបរ'}
-            searchable={{
-              autoFocus: true,
-              placeholder: 'ស្វែងរក',
-              onChangeText: this._onChangeText.bind(this),
-              onSearchClosed: this._onSearchClosed.bind(this)
-            }}
-            onLeftElementPress={() => this.props.navigation.goBack()}
-          />
+  _renderForeground = () => {
+    return (
+      <View>
+        <Text style={[scrollHeaderStyle.largeTitle, {marginBottom: -8}]}>វីដេអូមុខរបរ</Text>
 
-          { this.state.isLoaded && this.state.isConnected && this._renderContent() }
-          { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
-          <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
-        </View>
-      </ThemeContext.Provider>
-    );
+        <Item regular style={{backgroundColor: '#fff', height: 30, borderRadius: 8}}>
+          <Icon active name='search' style={{marginTop: 2, color: 'rgba(0,0,0,0.7)'}} />
+          <Input
+            onChangeText={(text) => this._onChangeText(text)}
+            autoCorrect={false}
+            value={this.state.textSearch}
+            placeholderTextColor='rgba(0,0,0,0.7)'
+            placeholder='ស្វែងរក'/>
+
+          { !!this.state.textSearch &&
+            <TouchableOpacity style={{height: '100%'}} onPress={() => this._onSearchClosed()}>
+              <Icon active name='close-circle' style={{paddingTop: 1, color: 'rgba(0,0,0,0.7)'}} />
+            </TouchableOpacity>
+          }
+        </Item>
+      </View>
+
+    )
+  }
+
+  _renderMainContent = () => {
+    if (!this.state.isLoaded) {
+      return (null)
+    }
+
+    if (this.state.isConnected) {
+      return (this._renderContent());
+    }
+
+    return (this._renderNoInternetConnection());
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1}} ref="myRef">
+        <ScrollableHeader
+          renderContent={ this._renderMainContent }
+          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+          title={'វីដេអូមុខរបរ'}
+          renderForeground={ this._renderForeground }
+          headerMaxHeight={150}
+        />
+
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+      </View>
+    )
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingBottom: 8,
-  },
-  scrollContainer: {
-    padding: 16
-  },
-  headerTitleText: {
-    marginLeft: 0,
-    fontFamily: 'Roboto',
-    fontWeight: 'bold'
-  },
-});

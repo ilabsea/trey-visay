@@ -67,7 +67,7 @@ export default StyleSheet.create({
   largeTitle: {
     color: '#fff',
     fontSize: FontSetting.nav_large_title,
-    lineHeight: 48
+    lineHeight: 50
   },
   subTitle: {
     fontSize: 13, lineHeight: 24, color: '#fff'
