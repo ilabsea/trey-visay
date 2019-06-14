@@ -92,21 +92,22 @@ export default class Result extends Component {
   _renderListItem(category, index) {
     return (
       <ListItem
+        style={{height: 48}}
         key={index}
         button={true}
         icon
         onPress={() => this._handleButtonClick(category)}>
-        <Left>
+        <Left style={{height: 48}}>
           <Button style={{ backgroundColor: "#1976d2" }}>
             <Icon active name="bulb" />
           </Button>
         </Left>
-        <Body>
+        <Body style={{height: 48}}>
           <Text>{category.name_km}</Text>
         </Body>
-        <Right>
+        <Right style={{height: 48}}>
           <Text>{this.props.assessment[category.name_en].length}</Text>
-          <Icon name="ios-arrow-forward" />
+          <Icon name="ios-arrow-forward" style={{fontSize: 28, color: '#bbb'}} />
         </Right>
       </ListItem>
     );
