@@ -33,7 +33,7 @@ class ButtonList extends React.Component {
               />
             </View>
           }
-          <Text style={mainStyles.title}>{this.props.title}</Text>
+          <Text style={[mainStyles.text, this.props.boldFont]}>{this.props.title}</Text>
           <Text style={{paddingRight: 8}}>{this.props.numberAtRight}</Text>
           <AwesomeIcon name='angle-right' size={30} color='#bbb' />
         </TouchableOpacity>

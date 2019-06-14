@@ -3,5 +3,6 @@ export const Colors = {
   green: 'rgb(110, 176, 38)',
   gray: 'rgb(155, 155, 155)',
   orange: 'orange',
-  red: 'red'
+  red: 'red',
+  greyishBrown: 'rgb(74, 74, 74)'
 }

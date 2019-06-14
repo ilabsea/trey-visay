@@ -32,7 +32,7 @@ class SchoolListView extends Component {
           <Image source={logo} style={styles.image} />
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 8}}>
-            <Text numberOfLines={1} style={mainStyles.title}>
+            <Text numberOfLines={1} style={[mainStyles.title, {fontWeight: 'bold'}]}>
               {school.universityName}
             </Text>
 

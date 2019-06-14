@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
+import mainStyles from "../../assets/style_sheets/main/main";
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
@@ -29,7 +30,7 @@ export default class VideoList extends Component  {
             iconStyle={{width: '20%', height: '30%'}}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.title}>{ this.props.item.title }</Text>
+            <Text style={mainStyles.title}>{ this.props.item.title }</Text>
             <Text style={styles.source}>{ this.props.item.author }</Text>
           </View>
 

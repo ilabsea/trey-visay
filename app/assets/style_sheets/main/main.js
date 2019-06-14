@@ -15,9 +15,11 @@ export default StyleSheet.create({
   },
   title: {
     flex: 1 ,
-    fontSize: FontSetting.title
+    fontSize: FontSetting.title,
+    fontWeight: 'bold'
   },
   text: {
+    flex: 1,
     fontSize: FontSetting.text
   },
   subTitle:{
@@ -37,8 +39,8 @@ export default StyleSheet.create({
     marginTop: 16
   },
   sectionTextInBox: {
-    fontSize: FontSetting.text,
-    marginTop: 16,
+    fontSize: FontSetting.title,
+    fontWeight: 'bold'
   },
   instructionContainer: {
     flexDirection: 'row',

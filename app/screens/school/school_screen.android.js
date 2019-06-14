@@ -13,13 +13,16 @@ import {
   RefreshControl,
 } from 'react-native';
 import IOSPicker from 'react-native-ios-picker';
-import RF from "react-native-responsive-fontsize"
+import { FontSetting} from '../../assets/style_sheets/font_setting';
 
 import API from '../../api/schools';
 import LoadingIndicator from '../../components/loading_indicator';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import headerStyles from '../../assets/style_sheets/header';
 import shareStyles from '../../assets/style_sheets/profile_form';
+import {Colors} from '../../assets/style_sheets/main/colors';
+import mainStyles from '../../assets/style_sheets/main/main';
+
 import StatusBar from '../../components/shared/status_bar';
 
 import Images from '../../assets/images';
@@ -123,7 +126,7 @@ export default class SchoolScreen extends Component {
           <Image source={logo} style={styles.image} />
 
           <View style={{flex: 1, marginLeft: 16}}>
-            <Text numberOfLines={1} style={styles.schoolName}>{school.universityName}</Text>
+            <Text numberOfLines={1} style={mainStyles.title}>{school.universityName}</Text>
 
             { !!school.address &&
               <View style={{flexDirection: 'row'}}>
@@ -269,9 +272,11 @@ const styles = StyleSheet.create({
     height: 80
   },
   schoolName: {
-    fontSize: 20
+    fontSize: FontSetting.title,
+    fontWeight: 'bold'
   },
   schoolAddress: {
-    marginLeft: 8
+    marginLeft: 8,
+    color: Colors.greyishBrown
   }
 })

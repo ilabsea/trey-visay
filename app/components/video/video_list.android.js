@@ -7,6 +7,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
+import mainStyles from '../../assets/style_sheets/main/main';
 
 export default class VideoList extends Component  {
   constructor(props){
@@ -23,8 +24,8 @@ export default class VideoList extends Component  {
           imageWidth={imageWidth}
         />
         <View style={styles.textContainer}>
-          <Text style={styles.title}>{ this.props.item.title }</Text>
-          <Text style={styles.title}>{ this.props.item.author }</Text>
+          <Text style={mainStyles.title}>{ this.props.item.title }</Text>
+          <Text>{ this.props.item.author }</Text>
         </View>
       </TouchableOpacity>)
   }
@@ -40,8 +41,6 @@ const styles = StyleSheet.create({
   textContainer: {
     flex: 1,
     backgroundColor: '#fff',
-  },
-  title: {
-    padding: 10
+    paddingLeft: 10
   }
 });

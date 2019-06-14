@@ -28,7 +28,7 @@ export default class DetailScreen extends Component {
             resizeMode="cover"
             style={{width: imageHeight, height: imageHeight}}
             source={require('../../assets/images/careers/default.png')}/>
-            <Text style={mainStyles.sectionText}>{this.state.title}</Text>
+            <Text style={mainStyles.title}>{this.state.title}</Text>
         </View>
         <Text>{this.state.career.description || 'មិនទាន់មានទិន្នន័យ'}</Text>
       </View>

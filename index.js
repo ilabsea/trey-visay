@@ -21,6 +21,7 @@ import commonColor from './native-base-theme/variables/commonColor';
 const customTextProps = {
   style: {
     fontSize: FontSetting.text,
+    color: 'black',
     ...Platform.select({
       android: {
         fontFamily: 'Kantumruy',

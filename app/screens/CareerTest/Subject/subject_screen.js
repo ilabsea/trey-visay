@@ -25,6 +25,7 @@ import subjectGroups from '../../../data/json/subjects/subject_groups';
 
 import styles from '../../../assets/style_sheets/profile_form';
 import { Colors } from '../../../assets/style_sheets/main/colors';
+import mainStyles from '../../../assets/style_sheets/main/main';
 
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
@@ -111,8 +112,8 @@ export default class SubjectScreen extends Component {
     }
 
     return(
-      <View key={i} style={{paddingVertical: 8}}>
-        <Text>{group.label}</Text>
+      <View key={i}>
+        <Text style={mainStyles.title}>{group.label}</Text>
 
         <Divider style={borderStyle}/>
 
@@ -129,14 +130,17 @@ export default class SubjectScreen extends Component {
 
   _renderRadioGroups(obj, index) {
     return(
-      <View key={index} style={[styles.box, {marginVertical: 10}]}>
-        <View style={{marginHorizontal: -16, marginTop: -16, backgroundColor: 'rgba(24, 118, 211, 0.2)', height: 54, justifyContent: 'center', paddingHorizontal: 16, borderTopLeftRadius: 8, borderTopRightRadius: 8}}>
-          <Text style={[styles.subTitle, {color: Colors.blue}]}>{obj.title}</Text>
+      <View key={index}>
+        <View style={mainStyles.blueTitleBox}>
+          <Text style={mainStyles.title}>
+            {obj.title}
+          </Text>
         </View>
-
-        { obj.groups.map((group, i) => {
-          { return(this._renderRadioItem(group, i)) }
-        })}
+        <View style={[mainStyles.subTitleBox, {paddingTop: 8}]}>
+          { obj.groups.map((group, i) => {
+            { return(this._renderRadioItem(group, i)) }
+          })}
+        </View>
       </View>
     )
   }
@@ -216,8 +220,8 @@ export default class SubjectScreen extends Component {
     })
 
     return (
-      <View style={{margin: 20}} >
-        <Text>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
+      <View style={{flex: 1}}>
+        <Text style={{marginLeft: 20, marginTop: 16}}>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
         {doms}
       </View>
     )

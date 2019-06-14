@@ -39,7 +39,7 @@ export default class CareerClusterScreen extends Component {
   renderCareerCluster(cluster, i) {
     return (
       <View key={i} style={mainStyles.carouselBox}>
-        <ButtonList hasLine={false} title={cluster.name_kh}
+        <ButtonList hasLine={false} title={cluster.name_kh} boldFont={{fontWeight: 'bold'}}
           onPress={() => {
             this.props.navigation.navigate('CareerIndexScreen', {
               code: cluster.code,

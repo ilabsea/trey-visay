@@ -118,7 +118,7 @@ export default class PersonalUnderstandingReport extends Component {
   _renderContent(obj, i) {
     return (
       <View key={i} >
-        <Text style={mainStyles.sectionText}>
+        <Text style={{marginLeft: 20, marginTop: 16}}>
           ការស្វែងយល់អំពីខ្លួនឯងលើកទី { i + 1 }
         </Text>
 

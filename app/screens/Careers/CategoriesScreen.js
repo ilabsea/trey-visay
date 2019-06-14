@@ -90,7 +90,7 @@ export default class CategoriesScreen extends Component {
 
     return (
       <View key={i} style={[mainStyles.carouselBox, { backgroundColor: '#fff' }]}>
-        <ButtonList hasLine={false} title={category.career_title}
+        <ButtonList hasLine={false} title={category.career_title} boldFont={{fontWeight: 'bold'}}
           onPress={() => {
             this.props.navigation.navigate('ShowCareerCategoryScreen', {careerId: category.id})
           }} />

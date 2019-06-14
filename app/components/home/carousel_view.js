@@ -138,6 +138,7 @@ const styles = StyleSheet.create({
   },
   btnLabel: {
     fontSize: FontSetting.big_title,
+    fontWeight: 'bold',
     ...Platform.select({
       android: {
         lineHeight: 48,

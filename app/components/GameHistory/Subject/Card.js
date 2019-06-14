@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
 import { Divider } from 'react-native-elements';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import { Colors } from '../../../assets/style_sheets/main/colors';
 import mainStyles from '../../../assets/style_sheets/main/main';
@@ -24,7 +25,7 @@ const Card = (props) => {
           return (
             <View key={i}>
               <View style={styles.wrapper}>
-                <Text>{group.label}</Text>
+                <Text style={mainStyles.title}>{group.label}</Text>
                 <View style={styles.rightWrapper}>
                   <Text style={styles.rightText}>{props.gameSubject[group.stateName]}</Text>
                 </View>
@@ -41,7 +42,8 @@ const Card = (props) => {
 
 const styles = StyleSheet.create({
   blueTitle: {
-    color: Colors.blue
+    color: Colors.blue,
+    fontWeight: 'bold'
   },
   wrapper: {
     flex: 1,
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     borderRadius: 8,
-    width: 65
+    width: wp('20%')
   },
   rightText: {
     textAlign: 'center',
