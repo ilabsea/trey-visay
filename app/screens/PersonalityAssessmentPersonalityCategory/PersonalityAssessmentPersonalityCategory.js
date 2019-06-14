@@ -91,16 +91,17 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     let doms = options.map((option, index) => {
       return (
-        <ButtonList
-          onPress={() => {
-            this.props.navigation.navigate(option.screen, {
-              category: this.state.category,
-              assessment: this.props.navigation.getParam('assessment')
-            })}
-          }
-          index={index}
-          title={option.label}
-          hasLine={true}/>
+        <View key={index}>
+          <ButtonList
+            onPress={() => {
+              this.props.navigation.navigate(option.screen, {
+                category: this.state.category,
+                assessment: this.props.navigation.getParam('assessment')
+              })}
+            }
+            title={option.label}
+            hasLine={true}/>
+        </View>
       )
     });
 

@@ -96,13 +96,14 @@ export default class Result extends Component {
 
   _renderListItem(category, index) {
     return (
-      <ButtonList
-        onPress={() => this._handleButtonClick(category)}
-        index={index}
-        numberAtRight={this.props.assessment[category.name_en].length}
-        icon={{color: Colors.blue, src: require('../../assets/icons/result/white-user.png')}}
-        title={category.name_km}
-        hasLine={true}/>
+      <View key={index}>
+        <ButtonList
+          onPress={() => this._handleButtonClick(category)}
+          numberAtRight={this.props.assessment[category.name_en].length}
+          icon={{color: Colors.blue, src: require('../../assets/icons/result/white-user.png')}}
+          title={category.name_km}
+          hasLine={true}/>
+      </View>
     );
   }
 

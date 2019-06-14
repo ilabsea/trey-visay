@@ -23,7 +23,6 @@ class ButtonList extends React.Component {
         <TouchableOpacity
           style={[mainStyles.btnList, {alignItems: 'center'}]}
           onPress={this.props.onPress}
-          index={this.props.index}
         >
           { this.props.icon &&
             <View style={{ width: 32, height: 32, borderRadius: 12, backgroundColor: this.props.icon.color, marginRight: 16}}>
