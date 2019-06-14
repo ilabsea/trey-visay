@@ -114,7 +114,6 @@ export default class PersonalityAssessmentRealistic extends Component {
   }
 
   _handleChecked(value) {
-    console.log('value', value)
     this.props.navigation.setParams({total: value.length});
     this.setState({data: value});
   }
@@ -165,13 +164,13 @@ export default class PersonalityAssessmentRealistic extends Component {
 
   _renderContent = () => {
     return (
-      <Content padder>
+      <View style={{marginHorizontal: 20, marginTop: 16}}>
         <View style={{flexDirection: 'row'}}>
           <Text style={{flex: 1}}>សូមបំពេញក្នុងប្រអប់ខាងមុខឃ្លាទាំងឡាយណាដែល បរិយាយពីអត្តចរិករបស់អ្នក!</Text>
         </View>
 
         { this._renderCheckBoxes() }
-      </Content>
+      </View>
     )
   }
 
