@@ -47,7 +47,7 @@ export default class AboutCareerCounsellor extends Component {
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         title={title}
-        largeTitle={title}
+        renderForeground={() => <Text style={{fontSize: 24, color: '#fff'}}>{title}</Text>}
       />
     )
   }
