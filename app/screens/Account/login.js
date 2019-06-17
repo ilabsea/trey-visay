@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Platform
 } from 'react-native';
+import firebase from 'react-native-firebase';
 
 // Utils
 import realm from '../../db/schema';
@@ -160,6 +161,7 @@ export default class Login extends Component {
   }
 
   _register = () => {
+    firebase.analytics().logEvent('signup');
     if (this.state.password !== this.state.passwordConfirmation) {
       return Alert.alert(
         'ការបញ្ចូលពាក្យសម្ងាត់មិនត្រឹមត្រូវ',
@@ -177,6 +179,7 @@ export default class Login extends Component {
     try {
       realm.write(() => {
         let user = realm.create('User', this._buildData());
+        firebase.analytics().setUserId(user.uuid);
 
         User.setLogin(user.uuid, ()=> {
           return this._handleNavigation(user);
@@ -197,6 +200,7 @@ export default class Login extends Component {
   }
 
   _login = () => {
+    firebase.analytics().logEvent('login');
     let user = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"')[0];
     if (!user) {
       return Alert.alert(
