@@ -9,6 +9,7 @@ import School from '../../components/schools/school';
 import FilterButton from '../../components/schools/filter_button';
 
 import schoolList from '../../data/json/universities';
+import StatusBar from '../../components/shared/status_bar';
 
 export default class SchoolScreen extends Component {
   myProvince = '';
@@ -161,10 +162,13 @@ export default class SchoolScreen extends Component {
   render() {
     return (
       <Container>
+        <StatusBar translucent={false}/>
+
         <SegmentView
           activePage={this.state.activePage}
           setContent={(active) => this.setContent(active)}>
         </SegmentView>
+
         <Content>
           { this.renderContent() }
         </Content>

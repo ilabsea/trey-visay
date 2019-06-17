@@ -13,6 +13,7 @@ import SchoolScreen from '../../school/school_screen';
 import InstitutionDetail from '../../school/institution_detail';
 import FilterScreen from '../../school/filter/filter_screen';
 import FilterProvinces from '../../school/filter/filter_provinces';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 
 import API from '../../../api/schools';
 
@@ -22,7 +23,7 @@ const SchoolStack = createStackNavigator(
       screen: SchoolScreen,
       navigationOptions: ({navigation}) => ({
         header: (
-          <Header hasSegment>
+          <Header hasSegment style={{backgroundColor: Colors.blue}}>
             <Left>
               <Button transparent onPress={() => {
                 navigation.goBack(null);
@@ -48,25 +49,12 @@ const SchoolStack = createStackNavigator(
     },
     FilterScreen: {
       screen: FilterScreen,
-      navigationOptions: ({navigation}) => ({
-        header: (
-          <Header>
-            <Left>
-              <Button transparent onPress={() => navigation.goBack() }>
-                <Text> បោះបង់</Text>
-              </Button>
-            </Left>
-            <Body>
-              <Title>គ្រឹះស្ថានសិក្សា</Title>
-            </Body>
-            <Right>
-              <Button transparent onPress={() => navigation.state.params.handleReset()} >
-                <Text style={{width: wp('30%')}}>កំណត់ឡេីងវិញ</Text>
-              </Button>
-            </Right>
-          </Header>
-        )
-      }),
+      navigationOptions: ({navigation, screenProps}) => ({
+        title: 'គ្រឹះស្ថានសិក្សា',
+        headerRight:(<Button transparent onPress={() => navigation.state.params.handleReset()} >
+                      <Text style={{width: wp('30%')}}>កំណត់ឡេីងវិញ</Text>
+                    </Button>)
+      })
     },
     FilterProvinces: {
       screen: FilterProvinces,
@@ -75,7 +63,8 @@ const SchoolStack = createStackNavigator(
         headerRight:(<SaveButton noIcon={true} navigation={navigation} />)
       })
     }
-  }
+  },
+
 );
 
 export default SchoolStack;

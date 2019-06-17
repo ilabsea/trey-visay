@@ -155,9 +155,8 @@ class FilterScreen extends Component {
 
           </ScrollView>
         </Content>
-        <Footer>
-          <FooterBar text='យល់ព្រម' onPress={this.setFilterValues.bind(this)} />
-        </Footer>
+
+        <FooterBar text='យល់ព្រម' onPress={this.setFilterValues.bind(this)} />
       </Container>
     )
   }

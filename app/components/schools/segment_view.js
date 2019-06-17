@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Container, Header, Left, Title, Body, Right, Button, Icon, Segment,
   Content, Text } from 'native-base';
 
+import { Colors } from '../../assets/style_sheets/main/colors';
+
 export default class SegmentView extends Component {
   constructor(props){
     super(props);
@@ -9,7 +11,7 @@ export default class SegmentView extends Component {
 
   render() {
     return (
-      <Segment>
+      <Segment style={{ backgroundColor: Colors.blue }}>
         <Button first active={this.props.activePage == 1}
           onPress={()=>this.props.setContent(1)}>
           <Text>សាលារដ្ឋ</Text>

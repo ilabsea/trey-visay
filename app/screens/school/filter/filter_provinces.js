@@ -75,9 +75,7 @@ class FilterProvinces extends Component {
           })}
         </Content>
 
-        <Footer>
-          <FooterBar text='យល់ព្រម' onPress={this.setFilterValue.bind(this)} />
-        </Footer>
+        <FooterBar text='យល់ព្រម' onPress={this.setFilterValue.bind(this)} />
       </Container>
     )
   }
