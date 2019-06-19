@@ -24,13 +24,12 @@ const VocationalStack = createStackNavigator(
     CareerIndexScreen: {
       screen: CareerIndexScreen,
       navigationOptions: ({navigation}) => ({
-        title: navigation.state.params.title
+        title: navigation.state.params.title,
       })
     },
     CareerDetailScreen: {
       screen: CareerDetailScreen,
       navigationOptions: ({navigation}) => ({
-        header: null
       })
     },
     InstitutionDetail: {

@@ -21,14 +21,19 @@ export default class DetailScreen extends Component {
 
   _renderContent = () => {
     let imageHeight = 160;
+    let imageUrl = require('../../assets/images/careers/default.png');
+    if (this.state.career.image_name) {
+      imageUrl = {uri: this.state.career.image_name};
+    }
+
     return (
       <View style={{margin: 20}}>
         <View style={{flex: 1, alignItems: 'center'}}>
           <Image
             resizeMode="cover"
-            style={{width: imageHeight, height: imageHeight}}
-            source={require('../../assets/images/careers/default.png')}/>
-            <Text style={mainStyles.title}>{this.state.title}</Text>
+            style={{width: imageHeight, height: imageHeight, borderRadius: 8}}
+            source={imageUrl}/>
+          <Text style={[mainStyles.title, {marginTop: 8}]}>{this.state.title}</Text>
         </View>
         <Text>{this.state.career.description || 'មិនទាន់មានទិន្នន័យ'}</Text>
       </View>

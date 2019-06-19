@@ -3,10 +3,7 @@ import {
   Text,
   ScrollView,
   View,
-  TouchableOpacity,
   Image,
-  StyleSheet,
-  NetInfo,
   Linking,
   Dimensions,
   FlatList
@@ -15,9 +12,6 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import mainStyles from '../../assets/style_sheets/main/main';
-import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
-import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
 import StatusBar from '../../components/shared/status_bar';
 import SchoolListView from '../../components/schools/school_list';
 import VideoListView from '../../components/video/video_list';
@@ -28,9 +22,7 @@ import videoList from '../../data/json/videos';
 export default class ShowCategoryScreen extends Component {
   constructor(props){
     super(props);
-  }
 
-  componentWillMount() {
     let career = this.props.navigation.state.params.career;
     let schools = universities.filter((school, pos) => {
       return career.schools.includes(school.code)
@@ -38,6 +30,7 @@ export default class ShowCategoryScreen extends Component {
 
     let careerCluster = mapping.find(code => {return code.career_code == career.code})
     let videos = [];
+
     if(careerCluster.video_code){
       let videoCodes = careerCluster.video_code.split(';').map(function(item) {
         return item.trim();
@@ -45,11 +38,11 @@ export default class ShowCategoryScreen extends Component {
       videos = videoList.filter((video, pos) => { return videoCodes.includes(video.code) });
     }
 
-    this.setState({
+    this.state = {
       schools: schools,
       career: career,
       videos: videos
-    })
+    };
   }
 
   _keyExtractor = (item, index) => index.toString();
@@ -58,7 +51,7 @@ export default class ShowCategoryScreen extends Component {
     return (
       <View>
         <Text style={mainStyles.sectionText}>
-          សាលា ៖
+          មហាវិទ្យាល័យ
         </Text>
 
         <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
@@ -89,7 +82,7 @@ export default class ShowCategoryScreen extends Component {
     return(
       <View>
         <Text style={mainStyles.sectionText}>
-          វីដេអូ ៖
+          វីដេអូ
         </Text>
 
         <FlatList
@@ -101,22 +94,20 @@ export default class ShowCategoryScreen extends Component {
     )
   }
 
-  _renderForeground = () => {
-    return (
-      <View style={{backgroundColor: 'transparent', height: 50, justifyContent: 'center', alignItems: 'flex-end', marginBottom: 16, flexDirection: 'row'}}>
-        { !this.state.isLogin &&
-          <Image
-            style={{width: 50, height: 48}}
-            source={require('../../assets/images/account/register.png')}/>
-        }
-      </View>
-    )
-  }
+  _renderCareerProfile() {
+    let imageHeight = 160;
+    let imageUrl = require('../../assets/images/careers/default.png');
+    if (this.state.career.image_name) {
+      imageUrl = {uri: this.state.career.image_name};
+    }
 
-  _renderNavigation = () => {
     return (
-      <View style={{flexDirection: 'row'}}>
-        <BackButton navigation={this.props.navigation}/>
+      <View style={{paddingTop: 20, paddingBottom: 16, alignItems: 'center', backgroundColor: '#fff'}}>
+        <Image
+          resizeMode="cover"
+          style={{width: imageHeight, height: imageHeight, borderRadius: 8}}
+          source={imageUrl}/>
+        <Text style={[mainStyles.title, {marginTop: 8}]}>{this.state.career.name}</Text>
       </View>
     )
   }
@@ -124,6 +115,7 @@ export default class ShowCategoryScreen extends Component {
   _renderContent = () => {
     return (
       <View>
+        {this._renderCareerProfile() }
         {this.renderSchoolList()}
         {this.renderVideoList()}
       </View>
@@ -132,13 +124,9 @@ export default class ShowCategoryScreen extends Component {
 
   render() {
     return (
-      <ScrollableHeader
-        renderContent={ this._renderContent }
-        renderNavigation={ this._renderNavigation }
-        renderForeground={ this._renderForeground }
-        title={this.state.career.name}
-        largeTitle={this.state.career.name}
-      />
-    );
+      <ScrollView>
+        { this._renderContent() }
+      </ScrollView>
+    )
   }
 }
