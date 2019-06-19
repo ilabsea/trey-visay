@@ -12,7 +12,6 @@ import {
   FlatList,
 } from 'react-native';
 import IOSPicker from 'react-native-ios-picker';
-import firebase from 'react-native-firebase';
 import { FontSetting} from '../../assets/style_sheets/font_setting';
 
 import API from '../../api/schools';
@@ -46,7 +45,6 @@ export default class SchoolScreen extends Component {
   }
 
   componentWillMount() {
-    firebase.analytics().setCurrentScreen('InstituteScreen')
     this._getProvinces();
     this._getSchools(1);
   }

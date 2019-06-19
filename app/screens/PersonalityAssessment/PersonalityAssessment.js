@@ -77,7 +77,7 @@ export default class PersonalityAssessment extends Component {
   }
 
   _startNewAssessment() {
-    firebase.analytics().logEvent('PersonalityTestStartBtn');
+    firebase.analytics().logEvent('personality_test_btn_click');
     let uncompletedAssessments = realm.objects('PersonalityAssessment').filtered('isDone = false AND userUuid = "' + User.getID() + '"');
 
     realm.write(() => {

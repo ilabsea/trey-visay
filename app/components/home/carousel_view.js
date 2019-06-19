@@ -12,6 +12,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Pagination } from 'react-native-snap-carousel';
+import firebase from 'react-native-firebase';
 
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import { Colors } from '../../assets/style_sheets/main/colors';
@@ -52,6 +53,7 @@ class CarouselView extends Component {
 
   onPressButton(item) {
     let option = this._handleLoginOption(item);
+    firebase.analytics().logEvent(item.firebase_event_name);
     this.props.navigation.navigate(option.url, option.params);
   }
 

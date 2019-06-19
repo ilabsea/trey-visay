@@ -137,7 +137,7 @@ export default class CareerCounsellor extends Component {
   }
 
   _goToPersonalUnderstandingForm() {
-    firebase.analytics().logEvent('CareerTestStartBtn');
+    firebase.analytics().logEvent('career_test_btn_click');
     let uncompletedGames = this.state.user.games.filtered('isDone = false');
 
     realm.write(() => {

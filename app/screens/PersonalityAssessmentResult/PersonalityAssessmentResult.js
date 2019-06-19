@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import { Button, Icon } from 'native-base';
+import firebase from 'react-native-firebase';
 
 import FooterBar from '../../components/footer/FooterBar';
 import { NavigationActions } from 'react-navigation';
@@ -50,6 +51,7 @@ export default class PersonalityAssessmentResult extends Component {
   }
 
   _goNext = () => {
+    firebase.analytics().logEvent('finish_personality_test_click');
     realm.write(() => {
       realm.create('PersonalityAssessment', this._buildData(), true);
       Sidekiq.create(this.state.assessment.uuid, 'PersonalityAssessment');

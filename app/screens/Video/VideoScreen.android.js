@@ -13,7 +13,6 @@ import {
 
 import NetInfo from "@react-native-community/netinfo";
 import Toast, { DURATION } from 'react-native-easy-toast';
-import firebase from 'react-native-firebase';
 
 import { ThemeContext, getTheme, Toolbar } from 'react-native-material-ui';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -47,7 +46,6 @@ export default class VideoScreen extends Component {
   }
 
   componentDidMount() {
-    firebase.analytics().setCurrentScreen('VideoScreen');
     this._handleInternetConnection();
   }
 

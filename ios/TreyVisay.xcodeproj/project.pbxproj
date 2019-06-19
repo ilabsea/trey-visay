@@ -43,6 +43,9 @@
 		5F7C8DA3FFAE404C821A14DE /* RNBackgroundFetch+AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2730C84862D64E3A99C4AD7D /* RNBackgroundFetch+AppDelegate.m */; };
 		6056814ADE7D4EC79B3EB1F8 /* TSBackgroundFetch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8951A2A40427419291435F64 /* TSBackgroundFetch.framework */; };
 		60AE4C5621C8A3FB001E8D9F /* libRNSound.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60AE4C5521C8A3D5001E8D9F /* libRNSound.a */; };
+		60F8018222B9D11400458530 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60F8015122B9D11400458530 /* GoogleService-Info.plist */; };
+		60F8018422B9D18F00458530 /* FIRAnalyticsConnector.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8018322B9D18F00458530 /* FIRAnalyticsConnector.framework */; };
+		60F8018622B9D1BB00458530 /* GoogleAppMeasurement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 60F8018522B9D1BB00458530 /* GoogleAppMeasurement.framework */; };
 		6663CAF5C1B14C7BB0CBD94B /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E6D9C263BEB455D8871B9D2 /* Zocial.ttf */; };
 		6C784691580245189D107CD7 /* Roboto-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B0EB143F9D9144B6ABA812FD /* Roboto-Italic.ttf */; };
 		6CCD890251E8401CBFC6B72E /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A9BBAE47FE34127B17F3B17 /* Zocial.ttf */; };
@@ -387,6 +390,23 @@
 			remoteGlobalIDString = ED296FEE214C9CF800B7C4FE;
 			remoteInfo = "jsiexecutor-tvOS";
 		};
+<<<<<<< b80e4193177d1056c71e663c6317783912973c8d
+=======
+		605E152821C79B9400E95C0D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F83833D3942241FA820002D9 /* RealmReact.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = F60690131CA2766F0003FB26;
+			remoteInfo = RealmReact;
+		};
+		607FEFE822B799720081044E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = ACB8EE1690B746A0BF25698C /* RNFirebase.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 134814201AA4EA6300B7C361;
+			remoteInfo = RNFirebase;
+		};
+>>>>>>> add firebase to ios + add event log
 		60920AF921C8B49900ABEB88 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 43E116BB4FBE4BE8BFCD8CF9 /* SplashScreen.xcodeproj */;
@@ -511,7 +531,13 @@
 		5803BC2D29F04D8DB282D06F /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTAnimation.xcodeproj; path = "../node_modules/react-native/Libraries/NativeAnimation/RCTAnimation.xcodeproj"; sourceTree = "<group>"; };
 		60AE4C2A21C8A3D5001E8D9F /* RNSound.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSound.xcodeproj; path = "../node_modules/react-native-sound/RNSound.xcodeproj"; sourceTree = "<group>"; };
+<<<<<<< b80e4193177d1056c71e663c6317783912973c8d
 		61EBF32149614FF3907FAACF /* RealmReact.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RealmReact.xcodeproj; path = "../node_modules/realm/react-native/ios/RealmReact.xcodeproj"; sourceTree = "<group>"; };
+=======
+		60F8015122B9D11400458530 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "TreyVisay/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		60F8018322B9D18F00458530 /* FIRAnalyticsConnector.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FIRAnalyticsConnector.framework; path = Pods/FirebaseAnalytics/Frameworks/FIRAnalyticsConnector.framework; sourceTree = "<group>"; };
+		60F8018522B9D1BB00458530 /* GoogleAppMeasurement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleAppMeasurement.framework; path = Pods/GoogleAppMeasurement/Frameworks/GoogleAppMeasurement.framework; sourceTree = "<group>"; };
+>>>>>>> add firebase to ios + add event log
 		64B0AB0092CF4C389A59C1EC /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		715AD49BB57D43F78A2A9300 /* libz.tbd */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7365F85E8A83451FBC276DF1 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
@@ -639,8 +665,17 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
+<<<<<<< b80e4193177d1056c71e663c6317783912973c8d
+=======
+				60F8018422B9D18F00458530 /* FIRAnalyticsConnector.framework in Frameworks */,
+				C78BF4296FDD489DBB58141B /* libRealmReact.a in Frameworks */,
+				CFCF388DF456475098E2B911 /* libc++.tbd in Frameworks */,
+				144CF1FEE9F04176A49C8FB7 /* libz.tbd in Frameworks */,
+				292B12204EA14800B69B7C46 /* libRNDeviceInfo.a in Frameworks */,
+>>>>>>> add firebase to ios + add event log
 				0AB2FFAB35E049A498D60589 /* libRNVectorIcons.a in Frameworks */,
 				43F6EE8D938E41EAA33BF956 /* libRNAudio.a in Frameworks */,
+				60F8018622B9D1BB00458530 /* GoogleAppMeasurement.framework in Frameworks */,
 				BB108951A0A94C65A6E11D87 /* libBVLinearGradient.a in Frameworks */,
 				974E21E3D64D4586BF0ED02B /* libSplashScreen.a in Frameworks */,
 				6056814ADE7D4EC79B3EB1F8 /* TSBackgroundFetch.framework in Frameworks */,
@@ -734,6 +769,7 @@
 		13B07FAE1A68108700A75B9A /* TreyVisay */ = {
 			isa = PBXGroup;
 			children = (
+				60F8015122B9D11400458530 /* GoogleService-Info.plist */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -829,8 +865,13 @@
 				2D16E6891FA4F8E400B85C8A /* libReact.a */,
 				8951A2A40427419291435F64 /* TSBackgroundFetch.framework */,
 				CE03112C6143C52B4E0E4DC8 /* libPods-TreyVisay.a */,
+<<<<<<< b80e4193177d1056c71e663c6317783912973c8d
 				1038031B1AD84CCF92E3FDF7 /* libc++.tbd */,
 				715AD49BB57D43F78A2A9300 /* libz.tbd */,
+=======
+				60F8018322B9D18F00458530 /* FIRAnalyticsConnector.framework */,
+				60F8018522B9D1BB00458530 /* GoogleAppMeasurement.framework */,
+>>>>>>> add firebase to ios + add event log
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -861,12 +902,34 @@
 				74EF441968474F33949D8FA0 /* libRNVectorIcons-tvOS.a */,
 				818238EEDBCA4001850A9647 /* libSplashScreen.a */,
 				F29346E477A84F14826E6823 /* libRNBackgroundJob.a */,
+<<<<<<< b80e4193177d1056c71e663c6317783912973c8d
 				1A0FAAD422D140BEBCDF31B1 /* libRealmReact.a */,
+=======
+>>>>>>> add firebase to ios + add event log
 				3B74CE972BC14964BDD6824C /* libRNFirebase.a */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
 		};
+<<<<<<< b80e4193177d1056c71e663c6317783912973c8d
+=======
+		605E150021C79B9400E95C0D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				605E152921C79B9400E95C0D /* libRealmReact.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		607FEFE522B799720081044E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				607FEFE922B799720081044E /* libRNFirebase.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+>>>>>>> add firebase to ios + add event log
 		60920AF621C8B49900ABEB88 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -1290,6 +1353,17 @@
 					ProjectRef = 36837D01C8B24AE9BB5AF1D3 /* RNAudio.xcodeproj */;
 				},
 				{
+<<<<<<< b80e4193177d1056c71e663c6317783912973c8d
+=======
+					ProductGroup = 60AE4CAA21C8ADD9001E8D9F /* Products */;
+					ProjectRef = B7F5F9EDB45541859CBDF322 /* RNDeviceInfo.xcodeproj */;
+				},
+				{
+					ProductGroup = 607FEFE522B799720081044E /* Products */;
+					ProjectRef = ACB8EE1690B746A0BF25698C /* RNFirebase.xcodeproj */;
+				},
+				{
+>>>>>>> add firebase to ios + add event log
 					ProductGroup = 60AE4C2B21C8A3D5001E8D9F /* Products */;
 					ProjectRef = 60AE4C2A21C8A3D5001E8D9F /* RNSound.xcodeproj */;
 				},
@@ -1556,6 +1630,23 @@
 			remoteRef = 603847A722B0B419007FE738 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+<<<<<<< b80e4193177d1056c71e663c6317783912973c8d
+=======
+		605E152921C79B9400E95C0D /* libRealmReact.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRealmReact.a;
+			remoteRef = 605E152821C79B9400E95C0D /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		607FEFE922B799720081044E /* libRNFirebase.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNFirebase.a;
+			remoteRef = 607FEFE822B799720081044E /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+>>>>>>> add firebase to ios + add event log
 		60920AFA21C8B49900ABEB88 /* libSplashScreen.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1681,6 +1772,7 @@
 				57AEF38C8E7D4A4C9CD5DA41 /* Ionicons.ttf in Resources */,
 				E7E6D297837949F5B39FCD68 /* MaterialCommunityIcons.ttf in Resources */,
 				EA132A0D8B764D9D8380E3E2 /* MaterialIcons.ttf in Resources */,
+				60F8018222B9D11400458530 /* GoogleService-Info.plist in Resources */,
 				AF5BD6E180DC41AF85943B5D /* Octicons.ttf in Resources */,
 				7FF2B16AF4674D0A9871FECC /* Roboto_medium.ttf in Resources */,
 				A46EA5B2EDD148F2A9F75E1F /* Roboto.ttf in Resources */,
@@ -1936,7 +2028,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = JW8Q88ZUPR;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleAppMeasurement/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
@@ -1969,7 +2065,11 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JW8Q88ZUPR;
-				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/../node_modules/react-native-background-fetch/ios/**",
+					"$(PROJECT_DIR)/Pods/FirebaseAnalytics/Frameworks",
+					"$(PROJECT_DIR)/Pods/GoogleAppMeasurement/Frameworks",
+				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-vector-icons/RNVectorIconsManager",
