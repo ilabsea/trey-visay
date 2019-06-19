@@ -65,11 +65,11 @@ export default StyleSheet.create({
     fontSize: FontSetting.nav_title,
   },
   largeTitle: {
-    color: '#fff',
     fontSize: FontSetting.nav_large_title,
     lineHeight: 50
   },
   subTitle: {
-    fontSize: 13, lineHeight: 24, color: '#fff'
+    fontSize: 13,
+    lineHeight: 24
   }
 });

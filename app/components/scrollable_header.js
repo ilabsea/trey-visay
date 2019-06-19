@@ -16,8 +16,9 @@ import { FontSetting } from '../assets/style_sheets/font_setting';
 const DEFAULT_HEADER_MAX_HEIGHT = 140;
 const DEFAULT_HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 64 : 74;
 const DEFAULT_HEADER_SCROLL_DISTANCE = DEFAULT_HEADER_MAX_HEIGHT - DEFAULT_HEADER_MIN_HEIGHT;
-const DEFAULT_HEADER_COLOR = '#1976d2';
 const NAVIGATION_BUTTON_WIDTH = Platform.OS === 'ios' ? 30 : 44;
+const DEFAULT_HEADER_COLOR = '#fff';
+const DEFAULT_TEXT_COLOR = '#111';
 
 const styles = StyleSheet.create({
   fill: {
@@ -34,6 +35,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#03A9F4',
     overflow: 'hidden',
     height: DEFAULT_HEADER_MAX_HEIGHT,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc'
   },
   overlay: {
     position: 'absolute',
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: FontSetting.nav_title,
-    color: 'white',
+    color: DEFAULT_TEXT_COLOR,
     paddingHorizontal: 16,
     textAlign: Platform.OS === 'ios' ? 'center' : 'left',
   },
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
   },
   largeTitle: {
     fontSize: FontSetting.nav_large_title,
-    color: '#fff',
+    color: DEFAULT_TEXT_COLOR,
     lineHeight: 50
   }
 });
@@ -85,6 +88,11 @@ class ScrollableHeader extends Component {
     this.state = {
       scrollY: new Animated.Value(0),
     };
+  }
+
+  getTextColor() {
+    const { textColor } = this.props;
+    return textColor || DEFAULT_TEXT_COLOR;
   }
 
   getHeaderMaxHeight() {
@@ -101,8 +109,8 @@ class ScrollableHeader extends Component {
   }
 
   getOverlayBgColor() {
-    const { overlayBgColor } = this.props;
-    return overlayBgColor || DEFAULT_HEADER_COLOR;
+    const { overlayBgColor, backgroundColor } = this.props;
+    return overlayBgColor || backgroundColor || DEFAULT_HEADER_COLOR;
   }
 
   getHeaderTranslate() {
@@ -201,7 +209,7 @@ class ScrollableHeader extends Component {
 
     return (
       <View style={{position: 'absolute', left: NAVIGATION_BUTTON_WIDTH, right: NAVIGATION_BUTTON_WIDTH, bottom: 2}}>
-        <Text numberOfLines={1} style={styles.title} numberOfLines={1}>{this.props.title}</Text>
+        <Text numberOfLines={1} style={[styles.title, {color: this.getTextColor()}]} numberOfLines={1}>{this.props.title}</Text>
       </View>
     )
   }
@@ -216,7 +224,7 @@ class ScrollableHeader extends Component {
             opacity: this.getOverlayOpacity(),
             backgroundColor: this.getOverlayBgColor(),
             transform: [{ translateY: this.getOverlayTranslate() }],
-          },
+          }
         ]}
       />
     )
@@ -235,7 +243,7 @@ class ScrollableHeader extends Component {
         ]}
       >
         <View style={{position: 'absolute', left: 20, right: 0, bottom: 10}}>
-          <Text numberOfLines={1} style={styles.largeTitle}>{this.props.largeTitle}</Text>
+          <Text numberOfLines={1} style={[styles.largeTitle, {color: this.getTextColor()}]}>{this.props.largeTitle}</Text>
         </View>
       </Animated.View>
     )
@@ -313,6 +321,8 @@ class ScrollableHeader extends Component {
     }
   }
 
+
+
   renderHeader() {
     let bgColor = this.props.backgroundColor || DEFAULT_HEADER_COLOR;
 
@@ -321,7 +331,8 @@ class ScrollableHeader extends Component {
         style={[
           styles.header,
           { height: this.getHeaderMaxHeight() },
-          { backgroundColor: bgColor, transform: [{ translateY: this.getHeaderTranslate() }] }
+          { backgroundColor: bgColor, transform: [{ translateY: this.getHeaderTranslate() }] },
+          this.props.headerStyle,
         ]}
       >
         { this.renderTitle() }
@@ -357,6 +368,9 @@ ScrollableHeader.propTypes = {
   backgroundColor: PropTypes.string,
   enableProgressBar: PropTypes.bool,
   progressValue: PropTypes.number,
+  overlayBgColor: PropTypes.string,
+  textColor: PropTypes.string,
+  headerStyle: PropTypes.object
 };
 
 ScrollableHeader.defaultProps = {
@@ -369,7 +383,10 @@ ScrollableHeader.defaultProps = {
   headerMaxHeight: DEFAULT_HEADER_MAX_HEIGHT,
   backgroundColor: null,
   enableProgressBar: false,
-  progressValue: 0
+  progressValue: 0,
+  overlayBgColor: null,
+  textColor: null,
+  headerStyle: {}
 };
 
 export default ScrollableHeader;

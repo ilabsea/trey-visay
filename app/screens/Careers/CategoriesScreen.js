@@ -19,6 +19,7 @@ import CardItem from '../../components/list/card_item';
 import realm from '../../db/schema';
 import User from '../../utils/user';
 import { NavigationActions } from 'react-navigation';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 export default class CategoriesScreen extends Component {
   constructor(props) {
@@ -115,6 +116,8 @@ export default class CategoriesScreen extends Component {
     return (
       <View style={{flex: 1}}>
         <ScrollableHeader
+          backgroundColor={Colors.blue}
+          textColor={'#fff'}
           renderContent={ this._renderContent }
           renderNavigation={ () => <CloseButton navigation={this.props.navigation}/> }
           title={'យល់ដឹងពីមុខរបរ'}

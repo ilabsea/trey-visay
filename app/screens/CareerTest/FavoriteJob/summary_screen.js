@@ -29,6 +29,7 @@ import ProgressStep from '../ProgressStep/ProgressStep';
 import CloseButton from '../../../components/shared/close_button';
 import { Radio } from 'native-base';
 import Images from '../../../assets/images';
+import {Colors} from '../../../assets/style_sheets/main/colors';
 
 export default class SummaryScreen extends Component {
   constructor(props) {
@@ -190,6 +191,8 @@ export default class SummaryScreen extends Component {
     return(
       <View style={{flex: 1}}>
         <ScrollableHeader
+          backgroundColor={Colors.blue}
+          textColor={'#fff'}
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
           renderForeground={this._renderForeground }

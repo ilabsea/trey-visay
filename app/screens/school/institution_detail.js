@@ -147,6 +147,9 @@ export default class InstitutionDetail extends Component {
   render() {
     return (
       <ScrollableHeader
+        backgroundColor={Colors.blue}
+        textColor={'#fff'}
+        headerStyle={{borderBottomWidth: 0}}
         renderContent={ this.renderContent }
         renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
         title={this.state.school.universityName}

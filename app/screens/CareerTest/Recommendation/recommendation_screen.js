@@ -123,7 +123,7 @@ export default class RecommendationScreen extends Component {
       <View style={{flex: 1}}>
         <ScrollableHeader
           renderContent={ this._renderContent }
-          renderNavigation={ () => <CloseButton navigation={this.props.navigation}/> }
+          renderNavigation={ () => <CloseButton buttonColor={'#000'} navigation={this.props.navigation}/> }
           title={title}
           largeTitle={title}
         />

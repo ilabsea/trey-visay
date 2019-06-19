@@ -52,7 +52,14 @@ const CareerCounsellorStack = createStackNavigator(
         gesturesEnabled: false
       })
     },
-    ShowCareerCategoryScreen: { screen: ShowCareerCategoryScreen },
+    ShowCareerCategoryScreen: {
+      screen: ShowCareerCategoryScreen,
+      navigationOptions: ({navigation}) => ({
+        headerStyle: {
+          marginTop: 0
+        }
+      })
+    },
     CareerDetailScreen: {
       screen: CareerDetailScreen
     },

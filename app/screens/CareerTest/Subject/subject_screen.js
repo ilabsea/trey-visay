@@ -256,6 +256,8 @@ export default class SubjectScreen extends Component {
     return (
       <View style={{flex: 1}}>
         <ScrollableHeader
+          backgroundColor={Colors.blue}
+          textColor={'#fff'}
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
           renderForeground={this._renderForeground }

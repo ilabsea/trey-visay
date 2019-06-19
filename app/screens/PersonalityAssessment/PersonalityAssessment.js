@@ -147,7 +147,7 @@ export default class PersonalityAssessment extends Component {
   _renderNavigation = () => {
     return (
       <View style={{flexDirection: 'row'}}>
-        <BackButton navigation={this.props.navigation}/>
+        <BackButton buttonColor='#000' navigation={this.props.navigation}/>
       </View>
     )
   }

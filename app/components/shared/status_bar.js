@@ -11,7 +11,7 @@ export default class MyStatusBar extends Component {
 
     return (
       <StatusBar
-        backgroundColor="#176bc1"
+        backgroundColor="rgba(0, 0, 0, 0.251)"
         { ...props }
       />
     )

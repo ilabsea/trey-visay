@@ -169,7 +169,7 @@ export default class CareerCounsellor extends Component {
     return(
       <ScrollableHeader
         renderContent={ this._renderContent }
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        renderNavigation={ () => <BackButton buttonColor='#000' navigation={this.props.navigation}/> }
         title={'វាយតម្លៃមុខរបរនិងអាជីព'}
         renderForeground={this._renderForeground}
         headerMaxHeight={150}

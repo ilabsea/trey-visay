@@ -10,6 +10,7 @@ import ScrollableHeader from '../../components/scrollable_header';
 import { Content, Button, Icon } from 'native-base';
 import BackButton from '../../components/shared/back_button';
 import mainStyles from '../../assets/style_sheets/main/main';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 export default class AboutCareerCounsellor extends Component {
   _renderContent = () => {
@@ -43,11 +44,13 @@ export default class AboutCareerCounsellor extends Component {
     let title = 'ការធ្វើតេសវាយតម្លៃមុខរបរ​ និងអាជីព';
     return (
       <ScrollableHeader
+        backgroundColor={Colors.blue}
+        textColor={'#fff'}
         style={{backgroundColor: '#fff'}}
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         title={title}
-        renderForeground={() => <Text style={{fontSize: 24, color: '#fff'}}>{title}</Text>}
+        renderForeground={() => <Text style={{fontSize: 24, lineHeight: 42, color: '#fff'}}>{title}</Text>}
       />
     )
   }

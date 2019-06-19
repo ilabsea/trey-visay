@@ -23,6 +23,7 @@ import * as Progress from 'react-native-progress';
 import FooterBar from '../../../components/footer/FooterBar';
 import Result from './Result';
 import BackButton from '../../../components/shared/back_button';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 
 export default class PersonalUnderstandingForm extends Component {
   constructor(props) {
@@ -108,7 +109,7 @@ export default class PersonalUnderstandingForm extends Component {
   _renderForeground = () => {
     return (
       <View>
-        <Text style={scrollHeaderStyles.largeTitle}>ស្វែងយល់ពីខ្លួនឯង</Text>
+        <Text style={[scrollHeaderStyles.largeTitle, {color: '#fff'}]}>ស្វែងយល់ពីខ្លួនឯង</Text>
         <View style={{borderTopLeftRadius: 10, borderTopRightRadius: 10, paddingHorizontal: 5, paddingTop: 6, width: 110, backgroundColor: 'rgb(22, 99, 176)'}}>
           <Text style={{color: '#fff', fontSize: 13, lineHeight: 22}}>ឆ្លើយរួចរាល់</Text>
         </View>
@@ -137,6 +138,8 @@ export default class PersonalUnderstandingForm extends Component {
     return (
       <View style={{flex: 1}}>
         <ScrollableHeader
+          backgroundColor={Colors.blue}
+          textColor={'#fff'}
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
           renderForeground={ this._renderForeground }
