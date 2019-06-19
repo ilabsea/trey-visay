@@ -59,7 +59,7 @@ class CarouselView extends Component {
       <TouchableOpacity
         onPress={ () => this.onPressButton(option) }
         style={styles.btnBox}>
-        <View style={[styles.imageWrapper, { backgroundColor: option.background_color }]}>
+        <View style={styles.imageWrapper}>
           <Image
             style={styles.btnImage}
             resizeMode="contain"
