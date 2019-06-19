@@ -35,7 +35,7 @@ const AssessmentStack = createStackNavigator(
     AboutPersonalityAssessment: {
       screen: AboutPersonalityAssessment,
       navigationOptions: ({navigation}) => ({
-        header: null
+        title: 'អំពីការធ្វើតេស្តស្វែងយល់បុគ្គលិកលក្ខណៈ'
       })
     },
 

@@ -29,23 +29,14 @@ import SexOptions from '../../components/account/sex_options';
 let formError = {};
 
 export default class EditPersonalInfo extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'កែតម្រូវប្រវត្តិរូបសង្ខេប',
-    headerLeft: (
-      <TouchableOpacity onPress={() => { navigation.state.params._handleBack()}} style={{marginHorizontal: 16}}>
-        <Icon name='arrow-back' style={{color: '#fff'}} size={24} />
-      </TouchableOpacity>
-    ),
-    headerRight: null
-  });
-
   constructor(props) {
     super(props);
 
-    let user = realm.objects('User').filtered('uuid="' + User.getID() + '"')[0];
-    user = Object.assign({}, user, { sex: user.sex || 'ស្រី', grade: user.grade || '9' })
+    this.state = {
+      user: User.getCurrent(),
+      errors: {}
+    };
 
-    this.state = { user: user, errors: {} };
     this.props.navigation.setParams({
       handleSubmit: this.handleSubmit.bind(this),
       _handleBack: this._handleBack.bind(this)
@@ -221,9 +212,9 @@ export default class EditPersonalInfo extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <StatusBar />
+        <StatusBar translucent={false} />
         <Container>
-          <Content padder>
+          <Content style={{padding: 16}}>
             { this._renderContent() }
           </Content>
 

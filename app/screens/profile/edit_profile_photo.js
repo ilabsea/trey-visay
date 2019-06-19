@@ -22,16 +22,6 @@ import { Container, Content, Icon, Item, Form, Input } from 'native-base';
 import FooterBar from '../../components/footer/FooterBar';
 
 export default class EditProfilePhoto extends Component {
-  static navigationOptions = ({ navigation }) => ({
-    title: 'កែតម្រូវប្រវត្តិរូបសង្ខេប',
-    headerLeft: (
-      <TouchableOpacity onPress={() => { navigation.state.params._handleBack()}} style={{marginHorizontal: 16}}>
-        <Icon name='arrow-back' style={{color: '#fff'}} size={24} />
-      </TouchableOpacity>
-    ),
-    headerRight: null
-  });
-
   state = { user: '', type: '' };
 
   componentWillMount() {
@@ -193,8 +183,10 @@ export default class EditProfilePhoto extends Component {
 
   render() {
     return (
+      <View style={{flex: 1}}>
+        <StatusBar translucent={false}/>
+
         <Container>
-          <StatusBar />
           <Content padder>
             { this._renderProfile() }
             { this.renderUserName() }
@@ -203,6 +195,7 @@ export default class EditProfilePhoto extends Component {
 
           <FooterBar icon='keyboard-arrow-right' text='រក្សាទុក' onPress={() => this.handleSubmit()} />
         </Container>
+      </View>
     )
   }
 }

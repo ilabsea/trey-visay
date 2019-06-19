@@ -22,19 +22,13 @@ const ProfileStack = createStackNavigator(
     EditProfilePhoto: {
       screen: EditProfilePhoto,
       navigationOptions: ({navigation}) => ({
-        title: 'កែសម្រួល',
-        headerTitleStyle: headerStyles.headerTitleStyle,
-        headerStyle: headerStyles.headerStyleProfile,
-        headerLeft: <CloseButton navigation={navigation}/>
+        title: 'កែតម្រូវប្រវត្តិរូប',
       })
     },
     EditPersonalInfo: {
       screen: EditPersonalInfo,
       navigationOptions: ({navigation}) => ({
-        title: 'កែសម្រួល',
-        headerTitleStyle: headerStyles.headerTitleStyle,
-        headerStyle: headerStyles.headerStyleProfile,
-        headerLeft: <CloseButton navigation={navigation}/>
+        title: 'កែតម្រូវប្រវត្តិរូប',
       })
     },
     ProfileForm: {

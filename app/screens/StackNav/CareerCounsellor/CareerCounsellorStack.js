@@ -41,7 +41,6 @@ const CareerCounsellorStack = createStackNavigator(
       screen: AboutCareerCounsellor,
       navigationOptions: ({navigation}) => ({
         title: 'ការធ្វើតេសវាយតម្លៃមុខរបរ​ និងអាជីព',
-        header: null
       })
     },
 

@@ -6,16 +6,13 @@ import {
   Image,
 } from 'react-native';
 
-import ScrollableHeader from '../../components/scrollable_header';
-import { Content, Button, Icon } from 'native-base';
-import BackButton from '../../components/shared/back_button';
+import { Container, Content } from 'native-base';
 import mainStyles from '../../assets/style_sheets/main/main';
-import { Colors } from '../../assets/style_sheets/main/colors';
 
 export default class AboutCareerCounsellor extends Component {
   _renderContent = () => {
     return (
-      <Content padder>
+      <Content style={{padding: 20}}>
         <Text>
           ធ្វើតេស្តវាយតម្លៃមុខរបរ​ និងអាជីព ដើម្បីដឹងពីចំណង់​ចូលចិត្ត​​ ទេពកោសល្យ និង អាជីពដែលសាកសមសំរាប់ អ្នកនៅពេលអនាគត
         </Text>
@@ -36,22 +33,11 @@ export default class AboutCareerCounsellor extends Component {
     )
   }
 
-  _renderNavigation = () => {
-    return ( <BackButton buttonColor='#fff' navigation={this.props.navigation} /> )
-  }
-
   render() {
-    let title = 'ការធ្វើតេសវាយតម្លៃមុខរបរ​ និងអាជីព';
     return (
-      <ScrollableHeader
-        backgroundColor={Colors.blue}
-        textColor={'#fff'}
-        style={{backgroundColor: '#fff'}}
-        renderContent={ this._renderContent }
-        renderNavigation={ this._renderNavigation }
-        title={title}
-        renderForeground={() => <Text style={{fontSize: 24, lineHeight: 42, color: '#fff'}}>{title}</Text>}
-      />
+      <Container>
+        {this._renderContent()}
+      </Container>
     )
   }
 }
@@ -71,9 +57,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: 14
   },
-  largeTitle: {
-    fontSize: 24,
-    color: '#fff',
-    lineHeight: 42
-  }
 })
