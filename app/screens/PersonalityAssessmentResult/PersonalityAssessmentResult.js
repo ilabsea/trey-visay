@@ -112,7 +112,7 @@ export default class PersonalityAssessmentResult extends Component {
           onPressYes={() => this._onYes()}
           onPressNo={() => this._onNo()}
         />
-        <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={this._goNext} />
+        <FooterBar icon='keyboard-arrow-right' text='រួចរាល់' onPress={this._goNext} />
       </View>
     )
   }

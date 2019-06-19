@@ -21,7 +21,8 @@ const OthersStack = createStackNavigator({
   About: {
     screen: About,
     navigationOptions: ({navigation}) => ({
-      title: 'អំពីកម្មវិធី'
+      title: 'អំពីកម្មវិធី',
+      header: null
     }),
   },
   ChangePassword: {
@@ -33,7 +34,8 @@ const OthersStack = createStackNavigator({
   TermsCondition: {
     screen: TermsCondition,
     navigationOptions: ({navigation}) => ({
-      title: 'Terms & Condition'
+      title: 'Terms & Condition',
+      header: null
     }),
   }
 },

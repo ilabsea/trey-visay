@@ -27,13 +27,8 @@ export default class ChangePasswordScreen extends Component {
       oldPassword: '',
       newPassword: '',
       passwordConfirmation: '',
-      user: null
+      user: User.getCurrent()
     }
-  }
-
-  componentWillMount() {
-    let user = User.getCurrent();
-    this.setState({ user: user });
   }
 
   handleSubmit() {
@@ -63,65 +58,62 @@ export default class ChangePasswordScreen extends Component {
     const btnSubmitColor = isEnabled ? '#4caf50' : '#d9d9d9';
 
     return (
-      <Container>
-        <Content padder>
+      <Content style={{padding: 20}}>
+        <Form>
+          <Item regular style={{marginBottom: 18}}>
+            <Icon name='md-key' />
+            <Input
+              onChangeText={(text) => this.setState({oldPassword: text})}
+              returnKeyType='next'
+              autoCorrect={false}
+              value={this.state.oldPassword}
+              secureTextEntry={true}
+              onSubmitEditing={() => this.passwordInput._root.focus()}
+              placeholderTextColor='rgba(0,0,0,0.7)'
+              placeholder='លេខសម្ងាត់ចាស់'/>
 
-          <Form>
+            <Icon name='eye' style={{color: 'gray'}} />
+          </Item>
+
+          <Item regular style={{marginBottom: 18}}>
+            <Icon name='md-key' />
+            <Input
+              secureTextEntry={true}
+              returnKeyType='next'
+              onChangeText={(text) => this.setState({newPassword: text})}
+              ref={(input) => this.passwordInput = input}
+              value={this.state.password}
+              onSubmitEditing={() => this.passwordConfirmationInput._root.focus()}
+              placeholderTextColor='rgba(0,0,0,0.7)'
+              placeholder='លេខសម្ងាត់ថ្មី'/>
+            <Icon name='eye' style={{color: 'gray'}} />
+          </Item>
+
+          { !this.state.isLogin &&
             <Item regular style={{marginBottom: 18}}>
               <Icon name='md-key' />
               <Input
-                onChangeText={(text) => this.setState({oldPassword: text})}
-                returnKeyType='next'
-                autoCorrect={false}
-                value={this.state.oldPassword}
                 secureTextEntry={true}
-                onSubmitEditing={() => this.passwordInput._root.focus()}
+                returnKeyType='done'
+                value={this.state.passwordConfirmation}
+                onChangeText={(text) => this.setState({passwordConfirmation: text})}
+                ref={(input) => this.passwordConfirmationInput = input}
                 placeholderTextColor='rgba(0,0,0,0.7)'
-                placeholder='លេខសម្ងាត់ចាស់'/>
-
+                placeholder='បញ្ជាក់លេខសំងាត់ថ្មីម្តងទៀត'/>
               <Icon name='eye' style={{color: 'gray'}} />
             </Item>
+          }
+        </Form>
 
-            <Item regular style={{marginBottom: 18}}>
-              <Icon name='md-key' />
-              <Input
-                secureTextEntry={true}
-                returnKeyType='next'
-                onChangeText={(text) => this.setState({newPassword: text})}
-                ref={(input) => this.passwordInput = input}
-                value={this.state.password}
-                onSubmitEditing={() => this.passwordConfirmationInput._root.focus()}
-                placeholderTextColor='rgba(0,0,0,0.7)'
-                placeholder='លេខសម្ងាត់ថ្មី'/>
-              <Icon name='eye' style={{color: 'gray'}} />
-            </Item>
-
-            { !this.state.isLogin &&
-              <Item regular style={{marginBottom: 18}}>
-                <Icon name='md-key' />
-                <Input
-                  secureTextEntry={true}
-                  returnKeyType='done'
-                  value={this.state.passwordConfirmation}
-                  onChangeText={(text) => this.setState({passwordConfirmation: text})}
-                  ref={(input) => this.passwordConfirmationInput = input}
-                  placeholderTextColor='rgba(0,0,0,0.7)'
-                  placeholder='បញ្ជាក់លេខសំងាត់ថ្មីម្តងទៀត'/>
-                <Icon name='eye' style={{color: 'gray'}} />
-              </Item>
-            }
-          </Form>
-
-          <View style={styles.submitWrapper}>
-            <TouchableOpacity
-              onPress={this.handleSubmit.bind(this)}
-              disabled={!isEnabled}
-              style={[styles.btnSubmit, {backgroundColor: btnSubmitColor}]}>
-              <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>យល់ព្រម</Text>
-            </TouchableOpacity>
-          </View>
-        </Content>
-      </Container>
+        <View style={styles.submitWrapper}>
+          <TouchableOpacity
+            onPress={this.handleSubmit.bind(this)}
+            disabled={!isEnabled}
+            style={[styles.btnSubmit, {backgroundColor: btnSubmitColor}]}>
+            <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>យល់ព្រម</Text>
+          </TouchableOpacity>
+        </View>
+      </Content>
     )
   }
 
@@ -131,6 +123,7 @@ export default class ChangePasswordScreen extends Component {
     return (
       <View style={styles.container}>
         <ScrollableHeader
+          style={{backgroundColor: '#fff'}}
           renderContent={ this._renderContent }
           renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
           title={title}

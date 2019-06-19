@@ -12,6 +12,8 @@ import {
 import DeviceInfo from 'react-native-device-info';
 
 import { FontSetting } from "../../assets/style_sheets/font_setting";
+import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
 
 export default class About extends Component {
 
@@ -35,10 +37,9 @@ export default class About extends Component {
     )
   }
 
-  _renderContent() {
+  _renderContent = () => {
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>ត្រីវិស័យ</Text>
         <Text style={[styles.paragraph, {marginTop: 0}]}>
           កម្មវិធី​ត្រីវិស័យ គឺ​ជា​កម្មវិធី​ទូរស័ព្ទ​មួយ​ដែល​អនុញ្ញាត​ឱ្យ​សិស្ស​ថ្នាក់​ទី៩ ដល់​ថ្នាក់​ទី១២
           អាច​ធ្វើ​ការ​ស្វែងយល់​អំពី​ខ្លួន​ឯង ដោយ​ធ្វើ​ការ​តេស្ត​ជា​មួយ​នឹង​កម្មវិធី ដើម្បី​អាច​អោយ​គាត់​ស្គាល់​ពី​ជំនាញ​ទន់
@@ -100,40 +101,34 @@ export default class About extends Component {
             require('../../assets/images/about/spider.png'))
           }
         </View>
+
+        <View style={styles.footer}>
+          <Text style={{textAlign: 'right'}}>
+            ជំនាន់: { DeviceInfo.getVersion() }
+          </Text>
+        </View>
       </View>
     )
   }
 
   render() {
+    let title = 'អំពីកម្មវិធី';
     return (
-      <View style={styles.mainContainer}>
-        <ScrollView style={{flex: 1}}>
-          { this._renderContent() }
-
-          <View style={styles.footer}>
-            <Text style={{textAlign: 'right'}}>
-              ជំនាន់: { DeviceInfo.getVersion() }
-            </Text>
-          </View>
-        </ScrollView>
-      </View>
+      <ScrollableHeader
+        style={{backgroundColor: '#fff'}}
+        renderContent={ this._renderContent }
+        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        title={title}
+        largeTitle={title}
+      />
     )
   }
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    backgroundColor: '#ffffff'
-  },
   container: {
     alignItems: 'center',
     padding: 16
-  },
-  title: {
-    lineHeight: 48,
-    fontSize: FontSetting.nav_title,
-    textAlign: 'center'
   },
   paragraph: {
     textAlign: 'center',
@@ -145,7 +140,7 @@ const styles = StyleSheet.create({
     padding: 10,
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    alignItems: 'flex-end'
+    alignSelf: 'flex-end'
   },
   imgWrapper: {
     flexDirection: 'row',

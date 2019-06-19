@@ -47,6 +47,8 @@ const styles = StyleSheet.create({
     height: DEFAULT_HEADER_MAX_HEIGHT,
     resizeMode: 'cover',
     backgroundColor: DEFAULT_HEADER_COLOR,
+    borderBottomWidth: 1,
+    borderBottomColor: '#ccc'
   },
   bar: {
     backgroundColor: 'transparent',
@@ -211,9 +213,10 @@ class ScrollableHeader extends Component {
 
   renderTitle() {
     if (!this.props.title) { return null }
+    let bottom = Platform.OS == 'ios' ? -2 : 2;
 
     return (
-      <View style={{position: 'absolute', left: NAVIGATION_BUTTON_WIDTH, right: NAVIGATION_BUTTON_WIDTH, bottom: 2}}>
+      <View style={{position: 'absolute', left: NAVIGATION_BUTTON_WIDTH, right: NAVIGATION_BUTTON_WIDTH, bottom: bottom}}>
         <Text numberOfLines={1} style={[styles.title, {color: this.getTextColor()}]} numberOfLines={1}>{this.props.title}</Text>
       </View>
     )
@@ -229,7 +232,8 @@ class ScrollableHeader extends Component {
             opacity: this.getOverlayOpacity(),
             backgroundColor: this.getOverlayBgColor(),
             transform: [{ translateY: this.getOverlayTranslate() }],
-          }
+          },
+          this.props.headerStyle
         ]}
       />
     )

@@ -25,7 +25,7 @@ const SchoolStack = createStackNavigator(
       screen: SchoolScreen,
       navigationOptions: ({navigation}) => ({
         header: (
-          <Header hasSegment style={headerStyle}>
+          <Header hasSegment style={headerStyle} androidStatusBarColor="rgba(19, 80, 150, 0.9)">
             <Left>
               <Button transparent onPress={() => {
                 navigation.goBack(null);
