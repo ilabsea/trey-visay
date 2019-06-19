@@ -23,7 +23,7 @@ export default class CareerIndexScreen extends Component {
 
   renderCareer(career, i) {
     return(
-      <View style={{marginBottom: 20}}>
+      <View key={i} style={{marginBottom: 20}}>
         <CardItem text={career.name} index={i} width={'42%'} height={'20%'}
           onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
             career: career
