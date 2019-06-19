@@ -138,6 +138,7 @@ android {
 }
 
 dependencies {
+    implementation project(':realm')
     implementation project(':@react-native-community_netinfo')
     implementation project(':@react-native-community_async-storage')
     compile project(':react-native-charts-wrapper')
@@ -151,7 +152,6 @@ dependencies {
     compile project(':react-native-sound')
     compile project(':react-native-vector-icons')
     compile project(':react-native-device-info')
-    compile project(':realm')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
