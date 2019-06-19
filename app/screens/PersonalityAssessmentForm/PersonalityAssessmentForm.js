@@ -18,6 +18,7 @@ import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import ProgressStep from './ProgressStep';
+import {Colors} from '../../assets/style_sheets/main/colors';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -177,7 +178,7 @@ export default class PersonalityAssessmentRealistic extends Component {
   _renderNavigation = () => {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <BackButton navigation={this.props.navigation} style={{width: 48}}/>
+        <BackButton buttonColor='#fff' navigation={this.props.navigation} style={{width: 48}}/>
         <Text style={[scrollHeaderStyles.navTitle, { paddingTop: 2, flex: 1, textAlign: 'center', justifyContent: 'center' }]}>តេស្ត{te[this.screen.category]}</Text>
         <Text style={{color: '#fff', marginRight: 8, width: 48}}>{this.state.data.length} / 18</Text>
       </View>
@@ -188,6 +189,7 @@ export default class PersonalityAssessmentRealistic extends Component {
     return (
       <View style={{flex: 1}}>
         <ScrollableHeader
+          backgroundColor={Colors.blue}
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
           headerMaxHeight={160}

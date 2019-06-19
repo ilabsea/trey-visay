@@ -5,6 +5,7 @@ import {
   StyleSheet,
   ScrollView,
   BackHandler,
+  Platform
 } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
@@ -22,6 +23,7 @@ import characteristicList from '../../../data/json/characteristic_jobs';
 import ScrollableHeader from '../../../components/scrollable_header';
 import CloseButton from '../../../components/shared/close_button';
 import Recommendation from '../../../components/Recommendation/Recommendation';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 
 export default class RecommendationScreen extends Component {
   constructor(props) {
@@ -118,12 +120,13 @@ export default class RecommendationScreen extends Component {
 
   render() {
     let title = 'ការផ្តល់អនុសាសន៍';
+    let buttonColor=Platform.OS == 'ios' ? Colors.blue : '#000';
 
     return (
       <View style={{flex: 1}}>
         <ScrollableHeader
           renderContent={ this._renderContent }
-          renderNavigation={ () => <CloseButton buttonColor={'#000'} navigation={this.props.navigation}/> }
+          renderNavigation={ () => <CloseButton buttonColor={buttonColor} navigation={this.props.navigation}/> }
           title={title}
           largeTitle={title}
         />

@@ -8,6 +8,7 @@ import {
 import ScrollableHeader from '../../components/scrollable_header';
 import { Content, Button, Icon, Card, CardItem, Body, Left, Thumbnail } from 'native-base';
 import BackButton from '../../components/shared/back_button';
+import {Colors} from '../../assets/style_sheets/main/colors';
 
 export default class About extends Component {
   _renderContent = () => {
@@ -55,7 +56,7 @@ export default class About extends Component {
 
   _renderNavigation = () => {
     return (
-      <BackButton navigation={this.props.navigation} />
+      <BackButton buttonColor='#fff' navigation={this.props.navigation} />
     )
   }
 
@@ -63,11 +64,13 @@ export default class About extends Component {
     let title = 'អំពីការធ្វើតេស្តស្វែងយល់បុគ្គលិកលក្ខណៈ';
     return (
       <ScrollableHeader
+        backgroundColor={Colors.blue}
+        textColor='#fff'
         style={{backgroundColor: '#fff'}}
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         title={title}
-        renderForeground={() => <Text style={{fontSize: 22, color: '#fff'}}>{title}</Text>}
+        renderForeground={() => <Text style={{fontSize: 20, color: '#fff'}}>{title}</Text>}
       />
     )
   }

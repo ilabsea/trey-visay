@@ -1,6 +1,7 @@
 import React from 'react';
 import { Platform, TouchableOpacity , Text } from 'react-native';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 class BackButton extends React.Component {
   handleOnPress = () => {
@@ -12,7 +13,9 @@ class BackButton extends React.Component {
 
   getButtonColor() {
     const {buttonColor} = this.props;
-    return buttonColor || '#fff';
+    let btnColor = Platform.OS == 'ios' ? Colors.blue : '#000';
+
+    return buttonColor || btnColor;
   }
 
   render() {

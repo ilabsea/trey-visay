@@ -85,14 +85,6 @@ export default class PersonalityAssessmentResult extends Component {
     };
   }
 
-  _renderNavigation = () => {
-    return (
-      <Button transparent onPress={() => this._handleBack()}>
-        <Icon name='arrow-back' style={{color: '#fff'}} />
-      </Button>
-    )
-  }
-
   _renderContent = () => {
     return (
       <View style={{paddingTop: 4}}>
@@ -110,7 +102,6 @@ export default class PersonalityAssessmentResult extends Component {
       <View style={{flex: 1}}>
         <ScrollableHeader
           renderContent={ this._renderContent }
-          renderNavigation={ this._renderNavigation }
           largeTitle={title}
           title={title}
         />

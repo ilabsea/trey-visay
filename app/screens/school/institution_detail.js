@@ -151,7 +151,7 @@ export default class InstitutionDetail extends Component {
         textColor={'#fff'}
         headerStyle={{borderBottomWidth: 0}}
         renderContent={ this.renderContent }
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        renderNavigation={ () => <BackButton buttonColor='#fff' navigation={this.props.navigation}/> }
         title={this.state.school.universityName}
         renderLogo={ () => this._renderLogo() }
       />

@@ -19,6 +19,7 @@ import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import { Container, Content, Icon, Button, Input, Item, Form } from 'native-base';
 import { NavigationActions } from 'react-navigation';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 export default class Login extends Component {
   constructor(props) {
@@ -45,7 +46,7 @@ export default class Login extends Component {
 
     return (
       <View style={{flexDirection: 'row'}}>
-        <BackButton navigation={this.props.navigation} />
+        <BackButton buttonColor='#fff' navigation={this.props.navigation} />
         <Text style={[scrollHeaderStyles.title, {textAlign: 'center', flex: 1, marginRight: marginRight}]}>សូមស្វាគមន៍</Text>
       </View>
     )
@@ -236,6 +237,7 @@ export default class Login extends Component {
   render() {
     return (
       <ScrollableHeader
+        backgroundColor={Colors.blue}
         style={{backgroundColor: '#fff'}}
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }

@@ -177,6 +177,11 @@ class ScrollableHeader extends Component {
   }
 
   renderStatusBar() {
+    if (Platform.OS=='ios') {
+      return (
+        <StatusBar />
+      )
+    }
     return (
       <StatusBar
         translucent

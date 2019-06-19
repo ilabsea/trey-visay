@@ -103,7 +103,7 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   _renderNavigation = () => {
-    return (<BackButton navigation={this.props.navigation}/>)
+    return (<BackButton buttonColor='#fff' navigation={this.props.navigation}/>)
   }
 
   _renderForeground = () => {

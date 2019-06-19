@@ -76,9 +76,7 @@ export default class CareerClusterScreen extends Component {
 
   renderNavigation = () => {
     return (
-      <View style={{flexDirection: 'row'}}>
-        <BackButton navigation={this.props.navigation} text='ត្រលប់ក្រោយ'/>
-      </View>
+      <BackButton navigation={this.props.navigation} text='ត្រលប់ក្រោយ'/>
     )
   }
 

@@ -37,7 +37,7 @@ export default class AboutCareerCounsellor extends Component {
   }
 
   _renderNavigation = () => {
-    return ( <BackButton navigation={this.props.navigation} /> )
+    return ( <BackButton buttonColor='#fff' navigation={this.props.navigation} /> )
   }
 
   render() {

@@ -169,12 +169,13 @@ export default class GoalScreen extends Component {
 
   render() {
     let title = 'ដាក់គោលដៅមួយ និងមូលហេតុ';
+    let buttonColor = Platform.OS == 'ios' ? Colors.blue : '#000';
 
     return (
       <View style={{flex: 1}}>
         <ScrollableHeader
           renderContent={ this._renderContent }
-          renderNavigation={ () => <CloseButton navigation={this.props.navigation}/> }
+          renderNavigation={ () => <CloseButton buttonColor={buttonColor} navigation={this.props.navigation}/> }
           title={title}
           largeTitle={title}
         />
