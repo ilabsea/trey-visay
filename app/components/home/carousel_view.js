@@ -59,13 +59,11 @@ class CarouselView extends Component {
       <TouchableOpacity
         onPress={ () => this.onPressButton(option) }
         style={styles.btnBox}>
-        <View style={styles.imageWrapper}>
-          <Image
-            style={styles.btnImage}
-            resizeMode="contain"
-            source={option.source_image}
-          />
-        </View>
+        <Image
+          style={styles.btnImage}
+          resizeMode="contain"
+          source={option.source_image}
+        />
         <View style={styles.textWrapper}>
           <Text style={styles.btnLabel}>{option.title}</Text>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -129,12 +127,11 @@ const styles = StyleSheet.create({
     borderRadius:12,
     backgroundColor: 'white',
     width: wp('88%'),
-    height: hp('70%'),
+    height: hp('62%'),
   },
   textWrapper:{
     marginLeft: 16,
-    marginTop: 16,
-    justifyContent: 'center'
+    marginTop:16
   },
   btnLabel: {
     fontSize: FontSetting.big_title,
@@ -145,14 +142,11 @@ const styles = StyleSheet.create({
       }
     })
   },
-  imageWrapper: {
-    borderTopLeftRadius: 12,
-    borderTopRightRadius: 12
-  },
   btnImage: {
-    width: wp('84%'),
-    height: hp('42%'),
-    alignSelf: 'center'
+    width: wp('88%'),
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    height: hp('34.8%'),
   },
   btnStart: {
     backgroundColor: Colors.blue,
