@@ -1,6 +1,9 @@
 import RF from "react-native-responsive-fontsize";
+import { Dimensions } from 'react-native';
 
-export const FontSetting = {
+let { width } = Dimensions.get('window');
+
+const FontSetting = {
   nav_large_title: RF(4),
   big_title: RF(3),
   nav_title: RF(2.8),
@@ -14,3 +17,14 @@ export const FontSetting = {
 
   navLargeTitleLineHeight: RF(4.2)
 }
+
+if (width <= 600) {
+  FontSetting.nav_large_title = 28;
+  FontSetting.navLargeTitleLineHeight = 38;
+} else {
+  FontSetting.nav_large_title = 30;
+  FontSetting.navLargeTitleLineHeight = 41;
+  FontSetting.nav_title = 18;
+}
+
+export { FontSetting };
