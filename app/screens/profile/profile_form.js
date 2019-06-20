@@ -13,6 +13,7 @@ import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
 import mainStyles from '../../assets/style_sheets/main/main';
 import styles from '../../assets/style_sheets/profile_form';
+import {Colors} from '../../assets/style_sheets/main/colors';
 
 // Components
 import PickerSpecific from '../../components/picker/PickerSpecific';
@@ -209,8 +210,8 @@ export default class ProfileForm extends Component {
         <View style={{flex: 1}} />
 
         <Button transparent onPress={() => this._skip()}>
-          <Text style={{color: '#fff'}}>រំលង</Text>
-          <Icon name='ios-arrow-forward' style={{color: '#fff'}} />
+          <Text style={{color: Colors.blue}}>រំលង</Text>
+          <Icon name='ios-arrow-forward' style={{color: Colors.blue}} />
         </Button>
       </View>
     )

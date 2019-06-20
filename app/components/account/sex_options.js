@@ -18,7 +18,7 @@ class SexOptions extends Component {
   }
 
   setValue(val){
-    this.props.user.sex = val;
+    this.props.setUserState('sex', val);
     this.setState({currentSex: val});
   }
 

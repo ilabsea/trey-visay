@@ -24,9 +24,6 @@ const styles = StyleSheet.create({
   fill: {
     flex: 1,
   },
-  content: {
-    flex: 1,
-  },
   header: {
     position: 'absolute',
     top: 0,
@@ -79,7 +76,7 @@ const styles = StyleSheet.create({
   largeTitle: {
     fontSize: FontSetting.nav_large_title,
     color: DEFAULT_TEXT_COLOR,
-    lineHeight: 50
+    lineHeight: FontSetting.navLargeTitleLineHeight
   }
 });
 
