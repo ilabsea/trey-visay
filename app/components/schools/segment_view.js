@@ -4,6 +4,7 @@ import { Container, Header, Left, Title, Body, Right, Button, Icon, Segment,
 
 import { Platform } from 'react-native';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 export default class SegmentView extends Component {
   constructor(props){
@@ -17,15 +18,15 @@ export default class SegmentView extends Component {
       <Segment style={headerStyle}>
         <Button first active={this.props.activePage == 1}
           onPress={()=>this.props.setContent(1)}>
-          <Text>សាលារដ្ឋ</Text>
+          <Text style={{fontSize: FontSetting.text}}>សាលារដ្ឋ</Text>
         </Button>
         <Button active={this.props.activePage == 2}
           onPress={()=>this.props.setContent(2)}>
-          <Text>សាលាឯកជន</Text>
+          <Text style={{fontSize: FontSetting.text}}>សាលាឯកជន</Text>
         </Button>
         <Button active={this.props.activePage == 3} last
           onPress={()=>this.props.setContent(3)}>
-          <Text>អង្គការ</Text>
+          <Text style={{fontSize: FontSetting.text}}>អង្គការ</Text>
         </Button>
       </Segment>
     );

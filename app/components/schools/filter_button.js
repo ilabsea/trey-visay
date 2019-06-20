@@ -3,6 +3,7 @@ import { StyleSheet, Image } from 'react-native';
 import { Button, Text } from 'native-base';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 class FilterButton extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class FilterButton extends React.Component {
         <Image
           source={require('../../assets/icons/school/filter.png')}
           style={{width: 18, height: 18}} />
-        <Text style={{lineHeight: 38}}>ស្វែងរក</Text>
+        <Text style={styles.findText}>ស្វែងរក</Text>
       </Button>
     )
   }
@@ -40,6 +41,9 @@ const styles = StyleSheet.create({
     bottom: 16,
     padding: 16,
     backgroundColor: Colors.blue
+  },
+  findText: {
+    fontSize: FontSetting.text
   }
 })
 

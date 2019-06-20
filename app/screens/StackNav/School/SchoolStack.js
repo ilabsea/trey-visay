@@ -15,6 +15,7 @@ import InstitutionDetail from '../../school/institution_detail';
 import FilterScreen from '../../school/filter/filter_screen';
 import FilterProvinces from '../../school/filter/filter_provinces';
 import { Colors } from '../../../assets/style_sheets/main/colors';
+import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
 import API from '../../../api/schools';
 
@@ -35,7 +36,7 @@ const SchoolStack = createStackNavigator(
               </Button>
             </Left>
             <Body>
-              <Title>គ្រឹះស្ថានសិក្សា</Title>
+              <Title style={{fontSize: FontSetting.title}}>គ្រឹះស្ថានសិក្សា</Title>
             </Body>
             <Right>
             </Right>
