@@ -28,7 +28,7 @@ import * as Progress from 'react-native-progress';
 import ProgressStep from '../ProgressStep/ProgressStep';
 import CloseButton from '../../../components/shared/close_button';
 import { Radio } from 'native-base';
-import Images from '../../../assets/images';
+import Images from '../../../assets/images_js/careers_images';
 import {Colors} from '../../../assets/style_sheets/main/colors';
 
 export default class SummaryScreen extends Component {
@@ -106,7 +106,7 @@ export default class SummaryScreen extends Component {
   }
 
   _formatDataForCheckbox(jobs) {
-    return jobs.map(job => { return { value: job.code, label: job.name }})
+    return jobs.map(job => { return { value: job.code, label: job.name, image_name: job.image_name }})
   }
 
   _goNext() {
@@ -131,7 +131,7 @@ export default class SummaryScreen extends Component {
     return (
       <View style={{paddingHorizontal: 20}}>
         { careers.map((career, index)=> {
-          let imageUrl = require('../../../assets/images/careers/default.png');
+          let imageUrl = Images.default;
           if (!!career.image_name) { imageUrl = Images[career.image_name] }
 
           return (
