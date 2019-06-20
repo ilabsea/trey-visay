@@ -28,7 +28,7 @@ export default class DetailScreen extends Component {
         <View style={{flex: 1, alignItems: 'center'}}>
           <Image
             resizeMode="cover"
-            style={{width: imageHeight, height: imageHeight}}
+            style={{width: imageHeight, height: imageHeight, borderRadius: 8}}
             source={Images[imageName]}/>
             <Text style={mainStyles.title}>{this.state.title}</Text>
         </View>
