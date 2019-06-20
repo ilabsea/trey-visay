@@ -16,11 +16,6 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 import { ThemeContext, getTheme, Toolbar } from 'react-native-material-ui';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import headerStyles from '../../assets/style_sheets/header';
-import uiThemeAndroid from '../../assets/style_sheets/uiThemeAndroid.js';
-import uiThemeIOS from '../../assets/style_sheets/uiThemeIOS.js';
-
-import StatusBar from '../../components/shared/status_bar';
 import BackButton from '../../components/shared/back_button';
 import ScrollableHeader from '../../components/scrollable_header';
 import VideoListView from '../../components/video/video_list';
@@ -28,12 +23,7 @@ import LoadingIndicator from '../../components/loading_indicator';
 
 import videoList from '../../data/json/videos';
 import scrollHeaderStyle from '../../assets/style_sheets/scroll_header';
-import { Item, Input, Icon } from 'native-base';
-
-const uiTheme = Platform.select({
-  ios: uiThemeIOS,
-  android: uiThemeAndroid
-});
+import { Item, Input, Icon, Header } from 'native-base';
 
 export default class VideoScreen extends Component {
   _keyExtractor = (item, index) => index.toString();
@@ -178,24 +168,22 @@ export default class VideoScreen extends Component {
     return (
       <View>
         <Text style={[scrollHeaderStyle.largeTitle, {marginBottom: -8}]}>វីដេអូមុខរបរ</Text>
-
-        <Item regular style={{backgroundColor: '#fff', height: 30, borderRadius: 8}}>
-          <Icon active name='search' style={{marginTop: 2, color: 'rgba(0,0,0,0.7)'}} />
-          <Input
-            onChangeText={(text) => this._onChangeText(text)}
-            autoCorrect={false}
-            value={this.state.textSearch}
-            placeholderTextColor='rgba(0,0,0,0.7)'
-            placeholder='ស្វែងរក'/>
-
-          { !!this.state.textSearch &&
-            <TouchableOpacity style={{height: '100%'}} onPress={() => this._onSearchClosed()}>
-              <Icon active name='close-circle' style={{paddingTop: 1, color: 'rgba(0,0,0,0.7)'}} />
-            </TouchableOpacity>
-          }
-        </Item>
+        <Header searchBar rounded style={styles.searchBarHeader}>
+          <Item>
+            <Icon name="ios-search" />
+            <Input
+              onChangeText={(text) => this._onChangeText(text)}
+              autoCorrect={false}
+              value={this.state.textSearch}
+              placeholder='ស្វែងរក'/>
+            { !!this.state.textSearch &&
+              <TouchableOpacity style={{height: '100%'}} onPress={() => this._onSearchClosed()}>
+                <Icon active name='close-circle' style={{paddingTop: 2, color: 'rgba(0,0,0,0.7)'}} />
+              </TouchableOpacity>
+            }
+          </Item>
+        </Header>
       </View>
-
     )
   }
 
@@ -227,3 +215,15 @@ export default class VideoScreen extends Component {
     )
   };
 }
+
+const styles = StyleSheet.create({
+  searchBarHeader: {
+    paddingRight: 0,
+    paddingLeft: 0,
+    paddingTop: 0,
+    marginTop: 0,
+    height: 30,
+    backgroundColor: 'transparent',
+    borderBottomWidth: 0
+  }
+})
