@@ -9,6 +9,7 @@ import Images from '../../assets/images';
 import ListItem from '../../components/schools/list_item';
 import BackButton from '../../components/shared/back_button';
 import ScrollableHeader from '../../components/scrollable_header';
+import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 const PROFILE_SIZE = 120;
@@ -105,7 +106,7 @@ export default class InstitutionDetail extends Component {
         </View>
 
         <View style={{marginTop: 67}}>
-          <Text style={styles.largeTitle}>{this.state.school.universityName}</Text>
+          <Text style={[scrollHeaderStyles.largeTitle, styles.largeTitle]}>{this.state.school.universityName}</Text>
           <Text style={styles.subTitle}>{this.state.school.category}</Text>
         </View>
       </View>
@@ -207,8 +208,7 @@ const styles = StyleSheet.create({
   },
   largeTitle: {
     textAlign: 'center',
-    fontSize: FontSetting.big_title,
-    paddingHorizontal: 30
+    paddingTop: 30
   },
   subTitle: {
     textAlign: 'center',
