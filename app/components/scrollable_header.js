@@ -12,6 +12,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
 import * as Progress from 'react-native-progress';
 import { FontSetting } from '../assets/style_sheets/font_setting';
+import scrollHeaderStyles from '../assets/style_sheets/scroll_header';
 
 const DEFAULT_HEADER_MAX_HEIGHT = 140;
 const DEFAULT_HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 64 : 74;
@@ -74,10 +75,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   largeTitle: {
-    fontSize: FontSetting.nav_large_title,
-    lineHeight: FontSetting.navLargeTitleLineHeight,
-    paddingTop: 20,
-    paddingLeft: 1,
     color: DEFAULT_TEXT_COLOR,
   }
 });
@@ -251,7 +248,7 @@ class ScrollableHeader extends Component {
         ]}
       >
         <View style={{position: 'absolute', left: 20, right: 0, bottom: 10}}>
-          <Text numberOfLines={1} style={[styles.largeTitle, {color: this.getTextColor()}]}>{this.props.largeTitle}</Text>
+          <Text numberOfLines={1} style={[scrollHeaderStyles.largeTitle, styles.largeTitle, {color: this.getTextColor()}]}>{this.props.largeTitle}</Text>
         </View>
       </Animated.View>
     )

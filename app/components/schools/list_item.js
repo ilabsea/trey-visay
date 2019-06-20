@@ -20,7 +20,7 @@ class ListItem extends Component {
   }
 
   onPressLink() {
-    let prefix = this.props.contact.isEmail ? 'mailto:' : '';
+    let prefix = this.props.contact.isEmail ? 'mailto:' : 'http://';
 
     Linking.openURL(prefix + this.props.contact.data);
   }

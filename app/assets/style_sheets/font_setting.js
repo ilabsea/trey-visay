@@ -12,5 +12,5 @@ export const FontSetting = {
   button_text: RF(2.2),
   sub_title: RF(1.8),
 
-  navLargeTitleLineHeight: RF(4.5)
+  navLargeTitleLineHeight: RF(4.2)
 }

@@ -208,7 +208,8 @@ const styles = StyleSheet.create({
   },
   largeTitle: {
     textAlign: 'center',
-    paddingTop: 30
+    paddingTop: 30,
+    paddingHorizontal: 16
   },
   subTitle: {
     textAlign: 'center',
