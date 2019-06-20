@@ -64,9 +64,9 @@ class CarouselView extends Component {
         <LinearGradient
           colors={option.color}
           start={{x: 0, y: 0}} end={{x: 1, y: 1}}
-          style={styles.btnImage}>
+          style={styles.imageWrapper}>
           <Image
-            style={{}}
+            style={styles.btnImage}
             resizeMode="contain"
             source={option.source_image}
           />
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     borderRadius:12,
     backgroundColor: 'white',
     width: wp('88%'),
-    height: hp('62%'),
+    height: hp('74%'),
     overflow: 'hidden'
   },
   textWrapper:{
@@ -152,13 +152,14 @@ const styles = StyleSheet.create({
       }
     })
   },
-  btnImage: {
-    width: wp('88%'),
+  imageWrapper: {
     borderTopLeftRadius: 12,
-    borderTopRightRadius: 12,
-    height: hp('34.8%'),
-    alignItems: 'center',
-    justifyContent: 'center'
+    borderTopRightRadius: 12
+  },
+  btnImage: {
+    width: wp('70%'),
+    height: hp('50%'),
+    alignSelf: 'center'
   },
   btnStart: {
     backgroundColor: Colors.blue,
