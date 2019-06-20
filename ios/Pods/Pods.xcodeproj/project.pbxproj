@@ -13,7 +13,7 @@
 		01EDA0A8F3EB61A0BA046B32EC4A46FF /* glog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9B066C6BB19171A5649896ECEFC3543C /* glog-dummy.m */; };
 		023892BCDB3A0DD16671067A43BEE666 /* RadarChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B898900459FEDDD863DC78DBFC30EB0 /* RadarChartData.swift */; };
 		024D4312E2E3CFDED1B1E22301ECF1A8 /* CombinedChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C10C4F6C075889F81309CE9A9D0E414C /* CombinedChartView.swift */; };
-		029678BE35B38F75F41E269E96C8E9DF /* ScopeGuard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = ED74F1CC05DEEC5D3071EF7B9B048AFA /* ScopeGuard.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		029678BE35B38F75F41E269E96C8E9DF /* ScopeGuard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 086043DEEDFBC9F16E7F7477C62E1B11 /* ScopeGuard.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		0371694B8EC0521B8BED82AFC0777F4E /* LineRadarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E22EB0FD506D7A1FD70413251C2B9E0 /* LineRadarChartDataSet.swift */; };
 		0414191A3920FD0ECD3C134629B91D3E /* SquareShapeRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0904A210A00E8DFF2837A54081C677A /* SquareShapeRenderer.swift */; };
 		04551AA88577D75AE5F916B9BCCA1C81 /* QBVideoIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = AAEAF585FF47CD9FD326E5EF1144EC96 /* QBVideoIndicatorView.m */; };
@@ -60,7 +60,7 @@
 		2258C0D5C190B4D6FE14089B324F7F24 /* IScatterChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5203D59DFC8446FA5C78E1366645A303 /* IScatterChartDataSet.swift */; };
 		25468CD25F0A051FA988D1F2CA5EE929 /* XAxisRendererRadarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0AF253D42AEAD76E94D3E3230B6D499 /* XAxisRendererRadarChart.swift */; };
 		25D888AEE8E4EBD8705218E12641B3E4 /* CGGeometry+RSKImageCropper.h in Headers */ = {isa = PBXBuildFile; fileRef = 6B6CAAB94C004A858A81B050FAC214CE /* CGGeometry+RSKImageCropper.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		27142E46813CD9BBB2AA67B2F97171BE /* MallocImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 38FC35094A540EBE9D2667B05E7DC2E2 /* MallocImpl.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		27142E46813CD9BBB2AA67B2F97171BE /* MallocImpl.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696AF15380E6870B318FE515369D9FC1 /* MallocImpl.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		277A9C48D208ADFB0B145E53ADD7CAC1 /* CGGeometry+RSKImageCropper.m in Sources */ = {isa = PBXBuildFile; fileRef = B77334CBD216BFDB9B44D20AD73F1ECE /* CGGeometry+RSKImageCropper.m */; };
 		2A389D83C56919787CCCD16C8CCA1387 /* LineScatterCandleRadarRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01793894C737B090C798891056D8FC6B /* LineScatterCandleRadarRenderer.swift */; };
 		2B23EEF51796FCADCF5F5C0552090A94 /* RadarChartDataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0B568D102829DDDAB672B0912740147 /* RadarChartDataEntry.swift */; };
@@ -90,11 +90,11 @@
 		3FAD48E277DB48412B7883885853AE48 /* CombinedChartRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19A3C33FC4B80FB690B95D82E31DD47F /* CombinedChartRenderer.swift */; };
 		408559DEC6AFED6B6E2B3D4D7BFC6801 /* demangle.cc in Sources */ = {isa = PBXBuildFile; fileRef = AC81478C9B362AFF5AF6565142A53472 /* demangle.cc */; };
 		40E63F65B0702C512BB65A6FD8A47AA8 /* BarChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4FF8B9A1D51D46378ADF5B5E93E23BE /* BarChartView.swift */; };
-		420E1ABFFB31895EA8252C5AA6A26BB5 /* json_pointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 16EA265CA21597E407A1CAD2B39AFC5C /* json_pointer.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		420E1ABFFB31895EA8252C5AA6A26BB5 /* json_pointer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = FB1CE85B58E8972352EC0F11096F3EB2 /* json_pointer.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		424280D9F66F24DC464389FCCA831063 /* LineRadarRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C226E6A95AC9C5FF9D8EE258A9C485DC /* LineRadarRenderer.swift */; };
 		426EE044C068FF13124AA2438C504328 /* RNBackgroundFetch-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A41D79A015CDB345956EA3D4C26C504 /* RNBackgroundFetch-dummy.m */; };
 		42D52363508387A11A0ED74F9846804A /* XAxisRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 697CF04CE385BDA39EA6A295AC76951A /* XAxisRenderer.swift */; };
-		436FB71A6FAC7417CA37BA07C75336EA /* dynamic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1C795ACCB6E77F9706CAB9C5A742D611 /* dynamic.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		436FB71A6FAC7417CA37BA07C75336EA /* dynamic.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7189F0257492E57E4C01D846F5436E41 /* dynamic.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		440F4AE315272789DA7A26C1D06C50D7 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FAB5F652A77673BD210C1EB7A56479 /* ChartData.swift */; };
 		4414B64345E0BA0676A3E471DEDD85BA /* CombinedHighlighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99B6558C2C2EFD8A766719C1882A81FE /* CombinedHighlighter.swift */; };
 		4624E236E3D857B8BAD9CB58038CBEC7 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6AC7B2C29159D7822F39F6A1BB673081 /* Utils.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
@@ -160,11 +160,11 @@
 		8434DB5855E29F3EB7105CC200443A85 /* RadarChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79F80E08CACC8ABC92436C651762DBD /* RadarChartDataSet.swift */; };
 		85CA9408897554B81C226FF87390A593 /* ChartAnimationEasing.swift in Sources */ = {isa = PBXBuildFile; fileRef = D189538057418F739F196C8AD5232AC9 /* ChartAnimationEasing.swift */; };
 		85F2815ADD7D275C93776BADC58C21C3 /* signalhandler.cc in Sources */ = {isa = PBXBuildFile; fileRef = 4DE70E0FFA8C7B2B86ABE8620C61C747 /* signalhandler.cc */; };
-		8658F163B1C208BC7217F21F561B09D6 /* SpookyHashV2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E352CA66AC903732AF54960E51779A66 /* SpookyHashV2.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		8658F163B1C208BC7217F21F561B09D6 /* SpookyHashV2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2EE9178D7BA0847C82A158DBE0FAB0F3 /* SpookyHashV2.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		868714DB7E2B4C19D2AFC523CD19CBCC /* ComponentBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F03F4025E09DC21276ED07E6C1918F /* ComponentBase.swift */; };
 		87A6276359C2F172F104471455D7D51F /* IBubbleChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C333F98567B69619AA7D7839DD88AEC /* IBubbleChartDataSet.swift */; };
 		8888554654C9BEC958D718117F95185B /* IPieChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E15447BEFA72403ACAC0E1192031F5B8 /* IPieChartDataSet.swift */; };
-		89E4C17A971F29B1CA5F2D7642093374 /* Demangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E61DCF38353B74EEDEAAE349F9F13CC1 /* Demangle.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		89E4C17A971F29B1CA5F2D7642093374 /* Demangle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DFF8929F93AC763A23CB2EC731B0FE5D /* Demangle.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		8A16CF4E1E57A629DBD99F6F0A65061A /* QBSlomoIconView.h in Headers */ = {isa = PBXBuildFile; fileRef = B1C093E66143BC7E81458F4719E87544 /* QBSlomoIconView.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		8AC3242DBD90D7BF35C717B3BD611FD0 /* YGNodePrint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84073DAE808DA272B98B3225F59F2E49 /* YGNodePrint.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		8D569FEF89E4185AFBDBD5C49F209355 /* PieChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 325C4D10EA35107696D898186FEA1AFD /* PieChartDataSet.swift */; };
@@ -208,7 +208,7 @@
 		A7AEDE2BA7B48215ED3FD09642BA3AA7 /* react-native-netinfo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DFA95BA37DCF17170A15C32F3A74EFA9 /* react-native-netinfo-dummy.m */; };
 		AC9AFA284E92DB8B8446A69A1C1006B0 /* CandleChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601812F8DC7758D804D882240CA830DF /* CandleChartData.swift */; };
 		AE124D082F20524BEE68D86F8AA17E7A /* ChartUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7573CCDBC97F2490C215400EED38AF2C /* ChartUtils.swift */; };
-		AF2D2D9548C78A77244C1644AD353235 /* Assume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D152863E4E1423AF7D46B74D585A838 /* Assume.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		AF2D2D9548C78A77244C1644AD353235 /* Assume.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F9A763751F46FD4F827082D5F3DD06AE /* Assume.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		AF79C356C6C1D7DC61E5CDD0DE17B8BA /* IndexAxisValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CDD53F3983807236B32513E2C79444F8 /* IndexAxisValueFormatter.swift */; };
 		B0643EC63CA2A02DC7177B072E6FDB3C /* LegendEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72D00BFCF89AEC1C553C648FB0A81A63 /* LegendEntry.swift */; };
 		B2AA4DF6222D0E017BE670B923636F74 /* MarkerImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3168B104BE1904A0F62933EB032AA32D /* MarkerImage.swift */; };
@@ -244,7 +244,7 @@
 		D13E5BF869F69EB4C956CC747256FFD1 /* BarLineScatterCandleBubbleChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8114D8C5EECE8B6980C1E0C8F75E257 /* BarLineScatterCandleBubbleChartData.swift */; };
 		D1EC8BD84D1DDD2E20750BA283F4423F /* ILineChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CC3B00C4A29179DFCAF54F99E811806 /* ILineChartDataSet.swift */; };
 		D42DB08F35D1482915E8688B0424EF5B /* ChevronDownShapeRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0722B393B9F9EDA7644D5EECFD159EE7 /* ChevronDownShapeRenderer.swift */; };
-		D4CE70789F1A5C35F59D8ED3E3F3C913 /* Format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F4CAC304AB999B89D28B146A7ECEF2E1 /* Format.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		D4CE70789F1A5C35F59D8ED3E3F3C913 /* Format.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7453663B611326041E1AF4C042C6CDFD /* Format.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		D67646AE54158CF2BA6F47CC50060D50 /* DataApproximator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CD0459054E665F02BC0FC40E2A8396 /* DataApproximator.swift */; };
 		D836554C5874BF7B87AFBBC14DBECF47 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F7338FBAA9C22A74121296F3F9C54A /* Platform.swift */; };
 		D9B381BF1DE72A9FEC0FEEE1138FFE09 /* fast-dtoa.cc in Sources */ = {isa = PBXBuildFile; fileRef = 19BBA0C181165A1522D71D5772877762 /* fast-dtoa.cc */; };
@@ -256,7 +256,7 @@
 		DD77167993531CDFC0F1DC3FD0364085 /* diy-fp.h in Headers */ = {isa = PBXBuildFile; fileRef = 39CF8CE3F9A10B751CDDAFB1D920647E /* diy-fp.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DE2E19F3DA26CD799EC297CEBBFDEE70 /* instrumentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 71B6902AC4FAFF5D26259A8545E42DB1 /* instrumentation.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		DFAF326D99FC524399C006F8ABA27692 /* ChartDataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50BD60EBAA69323C390338059AB91CA6 /* ChartDataEntry.swift */; };
-		E04616C4BEDA5814F446D013B1916AA0 /* Folly-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 08E90192F0D0D8973D30A4CB16203D43 /* Folly-dummy.m */; };
+		E04616C4BEDA5814F446D013B1916AA0 /* Folly-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9E73F7841A4B1AF95DF2F79B52A32E77 /* Folly-dummy.m */; };
 		E049A23B1B5D464847E317FAEDAE0B93 /* RNCAsyncStorage.h in Headers */ = {isa = PBXBuildFile; fileRef = 1F4AC195D17684046E70E26D3AE82255 /* RNCAsyncStorage.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		E0B03B5276DAFE68CCD367FDB72329BC /* IBarLineScatterCandleBubbleChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F86993D71B084BECCF1CB0164C8245A /* IBarLineScatterCandleBubbleChartDataSet.swift */; };
 		E2959EE9D7A5990DFDD17825629C0042 /* bignum-dtoa.cc in Sources */ = {isa = PBXBuildFile; fileRef = FF4B793A59025285A069BB959FFB4719 /* bignum-dtoa.cc */; };
@@ -265,7 +265,7 @@
 		E463B80D4178FF6529F91A45BE8D138C /* BubbleChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15FBDAEF471E8D97FD92BF0C9134FF9B /* BubbleChartView.swift */; };
 		E4D8237E5129F102859285A7576CAA7A /* YGNode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 4F106BA3CFF4F3FEFCCF7F38D1CAC557 /* YGNode.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
 		E4EF1FC96BA7F0E244DFB2F12FA6A571 /* RSKImageCropViewController+Protected.h in Headers */ = {isa = PBXBuildFile; fileRef = 62D85EEF5CCEB717961F5F2AF96711A3 /* RSKImageCropViewController+Protected.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E5E2831C4B78032FC84471969A96F9E1 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 943FBD6570B58CDFCA3A28E1C00F41A8 /* String.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		E5E2831C4B78032FC84471969A96F9E1 /* String.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E0EC6370C1FDCD2D7C3CE55730740FB3 /* String.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		E648F45239DC4AC4D9016B6D5C3C4B8D /* symbolize.cc in Sources */ = {isa = PBXBuildFile; fileRef = 20BCED2C4905BE30087BBE8AF2999A72 /* symbolize.cc */; };
 		E76AE0FB7A759BC961905A4B0A170B2E /* QBImagePickerController-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = FD7C296FB849BB871188CB0E3080D5CE /* QBImagePickerController-dummy.m */; };
 		E776AD5B499AED958B191CE3FC7472C8 /* fixed-dtoa.h in Headers */ = {isa = PBXBuildFile; fileRef = 15361596799F3A14059222A1EDF37727 /* fixed-dtoa.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -273,11 +273,11 @@
 		E929E36CCFBD01DB44CECAD4F517D815 /* CandleChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E8FEA1AA38F7BE667DEDA65EDE2A83C /* CandleChartDataSet.swift */; };
 		E9AB786820C6998643D1B79137A159C1 /* Compression.m in Sources */ = {isa = PBXBuildFile; fileRef = 8720B96B49C25B43F5B04559C313943A /* Compression.m */; };
 		E9F027CAA989913E3639321EC16018A4 /* YGMarker.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7C1DFD49F98C14AF1BAE1765DD1DC23C /* YGMarker.cpp */; settings = {COMPILER_FLAGS = "-fno-omit-frame-pointer -fexceptions -Wall -Werror -std=c++1y -fPIC -fno-objc-arc"; }; };
-		EA17F07AA7BEB4FAE9F15C791A4DAAE9 /* Unicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B8D49F64F3720169B0BDCCEEA9C03E1A /* Unicode.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		EA17F07AA7BEB4FAE9F15C791A4DAAE9 /* Unicode.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A6BD901A9620F7F18BE09BE51FF5E0A6 /* Unicode.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		EB8F2728E9C549C95DAC31B33A4556DC /* Pods-TreyVisay-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A66F4AD14128631288D084E752B2A73 /* Pods-TreyVisay-dummy.m */; };
 		EC4A7A68A39D87DBD5125C9CDF2CE38B /* ChartBaseDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF23AC6DB3B6934CAF6306C5443CF75 /* ChartBaseDataSet.swift */; };
 		EEFCFC6E0D9544CD46C64549CCB4A576 /* ScatterChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F0A692A99A0D9F218759A9725BCF22C /* ScatterChartView.swift */; };
-		EFE557B0DB5E4DE0B2A6F8AD1846299E /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 23B2AC8EF7B3D62746B2AF78D1306DA9 /* json.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		EFE557B0DB5E4DE0B2A6F8AD1846299E /* json.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CB04BC9B86B72CBFBDA93EF4C8F5C60B /* json.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		F1AFB298F5F676AD8BAD4EA01AF93840 /* AxisBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613ABE733C9D30FF115475383074A5AB /* AxisBase.swift */; };
 		F2B49A9BE42E70409BE964683A206FA0 /* QBVideoIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = 97AD63C8733660F3B4257BDE11BBE698 /* QBVideoIconView.m */; };
 		F38CDB2D54203232D5BA39D942AF62B6 /* Platform+Accessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15A27A4E505DBE567F6A09E8C97A3C53 /* Platform+Accessibility.swift */; };
@@ -285,7 +285,7 @@
 		F54AC914D481EE448B35AA36E1D3F6E9 /* LineChartDataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57E1AFEB40C8A97F46D986876C7943D7 /* LineChartDataSet.swift */; };
 		F58B42D86671B676BA973A7F76E5986E /* YGEnums.h in Headers */ = {isa = PBXBuildFile; fileRef = FB4E03B56BC97CDBE109F28743BB2926 /* YGEnums.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F67ED796874B94D89E035AC3F13A9EF7 /* QBAssetCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B16BC62F141B1F01EFF45C5FF820345 /* QBAssetCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F70A7065EBF87E58BD8DCB6BB170CC60 /* ColdClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5BB8C69D143F3ACCF777FC335AD8884 /* ColdClass.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
+		F70A7065EBF87E58BD8DCB6BB170CC60 /* ColdClass.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F5F8B3A58BC7AEFB78ADF6E6B5DEFB90 /* ColdClass.cpp */; settings = {COMPILER_FLAGS = "-DFOLLY_NO_CONFIG -DFOLLY_MOBILE=1 -DFOLLY_USE_LIBCPP=1"; }; };
 		F842A5B605B5FBDBBE85E4F75FE326A9 /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A0A2D3CACB5859018A4351D9B1F495B /* Highlight.swift */; };
 		FA5B9C49D095724555112F661F05C61E /* ViewPortHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A98CFAF12D68C40B479575432EA0602C /* ViewPortHandler.swift */; };
 		FA975B07F143515ACDD79D6A596E87EF /* ChartDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926A4D72B59E398FA869716EC345EFE4 /* ChartDataProvider.swift */; };
@@ -512,12 +512,13 @@
 		05170DF3280C0D90311794E34BF53B7C /* RCTAnimatedNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTAnimatedNode.m; sourceTree = "<group>"; };
 		059496C18855A5BF15DAE984EC3F4AED /* JSDeltaBundleClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSDeltaBundleClient.h; path = ReactCommon/cxxreact/JSDeltaBundleClient.h; sourceTree = "<group>"; };
 		0682687FCECC340A430D02562D3603F1 /* RCTSurfaceRootView.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTSurfaceRootView.mm; sourceTree = "<group>"; };
+		06B3A69658FC6178701A267EA01FE5A7 /* Folly-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Folly-prefix.pch"; sourceTree = "<group>"; };
 		0704D40E3A18BE424DF84EFB96F7CA9C /* RCTSinglelineTextInputView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTSinglelineTextInputView.m; sourceTree = "<group>"; };
 		0722B393B9F9EDA7644D5EECFD159EE7 /* ChevronDownShapeRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChevronDownShapeRenderer.swift; path = Source/Charts/Renderers/Scatter/ChevronDownShapeRenderer.swift; sourceTree = "<group>"; };
 		07A086F67052AB78B9C0F53A9B3BD569 /* RNImageCropPicker-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RNImageCropPicker-dummy.m"; sourceTree = "<group>"; };
 		0802B5802B977D8B39DA3CA69A56ECDD /* Instance.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Instance.cpp; path = ReactCommon/cxxreact/Instance.cpp; sourceTree = "<group>"; };
 		08517FF15B9AAB1BDBF8435A3E519671 /* RCTImageBlurUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTImageBlurUtils.m; path = Libraries/Image/RCTImageBlurUtils.m; sourceTree = "<group>"; };
-		08E90192F0D0D8973D30A4CB16203D43 /* Folly-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Folly-dummy.m"; sourceTree = "<group>"; };
+		086043DEEDFBC9F16E7F7477C62E1B11 /* ScopeGuard.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ScopeGuard.cpp; path = folly/ScopeGuard.cpp; sourceTree = "<group>"; };
 		091CC9453F71804C3D17F2F89E3931F4 /* React-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "React-prefix.pch"; sourceTree = "<group>"; };
 		0944CF0FBC34D8876A25A321A38BE273 /* RCTDecayAnimation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTDecayAnimation.m; sourceTree = "<group>"; };
 		09606DDC92561D75AC2A169EC6C5AE0F /* ReactMarker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ReactMarker.h; path = ReactCommon/cxxreact/ReactMarker.h; sourceTree = "<group>"; };
@@ -540,6 +541,7 @@
 		0D0C4616E05CE4326BE341F6CCB48835 /* libreact-native-netinfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libreact-native-netinfo.a"; path = "libreact-native-netinfo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D3B8168AC879908D730B35994A8AD66 /* RCTBundleURLProvider.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTBundleURLProvider.m; sourceTree = "<group>"; };
 		0D7C093DEB52B0F61589089D72E89B63 /* DeviceUID.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = DeviceUID.m; path = ios/RNDeviceInfo/DeviceUID.m; sourceTree = "<group>"; };
+		0E4D067D8E50EE8F749A340CF837A36E /* F14Table.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = F14Table.cpp; path = folly/container/detail/F14Table.cpp; sourceTree = "<group>"; };
 		0EA5424F50FC97198702F8003522A3D6 /* RNBackgroundFetch.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RNBackgroundFetch.xcconfig; sourceTree = "<group>"; };
 		0EEA980193A89634A0C42D01A0032A4A /* ILineScatterCandleRadarChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ILineScatterCandleRadarChartDataSet.swift; path = Source/Charts/Data/Interfaces/ILineScatterCandleRadarChartDataSet.swift; sourceTree = "<group>"; };
 		0F8ABBC29D3DFD6F236000DF19F0B013 /* BarChartDataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarChartDataProvider.swift; path = Source/Charts/Interfaces/BarChartDataProvider.swift; sourceTree = "<group>"; };
@@ -596,7 +598,6 @@
 		1B1EDBD0D5151E0E021554BCB065DBDD /* RCTSurfaceHostingProxyRootView.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTSurfaceHostingProxyRootView.mm; sourceTree = "<group>"; };
 		1B55D9B1BBEEAC62E51E18667E592A71 /* jsi.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = jsi.cpp; path = ReactCommon/jsi/jsi.cpp; sourceTree = "<group>"; };
 		1B97BB68A5FB8CDE2021147A833CDC87 /* fishhook.c */ = {isa = PBXFileReference; includeInIndex = 1; name = fishhook.c; path = Libraries/fishhook/fishhook.c; sourceTree = "<group>"; };
-		1C795ACCB6E77F9706CAB9C5A742D611 /* dynamic.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = dynamic.cpp; path = folly/dynamic.cpp; sourceTree = "<group>"; };
 		1D5A65752A6E7FC265DE60394B391594 /* RCTModalHostViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTModalHostViewManager.h; sourceTree = "<group>"; };
 		1D5C5158216F449D7ADD20A8996C7853 /* RCTWebView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTWebView.h; sourceTree = "<group>"; };
 		1D6413FBEF2E2E1CEE09912F62C10A05 /* RCTVirtualTextViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTVirtualTextViewManager.m; sourceTree = "<group>"; };
@@ -640,10 +641,10 @@
 		2CB76B15B779BFB351F0CD117AEB6330 /* libRNDeviceInfo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libRNDeviceInfo.a; path = libRNDeviceInfo.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CCC31D2B490A8EC2A1D21C5D92065F6 /* RCTStatusBarManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTStatusBarManager.m; sourceTree = "<group>"; };
 		2CFC440240E3DDAE451F95355FDE322C /* RNCAsyncStorage-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNCAsyncStorage-prefix.pch"; sourceTree = "<group>"; };
-		2D094EFE1DB3EC2CBF65766FA4458A9D /* Folly.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Folly.xcconfig; sourceTree = "<group>"; };
 		2D2F87B29DBADD17219559B914716733 /* DataApproximator+N.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "DataApproximator+N.swift"; path = "Source/Charts/Filters/DataApproximator+N.swift"; sourceTree = "<group>"; };
 		2E22EB0FD506D7A1FD70413251C2B9E0 /* LineRadarChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineRadarChartDataSet.swift; path = Source/Charts/Data/Implementations/Standard/LineRadarChartDataSet.swift; sourceTree = "<group>"; };
 		2E784C6C9888E851D1D03348FA365117 /* RCTRedBox.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTRedBox.h; sourceTree = "<group>"; };
+		2EE9178D7BA0847C82A158DBE0FAB0F3 /* SpookyHashV2.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = SpookyHashV2.cpp; path = folly/hash/SpookyHashV2.cpp; sourceTree = "<group>"; };
 		2F0A692A99A0D9F218759A9725BCF22C /* ScatterChartView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScatterChartView.swift; path = Source/Charts/Charts/ScatterChartView.swift; sourceTree = "<group>"; };
 		2F25900F00DC9A2C9317B383526C287E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		2F2EC920F4C4A97A3F1560064CBEB341 /* JSBundleType.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = JSBundleType.cpp; path = ReactCommon/cxxreact/JSBundleType.cpp; sourceTree = "<group>"; };
@@ -682,7 +683,6 @@
 		37F9BAE5B640C87704E0F8F0C3A8F3CC /* RCTMessageThread.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTMessageThread.mm; sourceTree = "<group>"; };
 		37FAB5F652A77673BD210C1EB7A56479 /* ChartData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChartData.swift; path = Source/Charts/Data/Implementations/Standard/ChartData.swift; sourceTree = "<group>"; };
 		386B76C7EE5BC0ED77FC09F05D3BB066 /* RCTScrollViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTScrollViewManager.m; sourceTree = "<group>"; };
-		38FC35094A540EBE9D2667B05E7DC2E2 /* MallocImpl.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = MallocImpl.cpp; path = folly/memory/detail/MallocImpl.cpp; sourceTree = "<group>"; };
 		39069D0C8A7DFA95965852BB3D1249A3 /* RCTTouchHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTTouchHandler.h; sourceTree = "<group>"; };
 		390E807BE6D37AB9443DD1316E6BCB19 /* JSIExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = JSIExecutor.h; path = ReactCommon/jsiexecutor/jsireact/JSIExecutor.h; sourceTree = "<group>"; };
 		392965773EAFAF6EA10D01488F505A3A /* React.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = React.xcconfig; sourceTree = "<group>"; };
@@ -855,6 +855,7 @@
 		6867ED199027B72F7336C891DA352AF2 /* ScatterChartData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScatterChartData.swift; path = Source/Charts/Data/Implementations/Standard/ScatterChartData.swift; sourceTree = "<group>"; };
 		68F41061ED3374BA3DCB940A463CE403 /* RCTProfileTrampoline-x86_64.S */ = {isa = PBXFileReference; includeInIndex = 1; path = "RCTProfileTrampoline-x86_64.S"; sourceTree = "<group>"; };
 		6957B0EAF0F2C3B0042FDC677F93DCBB /* LineChartDataProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LineChartDataProvider.swift; path = Source/Charts/Interfaces/LineChartDataProvider.swift; sourceTree = "<group>"; };
+		696AF15380E6870B318FE515369D9FC1 /* MallocImpl.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = MallocImpl.cpp; path = folly/memory/detail/MallocImpl.cpp; sourceTree = "<group>"; };
 		697CF04CE385BDA39EA6A295AC76951A /* XAxisRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = XAxisRenderer.swift; path = Source/Charts/Renderers/XAxisRenderer.swift; sourceTree = "<group>"; };
 		6A2083F116834E2CCDBC3081BA36D186 /* RAMBundleRegistry.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = RAMBundleRegistry.cpp; path = ReactCommon/cxxreact/RAMBundleRegistry.cpp; sourceTree = "<group>"; };
 		6A995F8902A8F0C7E68F25BE3F04508A /* RCTSurfaceRootView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSurfaceRootView.h; sourceTree = "<group>"; };
@@ -897,6 +898,7 @@
 		72D00BFCF89AEC1C553C648FB0A81A63 /* LegendEntry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegendEntry.swift; path = Source/Charts/Components/LegendEntry.swift; sourceTree = "<group>"; };
 		7309EE210B35BC451B4E70793D386D95 /* RCTComponentData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTComponentData.m; sourceTree = "<group>"; };
 		731331F9663C3FCCF855BD0D41EE0C5A /* RCTFileReaderModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTFileReaderModule.h; path = Libraries/Blob/RCTFileReaderModule.h; sourceTree = "<group>"; };
+		7453663B611326041E1AF4C042C6CDFD /* Format.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Format.cpp; path = folly/Format.cpp; sourceTree = "<group>"; };
 		7485F53776BD6B6494DA1E81FC1E827E /* TriangleShapeRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TriangleShapeRenderer.swift; path = Source/Charts/Renderers/Scatter/TriangleShapeRenderer.swift; sourceTree = "<group>"; };
 		74ABC2DCF58C79965B9907FDA46EC431 /* RCTPlatform.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTPlatform.m; sourceTree = "<group>"; };
 		74B823251F9A1B8FAE059D7B4E60E78F /* RCTParserUtils.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTParserUtils.h; sourceTree = "<group>"; };
@@ -920,7 +922,6 @@
 		78BB151637D959430583CA9B6ADD4B97 /* IValueFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IValueFormatter.swift; path = Source/Charts/Formatters/IValueFormatter.swift; sourceTree = "<group>"; };
 		78CFBCE8C8D03784C049326678F418B1 /* RCTUIManagerObserverCoordinator.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTUIManagerObserverCoordinator.h; sourceTree = "<group>"; };
 		7961E67CC0B2B3CD1523970F6D976771 /* React-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "React-dummy.m"; sourceTree = "<group>"; };
-		7A99183A1A8BC026CBDD7FA259A89044 /* F14Table.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = F14Table.cpp; path = folly/container/detail/F14Table.cpp; sourceTree = "<group>"; };
 		7A9A9D97446C2EBF088CF26088877744 /* RCTLayout.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTLayout.h; sourceTree = "<group>"; };
 		7AF23AC6DB3B6934CAF6306C5443CF75 /* ChartBaseDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChartBaseDataSet.swift; path = Source/Charts/Data/Implementations/ChartBaseDataSet.swift; sourceTree = "<group>"; };
 		7B34C159D42134672E4C88E4B4170993 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
@@ -935,6 +936,7 @@
 		7CE67CF93D6723F07040A23583CB4E37 /* RCTBaseTextInputViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTBaseTextInputViewManager.m; sourceTree = "<group>"; };
 		7E8FEA1AA38F7BE667DEDA65EDE2A83C /* CandleChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CandleChartDataSet.swift; path = Source/Charts/Data/Implementations/Standard/CandleChartDataSet.swift; sourceTree = "<group>"; };
 		7EEC1011FFF9D611DB8263528538FA39 /* RNImageCropPicker-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RNImageCropPicker-prefix.pch"; sourceTree = "<group>"; };
+		7EFB9A07A41EAEE49768FB041D51E8E1 /* Folly.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Folly.xcconfig; sourceTree = "<group>"; };
 		7F1A3F6FBBFB084B820E1594A4A60A36 /* RSKImageCropper.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = RSKImageCropper.xcconfig; sourceTree = "<group>"; };
 		7FFAE834DA37AE081850749D2AA92B6B /* RCTVersion.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTVersion.h; sourceTree = "<group>"; };
 		800D6A65A29ED5C71E28D079C0AB4FA7 /* RCTInputAccessoryView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTInputAccessoryView.m; sourceTree = "<group>"; };
@@ -998,14 +1000,12 @@
 		94003777A03CC5FC82E9513C4317A405 /* RAMBundleRegistry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RAMBundleRegistry.h; path = ReactCommon/cxxreact/RAMBundleRegistry.h; sourceTree = "<group>"; };
 		9401B0B52272D6241C9EBAD41BEAA544 /* RCTSegmentedControl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSegmentedControl.h; sourceTree = "<group>"; };
 		943CD41D7BD70BDBDDD222FBC9B0F679 /* ieee.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ieee.h; path = "double-conversion/ieee.h"; sourceTree = "<group>"; };
-		943FBD6570B58CDFCA3A28E1C00F41A8 /* String.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = String.cpp; path = folly/String.cpp; sourceTree = "<group>"; };
 		94461FC3C6575702FAD1CD5B3F55AC6B /* es.lproj */ = {isa = PBXFileReference; includeInIndex = 1; name = es.lproj; path = QBImagePicker/es.lproj; sourceTree = "<group>"; };
 		9469D431B1035E0206C707DC3C7728B2 /* RCTRootShadowView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTRootShadowView.m; sourceTree = "<group>"; };
 		94AD1B73C0007309C6029700185E3AD2 /* RCTWKWebViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTWKWebViewManager.m; sourceTree = "<group>"; };
 		9500116E58FB21C7DC991C7DBC4CB663 /* RCTScrollViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTScrollViewManager.h; sourceTree = "<group>"; };
 		95130ED78B3500A2EDDADC274C2FA1B7 /* RCTImageSource.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTImageSource.h; sourceTree = "<group>"; };
 		953BA3C701D7BAFBF835343ACB25B0B6 /* RSKInternalUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RSKInternalUtility.m; path = RSKImageCropper/RSKInternalUtility.m; sourceTree = "<group>"; };
-		95428C91AAD27388A923857FEDF6B337 /* Folly-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Folly-prefix.pch"; sourceTree = "<group>"; };
 		95482B31937759122F0B91358BE38788 /* RCTSurface.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTSurface.mm; sourceTree = "<group>"; };
 		9557EA1220DB6B1CC878A570CAE6045E /* bignum.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = bignum.h; path = "double-conversion/bignum.h"; sourceTree = "<group>"; };
 		95702AA2BA0A7487CBF868D9CF488424 /* RCTLog.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTLog.mm; sourceTree = "<group>"; };
@@ -1038,6 +1038,7 @@
 		9DCD8A604359C2F580BF20EBA89A0566 /* DispatchMessageQueueThread.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = DispatchMessageQueueThread.h; sourceTree = "<group>"; };
 		9DD035E5F86F0EC3230B6285B63CA10C /* RCTLinkingManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTLinkingManager.h; path = Libraries/LinkingIOS/RCTLinkingManager.h; sourceTree = "<group>"; };
 		9E6E638A5158CD8427BFFEFB8BA60C58 /* SystraceSection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SystraceSection.h; path = ReactCommon/cxxreact/SystraceSection.h; sourceTree = "<group>"; };
+		9E73F7841A4B1AF95DF2F79B52A32E77 /* Folly-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Folly-dummy.m"; sourceTree = "<group>"; };
 		9EE4AC244A683E6352EA8B3F06F45D67 /* YGMarker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGMarker.h; path = yoga/YGMarker.h; sourceTree = "<group>"; };
 		9EE957653AD31E90144C5F4B63579110 /* RCTImageUtils.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTImageUtils.m; path = Libraries/Image/RCTImageUtils.m; sourceTree = "<group>"; };
 		9F093718CAD326D79041142EAD4FA81B /* RCTModuleMethod.mm */ = {isa = PBXFileReference; includeInIndex = 1; path = RCTModuleMethod.mm; sourceTree = "<group>"; };
@@ -1056,6 +1057,7 @@
 		A43C15D0FED3FE628A084CF72E2052CD /* ChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ChartDataSet.swift; path = Source/Charts/Data/Implementations/Standard/ChartDataSet.swift; sourceTree = "<group>"; };
 		A512111763C011FDAEB5CF1E321E87EC /* UIView+React.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+React.h"; sourceTree = "<group>"; };
 		A606B56924DC2A918AFEB70CAEDEC278 /* RCTBridge+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RCTBridge+Private.h"; sourceTree = "<group>"; };
+		A6BD901A9620F7F18BE09BE51FF5E0A6 /* Unicode.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Unicode.cpp; path = folly/Unicode.cpp; sourceTree = "<group>"; };
 		A6C1DA7CF6DBD273496FC45F1F1EE324 /* ScatterChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ScatterChartDataSet.swift; path = Source/Charts/Data/Implementations/Standard/ScatterChartDataSet.swift; sourceTree = "<group>"; };
 		A739613B3D258BB4E51BBB8419D05F13 /* RCTAutoInsetsProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTAutoInsetsProtocol.h; sourceTree = "<group>"; };
 		A73E47AF4515B2E2D35272CB51CCAD36 /* RCTComponent.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTComponent.h; sourceTree = "<group>"; };
@@ -1114,14 +1116,13 @@
 		B7DF079BECE4A8C11505355E0D9F5BD6 /* QBVideoIconView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QBVideoIconView.h; path = QBImagePicker/QBVideoIconView.h; sourceTree = "<group>"; };
 		B81337FDFCF4A792809CBB6A249DBC0F /* LegendRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LegendRenderer.swift; path = Source/Charts/Renderers/LegendRenderer.swift; sourceTree = "<group>"; };
 		B8A3485B75EAF61237E2ABF30BFA74A1 /* SwiftyJSON-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "SwiftyJSON-umbrella.h"; path = "../../Headers/Public/SwiftyJSON/SwiftyJSON-umbrella.h"; sourceTree = "<group>"; };
-		B8D49F64F3720169B0BDCCEEA9C03E1A /* Unicode.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Unicode.cpp; path = folly/Unicode.cpp; sourceTree = "<group>"; };
 		B91F9630BFC8347D93EB03B384C31533 /* RCTRawTextViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTRawTextViewManager.h; sourceTree = "<group>"; };
 		BA42048BA8ED558F5C887C1C5A240B3A /* RCTBorderDrawing.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTBorderDrawing.m; sourceTree = "<group>"; };
+		BB0BE4C54A0B2BD8C511D2C2CE91E8C4 /* Conv.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Conv.cpp; path = folly/Conv.cpp; sourceTree = "<group>"; };
 		BBC8F4021DAB4009CA2D4E7952CCE20D /* RCTNativeAnimatedModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTNativeAnimatedModule.h; path = Libraries/NativeAnimation/RCTNativeAnimatedModule.h; sourceTree = "<group>"; };
 		BBF21036026A3E9593EB1D3DA23860C6 /* RCTMaskedViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTMaskedViewManager.m; sourceTree = "<group>"; };
 		BC99F8022AA942959D3A3BEA370068BC /* CxxNativeModule.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = CxxNativeModule.cpp; path = ReactCommon/cxxreact/CxxNativeModule.cpp; sourceTree = "<group>"; };
 		BCA392C0C3ED17BCBD6EF84D81D49413 /* CandleStickChartView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CandleStickChartView.swift; path = Source/Charts/Charts/CandleStickChartView.swift; sourceTree = "<group>"; };
-		BCC12715128B34796CA15C76219A6CCD /* Conv.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Conv.cpp; path = folly/Conv.cpp; sourceTree = "<group>"; };
 		BCF43C474617C769A68C7D5611BE9729 /* RCTTrackingAnimatedNode.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTTrackingAnimatedNode.m; sourceTree = "<group>"; };
 		BE64097D89A9AB3C51AF9E04A59C1AF7 /* RCTInputAccessoryViewContent.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTInputAccessoryViewContent.m; sourceTree = "<group>"; };
 		BED1953D07F13AC398F40AFD91CE25C2 /* RSKImageCropperStrings.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = RSKImageCropperStrings.bundle; path = RSKImageCropper/RSKImageCropperStrings.bundle; sourceTree = "<group>"; };
@@ -1148,7 +1149,6 @@
 		C45CC02A1F1A8E771F16B7E10B73B401 /* SwiftyJSON-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SwiftyJSON-prefix.pch"; sourceTree = "<group>"; };
 		C46B8B4130A6065516BC668FB871D5A7 /* QBCheckmarkView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = QBCheckmarkView.m; path = QBImagePicker/QBCheckmarkView.m; sourceTree = "<group>"; };
 		C5339FC14B695B4C004814BB60CB8247 /* RCTSafeAreaViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTSafeAreaViewManager.m; sourceTree = "<group>"; };
-		C5BB8C69D143F3ACCF777FC335AD8884 /* ColdClass.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ColdClass.cpp; path = folly/lang/ColdClass.cpp; sourceTree = "<group>"; };
 		C605CB4DE0D4967851F8059621567FC1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		C62AE59ED46E1F25F5B5737D8FF3A468 /* AnimatedZoomViewJob.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimatedZoomViewJob.swift; path = Source/Charts/Jobs/AnimatedZoomViewJob.swift; sourceTree = "<group>"; };
 		C633DC9C9F4A5ABEB67F01736E30BEA2 /* RCTViewManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTViewManager.h; sourceTree = "<group>"; };
@@ -1168,6 +1168,7 @@
 		CA3516542F5ED054210FF7546B84AE5E /* RCTFrameUpdate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTFrameUpdate.h; sourceTree = "<group>"; };
 		CA5BB85B869C9D5754AFE10F7753E072 /* RCTInputAccessoryView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTInputAccessoryView.h; sourceTree = "<group>"; };
 		CACD24C2EEAC9F42AD5608EC29608290 /* Yoga.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Yoga.cpp; path = yoga/Yoga.cpp; sourceTree = "<group>"; };
+		CB04BC9B86B72CBFBDA93EF4C8F5C60B /* json.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = json.cpp; path = folly/json.cpp; sourceTree = "<group>"; };
 		CB4932884FA4C07DE326B1426E673F60 /* RCTWebSocketModule.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTWebSocketModule.h; path = Libraries/WebSocket/RCTWebSocketModule.h; sourceTree = "<group>"; };
 		CCE38C152AC697D4EDA61BA5C40EC5C9 /* RCTJSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTJSStackFrame.h; sourceTree = "<group>"; };
 		CDD53F3983807236B32513E2C79444F8 /* IndexAxisValueFormatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IndexAxisValueFormatter.swift; path = Source/Charts/Formatters/IndexAxisValueFormatter.swift; sourceTree = "<group>"; };
@@ -1193,6 +1194,7 @@
 		D57DEF8D137549EBD465E37489E18549 /* RCTJSStackFrame.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTJSStackFrame.m; sourceTree = "<group>"; };
 		D59740C1BFA3D1A1B53043E41AC1DE22 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/QuartzCore.framework; sourceTree = DEVELOPER_DIR; };
 		D5EB67F2645C0A7FCB8C8E5D07457803 /* RNDeviceInfo.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; path = RNDeviceInfo.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		D60ED56D260F87EF5D0F075F0449736B /* Demangle.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Demangle.cpp; path = folly/detail/Demangle.cpp; sourceTree = "<group>"; };
 		D62620B8A93A0E267B7859BBAB535C65 /* RCTFPSGraph.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTFPSGraph.h; sourceTree = "<group>"; };
 		D66F6E407899B4336DB01B31C10B13B9 /* RCTShadowView+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "RCTShadowView+Internal.h"; sourceTree = "<group>"; };
 		D69C094206B60314B931F26FBC8159F2 /* HorizontalBarChartView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = HorizontalBarChartView.swift; path = Source/Charts/Charts/HorizontalBarChartView.swift; sourceTree = "<group>"; };
@@ -1221,7 +1223,9 @@
 		DEB20187075D668CC4C7549C59A4030F /* RCTInputAccessoryViewManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTInputAccessoryViewManager.m; sourceTree = "<group>"; };
 		DF8CF301ACB9D1ECA150D8FE3D1BF07D /* RecoverableError.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RecoverableError.h; path = ReactCommon/cxxreact/RecoverableError.h; sourceTree = "<group>"; };
 		DFA95BA37DCF17170A15C32F3A74EFA9 /* react-native-netinfo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "react-native-netinfo-dummy.m"; sourceTree = "<group>"; };
+		DFF8929F93AC763A23CB2EC731B0FE5D /* Demangle.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Demangle.cpp; path = folly/Demangle.cpp; sourceTree = "<group>"; };
 		E0291DA187623BD4FEE41A145644E78E /* fixed-dtoa.cc */ = {isa = PBXFileReference; includeInIndex = 1; name = "fixed-dtoa.cc"; path = "double-conversion/fixed-dtoa.cc"; sourceTree = "<group>"; };
+		E0EC6370C1FDCD2D7C3CE55730740FB3 /* String.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = String.cpp; path = folly/String.cpp; sourceTree = "<group>"; };
 		E0FC74DA93D45D5351E98C308CD13F47 /* AnimatedMoveViewJob.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AnimatedMoveViewJob.swift; path = Source/Charts/Jobs/AnimatedMoveViewJob.swift; sourceTree = "<group>"; };
 		E15447BEFA72403ACAC0E1192031F5B8 /* IPieChartDataSet.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = IPieChartDataSet.swift; path = Source/Charts/Data/Interfaces/IPieChartDataSet.swift; sourceTree = "<group>"; };
 		E183BEA7785B466D00D435E5A746F1EF /* CircleShapeRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CircleShapeRenderer.swift; path = Source/Charts/Renderers/Scatter/CircleShapeRenderer.swift; sourceTree = "<group>"; };
@@ -1231,7 +1235,6 @@
 		E2C25429043711119D9A95647D854DD9 /* RCTObjcExecutor.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTObjcExecutor.h; sourceTree = "<group>"; };
 		E2F83F68CD67A0823CD04B931293DCCD /* JSBigString.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = JSBigString.cpp; path = ReactCommon/cxxreact/JSBigString.cpp; sourceTree = "<group>"; };
 		E3214879D7359287727AB779F175B92E /* RCTLocationObserver.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = RCTLocationObserver.m; path = Libraries/Geolocation/RCTLocationObserver.m; sourceTree = "<group>"; };
-		E352CA66AC903732AF54960E51779A66 /* SpookyHashV2.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = SpookyHashV2.cpp; path = folly/hash/SpookyHashV2.cpp; sourceTree = "<group>"; };
 		E427F2685A17F0723EBB11BF2E43E1B4 /* fishhook.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = fishhook.h; path = Libraries/fishhook/fishhook.h; sourceTree = "<group>"; };
 		E4ABEFDCBF31B8E01FCB80C6611AC1B2 /* RCTSafeAreaViewLocalData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTSafeAreaViewLocalData.m; sourceTree = "<group>"; };
 		E4FF8B9A1D51D46378ADF5B5E93E23BE /* BarChartView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = BarChartView.swift; path = Source/Charts/Charts/BarChartView.swift; sourceTree = "<group>"; };
@@ -1239,7 +1242,6 @@
 		E5229A20790B3D0F1C21564C0CEE33AF /* RCTScrollContentView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = RCTScrollContentView.m; sourceTree = "<group>"; };
 		E558018450138EF89310D597DF983393 /* RCTScrollableProtocol.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTScrollableProtocol.h; sourceTree = "<group>"; };
 		E5F03F4025E09DC21276ED07E6C1918F /* ComponentBase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ComponentBase.swift; path = Source/Charts/Components/ComponentBase.swift; sourceTree = "<group>"; };
-		E61DCF38353B74EEDEAAE349F9F13CC1 /* Demangle.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Demangle.cpp; path = folly/Demangle.cpp; sourceTree = "<group>"; };
 		E6BB218300E31DABA0BE8CC3F56D03B4 /* CandleStickChartRenderer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CandleStickChartRenderer.swift; path = Source/Charts/Renderers/CandleStickChartRenderer.swift; sourceTree = "<group>"; };
 		E6C729F9B89432CA19FB3BFB73AC53EE /* RCTReconnectingWebSocket.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTReconnectingWebSocket.h; path = Libraries/WebSocket/RCTReconnectingWebSocket.h; sourceTree = "<group>"; };
 		E70C884F06B0A978EF2E7A5663948F6C /* TransformerHorizontalBarChart.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransformerHorizontalBarChart.swift; path = Source/Charts/Utils/TransformerHorizontalBarChart.swift; sourceTree = "<group>"; };
@@ -1265,7 +1267,6 @@
 		ECABAFB07AFEFC329063EABE162D3D7F /* RCTSurfaceDelegate.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSurfaceDelegate.h; sourceTree = "<group>"; };
 		ED284FD6180342363E8E54307F6E5192 /* RCTSourceCode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSourceCode.h; sourceTree = "<group>"; };
 		ED3E3D3C82D67EF2C700BB0F563ABAD7 /* MethodCall.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MethodCall.h; path = ReactCommon/cxxreact/MethodCall.h; sourceTree = "<group>"; };
-		ED74F1CC05DEEC5D3071EF7B9B048AFA /* ScopeGuard.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = ScopeGuard.cpp; path = folly/ScopeGuard.cpp; sourceTree = "<group>"; };
 		ED764A9192DBB4498A7F5C74A24238B4 /* diy-fp.cc */ = {isa = PBXFileReference; includeInIndex = 1; name = "diy-fp.cc"; path = "double-conversion/diy-fp.cc"; sourceTree = "<group>"; };
 		ED8C8ADCFF8C9F9006B304CEE00D7ABC /* RCTBorderStyle.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTBorderStyle.h; sourceTree = "<group>"; };
 		EE2FD92592479F80C9172B09CB5D7C36 /* RCTFileRequestHandler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTFileRequestHandler.h; path = Libraries/Network/RCTFileRequestHandler.h; sourceTree = "<group>"; };
@@ -1314,10 +1315,12 @@
 		F988CE7BBAEC789B6EC9C53711339B9F /* RCTConvert+CoreLocation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "RCTConvert+CoreLocation.m"; sourceTree = "<group>"; };
 		F98A4057CE519E5EBA5D20E822054762 /* RCTMultipartStreamReader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTMultipartStreamReader.h; sourceTree = "<group>"; };
 		F9A4733140E843AFA9F2EEB301CC511F /* jsi-inl.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "jsi-inl.h"; path = "ReactCommon/jsi/jsi-inl.h"; sourceTree = "<group>"; };
+		F9A763751F46FD4F827082D5F3DD06AE /* Assume.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = Assume.cpp; path = folly/lang/Assume.cpp; sourceTree = "<group>"; };
 		FA60A376F7A77F403912CF2B75275FB0 /* RCTDatePicker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTDatePicker.h; sourceTree = "<group>"; };
 		FA8C775DF532C637ED1CEDBF4AB6FD55 /* RCTSubtractionAnimatedNode.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTSubtractionAnimatedNode.h; sourceTree = "<group>"; };
 		FAD11C3AA1ACCC9C592FA54B15CB8F4A /* Range.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Range.swift; path = Source/Charts/Highlight/Range.swift; sourceTree = "<group>"; };
 		FAD63BDCA9E45D08F9E2E5412320FE3E /* RCTTextSelection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = RCTTextSelection.h; sourceTree = "<group>"; };
+		FB1CE85B58E8972352EC0F11096F3EB2 /* json_pointer.cpp */ = {isa = PBXFileReference; includeInIndex = 1; name = json_pointer.cpp; path = folly/json_pointer.cpp; sourceTree = "<group>"; };
 		FB217DD5D7C01103EEB62A52CB90FCF6 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		FB4E03B56BC97CDBE109F28743BB2926 /* YGEnums.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = YGEnums.h; path = yoga/YGEnums.h; sourceTree = "<group>"; };
 		FC2C673837BA66ED5639324138A406F6 /* RCTLocationObserver.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = RCTLocationObserver.h; path = Libraries/Geolocation/RCTLocationObserver.h; sourceTree = "<group>"; };
@@ -1613,6 +1616,17 @@
 			path = Libraries/Text/BaseText;
 			sourceTree = "<group>";
 		};
+		0D898705EF575F6C8CB832E458766EEF /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				7EFB9A07A41EAEE49768FB041D51E8E1 /* Folly.xcconfig */,
+				9E73F7841A4B1AF95DF2F79B52A32E77 /* Folly-dummy.m */,
+				06B3A69658FC6178701A267EA01FE5A7 /* Folly-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Folly";
+			sourceTree = "<group>";
+		};
 		0DE03EDC1DE18A5488717EC3656FE5CA /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -1839,30 +1853,6 @@
 			path = "../../node_modules/react-native-background-fetch";
 			sourceTree = "<group>";
 		};
-		2ABD60D9BD4C3962F676F8008A5D4CE1 /* Folly */ = {
-			isa = PBXGroup;
-			children = (
-				6D152863E4E1423AF7D46B74D585A838 /* Assume.cpp */,
-				C5BB8C69D143F3ACCF777FC335AD8884 /* ColdClass.cpp */,
-				BCC12715128B34796CA15C76219A6CCD /* Conv.cpp */,
-				E61DCF38353B74EEDEAAE349F9F13CC1 /* Demangle.cpp */,
-				67215F4F98A1BEFC40BC2470C8A1D3CC /* Demangle.cpp */,
-				1C795ACCB6E77F9706CAB9C5A742D611 /* dynamic.cpp */,
-				7A99183A1A8BC026CBDD7FA259A89044 /* F14Table.cpp */,
-				F4CAC304AB999B89D28B146A7ECEF2E1 /* Format.cpp */,
-				23B2AC8EF7B3D62746B2AF78D1306DA9 /* json.cpp */,
-				16EA265CA21597E407A1CAD2B39AFC5C /* json_pointer.cpp */,
-				38FC35094A540EBE9D2667B05E7DC2E2 /* MallocImpl.cpp */,
-				ED74F1CC05DEEC5D3071EF7B9B048AFA /* ScopeGuard.cpp */,
-				E352CA66AC903732AF54960E51779A66 /* SpookyHashV2.cpp */,
-				943FBD6570B58CDFCA3A28E1C00F41A8 /* String.cpp */,
-				B8D49F64F3720169B0BDCCEEA9C03E1A /* Unicode.cpp */,
-				4D2514ECE3706B52D70A0697DEF1D4C9 /* Support Files */,
-			);
-			name = Folly;
-			path = Folly;
-			sourceTree = "<group>";
-		};
 		2AFD41665358121D328A4B9CE6BCE722 /* RCTLinkingIOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -1969,16 +1959,6 @@
 				0728639226A5D038E645BCD8C4906CBD /* RNDeviceInfo */,
 				6836F384D4D5C8CC7D04213B727810E7 /* RNImageCropPicker */,
 				0729085CB0B1698C41776FAD821D01E7 /* yoga */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		478203C3684952EA95FFF58328881037 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				50448FF9B52B36F7BDDEB4780BBDE39F /* LICENSE */,
-				A400DCD1B9A1466B5DEC548A195409DB /* react-native-netinfo.podspec */,
-				55E494BAEB7AD5C75C11CE8BD751E0C1 /* README.md */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -2231,6 +2211,29 @@
 			sourceTree = "<group>";
 		};
 		6F1A712072F7E28A2CDB329CB4C34B18 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F35D136C840B0CAC7249B15C32998BCA /* de.lproj */,
+				5724B9B28BD49A60140749545C8EBEC0 /* en.lproj */,
+				94461FC3C6575702FAD1CD5B3F55AC6B /* es.lproj */,
+				AD6EF249EA26523B4106853594FA0D04 /* ja.lproj */,
+				9A5B7A5711D0DB05026D13A8335A9C08 /* QBImagePicker.storyboard */,
+				806E7CC1D7CC1FFD5B72B7B751E08D73 /* zh-Hans.lproj */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		6F9BFDF73777005FEEC1990E1D3FA668 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				65AB3CDF448E709BFD9F7D65155F26E2 /* LICENSE */,
+				6805A1F6202C14D9244387D3D56660D5 /* README.md */,
+				D5EB67F2645C0A7FCB8C8E5D07457803 /* RNDeviceInfo.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		70664C98C65BA7EFC00771A446628B52 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
 				0EA5424F50FC97198702F8003522A3D6 /* RNBackgroundFetch.xcconfig */,
@@ -2605,7 +2608,7 @@
 				50A163DC504374BB31CCCC5935743DAE /* boost-for-react-native */,
 				5DADB94111C8A5DA93F28873AAC13833 /* Charts */,
 				E6B8E99FB49B4D1C50A86C756C971749 /* DoubleConversion */,
-				2ABD60D9BD4C3962F676F8008A5D4CE1 /* Folly */,
+				C16AD6BEED5A36D81C44E4E011BB0BC0 /* Folly */,
 				B270656CF98AA406C052402A4A62AEBF /* glog */,
 				E936556070DBD21DA537FF877D3B532F /* QBImagePickerController */,
 				6B864DD4C9711AFC4CD0AB8CC732BC80 /* RSKImageCropper */,
@@ -2670,21 +2673,28 @@
 			path = "../../node_modules/react-native";
 			sourceTree = "<group>";
 		};
-		BDE00179AC909015191F6BD7A0E67051 /* RCTText */ = {
+		C16AD6BEED5A36D81C44E4E011BB0BC0 /* Folly */ = {
 			isa = PBXGroup;
 			children = (
-				59AAF62967BBD20EC20F7CF91C7A7966 /* RCTConvert+Text.h */,
-				FD6122971CC2EE5A2B90FDCD2F6ED90F /* RCTConvert+Text.m */,
-				C24BCAD1B2D7A25DC7F6527A3F42487B /* RCTTextAttributes.h */,
-				C15B85F6828472A0A5004804EADE45B6 /* RCTTextAttributes.m */,
-				45514F46308254B45F78FC5DBAE11EEA /* RCTTextTransform.h */,
-				0CE9FBBF828ED6C15DCC92A4498C1567 /* BaseText */,
-				887FB30B15C51A8C5294A3D5D6972531 /* RawText */,
-				11A52F767BA05BECECDCCD038D0F9302 /* Text */,
-				1F1A7BE02A253EDB1DAB37D7372664DE /* TextInput */,
-				9905500DC23E8D6111CC016B9DDD008A /* VirtualText */,
+				F9A763751F46FD4F827082D5F3DD06AE /* Assume.cpp */,
+				F5F8B3A58BC7AEFB78ADF6E6B5DEFB90 /* ColdClass.cpp */,
+				BB0BE4C54A0B2BD8C511D2C2CE91E8C4 /* Conv.cpp */,
+				D60ED56D260F87EF5D0F075F0449736B /* Demangle.cpp */,
+				DFF8929F93AC763A23CB2EC731B0FE5D /* Demangle.cpp */,
+				7189F0257492E57E4C01D846F5436E41 /* dynamic.cpp */,
+				0E4D067D8E50EE8F749A340CF837A36E /* F14Table.cpp */,
+				7453663B611326041E1AF4C042C6CDFD /* Format.cpp */,
+				CB04BC9B86B72CBFBDA93EF4C8F5C60B /* json.cpp */,
+				FB1CE85B58E8972352EC0F11096F3EB2 /* json_pointer.cpp */,
+				696AF15380E6870B318FE515369D9FC1 /* MallocImpl.cpp */,
+				086043DEEDFBC9F16E7F7477C62E1B11 /* ScopeGuard.cpp */,
+				2EE9178D7BA0847C82A158DBE0FAB0F3 /* SpookyHashV2.cpp */,
+				E0EC6370C1FDCD2D7C3CE55730740FB3 /* String.cpp */,
+				A6BD901A9620F7F18BE09BE51FF5E0A6 /* Unicode.cpp */,
+				0D898705EF575F6C8CB832E458766EEF /* Support Files */,
 			);
-			name = RCTText;
+			name = Folly;
+			path = Folly;
 			sourceTree = "<group>";
 		};
 		C2F3AF0819496ACA4ECB80040D4ABAFA /* Support Files */ = {
@@ -3811,16 +3821,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2F33C5336A8706C8E335861E3AFD9D7B /* DeviceUID.m in Sources */,
-				BDD9B836CCA6B90157F4D23754D27138 /* RNDeviceInfo-dummy.m in Sources */,
-				97E9428E6761F3E2791619890D034186 /* RNDeviceInfo.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		256BC0B266411E62BC4E35A7489BE591 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 				E2959EE9D7A5990DFDD17825629C0042 /* bignum-dtoa.cc in Sources */,
 				10BFBADAA94BF65C795ECB9ED9A05142 /* bignum.cc in Sources */,
 				96A5928DCA28A7AAA655936010A9B701 /* cached-powers.cc in Sources */,
@@ -3955,8 +3955,8 @@
 				AF2D2D9548C78A77244C1644AD353235 /* Assume.cpp in Sources */,
 				F70A7065EBF87E58BD8DCB6BB170CC60 /* ColdClass.cpp in Sources */,
 				5AF84C5676B355E2B195323E387626F1 /* Conv.cpp in Sources */,
-				78ED8427FE2C71AC158AFFB355F13E67 /* Demangle.cpp in Sources */,
 				89E4C17A971F29B1CA5F2D7642093374 /* Demangle.cpp in Sources */,
+				78ED8427FE2C71AC158AFFB355F13E67 /* Demangle.cpp in Sources */,
 				436FB71A6FAC7417CA37BA07C75336EA /* dynamic.cpp in Sources */,
 				625C1672F37D360A982CD99CE2FBAE88 /* F14Table.cpp in Sources */,
 				E04616C4BEDA5814F446D013B1916AA0 /* Folly-dummy.m in Sources */,
@@ -4313,7 +4313,7 @@
 		};
 		22252D5674EA8AE2AF57B968A62D5C1A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D094EFE1DB3EC2CBF65766FA4458A9D /* Folly.xcconfig */;
+			baseConfigurationReference = 7EFB9A07A41EAEE49768FB041D51E8E1 /* Folly.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
