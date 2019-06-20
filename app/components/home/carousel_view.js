@@ -19,6 +19,7 @@ import { Colors } from '../../assets/style_sheets/main/colors';
 import CarouselItem from '../shared/carousel_item';
 import HomeOptions from './home_options';
 import User from '../../utils/user';
+import LinearGradient from 'react-native-linear-gradient';
 
 const { width, height } = Dimensions.get('window');
 
@@ -59,11 +60,19 @@ class CarouselView extends Component {
       <TouchableOpacity
         onPress={ () => this.onPressButton(option) }
         style={styles.btnBox}>
-        <Image
-          style={styles.btnImage}
-          resizeMode="contain"
-          source={option.source_image}
-        />
+
+        <LinearGradient
+          colors={option.color}
+          start={{x: 0, y: 0}} end={{x: 1, y: 1}}
+          style={styles.btnImage}>
+          <Image
+            style={{}}
+            resizeMode="contain"
+            source={option.source_image}
+          />
+        </LinearGradient>
+
+
         <View style={styles.textWrapper}>
           <Text style={styles.btnLabel}>{option.title}</Text>
           <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
@@ -128,6 +137,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     width: wp('88%'),
     height: hp('62%'),
+    overflow: 'hidden'
   },
   textWrapper:{
     marginLeft: 16,
@@ -147,6 +157,8 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
     height: hp('34.8%'),
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   btnStart: {
     backgroundColor: Colors.blue,
