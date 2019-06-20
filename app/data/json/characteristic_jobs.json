@@ -52,7 +52,7 @@
         "id": 1,
         "code": "car_sci_0001",
         "name": "វិស្វករសំណង់ស៊ីវិល",
-        "description": "សំណង់ និងអគារដែលមានរចនាម៉ូដផ្សេងៗ និងមានកម្ពស់ស្កឹមស្កៃ ក្នុងទីក្រុងទំនើបជាច្រើនដោយសារ ស្នាដៃ និងគំនិតថ្មី និងជំនាញរបស់វិស្វករសំណង់ស៊ីវិល។គោលដៅចម្បងមួយរបស់ពួកគេ គឺកសាងហេដ្ឋារចនាសម្ព័ន្ឋ ឬសំណង់អគារដែលជាប់ធន់ច្រើនជំនាន់ ដោយគ្រាន់តែធ្វើការជួសជុល ដើម្បីរក្សាភាពដើមរបស់វាប៉ុណ្ណោះ។ សព្វថ្ងៃនេះយើងអាចឃើញការដ្ឋានសំណង់ជាច្រើនកន្លែងនៅក្នុងទីក្រុង រួមទាំងការដ្ឋានសំណង់ផ្ទះល្វែង ឬអគារការិយាល័យ។ អាជីពនេះត្រូវសិក្សា មុខវិជ្ជា សំណង់ស៊ីវិល រយៈពេល ៤-៦ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញា។ ចំពោះចំណេះដឹងផ្នែកភាសាអង់គ្លេស និងកុំព្យូទ័រគឺត្រូវការជាចាំបាច់។",
+        "description": "សំណង់ និងអគារដែលមានរចនាម៉ូដផ្សេងៗ និងមានកម្ពស់ស្កឹមស្កៃ ក្នុងទីក្រុងទំនើបជាច្រើនដោយសារស្នាដៃ គំនិតថ្មី និងជំនាញរបស់វិស្វករសំណង់ស៊ីវិល។គោលដៅចម្បងមួយរបស់ពួកគេ គឺកសាងហេដ្ឋារចនាសម្ព័ន្ធ ឬសំណង់អគារដែលជាប់រឹងមាំច្រើនជំនាន់ ដោយគ្រាន់តែធ្វើការជួសជុល ដើម្បីរក្សាភាពដើមរបស់វាប៉ុណ្ណោះ។ សព្វថ្ងៃនេះយើងអាចឃើញការដ្ឋានសំណង់ជាច្រើនកន្លែងនៅក្នុងទីក្រុង រួមទាំងការដ្ឋានសំណង់ផ្ទះល្វែង ឬអគារការិយាល័យ។ ដើម្បីអាចក្លាយជាវិស្វករសំណង់សុីវិលបាន ប្អូនត្រូវសិក្សាជំនាញនេះរយៈពេល ៤-៦ឆ្នាំ ដោយទទួលបានសញ្ញាបត្រកម្រិតបរិញ្ញាបត្រ។ ចំពោះចំណេះដឹងផ្នែកភាសាអង់គ្លេស និងកុំព្យូទ័រគឺត្រូវការជាចាំបាច់។",
         "places_for_work": "ក្រុមហ៊ុនឯកជន ស្ថាប័នរដ្ឋ ប្រកបអាជីវកម្មខ្លួនឯង",
         "unknown_schools": null,
         "schools": [
@@ -72,13 +72,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "civil_engineer"
       },
       {
         "id": 2,
         "code": "car_sci_0002",
         "name": "វិស្វករអឡិចត្រូនិច",
-        "description": "វិស្វករអេឡិចត្រូនិចជាអ្នករៀបចំបង្កើតនិងធ្វើតេស្តសមាសធាតុឧបករណ៍ប្រព័ន្ធឬឧបករណ៍ដែលប្រើអគ្គិសនីជាផ្នែកមួយនៃប្រភពថាមពលរបស់ពួកគេ។អាជីពនេះត្រូវសិក្សា មុខវិជ្ជា វិស្វករអេឡិចត្រូនិច រយៈពេល ៤-៦ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញា។ ចំពោះចំណេះដឹងផ្នែកភាសាអង់គ្លេស និងកុំព្យូទ័រគឺត្រូវការជាចាំបាច់។",
+        "description": "វិស្វករអេឡិចត្រូនិចជាអ្នករៀបចំបង្កើត និងធ្វើតេស្តសមាសធាតុឧបករណ៍ប្រព័ន្ធ ឬឧបករណ៍ដែលប្រើអគ្គិសនីជាផ្នែកមួយនៃប្រភពថាមពលរបស់ពួកគេ។ ដើម្បីអាចក្លាយជាវិស្វករអេឡិចត្រូនិចបាន ប្អូនត្រូវសិក្សាជំនាញនេះរយៈពេល ៤-៦ឆ្នាំ ដោយទទួលបានសញ្ញាបត្រកម្រិតបរិញ្ញាបត្រ។ ចំពោះចំណេះដឹងផ្នែកភាសាអង់គ្លេស និងកុំព្យូទ័រគឺត្រូវការជាចាំបាច់។",
         "places_for_work": "ក្រុមហ៊ុនឯកជន ស្ថាប័នរដ្ឋ ប្រកបអាជីវកម្មខ្លួនឯង",
         "unknown_schools": null,
         "schools": [
@@ -94,13 +95,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "electrical_engineer"
       },
       {
         "id": 3,
         "code": "car_sci_0003",
         "name": "វិស្វករគីមី/អ្នកឯកទេសគីមី",
-        "description": "វិស្វករគីមីជាអ្នកដែលមានជំនាញវិជ្ជាជីវៈមានចំណេះដឹងផ្នែកវិស្វកម្មគីមីធ្វើការយ៉ាងសំខាន់នៅក្នុងឧស្សាហកម្មគីមីដើម្បីបំប្លែងវត្ថុធាតុដើមជាមូលដ្ឋានទៅជាផលិតផលផ្សេងៗ និងទាក់ទងនឹងការរចនានិងប្រតិបត្តិការរោងចក្រនិងឧបករណ៍។ ជាទូទៅវិស្វករគីមីជាអ្នកដែលអនុវត្តនិងប្រើប្រាស់គោលការណ៍នៃវិស្វកម្មគីមីនៅក្នុងការអនុវត្តជាក់ស្តែងជាច្រើន រួមមានប្រតិបត្តិការនៃរុក្ខជាតិនិងគ្រឿងម៉ាស៊ីននៅក្នុងគីមីឧស្សាហកម្ម និងដំណើរការពាក់ព័ន្ធ (\"វិស្វករដំណើរការគីមី\") ការអភិវឌ្ឍនៃសារធាតុថ្មីឬប្រែប្រួលសម្រាប់ផលិតផលចាប់ពីអាហារនិងភេសជ្ជៈទៅគ្រឿងសម្អាង គ្រឿងផ្សំឱសថក្នុងចំណោមផលិតផលផ្សេងៗជាច្រើនទៀត ។ គាត់ត្រូវសិក្សារយៈពេល ៤-៦ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញា។ ចំពោះចំណេះដឹងផ្នែកភាសាអង់គ្លេស និងកុំព្យូទ័រគឺត្រូវការជាចាំបាច់។",
+        "description": "វិស្វករគីមី ជាអ្នកដែលមានជំនាញវិជ្ជាជីវៈមានចំណេះដឹងផ្នែកវិស្វកម្មគីមីធ្វើការយ៉ាងសំខាន់នៅក្នុងឧស្សាហកម្មគីមីដើម្បីបំប្លែងវត្ថុធាតុដើមជាមូលដ្ឋានទៅជាផលិតផលផ្សេងៗ ទាក់ទងនឹងការរចនា និងប្រតិបត្តិការរោងចក្រ ឬឧបករណ៍។ ជាទូទៅវិស្វករគីមីជាអ្នកដែលអនុវត្តនិងប្រើប្រាស់គោលការណ៍នៃវិស្វកម្មគីមីនៅក្នុងការអនុវត្តជាក់ស្តែងជាច្រើន រួមមានប្រតិបត្តិការនៃរុក្ខជាតិ គ្រឿងម៉ាស៊ីននៅក្នុងគីមីឧស្សាហកម្ម និងដំណើរការពាក់ព័ន្ធ (\"វិស្វករដំណើរការគីមី\") ការអភិវឌ្ឍនៃសារធាតុថ្មី ឬប្រែប្រួលសម្រាប់ផលិតផលចាប់ពីអាហារនិងភេសជ្ជៈទៅគ្រឿងសម្អាង គ្រឿងផ្សំឱសថក្នុងចំណោមផលិតផលផ្សេងៗជាច្រើនទៀត ។ ដើម្បីអាចក្លាយជាវិស្វករគីមីបាន ប្អូនត្រូវសិក្សាជំនាញនេះរយៈពេល ៤-៦ឆ្នាំ ដោយទទួលបានសញ្ញាបត្រកម្រិតបរិញ្ញាបត្រ។ ចំពោះចំណេះដឹងផ្នែកភាសាអង់គ្លេស និងកុំព្យូទ័រគឺត្រូវការជាចាំបាច់។",
         "places_for_work": "ក្រុមហ៊ុនឯកជន ស្ថាប័នរដ្ឋ ប្រកបអាជីវកម្មខ្លួនឯង",
         "unknown_schools": null,
         "schools": [
@@ -119,13 +121,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "chemistry"
       },
       {
         "id": 4,
         "code": "car_sci_0004",
         "name": "អ្នកគីមីវិទ្យា",
-        "description": "អ្នកគីមីវិទ្យា ស្វែងរក​វិធី​ដើម្បី​កែលម្អ​ជីវភាពរស់នៅរបស់ប្រជាពល​រដ្ឋដោ​យ​​ធ្វើ​ ការសិក្សាលើ​សារធាតុ​គីមី​។ ពួកគេប្រើ​ប្រាស់ចំណេះ​ដឹង​ផ្នែក​សារធាតុគីមី​​ដើម្បី​បង្កើត​ផលិត​ផល​ថ្មី ដូចជា​ថ្នាំពេទ្យ​ គ្រឿងសម្អាង និង​ប្រព័ន្ធ​សរីរាង្គ​សិប្បនិម្មិត​ថ្មី​​។ អ្នកគីមីវិទ្យា​មាន​តួនាទី​សំខាន់​ក្នុងការបង្កើត​ថ្នាំថ្មី ដោយត្រួតពិនិត្យ​មើល​ដំណើរ​អភិវឌ្ឍ​ និង​ការកំណត់​ពីគុណភាព​និង​ស្ថេរភាព​​របស់​ថ្នាំ​ទាំ​ង​នេះ។ អ្នកគីមីវិទ្យា​ក៏អាចធ្វើការងារ​នៅ​តាមឱសថស្ថាន​ ​ដែល​ពួក​​​​គេ​ផ្តោតការយក​ចិត្តទុក​ដាក់លើ​ការដាក់ថ្នាំនិងការប្រើ​ ថ្នាំ​ប្រកប​ដោយ​ប្រសិទ្ធភាពនិង​សុវត្ថិភាព​ផងដែរ​៕",
+        "description": "អ្នកគីមីវិទ្យា ស្វែងរក​វិធី​ដើម្បី​កែលម្អ​ជីវភាពរស់នៅរបស់ប្រជាពល​រដ្ឋដោ​យ​​ធ្វើ​ការសិក្សាលើ​សារធាតុ​គីមី​។ ពួកគេប្រើ​ប្រាស់ចំណេះ​ដឹង​ផ្នែក​សារធាតុគីមី​​ដើម្បី​បង្កើត​ផលិត​ផល​ថ្មី ដូចជា​ថ្នាំពេទ្យ​ គ្រឿងសម្អាង និង​ប្រព័ន្ធ​សរីរាង្គ​សិប្បនិម្មិត​ថ្មី​​។ អ្នកគីមីវិទ្យា​មាន​តួនាទី​សំខាន់​ក្នុងការបង្កើត​ថ្នាំថ្មី ដោយត្រួតពិនិត្យ​មើល​ដំណើរ​អភិវឌ្ឍ​ និង​ការកំណត់​ពីគុណភាព​និង​ស្ថេរភាព​​របស់​ថ្នាំ​ទាំ​ង​នេះ។ ដើម្បីអាចក្លាយជាអ្នកគីមីវិទ្យាបាន ប្អូនត្រូវសិក្សាជំនាញនេះរយៈពេល ៤​-៦ ឆាំ្ន ដោយទទួលបានសញ្ញាបត្រកម្រិតបរិញ្ញាបត្រ។ ចំពោះចំណេះដឹងផ្នែកភាសាអង់គ្លេស បារាំង និងកុំព្យូទ័រគឺត្រូវការជាចាំបាច់។",
         "places_for_work": "ស្ថាប័នរដ្ឋ​ មន្ទីពិសោធរដ្ឋ",
         "unknown_schools": null,
         "schools": [
@@ -137,13 +140,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "chemistry"
       },
       {
         "id": 5,
         "code": "car_sci_0005",
         "name": "អ្នកគណិតវិទ្យា",
-        "description": "គណិតវិទូស្វែងរក និង​ សិក្សាអំពីររូបមន្ដ រឺក៏គំនិត ដែលមិនទាន់បានរកឃើញនៅឡើយនៅក្នុងពិភពលោកនេះ។ គំនិត រឺ គោលការណ៏ផ្សេងៗ របស់គណិតវិទូ គឺចាត់ទុកគំនិតដ៏ប្រសើរ ពីព្រោះពួកគេបានពិចារណា​និងធ្វើអោយមានភាពងាយស្រួល និង ល្អប្រសើរត្រឹមត្រូវ។ គំនិត និង រូបមន្ដទាំងនេះគឺរកឃើញក្នុងភាពពិតនៃពិភពលោក បន្ទាប់មកទើបបានសិក្សានៅក្នុងគណិតសាស្រ្ដ។",
+        "description": "អ្នកគណិតវិទ្យា គឺជាការ​សិក្សាអំពីរូបមន្ដ ឬក៏គំនិតថ្មីៗ ដែលមិនទាន់បានរកឃើញវិធីសាស្រ្តដោះស្រាយនៅក្នុងមុខវិជ្ជាគណិតវិទ្យា។ គំនិត ឬគោលការណ៏ផ្សេងៗ របស់គណិតវិទ្យា គឺចាត់ទុកគំនិតដ៏ប្រសើរ ពីព្រោះពួកគេបានពិចារណា​និងធ្វើអោយមានភាពងាយស្រួល និង ល្អប្រសើរត្រឹមត្រូវ។ ដើម្បីអាចក្លាយជាអ្នកគណិតវិទ្យាបាន ប្អូនត្រូវសិក្សាជំនាញនេះរយៈពេល ៤-៦ឆ្នាំ ដោយទទួលបានសញ្ញាបត្រកម្រិតបរិញ្ញាបត្រ និងអនុបណ្ឌិត។",
         "places_for_work": "ស្ថាប័នរដ្ឋ​ មន្ទីពិសោធរដ្ឋ",
         "unknown_schools": null,
         "schools": [
@@ -154,13 +158,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "math"
       },
       {
         "id": 6,
         "code": "car_sci_0006",
         "name": "អ្នករូបវិទ្យា",
-        "description": "អ្នករូបវិទ្យាគឺជាអ្នកវិទ្យាសាស្ត្រ​សិក្សាទាក់ទងនឹង កំលាំង ថាមពល ម៉ាស់ និង បន្ទុកអគ្គិសនី ជាដើម។ គាត់/នាង វិភាគ វែកញែកពី​ធម្មជាតិ​ ដើម្បីបកស្រាយពន្យល់ពី​បាតុភូត​ជុំវិញខ្លួន​និង​កត្តាដែលបង្កវា។ គេអាចបង្កើតនិងប្រើប្រាស់​ឧបករណ៍អគ្គីសនី(ទូរទស្សន៍ កុំព្យូទ័រ បរិក្ខារអគ្គីសនីតាមផ្ទះ -ល-)",
+        "description": "អ្នករូបវិទ្យាគឺជាអ្នកវិទ្យាសាស្ត្រ​សិក្សាទាក់ទងនឹង កំលាំង ថាមពល ម៉ាស់ និង បន្ទុកអគ្គិសនី ជាដើម។ គាត់វិភាគវែកញែកពី​ធម្មជាតិ​ ដើម្បីបកស្រាយពន្យល់ពី​បាតុភូត​ជុំវិញខ្លួន​និង​កត្តាដែលបង្កវា។ គេអាចបង្កើតនិងប្រើប្រាស់​ឧបករណ៍អគ្គីសនី(ទូរទស្សន៍ កុំព្យូទ័រ បរិក្ខារអគ្គីសនីតាមផ្ទះ -ល-)",
         "places_for_work": "ស្ថាប័នរដ្ឋ​ មន្ទីពិសោធរដ្ឋ",
         "unknown_schools": null,
         "schools": [
@@ -170,7 +175,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "physic"
       },
       {
         "id": 7,
@@ -186,7 +192,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "pilot"
       },
       {
         "id": 8,
@@ -206,13 +213,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 9,
         "code": "car_sci_0009",
         "name": "អ្នកវិទ្យាសាស្រ្ត ផ្នែកសត្វ",
-        "description": "អ្នកវិទ្យាសាស្ត្រផ្នែកសត្វ គឺជាអ្នកដែលមានចំនេះដឹងមូលដ្ឋានលើផ្នែកគីមី​វិទ្យា និង ជីវវិទ្យា។ គាត់នឹងធ្វើការច្រើនទាក់ទងជាមួយសត្្វដូចជាគោ ក្របី សត្វស្លាប និងរបៀបបង្កាត់ពូជសត្វ។គាត់ក៏យល់ច្បាស់ពីផ្នែកចំណីសត្វផងដែរ។ គាត់ជាមនុស្សឧស្សាហ៍ ព្យាយាម និងយកចិត្តទុកដាក់ចំពោះការងារ។",
+        "description": "អ្នកវិទ្យាសាស្ត្រផ្នែកសត្វ គឺជាអ្នកដែលមានចំនេះដឹងមូលដ្ឋានលើផ្នែកគីមី​វិទ្យា និង ជីវវិទ្យា។ គាត់នឹងធ្វើការច្រើនទាក់ទងជាមួយសត្វដូចជាគោ ក្របី សត្វស្លាប និងរបៀបបង្កាត់ពូជសត្វ។ អាជីពនេះមានទំនួលខុសត្រូវព្យាបាលសត្វ យល់ដឹងពីរបៀបប្រើប្រាស់ចំណីសត្វផងដែរ និងត្រួតពិនិត្យការនាំចេញ និងចូលសត្វពីកន្លៃងមួយទៅកន្លៃងមួយទៀត។ គាត់ជាមនុស្សឧស្សាហ៍ ព្យាយាម និងយកចិត្តទុកដាក់ចំពោះការងារ។",
         "places_for_work": "អ្នកបច្ចេកទេសចិញ្ចឹមសត្វនៅតាមក្រសួង ក្រុមហ៊ុន អង្គការក្រៅរដ្ឋាភិបាលនិងស្ថាប័នផ្សេងៗ ដែលពាក់ព័ន្ធ អ្នកបច្ចេកទេសផលិតចំណីសត្វនៅតាមក្រុមហ៊ុន និងម្ចាស់អាជីវកម្មចំណីសត្វឬបើកកសិដ្ឋានចិញ្ចឹមសត្វផ្ទាល់ខ្លួន",
         "unknown_schools": null,
         "schools": [
@@ -225,13 +233,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 10,
         "code": "car_sci_0010",
         "name": "ទន្តពេទ្យ",
-        "description": "ទន្តពេទ្យមាននាទីថែទាំធ្មេញ ព្យាបាលធ្មេញ ដក និង ដាក់ធ្មេញ ព្រោះធ្មេញស្អាតជួយធ្វើឱ្យមនុស្សយើងមានសម្ផស្សកាន់តែស្រស់ស្អាត។ មុខរបរនេះតំរូវឱ្យមានគុណសម្បត្តិជាច្រើន ដូចជា ប៉ិនប្រសប់ប្រើដៃ មានស្មារតីរឹងមាំ ពូកែវិនិច្ឆ័យរោគ មានសមត្ថភាពក្នុងការស្ដាប់ ដើម្បីស្វែងយល់ពីជំងឺដែលត្រូវព្យាបាល។",
+        "description": "ទន្តពេទ្យមាននាទីថែទាំធ្មេញ ព្យាបាលធ្មេញ ដក និងដាក់ធ្មេញ ព្រោះធ្មេញស្អាតជួយធ្វើឱ្យមនុស្សយើងមានសម្ផស្សកាន់តែស្រស់ស្អាត។ អាជីពនេះតម្រូវឱ្យមានគុណសម្បត្តិជាច្រើនដូចជា ភាពប៉ិនប្រសប់ប្រើដៃ មានស្មារតីរឹងមាំ ពូកែវិនិច្ឆ័យរោគ មានសមត្ថភាពក្នុងការស្ដាប់ ដើម្បីស្វែងយល់ពីជំងឺដែលត្រូវព្យាបាល។",
         "places_for_work": "នៅមន្ទីរពេទ្យរដ្ឋ និងឯកជន ឬគ្លីនិកឯកជន",
         "unknown_schools": null,
         "schools": [
@@ -243,13 +252,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 11,
         "code": "car_sci_0011",
         "name": "អ្នកឯកទេសផ្នែកឱសថសាស្រ្ត",
-        "description": "ឱសថ​សាស្ត្រ​គឺជា​ផ្នែក​មួយ​នៃ វិស័យ​សុខាភិបាល ដែល​ទទួល​ការបណ្តុះបណ្តាល​រយៈពេល ៥​ឆ្នាំ ដើម្បី​ក្លាយជា​ឱសថការី មួយរូប​ដែលមាន​សមត្ថភាព​គ្រប់គ្រាន់​។ ឱសថការី​គឺជា​អ្នកមាន​វិជ្ជាជីវៈ​តែមួយគត់​ដែលមាន​ឯកទេស​ផ្នែក​ឱសថ​។ ឱសថការី​មានចំណេះដឹង ក្នុង​ការផលិត គ្រប់គ្រង ចែកចាយ​ឱសថ ពន្យល់​ការប្រើប្រាស់​ឱសថ​ឲ្យ​មាន​សុវត្ថិភាព និង​ប្រសិទ្ធ​ភាពល្អ ព្រមទាំង​មានចំណេះដឹង​ខាង សិក្សា​ស្រាវជ្រាវ រូ​ម​មន្ត​ផលិត​ឱសថ​ថ្មី និង​កែលំអ​គុណភាព​ឱសថ​ឲ្យ​កាន់តែ​ប្រសើរ​ជាង​មុន​។",
+        "description": "ឱសថ​សាស្ត្រ​គឺជា​ផ្នែក​មួយ​នៃវិស័យ​សុខាភិបាល ដែល​ទទួល​ការបណ្តុះបណ្តាល​រយៈពេល ៥​ឆ្នាំ ដើម្បី​ក្លាយជា​ឱសថការី មួយរូប​ដែលមាន​សមត្ថភាព​គ្រប់គ្រាន់​។ ឱសថការី​គឺជា​អ្នកមាន​វិជ្ជាជីវៈ​តែមួយគត់​ដែលមាន​ឯកទេស​ផ្នែក​ឱសថ​។ ឱសថការី​មានចំណេះដឹង ក្នុង​ការផលិត គ្រប់គ្រង ចែកចាយ​ឱសថ ពន្យល់​ការប្រើប្រាស់​ឱសថ​ឲ្យ​មាន​សុវត្ថិភាព និង​ប្រសិទ្ធ​ភាពល្អ ព្រមទាំង​មានចំណេះដឹង​ខាង សិក្សា​ស្រាវជ្រាវ រូ​ម​មន្ត​ផលិត​ឱសថ​ថ្មី និង​កែលំអ​គុណភាព​ឱសថ​ឱ្យយ​កាន់តែ​ប្រសើរ​ជាង​មុន​។",
         "places_for_work": "មន្ទីរពេទ្យរដ្ឋ មន្ទីរពេទ្យឯកជន",
         "unknown_schools": null,
         "schools": [
@@ -261,7 +271,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "nurse"
       },
       {
         "id": 12,
@@ -279,7 +290,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 13,
@@ -297,7 +309,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 14,
@@ -315,13 +328,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 15,
         "code": "car_sci_0015",
         "name": "អ្នកឯកទេសវិកលវិទ្យា (ពេទ្យឯកទេសផ្លូវចិត្ត)",
-        "description": "អ្នកឯកទេសវិកលវិទ្យាជាអ្នកបំរើសេវាព្យាបាលសុខភាពផ្លូវចិត្តជាផ្នែកមួយនៃការព្យាបាលជាមួយនិងអ្នកដែលមានវិបត្តិផ្លូវចិត្តនិងសង្គម។ គាត់ជាអ្នកឯកទេសព្យាបាលនិងផ្តល់វិធីសាស្រ្តព្យាបាល និងឱសថព្យាបាលគ្រប់គ្រងអារម្មណ៍ និងការគិត។ ជំនាញនេះត្រូវសិក្សាវេជ្ជបណ្ឌិតទូទៅ។",
+        "description": "អ្នកឯកទេសវិកលវិទ្យាជាអ្នកបំរើសេវាព្យាបាលសុខភាពផ្លូវចិត្តជាផ្នែកមួយនៃការព្យាបាលជាមួយនិងអ្នកដែលមានវិបត្តិផ្លូវចិត្តនិងសង្គម។ គាត់ជាអ្នកឯកទេសព្យាបាលនិងផ្តល់វិធីសាស្រ្តព្យាបាល និងឱសថព្យាបាលគ្រប់គ្រងអារម្មណ៍ និងការគិត។ ដើម្បីអាចក្លាយជាអ្នកឯកទេសវិកលវិទ្យាបាន ប្អូនត្រូវសិក្សាវេជ្ជបណ្ឌិតទូទៅ៦ឆ្នាំ រួចហើយសិក្សាជំនាញឯកទេសវិកលវិទ្យា ២ឆ្នាំ។ ចំពោះចំណេះដឹងផ្នែកភាសាអង់គ្លេស និងកុំព្យូទ័រគឺត្រូវការជាចាំបាច់។",
         "places_for_work": "មន្ទីរពេទ្យរដ្ឋ មន្ទីរពេទ្យឯកជន អង្គការមិនមែនរដ្ឋាភិបាល",
         "unknown_schools": null,
         "schools": [
@@ -331,7 +345,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 16,
@@ -349,7 +364,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 17,
@@ -366,7 +382,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 18,
@@ -383,7 +400,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 19,
@@ -400,7 +418,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 20,
@@ -416,7 +435,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 21,
@@ -434,7 +454,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "lab_technician"
       },
       {
         "id": 22,
@@ -452,7 +473,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 23,
@@ -470,7 +492,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 24,
@@ -488,13 +511,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 25,
         "code": "car_sci_0025",
         "name": "អ្នកឯកទេសសុខភាពសាធារណៈ",
-        "description": "បទដ្ឋានសុវត្ថិភាពសុខភាព​និងគំនិតផ្ដួចផ្ដើមស្ដីការថែទាំសុខភាពអាចធ្វើឱ្យសុខភាពប្រចាំថ្ងៃរបស់បុគ្គលិកនិងគ្រួសារនីមួយៗនៅតាមសហគមន៍ប្រសើរឡើង។អ្នកឯកទេសសុខភាពសាធារណៈជួយបុគ្គលម្នាក់ៗគ្រួសារនិងសហគមន៍ឱ្យយល់ដឹងពីកត្តាចាំបាច់ដើម្បីបញ្ចៀស និងកាត់បន្ថយហានិភ័យពាក់ព័ន្ឋនឹងសុខភាព (បញ្ហាជំងឺឆ្លង គ្រោះថ្នាក់ចរាចរណ៍។ល។) បន្ថែមលើនេះទៀតអ្នកឯកទេសសុខភាពសាធារណៈក៏ធ្វើការសិក្សាស្រាវជ្រាវជុំវិញកត្តាដែលជះឥទ្ឋិពលអវិជ្ជមានដល់សុខភាព គ្រប់គ្រងបញ្ហាពាក់ពន្ឋ័នឹងសុខភាព ហើយក៏ជាអ្នកអប់រំផ្សព្វផ្សាយបទដ្ឋានសុវត្ថិភាពជុំវិញបញ្ហាសុខភាពសាធារណៈផងដែរ។",
+        "description": "បទដ្ឋាន​សុវត្ថិភាព និង​គំនិត​ផ្តួចផ្តើម​​​ស្តីពី​​​​សុខភាព អាច​ធ្វើឱ្យយ​​សុខភាព​​ប្រចាំថ្ងៃ​​របស់​បុគ្គល និង គ្រួសារ​នីមួយៗ​​នៅតាម​សហគមន៍​​ប្រសើរឡើង​​។ ទោះបីជាយ៉ាង​ពួកគេ​​ត្រូវតែ​​តាម​ឃ្លាំមើល និង​​វាយតម្លៃ​​ឡើងវិញ​​​ជាប្រចាំ ហើយ​​ត្រូវតែ​​ធ្វើការ​​កែលម្អ ​ដើម្បី​ធ្វើឲ្យ​​ប្រាកដថា បទដ្ឋាន​​និង​​គំនិត​​ផ្តួចផ្តើម​​ទាំងនោះ​នៅតែ​មាន​​ប្រសិទ្ធភាព​​​និង​​សមស្រប​​ចំពោះ​​ការចំណាយ​​។ គំនិត​​ផ្តួចផ្តើម​​ស្តីពី​​សុខភាព​​ដ៏រឹងមាំ​​អាចជួយ​សង្គ្រោះ​​ជីវិត​មនុស្ស កាត់​បន្ថយ​ជំងឺ និង​​កែប្រែ​គុណភាព​​ជីវិត​​របស់​មនុស្ស​​ជាច្រើន​។\nអ្នកវិភាគ ឬ​​អ្នកឯកទេស​​សុខភាព​សាធារណៈ​ជួយ បុគ្គលម្នាក់ៗ គ្រួសារ និង​សហគមន៍​​ឲ្យយល់​​និង​គ្រប់គ្រង បញ្ហា​ ពាក់ព័ន្ធ​នឹង​សុខភាព​។ ពួកគេ​ធ្វើការ​វាយតម្លៃ​​ពី​កម្មវិធី​សុខភាព និង​គោល​នយោបាយ ព្រមទាំង​ប្រមូល​ និង​វិភាគ​ទិន្នន័យ ក្នុង​​ការ​ជួយ​ស្វែង​រក​ទិសដៅ​​សកម្មភាព​​ដ៏​ប្រសើរបំផុត​ ដើម្បីរក្សា​កម្មវិធី​សុខភាព​​ដ៏រឹងមាំ​នេះ​។ អ្នកវិភាគ ឬ​​អ្នកឯកទេស​​នឹងធ្វើការ​​វាយតម្លៃ​​លើផលប៉ះពាល់​​ដែលកើតចេញពី បញ្ហា​បរិស្ថាន​​មកលើ​​សុខភាព​សាធារណៈ និង​ជួយផ្សព្វផ្សាយ​​អំពី​បទដ្ឋាន​សុវត្ថិភាព​សុខភាព​​ដែល​បាន​​ប្រកាន់​យក​នេះ​។",
         "places_for_work": "រដ្ឋាភិបាល  អង្គការក្រៅរដ្ឋាភិបាល ឬគ្លីនិកឯកជន",
         "unknown_schools": null,
         "schools": [
@@ -506,7 +530,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 26,
@@ -523,13 +548,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 27,
         "code": "car_sci_0027",
         "name": "ឯកទេសភ្នែក",
-        "description": "អ្នកជំនាញភ្នែកជាអ្នកដែលមានបច្ចេកទេសព្យាបាល និងប្រឹក្សាយោបល់វិធីសាស្រ្តការពារភ្នែកឲ្យមានប្រសិទ្ធិភាព។ អ្នកជំនាញនេះមានតួនាទីពិនិត្យមើលភ្នែកដោយប្រើឧបករណ៍បច្ចេកទេសនិងផ្ដល់ឱសថដើម្បីកំណត់ភាពច្បាស់លាស់ និងធ្វើរោគវិនិច្ឆ័យជំងឺនិងភាពមិនប្រក្រតីផ្សេងៗទៀតដែលកើតមានឡើងនៅក្នុងភ្នែក និងវិភាគទៅលើលទ្ធផលដែលបានពិសោធន៍ និងរៀបចំផែនការព្យាបាល ។ គាត់ជាអ្នកចេញវេជ្ជបញ្ជាឲ្យអ្នកជំងឺតម្រូវប្រើវ៉ែនតាការពារភ្នែក និងចេញវេជ្ជបញ្ជាឧសថព្យាបាលជំងឺភ្នែក ។​ គាត់ផ្ដល់ប្រឹក្សាយោបល់ឲ្យអ្នកជំងឺធ្វើអនាម័យភ្នែក ថែទាំភ្នែក និងការពារសុវត្ថិភាព ពិគ្រោះ និងបញ្ជូនអ្នកជំងឺទៅរកសេវាកម្ម និងមានតម្រូវការចាំបាច់ និងរៀបចំវះកាត់ភ្នែក និងថែទាំក្រោយពេលវះកាត់ភ្នែក។ ជំនាញនេះត្រូវសិក្សាវេជ្ជបណ្ឌិតទូទៅរយៈពេល ៦ឆ្នាំ ហើយចាប់យកជំនាញនេះ៣ឆ្នាំទៀត។​ ជំនាញនេះត្រូវចេះភាសាអង់គ្លេស បារាំង និងមានចំណេះដឹងផ្នែកកុំព្យូទ័រ។",
+        "description": "អ្នកឯកទេសភ្នែកជាអ្នកដែលមានបច្ចេកទេសព្យាបាល និងប្រឹក្សាយោបល់វិធីសាស្រ្តការពារភ្នែកឱ្យយមានប្រសិទ្ធិភាព។ អ្នកជំនាញនេះមានតួនាទីពិនិត្យមើលភ្នែកដោយប្រើឧបករណ៍បច្ចេកទេសនិងផ្ដល់ឱសថដើម្បីកំណត់ភាពច្បាស់លាស់ និងធ្វើរោគវិនិច្ឆ័យជំងឺ ភាពមិនប្រក្រតីផ្សេងៗទៀតដែលកើតមានឡើងនៅក្នុងភ្នែក និងវិភាគទៅលើលទ្ធផលដែលបានពិសោធន៍ និងរៀបចំផែនការព្យាបាល ។ គាត់ជាអ្នកចេញវេជ្ជបញ្ជាឱ្យយអ្នកជំងឺតម្រូវប្រើវ៉ែនតាការពារភ្នែក និងចេញវេជ្ជបញ្ជាឧសថព្យាបាលជំងឺភ្នែក ។​ គាត់ផ្ដល់ប្រឹក្សាយោបល់ឲ្យអ្នកជំងឺធ្វើអនាម័យភ្នែក ថែទាំភ្នែក និងការពារសុវត្ថិភាព ពិគ្រោះ និងបញ្ជូនអ្នកជំងឺទៅរកសេវាកម្ម និងមានតម្រូវការចាំបាច់ និងរៀបចំវះកាត់ភ្នែក និងថែទាំក្រោយពេលវះកាត់ភ្នែក។ ជំនាញនេះត្រូវសិក្សាវេជ្ជបណ្ឌិតទូទៅរយៈពេល ៦ឆ្នាំ ហើយចាប់យកជំនាញនេះ៣ឆ្នាំទៀត។​ ជំនាញនេះត្រូវចេះភាសាអង់គ្លេស បារាំង និងមានចំណេះដឹងផ្នែកកុំព្យូទ័រ។",
         "places_for_work": "មន្ទីរពេទ្យរដ្ឋ មន្ទីរពេទ្យឯកជន អង្គការមិនមែនរដ្ឋាភិបាល",
         "unknown_schools": null,
         "schools": [
@@ -541,13 +567,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 28,
         "code": "car_sci_0028",
         "name": "គិលានុបដ្ឋាក",
-        "description": "គិលានុប្បដ្ឋាកជាជំនួយការដ៏ចាំបាច់ដោយខានមិនបានរបស់វេជ្ជបណ្ឌិត។ គេទទួលខុសត្រូវមើលថែទាំជំងឺ និងជួយធ្វើឱ្យអ្នកជំងឺអនុវត្តតាមបញ្ជាវេជ្ជបណ្ឌិត។ គេត្រូវស្រលាញ់ចូលចិត្តមនុស្សទូទៅ មានអធ្យាស្រ័យល្អ មានមនុស្សធម៌ ម៉ត់ចត់ក្នុងការងារ មិនធ្វេសប្រហែស រាក់ទាក់ជានិច្ច ចេះជួយលើកទឹកចិត្តអ្នកជំងឺ។ជំនាញនេះត្រូវរៀនរយៈពេល ៣ ឬ ៤ ឆ្នាំ។ ជំនាញនេះត្រូវចេះភាសាអង់គ្លេស បារាំង និងមានចំណេះដឹងផ្នែកកុំព្យូទ័រ។",
+        "description": "គិលានុប្បដ្ឋាក ជាជំនួយការដ៏ចាំបាច់ដោយខានមិនបានរបស់វេជ្ជបណ្ឌិត។ អាជីពនេះមានទទួលខុសត្រូវមើលថែទាំជំងឺ និងប្រឹក្សាយោបល់ឱ្យអ្នកជំងឺអនុវត្តតាមបញ្ជាវេជ្ជបណ្ឌិត។ អាជីពនេះត្រូវមានបុគ្គលិកលក្ខណៈជាមនុស្សស្រលាញ់ចូលចិត្តមនុស្សទូទៅ មានអធ្យាស្រ័យល្អ មានមនុស្សធម៌ ម៉ត់ចត់ក្នុងការងារ មិនធ្វេសប្រហែស រាក់ទាក់ជានិច្ច ចេះជួយលើកទឹកចិត្តអ្នកជំងឺ។​ ដើម្បីអាចក្លាយជាគិលានុប្បដ្ឋាកបាន ប្អូនត្រូវសិក្សាជំនាញនេះរយៈពេល ៣-៤ឆ្នាំ ដោយទទួលបានសញ្ញាបត្រកម្រិតបរិញ្ញាបត្ររង និងបរិញ្ញាបត្រ។ ចំពោះចំណេះដឹងផ្នែកចេះភាសាអង់គ្លេស បារាំង និងមានចំណេះដឹងផ្នែកកុំព្យូទ័រ ជាដើម។",
         "places_for_work": "មន្ទីរពេទ្យរដ្ឋ មន្ទីរពេទ្យឯកជន អង្គការមិនមែនរដ្ឋាភិបាល",
         "unknown_schools": null,
         "schools": [
@@ -560,13 +587,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "nurse"
       },
       {
         "id": 29,
         "code": "car_sci_0029",
         "name": "ឆ្មប",
-        "description": "ឆ្មបគឺជាអ្នកបំរើសេវាសម្រាលកូនដើម្បីជួយស្ត្រីឲ្យមានសុវត្តិភាពទាំងម្តាយ និងកូន គាត់ជាអ្នកលើកទឹកស្រី្តឲ្យចេះថែរក្សាគក៌អំឡុងពេលមានផ្ទៃពោះ និងតាមដានការវិវត្តិរបស់ទារក និងមានចំណេះដឹង ការផ្តល់សេវាសុខភាពផ្លូវភេទ សុខភាពបន្តពូជ រួមបញ្ចូលទាំងការផ្តល់សេវាធ្វើផែនការគ្រួសារ និងការព្យាបាលជំងឺកាមរោគ។ គាត់តម្រូវឲ្យមានសញ្ញាប័ត្រសមមូល ដូចជា​៖ កម្រិតបរិញ្ញាបត្ររង និង បរិញ្ញាបត្រឯកទេសគិលានុបដ្ឋាន ធ្មប។ គាត់ត្រូវមានភារកិច្ចតាមដានសកម្មភាពការវិវត្តន៍របស់ទារក ផ្ដល់ថ្នាំឲ្យស្រី្ត​មានផ្ទៃពោះ  សម្ភារឧបទ្ទេស សម្រាលកូន និងបំពេញការងារប្រកបដោយក្រមសីលធម៌ និងវិជ្ជាជីវៈខ្ពស់។​ជំនាញនេះត្រូវរៀនពេទ្យទូទៅ ៤ ឆ្នាំ និង បន្តជំនាញឆ្មប ២ឆ្នាំ។",
+        "description": "ឆ្មបគឺជាអ្នកបំរើសេវាសម្រាលកូនដើម្បីជួយស្ត្រីឱ្យមានសុវត្តិភាពទាំងម្តាយ និងកូន គាត់ជាអ្នកលើកទឹកស្រី្តឱ្យចេះថែរក្សាគក៌អំឡុងពេលមានផ្ទៃពោះ និងតាមដានការវិវត្តិរបស់ទារក និងមានចំណេះដឹង ការផ្តល់សេវាសុខភាពផ្លូវភេទ សុខភាពបន្តពូជ រួមបញ្ចូលទាំងការផ្តល់សេវាធ្វើផែនការគ្រួសារ និងការព្យាបាលជំងឺកាមរោគ។ អាជីពនេះមានភារកិច្ចតាមដានសកម្មភាពការវិវត្តន៍របស់ទារក ផ្ដល់ថ្នាំឱ្យយស្រី្ត​មានផ្ទៃពោះ  សម្ភារឧបទ្ទេស សម្រាលកូន និងបំពេញការងារប្រកបដោយក្រមសីលធម៌ និងវិជ្ជាជីវៈខ្ពស់។ ដើម្បីអាចក្លាយជាឆ្មបបាន ប្អូនត្រូវសិក្សាជំនាញនេះរយៈពេល ២-៤ឆ្នាំ ដោយទទួលបានសញ្ញាបត្រកម្រិតបរិញ្ញាបត្ររង និងបរិញ្ញាបត្រ។ ចំពោះចំណេះដឹងផ្នែកចេះភាសាអង់គ្លេស បារាំង និងមានចំណេះដឹងផ្នែកកុំព្យូទ័រ។",
         "places_for_work": "មន្ទីរពេទ្យរដ្ឋ មន្ទីរពេទ្យឯកជន អង្គការមិនមែនរដ្ឋាភិបាល",
         "unknown_schools": "សាលាមធ្យមសិក្សាសុខាភិបាល ភូមិភាគ ខេត្ត រាជធានី",
         "schools": [
@@ -579,7 +607,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "nurse"
       },
       {
         "id": 30,
@@ -595,7 +624,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 31,
@@ -611,7 +641,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "environmental"
       },
       {
         "id": 32,
@@ -627,7 +658,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "electrical_engineer"
       },
       {
         "id": 33,
@@ -643,7 +675,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 34,
@@ -659,7 +692,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "mechenical_engineer"
       },
       {
         "id": 35,
@@ -675,7 +709,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "computer_science"
       },
       {
         "id": 36,
@@ -691,7 +726,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 37,
@@ -707,7 +743,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "IT"
       },
       {
         "id": 38,
@@ -723,7 +760,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 39,
@@ -739,7 +777,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 40,
@@ -755,7 +794,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 41,
@@ -771,7 +811,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 42,
@@ -787,7 +828,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "lab_technician"
       },
       {
         "id": 43,
@@ -803,7 +845,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "lab_technician"
       },
       {
         "id": 44,
@@ -819,7 +862,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "chemistry"
       },
       {
         "id": 45,
@@ -835,7 +879,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 46,
@@ -851,7 +896,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 47,
@@ -867,7 +913,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "IT"
       },
       {
         "id": 48,
@@ -883,7 +930,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 49,
@@ -899,7 +947,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 50,
@@ -915,13 +964,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 51,
         "code": "car_sci_0051",
         "name": "មន្ត្រីពន្ធដារ",
-        "description": null,
+        "description": "មន្រ្តីពន្ធដារ គឺជាអ្នកវិភាគ និងត្រួតពិនិត្យពីការចំណាយ និងចំណូលរបស់ស្ថាប័នរដ្ឋ ស្ថាប័នឯកជន។​ អាជីពនេះត្រូវយល់ដឹងពីគោលការណ៍ច្បាប់គណនេយ្យជាតិ និងអន្តរជាតិ។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -931,7 +981,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "finance_officer"
       },
       {
         "id": 52,
@@ -947,7 +998,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "designer"
       },
       {
         "id": 53,
@@ -968,7 +1020,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "architecture"
       },
       {
         "id": 54,
@@ -988,7 +1041,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "architecture"
       },
       {
         "id": 55,
@@ -1004,7 +1058,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 56,
@@ -1021,7 +1076,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "civil_engineer"
       },
       {
         "id": 57,
@@ -1039,7 +1095,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "computer_science"
       },
       {
         "id": 58,
@@ -1057,7 +1114,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "computer_science"
       },
       {
         "id": 59,
@@ -1074,7 +1132,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "computer_science"
       },
       {
         "id": 60,
@@ -1090,7 +1149,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "computer_science"
       },
       {
         "id": 61,
@@ -1107,7 +1167,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "IT"
       },
       {
         "id": 62,
@@ -1125,7 +1186,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "IT"
       },
       {
         "id": 63,
@@ -1142,7 +1204,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "IT"
       },
       {
         "id": 64,
@@ -1160,7 +1223,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "designer"
       },
       {
         "id": 65,
@@ -1177,7 +1241,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 66,
@@ -1193,7 +1258,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 67,
@@ -1213,7 +1279,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 68,
@@ -1232,7 +1299,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 69,
@@ -1251,7 +1319,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 70,
@@ -1271,7 +1340,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 71,
@@ -1287,7 +1357,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "nurse"
       },
       {
         "id": 72,
@@ -1309,7 +1380,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "finance_officer"
       },
       {
         "id": 73,
@@ -1332,7 +1404,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "finance_officer"
       },
       {
         "id": 74,
@@ -1356,7 +1429,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "accountant"
       },
       {
         "id": 75,
@@ -1377,7 +1451,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "cashier"
       },
       {
         "id": 76,
@@ -1396,7 +1471,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "secretary"
       },
       {
         "id": 77,
@@ -1414,7 +1490,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "marketing_officer"
       },
       {
         "id": 78,
@@ -1433,7 +1510,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "business_man"
       }
     ]
   },
@@ -1492,7 +1570,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "architecture"
       },
       {
         "id": 54,
@@ -1512,7 +1591,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "architecture"
       },
       {
         "id": 55,
@@ -1528,7 +1608,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 56,
@@ -1545,7 +1626,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "civil_engineer"
       },
       {
         "id": 57,
@@ -1563,7 +1645,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "computer_science"
       },
       {
         "id": 58,
@@ -1581,7 +1664,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "computer_science"
       },
       {
         "id": 59,
@@ -1598,7 +1682,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "computer_science"
       },
       {
         "id": 60,
@@ -1614,7 +1699,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "computer_science"
       },
       {
         "id": 61,
@@ -1631,7 +1717,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "IT"
       },
       {
         "id": 62,
@@ -1649,7 +1736,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "IT"
       },
       {
         "id": 63,
@@ -1666,7 +1754,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "IT"
       },
       {
         "id": 64,
@@ -1684,7 +1773,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "designer"
       },
       {
         "id": 65,
@@ -1701,7 +1791,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 66,
@@ -1717,7 +1808,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 67,
@@ -1737,7 +1829,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "doctor"
       },
       {
         "id": 68,
@@ -1756,7 +1849,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 69,
@@ -1775,7 +1869,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 70,
@@ -1795,7 +1890,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 71,
@@ -1811,7 +1907,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "nurse"
       },
       {
         "id": 72,
@@ -1833,7 +1930,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "finance_officer"
       },
       {
         "id": 73,
@@ -1856,7 +1954,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "finance_officer"
       },
       {
         "id": 74,
@@ -1880,7 +1979,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "accountant"
       },
       {
         "id": 75,
@@ -1901,7 +2001,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "cashier"
       },
       {
         "id": 76,
@@ -1920,7 +2021,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "secretary"
       },
       {
         "id": 77,
@@ -1938,7 +2040,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "marketing_officer"
       },
       {
         "id": 78,
@@ -1957,7 +2060,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "business_man"
       }
     ]
   },
@@ -2006,7 +2110,7 @@
         "id": 79,
         "code": "car_soc_0001",
         "name": "គ្រូមត្តេយ្យ",
-        "description": "គ្រូត្រូវង្រៀនកុមារអាយុក្រោម ៦ឆ្នាំ។ មានតួនាទីបង្រៀនកុមារឲ្យមានអនាម័យ ប្រើភាសាក្នុងការនិយាយស្ដី ជាមនុស្សចេះអត់ធន់ និងមានចិត្តស្រឡាញ់កុមារ។ គ្រូមត្តេយ្យតម្រូវឲ្យប្រលងជាប់បាក់ឌុប និងដាក់ពាក្យប្រលងគ្រូមត្តេយ្យសិក្សា។ ករណីប្រឡងជាប់គ្រូកម្រិតមតេយ្យសិក្សា គាត់ត្រូវទទួលការបណ្តុះបណ្តាលរយៈពេល ២ឆ្នាំសាលាគរុកោសល្យ មត្តេយ្យមជ្ឈឹម ទីក្រុងភ្នំពេញ ដើម្បីក្លាយជាគ្រូប្រកបដោយវិជ្ជាជីវៈ និងមនសិកាគ្រូបង្រៀន ។",
+        "description": "គ្រូត្រូវង្រៀនកុមារអាយុក្រោម ៦ឆ្នាំ។ មានតួនាទីបង្រៀនកុមារឱ្យមានអនាម័យ ប្រើភាសាក្នុងការនិយាយស្ដី ជាមនុស្សចេះអត់ធន់ និងមានចិត្តស្រឡាញ់កុមារ។ គ្រូមត្តេយ្យតម្រូឱ្យប្រលងជាប់បាក់ឌុប និងដាក់ពាក្យប្រលងគ្រូមត្តេយ្យសិក្សា។ ករណីប្រឡងជាប់គ្រូកម្រិតមតេយ្យសិក្សា គាត់ត្រូវទទួលការបណ្តុះបណ្តាលរយៈពេល ២ឆ្នាំសាលាគរុកោសល្យ មត្តេយ្យមជ្ឈឹម ទីក្រុងភ្នំពេញ ដើម្បីក្លាយជាគ្រូប្រកបដោយវិជ្ជាជីវៈ និងមនសិកាគ្រូបង្រៀន ។",
         "places_for_work": "សាលារដ្ឋ សាលាឯកជន ក្រសួង មន្ទីរ",
         "unknown_schools": "សាលាគរុកោសល្យ មត្តេយ្យមជ្ឈឹម(គ្រូមត្តេយ្យ)",
         "schools": [
@@ -2016,7 +2120,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 80,
@@ -2032,13 +2137,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 81,
         "code": "car_soc_0003",
         "name": "គ្រូមធ្យមសិក្សាបឋមភូមិ",
-        "description": "គ្រូមធ្យមសិក្សាបឋមភូមិត្រូវបង្រៀនកុមារចាប់ពីអាយុ ១៣ឆ្នាំដល់អាយុ១៥​ឆ្នាំ (ថ្នាក់ទី៧-៩)។ គ្រូមធ្យមសិក្សាបឋមភូមិ ត្រូវបង្រៀន ទៅលើមុខវិជ្ជាឯកទេសរបស់ខ្លួន តាមម៉ោងកំណត់របស់សាលា ។ គ្រូបង្រៀនត្រូវមានភារកិច្ចធ្វើកិច្ចតែងការបង្រៀន ផលិតសម្ភារឧបទ្ទេស ស្រាវជ្រាវ និងបង្រៀនសិស្សប្រកបដោយក្រមសីលធម៌ និងវិជ្ជាជីវៈខ្ពស់ ។ គាត់ តម្រូវឲ្យប្រលងជាប់បាក់ឌុប និងដាក់ពាក្យប្រលងគ្រូមធ្យមសិក្សាបឋមភូមិ។ ករណីប្រឡងជាប់ធ្វើជាគ្រូបង្រៀន ។គាត់ ត្រូវទទួលការបណ្តុះបណ្តាលរយៈពេល ២ឆ្នាំ នៅមជ្ឈមណ្ឌលគរុកោសល្យភូមិភាគខេត្ត។",
+        "description": "គ្រូមធ្យមសិក្សាបឋមភូមិត្រូវបង្រៀនកុមារចាប់ពីអាយុ ១៣ឆ្នាំដល់អាយុ១៥​ឆ្នាំ (ថ្នាក់ទី៧-៩)។ គ្រូមធ្យមសិក្សាបឋមភូមិ ត្រូវបង្រៀន ទៅលើមុខវិជ្ជាឯកទេសរបស់ខ្លួន តាមម៉ោងកំណត់របស់សាលា ។ គ្រូបង្រៀនត្រូវមានភារកិច្ចធ្វើកិច្ចតែងការបង្រៀន ផលិតសម្ភារឧបទ្ទេស ស្រាវជ្រាវ និងបង្រៀនសិស្សប្រកបដោយក្រមសីលធម៌ និងវិជ្ជាជីវៈខ្ពស់ ។ គាត់តម្រូវឲ្យប្រលងជាប់បាក់ឌុប និងដាក់ពាក្យប្រលងគ្រូមធ្យមសិក្សាបឋមភូមិ។ ករណីប្រឡងជាប់ធ្វើជាគ្រូបង្រៀន ។គាត់ ត្រូវទទួលការបណ្តុះបណ្តាលរយៈពេល ២ឆ្នាំ នៅមជ្ឈមណ្ឌលគរុកោសល្យភូមិភាគខេត្ត។",
         "places_for_work": "សាលារដ្ឋ សាលាឯកជន ក្រសួង មន្ទីរ",
         "unknown_schools": "មជ្ឈមណ្ឌលគរុកោសល្យ ភូមិភាគខេត្ត(គ្រូមធ្យមសិក្សា)",
         "schools": [
@@ -2048,7 +2154,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 82,
@@ -2068,7 +2175,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 83,
@@ -2084,7 +2192,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 84,
@@ -2100,13 +2209,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 85,
         "code": "car_soc_0007",
         "name": "បុគ្គលិករដ្ឋបាលផ្នែកអប់រំ",
-        "description": "បុគ្គលិករដ្ឋបាលផ្នែកអប់រំ មានសញ្ញាបត្រ គ្រូបង្រៀន ឬ សញ្ញាបត្រផ្នែករដ្ឋបាលសាធារណៈ ឬ សញ្ញាបត្រផ្នែកទំនាក់ទំនង អន្តរជាតិ ។ គាត់ មានសញ្ញាបត្រមួយក្នុងចំណោមសញ្ញាបត្រទាំងនោះ ពិតជាល្អ និង មានតួនាទី ទំនាក់ទំនង  រៀបចំកិច្ចការរដ្ឋបាល ដូចជា៖ ទុកដាក់ឯកសារ  រៀបចំដំណើរការចំណូលចំណាយចំពោះសម្ភារក្នុងការិយាល័យ និងយានយន្តជាដើម ។ ជាងនេះ ទៀតគាត់់ត្រូវមានចំណេះដឹង ផ្នែកពន្ធ ។  អាជីពនេះ ត្រូវធានាថា បុគ្គលិកក្នុង ស្ថាប័ន ទទួលបានភាពកក់ក្តៅ និង ទទួលយកបាន ពីការរៀបចំសេវារដ្ឋបាល ។",
+        "description": "បុគ្គលិករដ្ឋបាលផ្នែកអប់រំ មានសញ្ញាបត្រ គ្រូបង្រៀន ឬ សញ្ញាបត្រផ្នែករដ្ឋបាលសាធារណៈ ឬ សញ្ញាបត្រផ្នែកទំនាក់ទំនង អន្តរជាតិ ។ គាត់មានសញ្ញាបត្រមួយក្នុងចំណោមសញ្ញាបត្រទាំងនោះ ពិតជាល្អ និង មានតួនាទី ទំនាក់ទំនង  រៀបចំកិច្ចការរដ្ឋបាល ដូចជា៖ ទុកដាក់ឯកសារ  រៀបចំដំណើរការចំណូលចំណាយចំពោះសម្ភារក្នុងការិយាល័យ និងយានយន្តជាដើម ។ ជាងនេះ ទៀតគាត់់ត្រូវមានចំណេះដឹង ផ្នែកពន្ធ ។  អាជីពនេះ ត្រូវធានាថា បុគ្គលិកក្នុង ស្ថាប័ន ទទួលបានភាពកក់ក្តៅ និង ទទួលយកបាន ពីការរៀបចំសេវារដ្ឋបាល ។",
         "places_for_work": "សាកលវិទ្យាល័យនានា \nអង្គការក្រៅរដ្ឋាភិបាល \nក្រុមហ៊ុនឯកជន ឬស្ថាប័នរដ្ឋ",
         "unknown_schools": "វិទ្យាស្ថានអប់រំ (NIE)",
         "schools": [
@@ -2120,7 +2230,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 86,
@@ -2141,7 +2252,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 87,
@@ -2162,7 +2274,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 88,
@@ -2183,7 +2296,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 89,
@@ -2204,7 +2318,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 90,
@@ -2223,7 +2338,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 91,
@@ -2242,7 +2358,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 92,
@@ -2262,7 +2379,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "secretary"
       },
       {
         "id": 93,
@@ -2282,7 +2400,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "secretary"
       },
       {
         "id": 94,
@@ -2302,7 +2421,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "marketing_officer"
       },
       {
         "id": 95,
@@ -2320,7 +2440,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "author"
       },
       {
         "id": 96,
@@ -2336,7 +2457,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "author"
       },
       {
         "id": 97,
@@ -2352,7 +2474,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "author"
       },
       {
         "id": 98,
@@ -2368,7 +2491,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "artist"
       },
       {
         "id": 99,
@@ -2384,7 +2508,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "artist"
       },
       {
         "id": 100,
@@ -2400,7 +2525,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "tailor"
       },
       {
         "id": 101,
@@ -2421,7 +2547,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 102,
@@ -2442,7 +2569,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 103,
@@ -2463,7 +2591,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 104,
@@ -2484,13 +2613,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "secretary"
       },
       {
         "id": 105,
         "code": "car_soc_0027",
         "name": "ភ្នាក់ងារជ្រើសរើសបុគ្គលិក",
-        "description": "ភ្នាក់ងារជ្រើសរើសបុគ្គលិក មានតួនាទី ទទួលពាក្យសុំការងាររបស់បេក្ខជន និងបញ្ជូនពាក្យទាំងនោះទៅតាមស្ថាប័នដែលត្រូវការជ្រើសរើសបុគ្គលិក ។ ករណីបេក្ខជនដែលបានជាប់សម្ភាសន៍ គឺភ្នាក់ងារជ្រើសរើស បុគ្គលិកត្រូវធ្វើការតម្រង់ទិសបេក្ខជនពីរបៀបសម្ភាសន៍ ដើម្បីធ្វើឲ្យបេក្ខជន មានភាពកក់ក្តៅនៅពេលដែលត្រូវសម្ភាស។ អាជីពនេះត្រូវសិក្សាផ្នែករដ្ឋបាល និងធនធានមនុស្ស រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
+        "description": "ភ្នាក់ងារជ្រើសរើសបុគ្គលិក មានតួនាទីទទួលពាក្យសុំការងាររបស់បេក្ខជន និងបញ្ជូនពាក្យទាំងនោះទៅតាមស្ថាប័នដែលត្រូវការជ្រើសរើសបុគ្គលិក ។ ករណីបេក្ខជនដែលបានជាប់សម្ភាសន៍ គឺភ្នាក់ងារជ្រើសរើសបុគ្គលិកត្រូវធ្វើការតម្រង់ទិសបេក្ខជនពីរបៀបសម្ភាសន៍ ដើម្បីធ្វើឱ្យបេក្ខជន មានភាពកក់ក្តៅនៅពេលដែលត្រូវសម្ភាស។ អាជីពនេះត្រូវសិក្សាផ្នែករដ្ឋបាល និងធនធានមនុស្ស រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -2505,13 +2635,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 106,
         "code": "car_soc_0028",
         "name": "អ្នកគ្រប់គ្រងទីផ្សារ និងលក់",
-        "description": "អ្នកគ្រប់គ្រងទីផ្សារនិងផ្នែកលក់គឺត្រូវគ្រប់គ្រងយុទ្ធសាស្រ្តទីផ្សារ ការផ្សព្វផ្សាយ ការលើកកម្ពស់និងការលក់ផលិតផលអចលនទ្រព្យ បដិសណ្ឋារកិច្ច។គាត់ជាមនុស្សដែលរួសរាយ រាក់ទាក់ រហ័សរហួន និងចេះបត់បែន។ អាជីពនេះត្រូវសិក្សាផ្នែកទីផ្សារ និងគ្រប់គ្រង រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
+        "description": "អ្នកគ្រប់គ្រងទីផ្សារនិងផ្នែកលក់គឺត្រូវគ្រប់គ្រងយុទ្ធសាស្រ្តទីផ្សារ ការផ្សព្វផ្សាយការលើកកម្ពស់និងការលក់ផលិតផលអចលនទ្រព្យ បដិសណ្ឋារកិច្ច។​ គាត់ជាមនុស្សដែលរួសរាយ រាក់ទាក់ រហ័សរហួន និងចេះបត់បែន។ អាជីពនេះត្រូវសិក្សាផ្នែកទីផ្សារ និងគ្រប់គ្រង រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -2526,7 +2657,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "marketing_officer"
       },
       {
         "id": 107,
@@ -2547,13 +2679,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "marketing_officer"
       },
       {
         "id": 108,
         "code": "car_soc_0030",
         "name": "មន្រី្តបំរើអតិថិជនក្នុងធនាគារ",
-        "description": "មន្ត្រីផ្នែកសេវាកម្មអតិថិជនជាអ្នកទាក់ទាញអតិថិជន និងឆ្លើយសំនួរពីផលិតផលនិងសេវាកម្ម ដូចជាការបើកគណនីអតិថិជន បញ្ញើប្រាក់ ដកនិងដាក់ប្រាក់ក្នុងធនាគារ និងសេវាផ្សេងៗទៀត។ អាជីពនេះត្រូវសិក្សាផ្នែកទីផ្សារ ឬគណនេយ្យ រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
+        "description": "មន្ត្រីផ្នែកសេវាកម្មអតិថិជន ជាអ្នកផ្ដល់ព័ត៌មានជូនអតិថិជន និងឆ្លើយសំនួរពីផលិតផល និងសេវាកម្ម ដូចជាការបើកគណនីអតិថិជន បញ្ញើប្រាក់ ដកនិងដាក់ប្រាក់ក្នុងធនាគារ និងសេវាផ្សេងៗទៀត។ អាជីពនេះត្រូវសិក្សាផ្នែកទីផ្សារ ឬគណនេយ្យ រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
         "places_for_work": "ធនាគារ; មីក្រូហិរញ្ញវត្ថុ",
         "unknown_schools": null,
         "schools": [
@@ -2568,7 +2701,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 109,
@@ -2589,7 +2723,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 110,
@@ -2610,13 +2745,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 111,
         "code": "car_soc_0033",
         "name": "អ្នកប្រឹក្សាយោបល់ទូទៅ",
-        "description": "អ្នកប្រឹក្សាយោបល់ទូទៅ ធ្វើការជាមួយនឹងអ្នកដែលមានវិបត្តិសង្គម រងគ្រោះផ្លូវចិត្ត  ផ្នែកស្មារតី និង អារម្មណ៍ ។  គាត់ផ្ដល់គំនិត ឬយោលប់ល្អដល់ដៃគូ រកដំណោះស្រាយដល់អ្នកមកទទួលសេវា ដើម្បីកាត់បន្ថយអារម្មណ៍តានតឹង និងមានអារម្មណ៍ថាមានអ្នកយល់ចិត្ត និងគាំទ្រដល់ខ្លួនជានិច្ច។ អាជីពនេះត្រូវសិក្សាផ្នែកចិត្តវិទ្យា សង្គមវិទ្យា និង សង្គមកិច្ច ទស្សនវិជ្ជា រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
+        "description": "អ្នកប្រឹក្សាយោបល់ទូទៅ ធ្វើការជាមួយនឹងអ្នកដែលមានវិបត្តិសង្គម រងគ្រោះផ្លូវចិត្ត  ផ្នែកស្មារតី និង អារម្មណ៍ ។  គាត់ផ្ដល់គំនិត ឬយោលប់ល្អដល់ដៃគូ រកដំណោះស្រាយដល់អ្នកមកទទួលសេវា ដើម្បីកាត់បន្ថយអារម្មណ៍តានតឹង និងមានអារម្មណ៍ថាមានអ្នកយល់ចិត្ត និងគាំទ្រដល់ខ្លួនជានិច្ច។ អាជីពនេះត្រូវសិក្សាផ្នែកចិត្តវិទ្យា សង្គមវិទ្យា និង សង្គមកិច្ចរយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
         "places_for_work": "អង្គការក្រៅរដ្ឋាភិបាល \nស្ថាប័នរដ្ឋ",
         "unknown_schools": null,
         "schools": [
@@ -2626,13 +2762,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 112,
         "code": "car_soc_0034",
         "name": "មន្រី្តអភិវឌ្ឍសហគមន៍",
-        "description": "មន្រី្តអភិវឌ្ឍសហគមន៍ ធ្វើការនៅតាមសហគមន៍នានាតាមជំនាញជំនាញ និងចំណេះដឹងរបស់ខ្លួន ។​ ការងារអភិវឌ្ឍសហគមន៍មានដូចជា៖ ផ្នែកអប់រំ  ផ្នែកសុខភាព  ផ្នែកបរិស្ថាន   ផ្នែកកសិកម្ម   និងផ្នែកច្បាប់ជាដើម ។ គាត់ត្រូវមានជំនាញសម្របសម្រួល  ចេះវិភាគបញ្ហាក្នុងសហគមន៍ ឬសង្គម  និងបណ្តុះបណ្តាលចំណេះដឹងដល់សហគមន៍ ។ អាជីពនេះត្រូវសិក្សាផ្នែក អភិវឌ្ឍជនបទ  ឬផ្នែកអបរំ រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
+        "description": "មន្រី្តអភិវឌ្ឍសហគមន៍ ធ្វើការនៅតាមសហគមន៍នានាតាមជំនាញ និងចំណេះដឹងរបស់ខ្លួន ។​ ការងារអភិវឌ្ឍសហគមន៍មានដូចជា៖ ផ្នែកអប់រំ  ផ្នែកសុខភាព  ផ្នែកបរិស្ថាន   ផ្នែកកសិកម្ម   និងផ្នែកច្បាប់ជាដើម ។ គាត់ត្រូវមានជំនាញសម្របសម្រួល  ចេះវិភាគបញ្ហាក្នុងសហគមន៍ ឬសង្គម  និងបណ្តុះបណ្តាលចំណេះដឹងដល់សហគមន៍ ។ អាជីពនេះត្រូវសិក្សាផ្នែក អភិវឌ្ឍជនបទ សង្គមវិទ្យា ឬផ្នែកអបរំ រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
         "places_for_work": "អង្គការក្រៅរដ្ឋាភិបាល\nក្រសួងអភិវឌ្ឍន៍ជនបទ\nក្រុមហ៊ុនឯកជន",
         "unknown_schools": null,
         "schools": [
@@ -2645,7 +2782,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 113,
@@ -2663,13 +2801,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "police"
       },
       {
         "id": 114,
         "code": "car_soc_0036",
         "name": "អ្នកភូមិសាស្ត្រ",
-        "description": "អ្នកភូមិសាស្ត្រគឺជាអ្នកសិក្សាពីមនុស្ស  សហគមន៍ វប្បធម៌ ឬបរិស្ថាន ។  អាជីពនេះត្រូវសិក្សាមុខវិជ្ជា ភូមិវិទ្យា ឬសេដ្ឋកិច្ច រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យូទ័រ។",
+        "description": "អ្នកភូមិសាស្ត្រ គឺជាអ្នកសិក្សាពីមនុស្ស  សហគមន៍ វប្បធម៌ ឬបរិស្ថាន ។  អាជីពនេះត្រូវសិក្សាមុខវិជ្ជា ភូមិវិទ្យា ឬសេដ្ឋកិច្ច រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យូទ័រ។",
         "places_for_work": "ក្រុមហ៊ុនរុករករ៉ែ​និងប្រេងឬឧស្ម័ន  ក្រុមហ៊ុនវិស្វកម្មស៊ីវិល ស្ថាប័នរដ្ឋាភិបាលទៅលើផ្នែកជីវសាស្រ្តអប់រំ វិស្វករភូមិសាស្ត្រ អ្នកគ្រប់គ្រងគំរោងដីធ្លី",
         "unknown_schools": null,
         "schools": [
@@ -2681,7 +2820,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "architecture"
       },
       {
         "id": 115,
@@ -2701,13 +2841,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 116,
         "code": "car_soc_0038",
         "name": "បុរាណវិទូ",
-        "description": "បុរាណវិទូ គឺជាអ្នកចងក្រងឯកសារប្រវត្តិសាស្ត្របុរាណដែលបានបាត់បង់ ដោយសារពេលវេលា និងសង្គ្រាម និងសា្រវជ្រាវតាមទីកន្លែងកុលសម្ព័ន្ឋនានា ដើម្បីយល់ដឹងពីប្រពៃណី ទំនៀមទំលាប់ និង វប្បធម៌ជាដើម។ គេជាអ្នកចូលចិត្តស្រាវជ្រាវ តស៊ូ អត់ធ្មត់ ធ្វើការនៅក្រោមកម្ដៅថ្ងៃ ដោយមិនខ្លាចនឿយហត់។ គេត្រូវមានសុខភាពល្អ ទាំងកំលាំងកាយ និងប្រាជ្ញា។ ពេលខ្លះគេជាសាស្ត្រាចារ្យនៅមហាវិទ្យាល័យ។ អាជីពនេះត្រូវសិក្សាមុខវិជ្ជា ប្រវិត្តិវិទ្យា រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យូទ័រ។",
+        "description": "បុរាណវិទូ គឺជាអ្នកចងក្រងឯកសារប្រវត្តិសាស្ត្រដែលបានបាត់បង់ ដោយសារពេលវេលា និងសង្គ្រាម និងសា្រវជ្រាវតាមទីកន្លែងកុលសម្ព័ន្ឋនានា ដើម្បីយល់ដឹងពីប្រពៃណី ទំនៀមទំលាប់ និង វប្បធម៌ជាដើម។ ដើម្បីអាចក្លាយជាអ្នកបុរាណវិទូ ជាអ្នកចូលចិត្តស្រាវជ្រាវ តស៊ូ អត់ធ្មត់ ធ្វើការនៅក្រោមកម្ដៅថ្ងៃ ដោយមិនខ្លាចនឿយហត់ ត្រូវមានសុខភាពៃល្អ ទាំងកំលាំងកាយ និងប្រាជ្ញា។  អាជីពនេះត្រូវសិក្សាមុខវិជ្ជា ប្រវិត្តិវិទ្យា រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យូទ័រ។",
         "places_for_work": "ក្រសួងវប្បធម៌ និងវិចិត្រសិល្បៈ",
         "unknown_schools": null,
         "schools": [
@@ -2719,7 +2860,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 117,
@@ -2737,7 +2879,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "flight_attendant"
       },
       {
         "id": 118,
@@ -2756,7 +2899,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "police"
       },
       {
         "id": 119,
@@ -2776,7 +2920,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "lawyer"
       },
       {
         "id": 120,
@@ -2795,7 +2940,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "lawyer"
       },
       {
         "id": 121,
@@ -2814,7 +2960,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "lawyer"
       },
       {
         "id": 122,
@@ -2833,7 +2980,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "lawyer"
       },
       {
         "id": 123,
@@ -2849,7 +2997,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "police"
       },
       {
         "id": 124,
@@ -2865,7 +3014,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 125,
@@ -2881,7 +3031,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "artist"
       },
       {
         "id": 126,
@@ -2897,7 +3048,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "author"
       },
       {
         "id": 127,
@@ -2913,7 +3065,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "author"
       },
       {
         "id": 128,
@@ -2929,13 +3082,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 129,
         "code": "car_soc_0051",
         "name": "មគ្គទេសក៍ទេសចរណ៍",
-        "description": null,
+        "description": "មគ្គុទេសក៍ទេសចរណ៍ធ្វើអត្ថាធិប្បាយសំរាប់ភ្ញៀវទេសចរ ក្នុងដំនើរទស្សនាកំសាន្តនៅសារមន្ទីរជាតិ ព្រះបរមរាជវាំង វត្តភ្នំ ប្រាសាទបុរាណ និងកន្លែងទេសចរណ៍ធម្មជាតិ ជាច្រើន ដែលមាននៅក្នុងស្រុកខ្មែរ។ មគ្គុទេសក៍ទេសចរត្រូវចាំយ៉ាងច្បាស់ពីប្រវត្តិសាស្រ្តខ្មែរ  ចេះរឿងនិទានផ្សេងៗ ដែលទាក់ទងនឹងប្រាសាទ ឬទីកន្លែងកំសាន្ត។ គេត្រូវចេះភាសាអង់គ្លេសជាចាំបាច់ បន្ទាប់មកគេអាចជ្រើសយកភាសាមួយទៀត ដូចជាភាសា បារាំង អេស្បាញ អាឡឺម៉ង អ៊ីតាលី ចិន ថៃ ជប៉ុន.។គេមានទឹកមុខញញឹមញញែមគ្រប់ពេលវេលា រួសរាយរាក់ទាក់ អត់ធ្មតិ ឆ្លាតឈ្លាសវៃ អាចដោះស្រាយបញ្ហាខ្លះៗ ដែលអាចកើតមានជាយថាហេតុក្នុងដំណើរកំសាន្ត។ អាជីពនេះត្រូវសិក្សាមុខវិជ្ជា សណ្ឋាគារ និងទេសចរណ៍  ឬភាសាបរទេស រយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -2945,7 +3099,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 130,
@@ -2961,7 +3116,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 131,
@@ -2977,7 +3133,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "secretary"
       },
       {
         "id": 132,
@@ -2993,7 +3150,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "tailor"
       },
       {
         "id": 133,
@@ -3009,7 +3167,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 134,
@@ -3025,7 +3184,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 135,
@@ -3041,13 +3201,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 136,
         "code": "car_soc_0058",
         "name": "អ្នកនយោបាយ",
-        "description": null,
+        "description": "អ្នកនយោបាយ គឺជាមនុស្សម្នាក់ដែលសកម្មនៅក្នុងគណបក្សនយោបាយណាមួយ ដែលរកស្វែងរកគោលនយោបាយមួយជាក់លាក់ ។ អ្នកនយោបាយជាអ្នកផ្ដល់យោបល់ និងបង្កើតច្បាប់ ឬគោលនយោបាយដែលគាំទ្រសិទ្ធិមនុស្ស ការអភិវឌ្ឍន៏សង្គម តាមរយៈការពង្រឹសិទ្ធិអំណាចរបស់ប្រជាពលរដ្ឋ។ អាជីពនេះជាមនុស្សមានការទំនាក់ទំនងល្អជាមួយនឹងប្រជាពលរដ្ឋ មានការតាំងចិត្តខ្ពស់ យល់ដឹងពីច្បាប់សិទិ្ធមនុស្ស។ ដើម្បីអាចក្លាយជាអ្នកនយោបាយបាន ប្អូនត្រូវសិក្សាជំនាញច្បាប់រយៈពេល ៤ឆ្នាំ ដោយទទួលបានសញ្ញាបត្រកម្រិតបរិញ្ញាបត្រ។ ចំពោះចំណេះដឹងផ្នែកភាសាអង់គ្លេស និងកុំព្យូទ័រគឺត្រូវការជាចាំបាច់។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -3057,13 +3218,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 137,
         "code": "car_soc_0059",
         "name": "អ្នកគាំពារសង្គម",
-        "description": null,
+        "description": "អ្នកគាំពារសង្គម គឺជាអ្នកធ្វើការជាមួយនឹងសង្គមដើម្បីកាត់បន្ថយភាពក្រីក្រ នឹងងាយរងគ្រោះតាមរយៈការលើកកម្ពស់ទីផ្សារការងារប្រកបដោយប្រសិទ្ធិភាពកាត់បន្ថយហានិភ័យរបស់ប្រជាពលរដ្ឋ។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -3073,7 +3235,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "government_officer"
       },
       {
         "id": 138,
@@ -3089,7 +3252,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 139,
@@ -3105,7 +3269,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 140,
@@ -3121,13 +3286,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 141,
         "code": "car_soc_0063",
         "name": "ឱសថការី",
-        "description": null,
+        "description": "ឱសថ​ការី ​ គឺជាអ្នករៀបចំថ្នាំដោយពិនិត្យឡើងវិញ និងបកប្រែការបញ្ជាទិញរបស់គ្រូពេទ្យ។ កំណត់ត្រាឱសថដែលចេញ និងចូលដោយការផ្សំវេចខ្ចប់និងដាក់ស្លាកឱសថ។ ត្រួតពិនិត្យថ្នាំដោយតាមដានការព្យាបាលដោយថ្នាំ។ ផ្តល់ប្រឹក្សាដល់អតិថិជន​។ ដើម្បីអាចក្លាយជាអ្នកឱសថការីបាន ប្អូនត្រូវសិក្សាជំនាញឱសថសាស្រ្តរយៈពេល៤-៦ឆ្នាំ។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -3137,13 +3303,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "nurse"
       },
       {
         "id": 142,
         "code": "car_soc_0064",
         "name": "អ្នកស្រាវជ្រាវ និងអភិវឌ្ឍន៍សង្គម",
-        "description": null,
+        "description": "អ្នកស្រាវជ្រាវ និងអភិវឌ្ឍសង្គម",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -3153,7 +3320,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 143,
@@ -3169,7 +3337,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 144,
@@ -3185,13 +3354,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "architecture"
       },
       {
         "id": 145,
         "code": "car_soc_0067",
         "name": "អ្នកជំនាញផ្នែកបរិស្ថាន",
-        "description": null,
+        "description": "អ្នកជំនាញផ្នែកបរិស្ថាន គឺជាអ្នកជំនាញតាមដានពីផលប៉ះពាល់នៃបរិស្ថាន តាមរយៈ​មនុស្ស សត្វ រុក្ខជាតិ កំណត់បញ្ហា និងរកដំណោះស្រាយពីផលប៉ះពាល់បរិស្ថាន។ គោលដៅចម្បងអ្នកជំនាញបរិស្ថានគឺលុបបំបាត់ការបំពុលបរិស្ថាន និងគ្រោះថ្នាក់បរិស្ថានឱ្យមានប្រសិទិ្ធភាព ​។ ដើម្បីអាចក្លាយជាអាជីពនេះបាន ប្អូនត្រូវសិក្សាជំនាញបរិស្ថានរយៈពេល ៤ឆ្នាំ ដោយទទួលបានសញ្ញាបត្រកម្រិតបរិញ្ញាបត្រ។ ចំពោះចំណេះដឹងផ្នែកភាសាអង់គ្លេស និងកុំព្យូទ័រគឺត្រូវការជាចាំបាច់។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -3201,13 +3371,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "agricultural_scientist"
       },
       {
         "id": 146,
         "code": "car_soc_0068",
         "name": "សហគ្រិនភាព",
-        "description": null,
+        "description": "ស​ហ​គ្រិន​គឺជា​បុគ្គលដែលមាន​ភាពក្លាហាន និងហ៊ាន​ប្រថុយប្រថាន​ជាមួយនឹងអាជីវកម្ម ជាអ្នកដែល​មាន​ក្ដី​ស្រមៃ ហើយ​មាន​គំនិត​ច្នៃប្រឌិត ហើយ​មាន​ការបត់បែន​ទៅតាម​ស្ថានភាព​របស់​សង្គម ហើយ​និង​ស្ថានភាព​របស់អាជីវកម្ម។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -3217,13 +3388,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "business_man"
       },
       {
         "id": 147,
         "code": "car_soc_0069",
         "name": "អ្នកជំនាញខាងសាសនា",
-        "description": null,
+        "description": "អ្នកជំនាញខាងសាសនា គឺជាមនុស្សម្នាក់ដែលមានចំណេះដឹងអំពីគំនិតសាសនា ការគោរព ជំនឿ សាសនាក៍ដូចជា ចំណេះដឹងស៊ីជម្រៅ​ នឹងបទពិសោធន៍ទាក់ទងនឹងធាតុផ្សំជាក់លាក់សាសនា។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -3233,7 +3405,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 148,
@@ -3249,7 +3422,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 149,
@@ -3265,13 +3439,14 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 150,
         "code": "car_soc_0072",
         "name": "អ្នកជំនាញផ្នែកទំនាក់ទំនងសាធារណៈ",
-        "description": null,
+        "description": "អ្នកជំនាញផ្នែកទំនាក់ទំនងសាធារណៈ ជាមនុស្សម្នាក់ដែលពូកែទំទាក់ទំទងជាតិ និងអន្តរជាតិ ចេះអត់ធ្មត់គ្រប់បញ្ហាដែលកើតមានឡើង។ គាត់ជាមនុស្សដែលតែងតែរស់រាយរាក់ទាក់ទៅកាន់មនុស្សទូទៅ ។ អាជីពនេះត្រូវសិក្សាផ្នែកទំនាក់ទំនងរយៈពេល ៤ឆ្នាំ និងមានសញ្ញាបត្រកម្រិតបរិញ្ញាពិតជាល្អ ។ បុគ្គលិកត្រូវចេះភាសាអង់គ្លេស និងមានចំណេះដឹងផ្នែកកុំព្យុទ័រ។",
         "places_for_work": null,
         "unknown_schools": null,
         "schools": [
@@ -3281,7 +3456,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       }
     ]
   },
@@ -3316,7 +3492,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "mechenical_engineer"
       },
       {
         "id": 152,
@@ -3333,7 +3510,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "mechenical_engineer"
       },
       {
         "id": 153,
@@ -3350,7 +3528,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "mechenical_engineer"
       },
       {
         "id": 154,
@@ -3366,7 +3545,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "designer"
       },
       {
         "id": 155,
@@ -3382,7 +3562,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "IT"
       },
       {
         "id": 156,
@@ -3398,7 +3579,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "mechenical_engineer"
       },
       {
         "id": 157,
@@ -3414,7 +3596,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "mechenical_engineer"
       },
       {
         "id": 158,
@@ -3430,7 +3613,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "police"
       },
       {
         "id": 159,
@@ -3446,7 +3630,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "civil_engineer"
       },
       {
         "id": 160,
@@ -3462,7 +3647,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "civil_engineer"
       },
       {
         "id": 161,
@@ -3478,7 +3664,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "civil_engineer"
       },
       {
         "id": 162,
@@ -3494,7 +3681,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 163,
@@ -3510,7 +3698,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 164,
@@ -3528,7 +3717,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "teacher"
       },
       {
         "id": 165,
@@ -3544,7 +3734,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "tailor"
       },
       {
         "id": 166,
@@ -3560,7 +3751,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "accountant"
       },
       {
         "id": 167,
@@ -3576,7 +3768,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       },
       {
         "id": 168,
@@ -3594,7 +3787,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "mechenical_engineer"
       },
       {
         "id": 169,
@@ -3612,7 +3806,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "chief"
       },
       {
         "id": 170,
@@ -3630,7 +3825,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "mechenical_engineer"
       },
       {
         "id": 171,
@@ -3646,7 +3842,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "mechenical_engineer"
       },
       {
         "id": 172,
@@ -3662,7 +3859,8 @@
         "duty": null,
         "working_environment": null,
         "training_level": null,
-        "salary": null
+        "salary": null,
+        "image_name": "default"
       }
     ]
   }

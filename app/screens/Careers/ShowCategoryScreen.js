@@ -11,7 +11,10 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import { Container, Content, Accordion } from "native-base";
 
 import categoryList from '../../data/json/characteristic_jobs';
+import CardItem from '../../components/list/card_item';
 import StatusBar from '../../components/shared/status_bar';
+import mainStyles from '../../assets/style_sheets/main/main';
+
 import Images from '../../assets/images';
 
 export default class ShowCategoryScreen extends Component {
@@ -35,35 +38,24 @@ export default class ShowCategoryScreen extends Component {
   }
 
   _renderItems() {
-    let {width} = Dimensions.get('window');
-    let totalMargin = 60;
-    let height = (width/2 - totalMargin) * 1.6;
-
     let doms = this.state.careers.map((career, index) => {
-      let imageUrl = require('../../assets/images/careers/default.png');
-      if (career.image) { imageUrl = Images[career.image] }
-
-      return (
-        <View key={index} style={{width: '50%', height: height, padding: 10}}>
-          <TouchableOpacity onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career: career})}>
-            <View style={{backgroundColor: '#fff', height: '100%', borderRadius: 8, overflow: 'hidden'}}>
-              <Image
-                resizeMode="cover"
-                style={{width: '100%', height: '70%', borderTopLeftRadius: 8, borderTopRightRadius: 8}}
-                source={imageUrl} />
-
-              <View style={{padding: 5, flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <Text style={{fontSize: 13, lineHeight: 24}} numberOfLines={2}>{career.name}</Text>
-              </View>
-            </View>
-          </TouchableOpacity>
-
+      return(
+        <View key={index} style={{marginBottom: 20}}>
+          <CardItem
+            borderRadiusOnlyOnTop={true}
+            item={career}
+            text={career.name}
+            width={'42%'}
+            height={'20%'}
+            onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
+              career: career
+            })}/>
         </View>
       )
     })
 
     return (
-      <View style={{flexWrap: 'wrap', flexDirection: 'row', padding: 10}}>
+      <View style={mainStyles.grid}>
         {doms}
       </View>
     );

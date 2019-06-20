@@ -1,11 +1,6 @@
 // https://willowtreeapps.com/ideas/react-native-tips-and-tricks-2-0-managing-static-assets-with-absolute-paths/
 
 const images = {
-  // career icons
-  science: require('./images/careers/science.png'),
-  technical: require('./images/careers/technical.png'),
-  social: require('./images/careers/social.png'),
-
   // school icons
   acleda: require('./images/schools/acleda.png'),
   angkor_khemara: require('./images/schools/angkor_khemara.jpg'),

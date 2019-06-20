@@ -29,7 +29,7 @@ export default class CareerClusterScreen extends Component {
 
   renderItem(item, index){
     return(
-      <CardItem text={item.name} index={index} width={'40%'} height={'18%'}
+      <CardItem item={item} text={item.name} index={index} width={'40%'} height={'18%'}
         onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
           career: item
         })} />

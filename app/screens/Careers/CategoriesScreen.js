@@ -77,7 +77,7 @@ export default class CategoriesScreen extends Component {
     return(
       <CardItem
         text={career.item.name}
-        item={career}
+        item={career.item}
         index={index}
         width={'40%'}
         height={'18%'}

@@ -14,6 +14,7 @@ import StatusBar from '../../components/shared/status_bar';
 import characteristicList from '../../data/json/characteristic_jobs';
 import realm from '../../db/schema';
 import User from '../../utils/user';
+import CareerImages from '../../assets/images_js/careers_images';
 
 export default class PersonalityJobsReport extends Component {
   componentWillMount() {
@@ -37,8 +38,9 @@ export default class PersonalityJobsReport extends Component {
         <Divider/>
         <View style={{paddingHorizontal: 20}}>
           { this.state.jobs.map((job, i) => {
-            let imageUrl = require('../../assets/images/careers/default.png');
-            if (!!job.image_name) { imageUrl = Images[job.image_name] }
+            console.log('job : ', job);
+            let imageUrl = CareerImages['default'];
+            if (!!job.image_name) { imageUrl = CareerImages[job.image_name] }
 
             return (
               <View key={i} style={mainStyles.thumnailList}>

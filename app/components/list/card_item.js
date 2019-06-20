@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import Images from '../../assets/images';
+import careersImages from '../../assets/images_js/careers_images';
 
 const CardItem = (props) => {
   let width = props.width ? props.width : '38%';
   let height = props.height ? props.height : '18%';
   let item = props.item || {};
-  let imageUrl = require('../../assets/images/careers/default.png');
-  if (!!item.image) { imageUrl = Images[item.image] }
+  let imageUrl = careersImages['default'];
+  let imageRadius = props.borderRadiusOnlyOnTop ? {borderTopLeftRadius: 8, borderTopRightRadius: 8}: { borderRadius: 8 };
+  if (!!item.image_name) { imageUrl = careersImages[item.image_name] }
 
   return(
     <TouchableOpacity
@@ -16,7 +17,7 @@ const CardItem = (props) => {
       onPress={props.onPress} key={props.key}>
       <Image
         resizeMode="cover"
-        style={[styles.btnImage, {width: wp(width), height: hp(height), }]}
+        style={[styles.btnImage, {width: wp(width), height: hp(height) }, imageRadius]}
         source={imageUrl}
       />
 
