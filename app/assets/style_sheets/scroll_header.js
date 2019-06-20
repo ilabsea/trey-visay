@@ -66,7 +66,9 @@ export default StyleSheet.create({
   },
   largeTitle: {
     fontSize: FontSetting.nav_large_title,
-    lineHeight: FontSetting.navLargeTitleLineHeight
+    lineHeight: FontSetting.navLargeTitleLineHeight,
+    paddingTop: 16,
+    paddingLeft: 1
   },
   subTitle: {
     fontSize: 13,

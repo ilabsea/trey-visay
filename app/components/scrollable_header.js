@@ -75,8 +75,10 @@ const styles = StyleSheet.create({
   },
   largeTitle: {
     fontSize: FontSetting.nav_large_title,
+    lineHeight: FontSetting.navLargeTitleLineHeight,
+    paddingTop: 20,
+    paddingLeft: 1,
     color: DEFAULT_TEXT_COLOR,
-    lineHeight: FontSetting.navLargeTitleLineHeight
   }
 });
 
