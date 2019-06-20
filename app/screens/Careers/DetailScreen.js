@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import mainStyles from '../../assets/style_sheets/main/main';
 import Images from '../../assets/images_js/careers_images';
+import StatusBar from '../../components/shared/status_bar';
 
 export default class DetailScreen extends Component {
   constructor(props){
@@ -40,6 +41,7 @@ export default class DetailScreen extends Component {
   render() {
     return (
       <ScrollView style={{flex: 1, backgroundColor: '#fff'}}>
+        <StatusBar />
         { this._renderContent() }
       </ScrollView>
     )
