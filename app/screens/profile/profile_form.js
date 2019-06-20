@@ -121,7 +121,7 @@ export default class ProfileForm extends Component {
       <View style={[mainStyles.box, {padding: 16}]}>
         <Form>
           { this._renderFullName() }
-          <SexOptions user={this.state.user} />
+          <SexOptions user={this.state.user} setUserState={(pro, value) => this._setUserState(pro, value)} />
           { this._renderDatePicker() }
           { this._renderPhoneNumber() }
           { this._renderPicker({label: 'រៀនថ្នាក់ទី', stateName: 'grade', options: grades}) }
