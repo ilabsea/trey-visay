@@ -12,11 +12,11 @@ const CardItem = (props) => {
 
   return(
     <TouchableOpacity
-      style={[styles.btnBox, {width: wp(width), height: hp(height) + hp('10%')}]}
+      style={[styles.btnBox, {width: wp(width), height: hp(height) + hp('10%'), overflow: 'hidden'}]}
       onPress={props.onPress} key={props.key}>
       <Image
         resizeMode="cover"
-        style={[styles.btnImage, {width: wp(width), height: hp(height), borderRadius: 8 }]}
+        style={[styles.btnImage, {width: wp(width), height: hp(height), }]}
         source={imageUrl}
       />
 

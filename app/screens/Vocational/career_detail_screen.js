@@ -9,8 +9,6 @@ import {
   FlatList
 } from 'react-native';
 
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-
 import mainStyles from '../../assets/style_sheets/main/main';
 import StatusBar from '../../components/shared/status_bar';
 import SchoolListView from '../../components/schools/school_list';
@@ -125,6 +123,7 @@ export default class ShowCategoryScreen extends Component {
   render() {
     return (
       <ScrollView>
+        <StatusBar />
         { this._renderContent() }
       </ScrollView>
     )
