@@ -48,11 +48,11 @@ class School extends Component {
               </View>
             }
 
-            <View style={{flexDirection: 'row'}}>
+            <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Image
                 source={require('../../assets/icons/pin.png')}
                 resizeMode='contain'
-                style={{width: 16, height: 16}}
+                style={{width: 16, height: 16, marginTop: -4}}
               />
               <Text numberOfLines={1} style={[styles.schoolAddress, {color: 'rgb(74, 74, 74)'}]}>{school.address || 'មិនមាន'}</Text>
             </View>

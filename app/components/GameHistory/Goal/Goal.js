@@ -97,7 +97,7 @@ class Goal extends Component{
           </Text>
         </View>
 
-        <View style={[mainStyles.subTitleBox, {height: 64, marginBottom: 0}]}>
+        <View style={[mainStyles.subTitleBox, {height: 64}]}>
           <Text style={ mainStyles.text }>{this.props.game.goalCareer}</Text>
         </View>
 

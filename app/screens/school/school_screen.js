@@ -172,6 +172,7 @@ export default class SchoolScreen extends Component {
         <Content>
           { this.renderContent() }
         </Content>
+
         <FilterButton
           navigation={this.props.navigation}
           category={this.segments[this.state.activePage]}
