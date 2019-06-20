@@ -16,6 +16,7 @@ import VideoListView from '../../components/video/video_list';
 import universities from '../../data/json/universities';
 import mapping from '../../data/json/careers/mapping';
 import videoList from '../../data/json/videos';
+import Images from '../../assets/images_js/careers_images'
 
 export default class ShowCategoryScreen extends Component {
   constructor(props){
@@ -94,9 +95,9 @@ export default class ShowCategoryScreen extends Component {
 
   _renderCareerProfile() {
     let imageHeight = 160;
-    let imageUrl = require('../../assets/images/careers/default.png');
+    let imageUrl = Images['default'];
     if (this.state.career.image_name) {
-      imageUrl = {uri: this.state.career.image_name};
+      imageUrl = Images[this.state.career.image_name];
     }
 
     return (
