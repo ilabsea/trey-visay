@@ -7,6 +7,7 @@ import { Content, ListItem, Left, Body, Icon, Right, Card, CardItem } from 'nati
 import majorList from '../../data/json/personality_major';
 import characteristicList from '../../data/json/characteristic_jobs';
 import styles from '../../assets/style_sheets/assessment';
+import ButtonList from '../../components/list/button_list';
 
 export default class PersonalityAssessmentJobList extends Component {
   _onPressListItem(job) {
@@ -26,19 +27,12 @@ export default class PersonalityAssessmentJobList extends Component {
 
     let doms = arr.map((job, index) => {
       return (
-        <CardItem
+        <ButtonList
           key={index}
-          bordered
-          button
           onPress={() => this._onPressListItem(job)}
-          >
-          <Body>
-            <Text>{job.name}</Text>
-          </Body>
-          <Right>
-            { job.short_description && <AwesomeIcon name='angle-right' size={24} color='#bbb' /> }
-          </Right>
-        </CardItem>
+          title={job.name}
+          hideArrow={!job.short_description}
+          hasLine={true}/>
       )
     });
 

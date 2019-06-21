@@ -18,6 +18,8 @@ import { Container, Content, ListItem, Left, Body, Icon, Right, Card, CardItem }
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import styles from '../../assets/style_sheets/assessment';
+import { Colors } from '../../assets/style_sheets/main/colors';
+import ButtonList from '../../components/list/button_list';
 
 export default class PersonalityAssessmentHighSchoolStudyOption extends Component {
   constructor(props) {
@@ -42,21 +44,12 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
 
   _renderSubjectToImproveTip(code, i) {
     return (
-      <CardItem
+      <ButtonList
         key={i}
-        bordered
-        button
         onPress={() => this.props.navigation.navigate('PersonalityAssessmentSubjectTipScreen', {subjectCode: code})}
-      >
-        <Body>
-          <Text>{ subjectTe[code] }</Text>
-        </Body>
-
-        <Right>
-          <AwesomeIcon name='angle-right' size={24} color='#bbb' />
-        </Right>
-      </CardItem>
-    );
+        title={subjectTe[code]}
+        hasLine={true}/>
+    )
   }
 
   _renderSubject() {
@@ -104,6 +97,7 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
               { list.map((entry, i) => {
                 return (<Text key={i} style={{marginLeft: 8}}>{`\u2022 ${entry.name_km}`}</Text>)
               })}
+              { !list.length && <Text style={{color: Colors.red}}>មិនមាន</Text> }
             </Body>
           </CardItem>
 

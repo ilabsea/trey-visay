@@ -6,6 +6,7 @@ import { View, StyleSheet, Text, ScrollView } from 'react-native';
 import { Content, ListItem, Left, Body, Icon, Right, Card, CardItem } from 'native-base';
 import majorList from '../../data/json/personality_major';
 import styles from '../../assets/style_sheets/assessment';
+import ButtonList from '../../components/list/button_list';
 
 export default class PersonalityAssessmentMajorList extends Component {
   _onPressItem(major) {
@@ -22,19 +23,12 @@ export default class PersonalityAssessmentMajorList extends Component {
 
     let doms = arr.map((major, index) => {
       return (
-        <CardItem
+        <ButtonList
           key={index}
-          button
-          bordered
           onPress={() => this._onPressItem(major)}
-          >
-          <Body>
-            <Text>{major.name_km}</Text>
-          </Body>
-          <Right>
-            { !!major.basic_knowledge && <AwesomeIcon name='angle-right' size={24} color='#bbb' /> }
-          </Right>
-        </CardItem>
+          title={major.name_km}
+          hideArrow={!major.basic_knowledge}
+          hasLine={true}/>
       )
     });
 
