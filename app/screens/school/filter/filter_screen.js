@@ -24,8 +24,7 @@ class FilterScreen extends Component {
       majors: [],
       selectedValue: '',
       selectedProvince: '',
-      category: props.navigation.state.params.category,
-      size: 10
+      category: props.navigation.state.params.category
     }
   }
 
@@ -110,22 +109,15 @@ class FilterScreen extends Component {
     )
   }
 
-  handleLoadMore = () => {
-    size = this.state.size + 6;
-    this.setState({size: size})
-  }
-
   renderMajors(){
     let majors = ['គ្រប់ជំនាញ'].concat(this.state.majors);
     return(
       <View style={[ mainStyles.grid, { justifyContent: 'flex-start', margin: 0 }]}>
         <FlatList
-          data={ majors.slice(0, this.state.size) }
+          data={ majors }
           renderItem={ ({item, i}) => this.renderButton(item, i) }
           refreshing={false}
           keyExtractor={this._keyExtractor}
-          onEndReached={this.handleLoadMore.bind(this)}
-          onEndReachedThreshold={0.4}
           horizontal={false}
           numColumns={2}
         />

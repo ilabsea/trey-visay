@@ -42,6 +42,17 @@ export default class School {
     return uniList;
   }
 
+  static getProvinces(category) {
+    let list = universities;
+    if (!!category) {
+      list = list.filter(school => school.category == category);
+    }
+
+    let provinces = [...new Set(list.map(school => school.province))];
+    provinces = provinces.filter(v => v);
+    provinces.sort();
+    return provinces;
+  }
 
   static clearSelectedValues(){
     this.setSelectedProvince('');

@@ -12,7 +12,7 @@ import { Divider } from 'react-native-elements';
 
 import FooterBar from '../../../components/footer/FooterBar';
 
-import API from '../../../api/schools';
+import SchoolUtil from '../../../utils/School/School';
 import mainStyles from '../../../assets/style_sheets/main/main';
 
 class FilterProvinces extends Component {
@@ -27,14 +27,12 @@ class FilterProvinces extends Component {
   };
 
   componentWillMount(){
-    this.getProvinces();
+    this.setProvinces();
   }
 
-  getProvinces() {
-    API
-      .getProvinces(this.props.navigation.state.params.category)
-      .then(result => this.setState({provinces: result.provinces}))
-      .catch(error => { console.log(error)} )
+  setProvinces() {
+    let provinces = SchoolUtil.getProvinces(this.state.category);
+    this.setState({provinces: provinces});
   }
 
   setSelectedProvince(province){
@@ -42,7 +40,7 @@ class FilterProvinces extends Component {
   }
 
   setFilterValue(){
-    API.setSelectedProvince(this.state.selectedProvince);
+    SchoolUtil.setSelectedProvince(this.state.selectedProvince);
     this.props.navigation.state.params.refreshValue();
     this.props.navigation.goBack();
   }

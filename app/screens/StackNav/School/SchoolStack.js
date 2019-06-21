@@ -17,7 +17,7 @@ import FilterProvinces from '../../school/filter/filter_provinces';
 import { Colors } from '../../../assets/style_sheets/main/colors';
 import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
-import API from '../../../api/schools';
+import SchoolUtil from '../../../utils/School/School';
 
 const headerStyle = Platform.OS == 'android' ? {backgroundColor: Colors.blue} : {}
 const SchoolStack = createStackNavigator(
@@ -30,7 +30,7 @@ const SchoolStack = createStackNavigator(
             <Left>
               <Button transparent onPress={() => {
                 navigation.goBack(null);
-                API.clearSelectedValues();
+                SchoolUtil.clearSelectedValues();
               }}>
                 <Icon name="arrow-back" />
               </Button>
