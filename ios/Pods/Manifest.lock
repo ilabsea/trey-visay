@@ -223,11 +223,7 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-<<<<<<< b80e4193177d1056c71e663c6317783912973c8d
-PODFILE CHECKSUM: 89d838d80291cdf26de93f57b9090b80ad297ee4
-=======
+
 PODFILE CHECKSUM: 5cd1dbdc14d825affe6c8ed224cfbf52512a3f95
->>>>>>> add firebase to ios + add event log
-PODFILE CHECKSUM: 8bd3c420806dd25f4005d1d3dae197adcaf4d96c
 
 COCOAPODS: 1.5.3
