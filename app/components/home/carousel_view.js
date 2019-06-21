@@ -198,7 +198,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 10,
-    width: 76
+    paddingHorizontal: 10,
+    minWidth: 76
   }
 });
 
