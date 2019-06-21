@@ -31,6 +31,9 @@ class CarouselView extends Component {
     this.state = {
       activeSlide: 0
     }
+
+    this.textBoxHeight = 0;
+    this.countView = 0;
   }
 
   _handleLoginOption(item) {
@@ -57,6 +60,19 @@ class CarouselView extends Component {
     this.props.navigation.navigate(option.url, option.params);
   }
 
+  onLayout = (e) => {
+    this.countView += 1;
+    this.textBoxHeight = Math.max(this.textBoxHeight, e.nativeEvent.layout.height);
+
+    if (this.countView == HomeOptions.length) {
+      return this.setState({textBoxHeight: this.textBoxHeight})
+    }
+  }
+
+  getHeightStyle() {
+    return this.state.textBoxHeight > 0 ? { height: this.state.textBoxHeight } : {};
+  }
+
   renderItem(option) {
     return (
       <TouchableOpacity
@@ -67,6 +83,7 @@ class CarouselView extends Component {
           colors={option.color}
           start={{x: 0, y: 0}} end={{x: 1, y: 1}}
           style={styles.imageWrapper}>
+
           <Image
             style={styles.btnImage}
             resizeMode="contain"
@@ -74,16 +91,20 @@ class CarouselView extends Component {
           />
         </LinearGradient>
 
-
-        <View style={styles.textWrapper}>
+        <View style={[styles.textWrapper, this.getHeightStyle()]} onLayout={this.onLayout} >
           <Text style={styles.btnLabel}>{option.title}</Text>
-          <View style={{flexDirection: 'row', flexWrap: 'wrap'}}>
-            <Text style={{width: wp('58%'), paddingRight: 4}}>{option.description}</Text>
-            <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
-              <Text style={{color: '#fff'}}>{option.button_text}</Text>
-            </TouchableOpacity>
+
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{paddingRight: 4, flex: 1}}>{option.description}</Text>
+
+            <View>
+              <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
+                <Text style={{color: '#fff'}}>{option.button_text}</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
+
       </TouchableOpacity>
     )
   }
@@ -114,15 +135,20 @@ class CarouselView extends Component {
   }
 
   render() {
+    let opacityStyle = this.state.textBoxHeight > 0 ? {opacity: 1} : {opacity: 0};
+
     return (
-      <View style={styles.container}>
-        <CarouselItem
-          noStyle={true}
-          width='90%'
-          data={HomeOptions}
-          renderItem={({item}) => this.renderItem(item)}
-          onSnapToItem={(index) => this.setState({ activeSlide: index }) }
-          activeSlideAlignment='center'/>
+      <View style={[styles.container, opacityStyle]}>
+        <View style={{flex: 1}}>
+          <CarouselItem
+            noStyle={true}
+            width='90%'
+            height='100%'
+            data={HomeOptions}
+            renderItem={({item}) => this.renderItem(item)}
+            onSnapToItem={(index) => this.setState({ activeSlide: index }) }
+            activeSlideAlignment='center'/>
+        </View>
 
         { this.pagination() }
       </View>
@@ -132,18 +158,19 @@ class CarouselView extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 22
+    marginTop: 22,
+    flex: 1,
   },
   btnBox: {
     borderRadius:12,
     backgroundColor: 'white',
     width: wp('88%'),
-    height: hp('74%'),
+    height: '100%',
     overflow: 'hidden'
   },
   textWrapper:{
-    marginLeft: 16,
-    marginTop:16
+    paddingHorizontal: 16,
+    paddingVertical: 10,
   },
   btnLabel: {
     fontSize: FontSetting.big_title,
@@ -155,21 +182,23 @@ const styles = StyleSheet.create({
     })
   },
   imageWrapper: {
+    flex: 1,
     borderTopLeftRadius: 12,
-    borderTopRightRadius: 12
+    borderTopRightRadius: 12,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   btnImage: {
-    width: wp('70%'),
-    height: hp('50%'),
-    alignSelf: 'center'
+    maxWidth: '100%',
+    maxHeight: '100%',
   },
   btnStart: {
     backgroundColor: Colors.blue,
     borderRadius: 12,
-    width: wp('20%'),
-    height: hp('8%'),
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingVertical: 10,
+    width: 76
   }
 });
 
