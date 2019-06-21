@@ -228,5 +228,6 @@ PODFILE CHECKSUM: 89d838d80291cdf26de93f57b9090b80ad297ee4
 =======
 PODFILE CHECKSUM: 5cd1dbdc14d825affe6c8ed224cfbf52512a3f95
 >>>>>>> add firebase to ios + add event log
+PODFILE CHECKSUM: 8bd3c420806dd25f4005d1d3dae197adcaf4d96c
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3
