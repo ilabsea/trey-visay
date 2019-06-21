@@ -1,22 +1,22 @@
 const HomeOptions = [
-  // {
-  //   title: 'វាយតម្លៃមុខរបរ',
-  //   url: 'CareerCounsellorStack',
-  //   source_image: require('../../assets/images/home/career_test.png'),
-  //   color: ['rgb(53, 174, 235)', 'rgb(24, 118, 211)'],
-  //   button_text: 'ចាប់ផ្តេីម',
-  //   firebase_event_name: 'home_career_test',
-  //   description: 'ធ្វើតេស្តមុខរបរ ឬអាជីពដោយផ្អែកលើ បុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក'
-  // },
-  // {
-  //   title: 'ស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ',
-  //   url: 'PersonalityAssessmentStack',
-  //   source_image: require('../../assets/images/home/personality_test.png'),
-  //   color: ['rgb(236, 135, 192)', 'rgb(191, 76, 144)'],
-  //   button_text: 'ចាប់ផ្តេីម',
-  //   firebase_event_name: 'home_personality_test',
-  //   description: 'ការធ្វើតេស្តស្វែងយល់អំពីបុគ្គលិក លក្ខណៈ'
-  // },
+  {
+    title: 'វាយតម្លៃមុខរបរ',
+    url: 'CareerCounsellorStack',
+    source_image: require('../../assets/images/home/career_test.png'),
+    color: ['rgb(53, 174, 235)', 'rgb(24, 118, 211)'],
+    button_text: 'ចាប់ផ្តេីម',
+    firebase_event_name: 'home_career_test',
+    description: 'ធ្វើតេស្តមុខរបរ ឬអាជីពដោយផ្អែកលើ បុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក'
+  },
+  {
+    title: 'ស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ',
+    url: 'PersonalityAssessmentStack',
+    source_image: require('../../assets/images/home/personality_test.png'),
+    color: ['rgb(236, 135, 192)', 'rgb(191, 76, 144)'],
+    button_text: 'ចាប់ផ្តេីម',
+    firebase_event_name: 'home_personality_test',
+    description: 'ការធ្វើតេស្តស្វែងយល់អំពីបុគ្គលិក លក្ខណៈ'
+  },
   {
     title: 'គ្រឹះស្ថានសិក្សា',
     url: 'SchoolStack',
