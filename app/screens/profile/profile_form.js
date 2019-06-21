@@ -27,6 +27,22 @@ export default class ProfileForm extends Component {
       user: User.getCurrent(),
       errors: {},
     }
+
+    this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))];
+  }
+
+  componentDidFocus() {
+    this._handleIfUserLogout();
+  }
+
+  componentWillUnmount() {
+    this.subs.forEach(sub => sub.remove());
+  }
+
+  _handleIfUserLogout() {
+    if (!User.getCurrent()) {
+      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileScreen' })]);
+    }
   }
 
   _skip() {
