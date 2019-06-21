@@ -27,6 +27,8 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
     if (!entries.length) { return (null); }
 
     let doms = entries.map((entry, index) => {
+      let showDivider = index < entries.length - 1;
+
       return (
         <View key={index}>
           <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 10}}>
@@ -34,7 +36,7 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
             <Text>{entry.name_km}</Text>
           </View>
 
-          <Divider style={{marginLeft: 2}}/>
+          { showDivider && <Divider style={{marginLeft: 2}}/> }
         </View>
       )
     });
@@ -48,7 +50,7 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
           </Text>
         </View>
 
-        <View style={[mainStyles.subTitleBox, {paddingTop: 0}]}>
+        <View style={[mainStyles.subTitleBox, {paddingTop: 0, paddingBottom: 0}]}>
           {doms}
         </View>
       </View>
