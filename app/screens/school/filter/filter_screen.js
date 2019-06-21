@@ -4,7 +4,7 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, FlatList }
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Container, Content, Footer } from 'native-base';
 
-import API from '../../../api/schools';
+import SchoolUtil from '../../../utils/School/School';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
 import { Colors } from '../../../assets/style_sheets/main/colors';
@@ -40,7 +40,7 @@ class FilterScreen extends Component {
   }
 
   resetValues = () => {
-    API.clearSelectedValues();
+    SchoolUtil.clearSelectedValues();
     this.setState({ selectedValue: '', selectedProvince: '' })
   }
 
@@ -72,17 +72,17 @@ class FilterScreen extends Component {
 
   setFilterValues(){
     let selectedValue = this.state.selectedValue == null ? '' : this.state.selectedValue;
-    API.setSelectedMajor(selectedValue);
+    SchoolUtil.setSelectedMajor(selectedValue);
     this.props.navigation.state.params.refreshValue();
     this.props.navigation.goBack();
   }
 
   refreshProvinceValue() {
-    API.getSelectedProvince((province) => {
+    SchoolUtil.getSelectedProvince((province) => {
       province = province == 'គ្រប់ទីកន្លែង'? '' : province;
       this.setState({ selectedProvince: province });
       this.getMajors();
-      API.getSelectedMajor((major) => {
+      SchoolUtil.getSelectedMajor((major) => {
         major = major == 'គ្រប់ជំនាញ' ? '': major;
         this.setState({ selectedValue: major });
       });

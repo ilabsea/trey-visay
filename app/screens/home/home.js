@@ -5,7 +5,7 @@ import CarouselView from '../../components/home/carousel_view';
 import StatusBar from '../../components/shared/status_bar';
 
 import User from '../../utils/user';
-import API from '../../api/schools';
+import SchoolUtil from '../../utils/School/School';
 
 export default class Home extends Component {
   constructor(props){
@@ -21,7 +21,7 @@ export default class Home extends Component {
       let user = User.getCurrent();
       this.setState({ user: user});
     });
-    API.clearSelectedValues();
+    SchoolUtil.clearSelectedValues();
   }
 
   render() {
