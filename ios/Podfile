@@ -28,14 +28,12 @@ target 'TreyVisay' do
   pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
   pod 'react-native-netinfo', :path => '../node_modules/@react-native-community/netinfo'
-<<<<<<< b80e4193177d1056c71e663c6317783912973c8d
 
+
+  pod 'Firebase/Core', '~> 5.20.2'
+  pod 'GoogleIDFASupport', '~> 3.14.0'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
-=======
-  pod 'Firebase/Core', '~> 5.20.2'
-  pod 'GoogleIDFASupport', '~> 3.14.0' 
->>>>>>> add firebase to ios + add event log
 end
 
 swift4 = ['Charts']

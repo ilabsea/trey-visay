@@ -3,6 +3,8 @@ package com.treyvisay;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import io.realm.react.RealmReactPackage;
+import com.learnium.RNDeviceInfo.RNDeviceInfo;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
@@ -40,6 +42,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RealmReactPackage(),
+            new RNDeviceInfo(),
             new RNFirebasePackage(),
             new RNFirebaseAnalyticsPackage(),
             new NetInfoPackage(),
@@ -53,9 +57,7 @@ public class MainApplication extends Application implements ReactApplication {
           new LinearGradientPackage(),
           new ReactNativeAudioPackage(),
           new RNSoundPackage(),
-          new VectorIconsPackage(),
-          new RNDeviceInfo(),
-          new RealmReactPackage()
+          new VectorIconsPackage()
       );
     }
 
