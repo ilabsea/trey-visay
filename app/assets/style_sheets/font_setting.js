@@ -1,5 +1,5 @@
 import RF from "react-native-responsive-fontsize";
-import { Dimensions } from 'react-native';
+import { Dimensions, Platform } from 'react-native';
 
 let { width } = Dimensions.get('window');
 
@@ -12,6 +12,7 @@ const FontSetting = {
   dashboard_subtitle: RF(2.3),
   text: RF(2.2),
   title: RF(2.4),
+  small_text: Platform.OS =='ios' ? RF(2.2) : RF(1.8),
   button_text: RF(2.2),
   sub_title: RF(1.8),
 

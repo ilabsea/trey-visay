@@ -8,6 +8,7 @@ import API from '../../../api/schools';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
 import { Colors } from '../../../assets/style_sheets/main/colors';
+import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
 import OneList from '../../../components/list/one_list';
 import GridList from '../../../components/list/grid_list';
@@ -104,7 +105,7 @@ class FilterScreen extends Component {
             style={styles.icon}
           />
         </View>
-        <Text style={[activeText , { flex: 1 , paddingRight: 16}]}>{major}</Text>
+        <Text style={[activeText , { flex: 1 , paddingRight: 16, fontSize: FontSetting.small_title}]}>{major}</Text>
       </TouchableOpacity>
     )
   }
