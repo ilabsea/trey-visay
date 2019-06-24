@@ -77,7 +77,7 @@ export default class Profile extends Component {
     let doms = arr.map((item, i) => this._renderListItem(te[item.name], item.value, item.icon))
     let grade = grades.find(x => x.value == this.state.user.grade);
 
-    doms.unshift(this._renderListItem('រៀនថ្នាក់ទី', grade.label, 'school'));
+    doms.unshift(this._renderListItem('រៀនថ្នាក់ទី', grade.name, 'school'));
 
     return doms;
   }
