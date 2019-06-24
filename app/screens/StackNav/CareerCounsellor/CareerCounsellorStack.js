@@ -54,6 +54,7 @@ const CareerCounsellorStack = createStackNavigator(
     ShowCareerCategoryScreen: {
       screen: ShowCareerCategoryScreen,
       navigationOptions: ({navigation}) => ({
+        title: navigation.state.params.title,
         headerStyle: {
           marginTop: 0
         }

@@ -3,18 +3,28 @@ import {
   Text,
   View,
   Image,
-  ScrollView
+  ScrollView,
+  Platform
 } from 'react-native';
 import mainStyles from '../../assets/style_sheets/main/main';
 import Images from '../../assets/images_js/careers_images';
 import StatusBar from '../../components/shared/status_bar';
 
 export default class DetailScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const { goBack, state } = navigation;
+    let marginTop = !!state.params && state.params.fromShowCategory ? 0 : 24;
+    return {
+      headerStyle: {
+        marginTop: Platform.OS == 'ios' ? 0 : marginTop
+      }
+    }
+  };
+
   constructor(props){
     super(props);
 
     let career = this.props.navigation.state.params.career;
-
     this.state = {
       career: career,
       title: career.name

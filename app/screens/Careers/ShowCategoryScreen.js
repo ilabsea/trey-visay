@@ -18,19 +18,11 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import Images from '../../assets/images';
 
 export default class ShowCategoryScreen extends Component {
-  static navigationOptions = ({ navigation }) => {
-    const { goBack, state } = navigation;
-    return {
-      title: !!state.params && state.params.title
-    }
-  };
-
   constructor(props) {
     super(props);
 
     let id = this.props.navigation.state.params.careerId || '1';
     category = categoryList.find((obj) => obj.id == id);
-    this.props.navigation.setParams({title: category.career_title});
 
     this.state = {
       careers: category.careers
@@ -48,7 +40,8 @@ export default class ShowCategoryScreen extends Component {
             width={'42%'}
             height={'20%'}
             onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
-              career: career
+              career: career,
+              fromShowCategory: true
             })}/>
         </View>
       )
