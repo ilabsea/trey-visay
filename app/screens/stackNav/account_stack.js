@@ -44,7 +44,8 @@ const AccountStack = createStackNavigator(
     TermsCondition: {
       screen: TermsCondition,
       navigationOptions: ({navigation}) => ({
-        title: 'Terms & Condition'
+        title: 'Terms & Condition',
+        header: null
       }),
     }
   },
