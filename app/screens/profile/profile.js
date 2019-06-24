@@ -16,6 +16,7 @@ import te from '../../data/translates/km';
 import ScrollableHeader from '../../components/scrollable_header';
 import { NavigationActions } from 'react-navigation';
 import Login from '../Account/login';
+import grades from '../../data/json/grades.json';
 
 export default class Profile extends Component {
   constructor(props) {
@@ -74,7 +75,9 @@ export default class Profile extends Component {
       {name: 'provinceName', value: provinceName, icon: 'pin'}];
 
     let doms = arr.map((item, i) => this._renderListItem(te[item.name], item.value, item.icon))
-    doms.unshift(this._renderListItem('រៀនថ្នាក់ទី', this.state.user.grade, 'school'));
+    let grade = grades.find(x => x.value == this.state.user.grade);
+
+    doms.unshift(this._renderListItem('រៀនថ្នាក់ទី', grade.label, 'school'));
 
     return doms;
   }
