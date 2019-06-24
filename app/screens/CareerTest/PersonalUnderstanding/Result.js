@@ -107,7 +107,7 @@ export default class Result extends Component{
   _renderText(screenWidth) {
     return (
       <View style={{alignItems: 'center', marginTop: screenWidth/2-40}}>
-        <Text style={{color: '#fff', fontSize: 60, lineHeight: 100}}>៥០%</Text>
+        <Text style={{color: '#fff', fontSize: 80, lineHeight: 120}}>៥០%</Text>
       </View>
     )
   }
