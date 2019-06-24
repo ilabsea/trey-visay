@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, FlatList } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import firebase from 'react-native-firebase';
 
 // Utils
 import mainStyles from '../../assets/style_sheets/main/main';
@@ -26,10 +25,6 @@ export default class CareerClusterScreen extends Component {
       loading: false,
       size: 3
     }
-  }
-
-  componentDidMount(){
-    firebase.analytics().setCurrentScreen('VocationalScreen');
   }
 
   renderItem(item, index){
