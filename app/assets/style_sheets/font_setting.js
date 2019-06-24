@@ -13,7 +13,7 @@ const FontSetting = {
   text: RF(2.2),
   title: RF(2.4),
   small_text: Platform.OS =='ios' ? RF(2.2) : RF(1.8),
-  button_text: RF(2.2),
+  button_text: RF(2.6),
   sub_title: RF(1.8),
 
   navLargeTitleLineHeight: RF(4.2)
