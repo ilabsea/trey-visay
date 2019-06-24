@@ -145,6 +145,7 @@ class CarouselView extends Component {
             width='90%'
             height='100%'
             data={HomeOptions}
+            enableSnap={true}
             renderItem={({item}) => this.renderItem(item)}
             onSnapToItem={(index) => this.setState({ activeSlide: index }) }
             activeSlideAlignment='center'/>

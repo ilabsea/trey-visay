@@ -9,6 +9,7 @@ const CarouselItem = (props) =>  {
   let style = props.noStyle ? '' : { paddingLeft: 28 };
   let itemWidth = props.width ? wp(props.width) : wp('45%');
   let activeSlideAlignment = props.activeSlideAlignment ? props.activeSlideAlignment: 'start';
+  let enableSnap = props.enableSnap ? props.enableSnap : false;
   return(
     <Carousel
       data={props.data}
@@ -20,6 +21,7 @@ const CarouselItem = (props) =>  {
       inactiveSlideScale={1}
       onSnapToItem={props.onSnapToItem}
       layout={'default'}
+      enableSnap={enableSnap}
       containerCustomStyle={style}
     />
   )
