@@ -86,12 +86,14 @@ export default class CareerClusterScreen extends Component {
   }
 
   render() {
+    let title = 'ប្រភេទការងារ';
+
     return (
       <ScrollableHeader
         renderContent={ this.renderContent }
         renderNavigation={ this.renderNavigation }
-        title={'ជំនាញវិជ្ជាជីវៈ'}
-        largeTitle={'ជំនាញវិជ្ជាជីវៈ'}
+        title={title}
+        largeTitle={title}
       />
     );
   }

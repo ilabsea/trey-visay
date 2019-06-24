@@ -15,7 +15,7 @@ const TestListItem = (props) => {
       style={styles.list}
       onPress={props.onPress}>
         <View style={styles.number}>
-          <Text style={{color: '#fff', fontSize: 24}}>{kmNumber}</Text>
+          <Text style={{color: '#fff', fontSize: 30, paddingTop: 6}}>{kmNumber}</Text>
         </View>
 
         <View style={styles.textWrapper}>

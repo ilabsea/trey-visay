@@ -113,7 +113,7 @@ export default class ContactScreen extends Component {
     return (
       <View >
         <Text style={[mainStyles.sectionText, {marginTop: 16}]}>
-          ដើម្បីសិក្សាមុខជំនាញឲ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖
+          ដើម្បីសិក្សាមុខជំនាញឱ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖
         </Text>
 
         <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>

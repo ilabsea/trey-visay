@@ -158,23 +158,15 @@ export default class CareerCounsellor extends Component {
     )
   }
 
-  _renderForeground = () => {
-    return (
-      <View style={{marginBottom: -4}}>
-        <Text style={scrollHeaderStyles.largeTitle}>វាយតម្លៃមុខរបរនិងអាជីព</Text>
-        <Text style={scrollHeaderStyles.subTitle}>ការធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព</Text>
-      </View>
-    )
-  }
-
   render() {
+    let title = 'វាយតម្លៃមុខរបរនិងអាជីព';
+
     return(
       <ScrollableHeader
         renderContent={ this._renderContent }
         renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-        title={'វាយតម្លៃមុខរបរនិងអាជីព'}
-        renderForeground={this._renderForeground}
-        headerMaxHeight={150}
+        title={title}
+        largeTitle={title}
       />
     )
   }

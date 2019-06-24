@@ -6,7 +6,7 @@ const HomeOptions = [
     color: ['rgb(53, 174, 235)', 'rgb(24, 118, 211)'],
     button_text: 'ចាប់ផ្តេីម',
     firebase_event_name: 'home_career_test',
-    description: 'ធ្វើតេស្តមុខរបរ ឬអាជីពដោយផ្អែកលើ បុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសាកសមនឹងអ្នក'
+    description: 'ធ្វើតេស្តមុខរបរ ឬអាជីពដោយផ្អែកលើ បុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរស័ក្តិសមនឹងអ្នក'
   },
   {
     title: 'ស្វែងយល់អំពីបុគ្គលិកលក្ខណៈ',
@@ -27,7 +27,7 @@ const HomeOptions = [
     description: 'អំពីពត៌មានគ្រឹះស្ថានសិក្សា អាស័យដ្ឋានទំនាក់ទំនង និងមុខវិជ្ជាសិក្សាក្រោយ បញ្ចប់ថ្នាក់ទី១២'
   },
   {
-    title: 'ជំនាញវិជ្ជាជីវៈ',
+    title: 'ប្រភេទការងារ',
     url: 'VocationalStack',
     source_image: require('../../assets/images/home/vocational_job.png'),
     color: ['rgb(247, 107, 28)', 'rgb(250, 217, 97)'],
