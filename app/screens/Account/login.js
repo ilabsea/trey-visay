@@ -162,6 +162,13 @@ export default class Login extends Component {
 
   _register = () => {
     firebase.analytics().logEvent('signup');
+
+    if (!this.state.username || !this.state.password || !this.state.passwordConfirmation) {
+      return Alert.alert(
+        'ការបញ្ចូលមិនត្រឹមត្រូវ',
+        "សូមពិនិត្យមើលព័ត៌មានម្តងទៀត!");
+    }
+
     if (this.state.password !== this.state.passwordConfirmation) {
       return Alert.alert(
         'ការបញ្ចូលពាក្យសម្ងាត់មិនត្រឹមត្រូវ',
@@ -201,6 +208,13 @@ export default class Login extends Component {
 
   _login = () => {
     firebase.analytics().logEvent('login');
+
+    if (!this.state.username || !this.state.password) {
+      return Alert.alert(
+        'ការបញ្ចូលមិនត្រឹមត្រូវ',
+        "សូមពិនិត្យមើលព័ត៌មានម្តងទៀត!");
+    }
+
     let user = realm.objects('User').filtered('username="' + this.state.username + '" AND password="' + this.state.password + '"')[0];
     if (!user) {
       return Alert.alert(
@@ -213,7 +227,7 @@ export default class Login extends Component {
     });
   }
 
-  _renderSubmitButton() {
+  _renderSubmitButton = () => {
     let action = this.state.isLogin ? this._login : this._register;
     let title = this.state.isLogin ? 'ចូលកម្មវិធី' : 'បង្កើតគណនី'
 
