@@ -64,7 +64,7 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     let doms = this.state.category.description.split(';').map((text, index) => {
       return (
-        <Text key={index}>{text}</Text>
+        <Text key={index}>{`\u2022 ${text}`}</Text>
       );
     })
 

@@ -23,7 +23,7 @@ export default class PersonalityAssessmentSubjectTip extends Component {
 
   _renderTip() {
     let tipType = 'medium_tips';
-    let doms = this.state.subject[tipType].map((tip, i) => this._buildList('-', tip, i));
+    let doms = this.state.subject[tipType].map((tip, i) => this._buildList('\u2022', tip, i));
     return doms;
   }
 
