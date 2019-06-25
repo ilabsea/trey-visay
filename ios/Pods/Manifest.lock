@@ -60,10 +60,6 @@ PODS:
     - nanopb/encode (= 0.3.901)
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
-  - Picker (4.3.7):
-    - Picker/Core (= 4.3.7)
-  - Picker/Core (4.3.7):
-    - React
   - QBImagePickerController (3.4.0)
   - React (0.59.9):
     - React/Core (= 0.59.9)
@@ -138,7 +134,6 @@ DEPENDENCIES:
   - Firebase/Core (~> 5.20.2)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - GoogleIDFASupport (~> 3.14.0)
-  - Picker (from `../node_modules/react-native-picker`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
@@ -180,8 +175,6 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   Folly:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
-  Picker:
-    :path: "../node_modules/react-native-picker"
   React:
     :path: "../node_modules/react-native"
   react-native-netinfo:
@@ -211,7 +204,6 @@ SPEC CHECKSUMS:
   GoogleIDFASupport: aaf8c10bd429abb1c15349d5252244f5eda8ead1
   GoogleUtilities: 04fce34bcd5620c1ee76fb79172105c74a4df335
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
-  Picker: 67a2566d9ff6b141d505d88b9177f905aaa5f1a6
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: 1d605e098d69bdf08960787f3446f0a9dc2e2ccf
   react-native-netinfo: f4039dc64d3a55da59d6d03d4bd667d0a9f5450e
@@ -223,6 +215,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-PODFILE CHECKSUM: 8bd3c420806dd25f4005d1d3dae197adcaf4d96c
+PODFILE CHECKSUM: b91ac53cb592133aa8a1d07d7e1aa77648c4c8b5
 
 COCOAPODS: 1.5.2

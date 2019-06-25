@@ -146,7 +146,6 @@ dependencies {
     implementation project(':react-native-charts-wrapper')
     implementation project(':react-native-background-fetch')
     implementation project(':react-native-svg')
-    implementation project(':react-native-picker')
     implementation project(':react-native-image-crop-picker')
     implementation project(':react-native-splash-screen')
     implementation project(':react-native-linear-gradient')
