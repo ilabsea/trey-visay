@@ -49,9 +49,7 @@ export default class ShowCategoryScreen extends Component {
   renderSchoolList(){
     return (
       <View>
-        <Text style={mainStyles.sectionText}>
-          មហាវិទ្យាល័យ
-        </Text>
+        { !!this.state.schools.length && <Text style={mainStyles.sectionText}>មហាវិទ្យាល័យ</Text>}
 
         <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
       </View>
@@ -80,9 +78,7 @@ export default class ShowCategoryScreen extends Component {
     let { width } = Dimensions.get('window');
     return(
       <View>
-        <Text style={mainStyles.sectionText}>
-          វីដេអូ
-        </Text>
+        { !!this.state.videos.length && <Text style={mainStyles.sectionText}>វីដេអូ</Text> }
 
         <FlatList
           data={ this.state.videos }
