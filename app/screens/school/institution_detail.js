@@ -32,7 +32,6 @@ export default class InstitutionDetail extends Component {
         phoneNumbers: 'មិនមាន',
         faxes: 'មិនមាន',
         emails: 'មិនមាន',
-        mailbox: 'មិនមាន',
         websiteOrFacebook: []
       }
     }
@@ -43,7 +42,6 @@ export default class InstitutionDetail extends Component {
         <ListItem contact={{data: school.phoneNumbers, icon: 'phone'}} />
         <ListItem contact={{data: school.faxes, icon: 'fax'}}/>
         <ListItem contact={{data: school.emails, icon: 'envelope', isLink: true, isEmail: true}} />
-        <ListItem contact={{data: school.mailbox, icon: 'markunread-mailbox'}} />
         <ListItem contact={{data: school.websiteOrFacebook, icon: 'globe', isLink: true}} />
         <Divider />
       </View>
