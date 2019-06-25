@@ -8,8 +8,6 @@ import {
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
-
 import styles from '../../assets/style_sheets/login_form';
 
 import realm from '../../db/schema';

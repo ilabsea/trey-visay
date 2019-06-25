@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   Text,
   View,
-  ScrollView,
   StyleSheet,
   Image,
   Linking,
@@ -16,11 +15,6 @@ import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 
 export default class About extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   _openLink(url) {
     Linking.openURL(url);
   }
@@ -131,7 +125,7 @@ const styles = StyleSheet.create({
     padding: 16
   },
   paragraph: {
-    textAlign: 'center',
+    textAlign: 'justify',
     marginTop: 5,
     fontSize: FontSetting.text
   },

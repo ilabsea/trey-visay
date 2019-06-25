@@ -4,18 +4,13 @@ import {
   Text,
   Image,
   ScrollView,
-  Dimensions,
-  TouchableOpacity,
 } from 'react-native';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { Container, Content, Accordion } from "native-base";
+import { Content } from "native-base";
 
 import categoryList from '../../data/json/characteristic_jobs';
 import CardItem from '../../components/list/card_item';
 import StatusBar from '../../components/shared/status_bar';
 import mainStyles from '../../assets/style_sheets/main/main';
-
-import Images from '../../assets/images';
 
 export default class ShowCategoryScreen extends Component {
   constructor(props) {
