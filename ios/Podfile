@@ -21,7 +21,6 @@ target 'TreyVisay' do
   ]
 
   pod 'RNImageCropPicker', :path =>  '../node_modules/react-native-image-crop-picker'
-  pod 'Picker', :path => '../node_modules/react-native-picker'
   pod 'RNBackgroundFetch', :path => '../node_modules/react-native-background-fetch'
   pod 'SwiftyJSON', '4.0.0'
   pod 'Charts', '3.2.2'

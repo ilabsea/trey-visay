@@ -12,7 +12,6 @@ import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.github.wuxudong.rncharts.MPAndroidChartPackage;
 import com.transistorsoft.rnbackgroundfetch.RNBackgroundFetchPackage;
 import com.horcrux.svg.SvgPackage;
-import com.beefe.picker.PickerViewPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
@@ -51,7 +50,6 @@ public class MainApplication extends Application implements ReactApplication {
             new MPAndroidChartPackage(),
             new RNBackgroundFetchPackage(),
           new SvgPackage(),
-          new PickerViewPackage(),
           new PickerPackage(),
           new SplashScreenReactPackage(),
           new LinearGradientPackage(),
