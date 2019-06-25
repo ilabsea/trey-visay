@@ -27,7 +27,7 @@ export default class Home extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <StatusBar translucent={true}/>
+        <StatusBar/>
         <CarouselView navigation={this.props.navigation} user={this.state.user}/>
       </View>
     );
