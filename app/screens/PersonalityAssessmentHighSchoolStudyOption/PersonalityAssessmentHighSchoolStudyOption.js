@@ -6,8 +6,6 @@ import {
   View
 } from 'react-native';
 
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-
 import characteristicList from '../../data/json/characteristic_jobs';
 import subjectTe from '../../data/translates/subject';
 import translate from '../../data/translates/km';
