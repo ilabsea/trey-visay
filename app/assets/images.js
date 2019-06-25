@@ -20,6 +20,7 @@ const images = {
   chhir_teal: require('./images/schools/chhir_teal.jpg'),
   cici: require('./images/schools/cici.gif'),
   clew: require('./images/schools/clew.png'),
+  default: require('./images/schools/default.png'),
   dewey: require('./images/schools/dewey.jpg'),
   don_bosco: require('./images/schools/don_bosco.png'),
   health_phumin: require('./images/schools/health_phumin.png'),

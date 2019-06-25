@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import { View, Text, TouchableOpacity, Image, StyleSheet , LoadingIndicator} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  StyleSheet,
+} from 'react-native';
+
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import { Divider } from 'react-native-elements';
@@ -9,20 +16,12 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 class School extends Component {
-  constructor(props){
-    super(props);
-  }
-
-  render(){
+  render() {
     let school = this.props.school;
-    let i = this.props.index;
+    let logo = !!school.logoName ? Images[school.logoName] : Images.default;
 
-    let logo = require('../../assets/images/schools/default.png');
-    if (!!school.logoName) {
-      logo = Images[school.logoName];
-    }
     return (
-      <View key={i}>
+      <View>
         <TouchableOpacity
           style={mainStyles.btnList}
           onPress={() => { this.props.navigation.navigate('InstitutionDetail', {school: school})} }

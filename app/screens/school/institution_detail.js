@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
-import { Divider } from 'react-native-elements';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image
+} from 'react-native';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import mainStyles from '../../assets/style_sheets/main/main';
@@ -43,7 +47,6 @@ export default class InstitutionDetail extends Component {
         <ListItem contact={{data: school.faxes, icon: 'fax'}}/>
         <ListItem contact={{data: school.emails, icon: 'envelope', isLink: true, isEmail: true}} />
         <ListItem contact={{data: school.websiteOrFacebook, icon: 'globe', isLink: true}} />
-        <Divider />
       </View>
     )
   }
@@ -120,11 +123,7 @@ export default class InstitutionDetail extends Component {
   }
 
   _buildAvata() {
-    let schoolLogo = require('../../assets/images/schools/default.png');
-
-    if (this.state.school.logoName) {
-      schoolLogo = Images[this.state.school.logoName];
-    }
+    let schoolLogo = this.state.school.logoName ? Images[this.state.school.logoName] : Images.default;
 
     return (
       <View style={[mainStyles.boxShadow, styles.logoWrapper]}>

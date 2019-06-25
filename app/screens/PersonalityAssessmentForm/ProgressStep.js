@@ -5,7 +5,7 @@ import {
   Text,
 } from 'react-native';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
-import { Container, Content, Icon } from 'native-base';
+import { Content, Icon } from 'native-base';
 import { Colors } from '../../assets/style_sheets/main/colors';
 
 export default class ProgressStep extends Component {

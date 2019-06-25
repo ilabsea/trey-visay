@@ -1,15 +1,14 @@
-import React, {Component} from 'react';
-import { Container, Header, Left, Title, Body, Right, Button, Icon, Segment,
-  Content, Text } from 'native-base';
+import React, { Component } from 'react';
+
+import { Container, Content } from 'native-base';
 import { FlatList } from 'react-native';
 
-import SchoolUtil from '../../utils/School/School';
 import SegmentView from '../../components/schools/segment_view';
 import School from '../../components/schools/school';
 import FilterButton from '../../components/schools/filter_button';
 import StatusBar from '../../components/shared/status_bar';
 
-import schoolList from '../../data/json/universities';
+import SchoolUtil from '../../utils/School/School';
 
 export default class SchoolScreen extends Component {
   segments = { 1 : 'សាលារដ្ឋ', 2:'សាលាឯកជន', 3:'អង្គការ'}
