@@ -2,48 +2,36 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  Image,
-  ScrollView,
-  Platform
 } from 'react-native';
-import mainStyles from '../../assets/style_sheets/main/main';
-import Images from '../../assets/images_js/careers_images';
-import StatusBar from '../../components/shared/status_bar';
+
+import CareerProfile from '../../components/careers/CareerProfile';
+import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
 
 export default class DetailScreen extends Component {
   constructor(props){
     super(props);
 
-    let career = this.props.navigation.state.params.career;
-    this.state = {
-      career: career,
-      title: career.name
-    }
+    this.state = { career: props.navigation.getParam('career') };
   }
 
   _renderContent = () => {
-    let imageHeight = 160;
-    let imageName = this.state.career.image_name ? this.state.career.image_name: 'default';
     return (
-      <View style={{margin: 20}}>
-        <View style={{flex: 1, alignItems: 'center'}}>
-          <Image
-            resizeMode="cover"
-            style={{width: imageHeight, height: imageHeight, borderRadius: 8}}
-            source={Images[imageName]}/>
-            <Text style={[mainStyles.title, {marginTop: 10, marginBottom: 16}]}>{this.state.title}</Text>
-        </View>
-        <Text>{this.state.career.description || 'មិនទាន់មានទិន្នន័យ'}</Text>
+      <View style={{marginTop: 16, padding: 20, backgroundColor: '#fff'}}>
+        <Text style={{textAlign: 'justify'}}>{this.state.career.description || 'មិនទាន់មានទិន្នន័យ'}</Text>
       </View>
     )
   }
 
   render() {
     return (
-      <ScrollView style={{flex: 1, backgroundColor: '#fff'}}>
-        <StatusBar />
-        { this._renderContent() }
-      </ScrollView>
+      <ScrollableHeader
+        renderContent={ this._renderContent }
+        title={this.state.career.name}
+        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        renderForeground={ () => <CareerProfile career={this.state.career} /> }
+        headerMaxHeight={250}
+      />
     )
   }
 }

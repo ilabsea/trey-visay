@@ -1,40 +1,34 @@
 import React, {Component} from 'react';
 import {
   Text,
-  ScrollView,
   View,
-  Image,
   Linking,
   Dimensions,
   FlatList
 } from 'react-native';
 
 import mainStyles from '../../assets/style_sheets/main/main';
-import StatusBar from '../../components/shared/status_bar';
 import SchoolListView from '../../components/schools/school_list';
 import VideoListView from '../../components/video/video_list';
 import universities from '../../data/json/universities';
 import mapping from '../../data/json/careers/mapping';
 import videoList from '../../data/json/videos';
-import Images from '../../assets/images_js/careers_images'
+import ScrollableHeader from '../../components/scrollable_header';
+import BackButton from '../../components/shared/back_button';
+import CareerProfile from '../../components/careers/CareerProfile';
 
 export default class ShowCategoryScreen extends Component {
   constructor(props){
     super(props);
 
     let career = this.props.navigation.state.params.career;
-    let schools = universities.filter((school, pos) => {
-      return career.schools.includes(school.code)
-    });
-
-    let careerCluster = mapping.find(code => {return code.career_code == career.code})
+    let schools = universities.filter((school, pos) => career.schools.includes(school.code));
+    let careerCluster = mapping.find(code => code.career_code == career.code)
     let videos = [];
 
-    if(careerCluster.video_code){
-      let videoCodes = careerCluster.video_code.split(';').map(function(item) {
-        return item.trim();
-      });;
-      videos = videoList.filter((video, pos) => { return videoCodes.includes(video.code) });
+    if (careerCluster.video_code) {
+      let videoCodes = careerCluster.video_code.split(';').map(item => item.trim());
+      videos = videoList.filter((video, pos) => videoCodes.includes(video.code));
     }
 
     this.state = {
@@ -89,28 +83,9 @@ export default class ShowCategoryScreen extends Component {
     )
   }
 
-  _renderCareerProfile() {
-    let imageHeight = 160;
-    let imageUrl = Images['default'];
-    if (this.state.career.image_name) {
-      imageUrl = Images[this.state.career.image_name];
-    }
-
-    return (
-      <View style={{paddingTop: 20, paddingBottom: 16, alignItems: 'center', backgroundColor: '#fff'}}>
-        <Image
-          resizeMode="cover"
-          style={{width: imageHeight, height: imageHeight, borderRadius: 8}}
-          source={imageUrl}/>
-        <Text style={[mainStyles.title, {marginTop: 8}]}>{this.state.career.name}</Text>
-      </View>
-    )
-  }
-
   _renderContent = () => {
     return (
       <View>
-        {this._renderCareerProfile() }
         {this.renderSchoolList()}
         {this.renderVideoList()}
       </View>
@@ -119,10 +94,13 @@ export default class ShowCategoryScreen extends Component {
 
   render() {
     return (
-      <ScrollView>
-        <StatusBar />
-        { this._renderContent() }
-      </ScrollView>
+      <ScrollableHeader
+        renderContent={ this._renderContent }
+        title={this.state.career.name}
+        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        renderForeground={ () => <CareerProfile career={this.state.career} /> }
+        headerMaxHeight={250}
+      />
     )
   }
 }

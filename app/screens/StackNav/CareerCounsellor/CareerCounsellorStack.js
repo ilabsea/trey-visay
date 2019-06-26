@@ -61,7 +61,10 @@ const CareerCounsellorStack = createStackNavigator(
       })
     },
     CareerDetailScreen: {
-      screen: CareerDetailScreen
+      screen: CareerDetailScreen,
+      navigationOptions: ({navigation}) => ({
+        header: null
+      })
     },
     SubjectScreen: {
       screen: SubjectScreen,
