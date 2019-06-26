@@ -55,7 +55,7 @@ const SchoolStack = createStackNavigator(
       navigationOptions: ({navigation, screenProps}) => ({
         title: 'គ្រឹះស្ថានសិក្សា',
         headerRight:(<Button transparent onPress={() => navigation.state.params.handleReset()} >
-                      <Text style={{width: wp('30%')}}>កំណត់ឡេីងវិញ</Text>
+                      <Text style={{width: wp('30%'), color: Colors.blue, paddingTop: 6}}>កំណត់ឡេីងវិញ</Text>
                     </Button>)
       })
     },

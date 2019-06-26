@@ -2,6 +2,8 @@ import AsyncStorage from '@react-native-community/async-storage';
 import universities from '../../data/json/universities';
 import util from '../math';
 
+const PER_PAGE = 20;
+
 export default class School {
   static setSelectedProvince(province, callback){
     AsyncStorage.setItem('SelectedProvince', province);
@@ -25,6 +27,7 @@ export default class School {
 
   static getSchools(options) {
     let uniList = util.sortByName(universities, 'universityName');
+
     if (!!options.category) {
       uniList = uniList.filter(school => school.category == options.category);
     }
@@ -39,7 +42,13 @@ export default class School {
         return !!departments.length;
       });
     }
-    return uniList;
+
+    console.log('options.page', options)
+    let page = options.page || 1;
+    let start = (page - 1) * PER_PAGE;
+    let end = page * PER_PAGE;
+
+    return uniList.slice(start, end);
   }
 
   static getProvinces(category) {

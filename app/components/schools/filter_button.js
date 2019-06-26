@@ -33,7 +33,6 @@ class FilterButton extends React.Component {
 
 const styles = StyleSheet.create({
   btn: {
-    flex: 1,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'center',
