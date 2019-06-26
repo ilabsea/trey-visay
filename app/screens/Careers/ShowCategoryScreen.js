@@ -63,7 +63,7 @@ export default class ShowCategoryScreen extends Component {
   render() {
     return(
       <View style={{flex: 1}}>
-        <StatusBar translucent={false} />
+        <StatusBar />
 
         { this._renderContent() }
       </View>

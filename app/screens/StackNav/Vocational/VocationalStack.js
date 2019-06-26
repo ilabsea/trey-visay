@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { createStackNavigator } from  'react-navigation';
-import { Text, Platform } from 'react-native';
+import { Text, Platform, StatusBar } from 'react-native';
 
 import ClusterScreen from '../../Vocational/cluster_screen';
 import CareerIndexScreen from '../../Vocational/index_screen';
@@ -49,7 +49,7 @@ const VocationalStack = createStackNavigator(
   {
     navigationOptions: ({
       headerStyle: {
-        marginTop: Platform.OS == 'android' ? 24: 0
+        marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0
       },
     })
   }

@@ -16,7 +16,6 @@ export default StyleSheet.create({
   title: {
     flex: 1 ,
     fontSize: FontSetting.title,
-    fontWeight: 'bold'
   },
   text: {
     flex: 1,
