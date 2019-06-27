@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  Platform
+  Platform,
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -24,6 +24,7 @@ import FooterBar from '../../../components/footer/FooterBar';
 import Result from './Result';
 import BackButton from '../../../components/shared/back_button';
 import { Colors } from '../../../assets/style_sheets/main/colors';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export default class PersonalUnderstandingForm extends Component {
   constructor(props) {
@@ -96,9 +97,11 @@ export default class PersonalUnderstandingForm extends Component {
 
   _renderContent = () => {
     return (
-      <Provider store={store}>
-        <Form ref={this.formRef} />
-      </Provider>
+      <KeyboardAwareScrollView>
+        <Provider store={store}>
+            <Form ref={this.formRef} />
+        </Provider>
+      </KeyboardAwareScrollView>
     )
   }
 
