@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     borderRadius: 8,
+    width: 65
   },
   rightText: {
     textAlign: 'center',
