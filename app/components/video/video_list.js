@@ -4,13 +4,15 @@ import {
   Text,
   StyleSheet,
   Dimensions,
-  TouchableOpacity
+  TouchableOpacity,
+  Platform
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 import mainStyles from "../../assets/style_sheets/main/main";
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
+import RF from "react-native-responsive-fontsize";
 
 export default class VideoList extends Component  {
   constructor(props){
@@ -34,11 +36,13 @@ export default class VideoList extends Component  {
             <Text style={styles.source}>{ this.props.item.author }</Text>
           </View>
 
-          <View style={{alignSelf: 'center'}}>
-            <AwesomeIcon name='angle-right' size={24} color='#bbb'/>
-          </View>
+          { Platform.OS == 'ios' &&
+            <View style={{alignSelf: 'center'}}>
+              <AwesomeIcon name='angle-right' size={24} color='#bbb'/>
+            </View>
+          }
         </TouchableOpacity>
-        <Divider style={styles.divider}/>
+        <Divider />
       </View>
     )
   }
@@ -57,16 +61,11 @@ const styles = StyleSheet.create({
     marginRight: 16
   },
   title: {
-    fontSize: FontSetting.title
+    fontSize: FontSetting.title,
   },
   source: {
     fontSize: FontSetting.sub_title,
     color: '#3A3A3A',
+    lineHeight: 25
   },
-  icon: {
-    alignSelf: 'center',
-  },
-  divider: {
-    marginLeft: 100
-  }
 });
