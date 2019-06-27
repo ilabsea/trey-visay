@@ -68,7 +68,14 @@ export default StyleSheet.create({
     fontSize: FontSetting.nav_large_title,
     lineHeight: FontSetting.navLargeTitleLineHeight,
     paddingTop: 16,
-    paddingLeft: 1
+    paddingLeft: 1,
+    color: '#111'
+  },
+  largeTitlePosition: {
+    position: 'absolute',
+    left: 20,
+    right: 0,
+    bottom: 10
   },
   subTitle: {
     fontSize: 13,

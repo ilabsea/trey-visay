@@ -10,20 +10,10 @@ const HomeStack = createStackNavigator(
     HomeStack: {
       screen: Home,
       navigationOptions: ({navigation}) => ({
-        title: 'ទំព័រដេីម',
-        headerTitleStyle: {
-          fontSize: FontSetting.nav_title
-        }
+        header: null
       })
     }
   },
-  {
-    navigationOptions: ({
-      headerStyle: {
-        marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0
-      },
-    }),
-  }
 );
 
 

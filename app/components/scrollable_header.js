@@ -73,9 +73,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#D3D3D3',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  largeTitle: {
-    color: DEFAULT_TEXT_COLOR,
   }
 });
 
@@ -183,7 +180,6 @@ class ScrollableHeader extends Component {
     return (
       <StatusBar
         translucent
-        barStyle="light-content"
         backgroundColor="rgba(0, 0, 0, 0.251)"
       />
     )
@@ -247,9 +243,7 @@ class ScrollableHeader extends Component {
           { opacity: this.getOverlayOpacity() }
         ]}
       >
-        <View style={{position: 'absolute', left: 20, right: 0, bottom: 10}}>
-          <Text numberOfLines={1} style={[scrollHeaderStyles.largeTitle, styles.largeTitle, {color: this.getTextColor()}]}>{this.props.largeTitle}</Text>
-        </View>
+        <Text numberOfLines={1} style={[scrollHeaderStyles.largeTitlePosition, scrollHeaderStyles.largeTitle, {color: this.getTextColor()}]}>{this.props.largeTitle}</Text>
       </Animated.View>
     )
   }
