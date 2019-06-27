@@ -59,7 +59,6 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5,
     borderRadius: 8,
-    width: wp('20%')
   },
   rightText: {
     textAlign: 'center',

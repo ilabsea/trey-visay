@@ -18,6 +18,7 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import StatusBar from '../../components/shared/status_bar';
 import Question from '../../data/json/personal_understanding.json';
 import Card from '../../components/GameHistory/PersonalUnderstanding/Card';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 export default class PersonalUnderstandingReport extends Component {
   componentWillMount() {
@@ -93,7 +94,7 @@ export default class PersonalUnderstandingReport extends Component {
         { personalUnderstanding.everTalkedWithAnyoneAboutCareer.map((obj, i) => {
           return (
             <View key={i} style={{flexDirection: 'row', margin: 16, marginBottom: 8}}>
-              <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' style={{marginRight: 8}} />
+              <AwesomeIcon name='check-square' size={24} color={Colors.blue} style={{marginRight: 8}} />
               <Text>{arr[obj.value]}</Text>
             </View>
           )

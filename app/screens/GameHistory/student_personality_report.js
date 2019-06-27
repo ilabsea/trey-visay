@@ -13,6 +13,7 @@ import StatusBar from '../../components/shared/status_bar';
 import characteristicList from '../../data/json/characteristic_jobs';
 import realm from '../../db/schema';
 import User from '../../utils/user';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 export default class StudentPersonalityReport extends Component {
   componentWillMount() {
@@ -34,7 +35,7 @@ export default class StudentPersonalityReport extends Component {
             return (
               <View key={i}>
                 <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 10}}>
-                  <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' style={{marginRight: 8}} />
+                  <AwesomeIcon name='check-square' size={24} color={Colors.blue} style={{marginRight: 8}} />
                   <Text>{entry.value}</Text>
                 </View>
 

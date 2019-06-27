@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image } from 'rea
 import mainStyles from '../../../assets/style_sheets/main/main';
 import { Divider } from 'react-native-elements';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 
 const Card = (props) => {
   return(
@@ -16,7 +17,7 @@ const Card = (props) => {
       <View style={{flexDirection: 'row', marginLeft: 0, margin: 16}}>
         { !props.noIcon &&
           <AwesomeIcon name='check-square'
-            size={24} color='rgb(17, 130, 254)' style={{marginRight: 8}} />
+            size={24} color={Colors.blue} style={{marginRight: 8}} />
         }
         <Text>{props.response}</Text>
       </View>

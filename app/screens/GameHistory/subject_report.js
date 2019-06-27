@@ -40,7 +40,9 @@ export default class SubjectReport extends Component {
         <StatusBar />
 
         <ScrollView>
-          { subjectsView }
+          <View style={{paddingBottom: 20}}>
+            { subjectsView }
+          </View>
         </ScrollView>
       </View>
     )
