@@ -85,8 +85,7 @@ class CarouselView extends Component {
           style={styles.imageWrapper}>
 
           <Image
-            style={styles.btnImage}
-            resizeMode="contain"
+            resizeMode="center"
             source={option.source_image}
           />
         </LinearGradient>
@@ -187,11 +186,7 @@ const styles = StyleSheet.create({
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
     justifyContent: 'center',
-    alignItems: 'center'
-  },
-  btnImage: {
-    maxWidth: '100%',
-    maxHeight: '100%',
+    alignItems: 'center',
   },
   btnStart: {
     backgroundColor: Colors.blue,
