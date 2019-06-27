@@ -8,18 +8,39 @@ import { FontSetting} from '../../assets/style_sheets/font_setting';
 
 import subjectList from '../../data/json/subjects/subject_tips';
 import subjectTe from '../../data/translates/subject';
+import ReadMore from 'react-native-read-more-text';
 
 class Recommendation extends Component {
   renderTip(code, tipType) {
     let subject = subjectList.find((obj) => obj.code == code);
 
     return (
-      <View>
-        { subject[tipType].map((tip, i) => {
-          { return (<Text key={i} style={{marginLeft: 8}}>- {tip}</Text>) }
-        })}
-      </View>
+      <ReadMore
+        numberOfLines={2}
+        renderTruncatedFooter={this._renderTruncatedFooter}
+        renderRevealedFooter={this._renderRevealedFooter}>
+
+          { subject[tipType].map((tip, i) => {
+            { return (<Text key={i} style={{marginLeft: 8}}> - {tip}</Text>) }
+          })}
+      </ReadMore>
     )
+  }
+
+  _renderTruncatedFooter = (handlePress) => {
+    return (
+      <Text style={{color: Colors.blue, marginTop: 5}} onPress={handlePress}>
+        អានបន្ថែម
+      </Text>
+    );
+  }
+
+  _renderRevealedFooter = (handlePress) => {
+    return (
+      <Text style={{color: Colors.blue, marginTop: 5}} onPress={handlePress}>
+        បង្ហាញតិច
+      </Text>
+    );
   }
 
   renderSubjectToImproveTip(code, i) {
