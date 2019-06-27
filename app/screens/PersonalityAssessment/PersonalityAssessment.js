@@ -180,5 +180,6 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: FontSetting.button_text,
     color: '#fff',
+    fontWeight: 'bold'
   }
 });

@@ -25,6 +25,7 @@ export default StyleSheet.create({
   },
   btnText: {
     fontSize: 16,
+    fontWeight: 'bold'
   },
   overlay: {
     position: 'absolute',

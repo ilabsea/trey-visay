@@ -98,7 +98,7 @@ class CarouselView extends Component {
 
             <View>
               <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
-                <Text style={{color: '#fff'}}>{option.button_text}</Text>
+                <Text style={{color: '#fff', fontWeight: 'bold'}}>{option.button_text}</Text>
               </TouchableOpacity>
             </View>
           </View>

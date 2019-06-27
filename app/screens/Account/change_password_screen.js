@@ -108,7 +108,7 @@ export default class ChangePasswordScreen extends Component {
             onPress={this.handleSubmit.bind(this)}
             disabled={!isEnabled}
             style={[styles.btnSubmit, {backgroundColor: btnSubmitColor}]}>
-            <Text style={[styles.submitText, {color: btnSubmitTextColor}]}>យល់ព្រម</Text>
+            <Text style={[styles.submitText, {color: btnSubmitTextColor, fontWeight: 'bold'}]}>យល់ព្រម</Text>
           </TouchableOpacity>
         </View>
       </Content>
