@@ -112,7 +112,7 @@ export default class SchoolScreen extends Component {
         refreshing={false}
         keyExtractor={ this._keyExtractor }
         onEndReached={ () => this.getMore() }
-        onEndReachedThreshold={0.9}
+        onEndReachedThreshold={0.7}
       />
     )
   }
