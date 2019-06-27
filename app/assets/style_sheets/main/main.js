@@ -92,7 +92,7 @@ export default StyleSheet.create({
     marginHorizontal: 20,
   },
   curveBox: {
-    backgroundColor: 'white',
+    backgroundColor: '#fff',
     borderRadius: 8,
     paddingLeft: 16,
     margin: 20,

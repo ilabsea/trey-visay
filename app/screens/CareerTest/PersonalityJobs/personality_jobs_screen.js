@@ -167,7 +167,7 @@ export default class PersonalityJobsScreen extends Component {
 
   _renderContent = () => {
     return (
-      <View>
+      <View style={{paddingBottom: 20}}>
         <View style={{flexDirection: 'row', padding: 16, paddingBottom: 0, flex: 1}}>
           <Text style={{flex: 1}}>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
         </View>

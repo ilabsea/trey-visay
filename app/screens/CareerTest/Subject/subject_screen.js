@@ -220,7 +220,7 @@ export default class SubjectScreen extends Component {
     })
 
     return (
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, paddingBottom: 20}}>
         <Text style={{marginLeft: 20, marginTop: 16}}>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
         {doms}
       </View>

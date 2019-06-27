@@ -186,7 +186,7 @@ export default class PersonalityScreen extends Component {
 
   _renderContent = () => {
     return (
-      <View>
+      <View style={{paddingBottom: 20}}>
         <View style={{flexDirection: 'row', padding: 16, paddingBottom: 0, flex: 1}}>
           <Text>
             ចូរប្អូនជ្រើសរើស បុគ្គលិកលក្ខណៈខាងក្រោមឱ្យបាន យ៉ាងតិចចំនួន៥ ដែលសមស្របទៅនឹងលក្ខណៈសម្បត្តិរបស់ប្អូនផ្ទាល់

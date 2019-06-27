@@ -159,7 +159,7 @@ class Recommendation extends Component {
     let currentJob = this.props.currentJob;
     let currentGroup = this.props.currentGroup;
     return (
-      <View>
+      <View style={{paddingBottom: 20}}>
         <View style={{padding: 20}}>
           <Text style={styles.bigText}>សួស្តី {user.fullName}</Text>
           <Text style={styles.boldText}>
