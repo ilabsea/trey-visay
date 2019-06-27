@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import Images from '../../assets/images_js/careers_images';
 import mainStyles from '../../assets/style_sheets/main/main';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 export default class CareerProfile extends Component  {
   render(){
@@ -16,7 +17,7 @@ export default class CareerProfile extends Component  {
           style={{width: imageHeight, height: imageHeight, borderRadius: 8}}
           source={imageUrl}/>
 
-        <Text style={[mainStyles.title, {marginTop: 8}]}>{career.name}</Text>
+        <Text style={{marginTop: 8, fontSize: FontSetting.nav_title}}>{career.name}</Text>
       </View>
     )
   }

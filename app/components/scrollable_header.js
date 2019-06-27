@@ -50,7 +50,7 @@ const styles = StyleSheet.create({
   },
   bar: {
     backgroundColor: 'transparent',
-    marginTop: Platform.OS === 'ios' ? 28 : 38,
+    marginTop: Platform.OS === 'ios' ? 28 : 36,
     height: 40,
     position: 'absolute',
     top: 0,
@@ -205,7 +205,7 @@ class ScrollableHeader extends Component {
 
   renderTitle() {
     if (!this.props.title) { return null }
-    let bottom = Platform.OS == 'ios' ? -2 : 2;
+    let bottom = Platform.OS == 'ios' ? -2 : 4;
 
     return (
       <View style={{position: 'absolute', left: NAVIGATION_BUTTON_WIDTH, right: NAVIGATION_BUTTON_WIDTH, bottom: bottom}}>

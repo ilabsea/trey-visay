@@ -67,6 +67,13 @@ const SchoolStack = createStackNavigator(
       })
     }
   },
+  {
+    navigationOptions: ({
+      headerTitleStyle: {
+        fontSize: FontSetting.nav_title
+      }
+    }),
+  }
 
 );
 

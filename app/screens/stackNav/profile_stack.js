@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createStackNavigator } from  'react-navigation';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 import ProfileScreen from '../profile/profile';
 import EditProfilePhoto from '../profile/edit_profile_photo';
@@ -43,6 +44,13 @@ const ProfileStack = createStackNavigator(
         header: null
       })
     },
+  },
+  {
+    navigationOptions: ({
+      headerTitleStyle: {
+        fontSize: FontSetting.nav_title
+      }
+    })
   }
 );
 

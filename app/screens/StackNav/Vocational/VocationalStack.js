@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import { createStackNavigator } from  'react-navigation';
 import { Text, Platform, StatusBar } from 'react-native';
+import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
 import ClusterScreen from '../../Vocational/cluster_screen';
 import CareerIndexScreen from '../../Vocational/index_screen';
@@ -51,6 +52,9 @@ const VocationalStack = createStackNavigator(
       headerStyle: {
         marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0
       },
+      headerTitleStyle: {
+        fontSize: FontSetting.nav_title
+      }
     })
   }
 );

@@ -9,6 +9,7 @@ import NextButton from '../../../components/NextButton';
 import SaveButton from '../../../components/shared/save_button';
 import BackButton from '../../../components/shared/back_button';
 import OpenDrawer from '../../../components/shared/open_drawer';
+import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
 import PersonalityAssessment from '../../PersonalityAssessment/PersonalityAssessment';
 import AboutPersonalityAssessment from '../../PersonalityAssessment/About';
@@ -154,7 +155,10 @@ const AssessmentStack = createStackNavigator(
   {
     navigationOptions: ({
       headerStyle: {
-        marginTop: Platform.OS == 'android' ? 24: 0
+        marginTop: Platform.OS == 'android' ? 24: 0,
+      },
+      headerTitleStyle: {
+        fontSize: FontSetting.nav_title
       },
       headerBackTitle: null
     }),
