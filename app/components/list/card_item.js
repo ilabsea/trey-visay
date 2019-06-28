@@ -22,7 +22,7 @@ const CardItem = (props) => {
       />
 
       <View style={styles.textContainer}>
-        <Text numberOfLines={2} style={{lineHeight: 27}}>{ props.text }</Text>
+        <Text numberOfLines={1}>{ props.text }</Text>
       </View>
     </TouchableOpacity>
   )
