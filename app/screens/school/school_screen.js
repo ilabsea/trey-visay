@@ -120,7 +120,7 @@ export default class SchoolScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <StatusBar translucent={false}/>
+        <StatusBar />
 
         <SegmentView
           activePage={this.state.activePage}

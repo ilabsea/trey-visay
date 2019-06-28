@@ -12,10 +12,8 @@ export default class SegmentView extends Component {
   }
 
   render() {
-    const headerStyle = Platform.OS == 'android' ? {backgroundColor: Colors.blue} : {}
-
     return (
-      <Segment style={headerStyle}>
+      <Segment>
         <Button first active={this.props.activePage == 1}
           onPress={()=>this.props.setContent(1)}>
           <Text style={{fontSize: FontSetting.text}}>សាលារដ្ឋ</Text>
