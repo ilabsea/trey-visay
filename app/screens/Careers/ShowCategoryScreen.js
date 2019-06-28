@@ -44,7 +44,7 @@ export default class ShowCategoryScreen extends Component {
     })
 
     return (
-      <View style={mainStyles.grid}>
+      <View style={[mainStyles.grid, {marginBottom: 0}]}>
         {doms}
       </View>
     );
@@ -53,9 +53,7 @@ export default class ShowCategoryScreen extends Component {
   _renderContent() {
     return (
       <ScrollView>
-        <Content>
-          { this._renderItems() }
-        </Content>
+        { this._renderItems() }
       </ScrollView>
     )
   }

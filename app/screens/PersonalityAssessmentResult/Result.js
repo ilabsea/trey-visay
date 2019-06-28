@@ -127,7 +127,7 @@ export default class Result extends Component {
 
   _renderContent = () => {
     return (
-      <View style={{paddingTop: 0}}>
+      <View style={{paddingTop: 0, paddingBottom: 12}}>
         { this._renderChart() }
         { this._renderPersonalityGroups() }
       </View>

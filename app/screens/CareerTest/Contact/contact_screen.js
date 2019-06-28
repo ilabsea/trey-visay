@@ -111,7 +111,7 @@ export default class ContactScreen extends Component {
     }
 
     return (
-      <View >
+      <View style={{paddingBottom: 12}}>
         <Text style={[mainStyles.sectionText, {marginTop: 16}]}>
           ដើម្បីសិក្សាមុខជំនាញឱ្យត្រូវទៅនឹងមុខរបរដែលអ្នកបានជ្រើសរើស អ្នកអាចជ្រើសរើសគ្រឹះស្ថានសិក្សាដែលមានរាយនាមដូចខាងក្រោម៖
         </Text>

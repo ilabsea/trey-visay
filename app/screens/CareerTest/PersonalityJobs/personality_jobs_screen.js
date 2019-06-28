@@ -10,7 +10,7 @@ import { NavigationActions } from 'react-navigation';
 import { Divider } from 'react-native-elements';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
-import {Colors} from '../../../assets/style_sheets/main/colors';
+import { Colors } from '../../../assets/style_sheets/main/colors';
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import CheckboxGroup from '../../../components/checkbox_group';
 import FooterBar from '../../../components/footer/FooterBar';
@@ -24,6 +24,7 @@ import ScrollableHeader from '../../../components/scrollable_header';
 import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
 import * as Progress from 'react-native-progress';
 import ProgressStep from '../ProgressStep/ProgressStep';
+import { Content } from 'native-base';
 
 export default class PersonalityJobsScreen extends Component {
   constructor(props) {
@@ -106,7 +107,7 @@ export default class PersonalityJobsScreen extends Component {
     let checkboxes = this._formatDataForCheckbox(this.state.currentGroup.id);
 
     return (
-      <View style={[mainStyles.curveBox, {paddingLeft: 0, backgroundColor: '#fff'}]}>
+      <View style={[{backgroundColor: '#fff', margin: 20, marginTop: 10}]}>
         <CheckboxGroup
           onSelect={(selected) => {this._handleChecked(selected)}}
           items={checkboxes}
@@ -167,7 +168,7 @@ export default class PersonalityJobsScreen extends Component {
 
   _renderContent = () => {
     return (
-      <View style={{paddingBottom: 20}}>
+      <View>
         <View style={{flexDirection: 'row', padding: 16, paddingBottom: 0, flex: 1}}>
           <Text style={{flex: 1}}>សូមជ្រើសរើសមុខរបរខាងក្រោមយ៉ាងច្រើនចំនួន៣៖</Text>
         </View>

@@ -85,7 +85,7 @@ export default class ShowCategoryScreen extends Component {
 
   _renderContent = () => {
     return (
-      <View>
+      <View style={{paddingBottom: 20}}>
         {this.renderSchoolList()}
         {this.renderVideoList()}
       </View>

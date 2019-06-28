@@ -140,6 +140,7 @@ export default class VideoScreen extends Component {
         refreshing={false}
         onRefresh={ () => this._onRefresh() }
         keyExtractor={this._keyExtractor}
+        ListFooterComponent={<View style={{height: 20}}></View>}
       />
     )
   }
@@ -214,7 +215,6 @@ export default class VideoScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingBottom: 8,
   },
   scrollContainer: {
     padding: 16

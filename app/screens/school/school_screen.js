@@ -106,14 +106,16 @@ export default class SchoolScreen extends Component {
     }
 
     return (
-      <FlatList
-        data={ this.state.schools }
-        renderItem={ ({item}) => this._renderRow(item) }
-        refreshing={false}
-        keyExtractor={ this._keyExtractor }
-        onEndReached={ () => this.getMore() }
-        onEndReachedThreshold={0.7}
-      />
+      <View style={{paddingTop: 10}}>
+        <FlatList
+          data={ this.state.schools }
+          renderItem={ ({item}) => this._renderRow(item) }
+          refreshing={false}
+          keyExtractor={ this._keyExtractor }
+          onEndReached={ () => this.getMore() }
+          onEndReachedThreshold={0.7}
+        />
+      </View>
     )
   }
 

@@ -165,8 +165,8 @@ export default class PersonalityAssessmentRealistic extends Component {
 
   _renderContent = () => {
     return (
-      <View style={{marginHorizontal: 20, marginTop: 16}}>
-        <View style={{flexDirection: 'row'}}>
+      <View style={{marginHorizontal: 20, marginTop: 16, marginBottom: 12}}>
+        <View style={{flexDirection: 'row', marginBottom: 10}}>
           <Text style={{flex: 1}}>សូមបំពេញក្នុងប្រអប់ខាងមុខឃ្លាទាំងឡាយណាដែល បរិយាយពីអត្តចរិករបស់អ្នក!</Text>
         </View>
 

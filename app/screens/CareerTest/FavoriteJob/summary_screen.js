@@ -151,10 +151,8 @@ export default class SummaryScreen extends Component {
   _renderContent = () => {
     return (
       <View>
-        <View style={mainStyles.instructionContainer}>
-          <Text style={[mainStyles.text, {flex: 1}]}>
-            ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!
-          </Text>
+        <View style={{flexDirection: 'row', padding: 16, paddingBottom: 10}}>
+          <Text style={{flex: 1}}>ចូរប្អូនជ្រើសរើស មុខរបរ ឬការងារ ១ដែលប្អូនចូលចិត្តបំផុត ដើម្បីដាក់គោលដៅ និងផែនការអនាគត!</Text>
         </View>
 
         { this._renderList() }

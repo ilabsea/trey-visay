@@ -131,12 +131,12 @@ export default class SubjectScreen extends Component {
   _renderRadioGroups(obj, index) {
     return(
       <View key={index}>
-        <View style={mainStyles.blueTitleBox}>
+        <View style={[mainStyles.blueTitleBox, {marginTop: 0}]}>
           <Text style={mainStyles.title}>
             {obj.title}
           </Text>
         </View>
-        <View style={[mainStyles.subTitleBox, {paddingTop: 8}]}>
+        <View style={[mainStyles.subTitleBox, {paddingTop: 8, marginBottom: 20}]}>
           { obj.groups.map((group, i) => {
             { return(this._renderRadioItem(group, i)) }
           })}
@@ -220,8 +220,8 @@ export default class SubjectScreen extends Component {
     })
 
     return (
-      <View style={{flex: 1, paddingBottom: 20}}>
-        <Text style={{marginLeft: 20, marginTop: 16}}>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
+      <View style={{flex: 1}}>
+        <Text style={{marginLeft: 20, marginTop: 16, marginBottom: 10}}>ចូរបំពេញគ្រប់មុខវិជ្ជាខាងក្រោម៖</Text>
         {doms}
       </View>
     )

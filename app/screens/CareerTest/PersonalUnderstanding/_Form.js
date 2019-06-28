@@ -105,6 +105,7 @@ const styles = StyleSheet.create({
   scrollContainer: {
     flex: 1,
     margin: 16,
+    marginBottom: 4
   },
   instruction: {
     flexDirection: 'row',

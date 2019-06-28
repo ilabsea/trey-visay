@@ -43,7 +43,7 @@ export default class CareerIndexScreen extends Component {
         <StatusBar />
 
         <ScrollView>
-          <View style={mainStyles.grid}>
+          <View style={[mainStyles.grid, {marginBottom: 0}]}>
             { this.state.careers.map((career, i) => {
               { return(this.renderCareer(career, i)) }
             })}

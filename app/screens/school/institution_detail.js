@@ -107,7 +107,7 @@ export default class InstitutionDetail extends Component {
         </View>
 
         <View style={{marginTop: 67}}>
-          <Text style={[scrollHeaderStyles.largeTitle, styles.largeTitle]}>{this.state.school.universityName}</Text>
+          <Text style={[styles.largeTitle]}>{this.state.school.universityName}</Text>
           <Text style={styles.subTitle}>{this.state.school.category}</Text>
         </View>
       </View>
@@ -134,7 +134,7 @@ export default class InstitutionDetail extends Component {
 
   renderContent = () => {
     return(
-      <View style={[{backgroundColor: 'white'}]}>
+      <View style={[{backgroundColor: 'white', marginBottom: 12}]}>
         { this._renderProfile() }
         { this.renderContact() }
         { this.renderDepartments() }
@@ -205,8 +205,9 @@ const styles = StyleSheet.create({
   },
   largeTitle: {
     textAlign: 'center',
-    paddingTop: 30,
-    paddingHorizontal: 16
+    paddingTop: 20,
+    paddingHorizontal: 16,
+    fontSize: FontSetting.big_title
   },
   subTitle: {
     textAlign: 'center',

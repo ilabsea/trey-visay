@@ -93,17 +93,16 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     let doms = options.map((option, index) => {
       return (
-        <View key={index}>
-          <ButtonList
-            onPress={() => {
-              this.props.navigation.navigate(option.screen, {
-                category: this.state.category,
-                assessment: this.props.navigation.getParam('assessment')
-              })}
-            }
-            title={option.label}
-            hasLine={true}/>
-        </View>
+        <ButtonList
+          key={index}
+          onPress={() => {
+            this.props.navigation.navigate(option.screen, {
+              category: this.state.category,
+              assessment: this.props.navigation.getParam('assessment')
+            })}
+          }
+          title={option.label}
+          hasLine={true}/>
       )
     });
 
@@ -111,14 +110,14 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
       <View>
         <Text style={mainStyles.sectionText}>ព័ត៌មានបន្ថែម</Text>
 
-        <View style={{backgroundColor: '#fff', marginBottom: 16}}>{ doms }</View>
+        <View style={{backgroundColor: '#fff'}}>{ doms }</View>
       </View>
     );
   }
 
   _renderContent = () => {
     return (
-      <View>
+      <View style={{paddingBottom: 20}}>
         { this._renderList() }
         { this._renderDescription() }
         { this._renderButtonList() }
