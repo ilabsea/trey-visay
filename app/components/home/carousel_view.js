@@ -21,6 +21,7 @@ import CarouselItem from '../shared/carousel_item';
 import HomeOptions from './home_options';
 import User from '../../utils/user';
 import LinearGradient from 'react-native-linear-gradient';
+import Ripple from 'react-native-material-ripple';
 
 const { width, height } = Dimensions.get('window');
 
@@ -75,36 +76,36 @@ class CarouselView extends Component {
 
   renderItem(option) {
     return (
-      <TouchableOpacity
-        onPress={ () => this.onPressButton(option) }
-        style={styles.btnBox}>
+      <Ripple
+        rippleColor='#fff'
+        onPress={ () => this.onPressButton(option) }>
+        <View style={styles.btnBox}>
+          <LinearGradient
+            colors={option.color}
+            start={{x: 0, y: 0}} end={{x: 1, y: 1}}
+            style={styles.imageWrapper}>
 
-        <LinearGradient
-          colors={option.color}
-          start={{x: 0, y: 0}} end={{x: 1, y: 1}}
-          style={styles.imageWrapper}>
+            <Image
+              resizeMode="center"
+              source={option.source_image}
+            />
+          </LinearGradient>
 
-          <Image
-            resizeMode="center"
-            source={option.source_image}
-          />
-        </LinearGradient>
+          <View style={[styles.textWrapper, this.getHeightStyle()]} onLayout={this.onLayout} >
+            <Text style={styles.btnLabel}>{option.title}</Text>
 
-        <View style={[styles.textWrapper, this.getHeightStyle()]} onLayout={this.onLayout} >
-          <Text style={styles.btnLabel}>{option.title}</Text>
+            <View style={{flexDirection: 'row'}}>
+              <Text style={{paddingRight: 4, flex: 1}}>{option.description}</Text>
 
-          <View style={{flexDirection: 'row'}}>
-            <Text style={{paddingRight: 4, flex: 1}}>{option.description}</Text>
-
-            <View>
-              <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
-                <Text style={{color: '#fff', fontWeight: 'bold'}}>{option.button_text}</Text>
-              </TouchableOpacity>
+              <View>
+                <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
+                  <Text style={{color: '#fff', fontWeight: 'bold'}}>{option.button_text}</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>
-
-      </TouchableOpacity>
+      </Ripple>
     )
   }
 
