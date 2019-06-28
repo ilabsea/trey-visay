@@ -83,7 +83,7 @@ export default class EditPersonalInfo extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <StatusBar translucent={false} />
+        <StatusBar />
         <Container>
           <Content style={{padding: 16}}>
             { this._renderContent() }

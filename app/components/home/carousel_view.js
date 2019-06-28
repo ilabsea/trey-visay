@@ -77,7 +77,6 @@ class CarouselView extends Component {
   renderItem(option) {
     return (
       <Ripple
-        rippleColor='#fff'
         onPress={ () => this.onPressButton(option) }>
         <View style={styles.btnBox}>
           <LinearGradient
