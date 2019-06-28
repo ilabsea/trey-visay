@@ -21,6 +21,7 @@ import { FontSetting } from '../../../assets/style_sheets/font_setting';
 import SchoolUtil from '../../../utils/School/School';
 
 const headerStyle = {backgroundColor: '#fff', marginTop: StatusBar.currentHeight}
+const colorStyle = Platform.OS == 'android' ? {color: '#111'} : {}
 const SchoolStack = createStackNavigator(
   {
     Root: {
@@ -33,12 +34,14 @@ const SchoolStack = createStackNavigator(
                 navigation.goBack(null);
                 SchoolUtil.clearSelectedValues();
               }}>
-                <Icon name="arrow-back" style={{color: '#111'}} />
+                <Icon name="arrow-back" style={colorStyle} />
               </Button>
             </Left>
+
             <Body>
-              <Title style={{fontSize: FontSetting.title, color: '#111'}}>គ្រឹះស្ថានសិក្សា</Title>
+              <Title style={[{fontSize: FontSetting.title}, colorStyle]}>គ្រឹះស្ថានសិក្សា</Title>
             </Body>
+
             <Right>
             </Right>
           </Header>

@@ -8,7 +8,8 @@ import {
   ActivityIndicator,
   FlatList,
   Platform,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 import NetInfo from "@react-native-community/netinfo";
@@ -21,7 +22,7 @@ import headerStyles from '../../assets/style_sheets/header';
 import uiThemeAndroid from '../../assets/style_sheets/uiThemeAndroid.js';
 import uiThemeIOS from '../../assets/style_sheets/uiThemeIOS.js';
 
-import StatusBar from '../../components/shared/status_bar';
+import MyStatusBar from '../../components/shared/status_bar';
 import BackButton from '../../components/shared/back_button';
 import VideoListView from '../../components/video/video_list';
 import LoadingIndicator from '../../components/loading_indicator';
@@ -30,7 +31,25 @@ import videoList from '../../data/json/videos';
 
 const uiTheme = Platform.select({
   ios: uiThemeIOS,
-  android: uiThemeAndroid
+  android: {
+    palette: {
+      primaryColor: '#fff',
+    },
+    toolbar: {
+      container: {
+        marginTop: StatusBar.currentHeight
+      },
+      titleText: {
+        color: '#111'
+      },
+      leftElement: {
+        color: '#111'
+      },
+      rightElement: {
+        color: '#111'
+      }
+    },
+  }
 });
 
 export default class VideoScreen extends Component {
@@ -170,7 +189,7 @@ export default class VideoScreen extends Component {
     return(
       <ThemeContext.Provider value={getTheme(uiTheme)}>
         <View style={styles.container} ref="myRef">
-          <StatusBar />
+          <MyStatusBar />
           <Toolbar
             leftElement={ 'arrow-back' }
             centerElement={'វីដេអូមុខរបរ'}
