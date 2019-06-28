@@ -85,7 +85,7 @@ export default class Profile extends Component {
   _renderPersonalInfo() {
     let arr = [
       {name: 'fullName', icon: 'md-person'},
-      {name: 'username',icon: 'md-person'},
+      {name: 'username',icon: 'md-key'},
       {name: 'sex', icon: 'transgender'},
       {name: 'dateOfBirth', icon: 'calendar'},
       {name: 'phoneNumber', icon: 'call'}];
