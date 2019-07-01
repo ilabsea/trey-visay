@@ -107,19 +107,33 @@ export default class Result extends Component {
     );
   }
 
+  _sortArray(arr) {
+    arr.sort((a, b) => {
+      var valA = this.props.assessment[a.name_en].length
+      var valB = this.props.assessment[b.name_en].length
+
+      if (valA > valB) {
+        return -1;
+      }
+      if (valA < valB) {
+        return 1;
+      }
+
+      return 0;
+    });
+
+    return arr;
+  }
+
   _renderPersonalityGroups() {
+    let arr = this._sortArray(categoryList);
+
     return (
       <View>
-        <Text style={mainStyles.sectionText}>ផ្នែកវិទ្យាសាស្ត្រ</Text>
+        <Text style={mainStyles.sectionText}>បុគ្គលិកលក្ខណៈ</Text>
 
         <View style={[mainStyles.box]}>
-          { categoryList.filter(category => category.group == 'science').map((category, index) => this._renderListItem(category, index)) }
-        </View>
-
-        <Text style={mainStyles.sectionText}>ផ្នែកវិទ្យាសាស្ត្រសង្គម</Text>
-
-        <View style={[mainStyles.box]}>
-          { categoryList.filter(category => category.group == 'social').map((category, index) => this._renderListItem(category, index)) }
+          { arr.map((category, index) => this._renderListItem(category, index)) }
         </View>
       </View>
     );
