@@ -37,7 +37,7 @@ export default class Result extends Component {
           config: {
             color: processColor('teal'),
             barShadowColor: processColor('lightgrey'),
-            highlightAlpha: 90,
+            highlightAlpha: 0,
             highlightColor: processColor('red'),
           }
         }],
@@ -66,6 +66,7 @@ export default class Result extends Component {
 
         <View style={[mainStyles.subTitleBox, {height: 220, paddingVertical: 10}]}>
           <HorizontalBarChart
+            scaleEnabled={false}
             style={{flex: 1}}
             data={option.data}
             xAxis={option.xAxis}
