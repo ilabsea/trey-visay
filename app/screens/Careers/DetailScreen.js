@@ -30,7 +30,7 @@ export default class DetailScreen extends Component {
         title={this.state.career.name}
         renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
         renderForeground={ () => <CareerProfile career={this.state.career} /> }
-        headerMaxHeight={250}
+        headerMaxHeight={260}
       />
     )
   }

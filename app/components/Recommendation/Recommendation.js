@@ -4,55 +4,23 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 import { Colors } from '../../assets/style_sheets/main/colors';
-import { FontSetting} from '../../assets/style_sheets/font_setting';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 import subjectList from '../../data/json/subjects/subject_tips';
 import subjectTe from '../../data/translates/subject';
-import ReadMore from 'react-native-read-more-text';
 
 class Recommendation extends Component {
-  renderTip(code, tipType) {
+  state = { showMore: false };
+
+  renderImprovingTip(code, i) {
+    let tipType = this.props.gameSubject[code] == 'មធ្យម' ? 'medium_tips' : 'poor_tips';
     let subject = subjectList.find((obj) => obj.code == code);
-
-    return (
-      <ReadMore
-        numberOfLines={2}
-        renderTruncatedFooter={this._renderTruncatedFooter}
-        renderRevealedFooter={this._renderRevealedFooter}>
-
-          { subject[tipType].map((tip, i) => {
-            { return (<Text key={i} style={{marginLeft: 8}}> - {tip}</Text>) }
-          })}
-      </ReadMore>
-    )
-  }
-
-  _renderTruncatedFooter = (handlePress) => {
-    return (
-      <Text style={{color: Colors.blue, marginTop: 5}} onPress={handlePress}>
-        អានបន្ថែម
-      </Text>
-    );
-  }
-
-  _renderRevealedFooter = (handlePress) => {
-    return (
-      <Text style={{color: Colors.blue, marginTop: 5}} onPress={handlePress}>
-        បង្ហាញតិច
-      </Text>
-    );
-  }
-
-  renderSubjectToImproveTip(code, i) {
-    if (this.props.gameSubject[code] == 'ខ្លាំង') {
-      return (null);
-    }
 
     return (
       <View style={{marginBottom: 16}} key={i}>
         <Text style={[styles.boldText]}>{ subjectTe[code] }</Text>
-        { this.props.gameSubject[code] == 'មធ្យម' && this.renderTip(code, 'medium_tips') }
-        { this.props.gameSubject[code] == 'ខ្សោយ' && this.renderTip(code, 'poor_tips') }
+
+        { subject[tipType].map((tip, i) => <Text key={i} style={{marginLeft: 8}}> - {tip}</Text>) }
       </View>
     )
   }
@@ -77,10 +45,57 @@ class Recommendation extends Component {
     return style;
   }
 
+  renderSubjectTip() {
+    let arr = this.props.currentGroup.concern_subjects.filter(code => this.props.gameSubject[code] != 'ខ្លាំង');
+    let doms1 = arr.slice(0,1).map((code, i) => this.renderImprovingTip(code, i));
+    let doms2 = arr.slice(1).map((code, i) => this.renderImprovingTip(code, i));
+
+    if (doms2.length) {
+      doms1.push(
+        <View key={arr.length}>
+          { !this.state.showMore &&
+            <Text style={{color: Colors.blue}} onPress={() => this.setState({showMore: true})}>...អានបន្ថែម</Text>
+          }
+
+          { this.state.showMore &&
+            <View>
+              {doms2}
+              <Text style={{color: Colors.blue}} onPress={() => this.setState({showMore: false})}>បង្ហាញតិច</Text>
+            </View>
+          }
+        </View>
+      );
+    }
+
+    return (
+      <View>
+        { this.isStrongForAllSubject() &&
+          <Text style={[styles.paragraph]}>សូមអបអរសាទរ ការជ្រើសរើសរបស់ប្អូនស័ក្តិសមទៅនឹងសមត្ថភាពរបស់ប្អូនហើយ។</Text>
+        }
+
+        { !this.isStrongForAllSubject() &&
+          <View>
+            <View style={mainStyles.blueTitleBox}>
+              <AwesomeIcon name='globe' color={Colors.blue} size={24} />
+              <Text style={[mainStyles.title, { paddingLeft: 8 }]}>
+                គន្លឹះសម្រាប់ពង្រឹងបន្ថែមលើមុខវិជ្ជា
+              </Text>
+            </View>
+
+            <View style={mainStyles.subTitleBox}>
+              {doms1}
+            </View>
+          </View>
+        }
+      </View>
+    )
+  }
+
   renderSubject(){
     let currentJob = this.props.currentJob;
     let currentGroup = this.props.currentGroup;
     let gameSubject = this.props.gameSubject;
+
     return(
       <View>
         <View style={[mainStyles.blueTitleBox, {marginTop: 0}]}>
@@ -101,38 +116,16 @@ class Recommendation extends Component {
 
           <View>
             { currentGroup.concern_subjects.map((code, i) => {
-
               return (
                 <View key={i} style={styles.wrapper}>
                   <Text style={{flex: 1}}>{ `\u2022 ${subjectTe[code]}` }</Text>
                   <View style={styles.rightWrapper}>
                     <Text style={this._getTextColorStyle(gameSubject[code])}>{ gameSubject[code] }</Text>
                   </View>
-
                 </View>)
             })}
           </View>
         </View>
-
-        { this.isStrongForAllSubject() &&
-          <Text style={[styles.paragraph]}>សូមអបអរសាទរ ការជ្រើសរើសរបស់ប្អូនស័ក្តិសមទៅនឹងសមត្ថភាពរបស់ប្អូនហើយ។</Text>
-        }
-
-        { !this.isStrongForAllSubject() &&
-          <View>
-            <View style={mainStyles.blueTitleBox}>
-              <AwesomeIcon name='globe' color={Colors.blue} size={24} />
-              <Text style={[mainStyles.title, { paddingLeft: 8 }]}>
-                គន្លឹះសម្រាប់ពង្រឹងបន្ថែមលើមុខវិជ្ជាសំខាន់ៗ
-              </Text>
-            </View>
-            <View style={mainStyles.subTitleBox}>
-              { currentGroup.concern_subjects.map((code, i) => {
-                 { return (this.renderSubjectToImproveTip(code, i)) }
-              })}
-            </View>
-          </View>
-        }
       </View>
     )
   }
@@ -202,6 +195,7 @@ class Recommendation extends Component {
         </Text>
 
         { this.renderSubject() }
+        { this.renderSubjectTip() }
         { this.renderCharacteristic() }
 
       </View>

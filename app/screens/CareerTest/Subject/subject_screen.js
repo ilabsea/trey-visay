@@ -111,13 +111,15 @@ export default class SubjectScreen extends Component {
       borderStyle = { backgroundColor: '#e94b35', height: 2 };
     }
 
+    let marginStyle=Platform.OS == 'android' ? {margin: 12} : {marginTop: 12};
+
     return(
       <View key={i}>
         <Text style={mainStyles.title}>{group.label}</Text>
 
         <Divider style={borderStyle}/>
 
-        <LinearGradient style={styles.container} colors={['transparent', gradientColor]}>
+        <LinearGradient style={[{flex: 1}, marginStyle]} colors={['transparent', gradientColor]}>
           <RadioGroup
             options={[{ label: 'ខ្លាំង', value: 'ខ្លាំង' }, { label: 'មធ្យម', value: 'មធ្យម' }, { label: 'ខ្សោយ', value: 'ខ្សោយ' }]}
             onPress={(text) => this._handleSetState(group.stateName, text)}

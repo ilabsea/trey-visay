@@ -8,7 +8,6 @@ import StatusBar from '../../components/shared/status_bar';
 import ButtonList from '../../components/list/button_list';
 import CardItem from '../../components/list/card_item';
 import CarouselItem from '../../components/shared/carousel_item';
-import LongText from '../../components/careers/long_text';
 import BackButton from '../../components/shared/back_button';
 import ScrollableHeader from '../../components/scrollable_header';
 import CareersClusterObj from '../../utils/Vocational/CareerCluster';
