@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Platform } from 'react-native';
+import { Platform, StatusBar } from 'react-native';
 import { createStackNavigator } from  'react-navigation';
 
 import headerStyles from '../../../assets/style_sheets/header';
@@ -155,7 +155,7 @@ const AssessmentStack = createStackNavigator(
   {
     navigationOptions: ({
       headerStyle: {
-        marginTop: Platform.OS == 'android' ? 24: 0,
+        marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0,
       },
       headerTitleStyle: {
         fontSize: FontSetting.nav_title
