@@ -141,10 +141,12 @@ export default class GameHistoryScreen extends Component {
     return(
       <View style={{flex: 1}}>
         <ScrollView>
-          <Goal game={this.state.game}/>
-          { this._renderSchool() }
-          { this._renderTest1Trigger() }
-          { this._renderTest2Trigger() }
+          <View style={{paddingBottom: 12}}>
+            <Goal game={this.state.game}/>
+            { this._renderSchool() }
+            { this._renderTest1Trigger() }
+            { this._renderTest2Trigger() }
+          </View>
         </ScrollView>
       </View>
     );
