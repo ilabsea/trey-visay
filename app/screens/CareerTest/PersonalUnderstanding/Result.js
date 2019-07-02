@@ -55,7 +55,11 @@ export default class Result extends Component{
     return (
       <View style={[styles.paragraph, {padding: 20}]}>
         <Text style={{color: '#fff', textAlign: 'center'}}>
-          សូមអបអរសាទរ ប្អូនអាចបន្តទៅវគ្គបន្ទាប់
+          សូមអបអរសាទរ
+        </Text>
+
+        <Text style={{color: '#fff', textAlign: 'center'}}>
+          ប្អូនអាចបន្តទៅវគ្គបន្ទាប់
         </Text>
       </View>
     )
