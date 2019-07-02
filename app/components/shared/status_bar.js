@@ -11,8 +11,8 @@ export default class MyStatusBar extends Component {
 
     return (
       <StatusBar
-        translucent={true}
         backgroundColor="rgba(0, 0, 0, 0.251)"
+        barStyle={'dark-content'}
         { ...props }
       />
     )

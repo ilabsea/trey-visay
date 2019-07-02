@@ -4,5 +4,7 @@ export const Colors = {
   gray: 'rgb(155, 155, 155)',
   orange: 'orange',
   red: 'red',
-  greyishBrown: 'rgb(74, 74, 74)'
+  greyishBrown: 'rgb(74, 74, 74)',
+  blueStatusBar: '#176bc1',
+  grayStatusBar: 'rgba(0, 0, 0, 0.251)',
 }

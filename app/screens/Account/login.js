@@ -5,7 +5,8 @@ import {
   Image,
   Text,
   TouchableOpacity,
-  Platform
+  Platform,
+  StatusBar
 } from 'react-native';
 import firebase from 'react-native-firebase';
 
@@ -32,6 +33,9 @@ export default class Login extends Component {
       passwordConfirmation: '',
       isLogin: true
     };
+
+    StatusBar.setBackgroundColor(Colors.blueStatusBar);
+    StatusBar.setBarStyle('light-content');
   }
 
   _isUserInfoCompleted(user) {
@@ -260,7 +264,7 @@ export default class Login extends Component {
         renderContent={ this._renderContent }
         renderNavigation={ this._renderNavigation }
         renderForeground={ this._renderForeground }
-        headerMaxHeight={160}
+        headerMaxHeight={140}
       />
     )
   }

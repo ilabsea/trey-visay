@@ -11,6 +11,7 @@ import {
   TouchableOpacity,
   ImageBackground,
   Dimensions,
+  StatusBar
 } from 'react-native';
 
 import styles from './styles';
@@ -116,11 +117,14 @@ export default class Result extends Component{
 
     let isPass = this.props.score >= 12;
     let imageUrl = isPass ? require('../../../assets/images/success.png') : require('../../../assets/images/fail.png')
-    let colors = isPass ? ['rgb(53, 174, 235)', Colors.blue] : [rgb(255, 130, 97), rgb(255, 102, 98)]
+    let colors = isPass ? ['rgb(53, 174, 235)', Colors.blue] : ['rgb(255, 130, 97)', 'rgb(255, 102, 98)']
+    let statusBarColor = isPass ? 'rgb(53, 174, 235)' : 'rgb(255, 130, 97)';
     let {width} = Dimensions.get('window');
 
     return (
       <LinearGradient style={[styles.overlay]} colors={colors}>
+        <StatusBar backgroundColor={statusBarColor}/>
+
         <ScrollView style={{flex: 1}}>
           <ImageBackground style={{width: width, height: width}} source={imageUrl}>
             <View style={{padding: 16}}>

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, StatusBar } from 'react-native';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Button, Icon, Separator } from 'native-base';
 
 // Utils
@@ -17,12 +17,14 @@ import ScrollableHeader from '../../components/scrollable_header';
 import { NavigationActions } from 'react-navigation';
 import Login from '../Account/login';
 import grades from '../../data/json/grades.json';
+import {Colors} from '../../assets/style_sheets/main/colors';
 
 export default class Profile extends Component {
   constructor(props) {
     super(props);
 
     this.handleParamForLoginPage();
+    this.assignStatusBar();
   }
 
   handleParamForLoginPage() {
@@ -41,13 +43,17 @@ export default class Profile extends Component {
 
   componentDidFocus() {
     this.refreshState();
+    this.assignStatusBar();
+  }
+
+  assignStatusBar() {
+    let bgColor = User.getCurrent() ? Colors.grayStatusBar : Colors.blueStatusBar;
+    let barStyle = User.getCurrent() ? 'dark-content' : 'light-content';
+    StatusBar.setBackgroundColor(bgColor);
+    StatusBar.setBarStyle(barStyle);
   }
 
   refreshState() {
-    this.handleUser();
-  }
-
-  handleUser() {
     this.setState({user: User.getCurrent()});
   }
 
@@ -151,7 +157,7 @@ export default class Profile extends Component {
 
   render() {
     if (!this.state.user) {
-      return ( <Login navigation={this.props.navigation} /> );
+      return (<Login navigation={this.props.navigation} />);
     }
 
     let title = 'ប្រវត្តិរូបសង្ខេប';

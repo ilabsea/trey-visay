@@ -190,9 +190,11 @@ export default class PersonalityAssessmentRealistic extends Component {
       <View style={{flex: 1}}>
         <ScrollableHeader
           backgroundColor={Colors.blue}
+          statusBarColor={Colors.blueStatusBar}
+          barStyle={'light-content'}
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
-          headerMaxHeight={160}
+          headerMaxHeight={140}
           renderForeground={ () => <ProgressStep step={this.state.index+1} /> }
         />
 

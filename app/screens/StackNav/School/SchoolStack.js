@@ -20,7 +20,7 @@ import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
 import SchoolUtil from '../../../utils/School/School';
 
-const headerStyle = {backgroundColor: '#fff', marginTop: StatusBar.currentHeight}
+const headerStyle = {backgroundColor: '#fff'}
 const colorStyle = Platform.OS == 'android' ? {color: '#111'} : {}
 const SchoolStack = createStackNavigator(
   {
@@ -74,7 +74,7 @@ const SchoolStack = createStackNavigator(
   {
     navigationOptions: ({
       headerStyle: {
-        marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0,
+        // marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0,
       },
       headerTitleStyle: {
         fontSize: FontSetting.nav_title

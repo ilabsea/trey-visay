@@ -143,6 +143,8 @@ export default class PersonalUnderstandingForm extends Component {
         <ScrollableHeader
           backgroundColor={Colors.blue}
           textColor={'#fff'}
+          statusBarColor={Colors.blueStatusBar}
+          barStyle={'light-content'}
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
           renderForeground={ this._renderForeground }

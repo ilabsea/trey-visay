@@ -50,7 +50,7 @@ const ProfileStack = createStackNavigator(
   {
     navigationOptions: ({
       headerStyle: {
-        marginTop: StatusBar.currentHeight
+        // marginTop: StatusBar.currentHeight
       },
       headerTitleStyle: {
         fontSize: FontSetting.nav_title

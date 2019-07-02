@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import CarouselView from '../../components/home/carousel_view';
-import StatusBar from '../../components/shared/status_bar';
 
 import { Container, Header} from "native-base";
 
@@ -25,17 +24,26 @@ export default class Home extends Component {
       this.setState({ user: user});
     });
     SchoolUtil.clearSelectedValues();
+
+    this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))];
+  }
+
+  componentWillUnmount(){
+    this.subs.forEach(sub => sub.remove());
+  }
+
+  componentDidFocus() {
+    StatusBar.setBackgroundColor('rgba(0, 0, 0, 0.251)');
+    StatusBar.setBarStyle('dark-content');
   }
 
   render() {
     return (
       <View style={{flex: 1}}>
-        <StatusBar/>
-
         <Header
           span
           androidStatusBarColor="rgba(0, 0, 0, 0.251)"
-          style={{backgroundColor: '#fff', height: 140}}
+          style={{backgroundColor: '#fff', height: (140 - StatusBar.currentHeight)}}
         >
           <Text style={[scrollHeaderStyles.largeTitle, scrollHeaderStyles.largeTitlePosition]}>ទំព័រដេីម</Text>
         </Header>

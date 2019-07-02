@@ -3,6 +3,7 @@ import {
   Text,
   View,
   Platform,
+  StatusBar,
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 
@@ -29,6 +30,8 @@ export default class ProfileForm extends Component {
     }
 
     this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))];
+    StatusBar.setBackgroundColor(Colors.grayStatusBar);
+    StatusBar.setBarStyle('dark-content');
   }
 
   componentDidFocus() {

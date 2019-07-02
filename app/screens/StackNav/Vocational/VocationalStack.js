@@ -50,7 +50,7 @@ const VocationalStack = createStackNavigator(
   {
     navigationOptions: ({
       headerStyle: {
-        marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0
+        // marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0
       },
       headerTitleStyle: {
         fontSize: FontSetting.nav_title

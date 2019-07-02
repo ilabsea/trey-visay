@@ -7,6 +7,7 @@ import {
   Platform,
   BackHandler,
   TouchableOpacity,
+  StatusBar,
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
@@ -115,6 +116,8 @@ export default class GoalScreen extends Component {
   _renderTourtip() {
     return (
       <View style={mainStyles.overlay}>
+        <StatusBar barStyle='light-content' backgroundColor={'rgba(25, 118, 210, 0.9)'}/>
+
         <ScrollView style={{flex: 1}}>
           <View style={{margin: 16}}>
             <Text style={[{marginTop: 54, fontSize: 24, color: '#fff'}]}>ការណែនាំ</Text>

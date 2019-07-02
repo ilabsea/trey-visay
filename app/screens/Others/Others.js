@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {
-  View
+  View,
+  StatusBar
 } from 'react-native';
 import ButtonList from '../../components/list/button_list';
 import User from '../../utils/user';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import ScrollableHeader from '../../components/scrollable_header';
-import StatusBar from '../../components/shared/status_bar';
+import MyStatusBar from '../../components/shared/status_bar';
 
 export default class Others extends Component {
   constructor(props){
@@ -25,6 +26,9 @@ export default class Others extends Component {
 
   componentDidFocus() {
     this.setState({user: User.getCurrent()});
+
+    StatusBar.setBackgroundColor(Colors.grayStatusBar);
+    StatusBar.setBarStyle('dark-content');
   }
 
   componentWillUnmount() {
@@ -41,7 +45,7 @@ export default class Others extends Component {
   renderContent = () => {
     return (
       <View>
-        <StatusBar />
+        <MyStatusBar />
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
           <ButtonList
             hasLine={true}

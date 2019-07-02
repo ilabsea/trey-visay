@@ -230,10 +230,12 @@ export default class PersonalityScreen extends Component {
         <ScrollableHeader
           backgroundColor={Colors.blue}
           textColor={'#fff'}
+          statusBarColor={Colors.blueStatusBar}
+          barStyle={'light-content'}
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
           renderForeground={this._renderForeground }
-          headerMaxHeight={180}
+          headerMaxHeight={150}
           enableProgressBar={true}
           progressValue={this.state.characteristicEntries.length/5}
         />

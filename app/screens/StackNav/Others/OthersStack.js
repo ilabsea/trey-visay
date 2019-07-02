@@ -42,7 +42,7 @@ const OthersStack = createStackNavigator({
 {
   navigationOptions: ({
     headerStyle: {
-      marginTop: Platform.OS == 'android' ? 24: 0
+      // marginTop: Platform.OS == 'android' ? 24: 0
     },
   }),
   initialRouteName: 'Others',

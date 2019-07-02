@@ -118,6 +118,8 @@ export default class CategoriesScreen extends Component {
         <ScrollableHeader
           backgroundColor={Colors.blue}
           textColor={'#fff'}
+          statusBarColor={Colors.blueStatusBar}
+          barStyle={'light-content'}
           renderContent={ this._renderContent }
           renderNavigation={ () => <CloseButton navigation={this.props.navigation}/> }
           title={'យល់ដឹងពីមុខរបរ'}

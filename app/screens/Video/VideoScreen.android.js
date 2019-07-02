@@ -37,7 +37,7 @@ const uiTheme = Platform.select({
     },
     toolbar: {
       container: {
-        marginTop: StatusBar.currentHeight
+        // marginTop: StatusBar.currentHeight
       },
       titleText: {
         color: '#111'

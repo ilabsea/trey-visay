@@ -14,8 +14,9 @@ import * as Progress from 'react-native-progress';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 import scrollHeaderStyles from '../assets/style_sheets/scroll_header';
 
-const DEFAULT_HEADER_MAX_HEIGHT = 140;
-const DEFAULT_HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 64 : 74;
+const STATUSBAR_HEIGHT = StatusBar.currentHeight;
+const DEFAULT_HEADER_MAX_HEIGHT = 140 - StatusBar.currentHeight;
+const DEFAULT_HEADER_MIN_HEIGHT = (Platform.OS === 'ios' ? 64 : 74) - STATUSBAR_HEIGHT;
 const DEFAULT_HEADER_SCROLL_DISTANCE = DEFAULT_HEADER_MAX_HEIGHT - DEFAULT_HEADER_MIN_HEIGHT;
 const NAVIGATION_BUTTON_WIDTH = Platform.OS === 'ios' ? 30 : 44;
 const DEFAULT_HEADER_COLOR = '#fff';
@@ -50,8 +51,7 @@ const styles = StyleSheet.create({
   },
   bar: {
     backgroundColor: 'transparent',
-    marginTop: Platform.OS === 'ios' ? 28 : 36,
-    height: 40,
+    height: DEFAULT_HEADER_MIN_HEIGHT,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -92,6 +92,7 @@ class ScrollableHeader extends Component {
 
   getHeaderMaxHeight() {
     const { headerMaxHeight } = this.props;
+
     return headerMaxHeight || DEFAULT_HEADER_MAX_HEIGHT;
   }
 
@@ -162,25 +163,23 @@ class ScrollableHeader extends Component {
   getNavigationTranslate() {
     const { scrollY } = this.state;
     let distance = this.getHeaderScrollDistance();
-    let z = Platform.OS === 'ios' ? -4 : -8
+    // let z = Platform.OS === 'ios' ? -4 : -8
 
     return scrollY.interpolate({
       inputRange: [0, distance / 2, distance],
-      outputRange: [0, 0, z],
+      // outputRange: [0, 0, z],
+      outputRange: [0, 0, 0],
       extrapolate: 'clamp',
     });
   }
 
   renderStatusBar() {
-    if (Platform.OS=='ios') {
-      return (
-        <StatusBar />
-      )
-    }
+    let bgColor = this.props.statusBarColor || 'rgba(0, 0, 0, 0.251)';
+    let barStyle = this.props.barStyle || 'dark-content';
     return (
       <StatusBar
-        translucent
-        backgroundColor="rgba(0, 0, 0, 0.251)"
+        backgroundColor={bgColor}
+        barStyle={barStyle}
       />
     )
   }
