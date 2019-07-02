@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, Text, StatusBar, Platform } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import CarouselView from '../../components/home/carousel_view';
 
@@ -33,17 +33,21 @@ export default class Home extends Component {
   }
 
   componentDidFocus() {
-    StatusBar.setBackgroundColor('rgba(0, 0, 0, 0.251)');
-    StatusBar.setBarStyle('dark-content');
+    if (Platform.OS == 'android') {
+      StatusBar.setBackgroundColor('rgba(0, 0, 0, 0.251)');
+      StatusBar.setBarStyle('dark-content');
+    }
   }
 
   render() {
+    let height = Platform.OS == 'android' ? 140 - StatusBar.currentHeight : 140;
+
     return (
       <View style={{flex: 1}}>
         <Header
           span
           androidStatusBarColor="rgba(0, 0, 0, 0.251)"
-          style={{backgroundColor: '#fff', height: (140 - StatusBar.currentHeight)}}
+          style={{backgroundColor: '#fff', height: height}}
         >
           <Text style={[scrollHeaderStyles.largeTitle, scrollHeaderStyles.largeTitlePosition]}>ទំព័រដេីម</Text>
         </Header>

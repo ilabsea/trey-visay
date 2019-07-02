@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import {
   View,
-  StatusBar
+  StatusBar,
+  Platform
 } from 'react-native';
 import ButtonList from '../../components/list/button_list';
 import User from '../../utils/user';
@@ -27,8 +28,10 @@ export default class Others extends Component {
   componentDidFocus() {
     this.setState({user: User.getCurrent()});
 
-    StatusBar.setBackgroundColor(Colors.grayStatusBar);
-    StatusBar.setBarStyle('dark-content');
+    if (Platform.OS == 'android') {
+      StatusBar.setBackgroundColor(Colors.grayStatusBar);
+      StatusBar.setBarStyle('dark-content');
+    }
   }
 
   componentWillUnmount() {

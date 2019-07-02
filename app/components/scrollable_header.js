@@ -14,8 +14,8 @@ import * as Progress from 'react-native-progress';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 import scrollHeaderStyles from '../assets/style_sheets/scroll_header';
 
-const STATUSBAR_HEIGHT = StatusBar.currentHeight;
-const DEFAULT_HEADER_MAX_HEIGHT = 140 - StatusBar.currentHeight;
+const STATUSBAR_HEIGHT = Platform.OS == 'android' ? StatusBar.currentHeight : 0;
+const DEFAULT_HEADER_MAX_HEIGHT = 140 - STATUSBAR_HEIGHT;
 const DEFAULT_HEADER_MIN_HEIGHT = (Platform.OS === 'ios' ? 64 : 74) - STATUSBAR_HEIGHT;
 const DEFAULT_HEADER_SCROLL_DISTANCE = DEFAULT_HEADER_MAX_HEIGHT - DEFAULT_HEADER_MIN_HEIGHT;
 const NAVIGATION_BUTTON_WIDTH = Platform.OS === 'ios' ? 30 : 44;
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   bar: {
     backgroundColor: 'transparent',
-    height: DEFAULT_HEADER_MIN_HEIGHT,
+    height: Platform.OS === 'ios' ? 84 : DEFAULT_HEADER_MIN_HEIGHT,
     position: 'absolute',
     top: 0,
     left: 0,

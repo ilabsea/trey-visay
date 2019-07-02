@@ -17,7 +17,7 @@ const HomeStack = createStackNavigator(
   {
     navigationOptions: ({
       headerStyle: {
-        // marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0
+
       },
     }),
   }

@@ -34,8 +34,10 @@ export default class Login extends Component {
       isLogin: true
     };
 
-    StatusBar.setBackgroundColor(Colors.blueStatusBar);
-    StatusBar.setBarStyle('light-content');
+    if (Platform.OS == 'android') {
+      StatusBar.setBackgroundColor(Colors.blueStatusBar);
+      StatusBar.setBarStyle('light-content');
+    }
   }
 
   _isUserInfoCompleted(user) {

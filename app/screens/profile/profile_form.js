@@ -30,8 +30,11 @@ export default class ProfileForm extends Component {
     }
 
     this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))];
-    StatusBar.setBackgroundColor(Colors.grayStatusBar);
-    StatusBar.setBarStyle('dark-content');
+
+    if (Platform.OS == 'android') {
+      StatusBar.setBackgroundColor(Colors.grayStatusBar);
+      StatusBar.setBarStyle('dark-content');
+    }
   }
 
   componentDidFocus() {

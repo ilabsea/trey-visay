@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, TouchableOpacity, StatusBar } from 'react-native';
+import { View, TouchableOpacity, StatusBar, Platform } from 'react-native';
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text, Button, Icon, Separator } from 'native-base';
 
 // Utils
@@ -47,10 +47,12 @@ export default class Profile extends Component {
   }
 
   assignStatusBar() {
-    let bgColor = User.getCurrent() ? Colors.grayStatusBar : Colors.blueStatusBar;
-    let barStyle = User.getCurrent() ? 'dark-content' : 'light-content';
-    StatusBar.setBackgroundColor(bgColor);
-    StatusBar.setBarStyle(barStyle);
+    if (Platform.OS == 'android') {
+      let bgColor = User.getCurrent() ? Colors.grayStatusBar : Colors.blueStatusBar;
+      let barStyle = User.getCurrent() ? 'dark-content' : 'light-content';
+      StatusBar.setBackgroundColor(bgColor);
+      StatusBar.setBarStyle(barStyle);
+    }
   }
 
   refreshState() {
