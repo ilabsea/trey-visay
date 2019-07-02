@@ -26,6 +26,7 @@ import Audio from './audio';
 import ScrollableHeader from '../../../components/scrollable_header';
 import CloseButton from '../../../components/shared/close_button';
 import { Container, Content } from 'native-base';
+import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
 export default class GoalScreen extends Component {
   constructor(props) {
@@ -148,25 +149,28 @@ export default class GoalScreen extends Component {
 
   _renderContent = () => {
     return(
-      <Container>
-        <Content style={{padding: 20, backgroundColor: '#fff'}}>
-          <Text style={[mainStyles.text]}>
-            អ្នកអាចដាក់គោលដៅ និងមូលហេតុដោយការសរសេរ
-          </Text>
+      <Content style={{padding: 20, backgroundColor: '#fff'}}>
+        <Text style={[mainStyles.text]}>
+          អ្នកអាចដាក់គោលដៅ និងមូលហេតុដោយការសរសេរ
+        </Text>
 
-          <TextInput
-            style={[{textAlignVertical: 'top', height: 198, backgroundColor: 'rgb(239, 239, 239)', borderRadius: 8, padding: 16}]}
-            onChangeText={(text) => this.setState({reasonText: text})}
-            value={this.state.reasonText}
-            placeholder='សរសេរចំលើយរបស់អ្នក'
-            placeholderTextColor='rgb(155, 155, 155)'
-            multiline={true}
-            numberOfLines={4}
-          />
+        <Text style={{textAlign: 'right', color: 'rgb(155, 155, 155)', fontSize: FontSetting.hint}}>
+          {this.state.reasonText.length} / 150តួអក្សរ
+        </Text>
 
-          { this._renderRecordSound() }
-        </Content>
-      </Container>
+        <TextInput
+          style={[{textAlignVertical: 'top', backgroundColor: 'rgb(239, 239, 239)', borderRadius: 8, padding: 16}]}
+          onChangeText={(text) => this.setState({reasonText: text})}
+          value={this.state.reasonText}
+          placeholder='សរសេរចំលើយរបស់អ្នក'
+          placeholderTextColor='rgb(155, 155, 155)'
+          multiline={true}
+          numberOfLines={7}
+          maxLength={150}
+        />
+
+        { this._renderRecordSound() }
+      </Content>
     )
   }
 
@@ -177,6 +181,7 @@ export default class GoalScreen extends Component {
     return (
       <View style={{flex: 1}}>
         <ScrollableHeader
+          style={{backgroundColor: '#fff'}}
           renderContent={ this._renderContent }
           renderNavigation={ () => <CloseButton buttonColor={buttonColor} navigation={this.props.navigation}/> }
           title={title}

@@ -37,7 +37,7 @@ export default class Audio extends Component {
       visibleProgressBar: false,
     }
 
-    this.limitTime = 300;
+    this.limitTime = 120;
   }
 
   componentWillUnmount() {
