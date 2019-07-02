@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import {
-  ScrollView,
   View,
   Text,
   TouchableOpacity
 } from 'react-native';
-import { Container, Content, Footer } from 'native-base';
 
+import { Container, Content } from 'native-base';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
-
-import FooterBar from '../../../components/footer/FooterBar';
-
 import SchoolUtil from '../../../utils/School/School';
 import mainStyles from '../../../assets/style_sheets/main/main';
 
@@ -37,10 +33,8 @@ class FilterProvinces extends Component {
 
   setSelectedProvince(province){
     this.setState({ selectedProvince: province });
-  }
 
-  setFilterValue(){
-    SchoolUtil.setSelectedProvince(this.state.selectedProvince);
+    SchoolUtil.setSelectedProvince(province);
     this.props.navigation.state.params.refreshValue();
     this.props.navigation.goBack();
   }
@@ -72,8 +66,6 @@ class FilterProvinces extends Component {
             { return (this.renderProvinces(province, i))}
           })}
         </Content>
-
-        <FooterBar text='យល់ព្រម' onPress={this.setFilterValue.bind(this)} />
       </Container>
     )
   }
