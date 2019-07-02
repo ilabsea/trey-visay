@@ -1,14 +1,16 @@
 import React from 'react';
-import { StyleSheet, Image } from 'react-native';
-import { Button, Text } from 'native-base';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import {
+  StyleSheet,
+  Image,
+  View,
+  Text
+} from 'react-native';
+import { Button } from 'native-base';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
+import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 
 class FilterButton extends React.Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
@@ -22,10 +24,21 @@ class FilterButton extends React.Component {
             refreshValue: this.props.refreshValue
           })
         }>
+
         <Image
           source={require('../../assets/icons/school/filter.png')}
           style={{width: 18, height: 18}} />
+
         <Text style={styles.findText}>ស្វែងរក</Text>
+
+        {!!this.props.number &&
+          <View style={[scrollHeaderStyles.numberWrapper, {marginRight: 12, marginLeft: 20}]}>
+            <View style={scrollHeaderStyles.numberIcon}>
+              <Text style={[scrollHeaderStyles.iconText, {fontSize: 16}]}>{this.props.number}</Text>
+            </View>
+          </View>
+        }
+
       </Button>
     )
   }
@@ -42,7 +55,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.blue
   },
   findText: {
-    fontSize: FontSetting.text
+    fontSize: FontSetting.text,
+    marginLeft: 10,
+    color: '#fff',
   }
 })
 

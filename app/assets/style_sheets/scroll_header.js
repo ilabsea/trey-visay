@@ -9,7 +9,8 @@ export default StyleSheet.create({
   },
   numberIcon: {
     backgroundColor: '#fff',
-    width: 30, height: 30,
+    width: 30,
+    height: 30,
     borderRadius: 15,
     overflow: 'hidden',
     alignItems: 'center',

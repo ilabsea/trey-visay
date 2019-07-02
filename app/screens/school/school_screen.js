@@ -136,6 +136,7 @@ export default class SchoolScreen extends Component {
             navigation={this.props.navigation}
             category={this.segments[this.state.activePage]}
             refreshValue={ this.refreshState.bind(this)}
+            number={!!this.state.currentProvince + !!this.state.currentMajor}
             />
         </View>
       </View>
