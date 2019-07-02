@@ -40,10 +40,11 @@ class FilterScreen extends Component {
 
   resetValues = () => {
     SchoolUtil.clearSelectedValues();
-    this.setState({ selectedValue: '', selectedProvince: '' })
+    this.setState({ selectedValue: '', selectedProvince: '' });
+    this.refreshProvinceValue();
   }
 
-  getMajors(){
+  getMajors() {
     let category = this.state.category;
     let province = this.state.selectedProvince;
     let departments = [];
@@ -58,10 +59,12 @@ class FilterScreen extends Component {
         }
       }
     });
+
     departments = [].concat.apply([], departments);
     let majors = departments.map(department => department.majors);
     majors = [].concat.apply([], majors);
     majors = [...new Set(majors)];
+
     this.setState({majors : majors});
   }
 

@@ -167,7 +167,9 @@ const CareerCounsellorStack = createStackNavigator(
         // marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0,
       },
       headerTitleStyle: {
-        fontSize: FontSetting.nav_title
+        fontSize: FontSetting.nav_title,
+        fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue' : 'Kantumruy',
+        fontWeight: '300'
       },
       headerBackTitle: null
     }),

@@ -22,7 +22,7 @@ class BackButton extends React.Component {
     let width = Platform.OS === 'ios' ? 30 : 44;
     let paddingHorizontal = Platform.OS === 'ios' ? 8 : 12;
     let iconName = Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back';
-    let iconSize = Platform.OS === 'ios' ? 34 : 28
+    let iconSize = Platform.OS === 'ios' ? 34 : 24
     return <TouchableOpacity onPress={this.handleOnPress}
                 style={[{paddingHorizontal: paddingHorizontal, width: width}, this.props.style]}>
               <IonicIcon name={iconName} color={this.getButtonColor()} size={iconSize} />

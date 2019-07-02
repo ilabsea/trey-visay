@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { StatusBar } from 'react-native';
+import { StatusBar, Platform } from 'react-native';
 import { createStackNavigator } from  'react-navigation';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
@@ -49,11 +49,10 @@ const ProfileStack = createStackNavigator(
   },
   {
     navigationOptions: ({
-      headerStyle: {
-        // marginTop: StatusBar.currentHeight
-      },
       headerTitleStyle: {
-        fontSize: FontSetting.nav_title
+        fontSize: FontSetting.nav_title,
+        fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue' : 'Kantumruy',
+        fontWeight: '300'
       }
     })
   }

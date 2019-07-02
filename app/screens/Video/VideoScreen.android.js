@@ -26,7 +26,7 @@ import MyStatusBar from '../../components/shared/status_bar';
 import BackButton from '../../components/shared/back_button';
 import VideoListView from '../../components/video/video_list';
 import LoadingIndicator from '../../components/loading_indicator';
-
+import {FontSetting} from '../../assets/style_sheets/font_setting';
 import videoList from '../../data/json/videos';
 
 const uiTheme = Platform.select({
@@ -36,11 +36,11 @@ const uiTheme = Platform.select({
       primaryColor: '#fff',
     },
     toolbar: {
-      container: {
-        // marginTop: StatusBar.currentHeight
-      },
       titleText: {
-        color: '#111'
+        color: '#111',
+        fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue' : 'Kantumruy',
+        fontWeight: '300',
+        fontSize: FontSetting.nav_title,
       },
       leftElement: {
         color: '#111'

@@ -56,7 +56,6 @@ export default StyleSheet.create({
   link: {
     color: '#1976d2',
     fontSize: FontSetting.text,
-    height: 26
   },
   carouselBox: {
     marginBottom: 20,

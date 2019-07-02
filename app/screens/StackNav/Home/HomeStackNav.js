@@ -7,6 +7,7 @@ import {
 import { Platform } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
 // Screens
 import VocationalStack from '../Vocational/VocationalStack';
@@ -78,7 +79,7 @@ const HomeStackNav = createStackNavigator({
   VideoScreen: {
     screen: VideoScreen,
     navigationOptions: ({navigation}) => ({
-      header: null
+      header: null,
     })
   },
   CareerCounsellorStack: {
@@ -96,7 +97,7 @@ const HomeStackNav = createStackNavigator({
   VocationalStack: {
     screen: VocationalStack,
     navigationOptions: ({navigation}) => ({
-      header: null
+      header: null,
     })
   }
 }, {

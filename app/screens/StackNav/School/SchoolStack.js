@@ -2,7 +2,8 @@ import React from 'react';
 import {
   TouchableOpacity,
   Platform,
-  StatusBar
+  StatusBar,
+  StyleSheet,
 } from 'react-native';
 import { View, Header, Left, Title, Body, Right, Button, Icon, Text } from 'native-base';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
@@ -39,7 +40,7 @@ const SchoolStack = createStackNavigator(
             </Left>
 
             <Body>
-              <Title style={[{fontSize: FontSetting.title}, colorStyle]}>គ្រឹះស្ថានសិក្សា</Title>
+              <Title style={[styles.title, colorStyle]}>គ្រឹះស្ថានសិក្សា</Title>
             </Body>
 
             <Right>
@@ -77,11 +78,20 @@ const SchoolStack = createStackNavigator(
         // marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0,
       },
       headerTitleStyle: {
-        fontSize: FontSetting.nav_title
+        fontSize: FontSetting.nav_title,
+        fontFamily: Platform.OS === 'android' ? 'Kantumruy' : 'HelveticaNeue',
+        fontWeight: '300'
       }
     }),
   }
 
 );
+
+const styles = StyleSheet.create({
+  title: {
+    fontSize: FontSetting.nav_title,
+    fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue' : 'Kantumruy'
+  }
+});
 
 export default SchoolStack;
