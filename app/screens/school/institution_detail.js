@@ -69,13 +69,14 @@ export default class InstitutionDetail extends Component {
   }
 
   renderMajor(department, index){
+    let majors = [...new Set(department.majors)];
     return(
       <View key={index} style={mainStyles.box}>
         { !!department.name &&
           <Text style={mainStyles.sectionText}> {department.name} </Text>
         }
         <View style={[mainStyles.grid, { justifyContent: 'flex-start', margin: 0 }]}>
-          { department.majors.map((major, i) => {
+          { majors.map((major, i) => {
               { return (this.renderItem(major, i))}
             })
           }
