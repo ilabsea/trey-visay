@@ -72,7 +72,7 @@ export default class About extends Component {
           }
         </View>
 
-        <Text style={styles.paragraph}>គ្រាំទ្រថវិកាពី</Text>
+        <Text style={styles.paragraph}>គាំទ្រថវិកាពី</Text>
 
         <View style={styles.imgWrapper}>
           { this._renderImageButton(
