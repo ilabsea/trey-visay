@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
-import { Divider } from 'react-native-elements';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  BackHandler,
+} from 'react-native';
 
+import { Divider } from 'react-native-elements';
 import majorList from '../../data/json/personality_major';
 import mainStyles from '../../assets/style_sheets/main/main';
 import { Colors } from '../../assets/style_sheets/main/colors';
@@ -19,6 +25,15 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
     this.state = {
       category: category
     }
+
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
+
+  _onClickBackHandler = () => {
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    this.props.navigation.goBack();
+
+    return true
   }
 
   _renderList() {
