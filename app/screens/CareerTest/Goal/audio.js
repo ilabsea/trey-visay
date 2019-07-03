@@ -322,7 +322,7 @@ export default class Audio extends Component {
 
         <View style={{flex: 1, paddingHorizontal: 10}}>
           <Text>លេង</Text>
-          <Text style={{lineHeight: 20}}>{ this._renderTime() }</Text>
+          <Text>{ this._renderTime() }</Text>
         </View>
 
         <TouchableOpacity onPress={ () => this._onDeleteRecord() }>

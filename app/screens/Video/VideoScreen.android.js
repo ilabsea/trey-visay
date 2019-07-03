@@ -38,7 +38,7 @@ const uiTheme = Platform.select({
     toolbar: {
       titleText: {
         color: '#111',
-        fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue' : 'Kantumruy',
+        fontFamily: 'Kantumruy',
         fontWeight: '300',
         fontSize: FontSetting.nav_title,
       },
@@ -189,7 +189,7 @@ export default class VideoScreen extends Component {
   render() {
     return(
       <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <View style={styles.container} ref="myRef">
+        <View style={{flex: 1}} ref="myRef">
           <MyStatusBar />
           <Toolbar
             leftElement={ 'arrow-back' }
@@ -211,17 +211,3 @@ export default class VideoScreen extends Component {
     );
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollContainer: {
-    padding: 16
-  },
-  headerTitleText: {
-    marginLeft: 0,
-    fontFamily: 'Roboto',
-    fontWeight: 'bold'
-  },
-});

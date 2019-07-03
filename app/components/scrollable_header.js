@@ -13,10 +13,11 @@ import PropTypes from 'prop-types';
 import * as Progress from 'react-native-progress';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 import scrollHeaderStyles from '../assets/style_sheets/scroll_header';
+import { Header } from 'react-navigation';
 
 const STATUSBAR_HEIGHT = Platform.OS == 'android' ? StatusBar.currentHeight : 0;
 const DEFAULT_HEADER_MAX_HEIGHT = 140 - STATUSBAR_HEIGHT;
-const DEFAULT_HEADER_MIN_HEIGHT = (Platform.OS === 'ios' ? 64 : 74) - STATUSBAR_HEIGHT;
+const DEFAULT_HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 64 : Header.HEIGHT;
 const DEFAULT_HEADER_SCROLL_DISTANCE = DEFAULT_HEADER_MAX_HEIGHT - DEFAULT_HEADER_MIN_HEIGHT;
 const NAVIGATION_BUTTON_WIDTH = Platform.OS === 'ios' ? 30 : 44;
 const DEFAULT_HEADER_COLOR = '#fff';
@@ -57,6 +58,14 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     justifyContent: 'center'
+  },
+  titleWrapper: {
+    position: 'absolute',
+    left: NAVIGATION_BUTTON_WIDTH,
+    right: NAVIGATION_BUTTON_WIDTH,
+    bottom: 0,
+    justifyContent: 'center',
+    height: Platform.OS === 'ios' ? 'auto' : DEFAULT_HEADER_MIN_HEIGHT,
   },
   title: {
     fontSize: FontSetting.nav_title,
@@ -204,10 +213,9 @@ class ScrollableHeader extends Component {
 
   renderTitle() {
     if (!this.props.title) { return null }
-    let bottom = Platform.OS == 'ios' ? -2 : 4;
 
     return (
-      <View style={{position: 'absolute', left: NAVIGATION_BUTTON_WIDTH, right: NAVIGATION_BUTTON_WIDTH, bottom: bottom}}>
+      <View style={styles.titleWrapper}>
         <Text numberOfLines={1} style={[styles.title, {color: this.getTextColor()}]} numberOfLines={1}>{this.props.title}</Text>
       </View>
     )
