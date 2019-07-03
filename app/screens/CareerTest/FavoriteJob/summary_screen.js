@@ -164,7 +164,7 @@ export default class SummaryScreen extends Component {
     return (
       <View style={{flexDirection: 'row'}}>
         <CloseButton navigation={this.props.navigation}/>
-        <Text style={{color: '#fff'}}>ជ្រើសរើសមុខរបរចេញពីតារាងសង្ខេបលទ្ធផល</Text>
+        <Text style={scrollHeaderStyles.whiteNavTitle}>ជ្រើសរើសមុខរបរពីតារាងសង្ខេបលទ្ធផល</Text>
       </View>
     )
   }

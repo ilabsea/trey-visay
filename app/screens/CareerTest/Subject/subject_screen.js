@@ -233,7 +233,7 @@ export default class SubjectScreen extends Component {
     return (
       <View style={{flexDirection: 'row'}}>
         <CloseButton navigation={this.props.navigation}/>
-        <Text style={{color: '#fff'}}>បំពេញមុខវិជ្ជា</Text>
+        <Text style={scrollHeaderStyles.whiteNavTitle}>បំពេញមុខវិជ្ជា</Text>
       </View>
     )
   }

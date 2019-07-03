@@ -54,7 +54,7 @@ export default class Login extends Component {
     return (
       <View style={{flexDirection: 'row'}}>
         <BackButton buttonColor='#fff' navigation={this.props.navigation} />
-        <Text style={[scrollHeaderStyles.title, {textAlign: 'center', flex: 1, marginRight: marginRight}]}>សូមស្វាគមន៍</Text>
+        <Text style={[scrollHeaderStyles.whiteNavTitle, {textAlign: 'center', flex: 1, marginRight: marginRight}]}>សូមស្វាគមន៍</Text>
       </View>
     )
   }

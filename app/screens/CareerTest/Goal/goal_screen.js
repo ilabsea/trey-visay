@@ -155,7 +155,7 @@ export default class GoalScreen extends Component {
         </Text>
 
         <Text style={{textAlign: 'right', color: 'rgb(155, 155, 155)', fontSize: FontSetting.hint}}>
-          {this.state.reasonText.length} / 150តួអក្សរ
+          { (!!this.state.reasonText && this.state.reasonText.length) || 0} / 150តួអក្សរ
         </Text>
 
         <TextInput

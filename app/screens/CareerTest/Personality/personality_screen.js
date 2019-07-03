@@ -203,7 +203,7 @@ export default class PersonalityScreen extends Component {
     return (
       <View style={{flexDirection: 'row'}}>
         <CloseButton navigation={this.props.navigation}/>
-        <Text style={{color: '#fff'}}>បំពេញបុគ្គលិកលក្ខណៈ</Text>
+        <Text style={scrollHeaderStyles.whiteNavTitle}>បំពេញបុគ្គលិកលក្ខណៈ</Text>
       </View>
     )
   }

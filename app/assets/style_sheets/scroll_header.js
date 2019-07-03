@@ -81,5 +81,9 @@ export default StyleSheet.create({
   subTitle: {
     fontSize: 13,
     lineHeight: 24
+  },
+  whiteNavTitle: {
+    color: '#fff',
+    fontSize: FontSetting.nav_title
   }
 });

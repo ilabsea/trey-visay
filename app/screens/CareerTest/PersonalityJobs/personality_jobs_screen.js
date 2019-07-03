@@ -182,7 +182,7 @@ export default class PersonalityJobsScreen extends Component {
     return (
       <View style={{flexDirection: 'row'}}>
         <CloseButton navigation={this.props.navigation}/>
-        <Text style={{color: '#fff'}}>{this.props.navigation.getParam('title')}</Text>
+        <Text style={scrollHeaderStyles.whiteNavTitle}>{this.props.navigation.getParam('title')}</Text>
       </View>
     )
   }
