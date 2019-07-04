@@ -196,7 +196,7 @@ export default class SummaryScreen extends Component {
           renderContent={ this._renderContent }
           renderNavigation={ this._renderNavigation }
           renderForeground={this._renderForeground }
-          headerMaxHeight={150}
+          headerMaxHeight={162}
           enableProgressBar={true}
           progressValue={!!this.state.mostFavorableJob + 0}
         />
