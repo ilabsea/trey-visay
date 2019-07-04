@@ -75,6 +75,8 @@ class CarouselView extends Component {
   }
 
   renderItem(option) {
+    let fontSizeStyle = Platform.OS === 'ios' ? {} : {fontSize: FontSetting.nav_title};
+
     return (
       <Ripple
         onPress={ () => this.onPressButton(option) }>
@@ -98,7 +100,7 @@ class CarouselView extends Component {
 
               <View>
                 <TouchableOpacity onPress={() => this.onPressButton(option)} style={styles.btnStart}>
-                  <Text style={{color: '#fff', fontWeight: 'bold'}}>{option.button_text}</Text>
+                  <Text style={[fontSizeStyle, {color: '#fff', fontWeight: 'bold'}]}>{option.button_text}</Text>
                 </TouchableOpacity>
               </View>
             </View>
