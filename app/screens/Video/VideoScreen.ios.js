@@ -207,7 +207,7 @@ export default class VideoScreen extends Component {
           renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
           title={'វីដេអូមុខរបរ'}
           renderForeground={ this._renderForeground }
-          headerMaxHeight={150}
+          headerMaxHeight={160}
         />
 
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
