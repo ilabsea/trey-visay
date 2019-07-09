@@ -3,19 +3,15 @@ import {
   View,
   Text,
   StyleSheet,
-  TouchableOpacity,
-  Platform
 } from 'react-native';
-import { Footer } from 'native-base';
-
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import { Footer, Button } from 'native-base';
 
 const FooterBar = (props) => {
   return(
     <Footer style={{backgroundColor: '#fff'}}>
-      <TouchableOpacity onPress={props.onPress} style={styles.button}>
+      <Button onPress={props.onPress} style={styles.button}>
         <Text style={styles.btnText}>{props.text}</Text>
-      </TouchableOpacity>
+      </Button>
     </Footer>
   )
 }
@@ -27,7 +23,8 @@ const styles = StyleSheet.create({
     width: '90%',
     margin: 5,
     borderRadius: 10,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flex: 1
   },
   btnText: {
     color: '#fff',

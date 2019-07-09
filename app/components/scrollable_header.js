@@ -7,6 +7,7 @@ import {
   StyleSheet,
   Text,
   View,
+  Dimensions,
 } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import PropTypes from 'prop-types';
@@ -15,11 +16,17 @@ import { FontSetting } from '../assets/style_sheets/font_setting';
 import scrollHeaderStyles from '../assets/style_sheets/scroll_header';
 import { Header } from 'react-navigation';
 
+const deviceHeight = Dimensions.get("window").height;
+const deviceWidth = Dimensions.get("window").width;
+const platform = Platform.OS;
+const isIphoneX = platform === "ios" && (deviceHeight === 812 || deviceWidth === 812 || deviceHeight === 896 || deviceWidth === 896);
+const IPHONE_HEADER_HEIGHT = isIphoneX ? 24 : 0;
+
 const STATUSBAR_HEIGHT = Platform.OS == 'android' ? StatusBar.currentHeight : 0;
-const DEFAULT_HEADER_MAX_HEIGHT = 140 - STATUSBAR_HEIGHT;
-const DEFAULT_HEADER_MIN_HEIGHT = Platform.OS === 'ios' ? 64 : Header.HEIGHT;
+const DEFAULT_HEADER_MAX_HEIGHT = 140 - STATUSBAR_HEIGHT + IPHONE_HEADER_HEIGHT;
+const DEFAULT_HEADER_MIN_HEIGHT = platform === 'ios' ? 64 + IPHONE_HEADER_HEIGHT : Header.HEIGHT;
 const DEFAULT_HEADER_SCROLL_DISTANCE = DEFAULT_HEADER_MAX_HEIGHT - DEFAULT_HEADER_MIN_HEIGHT;
-const NAVIGATION_BUTTON_WIDTH = Platform.OS === 'ios' ? 30 : 44;
+const NAVIGATION_BUTTON_WIDTH = platform === 'ios' ? 30 : 44;
 const DEFAULT_HEADER_COLOR = '#fff';
 const DEFAULT_TEXT_COLOR = '#111';
 
@@ -51,8 +58,9 @@ const styles = StyleSheet.create({
     borderBottomColor: '#ccc'
   },
   bar: {
+    marginTop: IPHONE_HEADER_HEIGHT,
     backgroundColor: 'transparent',
-    height: Platform.OS === 'ios' ? 84 : DEFAULT_HEADER_MIN_HEIGHT,
+    height: platform === 'ios' ? 84 : DEFAULT_HEADER_MIN_HEIGHT,
     position: 'absolute',
     top: 0,
     left: 0,
@@ -65,13 +73,13 @@ const styles = StyleSheet.create({
     right: NAVIGATION_BUTTON_WIDTH,
     bottom: 0,
     justifyContent: 'center',
-    height: Platform.OS === 'ios' ? 'auto' : DEFAULT_HEADER_MIN_HEIGHT,
+    height: platform === 'ios' ? 'auto' : DEFAULT_HEADER_MIN_HEIGHT,
   },
   title: {
     fontSize: FontSetting.nav_title,
     color: DEFAULT_TEXT_COLOR,
     paddingHorizontal: 16,
-    textAlign: Platform.OS === 'ios' ? 'center' : 'left',
+    textAlign: platform === 'ios' ? 'center' : 'left',
   },
   scrollViewContent: {
     marginTop: DEFAULT_HEADER_MAX_HEIGHT,
@@ -102,7 +110,11 @@ class ScrollableHeader extends Component {
   getHeaderMaxHeight() {
     const { headerMaxHeight } = this.props;
 
-    return headerMaxHeight || DEFAULT_HEADER_MAX_HEIGHT;
+    if (headerMaxHeight) {
+      return headerMaxHeight + IPHONE_HEADER_HEIGHT;
+    }
+
+    return DEFAULT_HEADER_MAX_HEIGHT;
   }
 
   getHeaderScrollDistance() {
@@ -327,8 +339,6 @@ class ScrollableHeader extends Component {
     }
   }
 
-
-
   renderHeader() {
     let bgColor = this.props.backgroundColor || DEFAULT_HEADER_COLOR;
 
@@ -386,7 +396,7 @@ ScrollableHeader.defaultProps = {
   largeTitle: null,
   renderLogo: null,
   renderForeground: null,
-  headerMaxHeight: DEFAULT_HEADER_MAX_HEIGHT,
+  headerMaxHeight: 0,
   backgroundColor: null,
   enableProgressBar: false,
   progressValue: 0,
