@@ -23,6 +23,7 @@ const CarouselItem = (props) =>  {
       layout={'default'}
       enableSnap={enableSnap}
       containerCustomStyle={style}
+      removeClippedSubviews={false}
     />
   )
 }
