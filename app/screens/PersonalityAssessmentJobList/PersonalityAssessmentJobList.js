@@ -22,8 +22,11 @@ export default class PersonalityAssessmentJobList extends Component {
     jobs = [].concat.apply([], jobs);
     jobs = jobs.filter(obj => category.careers.includes(obj.code));
 
-    let arr = jobs.filter(x => !!x.short_description);
-    arr = arr.concat(jobs.filter(x => !x.short_description));
+    let allJobs = [...new Set(jobs.map(x => x.code))];
+    allJobs = allJobs.map(code => jobs.find(job => job.code == code));
+
+    let arr = allJobs.filter(x => !!x.short_description);
+    arr = arr.concat(allJobs.filter(x => !x.short_description));
 
     let doms = arr.map((job, index) => {
       return (

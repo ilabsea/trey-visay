@@ -45,6 +45,7 @@ android/app/src/main/res/mipmap-xxxhdpi
 #ios/*
 ios/Podfile.lock
 ios/TreyVisay/GoogleService-Info.plist
+ios/GoogleService-Info.plist
 
 # node.js
 #
