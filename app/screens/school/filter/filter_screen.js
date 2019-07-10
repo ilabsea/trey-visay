@@ -15,7 +15,7 @@ import OneList from '../../../components/list/one_list';
 import GridList from '../../../components/list/grid_list';
 import universities from '../../../data/json/universities.json';
 import FooterBar from '../../../components/footer/FooterBar';
-import keyword from '../../../db/analytics/keyword';
+import keyword from '../../../data/analytics/keyword';
 
 class FilterScreen extends Component {
   _keyExtractor = (item, index) => index.toString();
