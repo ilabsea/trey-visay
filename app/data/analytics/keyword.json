@@ -1,0 +1,14 @@
+{
+  "CAREER_ASSESSMENT_VIEW": "career_assessment_view",
+  "PERSONALITY_ASSESSMENT_VIEW": "personality_assessment_view",
+  "INSTITUTION_VIEW": "institution_view",
+  "VOCATIONAL_VIEW": "vocational_view",
+  "VIDEO_VIEW": "video_view",
+  "CAREER_ASSESSMENT_BEGAN": "career_assessment_began",
+  "CAREER_ASSESSMENT_FINISHED": "career_assessment_finished",
+  "PERSONALITY_ASSESSMENT_BEGAN": "personality_assessment_began",
+  "PERSONALITY_ASSESSMENT_FINISHED": "personality_assessment_finished",
+  "SIGNUP": "signup",
+  "LOGIN": "login",
+  "INSTITUTION_FILTER_APPLIED": "institution_filter_applied"
+}

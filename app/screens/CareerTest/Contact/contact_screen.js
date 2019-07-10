@@ -22,6 +22,7 @@ import Sidekiq from '../../../utils/models/sidekiq';
 import schoolList from '../../../data/json/universities';
 import characteristicList from '../../../data/json/characteristic_jobs';
 import ScrollableHeader from '../../../components/scrollable_header';
+import keyword from '../../../data/analytics/keyword';
 
 export default class ContactScreen extends Component {
   constructor(props) {
@@ -84,7 +85,7 @@ export default class ContactScreen extends Component {
   }
 
   _goNext() {
-    firebase.analytics().logEvent('finish_career_test_click');
+    firebase.analytics().logEvent(keyword.CAREER_ASSESSMENT_FINISHED);
     this._handleSubmit();
   }
 

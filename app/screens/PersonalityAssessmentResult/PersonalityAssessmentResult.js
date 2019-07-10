@@ -16,6 +16,7 @@ import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
 import ScrollableHeader from '../../components/scrollable_header';
 import Result from './Result';
+import keyword from '../../data/analytics/keyword';
 
 export default class PersonalityAssessmentResult extends Component {
   constructor(props) {
@@ -51,7 +52,7 @@ export default class PersonalityAssessmentResult extends Component {
   }
 
   _goNext = () => {
-    firebase.analytics().logEvent('finish_personality_test_click');
+    firebase.analytics().logEvent(keyword.PERSONALITY_ASSESSMENT_FINISHED);
     realm.write(() => {
       realm.create('PersonalityAssessment', this._buildData(), true);
       Sidekiq.create(this.state.assessment.uuid, 'PersonalityAssessment');

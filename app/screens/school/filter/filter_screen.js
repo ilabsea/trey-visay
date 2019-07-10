@@ -3,6 +3,7 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, FlatList }
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Container, Content, Footer } from 'native-base';
+import firebase from 'react-native-firebase';
 
 import SchoolUtil from '../../../utils/School/School';
 
@@ -14,6 +15,7 @@ import OneList from '../../../components/list/one_list';
 import GridList from '../../../components/list/grid_list';
 import universities from '../../../data/json/universities.json';
 import FooterBar from '../../../components/footer/FooterBar';
+import keyword from '../../../db/analytics/keyword';
 
 class FilterScreen extends Component {
   _keyExtractor = (item, index) => index.toString();
@@ -75,6 +77,9 @@ class FilterScreen extends Component {
   setFilterValues(){
     let selectedValue = this.state.selectedValue == null ? '' : this.state.selectedValue;
     SchoolUtil.setSelectedMajor(selectedValue);
+
+    firebase.analytics().logEvent(keyword.INSTITUTION_FILTER_APPLIED);
+
     this.props.navigation.state.params.refreshValue();
     this.props.navigation.goBack();
   }

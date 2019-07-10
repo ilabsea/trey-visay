@@ -21,6 +21,7 @@ import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import ButtonList from '../../components/list/button_list';
 import TestListItem from '../../components/GameHistory/TestListItem';
+import keyword from '../../data/analytics/keyword';
 
 export default class PersonalityAssessment extends Component {
   constructor(props) {
@@ -77,7 +78,7 @@ export default class PersonalityAssessment extends Component {
   }
 
   _startNewAssessment() {
-    firebase.analytics().logEvent('personality_test_btn_click');
+    firebase.analytics().logEvent(keyword.PERSONALITY_ASSESSMENT_BEGAN);
     let uncompletedAssessments = realm.objects('PersonalityAssessment').filtered('isDone = false AND userUuid = "' + User.getID() + '"');
 
     realm.write(() => {

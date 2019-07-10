@@ -22,6 +22,7 @@ import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 import { Content, Body, Right, Icon, CardItem } from 'native-base';
 import ButtonList from '../../components/list/button_list';
 import TestListItem from '../../components/GameHistory/TestListItem';
+import keyword from '../../data/analytics/keyword';
 
 export default class CareerCounsellor extends Component {
   componentWillMount() {
@@ -137,7 +138,8 @@ export default class CareerCounsellor extends Component {
   }
 
   _goToPersonalUnderstandingForm() {
-    firebase.analytics().logEvent('career_test_btn_click');
+    firebase.analytics().logEvent(keyword.CAREER_ASSESSMENT_BEGAN);
+
     let uncompletedGames = this.state.user.games.filtered('isDone = false');
 
     realm.write(() => {

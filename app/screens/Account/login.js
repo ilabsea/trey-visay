@@ -22,6 +22,7 @@ import BackButton from '../../components/shared/back_button';
 import { Container, Content, Icon, Button, Input, Item, Form } from 'native-base';
 import { NavigationActions } from 'react-navigation';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import keyword from '../../data/analytics/keyword';
 
 export default class Login extends Component {
   constructor(props) {
@@ -167,7 +168,7 @@ export default class Login extends Component {
   }
 
   _register = () => {
-    firebase.analytics().logEvent('signup');
+    firebase.analytics().logEvent(keyword.SIGNUP);
 
     if (!this.state.username || !this.state.password || !this.state.passwordConfirmation) {
       return Alert.alert(
@@ -213,7 +214,7 @@ export default class Login extends Component {
   }
 
   _login = () => {
-    firebase.analytics().logEvent('login');
+    firebase.analytics().logEvent(keyword.LOGIN);
 
     if (!this.state.username || !this.state.password) {
       return Alert.alert(
