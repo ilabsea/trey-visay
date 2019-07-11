@@ -9,6 +9,7 @@ import User from '../../utils/user';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import ScrollableHeader from '../../components/scrollable_header';
 import MyStatusBar from '../../components/shared/status_bar';
+import Share from 'react-native-share';
 
 export default class Others extends Component {
   constructor(props){
@@ -45,6 +46,19 @@ export default class Others extends Component {
     })
   }
 
+  onPressShareApp() {
+    let url = Platform.OS === 'ios' ? 'https://apps.apple.com/kh/app/trey-visay/id1445506569' : 'https://play.google.com/store/apps/details?id=com.treyvisay';
+
+    let shareOptions = {
+      title: 'កម្មវិធីត្រីវិស័យ',
+      message: 'ជាកម្មវិធីព្រឹក្សាអាជីពការងារ',
+      url: url,
+      subject: "កម្មវិធីត្រីវិស័យ"
+    };
+
+    Share.open(shareOptions);
+  }
+
   renderContent = () => {
     return (
       <View>
@@ -65,6 +79,12 @@ export default class Others extends Component {
         </View>
 
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
+          <ButtonList
+            hasLine={true}
+            icon={{color: 'rgb(53, 174, 235)', src: require('../../assets/icons/others/share.png')}}
+            onPress={() => this.onPressShareApp() }
+            title='Share App' />
+
           <ButtonList
             hasLine={true}
             icon={{color: 'rgb(172, 175, 193)', src: require('../../assets/icons/others/term_condition.png')}}

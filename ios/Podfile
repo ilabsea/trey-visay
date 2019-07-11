@@ -33,6 +33,8 @@ target 'TreyVisay' do
   pod 'GoogleIDFASupport', '~> 3.14.0'
   pod 'RNDeviceInfo', :path => '../node_modules/react-native-device-info'
 
+  pod 'RNShare', :path => '../node_modules/react-native-share'
+
 end
 
 swift4 = ['Charts']
