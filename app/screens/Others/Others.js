@@ -10,6 +10,8 @@ import { Colors } from '../../assets/style_sheets/main/colors';
 import ScrollableHeader from '../../components/scrollable_header';
 import MyStatusBar from '../../components/shared/status_bar';
 import Share from 'react-native-share';
+import firebase from 'react-native-firebase';
+import keyword from '../../data/analytics/keyword';
 
 export default class Others extends Component {
   constructor(props){
@@ -56,7 +58,9 @@ export default class Others extends Component {
       subject: "កម្មវិធីត្រីវិស័យ"
     };
 
-    Share.open(shareOptions);
+    Share.open(shareOptions).then((res) => {
+      firebase.analytics().logEvent(keyword.SHARE_APP);
+    })
   }
 
   renderContent = () => {

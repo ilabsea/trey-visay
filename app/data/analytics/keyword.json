@@ -12,5 +12,6 @@
   "LOGIN": "login",
   "INSTITUTION_FILTER_APPLIED": "institution_filter_applied",
   "CAREER_ASSESSMENT_PERSONAL_UNDERSTANDING_TEST_PASS": "career_assessment_personal_understanding_test_pass",
-  "CAREER_ASSESSMENT_PERSONAL_UNDERSTANDING_TEST_FAIL": "career_assessment_personal_understanding_test_fail"
+  "CAREER_ASSESSMENT_PERSONAL_UNDERSTANDING_TEST_FAIL": "career_assessment_personal_understanding_test_fail",
+  "SHARE_APP": "share_app"
 }
