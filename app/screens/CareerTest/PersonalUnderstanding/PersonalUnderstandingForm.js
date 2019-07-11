@@ -24,7 +24,9 @@ import FooterBar from '../../../components/footer/FooterBar';
 import Result from './Result';
 import BackButton from '../../../components/shared/back_button';
 import { Colors } from '../../../assets/style_sheets/main/colors';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import firebase from 'react-native-firebase';
+import keyword from '../../../data/analytics/keyword';
 
 export default class PersonalUnderstandingForm extends Component {
   constructor(props) {
@@ -76,8 +78,12 @@ export default class PersonalUnderstandingForm extends Component {
     let user = User.getCurrent();
     let game = user.games[user.games.length - 1];
     let list = game.personalUnderstandings;
+    let isPass = values.score >= 12;
+    let resultKeyword = isPass ? keyword.CAREER_ASSESSMENT_PERSONAL_UNDERSTANDING_TEST_PASS : keyword.CAREER_ASSESSMENT_PERSONAL_UNDERSTANDING_TEST_FAIL;
 
     realm.write(() => {
+      firebase.analytics().logEvent(resultKeyword);
+
       list.push(values);
 
       this.setState({testCount: list.length, score: values.score});

@@ -4,11 +4,13 @@
   "INSTITUTION_VIEW": "institution_view",
   "VOCATIONAL_VIEW": "vocational_view",
   "VIDEO_VIEW": "video_view",
-  "CAREER_ASSESSMENT_BEGAN": "career_assessment_began",
-  "CAREER_ASSESSMENT_FINISHED": "career_assessment_finished",
-  "PERSONALITY_ASSESSMENT_BEGAN": "personality_assessment_began",
-  "PERSONALITY_ASSESSMENT_FINISHED": "personality_assessment_finished",
-  "SIGNUP": "signup",
+  "CAREER_ASSESSMENT_BEGAN": "career_assessment_begin",
+  "CAREER_ASSESSMENT_FINISHED": "career_assessment_complete",
+  "PERSONALITY_ASSESSMENT_BEGAN": "personality_assessment_begin",
+  "PERSONALITY_ASSESSMENT_FINISHED": "personality_assessment_complete",
+  "SIGNUP": "sign_up",
   "LOGIN": "login",
-  "INSTITUTION_FILTER_APPLIED": "institution_filter_applied"
+  "INSTITUTION_FILTER_APPLIED": "institution_filter_applied",
+  "CAREER_ASSESSMENT_PERSONAL_UNDERSTANDING_TEST_PASS": "career_assessment_personal_understanding_test_pass",
+  "CAREER_ASSESSMENT_PERSONAL_UNDERSTANDING_TEST_FAIL": "career_assessment_personal_understanding_test_fail"
 }
