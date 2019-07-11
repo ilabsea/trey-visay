@@ -14,17 +14,15 @@ class GridList extends React.Component {
   }
 
   setActive(value){
-    console.log('value : ', value)
     this.setState({selectedValue: value});
   }
 
   render() {
     let icon = this.props.icon ? require('../../assets/icons/school/all_major.png') : require('../../assets/icons/school/major.png');
     let active = this.state.selectedValue == this.props.data;
-    console.log('this.state.selectedValue : ', this.state.selectedValue);
     let activeIconBg = active ? { backgroundColor: Colors.blue }: null;
     let activeText = active ? { color: Colors.blue }: null;
-    console.log('activeIconBg : ', activeIconBg);
+
     return (
       <TouchableOpacity
         style={styles.btn}

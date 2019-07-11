@@ -166,10 +166,8 @@ export default class Audio extends Component {
         this.sound.play((success) => {
           if (success) {
             this.setState({isPlaying: false});
-            console.log('successfully finished playing');
           } else {
             this.sound.reset();
-            console.log('playback failed due to audio decoding errors');
           }
         });
       }, 100);
@@ -201,7 +199,6 @@ export default class Audio extends Component {
 
   _finishRecording(didSucceed, filePath) {
     this.setState({ finished: didSucceed });
-    console.log(`Finished recording of duration ${this.state.currentTime} seconds at path: ${filePath}`);
   }
 
   _handleRecording = () => {

@@ -38,7 +38,6 @@ export default class PersonalityJobsReport extends Component {
         <Divider/>
         <View style={{paddingHorizontal: 20}}>
           { this.state.jobs.map((job, i) => {
-            console.log('job : ', job);
             let imageUrl = CareerImages['default'];
             if (!!job.image_name) { imageUrl = CareerImages[job.image_name] }
 

@@ -43,7 +43,6 @@ export default class School {
       });
     }
 
-    console.log('options.page', options)
     let page = options.page || 1;
     let start = (page - 1) * PER_PAGE;
     let end = page * PER_PAGE;

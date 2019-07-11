@@ -53,7 +53,6 @@ function migrateSchoolsToCode(oldRealm, newRealm) {
 function migrateCareersToCode(oldRealm, newRealm) {
   if (oldRealm.schemaVersion < 5) {
     const oldObjects = oldRealm.objects('Game');
-    console.log('oldObjects : ', oldObjects);
     const newObjects = newRealm.objects('Game');
     for (let i = 0; i < oldObjects.length; i++) {
       let group = characteristicList.find((obj) => obj.id == oldObjects[i].characteristicId);
@@ -70,7 +69,6 @@ function migrateCareersToCode(oldRealm, newRealm) {
       let favoriteJob = group.careers.find((obj) => obj.id == oldObjects[i].mostFavorableJobId );
       if(!favoriteJob) { continue; }
       newObjects[i].mostFavorableJobCode = favoriteJob.code;
-      console.log('new group.personalityCareers : ', newObjects[i]);
     }
   }
 }
