@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { View, StyleSheet, Text } from 'react-native';
-import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
-import styles from '../../assets/style_sheets/list';
+import { View, Text, ScrollView } from 'react-native';
+import { Content, ListItem, Left, Body, Icon, Right, Card, CardItem } from 'native-base';
 import majorList from '../../data/json/personality_major';
 import characteristicList from '../../data/json/characteristic_jobs';
+import styles from '../../assets/style_sheets/assessment';
+import ButtonList from '../../components/list/button_list';
 
 export default class PersonalityAssessmentJobList extends Component {
   _onPressListItem(job) {
@@ -15,7 +16,7 @@ export default class PersonalityAssessmentJobList extends Component {
     this.props.navigation.navigate('PersonalityAssessmentJobDetailScreen', {title: job.name, job: job})
   }
 
-  _renderList() {
+  _renderList = () => {
     let category = this.props.navigation.getParam('category');
     let jobs = characteristicList.map((obj) => obj.careers);
     jobs = [].concat.apply([], jobs);
@@ -29,36 +30,35 @@ export default class PersonalityAssessmentJobList extends Component {
 
     let doms = arr.map((job, index) => {
       return (
-        <ListItem
+        <ButtonList
           key={index}
-          button
           onPress={() => this._onPressListItem(job)}
-          >
-          <Body>
-            <Text>{job.name}</Text>
-          </Body>
-          <Right>
-            { job.short_description && <AwesomeIcon name='angle-right' size={24} color='#bbb' /> }
-          </Right>
-        </ListItem>
+          title={job.name}
+          hideArrow={!job.short_description}
+          hasLine={true}/>
       )
     });
 
     return (
-      <View>
-        <ListItem itemDivider><Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរចាប់យកអាជីពការងារជា៖</Text></ListItem>
-        { doms }
-      </View>
+      <Content style={{padding: 20, paddingTop: 4}}>
+        <Card style={styles.curveBox}>
+          <CardItem header bordered style={styles.header}>
+            <Body>
+              <Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរចាប់យកអាជីពការងារជា៖</Text>
+            </Body>
+          </CardItem>
+
+          { doms }
+        </Card>
+      </Content>
     );
   }
 
   render() {
     return (
-      <Container>
-        <Content>
-          { this._renderList() }
-        </Content>
-      </Container>
-    );
+      <ScrollView>
+        { this._renderList() }
+      </ScrollView>
+    )
   }
 }

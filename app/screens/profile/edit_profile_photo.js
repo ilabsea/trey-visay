@@ -4,18 +4,11 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  Button,
-  ScrollView,
   TouchableOpacity,
   Image,
-  StyleSheet,
 } from 'react-native';
 
-import {
-  Icon,
-  Avatar,
-} from 'react-native-material-ui';
-
+import { Avatar } from 'react-native-material-ui';
 import { Dialog } from 'react-native-simple-dialogs';
 import ImagePicker from 'react-native-image-crop-picker';
 import StatusBar from '../../components/shared/status_bar';
@@ -25,15 +18,18 @@ import realm from '../../db/schema';
 import User from '../../utils/user';
 import Sidekiq from '../../utils/models/sidekiq';
 import styles from '../../assets/style_sheets/profile_form';
+import { Container, Content, Icon, Item, Form, Input } from 'native-base';
+import FooterBar from '../../components/footer/FooterBar';
 
 export default class EditProfilePhoto extends Component {
-  state = {user: '', type: ''};
+  state = { user: '', type: '' };
 
   componentWillMount() {
     this.props.navigation.setParams({
       handleSubmit: this.handleSubmit.bind(this),
       _handleBack: this._handleBack.bind(this)
     });
+
     this.refreshState();
   }
 
@@ -58,7 +54,6 @@ export default class EditProfilePhoto extends Component {
     return {
       uuid: this.state.user.uuid,
       photo: this.state.user.photo,
-      cover: this.state.user.cover
     }
   }
 
@@ -95,13 +90,8 @@ export default class EditProfilePhoto extends Component {
     let source = { uri: image.path };
     this.openDialog(false);
 
-    if (this.state.type == 'photo') {
-      this.setState({ photo: source });
-      this._setUserState('photo', image.path);
-    } else {
-      this.setState({ cover: source });
-      this._setUserState('cover', image.path);
-    }
+    this.setState({ photo: source });
+    this._setUserState('photo', image.path);
   }
 
   _setUserState(field, value) {
@@ -111,12 +101,7 @@ export default class EditProfilePhoto extends Component {
   }
 
   deletePhoto() {
-    if (this.state.type == 'photo') {
-      this._setUserState('photo', '');
-    } else {
-      this._setUserState('cover', '');
-    }
-
+    this._setUserState('photo', '');
     this.openDialog(false);
   }
 
@@ -154,25 +139,6 @@ export default class EditProfilePhoto extends Component {
     )
   }
 
-  _renderCover() {
-    let cover = require('../../assets/images/header_bg.jpg');
-    if (!!this.state.user.cover) {
-      cover = {uri: this.state.user.cover};
-    }
-
-    return (
-      <TouchableOpacity
-        onPress={() => this.handleOpenDialog('cover')}
-        style={{position: 'relative', backgroundColor:'pink'}}>
-        <Image
-          source={cover}
-          style={{width: null, height: 300}}/>
-
-        <Avatar icon='camera-alt' size={54} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.26)', position: 'absolute', top: -60, right: 10, zIndex: 10}}} />
-      </TouchableOpacity>
-    )
-  }
-
   _renderProfile() {
     let photo = require('../../assets/images/default_profile.png');
     if (!!this.state.user.photo) {
@@ -180,26 +146,56 @@ export default class EditProfilePhoto extends Component {
     }
 
     return (
-      <TouchableOpacity
-        onPress={() => this.handleOpenDialog('photo')}
-        style={{position: 'absolute', top: 220, left: 24}}>
-        <Image
-          source={photo}
-          style={{borderRadius: 60, width: 120, height: 120 }}/>
+      <View style={{ alignItems: 'center', marginTop: 35, marginBottom: 35}}>
+        <TouchableOpacity onPress={() => this.handleOpenDialog('photo')}>
+          <View style={{width: 140, height: 140, position: 'relative', borderRadius: 70, overflow: 'hidden'}}>
+            <Image
+              source={photo}
+              borderRadius={60}
+              resizeMode="cover"
+              style={{width: '100%', height: '100%' }}/>
 
-        <Avatar icon='camera-alt' size={54} style={{container: {backgroundColor: 'rgba(0, 0, 0, 0.26)', position: 'absolute', top: -87, right: 30, zIndex: 10}}} />
-      </TouchableOpacity>
+            <View style={{position: 'absolute', bottom: 0, left: 0, width: '100%', height: 32, backgroundColor: 'rgba(24, 118, 211, 0.67)'}}/>
+            <Avatar icon='camera-alt' size={54} style={{container: {backgroundColor: 'transparent', position: 'absolute', top: -44, left: '50%', marginLeft: -27, zIndex: 10}}} />
+          </View>
+        </TouchableOpacity>
+      </View>
+    )
+  }
+
+  renderUserName() {
+    return (
+      <Form>
+        <Item regular disabled>
+          <Icon active name='md-person' />
+          <Input
+            disabled
+            onChangeText={(text) => this._setUserState('fullName', text)}
+            returnKeyType='next'
+            autoCorrect={false}
+            value={this.state.user.fullName}
+            placeholderTextColor='rgba(0,0,0,0.7)'
+            placeholder='ឈ្មោះពេញ'/>
+        </Item>
+      </Form>
     )
   }
 
   render() {
     return (
-        <View style={{position: 'relative', flex: 1}}>
-          <StatusBar />
-          { this._renderCover() }
-          { this._renderProfile() }
-          { this._renderDialog() }
-        </View>
+      <View style={{flex: 1}}>
+        <StatusBar/>
+
+        <Container>
+          <Content padder>
+            { this._renderProfile() }
+            { this.renderUserName() }
+            { this._renderDialog() }
+          </Content>
+
+          <FooterBar icon='keyboard-arrow-right' text='រក្សាទុក' onPress={() => this.handleSubmit()} />
+        </Container>
+      </View>
     )
   }
 }

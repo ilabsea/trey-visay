@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-import { View, Text } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 import { Container, Content, ListItem, Body, Card, CardItem } from 'native-base';
-import listStyles from '../../assets/style_sheets/list';
 import uuidv4 from '../../utils/uuidv4';
+import styles from '../../assets/style_sheets/assessment';
 
 export default class MajorDetail extends Component {
   _buildListWithTitle(title, items) {
@@ -28,28 +28,34 @@ export default class MajorDetail extends Component {
     );
   }
 
-  render() {
+  _renderContent = () => {
     let major = this.props.navigation.getParam('major');
 
     return (
-      <Container>
-        <Content padder>
-          <Card>
-            <CardItem bordered>
-              <Text>មុខជំនាញ{major.name_km}</Text>
-            </CardItem>
+      <Content style={{padding: 20, paddingTop: 4}}>
+        <Card style={styles.curveBox}>
+          <CardItem bordered style={styles.header}>
+            <Text>មុខជំនាញ{major.name_km}</Text>
+          </CardItem>
 
-            <CardItem>
-              <Body>
-                { this._buildList('\u2022', `ចំណេះដឹងដឹងមូលដ្ឋានដែលបេក្ខជនត្រូវចេះសម្រាប់ទៅសិក្សាមុខជំនាញនេះ៖ ${major.basic_knowledge}`) }
-                { this._buildList('\u2022', `ការសិក្សាដើម្បីទទួលបានសញ្ញាបត្របរិញ្ញាបត្រលើមុខជំនាញនេះ៖ ${major.study_credit}`) }
-                { this._buildListWithTitle('ចំណេះដឹងដែលនិស្សិតទទួលបានក្រោយពីបញ្ចប់ការសិក្សារយៈពេល៤ឆ្នាំ៖', major.recieved_knowledge) }
-                { this._buildListWithTitle('អង្គភាព ឬមូលដ្ឋានដែលអ្នកសិក្សាចប់មុខជំនាញនេះអាចទៅបម្រើការងារ៖', major.possible_workplaces) }
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
-    );
+          <CardItem>
+            <Body>
+              { this._buildList('\u2022', `ចំណេះដឹងដឹងមូលដ្ឋានដែលបេក្ខជនត្រូវចេះសម្រាប់ទៅសិក្សាមុខជំនាញនេះ៖ ${major.basic_knowledge}`) }
+              { this._buildList('\u2022', `ការសិក្សាដើម្បីទទួលបានសញ្ញាបត្របរិញ្ញាបត្រលើមុខជំនាញនេះ៖ ${major.study_credit}`) }
+              { this._buildListWithTitle('ចំណេះដឹងដែលនិស្សិតទទួលបានក្រោយពីបញ្ចប់ការសិក្សារយៈពេល៤ឆ្នាំ៖', major.recieved_knowledge) }
+              { this._buildListWithTitle('អង្គភាព ឬមូលដ្ឋានដែលអ្នកសិក្សាចប់មុខជំនាញនេះអាចទៅបម្រើការងារ៖', major.possible_workplaces) }
+            </Body>
+          </CardItem>
+        </Card>
+      </Content>
+  );
+  }
+
+  render() {
+    return (
+      <ScrollView>
+        { this._renderContent() }
+      </ScrollView>
+    )
   }
 }

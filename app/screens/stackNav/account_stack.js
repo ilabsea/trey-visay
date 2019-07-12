@@ -2,39 +2,31 @@ import React, { Component } from 'react';
 
 import { createStackNavigator } from 'react-navigation';
 
-import headerStyles from '../../assets/style_sheets/header';
-import SaveButton from '../../components/shared/save_button';
-
 import ProfileForm from '../profile/profile_form';
 import Login from '../Account/login';
-import IntroStack from './intro_stack';
-import HomeScreen from '../home';
-import Register from '../Account/register';
-import CareerCounsellorStack from './career_counsellor_stack';
+import HomeScreen from '../home/home';
+import CareerCounsellorStack from './CareerCounsellor/CareerCounsellorStack';
+import PersonalityAssessmentStack from './Assessment/PersonalityAssessmentStack';
+import TermsCondition from '../TermsCondition/TermsCondition';
 
 const AccountStack = createStackNavigator(
   {
-    Intro: {
-      screen: IntroStack,
+    Login: {
+      screen: Login,
       navigationOptions: ({navigation}) => ({
         header: null
-      }),
+      })
     },
-    Login: { screen: Login },
     Home: {
       screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
       navigationOptions: ({navigation}) => ({
         header: null
-      }),
+      })
     },
-    Register: { screen: Register },
     ProfileForm: {
       screen: ProfileForm,
       navigationOptions: ({ navigation }) => ({
-        title: 'បំពេញប្រវត្តិរូបសង្ខេប',
-        headerStyle: headerStyles.headerStyle,
-        headerTitleStyle: headerStyles.headerTitleStyle,
-        headerRight: (<SaveButton navigation={navigation}/>),
+        header: null
       })
     },
     CareerCounsellorStack: {
@@ -42,10 +34,23 @@ const AccountStack = createStackNavigator(
       navigationOptions: ({ navigation }) => ({
         header: null
       })
+    },
+    PersonalityAssessmentStack: {
+      screen: PersonalityAssessmentStack,
+      navigationOptions: ({ navigation }) => ({
+        header: null
+      })
+    },
+    TermsCondition: {
+      screen: TermsCondition,
+      navigationOptions: ({navigation}) => ({
+        title: 'Terms & Condition',
+        header: null
+      }),
     }
   },
   {
-    initialRouteName: 'Intro',
+    initialRouteName: 'Login',
   }
 );
 

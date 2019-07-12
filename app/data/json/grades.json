@@ -2,22 +2,26 @@
   { "label": "ថ្នាក់ទី9",
     "value": "9",
     "code": "9",
-
+    "name": "9"
   },
   { "label": "ថ្នាក់ទី10",
     "value": "10",
-    "code": "10"
+    "code": "10",
+    "name": "10"
   },
   { "label": "ថ្នាក់ទី11",
     "value": "11",
-    "code": "11"
+    "code": "11",
+    "name": "11"
   },
   { "label": "ថ្នាក់ទី12",
     "value": "12",
-    "code": "12"
+    "code": "12",
+    "name": "12"
   },
   { "label": "ផ្សេងៗ",
     "value": "other",
-    "code": "other"
+    "code": "other",
+    "name": "ផ្សេងៗ"
   }
 ]

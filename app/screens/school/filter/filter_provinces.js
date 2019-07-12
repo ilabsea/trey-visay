@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import {
-  ScrollView,
   View,
   Text,
   TouchableOpacity
 } from 'react-native';
 
+import { Container, Content } from 'native-base';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
-
-import API from '../../../api/schools';
+import SchoolUtil from '../../../utils/School/School';
 import mainStyles from '../../../assets/style_sheets/main/main';
 
 class FilterProvinces extends Component {
@@ -18,41 +17,34 @@ class FilterProvinces extends Component {
 
     this.state = {
       provinces: [],
+      category: props.navigation.state.params.category,
       selectedProvince: props.navigation.state.params.selectedProvince
     }
   };
 
   componentWillMount(){
-    this.getProvinces();
-    this.props.navigation.setParams({
-      handleSubmit: this._handleSubmit.bind(this)
-    });
+    this.setProvinces();
   }
 
-  getProvinces() {
-    API
-      .getProvinces(this.props.navigation.state.params.category)
-      .then(result => this.setState({provinces: result.provinces}))
-      .catch(error => {console.log(error)})
+  setProvinces() {
+    let provinces = SchoolUtil.getProvinces(this.state.category);
+    this.setState({provinces: provinces});
   }
 
   setSelectedProvince(province){
     this.setState({ selectedProvince: province });
-  }
 
-  _handleSubmit(){
-    API.setSelectedProvince(this.state.selectedProvince);
-    this.props.navigation.state.params.refresh();
+    SchoolUtil.setSelectedProvince(province);
+    this.props.navigation.state.params.refreshValue();
     this.props.navigation.goBack();
   }
 
   renderProvinces(province, i) {
     return (
-      <View>
+      <View key={i}>
         <TouchableOpacity
           style={mainStyles.btnList}
           onPress={()=> this.setSelectedProvince(province)}
-          key={i}
         >
           <Text style={mainStyles.title}>{province}</Text>
           { this.state.selectedProvince == province &&
@@ -67,11 +59,14 @@ class FilterProvinces extends Component {
   render(){
     let provinces = ['គ្រប់ទីកន្លែង'].concat(this.state.provinces)
     return(
-      <ScrollView style={mainStyles.box}>
-        { provinces.map((province, i) => {
-          { return (this.renderProvinces(province, i))}
-        })}
-      </ScrollView>
+
+      <Container>
+        <Content style={mainStyles.box}>
+          { provinces.map((province, i) => {
+            { return (this.renderProvinces(province, i))}
+          })}
+        </Content>
+      </Container>
     )
   }
 }

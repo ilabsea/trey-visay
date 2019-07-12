@@ -8,11 +8,9 @@ import {
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
+import mainStyles from "../../assets/style_sheets/main/main";
 
 export default class VideoView extends Component  {
-  constructor(props){
-    super(props);
-  }
   render(){
     let { width } = Dimensions.get('window');
     let imageWidth = width-80;
@@ -25,7 +23,7 @@ export default class VideoView extends Component  {
             imageWidth={imageWidth}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.title}>{ this.props.item.title }</Text>
+            <Text style={mainStyles.title}>{ this.props.item.title }</Text>
             <Text style={styles.source}>{ this.props.item.author }</Text>
           </View>
         </TouchableOpacity>

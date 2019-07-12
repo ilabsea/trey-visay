@@ -2,10 +2,20 @@ import React, { Component } from 'react';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { View, Text } from 'react-native';
-import { Container, Content, ListItem, Left, Body, Icon, Right } from 'native-base';
-import styles from '../../assets/style_sheets/list';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  BackHandler,
+} from 'react-native';
+
+import { Divider } from 'react-native-elements';
 import majorList from '../../data/json/personality_major';
+import mainStyles from '../../assets/style_sheets/main/main';
+import { Colors } from '../../assets/style_sheets/main/colors';
+import styles from '../../assets/style_sheets/assessment';
+import ButtonList from '../../components/list/button_list';
 
 export default class PersonalityAssessmentPersonalityCategory extends Component {
   constructor(props) {
@@ -15,33 +25,51 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
     this.state = {
       category: category
     }
+
+    BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
+  }
+
+  _onClickBackHandler = () => {
+    BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
+    this.props.navigation.goBack();
+
+    return true
   }
 
   _renderList() {
     let entries = this.props.navigation.getParam('entries');
 
-    if (!entries.length) {
-      return (null);
-    }
+    if (!entries.length) { return (null); }
 
     let doms = entries.map((entry, index) => {
+      let showDivider = index < entries.length - 1;
+
       return (
-        <ListItem
-          key={index}
-          icon>
-          <Left>
-            <AwesomeIcon name='check-circle' size={24} color='#4caf50' />
-          </Left>
-          <Body>
+        <View key={index}>
+          <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 10}}>
+            <AwesomeIcon name='check-square' size={24} color='rgb(17, 130, 254)' style={{marginRight: 8}} />
             <Text>{entry.name_km}</Text>
-          </Body>
-        </ListItem>
+          </View>
+
+          { showDivider && <Divider style={{marginLeft: 2}}/> }
+        </View>
       )
     });
 
-    doms.unshift(<ListItem itemDivider key={'header'}><Text>បុគ្គលិកលក្ខណៈរបស់អ្នក</Text></ListItem>)
+    return (
+      <View>
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>
+            ចម្លើយបុគ្គលិកលក្ខណៈរបស់អ្នក
+          </Text>
+        </View>
 
-    return doms;
+        <View style={[mainStyles.subTitleBox, {paddingTop: 0, paddingBottom: 0}]}>
+          {doms}
+        </View>
+      </View>
+    );
   }
 
   _renderDescription() {
@@ -51,18 +79,22 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     let doms = this.state.category.description.split(';').map((text, index) => {
       return (
-        <ListItem key={index}>
-          <Body>
-              <Text>{text}</Text>
-          </Body>
-        </ListItem>
+        <Text key={index}>{`\u2022 ${text}`}</Text>
       );
     })
 
     return (
       <View>
-        <ListItem itemDivider><Text>មនុស្សបែប{this.props.navigation.getParam('title')}</Text></ListItem>
-        {doms}
+        <View style={mainStyles.blueTitleBox}>
+          <AwesomeIcon name='globe' color={Colors.blue} size={24} />
+          <Text style={[mainStyles.title, { paddingLeft: 8 }]}>
+            មនុស្សបែប{this.props.navigation.getParam('title')}
+          </Text>
+        </View>
+
+        <View style={mainStyles.subTitleBox}>
+          {doms}
+        </View>
       </View>
     );
   }
@@ -76,42 +108,43 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
     let doms = options.map((option, index) => {
       return (
-        <ListItem
+        <ButtonList
           key={index}
-          button
           onPress={() => {
             this.props.navigation.navigate(option.screen, {
               category: this.state.category,
               assessment: this.props.navigation.getParam('assessment')
             })}
-          }>
-          <Body>
-            <Text>{option.label}</Text>
-          </Body>
-          <Right>
-            <AwesomeIcon name='angle-right' size={24} color='#bbb' />
-          </Right>
-        </ListItem>
+          }
+          title={option.label}
+          hasLine={true}/>
       )
     });
 
     return (
       <View>
-        <ListItem itemDivider><Text>ព័ត៌មានបន្ថែម</Text></ListItem>
-        { doms }
+        <Text style={mainStyles.sectionText}>ព័ត៌មានបន្ថែម</Text>
+
+        <View style={{backgroundColor: '#fff'}}>{ doms }</View>
       </View>
     );
   }
 
+  _renderContent = () => {
+    return (
+      <View style={{paddingBottom: 20}}>
+        { this._renderList() }
+        { this._renderDescription() }
+        { this._renderButtonList() }
+      </View>
+    )
+  }
+
   render() {
     return (
-      <Container>
-        <Content>
-          { this._renderList() }
-          { this._renderDescription() }
-          { this._renderButtonList() }
-        </Content>
-      </Container>
-    );
+      <ScrollView>
+        { this._renderContent() }
+      </ScrollView>
+    )
   }
 }

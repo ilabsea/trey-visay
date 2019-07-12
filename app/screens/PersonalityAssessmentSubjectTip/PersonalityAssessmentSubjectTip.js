@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 
-import { View, Text } from 'react-native';
-import { Container, Content, ListItem, Body, Card, CardItem } from 'native-base';
-import subjectList from '../../data/json/subject';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { Content, ListItem, Body, Card, CardItem } from 'native-base';
+import subjectList from '../../data/json/subjects/subject_tips';
 import subjectTe from '../../data/translates/subject';
+import styles from '../../assets/style_sheets/assessment';
 
 export default class PersonalityAssessmentSubjectTip extends Component {
   constructor(props) {
     super(props);
 
-    let subjectCode = this.props.navigation.getParam('subjectCode')
+    let subjectCode = this.props.navigation.getParam('subjectCode');
     let subject = subjectList.find((obj) => obj.code == subjectCode);
 
     this.state = {
@@ -22,8 +23,7 @@ export default class PersonalityAssessmentSubjectTip extends Component {
 
   _renderTip() {
     let tipType = 'medium_tips';
-    let doms = this.state.subject[tipType].map((tip, i) => this._buildList('-', tip, i));
-
+    let doms = this.state.subject[tipType].map((tip, i) => this._buildList('\u2022', tip, i));
     return doms;
   }
 
@@ -36,23 +36,29 @@ export default class PersonalityAssessmentSubjectTip extends Component {
     );
   }
 
-  render() {
+  _renderContent = () => {
     return (
-      <Container>
-        <Content padder>
-          <Card>
-            <CardItem header bordered>
-              <Text>គន្លឹះសម្រាប់{ subjectTe[this.state.subjectCode] }</Text>
-            </CardItem>
+      <Content style={{padding: 20, paddingTop: 4}}>
+        <Card style={styles.curveBox}>
+          <CardItem header bordered style={styles.header}>
+            <Text>គន្លឹះសម្រាប់{ subjectTe[this.state.subjectCode] }</Text>
+          </CardItem>
 
-            <CardItem bordered>
-              <Body>
-                {this._renderTip()}
-              </Body>
-            </CardItem>
-          </Card>
-        </Content>
-      </Container>
-    );
+          <CardItem bordered>
+            <Body>
+              {this._renderTip()}
+            </Body>
+          </CardItem>
+        </Card>
+      </Content>
+    )
+  }
+
+  render() {
+    return(
+      <ScrollView>
+        { this._renderContent() }
+      </ScrollView>
+    )
   }
 }

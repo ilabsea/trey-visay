@@ -22,7 +22,7 @@ export default class BackConfirmDialog extends Component {
         negativeButton={{
           title: "ទេ",
           onPress: this.props.onPressNo,
-          titleStyle: styles.dialogButtonText
+          titleStyle: styles.negativeButtonText
         }}
       />
     );
@@ -34,6 +34,17 @@ const styles = StyleSheet.create({
     ...Platform.select({
       android: {
         lineHeight: 18
+      }
+    })
+  },
+  negativeButtonText: {
+    ...Platform.select({
+      android: {
+        lineHeight: 18,
+        color: 'rgb(208, 2, 27)'
+      },
+      ios: {
+        color: 'rgb(208, 2, 27)'
       }
     })
   }

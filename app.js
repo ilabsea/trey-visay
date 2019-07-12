@@ -2,23 +2,10 @@
 
 import React, { Component } from 'react';
 import { AppRegistry } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
 import Task from './app/utils/task';
 import realm from './app/db/schema';
 
-// Screens
-import HomeScreen from './app/screens/home';
-
-const HomeNavigator = createStackNavigator({
-  Home: {
-    screen: ({ navigation }) => <HomeScreen screenProps={{ rootNavigation: navigation }} />,
-    navigationOptions: ({navigation}) => ({
-      header: null
-    }),
-  },
-}, {
-  initialRouteName: 'Home',
-});
+import HomeStackNav from './app/screens/StackNav/Home/HomeStackNav';
 
 export default class App extends Component {
   constructor(props) {
@@ -44,6 +31,6 @@ export default class App extends Component {
   }
 
   render() {
-    return (<HomeNavigator/>);
+    return (<HomeStackNav/>);
   }
 }
