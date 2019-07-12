@@ -64,3 +64,7 @@ react-native run-ios
 - Cocoapods v1.6 or above
 
 You can find out more Trey Visay’s dependencies in trey-visay/package.json.
+
+## Firebase analytic integration
+There is a firebase analytic configuration in Trey Visay application, so it requires files replacement ```TreyVisay/android/app/google-services.json``` for android, and ```TreyVisay/ios/GoogleService-Info.plist``` for ios. User can get those files from [google firebase console](https://console.firebase.google.com/). For more information, read [react-native-firebase](https://github.com/invertase/react-native-firebase).
+
