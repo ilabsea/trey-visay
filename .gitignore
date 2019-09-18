@@ -44,8 +44,8 @@ android/app/src/main/res/mipmap-xxxhdpi
 
 #ios/*
 ios/Podfile.lock
-ios/TreyVisay/GoogleService-Info.plist
-ios/GoogleService-Info.plist
+# ios/TreyVisay/GoogleService-Info.plist
+# ios/GoogleService-Info.plist
 
 # node.js
 #
@@ -62,7 +62,7 @@ app/config/environment.js
 buck-out/
 \.buckd/
 *.keystore
-google-services.json
+# google-services.json
 
 # fastlane
 #
