@@ -54,7 +54,7 @@ export default class EditPersonalInfo extends Component {
 
     try {
       realm.write(() => {
-        realm.create('User', this.state.user, true);
+        realm.create('User', this._buildData(), true);
         Sidekiq.create(this.state.user.uuid, 'User');
         this.props.navigation.state.params.refresh();
         this.props.navigation.goBack();
@@ -62,6 +62,19 @@ export default class EditPersonalInfo extends Component {
     } catch (e) {
       alert(e);
     }
+  }
+
+  _buildData() {
+    let fields = ['uuid', 'fullName', 'sex', 'dateOfBirth', 'phoneNumber', 'highSchoolCode', 'provinceCode', 'districtCode', 'communeCode', 'grade'];
+    let obj = {};
+
+    for(i=0; i<fields.length; i++) {
+      obj[fields[i]] = this.state.user[fields[i]];
+    }
+
+    obj.grade = obj.grade || '9'
+
+    return obj;
   }
 
   _setUserState = (field, value) => {

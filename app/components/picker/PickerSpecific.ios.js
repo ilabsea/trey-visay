@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {
   Text,
-  View
+  View,
+  Picker
 } from 'react-native';
 import IOSPicker from 'react-native-ios-picker';
 import styles from '../../assets/style_sheets/profile_form';
@@ -22,7 +23,7 @@ class PickerSpecific extends Component {
           selectedValue={ this._getPickerValue(props.data) }
           onValueChange={ props.onValueChange }>
           { props.data.options.map((obj, i) => {
-            { return (<IOSPicker.Item key={i} label={obj.label} value={obj.code} />) }
+            { return (<Picker.Item key={i} label={obj.label} value={obj.code} />) }
           }) }
         </IOSPicker>
       </View>
