@@ -39,6 +39,7 @@ export default class ProfileForm extends Component {
 
   componentDidFocus() {
     this._handleIfUserLogout();
+    this.user = this._buildData();
   }
 
   componentWillUnmount() {
@@ -54,7 +55,7 @@ export default class ProfileForm extends Component {
   _skip() {
     try {
       realm.write(() => {
-        realm.create('User', { uuid: this.state.user.uuid, grade: 'other'}, true);
+        realm.create('User', { uuid: User.getID(), grade: 'other'}, true);
         Sidekiq.create(User.getID(), 'User');
         this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from') })]);
       });
@@ -64,9 +65,8 @@ export default class ProfileForm extends Component {
   }
 
   _setUserState = (field, value) => {
-    let user = {...this.state.user};
-    user[field] = value;
-    this.setState({...this.state, user: user});
+    this.user[field] = value;
+    this.setState({...this.state, user: this.user});
   }
 
   checkRequire(field) {

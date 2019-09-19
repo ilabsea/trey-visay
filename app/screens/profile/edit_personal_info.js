@@ -28,6 +28,10 @@ export default class EditPersonalInfo extends Component {
     };
   }
 
+  componentDidMount() {
+    this.user = this._buildData();
+  }
+
   checkRequire(field) {
     let value = this.state.user[field];
     if ( value == null || !value.length) {
@@ -78,9 +82,8 @@ export default class EditPersonalInfo extends Component {
   }
 
   _setUserState = (field, value) => {
-    let user = {...this.state.user};
-    user[field] = value;
-    this.setState({...this.state, user: user});
+    this.user[field] = value;
+    this.setState({...this.state, user: this.user});
   }
 
   _renderContent = () => {
