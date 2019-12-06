@@ -39,6 +39,7 @@ export default class ProfileForm extends Component {
 
   componentDidFocus() {
     this._handleIfUserLogout();
+    this.user = this._buildData();
   }
 
   componentWillUnmount() {
@@ -54,7 +55,7 @@ export default class ProfileForm extends Component {
   _skip() {
     try {
       realm.write(() => {
-        realm.create('User', { uuid: this.state.user.uuid, grade: 'other'}, true);
+        realm.create('User', { uuid: User.getID(), grade: 'other'}, true);
         Sidekiq.create(User.getID(), 'User');
         this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from') })]);
       });
@@ -64,9 +65,8 @@ export default class ProfileForm extends Component {
   }
 
   _setUserState = (field, value) => {
-    let user = {...this.state.user};
-    user[field] = value;
-    this.setState({...this.state, user: user});
+    this.user[field] = value;
+    this.setState({...this.state, user: this.user});
   }
 
   checkRequire(field) {
@@ -95,13 +95,25 @@ export default class ProfileForm extends Component {
 
     try {
       realm.write(() => {
-        realm.create('User', this.state.user, true);
+        user = realm.create('User', this._buildData(), true);
         Sidekiq.create(this.state.user.uuid, 'User');
         this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from') })]);
       });
     } catch (e) {
       alert(e);
     }
+  }
+
+  _buildData() {
+    let fields = ['uuid', 'fullName', 'sex', 'dateOfBirth', 'phoneNumber', 'highSchoolCode', 'provinceCode', 'districtCode', 'communeCode', 'grade'];
+    let obj = {};
+
+    for(i=0; i<fields.length; i++) {
+      obj[fields[i]] = this.state.user[fields[i]];
+    }
+    obj.grade = obj.grade || '9'
+
+    return obj;
   }
 
   _renderContent = () => {

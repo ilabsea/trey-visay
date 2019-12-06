@@ -22,19 +22,17 @@ import { Container, Content, Icon, Item, Form, Input } from 'native-base';
 import FooterBar from '../../components/footer/FooterBar';
 
 export default class EditProfilePhoto extends Component {
-  state = { user: '', type: '' };
 
-  componentWillMount() {
-    this.props.navigation.setParams({
-      handleSubmit: this.handleSubmit.bind(this),
-      _handleBack: this._handleBack.bind(this)
-    });
+  constructor(props) {
+    super(props);
 
-    this.refreshState();
+    this.state = {
+      user: User.getCurrent()
+    }
   }
 
-  _handleBack(){
-    this.props.navigation.goBack();
+  componentDidMount() {
+    this.user = this._buildData();
   }
 
   handleSubmit() {
@@ -54,16 +52,12 @@ export default class EditProfilePhoto extends Component {
     return {
       uuid: this.state.user.uuid,
       photo: this.state.user.photo,
+      fullName: this.state.user.fullName
     }
   }
 
   openDialog(show) {
     this.setState({ showDialog: show });
-  }
-
-  refreshState() {
-    let user = User.getCurrent();
-    this.setState({user: user});
   }
 
   takePhoto() {
@@ -95,9 +89,8 @@ export default class EditProfilePhoto extends Component {
   }
 
   _setUserState(field, value) {
-    let user = {...this.state.user};
-    user[field] = value;
-    this.setState({...this.state, user: user});
+    this.user[field] = value;
+    this.setState({...this.state, user: this.user});
   }
 
   deletePhoto() {
