@@ -13,6 +13,7 @@ import BackgroundFetch from "react-native-background-fetch";
 
 import App from './app';
 import Task from './app/utils/task';
+import Queue from './app/utils/queue';
 
 import { Container, Content, Button, Text, StyleProvider } from 'native-base';
 import getTheme from './native-base-theme/components';
@@ -57,6 +58,10 @@ setCustomText(customTextProps);
 setCustomTextInput(customTextInputProps);
 
 export default class TreyVisay extends Component {
+  componentDidMount() {
+    Queue.initWorker();
+  }
+
   render() {
     return(
       <StyleProvider style={getTheme(commonColor)}>
