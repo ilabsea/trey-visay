@@ -1,5 +1,6 @@
 import realm from '../../db/schema';
 import App from '../app';
+import Queue from '../queue';
 
 export default class Sidekiq {
   static create( uuid, tableName ) {
@@ -8,6 +9,8 @@ export default class Sidekiq {
       tableName: tableName,
       version: App.getVersion()
     }, true)
+
+    Queue.makeJob();
   }
 
   static increaseAttempt(sidekiq){
