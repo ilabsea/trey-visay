@@ -124,7 +124,7 @@ export default class InstitutionDetail extends Component {
   }
 
   _buildAvata() {
-    let schoolLogo = this.state.school.logoName ? Images[this.state.school.logoName] : Images.default;
+    let schoolLogo = this.state.school.logoName;
 
     return (
       <View style={[mainStyles.boxShadow, styles.logoWrapper]}>

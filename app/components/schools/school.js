@@ -18,7 +18,6 @@ import { FontSetting } from '../../assets/style_sheets/font_setting';
 class School extends Component {
   render() {
     let school = this.props.school;
-    let logo = !!school.logoName ? Images[school.logoName] : Images.default;
 
     return (
       <View>
@@ -28,7 +27,7 @@ class School extends Component {
           >
 
           <View style={styles.imageContainer}>
-            <Image source={logo} style={styles.image} />
+            <Image source={school.logoName} style={styles.image} />
           </View>
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 8}}>
