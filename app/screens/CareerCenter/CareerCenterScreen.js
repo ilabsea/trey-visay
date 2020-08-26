@@ -26,12 +26,14 @@ export default class CareerCenterScreen extends Component {
     let career_centers = [
       {
         name: 'ទីភ្នាក់ងារជាតិមុខរបរ និងការងារ',
+        description: 'ការងារ កម្លាំងពលកម្ម និងព័ត៌មានទីផ្សារការងារ',
         url: 'http://nea.gov.kh/kh/',
         logo: require('../../assets/images/career_center/nea_logo.png'),
         screen: 'NeaCareerScreen'
       },
       {
-        name: 'បងស្រី ទីប្រឹក្សាការងារ',
+        name: 'បងស្រី',
+        description: 'ទីប្រឹក្សាការងារ',
         url: 'https://bongsrey.com/',
         logo: require('../../assets/images/career_center/bongsrey_logo.png'),
         screen: 'BongSreyCareerScreen'
@@ -39,7 +41,7 @@ export default class CareerCenterScreen extends Component {
     ]
 
     let { width } = Dimensions.get('window');
-    let imageWidth = width/2-100;
+    let imageWidth = width/2-120;
 
     doms = career_centers.map((career, index) => {
       return(
@@ -51,6 +53,7 @@ export default class CareerCenterScreen extends Component {
 
             <View style={styles.textContainer}>
               <Text style={mainStyles.title}>{ career.name }</Text>
+              <Text style={styles.description}>{ career.description }</Text>
             </View>
 
             <View style={{alignSelf: 'center'}}>

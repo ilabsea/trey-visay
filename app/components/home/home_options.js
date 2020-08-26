@@ -2,15 +2,6 @@ import keyword from '../../data/analytics/keyword';
 
 const HomeOptions = [
   {
-    title: 'មជ្ឈមណ្ឌលការងារ',
-    url: 'CareerCenterScreen',
-    source_image: require('../../assets/images/home/career_test.png'),
-    color: ['#bdc3c7', '#2c3e50'],
-    button_text: 'ពិស្តារ',
-    firebase_event_name: keyword.NEA_PLATFORM,
-    description: 'យល់ដឹងអំពីការងារ កម្លាំងពល និងព័ត៌មានទីផ្សារការងារ'
-  },
-  {
     title: 'វាយតម្លៃមុខរបរ',
     url: 'CareerCounsellorStack',
     source_image: require('../../assets/images/home/career_test.png'),
@@ -54,6 +45,15 @@ const HomeOptions = [
     button_text: 'ពិស្តារ',
     firebase_event_name: keyword.VIDEO_VIEW,
     description: 'យល់ដឹងអំពីមុខរបរនិងអាជីពតាមរយៈ វីដេអូ'
+  },
+  {
+    title: 'មជ្ឈមណ្ឌលការងារ',
+    url: 'CareerCenterScreen',
+    source_image: require('../../assets/images/home/career_test.png'),
+    color: ['#bdc3c7', '#2c3e50'],
+    button_text: 'ពិស្តារ',
+    firebase_event_name: keyword.NEA_PLATFORM,
+    description: 'យល់ដឹងអំពីការងារ កម្លាំងពលកម្ម និងព័ត៌មានទីផ្សារការងារ'
   },
 ]
 
