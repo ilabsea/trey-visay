@@ -17,8 +17,12 @@ import mainStyles from "../../assets/style_sheets/main/main";
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-elements';
 
+import firebase from 'react-native-firebase';
+import keyword from '../../data/analytics/keyword';
+
 export default class CareerCenterScreen extends Component {
   _goTo = (career) => {
+    firebase.analytics().logEvent(career.firebase_event_name);
     this.props.navigation.navigate(career.screen, {url: career.url});
   }
 
@@ -29,14 +33,16 @@ export default class CareerCenterScreen extends Component {
         description: 'ការងារ កម្លាំងពលកម្ម និងព័ត៌មានទីផ្សារការងារ',
         url: 'http://nea.gov.kh/kh/',
         logo: require('../../assets/images/career_center/nea_logo.png'),
-        screen: 'NeaCareerScreen'
+        screen: 'NeaCareerScreen',
+        firebase_event_name: keyword.NEA_PLATFORM
       },
       {
         name: 'បងស្រី',
         description: 'ទីប្រឹក្សាការងារ',
         url: 'https://bongsrey.com/',
         logo: require('../../assets/images/career_center/bongsrey_logo.png'),
-        screen: 'BongSreyCareerScreen'
+        screen: 'BongSreyCareerScreen',
+        firebase_event_name: keyword.BONG_SREY
       },
     ]
 

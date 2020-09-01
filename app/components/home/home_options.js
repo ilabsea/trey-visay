@@ -52,7 +52,7 @@ const HomeOptions = [
     source_image: require('../../assets/images/home/career_test.png'),
     color: ['#bdc3c7', '#2c3e50'],
     button_text: 'ពិស្តារ',
-    firebase_event_name: keyword.NEA_PLATFORM,
+    firebase_event_name: keyword.CAREER_CENTER,
     description: 'យល់ដឹងអំពីការងារ កម្លាំងពលកម្ម និងព័ត៌មានទីផ្សារការងារ'
   },
 ]
