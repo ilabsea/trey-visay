@@ -17,11 +17,6 @@ import {FontSetting} from '../../assets/style_sheets/font_setting';
 class SchoolListView extends Component {
 
   renderSchool(school, i) {
-    let logo = require('../../assets/images/schools/default.png');
-    if (school.logoName) {
-      logo = Images[school.logoName];
-    }
-
     return (
       <View key={i}>
         <TouchableOpacity
@@ -29,7 +24,7 @@ class SchoolListView extends Component {
           onPress={() => { this.props.navigation.navigate('InstitutionDetail', {school: school})} }
           >
 
-          <Image source={logo} style={styles.image} />
+          <Image source={school.logoName} style={styles.image} />
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 8}}>
             <Text numberOfLines={1} style={[mainStyles.title, {fontWeight: 'bold'}]}>

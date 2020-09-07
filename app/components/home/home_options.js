@@ -47,13 +47,13 @@ const HomeOptions = [
     description: 'យល់ដឹងអំពីមុខរបរនិងអាជីពតាមរយៈ វីដេអូ'
   },
   {
-    title: 'ទីភ្នាក់ងារជាតិមុខរបរ និងការងារ',
-    url: 'NeaCareerScreen',
+    title: 'មជ្ឈមណ្ឌលការងារ',
+    url: 'CareerCenterScreen',
     source_image: require('../../assets/images/home/career_test.png'),
     color: ['#bdc3c7', '#2c3e50'],
     button_text: 'ពិស្តារ',
-    firebase_event_name: keyword.NEA_PLATFORM,
-    description: 'យល់ដឹងអំពីការងារ កម្លាំងពល និងព័ត៌មានទីផ្សារការងារ'
+    firebase_event_name: keyword.CAREER_CENTER,
+    description: 'យល់ដឹងអំពីការងារ កម្លាំងពលកម្ម និងព័ត៌មានទីផ្សារការងារ'
   },
 ]
 

@@ -20,7 +20,7 @@ import HomeStack from '../Home/HomeStack';
 import PersonalityAssessmentStack from '../Assessment/PersonalityAssessmentStack';
 
 import VideoScreen from '../../Video/VideoScreen';
-import NeaCareerScreen from '../../NeaCareer/NeaCareerScreen';
+import CareerCenterStack from '../CareerCenter/CareerCenterStack';
 
 const HomeTab = createBottomTabNavigator({
   Home: {
@@ -83,10 +83,10 @@ const HomeStackNav = createStackNavigator({
       header: null,
     })
   },
-  NeaCareerScreen: {
-    screen: NeaCareerScreen,
+  CareerCenterStack: {
+    screen: CareerCenterStack,
     navigationOptions: ({navigation}) => ({
-      headerTitle: 'ទីភ្នាក់ងារជាតិមុខរបរ និងការងារ',
+      header: null,
     })
   },
   CareerCounsellorStack: {

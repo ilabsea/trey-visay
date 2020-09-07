@@ -1988,6 +1988,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/GoogleIDFASupport/Libraries",
 				);
+				MARKETING_VERSION = 1.6.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -2030,6 +2031,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/GoogleIDFASupport/Libraries",
 				);
+				MARKETING_VERSION = 1.6.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",

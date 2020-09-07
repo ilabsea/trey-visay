@@ -1,24 +1,15 @@
 import React, {Component} from 'react';
 import {
-  Text,
-  ScrollView,
   View,
-  TouchableOpacity,
   WebView
 } from 'react-native';
 
-import StatusBar from '../../components/shared/status_bar';
 import LoadingIndicator from '../../components/loading_indicator';
 
-export default class NeaCareerScreen extends Component {
-
+export default class WebviewScreen extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      careers: this.props.navigation.state.params.careers,
-      loading: true
-    }
+    this.state = { loading: true }
   }
 
   render() {
@@ -27,7 +18,7 @@ export default class NeaCareerScreen extends Component {
         <WebView
           ref="webviewRef"
           style={{flex: 1}}
-          source={{ uri: 'http://nea.gov.kh/kh/' }}
+          source={{ uri: this.props.navigation.getParam('url', 'http://nea.gov.kh/kh/') }}
           javaScriptEnabled={true}
           domStorageEnabled={true}
           onLoadEnd={ () => this.setState({loading: false}) }

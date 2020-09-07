@@ -1,9 +1,9 @@
-[
+export default [
   {
     "id": 1,
     "code": "uni_gov_0001",
     "universityName": "សាកលវិទ្យាល័យភូមិន្ទភ្នំពេញ",
-    "logoName": "rupp",
+    "logoName": require('../../assets/images/schools/rupp.png'),
     "address": "មហាវិថីសហព័ន្ធរុស្សី សង្កាត់ទឹកល្អក់ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -85,7 +85,7 @@
     "id": 2,
     "code": "uni_gov_0002",
     "universityName": "សាកលវិទ្យាល័យភូមិន្ទកសិកម្ម (ចំការដូង)",
-    "logoName": "royal_agriculture",
+    "logoName": require('../../assets/images/schools/royal_agriculture.png'),
     "address": "សង្កាត់ដង្កោ ខណ្ឌដង្កោ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -172,7 +172,7 @@
     "id": 3,
     "code": "uni_gov_0003",
     "universityName": "សាកលវិទ្យាល័យភូមិន្ទនីតិសាស្រ្ត និង វិទ្យាសាស្រ្តសេដ្ឋកិច្ច",
-    "logoName": "rule",
+    "logoName": require('../../assets/images/schools/rule.png'),
     "address": "មហាវិថីព្រះមុនីវង្ស សង្កាត់ទន្លេបាសាក់ ខណ្ឌចំការមន រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -227,7 +227,7 @@
     "id": 4,
     "code": "uni_gov_0004",
     "universityName": "សាកលវិទ្យាល័យជាតិគ្រប់គ្រង",
-    "logoName": "num",
+    "logoName": require('../../assets/images/schools/num.jpg'),
     "address": "ផ្លូវលេខ ៩៦ សង្កាត់វត្តភ្នំ ខណ្ឌដូនពេញ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -303,7 +303,7 @@
     "id": 5,
     "code": "uni_gov_0005",
     "universityName": "សាកលវិទ្យាល័យវិទ្យាសាស្រ្តសុខាភិបាល",
-    "logoName": "uss",
+    "logoName": require('../../assets/images/schools/uss.png'),
     "address": "លេខ៧៣ មហាវិថីព្រះមុនីវង្ស សង្កាត់ ស្រះចក ខណ្ឌដូនពេញ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -355,7 +355,7 @@
     "id": 6,
     "code": "uni_gov_0006",
     "universityName": "សាកលវិទ្យាល័យភូមិន្ទវិចិត្រសិល្បៈ",
-    "logoName": "royal_art",
+    "logoName": require('../../assets/images/schools/royal_art.png'),
     "address": "អគារលេខ ៧២ កាច់ជ្រុងផ្លូវព្រះអង្គយុគន្ឋរ(លេខ១៩) និងផ្លូវមគ្គវ័ន សង្កាត់ជ័យជំនះ ខណ្ឌដូនពេញ រាជធានី",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -426,7 +426,7 @@
     "id": 7,
     "code": "uni_gov_0007",
     "universityName": "ពុទ្ធិកសាកលវិទ្យាល័យព្រះសីហនុរាជ",
-    "logoName": "sihanuk_riech",
+    "logoName": require('../../assets/images/schools/sihanuk_riech.png'),
     "address": "ផ្លូវលេខ ៣៩៣​ តិរវិថីព្រះស៊ីសុត្ថិ​ សង្កាត់ជ័យជំនះ ខណ្ឌដូនពេញ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -485,7 +485,7 @@
     "id": 8,
     "code": "uni_gov_0008",
     "universityName": "សាកលវិទ្យាល័យបាត់ដំបង",
-    "logoName": "btb",
+    "logoName": require('../../assets/images/schools/btb.png'),
     "address": "ជាប់ផ្លូវជាតិលេខ៥ ភូមិអូរខ្ជាយ សង្គាត់ព្រែកស្ដេច ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
@@ -564,7 +564,7 @@
     "id": 9,
     "code": "uni_gov_0009",
     "universityName": "សាកលវិទ្យាល័យមានជ័យ",
-    "logoName": "mean_chey",
+    "logoName": require('../../assets/images/schools/mean_chey.jpg'),
     "address": "ដងផ្លូវជាតិលេខ៥​ ភូមិបាណយ ឃុំទឹកថ្លា ក្រុងសេរីសោភ័ណ ខេត្តបន្ទាយមានជ័យ",
     "province": "បន្ទាយមានជ័យ",
     "phoneNumbers": [
@@ -628,7 +628,7 @@
     "id": 10,
     "code": "uni_gov_0010",
     "universityName": "សាកលវិទ្យាល័យស្វាយរៀង",
-    "logoName": "svay_reang",
+    "logoName": require('../../assets/images/schools/svay_reang.jpg'),
     "address": "ភូមិចំបក់ សង្កាត់ចេក ក្រុងស្វាយរៀង ខេត្តស្វាយរៀង",
     "province": "ស្វាយរៀង",
     "phoneNumbers": [
@@ -689,7 +689,7 @@
     "id": 11,
     "code": "uni_gov_0011",
     "universityName": "សាកលវិទ្យាល័យជាស៊ីម កំចាយមារ",
-    "logoName": "komchay_mear",
+    "logoName": require('../../assets/images/schools/komchay_mear.jpg'),
     "address": "គីឡូម៉ែត្រលេខ ១១០ ផ្លូវជាតិលេខ ១៨ ភូមិថ្នល់កែង ឃុំស្មោងខាងជើង ស្រុកកំចាយមារ ខេត្ត ព្រៃវែង រឺ ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
     "province": "ព្រៃវែង និង កំពង់ចាម",
     "phoneNumbers": [
@@ -770,7 +770,7 @@
     "id": 12,
     "code": "uni_gov_0012",
     "universityName": "សាកលវិទ្យាល័យ ហេង សំរិន ត្បូងឃ្មុំ",
-    "logoName": "uhst",
+    "logoName": require('../../assets/images/schools/uhst.png'),
     "address": "ចម្ការម៉ៃសាក់ ឃុំស្រឡប់ ស្រុកត្បូងឃ្មុំ ខេត្តត្បូងឃ្មុំ",
     "province": "ត្បូងឃ្មុំ",
     "phoneNumbers": [
@@ -847,7 +847,7 @@
     "id": 13,
     "code": "uni_gov_0013",
     "universityName": "វិទ្យាស្ថានបច្ចេកវិទ្យាកម្ពុជា",
-    "logoName": "cam_tech",
+    "logoName": require('../../assets/images/schools/cam_tech.jpg'),
     "address": "មហាវិថីសហព័ន្ធរុស្សី រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -914,7 +914,7 @@
     "id": 14,
     "code": "uni_gov_0014",
     "universityName": "វិទ្យាស្ថាននាវាចរណ៍កម្ពុជា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "អគារលេខ ៦៤៥ តិរះវិថីស៊ីសុវត្ថិ សង្កាត់ស្រះចក ខណ្ឌដូនពេញ រាជធានី",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -945,7 +945,7 @@
     "id": 15,
     "code": "uni_gov_0015",
     "universityName": "វិទ្យាស្ថានបច្ចេកវិទ្យាកំពង់ឈើទាល",
-    "logoName": "chhir_teal",
+    "logoName": require('../../assets/images/schools/chhir_teal.jpg'),
     "address": "ភូមិសំបូរ ឃុំសំបូរ ស្រុកប្រាសាទសំបូរ ខេត្តកំពង់ធំ",
     "province": "កំពង់ធំ",
     "phoneNumbers": [
@@ -981,7 +981,7 @@
     "id": 16,
     "code": "uni_gov_0016",
     "universityName": "វិទ្យាស្ថានវិទ្យាសាស្រ្តសុខាភិបាល ខេមៈភូមិន្ទ",
-    "logoName": "health_phumin",
+    "logoName": require('../../assets/images/schools/health_phumin.png'),
     "address": "ផ្លូវជាតិលេខ ៣ ភូមិក្រាំងដូនទៃ សង្កាត់ចោមចៅ ខណ្ឌពោធិ៍សែនជ័យ រាជធានី",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1033,7 +1033,7 @@
     "id": 17,
     "code": "uni_gov_0017",
     "universityName": "វិទ្យាស្ថានវិទ្យាសាស្រ្តអគ្គិសនី",
-    "logoName": "science_electric",
+    "logoName": require('../../assets/images/schools/science_electric.png'),
     "address": "ផ្លូវ ២១៧ (ចំការដូង) ភូមិសំបូរ​ សង្កាត់ដង្កោ ខណ្ឌដង្កោ រាជធានីភ្នំពេញ។",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1063,7 +1063,7 @@
     "id": 18,
     "code": "uni_gov_0018",
     "universityName": "វិទ្យាស្ថានជាតិប្រៃសណីយ៍ ទូរគមនាគមន៍ និង ព័ត៌មាន",
-    "logoName": "niptict",
+    "logoName": require('../../assets/images/schools/niptict.png'),
     "address": "អាគារលេខ ៤១ ជាប់ទីស្ដីការគណៈរដ្ឋមន្ត្រី នៅតាមបណ្ដោយផ្លូវសហព័ន្ឋរុស្សី រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1106,7 +1106,7 @@
     "id": 19,
     "code": "uni_gov_0019",
     "universityName": "សាលាជាតិកសិកម្មព្រែកលៀប",
-    "logoName": "prek_leap_agriculture",
+    "logoName": require('../../assets/images/schools/prek_leap_agriculture.jpg'),
     "address": "ផ្លូវជាតិលេខ ៦ សង្កាត់ព្រែកលាប ខណ្ឌជ្រោយចង្វារ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1185,7 +1185,7 @@
     "id": 20,
     "code": "uni_gov_0020",
     "universityName": "សាលាជាតិកសិកម្មកំពង់ចាម",
-    "logoName": "kc_national_school_agriculture",
+    "logoName": require('../../assets/images/schools/kc_national_school_agriculture.jpg'),
     "address": "ភូមិទី ៦ ផ្លូវជាតិលេខ ៧ចាស់ សង្កាត់វាលវង់ ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
     "province": "កំពង់ចាម",
     "phoneNumbers": [
@@ -1240,7 +1240,7 @@
     "id": 21,
     "code": "uni_gov_0021",
     "universityName": "សាខាសាកលវិទ្យាល័យជាស៊ីម កំចាយមារ",
-    "logoName": "komchay_mear",
+    "logoName": require('../../assets/images/schools/komchay_mear.jpg'),
     "address": "ភូមិឡូតិ៍លេខ ៦ សង្កាត់កំពង់លាវ ក្រុងព្រៃវែង ខេត្តព្រៃវែង",
     "province": "ព្រៃវែង",
     "phoneNumbers": [
@@ -1307,7 +1307,7 @@
     "id": 22,
     "code": "uni_gov_0022",
     "universityName": "សាខាសាកលវិទ្យាល័យជាស៊ីម កំចាយមារ",
-    "logoName": "komchay_mear",
+    "logoName": require('../../assets/images/schools/komchay_mear.jpg'),
     "address": "ផ្លូវជាតិលេខ ៧ ភូមិបឹងស្នាយ សង្កាត់សំបូរមាស ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
     "province": "កំពង់ចាម",
     "phoneNumbers": [
@@ -1375,7 +1375,7 @@
     "id": 23,
     "code": "uni_gov_0023",
     "universityName": "វិទ្យាស្ថានជាតិពហុបច្ចេកទេសកម្ពុជា",
-    "logoName": "npic",
+    "logoName": require('../../assets/images/schools/npic.png'),
     "address": "ភូមិព្រៃពពិល សង្កាត់សំរោងក្រោម ខណ្ឌពោធិ៍សែនជ័យ ភ្នំពេញ",
     "province": null,
     "phoneNumbers": [
@@ -1420,9 +1420,9 @@
     "id": 24,
     "code": "uni_gov_0024",
     "universityName": "វិទ្យាស្ថានជាតិបណ្ដុះបណ្ដាលបច្ចេកទេស",
-    "logoName": "ntti",
+    "logoName": require('../../assets/images/schools/ntti.png'),
     "address": "សហព័ន្ធរុស្សី សង្កាត់ទឹកថ្លា ខណ្ឌ សែនសុខ រាជធានីភំ្នពេញ",
-    "province": null,
+    "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
       "០២៣ ៨៨៣ ០៣៩"
     ],
@@ -1457,7 +1457,7 @@
     "id": 25,
     "code": "uni_gov_0025",
     "universityName": "វិទ្យាស្ថានជាតិសុខភាពសារធារណៈ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវ ២៨៩ សង្កាត់បឹងកក់ ២ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "ភ្នំពេញ",
     "phoneNumbers": [
@@ -1491,9 +1491,9 @@
     "id": 26,
     "code": "uni_gov_0026",
     "universityName": "វិទ្យាស្ថានជាតិសង្គមកិច្ច",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវដួងងៀប សង្កាត់ស្ទឹងមានជ័យ ខណ្ឌមានជ័យ រាជធានីភ្នំពេញ",
-    "province": null,
+    "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
       "០១២ ៥៦៥ ០២២"
     ],
@@ -1504,7 +1504,7 @@
 
     ],
     "websiteOrFacebook": [
-
+      "www.nisa-edu.gov.kh"
     ],
     "mailbox": null,
     "category": "សាលារដ្ឋ",
@@ -1528,20 +1528,20 @@
     "id": 27,
     "code": "uni_gov_0027",
     "universityName": "ពុទ្ធិកសាកលវិទ្យាល័យព្រះសីហមុនីរាជា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវស៊ីសុវត្ថិ សង្កាត់ទន្លេបាសាក់ ខណ្ឌចំការមក រាជធានីភ្នំពេញ",
-    "province": null,
+    "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
-      "០១២ ៥៤៩ ០៨៦"
+      "០១២ ៥៤៩ ០៨៦ / 016 43 43 25\n077 43 43 25"
     ],
     "faxes": [
 
     ],
     "emails": [
-
+      "info@psbu.edu.kh"
     ],
     "websiteOrFacebook": [
-
+      "www.psbu.edu.kh"
     ],
     "mailbox": null,
     "category": "សាលារដ្ឋ",
@@ -1566,7 +1566,7 @@
     "id": 28,
     "code": "uni_gov_0028",
     "universityName": "វិទ្យាស្ថានជាតិបណ្តុះបណ្តាលបច្ចេកទេស",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវសហព័ន្ធរុស្សី សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1576,10 +1576,10 @@
 
     ],
     "emails": [
-
+      "info@ntti.edu.kh"
     ],
     "websiteOrFacebook": [
-
+      "www.ntti.edu.kh"
     ],
     "mailbox": null,
     "category": "សាលារដ្ឋ",
@@ -1606,33 +1606,63 @@
     "id": 29,
     "code": "uni_gov_0029",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសព្រះកុសមៈ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវសហព័ន្ធរុស្សី សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
-      "០១២​​​ ៨២៦ ៤០៤"
+      "០១២ ៨២៦ ៤០៤ , ០១១ ៧៦០ ០០០ , ០១២ ៦៥៥ ៦៤៤ , ០១៦ ៥២៨ ៨០០"
     ],
     "faxes": [
 
     ],
     "emails": [
-
+      "ppi@ppiedu.com"
     ],
     "websiteOrFacebook": [
-
+      "www.ppiedu.com"
     ],
     "mailbox": null,
     "category": "សាលារដ្ឋ",
     "departments": [
       {
-        "name": "",
+        "name": "មហាវិទ្យាល័យអគ្គិសនី",
         "majors": [
-          "វិស្វកម្មអគ្គិសនី",
-          "វិស្វកម្មសំណង់ស៊ីវិល",
-          "វិស្វកម្មអេឡិចត្រូនិក",
-          "វិទ្យាសាស្រ្តកុំព្យូទ័រ",
-          "គណនេយ្យ និងហិរញ្ញវត្ថុ",
-          "ទីផ្សារ",
+          "វិស្វកម្មអគ្គិសនី"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យសំណង់ស៊ីវិល",
+        "majors": [
+          "វិស្វកម្មសំណង់ស៊ីវិល"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យអេឡិចត្រូនិច",
+        "majors": [
+          "វិស្វកម្មអេឡិចត្រូនិក"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យបច្ចេកវិទ្យាព័ត៌មាន",
+        "majors": [
+          "វិទ្យាសាស្រ្តកុំព្យូទ័រ"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យគ្រប់គ្រង",
+        "majors": [
+          "គណនេយ្យ និងហិរញ្ញវត្ថុ"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យម៉ាឃីតធីង",
+        "majors": [
+          "ទីផ្សារ"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យគណនេយ្យ",
+        "majors": [
           "គ្រប់គ្រង",
           "បណ្តាញអគ្គិសនីក្នុងអគារ",
           "ការងារកំបោរ",
@@ -1646,20 +1676,20 @@
     "id": 30,
     "code": "uni_gov_0030",
     "universityName": "វិទ្យាស្ថានអភិវឌ្ឍន៍សហគ្រិនភាពកម្ពុជា - ឥណ្ឌា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវសហព័ន្ធរុស្សី​​​ សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
-      "០១២ ៨០៦​​​ ៦៣១"
+      "០១២ ៨០៦​​​ ៦៣១​ / 096 39 69 865 /  ០៨៥ ៧៦៦ ៦៦៣"
     ],
     "faxes": [
 
     ],
     "emails": [
-
+      "niei.tvet@gmail.com"
     ],
     "websiteOrFacebook": [
-
+      "www.niei.tvet.com"
     ],
     "mailbox": null,
     "category": "សាលារដ្ឋ",
@@ -1681,7 +1711,7 @@
     "id": 31,
     "code": "uni_gov_0031",
     "universityName": "វិទ្យាស្ថានជាតិពាណិជ្ជសាស្រ្ត",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវមុនីរ៉េត ភូមិទ្រា សង្កាត់ស្ទឹងមានជ័យ ខណ្ឌមានជ័យ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1733,7 +1763,7 @@
     "id": 32,
     "code": "uni_gov_0032",
     "universityName": "វិទ្យាស្ថានបច្ចេកទេសឧស្សាហកម្ម",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវសហព័ន្ធរុស្សី សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1775,7 +1805,7 @@
     "id": 33,
     "code": "uni_gov_0033",
     "universityName": "វិទ្យាស្ថានអភិវឌ្ឍន៍មុខជំនាញកម្ពុជា ​​- ​ថៃ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវអូរឌឹម-កប់ស្រូវ ភូមិព្រៃពពេល សង្កាត់សំរោងក្រោម ខណ្ឌពោធិ៍សែនជ័យ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1821,7 +1851,7 @@
     "id": 34,
     "code": "uni_gov_0034",
     "universityName": "សាលាមធ្យមសិក្សាបច្ចេកទេស JVC",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវជាតិលេខ៦ ភូមិដើមគរ សង្កាត់ជ្រោយចង្វារ ខណ្ឌជ្រោយចង្វារ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1852,7 +1882,7 @@
     "id": 35,
     "code": "uni_gov_0035",
     "universityName": "វិទ្យាស្ថានជាតិពហុបច្ចេកទេសកម្ពុជា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិព្រៃពពេល សង្កាត់សំរោងក្រោម ខណ្ឌពោធិ៍សែនជ័យ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1915,7 +1945,7 @@
     "id": 36,
     "code": "uni_gov_0036",
     "universityName": "មជ្ឈមណ្ឌលអភិវឌ្ឍន៍មុខជំនាញកម្ពុជា - ថៃ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិព្រៃពពេល សង្កាត់សំរោងក្រោម ខណ្ឌពោធិ៍សែនជ័យ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -1948,7 +1978,7 @@
     "id": 37,
     "code": "uni_gov_0037",
     "universityName": "វិទ្យាស្ថានបច្ចេកវិទ្យាកំពង់ស្ពឺ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ខេត្តកំពង់ស្ពឺ",
     "province": "កំពង់ស្ពឺ",
     "phoneNumbers": [
@@ -1988,7 +2018,7 @@
     "id": 38,
     "code": "uni_gov_0038",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសភូមិភាគតេជោសែនបាត់ដំបង",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិមហាទេព សង្កាត់ស្វាយប៉ោ ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
@@ -2032,7 +2062,7 @@
     "id": 39,
     "code": "uni_gov_0039",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសភូមិភាគតេជោសែនសៀមរាប",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិបន្ទាយចាស់ សង្កាត់ស្លក្រាម ក្រុងសៀមរាប ខេត្តសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
@@ -2088,7 +2118,7 @@
     "id": 40,
     "code": "uni_gov_0040",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសភូមិភាគតេជោសែនស្វាយរៀង",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិមេភ្លើង សង្កាត់ស្វាយរៀង ខេត្តស្វាយរៀង",
     "province": "ស្វាយរៀង",
     "phoneNumbers": [
@@ -2146,7 +2176,7 @@
     "id": 41,
     "code": "uni_gov_0041",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសភូមិភាគតេជោសែនកំពត",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិ១ឧសភា សង្កាត់កំពង់កណ្តាល ក្រុងកំពត ខេត្តកំពត",
     "province": "កំពត",
     "phoneNumbers": [
@@ -2194,7 +2224,7 @@
     "id": 42,
     "code": "uni_gov_0042",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសភូមិភាគតេជោសែនតាកែវ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិលេខ៣ សង្កាត់រការក្នុង ក្រុងដូនកែវ ខេត្តតាកែវ",
     "province": "តាកែវ",
     "phoneNumbers": [
@@ -2255,7 +2285,7 @@
     "id": 43,
     "code": "uni_gov_0043",
     "universityName": "វិទ្យាស្ថានបច្ចេកវិទ្យាបាត់ដំបង",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវជាតិលេខ៥ ភូមិរំចេក សង្កាត់រតនៈ ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
@@ -2301,7 +2331,7 @@
     "id": 44,
     "code": "uni_gov_0044",
     "universityName": "វិទ្យាស្ថានជាតិវិជ្ជាជីវៈខេត្តបាត់ដំបង",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវជាតិលេខ៥៧ ភូមិអណ្តូងព្រីង សង្កាត់អូរម៉ាល់ ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
@@ -2347,7 +2377,7 @@
     "id": 45,
     "code": "uni_gov_0045",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តព្រះសីហនុ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "មណ្ឌល២ សង្កាត់លេខ៣ ក្រុងព្រះសីហនុ ខេត្តព្រះសីហនុ",
     "province": "ព្រះសីហនុ",
     "phoneNumbers": [
@@ -2389,7 +2419,7 @@
     "id": 46,
     "code": "uni_gov_0046",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តពោធិ៍សាត់",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវជាតិលេខ៤ ភូមិចំការចេក សង្កាត់ផ្ទះព្រៃ ក្រុងពោធិ៍សាត់ ខេត្តពោធិ៍សាត់",
     "province": "ពោធិ៍សាត់",
     "phoneNumbers": [
@@ -2445,7 +2475,7 @@
     "id": 47,
     "code": "uni_gov_0047",
     "universityName": "ការដ្ឋានសាលាបណ្តុះបណ្តាលវិជ្ជាជីវៈសៀមរាប",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិតាវៀន សង្កាត់សាលាកំរើក ក្រុងសៀមរាប ខេត្តសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
@@ -2486,11 +2516,11 @@
     "id": 48,
     "code": "uni_gov_0048",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តកណ្តាល",
-    "logoName": "",
-    "address": "ផ្លូវជាតិលេខ២១ ភូមិព្រែកសំរោង សង្កាត់តាខ្មៅ ក្រុងតាខ្មៅ ខេត្តកណ្តាល",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ផ្លូវជាតិលេខ២១ ភូមិព្រែកសំរោង សង្កាត់តាខ្មៅ ក្រុងតាខ្មៅ ខេត្តកណ្ដាល",
     "province": "កណ្តាល",
     "phoneNumbers": [
-      "០១២ ៨៦៧ ៩០៤"
+      "099 777 377 / 010 337 166 / 092 735 263 / 071 556 0999"
     ],
     "faxes": [
 
@@ -2519,7 +2549,7 @@
           "សេវាកម្មកុំព្យូទ័រ",
           "សំណង់ (ជាងកំបោរ)",
           "ផ្សារដែក",
-          "តបណ្តាញអគ្គិសនីក្នុងអគារ",
+          "ការដំឡើងបណ្តាញអគ្គិសនីក្នុងអគារ",
           "ជួសជុលបរិក្ខារត្រជាក់",
           "ជួសជុលម៉ាស៊ីនដេរ",
           "អ៊ុតសក់ផាត់មុខ",
@@ -2541,11 +2571,11 @@
     "id": 49,
     "code": "uni_gov_0049",
     "universityName": "មជ្ឈមណ្ឌលវិជ្ជាជីវៈខេត្តកែប",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិថ្មី សង្កាត់ព្រៃធំ ក្រុងកែប ខេត្តកែប",
     "province": "កែប",
     "phoneNumbers": [
-      "០៩២ ៩៦៣ ៦៦៧ / ០១០ ២៤៦ ២៤៥ / ០៦៩ ៧៥២ ៧២៥"
+      "០៩២ ៩៥៣ ៦៦៧ / ០១០ ២៤៦ ២៤៥ / ០៦៩ ៧៥២ ៧២៥"
     ],
     "faxes": [
 
@@ -2602,11 +2632,11 @@
     "id": 50,
     "code": "uni_gov_0050",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តកំពង់ស្ពឺ",
-    "logoName": "",
-    "address": "ភូមិទំពូង សង្កាត់កាហែង ស្រុកសំរោងទង ខេត្តកំពង់ស្ពឺ",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ផ្លូវជាតិលេខ ៤, ភូមិទំពូង សង្កាត់កាហែង ស្រុកសំរោងទង ខេត្តកំពង់ស្ពឺ",
     "province": "កំពង់ស្ពឺ",
     "phoneNumbers": [
-      "០១២ ៩៩៥ ៩៥២ / ០៩៣ ៥០៧ ៨៧៨ / ០៩៨ ៤០៤ ៣៤៣"
+      "០១២ ៩៩៥ ៩៥២ / ០៦៧​៩០០​០៤០ / ០៩៨ ៤០៤ ៣៤៣"
     ],
     "faxes": [
 
@@ -2638,11 +2668,11 @@
     "id": 51,
     "code": "uni_gov_0051",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តកោះកុង",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិ១ សង្កាត់ស្មាច់មានជ័យ ក្រុងខេមរភូមិន្ទ ខេត្តកោះកុង",
     "province": "កោះកុង",
     "phoneNumbers": [
-      "០៦៩ ៥៨៩ ៥៥៩ / ០៩៩ ៦៨៧ ៧៧៧"
+      "០១៧ ៨០០ ៤៩៣/​ ០១០ ៨៩៦ ៤៩៣/០៩៨ ៣៥២ ៤៦៨"
     ],
     "faxes": [
 
@@ -2694,11 +2724,11 @@
     "id": 52,
     "code": "uni_gov_0052",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តព្រៃវែង",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិលេខ១ សង្កាត់កំពង់លាវ ក្រុងព្រៃវែង ខេត្តព្រៃវែង",
     "province": "ព្រៃវែង",
     "phoneNumbers": [
-      "០៩៦ ៩៥៧ ៧៧១ ​​​៤ /  ០៩៦ ៩៦៧ ៨៩០ ៨"
+      "០១២​ ៧៧២ ០៣៧/ ០៨៨ ៥៦ ០០ ៦០៦/០៩៣ ៤១៦ ៣៤៣/០៨១ ៧៧០ ៤៨៧"
     ],
     "faxes": [
 
@@ -2716,15 +2746,15 @@
         "name": "",
         "majors": [
           "អគ្គិសនីក្នុងអគារ",
-          "សេវាកម្មកុំព្យូទ័រ",
+          "សេវាកម្មកុំព្យូទ័ររដ្ឋបាល",
           "តបណ្តាញអគ្គិសនី",
           "អ៊ុតសក់ ផាត់មុខ ធ្វើក្រចក",
           "បសុពេទ្យ",
-          "សម្អាងការ",
+          "សម្អាងការ និងកែសម្ភស្ស",
           "ជួសជុលម៉ូតូ",
+          "ផ្សារលោហៈ",
           "កាត់ដេរសម្លៀកបំពាក់",
-          "ចិញ្ចឹមមាន់",
-          "ចិញ្ចឹមចង្រឹត",
+          "ចិញ្ចឹមមាន់ និងបច្ចេកទេសភ្ញាស់ពងមាន់",
           "សាកវប្បកម្ម",
           "ដាំបន្លែចម្រុះ",
           "ផលិតជីកំប៉ុស្តិ៍",
@@ -2738,11 +2768,11 @@
     "id": 53,
     "code": "uni_gov_0053",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តកំពង់ឆ្នាំង",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវជាតិលេខ៥ ភូមិទួលក្រឡាញ់ សង្កាត់កំពង់ឆ្នាំង ក្រុងកំពង់ឆ្នាំង ខេត្តកំពង់ឆ្នាំង",
     "province": "កំពង់ឆ្នាំង",
     "phoneNumbers": [
-      "០១២ ៤២៦ ០៣៣ / ០៩៣ ៣៨៧ ៨៤៤"
+      "០១២ ៤២៦ ០៣៣ / ០៩៣ ៣៨៧ ៨៤៤/ ០១០ ៣៩៥ ៤៥៥"
     ],
     "faxes": [
 
@@ -2753,7 +2783,7 @@
     "websiteOrFacebook": [
 
     ],
-    "mailbox": null,
+    "mailbox": "phypanha@gmail.com",
     "category": "សាលារដ្ឋ",
     "departments": [
       {
@@ -2785,11 +2815,11 @@
     "id": 54,
     "code": "uni_gov_0054",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលខេត្តប៉ៃលិន",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិអូរតាពុកក្រោម សង្កាត់ទួលល្វា ក្រុងប៉ៃលិន ខេត្តប៉ៃលិន",
     "province": "ប៉ៃលិន",
     "phoneNumbers": [
-      "០១៧ ៩៤៥ ៤២៤ /​​​ ០៩៦ ២៥២ ៦២៦ / ០១៦ ២៥៥ ៨៥៣"
+      "០១៧ ៩៤៥ ៤២៤/ ០១២ ៦៥២ ៦៤៧"
     ],
     "faxes": [
 
@@ -2835,11 +2865,11 @@
     "id": 55,
     "code": "uni_gov_0055",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តបន្ទាយមានជ័យ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិគាប សង្កាត់ទឹកថ្លា ក្រុងសេរីសោភ័ណ្ឌ ខេត្តបន្ទាយមានជ័យ",
     "province": "បន្ទាយមានជ័យ",
     "phoneNumbers": [
-      "០៧៧ ៩៦៩ ៨៥៨"
+      "០៧៧ ៩៦៩ ៨៥៨/ ០១៧ ៧៥០ ៥០៥"
     ],
     "faxes": [
 
@@ -2875,7 +2905,7 @@
     "id": 56,
     "code": "uni_gov_0056",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តឧត្តរមានជ័យ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិឈូក​​​ សង្កាត់សំរោង ក្រុងសំរោង ខេត្តឧត្តរមានជ័យ",
     "province": "ឧត្តរមានជ័យ",
     "phoneNumbers": [
@@ -2917,11 +2947,11 @@
     "id": 57,
     "code": "uni_gov_0057",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តកំពង់ធំ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវជាតិលេខ៦ ភូមិអាចារ្យលាក់ សង្កាត់អាចារ្យលាក់ ក្រុងស្ទឹងសែន ខេត្តកំពង់ធំ",
     "province": "កំពង់ធំ",
     "phoneNumbers": [
-      "០១២ ៩២៦ ២៣២"
+      "០១២ ៩២៦ ២៣២/០១២ ៥៩៦ ៤៦៦"
     ],
     "faxes": [
 
@@ -2932,7 +2962,7 @@
     "websiteOrFacebook": [
 
     ],
-    "mailbox": null,
+    "mailbox": "pdlvtkpt2015@gmail.com",
     "category": "សាលារដ្ឋ",
     "departments": [
       {
@@ -2961,11 +2991,11 @@
     "id": 58,
     "code": "uni_gov_0058",
     "universityName": "មជ្ឈមណ្ឌលកោសេយ្យវប្បកម្មជាតិសៀមរាប",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិប្រយុទ្ធ ឃុំពួក ស្រុកពួក ខេត្តសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
-      "០៨៩ ៣៤៥ ៥២៦"
+      "០១២ ២៨៥ ៣១៣/ ០១៧ ៦៨៥ ៥៣៨"
     ],
     "faxes": [
 
@@ -2998,11 +3028,11 @@
     "id": 59,
     "code": "uni_gov_0059",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តព្រះវិហារ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិដំណាក់ សង្កាត់កំពង់ប្រណាក ក្រុងព្រះវិហារ ខេត្តព្រះវិហារ",
     "province": "ព្រះវិហារ",
     "phoneNumbers": [
-      "០១១ ២៥៣ ៥៥៨"
+      "០១១ ២៥៣ ៥៥៨/០៩៧ ៧២៤ ៤៧ ២២"
     ],
     "faxes": [
 
@@ -3041,11 +3071,11 @@
     "id": 60,
     "code": "uni_gov_0060",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈព្រះវិហារ-យ៉ាឡាយ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិធម្មជាតិសម្តេចតេជោហ៊ុនសែន ឃុំស្រអែម ជាំក្សាន្ត ខេត្តព្រះវិហារ",
     "province": "ព្រះវិហារ",
     "phoneNumbers": [
-      "០១២ ៣៩០ ២៤៦ / ០៩៨ ៥៤៧ ៣២៧ / ០៩៨ ៤៥៤ ០៤៩"
+      "០១២ ២១២ ២៤៧/០៩៧ ៨៤៤ ៤៩ ៤៧"
     ],
     "faxes": [
 
@@ -3077,11 +3107,11 @@
     "id": 61,
     "code": "uni_gov_0061",
     "universityName": "សាលាបណ្តុះបណ្តាលវិជ្ជាជីវៈរលាំងខេត្តពោធិ៍សាត់",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិស្វាយអាត់ ស្នាមព្រះ ស្រុកបាកាន ខេត្តពោធិ៍សាត់",
     "province": "ពោធិ៍សាត់",
     "phoneNumbers": [
-      "០១២ ៨៨៤ ៩១៩ / ០៨១ ២៧១ ៨១៨ / ០១២ ៥០៧ ៦២៤"
+      "០១២ ៨៩៤ ៨០១ /០៩៧ ៤៨៩ ២៨ ០៨"
     ],
     "faxes": [
 
@@ -3121,11 +3151,11 @@
     "id": 62,
     "code": "uni_gov_0062",
     "universityName": "សាលាបណ្តុះបណ្តាលវិជ្ជាជីវៈបឹងនិមល កំពត",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិទ្វីខាងត្បូង សង្កាត់អណ្តូងខ្មែរ ក្រុងកំពត ខេត្តកំពត",
     "province": "កំពត",
     "phoneNumbers": [
-      "០៣៣ ៦៧៨ ១២១ ២ / ០៩៧ ៩២០ ៨០៨ ៨ / ០៩៩ ៣៦០ ០៨៣"
+      "០៣៣ ៦៧៨ ១២១ ២ / ០៩៧ ៩២០ ៨០៨ ៨ /០៩៦ ៤១១ ៧៤ ៩២"
     ],
     "faxes": [
 
@@ -3158,11 +3188,11 @@
     "id": 63,
     "code": "uni_gov_0063",
     "universityName": "សាលាបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តកំពង់ចាម",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិទី៧ សង្កាត់កំពង់ចាម ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
     "province": "កំពង់ចាម",
     "phoneNumbers": [
-      "០១១ ៨៦៥ ៤០៧"
+      "០១១ ៨៦៥ ៤០៧/០៧៧ ៧៥៧ ៩៥៨"
     ],
     "faxes": [
 
@@ -3199,11 +3229,11 @@
     "id": 64,
     "code": "uni_gov_0064",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តក្រចេះ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិស្រែស្តៅ សង្កាត់អូរឬស្សី ក្រុងក្រចេះ ខេត្តក្រចេះ",
     "province": "ក្រចេះ",
     "phoneNumbers": [
-      "០៩៧ ៧៦៧ ៤០០១ / ០៩៧ ៧៨៧ ០០០ ៩"
+      "០៩៧ ៧៦៧ ៤០០១"
     ],
     "faxes": [
 
@@ -3249,11 +3279,11 @@
     "id": 65,
     "code": "uni_gov_0065",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តស្ទឹងត្រែង",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិស្រែពោធិ៍ សង្កាត់ស្រះឬស្សី ក្រុងស្ទឹងត្រែង ខេត្តស្ទឹងត្រែង",
     "province": "ស្ទឹងត្រែង",
     "phoneNumbers": [
-      "០៩២ ៩៦៣ ៤៣៤ /​​​ ០៩៧ ៨៥០ ៨៥០ / ០៩៧ ២៦៨ ២៩៩ ៨"
+      "០៩២ ៩៦៣ ៤៣៤ /​​​ ០៩៧ ៨៥០ ៨៥០ ៤"
     ],
     "faxes": [
 
@@ -3289,11 +3319,11 @@
     "id": 66,
     "code": "uni_gov_0066",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តមណ្ឌលគិរី",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិជ្រៃសែន សង្កាត់សែនមនោរម្យ ក្រុងសែនមនោរម្យ ខេត្តមណ្ឌលគិរី",
     "province": "មណ្ឌលគិរី",
     "phoneNumbers": [
-      "០១២ ៣១៣ ៣៦២ / ០៩២ ៣៥៥ ៦២៣ / ០៩៧ ៩៧០ ៩៨១​​​ ១"
+      "០៨៨ ៦២ ៤០ ៦២២/ ០៨៩ ៨៣៨ ៣៧០/ ០១០ ៥០៩ ៩៦២"
     ],
     "faxes": [
 
@@ -3316,9 +3346,9 @@
           "ទីផ្សារ",
           "កសិកម្ម (ក្សេត្រសាស្រ្ត បសុវប្បកម្ម)",
           "អក្សរសាស្រ្តអង់គ្លេស",
-          "តបណ្តាញអគ្គិសនីក្នុងអគារ",
+          "អគ្គិសនី",
           "សំណង់",
-          "ជួសជុលរថយន្ត",
+          "គណនេយ្យ និងហើរញ្ញវត្ថុ",
           "ជាងផ្សារដែក",
           "បរិក្ខារត្រជាក់",
           "កុំព្យូទ័ររដ្ឋបាល",
@@ -3336,11 +3366,11 @@
     "id": 67,
     "code": "uni_gov_0067",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តរតនគិរី",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិទេសអន្លង់ សង្កាត់បឹងក្រែង ក្រុងបានលុង ខេត្តរតនគិរី",
     "province": "រតនគិរី",
     "phoneNumbers": [
-      "០១២ ៥៥២ ២៨២ / ០១២ ៣៨៧ ៦៦៤ / ០១២ ៩១៩ ៥០១ / ០៨៩ ៨៤២ ៧៣៥"
+      "០១២ ៥៥២ ២៨២ / ០១២ ៣៨៧ ៦៦៤"
     ],
     "faxes": [
 
@@ -3376,11 +3406,11 @@
     "id": 68,
     "code": "uni_gov_0068",
     "universityName": "មជ្ឈមណ្ឌលអប់រំបច្ចេកទេសមិត្តភាពកម្ពុជា-ជប៉ុន",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិមណ្ឌល៣ សង្កាត់ស្លក្រាម ក្រុងសៀមរាប ខេត្តសៀមរាប ស្ថិតក្នុងបរិវេណសាលាគរុកោសល្យ និងវិក្រិតការខេត្ត",
     "province": "សៀមរាប",
     "phoneNumbers": [
-
+      "០១៧ ៨៥៦ ៨៣៦"
     ],
     "faxes": [
 
@@ -3410,8 +3440,8 @@
     "id": 69,
     "code": "uni_gov_0069",
     "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលវិជ្ជាជីវៈខេត្តត្បូងឃ្មុំ",
-    "logoName": "",
-    "address": "ភូមិនិគមន៍លើ ឃុំស្រឡប់ ស្រុកត្បូងឃ្មុំ ខេត្តត្បូងឃ្មុំ",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ភូមិស្លាបក្ដោង ឃុំ ជប់ ស្រុកត្បូងឃ្មុំ ខេត្តត្បូងឃ្មុំ",
     "province": "ត្បូងឃ្មុំ",
     "phoneNumbers": [
       "០១២ ៦៧៥ ៦២៨ / ០៩៣ ២២០ ២២១ / ០៧០ ២៦៩ ២៩២"
@@ -3470,11 +3500,11 @@
     "id": 70,
     "code": "uni_gov_0070",
     "universityName": "វិទ្យាស្ថានសហគ្រិនភាព និងនវានុវត្តន៍",
-    "logoName": "",
-    "address": "ភូមិចុងថ្នល់ខាងលិច សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ផ្លូវចូលខាកើតវត្តទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
-      "០១១ ២៩៨ ៤៥៦"
+      "០៧០ ៣៩៦ ០៧០/ ០១២ ៣៥៥ ០០៨/ ០៨៨៣៥៥ ១០ ៥៤"
     ],
     "faxes": [
 
@@ -3526,7 +3556,7 @@
     "id": 71,
     "code": "uni_gov_0071",
     "universityName": "វិទ្យាស្ថានបច្ចេកវិទ្យាបាត់ដំបង",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិរំចេក៤ សង្កាត់រតនៈ ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
@@ -3574,11 +3604,11 @@
     "id": 72,
     "code": "uni_gov_0072",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសខេត្តព្រះសីហនុ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ក្រុមទី១៥ ភូមិ២ សង្កាត់៣ ក្រុងព្រះសីហនុ ខេត្តព្រះសីហនុ",
     "province": "ព្រះសីហនុ",
     "phoneNumbers": [
-      "០១២ ៣៩០ ២៤៦ / ០៩៨ ៥៤៧ ៣២៧ / ០៩៨ ៤៥៤ ០៤៩"
+      "០៩២​ ៨៨៤ ៨២៨/ ០១៦ ៥៩៩ ០០៨/ ០៩៨ ៥៤៧ ៣២៧"
     ],
     "faxes": [
 
@@ -3610,26 +3640,11 @@
           "ការតំឡើងពុម្ព",
           "សេវាកម្មរដ្ឋបាល",
           "សេវាកម្មកុំព្យូទ័រ",
-          "សេវាកម្មធនធានមនុស្ស",
-          "សេវាកម្មអតិថិជន",
-          "សេវាជួសជុល និងថែទាំរថយន្ត",
-          "ជួសជុលអគ្គិសនីរថយន្ត",
-          "ជួសជុលម៉ាស៊ីនត្រជាក់រថយន្ត",
-          "កែច្នៃគ្រឿងបន្លាស់រថយន្ត",
-          "កុំព្យូទ័ររដ្ឋបាល",
-          "ជួសជុលបរិក្ខារអេឡិចត្រូនិក",
           "ជួសជុលបរិក្ខារអគ្គិសនី",
-          "ជួសជុលម៉ូតូ",
           "ជូសជុលបរិក្ខារត្រជាក់",
           "កាត់ដេរសម្លៀកបំពាក់នារី",
           "សម្អាងកាយ",
-          "បដិសណ្ឋារកិច្ច",
           "កាត់សក់បុរស",
-          "ផ្សារដែក",
-          "ចិញ្ចឹមមាន់",
-          "ចិញ្ចឹមត្រី",
-          "ចិញ្ចឹមជ្រូក",
-          "ដំណាំស្រូវ",
           "ដាំបន្លែ",
           "បណ្តុះផ្សិត",
           "ជីកំប៉ុស្តិ៍"
@@ -3641,11 +3656,11 @@
     "id": 73,
     "code": "uni_gov_0073",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសអង្គរ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិព្រៃគុយ ឃុំអំពិល ស្រុកប្រាសាទបាគង ខេត្តសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
-      "០១៧ ៦៧៤ ៤៤៦ / ០១២ ៥៩៦ ៤៦៦ / ០៨៩ ៣៤៥ ៥២៦"
+      "០៧០ ៣៧៣ ១៦៧ / ០១២ ៥៩៦ ៤៦៦ / ០៩០ ៤៩៩ ៧៧៧"
     ],
     "faxes": [
 
@@ -3692,11 +3707,11 @@
     "id": 74,
     "code": "uni_gov_0074",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសមិត្តភាពកម្ពុជា ចិនខេត្តព្រះសីហនុ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិពូធឿង ឃុំបិតត្រាំង ស្រុកព្រៃនប់ ខេត្តព្រះសីហនុ (ក្នុងតំបន់សេដ្ឋកិច្ចពិសេស)",
     "province": "ព្រះសីហនុ",
     "phoneNumbers": [
-      "០១២ ២៦១ ២៤២ / ០៦៩ ៣៧៧ ២៧៤ / ០១៦ ៦៣៣ ៣៦៧"
+      "០១២ ២៦១ ២៤២ / ០១៦ ៦៣៣ ៣៦៧"
     ],
     "faxes": [
 
@@ -3744,11 +3759,11 @@
     "id": 75,
     "code": "uni_gov_0075",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសខេត្តពោធិ៍សាត់",
-    "logoName": "",
-    "address": "ភូមិចំការចេកខាងត្បូង សង្កាត់ផ្ទះព្រៃ ក្រុងពោធិ៍សាត់ ខេត្តពោធិ៍សាត់",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ភូមិចំការចេកខាងត្បូង សង្កាត់ផ្ទះព្រៃ ក្រុងពោធិ៍សាត់ ខេត្តពោធិ៍សាត់ ,ខាងជើងវិទ្យាល័យពោធិ៍សាត់ចំងាយ ១០០ម៉",
     "province": "ពោធិ៍សាត់",
     "phoneNumbers": [
-      "០១២ ២៧៩ ៣២០ /  ០៧៨ ៣៥១ ០៤៦"
+      "០១២ ៨៨៤ ៩១៩/ ០៩៦ ៧៣៨ ៩៦ ៥៤"
     ],
     "faxes": [
 
@@ -3794,7 +3809,7 @@
     "id": 76,
     "code": "uni_gov_0076",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសខេត្តកំពង់ចាម",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវជាតិលេខ៧ចាស់ ភូមិទី៧ សង្កាត់កំពង់ចាម ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
     "province": "កំពង់ចាម",
     "phoneNumbers": [
@@ -3848,7 +3863,7 @@
     "id": 77,
     "code": "uni_gov_0077",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសខេត្តបន្ទាយមានជ័យ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិគាប សង្កាត់ទឹកថ្លា ក្រុងសិរីសោភ័ណ ខេត្តបន្ទាយមានជ័យ",
     "province": "បន្ទាយមានជ័យ",
     "phoneNumbers": [
@@ -3894,7 +3909,7 @@
     "id": 78,
     "code": "uni_gov_0078",
     "universityName": "វិទ្យាស្ថានពហុបច្ចេកទេសខេត្តកំពង់ធំ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិព្រៃបន្លិច សង្កាត់អាចារ្យលាក់ ក្រុងស្ទឹងសែន ខេត្តកំពង់ធំ",
     "province": "កំពង់ធំ",
     "phoneNumbers": [
@@ -3942,11 +3957,11 @@
     "id": 79,
     "code": "uni_pri_0001",
     "universityName": "សាខាវិទ្យាស្ថានក្រុងអង្គរ",
-    "logoName": "krong_angkor",
+    "logoName": require('../../assets/images/schools/krong_angkor.jpg'),
     "address": "ផ្លូវលេខ ១១ ភូមិឯករ៉ាម សង្កាត់ជើងទឹក ខេត្តព្រៃវែង",
     "province": "ព្រៃវែង",
     "phoneNumbers": [
-      "០១២ ៤៩១ ៧៧៧"
+      "០១២ ៥៥​៣​ ៤៩៩ / 092 85 20 99"
     ],
     "faxes": [
 
@@ -3984,6 +3999,13 @@
           "អក្សរសាស្រ្តខ្មែរ",
           "ភាសាអង់គ្លេស"
         ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យ វិទ្យាសាស្រ្តនិង​បច្ចេកទេស",
+        "majors": [
+          "វិទ្យាសាស្រ្តកុំព្យូទ័រ",
+          "ពត៌មានវិទ្យា"
+        ]
       }
     ]
   },
@@ -3991,7 +4013,7 @@
     "id": 80,
     "code": "uni_pri_0002",
     "universityName": "សាខាសាកលវិទ្យាល័យឯកទេសនៃកម្ពុជា",
-    "logoName": "cambodia_specialty",
+    "logoName": require('../../assets/images/schools/cambodia_specialty.jpg'),
     "address": "ភូមិជ្រោយថ្ម សង្កាត់បឹងកុក ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
     "province": "កំពង់ចាម",
     "phoneNumbers": [
@@ -4052,7 +4074,7 @@
     "id": 81,
     "code": "uni_pri_0003",
     "universityName": "សាខាសាកលវិទ្យាល័យវេស្ទើន",
-    "logoName": "western",
+    "logoName": require('../../assets/images/schools/western.jpg'),
     "address": "ភូមិទី ២ សង្កាត់វាលវង់ ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
     "province": "កំពង់ចាម",
     "phoneNumbers": [
@@ -4135,7 +4157,7 @@
     "id": 82,
     "code": "uni_pri_0004",
     "universityName": "សាខាសាកលវិទ្យាល័យគ្រប់គ្រង និង សេដ្ឋកិច្ច",
-    "logoName": "management_economic",
+    "logoName": require('../../assets/images/schools/management_economic.png'),
     "address": "ផ្លូវជាតិលេខ ៧ ភូមិបឹងស្នាយ សង្កាត់សំបូរមាស ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
     "province": "កំពង់ចាម",
     "phoneNumbers": [
@@ -4149,7 +4171,7 @@
 
     ],
     "websiteOrFacebook": [
-
+      "www.facebook.com/umekpc"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -4176,7 +4198,7 @@
     "id": 83,
     "code": "uni_pri_0005",
     "universityName": "សាកលវិទ្យាល័យកំពង់ចាម",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
     "province": "កំពង់ចាម",
     "phoneNumbers": [
@@ -4192,7 +4214,7 @@
 
     ],
     "websiteOrFacebook": [
-
+      "https://www.facebook.com/kampong.cham"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -4212,7 +4234,7 @@
     "id": 84,
     "code": "uni_pri_0006",
     "universityName": "ពុទ្ធិកសាកលវិទ្យាល័យសម្ដេចអគ្គមហាសេនាបតី តេជោ ហ៊ុន សែន",
-    "logoName": "hsbu",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "សង្កាត់ បឹងកុក ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
     "province": "កំពង់ចាម",
     "phoneNumbers": [
@@ -4232,15 +4254,31 @@
     "category": "សាលាឯកជន",
     "departments": [
       {
-        "name": "",
+        "name": "មហាវិទ្យាល័យបាលីនិង សំ",
         "majors": [
-          "អក្សរសាស្រ្តខែ្មរ",
-          "ទស្សនវិជ្ជា ពុទ្ធសាសនា",
+          "ភាសាបាលី",
+          "សំ"
+        ]
+      },
+      {
+        "name": "មហារិទ្យាល័យសង្គមសាស្រ្ត",
+        "majors": [
           "នីតិរដ្ឋបាលសាធារណៈ",
-          "អក្សរសាស្រ្តអង់គ្លេស",
-          "គ្រប់គ្រងទូទៅ",
-          "រដ្ឋបាលអប់រំ",
-          "ភាសាបាលី"
+          "រដ្ឋបាលអប់រំ"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័សិល្បៈ មនុស្សសាស្រ្តនិងភាសា",
+        "majors": [
+          "អក្សរសាស្រអង់គ្លេស",
+          "អក្សរសាស្រ្តខ្មែរ"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យ​ទស្សនៈវិជ្ជានិងសានា",
+        "majors": [
+          "ទស្សនវិជ្ជា ពុទ្ធសាសនា",
+          "គ្រប់គ្រងទូទៅ"
         ]
       }
     ]
@@ -4249,12 +4287,11 @@
     "id": 85,
     "code": "uni_pri_0007",
     "universityName": "សាខាសាកលវិទ្យាល័យបៀលប្រាយ",
-    "logoName": "bbu",
+    "logoName": require('../../assets/images/schools/bbu.png'),
     "address": "ភូមិវិហារចិន សង្កាត់ស្វាយដង្កំ ក្រុងសៀមរាប ខេត្តសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
-      "០៦៣ ៩៦៣ ៣០០",
-      "០១៥ ៩០៨ ៧៧៧"
+      "០៦៣ ៩៦៣ ៣០០ / ០១២​ ៥៩៣​ ១០០ / ០៨៧ ៧៥០​ ៦០០"
     ],
     "faxes": [
 
@@ -4296,7 +4333,7 @@
         ]
       },
       {
-        "name": "មហាវិទ្យាល័យសិល្បៈ\n មនុស្សសាស្រ្​្ត និងភាសា",
+        "name": "មហាវិទ្យាល័យសិល្បៈ\n មនុស្សសាស្រ្ត និងភាសា",
         "majors": [
           "ភាសាអង់គ្លេស",
           "បង្រៀនភាសាអង់គ្លេសជាភាសាបរទេស",
@@ -4360,12 +4397,11 @@
     "id": 86,
     "code": "uni_pri_0008",
     "universityName": "សាខាសាកលវិទ្យាល័យបញ្ញាសាស្រ្តកម្ពុជា",
-    "logoName": "puc",
+    "logoName": require('../../assets/images/schools/puc.png'),
     "address": "ផ្លូវលេខ ២៧ ភូមិវត្តបូព៌ សង្កាត់ស្លក្រាម ក្រុងសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
-      "០៦៣ ៩៦៥ ៩៥៧",
-      "០១២ ៦០២ ៥៥០"
+      "០៦៣ ៩៦៥ ៩៥៧ /  ០១២ ៦០២ ៥៥០ / ០៨៨​ ៧៥៩​​​​ ៥០០៧"
     ],
     "faxes": [
 
@@ -4374,7 +4410,7 @@
 
     ],
     "websiteOrFacebook": [
-
+      "www.pusr.edu.kh"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -4433,11 +4469,11 @@
     "id": 87,
     "code": "uni_pri_0009",
     "universityName": "សាខាសាកលវិទ្យាល័យឯកទេសនៃកម្ពុជា",
-    "logoName": "cambodia_specialty",
+    "logoName": require('../../assets/images/schools/cambodia_specialty.jpg'),
     "address": "ផ្លូវលោកតានឿយ ភូមិវត្តបូព៌ សង្កាត់ស្លក្រាម ក្រុងសៀមរាប ខេត្តសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
-      "012 63 62 08"
+      "012 63 62 08 / 010 63 62 08"
     ],
     "faxes": [
 
@@ -4446,7 +4482,7 @@
 
     ],
     "websiteOrFacebook": [
-
+      "https://www.facebook.com/CUS-Siem-Reap-667395060009334"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -4494,13 +4530,11 @@
     "id": 88,
     "code": "uni_pri_0010",
     "universityName": "សាខាសាកលវិទ្យាល័យ មេគង្គកម្ពុជា",
-    "logoName": "mekong",
+    "logoName": require('../../assets/images/schools/mekong.png'),
     "address": "អគារលេខ ២២០ ផ្លូវ៧ មករាសង្កាត់សាលាកំរើក ក្រុងសៀមរាប ខេត្តសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
-      "០៦៣ ៦៩០ ០១១១",
-      "០៩៨ ៩៧៩ ៦៩៥",
-      "០៧៧ ៧៧៣ ៦៣៥"
+      "០៨១​ ៦៣៣ ១២៣ / ០១៥ ៣០៣ ៣៦៦"
     ],
     "faxes": [
 
@@ -4559,12 +4593,11 @@
     "id": 89,
     "code": "uni_pri_0011",
     "universityName": "សាខាវិទ្យាស្ថានវ៉ាន់ដា",
-    "logoName": "vanda",
+    "logoName": require('../../assets/images/schools/vanda.jpeg'),
     "address": "ផ្លូវលោកតានឿយ សង្កាត់សាលាកំរើក ក្រុងសៀមរាប ខេត្តសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
-      "០៦៣ ៩៦៣ ៥៦៣",
-      "០១៧ ៣៧០ ២៦៨"
+      "០៦៣ ៩៦៣ ៥៦៣ / ០៦៩​ ៥៣៣​ ៣៣៩​ ​/ ០៩៧​ ២២២២​​ ៨៩១"
     ],
     "faxes": [
 
@@ -4594,11 +4627,11 @@
     "id": 90,
     "code": "uni_pri_0012",
     "universityName": "សាខាសាកលវិទ្យាល័យ បៀលប្រាយ",
-    "logoName": "bbu",
+    "logoName": require('../../assets/images/schools/bbu.png'),
     "address": "ផ្លូវលេខ ១ ភូមិទី ៤ សង្កាត់៤ ក្រុងព្រះសីហនុ ខេត្តព្រះសីហនុ",
     "province": "ព្រះសីហនុ",
     "phoneNumbers": [
-      "016 565 648"
+      "034 934 024/016 56 56 48/077 56 56 48/016 390 219"
     ],
     "faxes": [
 
@@ -4666,7 +4699,7 @@
     "id": 91,
     "code": "uni_pri_0013",
     "universityName": "សាខាសាកលវិទ្យាល័យ គ្រប់គ្រង និង សេដ្ឋកិច្ច",
-    "logoName": "management_economic",
+    "logoName": require('../../assets/images/schools/management_economic.png'),
     "address": "ភូមិមណ្ឌល ៣ សង្កាត់៤ ក្រុងព្រះសីហនុ ខេត្តព្រះសីហនុ",
     "province": "ព្រះសីហនុ",
     "phoneNumbers": [
@@ -4679,7 +4712,7 @@
 
     ],
     "websiteOrFacebook": [
-
+      "www.ume.edu.kh"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -4687,25 +4720,25 @@
       {
         "name": "មហាវិទ្យាល័យគ្រប់គ្រង\nពាណិជ្ជកម្ម និងទេសចរណ៍",
         "majors": [
-
+          "គ្រប់គ្រងទូទៅ"
         ]
       },
       {
         "name": "មហាវិទ្យាល័យសិល្បៈ មនុស្ស\nសាស្រ្ត និងភាសាបរទេស",
         "majors": [
-
+          "អក្សរសាស្រ្តអង់គ្លេស  អក្សរសាស្រ្តខ្មែរ"
         ]
       },
       {
         "name": "មហាវិទ្យាល័យនិតីសាស្រ្ត និង\nសេដ្ឋកិច្ច",
         "majors": [
-
+          "សេដ្ឋកិច្ច"
         ]
       },
       {
         "name": "មហាវិទ្យាល័យវិទ្យាសាស្រ្ត \nបច្ចេកវិទ្យា",
         "majors": [
-
+          "ពត៌មានវិទ្យា                                                 វិទ្យាសាស្រ្តកុំព្យូទ័រ"
         ]
       }
     ]
@@ -4714,12 +4747,11 @@
     "id": 92,
     "code": "uni_pri_0014",
     "universityName": "សាខាសាកលវិទ្យាល័យបៀលប្រាយ",
-    "logoName": "bbu",
+    "logoName": require('../../assets/images/schools/bbu.png'),
     "address": "ភូមិចំការសំរោង២ សង្កាត់ចំការសំរោង ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
-      "015 651 751",
-      "053 393 975"
+      "012 753 375 / 010 374 757 / 053 393 975 / 012 639 949"
     ],
     "faxes": [
 
@@ -4768,13 +4800,13 @@
           "គ្រប់គ្រង",
           "គណនេយ្យ និងហិរញ្ញវត្ថុ",
           "ធនាគារ និងហិរញ្ញវត្ថុ",
-          "ទីផ្សារ",
-          "ទេសចរណ៍ និងបដិសណ្ឋារកិច្ច"
+          "ទីផ្សារ"
         ]
       },
       {
         "name": "មហាវិទ្យាល័យទេសចរណ៍ និង\nបដិសណ្ឋារកិច្ច",
         "majors": [
+          "ទេសចរណ៍ និងបដិសណ្ឋារកិច្ច",
           "គ្រប់គ្រងសណ្ឋាគារ និងបដិសណ្ឋារកិច្ច",
           "គ្រប់គ្រងទេសចរណ៍",
           "គ្រប់គ្រងទេសចរណ៍ និងបដិសណ្ឋារកិច្ច"
@@ -4786,7 +4818,7 @@
     "id": 93,
     "code": "uni_pri_0015",
     "universityName": "សាខាសាកលវិទ្យាល័យបញ្ញាសាស្រ្តកម្ពុជា",
-    "logoName": "puc",
+    "logoName": require('../../assets/images/schools/puc.png'),
     "address": "ផ្លូវលេខ ២០៧ ភូមិរំចេក ៤ សង្កាត់រតនៈ ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
@@ -4859,7 +4891,7 @@
     "id": 94,
     "code": "uni_pri_0016",
     "universityName": "សាខាសាកលវិទ្យាល័យឯកទេសនៃកម្ពុជា",
-    "logoName": "cambodia_specialty",
+    "logoName": require('../../assets/images/schools/cambodia_specialty.jpg'),
     "address": "ផ្លូវលេខ ២០៧ ភូមិរំចេក ៤ សង្កាត់រតនៈ ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
@@ -4920,7 +4952,7 @@
     "id": 95,
     "code": "uni_pri_0017",
     "universityName": "សាខាសាកលវិទ្យាល័យចេនឡា",
-    "logoName": "chenla",
+    "logoName": require('../../assets/images/schools/chenla.png'),
     "address": "ផ្លូវលេខ ២០៧ ភូមិរំចេក ៤ សង្កាត់រតនៈ ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
@@ -4952,7 +4984,7 @@
     "id": 96,
     "code": "uni_pri_0018",
     "universityName": "សាខាសាកលវិទ្យាល័យបៀលប្រាយ",
-    "logoName": "bbu",
+    "logoName": require('../../assets/images/schools/bbu.png'),
     "address": "ភូមិ១ សង្កាត់រការក្នុង ក្រុងដូនកែវ ខេត្តតាកែវ",
     "province": "តាកែវ",
     "phoneNumbers": [
@@ -5024,13 +5056,13 @@
     "id": 97,
     "code": "uni_pri_0019",
     "universityName": "សាខាសាកលវិទ្យាល័យអង្គរខេមរា",
-    "logoName": "angkor_khemara",
+    "logoName": require('../../assets/images/schools/angkor_khemara.jpg'),
     "address": "អគារលេខ ២០ ផ្លូវ ២២ សង្កាត់រការក្នុង ក្រុងដូនកែវ ខេត្តតាកែវ",
     "province": "តាកែវ",
     "phoneNumbers": [
       "០៣២ ៦៩០ ០១៤៣",
       "០៣២ ៦៩៩ ៩៩៥១",
-      "០៩៧ ៧៧៧ ៩៣៩៦"
+      "០៩៧ ៧៧៧ ៩៣៩៦          016 883 031"
     ],
     "faxes": [
 
@@ -5113,11 +5145,11 @@
     "id": 98,
     "code": "uni_pri_0020",
     "universityName": "សាខាសាកលវិទ្យាល័យបៀលប្រាយ",
-    "logoName": "bbu",
+    "logoName": require('../../assets/images/schools/bbu.png'),
     "address": "ភូមិទេសអន្លង់ សង្កាត់បឹងកន្សែង ក្រុងឡាបានសៀក ខេត្តរតនគិរី",
     "province": "រតនគិរី",
     "phoneNumbers": [
-      "០៧៥ ៩៧៤ ០៦៤"
+      "០៧៥ ៩៧៤ ០៦៤  017950956"
     ],
     "faxes": [
 
@@ -5184,13 +5216,13 @@
     "id": 99,
     "code": "uni_pri_0021",
     "universityName": "សាខាសាកលវិទ្យាល័យបៀលប្រាយ",
-    "logoName": "bbu",
+    "logoName": require('../../assets/images/schools/bbu.png'),
     "address": "ភូមិអូរអំបិល សង្កាត់អូរអំបិល ក្រុងសេរីសោភណ្ឌ ខេត្តបន្ទាយមានជ័យ",
     "province": "បន្ទាយមានជ័យ",
     "phoneNumbers": [
       "054 958 300",
-      "054 710 505 \n092 2222 12",
-      "098 6666 99"
+      "054 71​1 212\n093 4444 98",
+      "012 481 482                   093 92 93 93"
     ],
     "faxes": [
 
@@ -5252,7 +5284,7 @@
     "id": 100,
     "code": "uni_pri_0022",
     "universityName": "សាខាសាកលវិទ្យាល័យឯកទេសនៃកម្ពុជា",
-    "logoName": "cambodia_specialty",
+    "logoName": require('../../assets/images/schools/cambodia_specialty.jpg'),
     "address": "អគារលេខ ៧៣ ភូមិសុភី សង្កាត់កំពង់ស្វាយ ក្រុងសេរីសោភណ្ឌ ខេត្តបន្ទាយមានជ័យ",
     "province": "បន្ទាយមានជ័យ",
     "phoneNumbers": [
@@ -5307,7 +5339,7 @@
     "id": 101,
     "code": "uni_pri_0023",
     "universityName": "សាខាសាកលវិទ្យាល័យ គ្រប់គ្រង និង សេដ្ឋកិច្ច",
-    "logoName": "management_economic",
+    "logoName": require('../../assets/images/schools/management_economic.png'),
     "address": "ផ្លូវជាតិលេខ ៦៥ អា ភូមិខ្លាកូនចាស់ សង្កាត់កំពង់ស្វាយ ក្រុងសេរីសោភណ្ឌ ខេត្តបន្ទាយមានជ័យ",
     "province": "បន្ទាយមានជ័យ",
     "phoneNumbers": [
@@ -5371,13 +5403,13 @@
   },
   {
     "id": 102,
-    "code": "uni_pri__0024",
+    "code": "uni_pri_0024",
     "universityName": "សាខាសាកលវិទ្យាល័យបៀលប្រាយ",
-    "logoName": "bbu",
+    "logoName": require('../../assets/images/schools/bbu.png'),
     "address": "ភូមិថ្មលាត សង្កាត់ស្រែឫស្សី ក្រុងស្ទឹងត្រែង ខេត្តស្ទឹងត្រែង",
     "province": "ស្ទឹងត្រែង",
     "phoneNumbers": [
-      "០៧៤ ៩៧៣ ៦៦៣"
+      "០៧៤ ៩៧៣ ៦៦៣ 096 973 4504, 097 991 9947, 097 783 25 84, 016 525 343"
     ],
     "faxes": [
 
@@ -5386,7 +5418,7 @@
 
     ],
     "websiteOrFacebook": [
-
+      "http://st.bbu.edu.kh"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -5444,7 +5476,7 @@
     "id": 103,
     "code": "uni_pri_0025",
     "universityName": "សាខាសាកលវិទ្យាល័យឯកទេសនៃកម្ពុជា",
-    "logoName": "cambodia_specialty",
+    "logoName": require('../../assets/images/schools/cambodia_specialty.jpg'),
     "address": "អគារលេខ២១ ភូមិយោសូភី សង្កាត់កំពតកណ្តាល ក្រុងកំពត  ខេត្តកំពត",
     "province": "កំពត",
     "phoneNumbers": [
@@ -5499,11 +5531,11 @@
     "id": 104,
     "code": "uni_pri_0026",
     "universityName": "សាខាសាកលវិទ្យាល័យគ្រប់គ្រងនិងសេដ្ឋកិច្ច",
-    "logoName": "management_economic",
+    "logoName": require('../../assets/images/schools/management_economic.png'),
     "address": "អគារលេខ៤៧ ភូមិសុវណ្ណសាគរ សង្កាត់កំពង់កណ្តាល ក្រុងកំពត ខេត្តកំពត",
     "province": "កំពត",
     "phoneNumbers": [
-      "០៣៣ ៦៦៦ ៦១៩២"
+      "033 6666 192 / 092 999 797 / 077 37 77 37 / 081 48 7777\n096 256 8888 / 097 337 8888"
     ],
     "faxes": [
 
@@ -5540,11 +5572,11 @@
     "id": 105,
     "code": "uni_pri_0027",
     "universityName": "សាខាសាកលវិទ្យាល័យឯកទេសនៃកម្ពុជា",
-    "logoName": "cambodia_specialty",
+    "logoName": require('../../assets/images/schools/cambodia_specialty.jpg'),
     "address": "ភូមិបាល្ល័ង្គលិច សង្កាត់ដំរីជាន់ខ្លា ក្រុងស្ទឹងសែន ខេត្តកំពង់ធំ",
     "province": "កំពង់ធំ",
     "phoneNumbers": [
-      "០១២ ៨៥៤ ៣៤២"
+      "012 854 342 / 087 854 342"
     ],
     "faxes": [
 
@@ -5586,7 +5618,7 @@
     "id": 106,
     "code": "uni_pri_0028",
     "universityName": "សាខាសាកលវិទ្យាល័យគ្រប់គ្រង និងសេដ្ឋកិច្ច",
-    "logoName": "management_economic",
+    "logoName": require('../../assets/images/schools/management_economic.png'),
     "address": "ភូមិរ៉ា សង្កាត់ផ្ទះព្រៃ ក្រុងពោធន៍សាត់ ខេត្តពោធិ៍សាត់",
     "province": "ពោធិ៍សាត់",
     "phoneNumbers": [
@@ -5650,13 +5682,13 @@
     "id": 107,
     "code": "uni_pri_0029",
     "universityName": "សាខាសាកលវិទ្យាល័យអង្គរខេមរា",
-    "logoName": "angkor_khemara",
+    "logoName": require('../../assets/images/schools/angkor_khemara.jpg'),
     "address": "អគារលេខD1-D5 ភូមិពាលញែក សង្កាត់ផ្ទះព្រៃ ក្រុងពោធិ៍សាត់ ខេត្តពោធិ៍សាត់",
     "province": "ពោធិ៍សាត់",
     "phoneNumbers": [
       "០៣២ ៦៩០ ០១៤៣",
       "០៣២ ៦៩៩ ៩៩៥១",
-      "០៩៧ ៧៧៧ ៩៣៩៦"
+      "០៩៧ ៧៧៧ ៩៣៩៦ 092 250 072"
     ],
     "faxes": [
 
@@ -5730,12 +5762,12 @@
     "id": 108,
     "code": "uni_pri_0030",
     "universityName": "សាខាសាលកវិទ្យាល័យអង្គរខេមរា",
-    "logoName": "angkor_khemara",
+    "logoName": require('../../assets/images/schools/angkor_khemara.jpg'),
     "address": "ភូមិត្រពាំងលើក សង្កាត់រកាធំ ក្រុងច្បារមន ខេត្តកំពង់ស្ពឺ",
     "province": "កំពង់ស្ពឺ",
     "phoneNumbers": [
       "០៩២ ២៥០ ០៧២",
-      "០១៥ ៧៨៨ ៦៨៦"
+      "០១៥ ៧៨៨ ៦៨៦ 092 250 072"
     ],
     "faxes": [
 
@@ -5818,12 +5850,12 @@
     "id": 109,
     "code": "uni_pri_0031",
     "universityName": "សាខាសាកលវិទ្យាល័យ គ្រប់គ្រង និងសេដ្ឋកិច្ច",
-    "logoName": "management_economic",
+    "logoName": require('../../assets/images/schools/management_economic.png'),
     "address": "ភូមិទី១ សង្កាត់ដងទង់ ក្រុងខេមរៈភូមិន្ទ ខេត្តកោះកុង",
     "province": "កោះកុង",
     "phoneNumbers": [
       "០៣៥ ៣០០ ០៦៣​",
-      "០៩៣ ៨០៨ ៨៤៨"
+      "០៩៣ ៨០៨ ៨៤៨  012 711 108"
     ],
     "faxes": [
 
@@ -5883,7 +5915,7 @@
     "id": 110,
     "code": "uni_pri_0032",
     "universityName": "សាខាសាកលវិទ្យាល័យ គ្រប់គ្រង និងសេដ្ឋកិច្ច",
-    "logoName": "management_economic",
+    "logoName": require('../../assets/images/schools/management_economic.png'),
     "address": "ភូមិស្រែស្បូវ សង្កាត់អូរឫស្សី ក្រុងក្រចេះ ខេត្តក្រចេះ",
     "province": "ក្រចេះ",
     "phoneNumbers": [
@@ -5948,7 +5980,7 @@
     "id": 111,
     "code": "uni_pri_0033",
     "universityName": "សាកលវិទ្យាល័យ ន័រតុន",
-    "logoName": "norton",
+    "logoName": require('../../assets/images/schools/norton.png'),
     "address": "បណ្ដោយផ្លូវកែវចិន្តា ខណ្ឌជ្រោយចង្វារ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6021,7 +6053,7 @@
     "id": 112,
     "code": "uni_pri_0034",
     "universityName": "សាកលវិទ្យាល័យមេគង្គកម្ពុជា",
-    "logoName": "mekong",
+    "logoName": require('../../assets/images/schools/mekong.png'),
     "address": "អាគារលេខ ៩បេ ផ្លូវលេខ ២៧១ សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6090,7 +6122,7 @@
     "id": 113,
     "code": "uni_pri_0035",
     "universityName": "សាកលវិទ្យាល័យ ប៊ែលធីអន្តរជាតិ",
-    "logoName": "belty",
+    "logoName": require('../../assets/images/schools/belty.png'),
     "address": "អគារលេខ ២១ ផ្លូវលេខ ៣៦០ សង្កាត់បឹងកេងកង ខណ្ឌចំការមន ភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6165,7 +6197,7 @@
     "id": 114,
     "code": "uni_pri_0036",
     "universityName": "សាកលវិទ្យាល័យបញ្ញាសាស្រ្តកម្ពុជា",
-    "logoName": "puc",
+    "logoName": require('../../assets/images/schools/puc.png'),
     "address": "ផ្លូវលេខ ១៤៤ -១៨៤មហាវិថីព្រះនរោត្តម សង្កាត់ទន្លេបាសាក់ ខណ្ឌចំការមន រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6185,7 +6217,7 @@
     "category": "សាលាឯកជន",
     "departments": [
       {
-        "name": "មហាវិទ្យាល័យអប់រំ",
+        "name": "uni_pri_0037+663:680B663663:672B6663:672",
         "majors": [
           "TESOL"
         ]
@@ -6238,7 +6270,7 @@
     "id": 115,
     "code": "uni_pri_0037",
     "universityName": "សាកលវិទ្យាល័យបៀលប្រាយ",
-    "logoName": "bbu",
+    "logoName": require('../../assets/images/schools/bbu.png'),
     "address": "អគារភ្នំពេញសេនធ័រ មហាវិថីសម្ដេចព្រះសុធារស សង្កាត់ទន្លេបាសាក់ ខណ្ឌចំការមន រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6259,36 +6291,35 @@
     "category": "សាលាឯកជន",
     "departments": [
       {
-        "name": "មហាវិទ្យាល័យទេសចរណ៍ និងបដិសណ្ឋារកិច្ច",
+        "name": "មហាវិទ្យាល័យសិល្បៈ អក្សរសាស្រ្ត មនុស្សសាស្រ្ត",
         "majors": [
-          "គ្រប់គ្រងទេសចរណ៍",
-          "គ្រប់គ្រងសេវាម្ហូបអាហារ",
-          "គ្រប់គ្រងទេសចរណ៍ និង បដិសណ្ឋារកិច្ច",
-          "គ្រប់គ្រងសណ្ឋាគារ និង បដិសណ្ឋារកិច្ច",
-          "គ្រប់គ្រងបដិសណ្ឋារកិច្ច និងសេវាម្ហូបអាហារ"
+          "នរវិទូ",
+          "ខេមរសិក្សា",
+          "ប្រវត្តិវិទ្យា",
+          "ការសម្ដែងតូរ្យតន្រ្តី",
+          "ភាសាអង់គ្លេសទំនាក់ទំនង"
         ]
       },
       {
-        "name": "មហាវិទ្យាល័យវិទ្យាសាស្រ្តសេដ្ឋកិច្ច និងកសិកម្ម",
+        "name": "មហាវិទ្យាល័យពាណិជ្ជសាស្រ្ត និងសេដ្ឋកិច្ច",
         "majors": [
-          "សេដ្ឋកិច្",
-          "សេដ្ឋកិច្ចធុរកិច្ច និងហិរញ្ញវត្ថុ",
-          "ពាណិជ្ជកម្មនិងពាណិជ្ជកម្មអន្តរជាតិ",
-          "កសិកម្ម",
-          "គ្រប់គ្រងកសិធុរកិច្ច និង កសិដ្ឋាន",
-          "ផលិតកម្មដំណាំ",
-          "គ្រប់គ្រងគម្រោង និងអភិវឌ្ឍន៍ជនបទ",
-          "ផលិតកម្មសត្វ",
-          "កសិឧស្សាហកម្មនិងបច្ចេកវិទ្យាក្រោយប្រមូលផល"
+          "គណនេយ្យ",
+          "សេដ្ឋកិច្ច",
+          "គ្រប់គ្រងពាណីជ្ជកម្ម",
+          "ធនាគារ នឹងហិរញ្ញវត្ថុ",
+          "ប្រព័ន្ឋព័ត៌មានវិទ្យាពាណិជ្ជកម្ម",
+          "សហគ្រិនភាព",
+          "ទីផ្សារ",
+          "ជំនួញអន្តរជាតិ"
         ]
       },
       {
         "name": "មហាវិទ្យាល័យវិស្វកម្ម និងស្ថាបត្យកម្ម",
         "majors": [
-          "វិស្វកម្មសំណង់ស៊ីវិល និងគ្រោងបង្គំ",
-          "វិស្វកម្មសំណង់ស៊ីវិល",
-          "វិស្វកម្មសំណង់ស៊ីវិល និងការសាងសង់",
-          "ការរចនាស្ថាបត្យកម្មក្នុងអាគារ",
+          "គ្រប់គ្រងទេសចរណ៍ និងបដិសណ្ឋារកិច្ច",
+          "បរិស្ថាន",
+          "វិទ្យាសាស្រ្តកុំព្យូទ័រ",
+          "ច្បាប់",
           "វិស្វកម្មអេឡិចត្រូនិច និងទូរគមនាគមន៍",
           "ការរចនាម៉ូតផលិតផល",
           "រចនាស្ថាបត្យកម្ម និងនគរូបនីយវិទ្យា",
@@ -6308,7 +6339,7 @@
     "id": 116,
     "code": "uni_pri_0038",
     "universityName": "សាកលវិទ្យាល័យអាស៊ីអឺរ៉ុប",
-    "logoName": "asia_europ",
+    "logoName": require('../../assets/images/schools/asia_europ.png'),
     "address": "អគារលេខ ៨២៦ មហាវិថីកម្ពុជាក្រោម សង្កាត់ទឹកល្អក់១ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6378,7 +6409,7 @@
     "id": 117,
     "code": "uni_pri_0039",
     "universityName": "សាកលវិទ្យាល័យកម្ពុជាអន្តរជាតិ",
-    "logoName": "cam_iu",
+    "logoName": require('../../assets/images/schools/cam_iu.png'),
     "address": "ផ្ទះលេខ  ៥-១៥ ផ្លូវលេខ ១៣៦ សង្កាត់ផ្សារថ្មី៣ ខណ្ឌដូនពេញ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6478,7 +6509,7 @@
     "id": 118,
     "code": "uni_pri_0040",
     "universityName": "សាកលវិទ្យាល័យចេនឡា",
-    "logoName": "chenla",
+    "logoName": require('../../assets/images/schools/chenla.png'),
     "address": "ផ្លូវលេខ ៥៧ សង្កាត់ផ្សារដើមគ ខណ្ឌទូលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6549,7 +6580,7 @@
     "id": 119,
     "code": "uni_pri_0041",
     "universityName": "សាកលវិទ្យាល័យឯកទេសនៃកម្ពុជា",
-    "logoName": "cambodia_specialty",
+    "logoName": require('../../assets/images/schools/cambodia_specialty.jpg'),
     "address": "អគារ F ផ្លូវលេខ ៦២ ភូមិទូលគោក សង្កាត់ទួលសង្កែ ខណ្ឌឬស្សីកែវ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6620,7 +6651,7 @@
     "id": 120,
     "code": "uni_pri_0042",
     "universityName": "សាកលវិទ្យាល័យធនធានមនុស្ស",
-    "logoName": "human_resource",
+    "logoName": require('../../assets/images/schools/human_resource.png'),
     "address": "អគារលេខ ១៧-១៩ ផ្លូវ១៦៣ សង្កាត់អូឡាំពិក ខណ្ឌចំការមន រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6666,7 +6697,7 @@
     "id": 121,
     "code": "uni_pri_0043",
     "universityName": "សាកលវិទ្យាល័យអាយអាយស៊ីនៃបច្ចេកវិទ្យា",
-    "logoName": "iic",
+    "logoName": require('../../assets/images/schools/iic.jpg'),
     "address": "អគារលេខ ៦៥០ ផ្លូវជាតិលេខ ២ សង្កាត់ចាក់អង្រែក្រោម ខណ្ឌមានជ័យ ភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6757,7 +6788,7 @@
     "id": 122,
     "code": "uni_pri_0044",
     "universityName": "សាកលវិទ្យាល័យ ហ្សាម៉ាន់",
-    "logoName": "zaman",
+    "logoName": require('../../assets/images/schools/zaman.jpg'),
     "address": "អគារលេខ ៨ ផ្លូវ៣២៥ សង្កាត់បឹងកក់១ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6825,7 +6856,7 @@
     "id": 123,
     "code": "uni_pri_0045",
     "universityName": "សាកលវិទ្យាល័យអន្តរជាតិ",
-    "logoName": "iu",
+    "logoName": require('../../assets/images/schools/iu.jpg'),
     "address": "ផ្លូវ ១០១១ -១៩៨៤ សង្កាត់ភ្នំពេញថ្មី ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -6942,7 +6973,7 @@
     "id": 124,
     "code": "uni_pri_0046",
     "universityName": "សាកលវិទ្យាល័យលីមកុកវីង យូនឺវឺស៊ីធី អហ្វ គ្រេអេទីវ តិចណូឡូជី",
-    "logoName": "limkokwing",
+    "logoName": require('../../assets/images/schools/limkokwing.png'),
     "address": "ផ្ទះលេខ ៧០៧ -៧០៨ ផ្លូវ ១៩៨៦ សង្កាត់ភ្នំពេញថ្មី ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -7004,7 +7035,7 @@
     "id": 125,
     "code": "uni_pri_0047",
     "universityName": "សាកលវិទ្យាល័យបញ្ញាជាតិ",
-    "logoName": "pcu",
+    "logoName": require('../../assets/images/schools/pcu.png'),
     "address": "អគារលេខ ១៣ និង ២០-២៤ ផ្លូវលេខ ២៥៣ សង្កាត់ទឹកល្អក់៣ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -7083,7 +7114,7 @@
     "id": 126,
     "code": "uni_pri_0048",
     "universityName": "សាកលវិទ្យាល័យភ្នំពេញអន្តរជាតិ",
-    "logoName": "ppiu",
+    "logoName": require('../../assets/images/schools/ppiu.jpg'),
     "address": "អគារលេខ ៣៦ ផ្លូវ១៦៩ សង្កាត់វាលវង់ ខណ្ឌ ៧មករា រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -7101,8 +7132,7 @@
 
     ],
     "websiteOrFacebook": [
-      "www.ppiu.edu.kh",
-      "Phnom Penh International University (Official)"
+      "www.ppiu.edu.kh"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -7147,7 +7177,7 @@
     "id": 127,
     "code": "uni_pri_0049",
     "universityName": "សាកលវិទ្យាល័យ កម្ពុជា",
-    "logoName": "uc",
+    "logoName": require('../../assets/images/schools/uc.png'),
     "address": "ផ្លូវណ័រប្រីត សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -7235,7 +7265,7 @@
     "id": 128,
     "code": "uni_pri_0050",
     "universityName": "សាកលវិទ្យាល័យពុទ្ធិសាស្រ្ត",
-    "logoName": "puthisastra",
+    "logoName": require('../../assets/images/schools/puthisastra.png'),
     "address": "ផ្ទះលេខ ៥៥ ផ្លូវលេខ ១៨០ និង ១៨៤ សង្កាត់បឹងរាំង ខណ្ឌដូនពេញ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -7293,7 +7323,7 @@
     "id": 129,
     "code": "uni_pri_0051",
     "universityName": "សាកលវិទ្យាល័យវេស្ទើន",
-    "logoName": "western",
+    "logoName": require('../../assets/images/schools/western.jpg'),
     "address": "ផ្ទះលេខ ១៥ ផ្លូវលេខ ៥២៨ សង្កាត់បឹងកក់ ១ ខណ្ឌទួលគោករាជធានី",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -7351,7 +7381,7 @@
     "id": 130,
     "code": "uni_pri_0052",
     "universityName": "សាកលវិទ្យាល័យខេមរៈ",
-    "logoName": "khemarak",
+    "logoName": require('../../assets/images/schools/khemarak.png'),
     "address": "បណ្ដោយផ្លូវ ១៩៨៦ បត់ចូលផ្លូវលំ ៧២ ចំងាយ ២០​ម៉ែត្រ សង្កាត់ភ្នំពេញថ្មី ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -7365,7 +7395,8 @@
 
     ],
     "websiteOrFacebook": [
-      "www.khemarak.edu.kh សាកលវិទ្យាល័យខេមរៈ Official page"
+      "<html><u>www.khemarak.edu.kh</u>",
+      "<u>https://www.facebook.com/KhemarakUnivesity</u></html>"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -7417,6 +7448,19 @@
           "ទស្សនវិជ្ជា",
           "អក្សរសាស្រ្តខ្មែរ",
           "ចិត្តគរុកោសល្យ",
+          "អប់រំភាសាអង់គ្លេស",
+          "ភាសាអង់គ្លេសសម្រាប់ទំនាក់ទំនង",
+          "អក្សរសាស្រ្តខ្មែរ",
+          "ប្រវត្តិវិទ្យា",
+          "ធនាគារ នឹងហិរញ្ញវត្ថុ",
+          "សេដ្ឋកិច្ចអភិវឌ្ឍន៍",
+          "នីតិសាធារណៈ",
+          "នីតិឯកជន",
+          "គ្រប់គ្រង",
+          "ទីផ្សារ",
+          "គណនេយ្យ",
+          "គ្រប់គ្រងសណ្ឋារគារ ទេសចរណ៍",
+          "វិទ្យាសាស្រ្តកុំព្យូទ័រ",
           "ផែនការកម្ម និងគោលនយោបាយអប់រំ"
         ]
       }
@@ -7426,7 +7470,7 @@
     "id": 131,
     "code": "uni_pri_0053",
     "universityName": "សាកលវិទ្យាល័យគ្រប់គ្រង និង សេដ្ឋកិច្ច",
-    "logoName": "management_economic",
+    "logoName": require('../../assets/images/schools/management_economic.png'),
     "address": "អគារលេខ ៧៤ ភូមិព្រែកព្រះស្ដេច សង្កាត់ព្រែកព្រះស្ដេច ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
@@ -7441,7 +7485,8 @@
 
     ],
     "websiteOrFacebook": [
-      "www.ume.edu.kh umecambodia"
+      "<html><u>www.ume.edu.kh</u>",
+      "<u>https://www.facebook.com/profile.php?id=100005325019066</u></html>"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -7501,11 +7546,11 @@
     "id": 132,
     "code": "uni_pri_0054",
     "universityName": "សាកលវិទ្យាល័យអន្តរជាតិឌូវី",
-    "logoName": "dewey",
+    "logoName": require('../../assets/images/schools/dewey.jpg'),
     "address": "ភូមិរំចេក ៤ សង្កាត់រតនៈ ក្រុងបាត់ដំបង ខេត្តដំបង",
     "province": "បាត់ដំបង",
     "phoneNumbers": [
-      "០៥៣ ៦៣៧ ៣៧៤៧, ០៨៩ ៩៥០ ៩០៩"
+      "012 32 0005 / 053 5555 442 / 081 25 81 76 / 097 63 88 588"
     ],
     "faxes": [
 
@@ -7570,7 +7615,7 @@
     "id": 133,
     "code": "uni_pri_0055",
     "universityName": "សាកលវិទ្យាល័យ ឡាយហ្វ",
-    "logoName": "life",
+    "logoName": require('../../assets/images/schools/life.png'),
     "address": "ផ្លូវសេតេ ក្រុមទី ១១ មណ្ឌល ៣ សង្កាត់០២ ក្រុងព្រះសីហនុ ខេត្តព្រះសីហនុ",
     "province": "ព្រះសីហនុ",
     "phoneNumbers": [
@@ -7655,13 +7700,13 @@
     "id": 134,
     "code": "uni_pri_0056",
     "universityName": "សាកលវិទ្យាល័យខ្មែរ បច្ចេកវិទ្យា និង គ្រប់គ្រង",
-    "logoName": "technology_management",
+    "logoName": require('../../assets/images/schools/technology_management.jpg'),
     "address": "ផ្លូវឯករាជ្យ ភូមិ ២ សង្កាត់​ ៣ ក្រុងព្រះសីហនុ ខេត្តព្រះសីហនុ",
     "province": "ព្រះសីហនុ",
     "phoneNumbers": [
       "០៣៤ ៩៣៣ ៧១៨",
       "០៩៣ ៩៣៦ ៦៩៩",
-      "០១៥ ៥៥៥ ៦៥០"
+      "០១៥ ៥៥៥ ៦៥០ / 012 443 777 / 033 6666 132"
     ],
     "faxes": [
       "០៣៤ ៩៣៣ ៧១៨"
@@ -7747,13 +7792,13 @@
     "id": 135,
     "code": "uni_pri_0057",
     "universityName": "សាកលវិទ្យាល័យអង្គរខេមរា",
-    "logoName": "angkor_khemara",
+    "logoName": require('../../assets/images/schools/angkor_khemara.jpg'),
     "address": "ភូមិទី១ ឧសភា សង្កាត់ កំពង់កណ្ដាល ក្រុងកំពត ខេត្តកំពត",
     "province": "កំពត",
     "phoneNumbers": [
       "០៣៣ ៦៣៦ ៣១៤៩",
       "០៣៣ ៦៩០ ៣៨៨៤",
-      "០៩៧ ៧៧៧ ៩៣៩៥"
+      "០៩៧ ៧៧៧ ៩៣៩៥ / 017 843 448"
     ],
     "faxes": [
 
@@ -7836,7 +7881,7 @@
     "id": 136,
     "code": "uni_pri_0058",
     "universityName": "វិទ្យាស្ថានវិទ្យាសាស្រ្តអាស៊ី",
-    "logoName": "asia_science",
+    "logoName": require('../../assets/images/schools/asia_science.jpg'),
     "address": "អគារ ២១-៣៥ ផ្លូវលេខ ៥១៦ សង្កាត់ទួលសង្កែ ខណ្ឌឬស្សីកែវ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -7850,8 +7895,8 @@
 
     ],
     "websiteOrFacebook": [
-      "www.ais-edu.com",
-      "www.facebook.com/asia.sciences"
+      "<html>www.ais-edu.com",
+      "<u>www.facebook.com/asia.sciences</u></html>"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -7870,7 +7915,7 @@
     "id": 137,
     "code": "uni_pri_0059",
     "universityName": "វិទ្យាស្ថានខេមអេដប៊ីហ្សនេសស្តូល",
-    "logoName": "cam_ed",
+    "logoName": require('../../assets/images/schools/cam_ed.gif'),
     "address": "ផ្ទះលេខ ៦៤ ផ្លូវ១០៨ សង្កាត់វត្តភ្នំ ខណ្ឌដូនពេញ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -7886,8 +7931,8 @@
 
     ],
     "websiteOrFacebook": [
-      "www.cam-ed.com",
-      "www.facebook.com/CamEdBusinessSchool"
+      "<html>www.cam-ed.com",
+      "<u>www.facebook.com/CamEdBusinessSchool</u></html>"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -7906,11 +7951,11 @@
     "id": 138,
     "code": "uni_pri_0060",
     "universityName": "វិទ្យាស្ថានវ៉ាន់ដា",
-    "logoName": "vanda",
+    "logoName": require('../../assets/images/schools/vanda.jpeg'),
     "address": "មហាវិថីម៉ៅសេទុង សង្កាត់ទំនប់ទឹក ខណ្ឌចំការមន រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
-      "០២៣ ២១៣ ៥៦៣"
+      "០២៣ ២១៣ ៥៦៣ /"
     ],
     "faxes": [
       "០២៣ ២១៣ ៥៦២"
@@ -7919,7 +7964,8 @@
 
     ],
     "websiteOrFacebook": [
-      "www.vanda.edu.kh  Vanda Institute of Accounting"
+      "<html><u>www.vanda.edu.kh</u>",
+      "<u>https://www.facebook.com/vandapp</u></html>"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -7942,7 +7988,7 @@
     "id": 139,
     "code": "uni_pri_0061",
     "universityName": "វិទ្យាស្ថានសិល្បៈភ្នំពេញអន្តរជាតិ",
-    "logoName": "ppia",
+    "logoName": require('../../assets/images/schools/ppia.jpeg'),
     "address": "ផ្ទះលេខ ១៣៤អេ ផ្លូវលេខ ៥១(ប៉ាស្ទ័រ) សង្កាត់បឹងកេងកង១ ខណ្ឌចំការមន រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -7956,7 +8002,8 @@
 
     ],
     "websiteOrFacebook": [
-      "www.ppiia.org PPIIA-Phnom Penh International Institute of the Arts"
+      "<html><u>www.ppiia.org</u>",
+      "<u>https://www.facebook.com/PPIIA-Phnom-Penh-International-Institute-of-the-Arts-127663637380006</u></html>"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -7991,7 +8038,7 @@
     "id": 140,
     "code": "uni_pri_0062",
     "universityName": "វិទ្យាស្ថានស៊ីតិក",
-    "logoName": "setec",
+    "logoName": require('../../assets/images/schools/setec.png'),
     "address": "អគារលេខ ៨៦អា ផ្លូវសហព័ន្ឋរុស្សី(ផ្លូវ ១១០) កែងផ្លូវលេខ ២៥៩ សង្កាត់ទឹកល្អក់ទី១ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -8004,8 +8051,8 @@
 
     ],
     "websiteOrFacebook": [
-      "www.setecu.com",
-      "www.facebook.com/setecedu"
+      "<html>www.setecu.com",
+      "<u>www.facebook.com/setecedu</u></html>"
     ],
     "mailbox": null,
     "category": "សាលាឯកជន",
@@ -8029,12 +8076,11 @@
     "id": 141,
     "code": "uni_pri_0063",
     "universityName": "វិទ្យាស្ថានអភិវឌ្ឍន៍អាស៊ីសច្ចៈ",
-    "logoName": "sachak_asia",
+    "logoName": require('../../assets/images/schools/sachak_asia.jpg'),
     "address": "អគារលេខ ៤៧ Eo ផ្លូវលេខ៣៤៨ សង្កាត់ទួលស្វាយព្រៃមួយ ខណ្ឌចំការមន រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
-      "០២៣ ៦៩០ ០៧៦៧",
-      "០២៣ ៦៩២ ១៩១២"
+      "0236688016 / 015434497 / 0966666268 / 015477 779"
     ],
     "faxes": [
 
@@ -8076,7 +8122,7 @@
     "id": 142,
     "code": "uni_pri_0064",
     "universityName": "វិទ្យាស្ថានអន្តរជាតិ អេស អាយ យូ",
-    "logoName": "siu",
+    "logoName": require('../../assets/images/schools/siu.jpg'),
     "address": "ផ្លូវលេខ ២១៧ ផ្ទះលេខ ៨E1 សង្កាត់ស្ទឹងមានជ័យ ខណ្ឌមានជ័យ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -8116,7 +8162,7 @@
     "id": 143,
     "code": "uni_pri_0065",
     "universityName": "វិទ្យាស្ថាន អេសធី ខ្លេម៉ិនស៍",
-    "logoName": "st_clement",
+    "logoName": require('../../assets/images/schools/st_clement.jpg'),
     "address": "អគារលេខ ១០២ ផ្លូវ ៥៩៨ សង្កាត់បឹងកក់ ២ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -8157,7 +8203,7 @@
     "id": 144,
     "code": "uni_pri_0066",
     "universityName": "វិទ្យាស្ថាន អ៊ីនធឺរេដ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "អគារលេខ ៨ ផ្លូវ១៧៣ សង្កាត់អូឡាំពិក ខណ្ឌចំការមន រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -8207,7 +8253,7 @@
     "id": 145,
     "code": "uni_pri_0067",
     "universityName": "វិទ្យាស្ថានគ្រប់គ្រង ភីស៊ីអិល",
-    "logoName": "pcl",
+    "logoName": require('../../assets/images/schools/pcl.jpg'),
     "address": "ផ្លូវប៉េតុង ៦០០ ភូមិត្នោតជ្រុំ៥ សង្កាត់បឹងទំពុន  សណ្ឌមានជ័យ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -8248,7 +8294,7 @@
     "id": 146,
     "code": "uni_pri_0068",
     "universityName": "វិទ្យាស្ថានគ្រប់គ្រង និអភិវឌ្ឍន៍",
-    "logoName": "imd",
+    "logoName": require('../../assets/images/schools/imd.jpg'),
     "address": "ភូមិពាលញែក១ សង្កាត់ផ្ទះព្រៃ ក្រុងពោធ៍សាត់ ខេត្តពោធ៍សាត់",
     "province": "ពោធ៍សាត់",
     "phoneNumbers": [
@@ -8302,7 +8348,7 @@
     "id": 147,
     "code": "uni_pri_0069",
     "universityName": "វិទ្យាស្ថានក្រុងកម្ពុជា",
-    "logoName": "krong_angkor",
+    "logoName": require('../../assets/images/schools/krong_angkor.jpg'),
     "address": "ផ្លូវលេខ១១ ភូមិកំពង់ធំ សង្កាត់កំពង់រទេះ ក្រុងស្ទឹងសែន ខេត្តកំពង់ធំ",
     "province": "កំពង់ធំ",
     "phoneNumbers": [
@@ -8361,7 +8407,7 @@
     "id": 148,
     "code": "uni_pri_0070",
     "universityName": "វិទ្យាស្ថាន ខេមរាសាស្រ្ត",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិលេខ៨ សង្កាត់កំពង់លាវ ក្រុងព្រៃវែង ខេត្តព្រៃវែង",
     "province": "ព្រៃវែង",
     "phoneNumbers": [
@@ -8397,7 +8443,7 @@
     "id": 149,
     "code": "uni_pri_0071",
     "universityName": "វិទ្យាស្ថានប្រាយហូប",
-    "logoName": "bright_hope",
+    "logoName": require('../../assets/images/schools/bright_hope.png'),
     "address": "ភូមិធម្មយុត្តិ សង្កាត់ប្អេរ ក្រុងកំពង់ឆ្នាំង ខេត្តកំពង់ឆ្នាំង",
     "province": "កំពង់ឆ្នាំង",
     "phoneNumbers": [
@@ -8446,7 +8492,7 @@
     "id": 150,
     "code": "uni_pri_0072",
     "universityName": "វិទ្យាស្ថានបូលីណូ",
-    "logoName": "bolino",
+    "logoName": require('../../assets/images/schools/bolino.png'),
     "address": "ផ្លូវជាតិលេខ៥ គីឡូម៉ែតលេខ៦០ ភូមិអូរូង ឃុំឈូកស ស្រុកកំពង់ត្រឡាច ខេត្តកំពង់ឆ្នាំង",
     "province": "កំពង់ឆ្នាំង",
     "phoneNumbers": [
@@ -8548,7 +8594,7 @@
     "id": 151,
     "code": "uni_pri_0073",
     "universityName": "វិទ្យាស្ថានសន្តប៉ូល",
-    "logoName": "sonta_pol",
+    "logoName": require('../../assets/images/schools/sonta_pol.png'),
     "address": "ភូមិអង្គគគីរ ឃុំតាភេម ស្រុកត្រាំកក់ ខេត្តតាកែវ",
     "province": "តាកែវ",
     "phoneNumbers": [
@@ -8605,7 +8651,7 @@
     "id": 152,
     "code": "uni_pri_0074",
     "universityName": "វិទ្យាស្ថានពាណិជ្ជសាស្រ្តអេស៊ីលីដា",
-    "logoName": "acleda",
+    "logoName": require('../../assets/images/schools/acleda.png'),
     "address": "ផ្ទះលេខ ៥០ ផ្លូវ ៥១៦​. ៣៣៥ ភូមិទី៦ សង្កាត់បឹងកក់I ខណ្ឌទួលគោក ភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -8638,7 +8684,7 @@
     "id": 153,
     "code": "uni_pri_0075",
     "universityName": "វិទ្យាស្ថានសហប្រតិបតិ្តការអន្តរជាតិ កម្ពុជា",
-    "logoName": "cici",
+    "logoName": require('../../assets/images/schools/cici.gif'),
     "address": "ផ្លូវ 182, សង្កាត់ទឹកល្អក់ 2, ខណ្ឌទួលគោក, រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -8702,9 +8748,9 @@
     "id": 154,
     "code": "uni_pri_0076",
     "universityName": "សាកលវិទ្យាល័យកម្ពុជា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិ ស្លែងរលើង សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
-    "province": null,
+    "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
       "០២៣ ៩៩៣ ២៧៦"
     ],
@@ -8790,9 +8836,9 @@
     "id": 155,
     "code": "uni_pri_0077",
     "universityName": "សាកលវិទ្យាល័យអាស៊ីអ៉ឺរ៉ុប",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវកម្ពុជាក្រោម សង្កាត់ទឹកល្អក់១ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
-    "province": null,
+    "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
       "០១៥ ៧២០ ០៧២ / ០១២ ៤៨១ ៧៣៨"
     ],
@@ -8858,9 +8904,9 @@
     "id": 156,
     "code": "uni_pri_0078",
     "universityName": "សាកលវិទ្យាល័យឯកទេសកម្ពុជា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ជិតអង់តែនទួលគោក សង្កាត់ទួលសង្កែ ខណ្ឌឬស្សីកែវ រាជធានីភ្នំពេញ",
-    "province": null,
+    "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
       "០២៣ ៣៥០ ៨២៨ / ០១២ ៦៣៦ ២០៧"
     ],
@@ -8934,9 +8980,9 @@
     "id": 157,
     "code": "uni_pri_0079",
     "universityName": "សាកលវិទ្យាល័យអន្តរជាតិ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "កែងផ្លូវលេខ១៩៨៤ និង១០១១ សង្កាត់ភ្នំពេញថ្មី ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
-    "province": "ភ្នំពេញ",
+    "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
       "០២៣ ៨៨១ ៦២៣"
     ],
@@ -9051,7 +9097,7 @@
     "id": 158,
     "code": "uni_pri_0080",
     "universityName": "សាកលវិទ្យាល័យអាមេរិកាំង ភ្នំពេញ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ ៣១៥ សង្កាត់ បឹងកក់ ២ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9084,7 +9130,7 @@
     "id": 159,
     "code": "uni_pri_0081",
     "universityName": "សាកលវិទ្យាល័យចំរើនពហុបច្ចេកវិទ្យា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "កែងផ្លូវលេដ ៣១០ និង ២០៥ សង្កាត់ទួលស្វាយព្រៃ ២ ខណ្ឌចំការមន រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9122,7 +9168,7 @@
     "id": 160,
     "code": "uni_pri_0082",
     "universityName": "សាកលវិទ្យាល័យលីមកុកវិញនៃបច្ចេកវិទ្យា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ១៩៨៦ សង្កាត់ភ្នំពេញថ្មី ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9184,7 +9230,7 @@
     "id": 161,
     "code": "uni_pri_0083",
     "universityName": "វិទ្យាស្ថានវិទ្យាសាស្រ្តអាស៊ី",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "សង្កាត់ទួលសង្កែ ខណ្ឌឬស្សីកែវ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9216,7 +9262,7 @@
     "id": 162,
     "code": "uni_pri_0084",
     "universityName": "វិទ្យាស្ថានអន្តរជាតិ អេស អាយ យូ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ​​​ ២១៧ សង្កាត់ស្ទឹងមានជ័យ ខណ្ឌមានជ័យ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9255,7 +9301,7 @@
     "id": 163,
     "code": "uni_pri_0085",
     "universityName": "វិទ្យាស្ថានគ្រប់គ្រងភីស៊ីអិល",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវបេតុងលេខ ៦០០ សង្កាត់បឹងទំពុន ខណ្ឌមានជ័យ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9294,7 +9340,7 @@
     "id": 164,
     "code": "uni_pri_0086",
     "universityName": "វិទ្យាស្ថានខេមអេដប៊ីហ្សេនេស",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ ១០៨ សង្កាត់វត្តភ្នំ ខណ្ឌដូនពេញ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9326,7 +9372,7 @@
     "id": 165,
     "code": "uni_pri_0087",
     "universityName": "វិទ្យាស្ថានអភិវឌ្ឍន៍សេដ្ឋកិច្ច",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ២៧១ សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9359,7 +9405,7 @@
     "id": 166,
     "code": "uni_pri_0088",
     "universityName": "វិទ្យាស្ថានពាណិជ្ជសាស្រ្តកម្ពុជា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ២១០ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9391,7 +9437,7 @@
     "id": 167,
     "code": "uni_pri_0089",
     "universityName": "វិទ្យាស្ថានខ្មែរជំនាន់ថ្មី",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ១២៨ សង្កាត់ផ្សារដេប៉ូ ៣ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9432,7 +9478,7 @@
     "id": 168,
     "code": "uni_pri_0090",
     "universityName": "វិទ្យាស្ថានហិរញ្ញវត្ថុ និងគណនេយ្យ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ២៧១ សង្កាត់បឹងសាឡាង ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9462,7 +9508,7 @@
     "id": 169,
     "code": "uni_pri_0091",
     "universityName": "វិទ្យាស្ថានអភិវឌ្ឍន៍និសិត្ស",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ២៧៣ សង្កាត់បឹងកក់ ១ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9506,7 +9552,7 @@
     "id": 170,
     "code": "uni_pri_0092",
     "universityName": "វិទ្យាស្ថានបច្ចេកវិទ្យាភ្នំពេញ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "កែងផ្លូវលេខ១០០៣ និង១៩៨៨ សង្កាត់ភ្នំពេញថ្មី ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9541,7 +9587,7 @@
     "id": 171,
     "code": "uni_pri_0093",
     "universityName": "វិទ្យាស្ថានអនាគតយុវជនកម្ពុជា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ២១៧ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9572,7 +9618,7 @@
     "id": 172,
     "code": "uni_pri_0094",
     "universityName": "វិទ្យាស្ថានប៊ែលតុនអន្តរជាតិ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ១៦៤ សង្កាត់អូរឬស្សី ២ ខណ្ឌ៧មករា រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9606,7 +9652,7 @@
     "id": 173,
     "code": "uni_pri_0095",
     "universityName": "វិទ្យាស្ថានអាយ អីុ យូ អន្តរជាតិ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ១៣២ សង្កាត់ទឹកល្អក់ ៣ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9640,7 +9686,7 @@
     "id": 174,
     "code": "uni_pri_0096",
     "universityName": "វិទ្យាស្ថានអភិវឌ្ឍន៍ធនធានមនុស្សអាស៊ីនៅកម្ពុជា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ៦១៤ សង្កាត់បឹងកក់ ២ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9674,7 +9720,7 @@
     "id": 175,
     "code": "uni_pri_0097",
     "universityName": "វិទ្យាស្ថានធនធានមនុស្សសមុទ្រកម្ពុជា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ៤៤ សង្កាត់ស្ទឹងមានជ័យ ខណ្ឌមានជ័យ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9704,7 +9750,7 @@
     "id": 176,
     "code": "uni_pri_0098",
     "universityName": "វិទ្យាស្ថានជំនាញគណនេយ្យ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ២៣០ សង្កាត់ផ្សារដើមគរ ខណ្ឌទួលគោក រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -9739,7 +9785,7 @@
     "id": 177,
     "code": "uni_pri_0099",
     "universityName": "សាកលវិទ្យាល័យអង្គរ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "បុរីសៀងណាំ ភូមិខ្នា សង្កាត់ជ្រាវ ក្រុងសៀមរាប ខេត្តសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
@@ -9814,7 +9860,7 @@
     "id": 178,
     "code": "uni_pri_0100",
     "universityName": "សាកលវិទ្យាល័យសៅស៍អ៉ីសថ៍អេយសៀ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ភូមិវត្តបូព៌ សង្កាត់សាលាកំរើក ក្រុងសៀមរាប ខេត្តសៀមរាប",
     "province": "សៀមរាប",
     "phoneNumbers": [
@@ -9887,7 +9933,7 @@
     "id": 179,
     "code": "uni_pri_0101",
     "universityName": "សាកលវិទ្យាល័យឡាយហ្វ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "មណ្ឌល៣ សង្កាត់លេខ២ ក្រុងព្រះសីហនុ ខេត្តព្រះសីហនុ",
     "province": "ព្រះសីហនុ",
     "phoneNumbers": [
@@ -9961,11 +10007,11 @@
     "id": 180,
     "code": "uni_pri_0102",
     "universityName": "វិទ្យាស្ថានក្រុងអង្គរ",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "ផ្លូវលេខ១១ សង្កាត់កំពង់រទេះ ក្រុងស្ទឹងសែន ខេត្តកំពង់ធំ",
-    "province": "០១២ ៩៩៦ ៣៨២​​​ / ០៩២ ៨៥២ ០៩៩",
+    "province": "កំពង់ធំ",
     "phoneNumbers": [
-
+      "០១២ ៩៩៦ ៣៨២​​​ / ០៩២ ៨៥២ ០៩៩"
     ],
     "faxes": [
 
@@ -10017,7 +10063,7 @@
     "id": 181,
     "code": "uni_pri_0103",
     "universityName": "វិទ្យាស្ថានខេមរសាស្រ្ត",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "សង្កាត់កំពង់លាវ ក្រុងព្រៃវែង ខេត្តព្រៃវែង",
     "province": "ព្រៃវែង",
     "phoneNumbers": [
@@ -10053,7 +10099,7 @@
     "id": 182,
     "code": "uni_pri_0104",
     "universityName": "វិទ្យាស្ថានអាស៊ីកម្ពុជា",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "សង្កាត់ក្រចេះ ក្រុងក្រចេះ ខេត្តក្រចេះ",
     "province": "ក្រចេះ",
     "phoneNumbers": [
@@ -10088,7 +10134,7 @@
     "id": 183,
     "code": "uni_pri_0105",
     "universityName": "វិទ្យាស្ថានគ្រប់គ្រង និងអភិវឌ្ឍន៍",
-    "logoName": "",
+    "logoName": require('../../assets/images/schools/default.png'),
     "address": "សង្កាត់ផ្ទះព្រៃ ក្រុងពោធិ៍សាត់ ខេត្តពោធិ៍សាត់",
     "province": "ពោធិ៍សាត់",
     "phoneNumbers": [
@@ -10139,19 +10185,99 @@
   },
   {
     "id": 184,
-    "code": "uni_ngo_0001",
-    "universityName": "អង្គការសកម្មភាព ពុទ្ធសាសនាដើម្បីអភិវឌ្ឍន៍សង្គម",
-    "logoName": "bsda",
-    "address": "ស្រុកកំពង់សៀម ខេត្តកំពង់ចាម",
+    "code": "uni_pri_0106",
+    "universityName": "សាលាជាតិកសិកម្មកំពង់ចាម",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ក្រុងកំពង់ចាមខេត្តកំពង់ចាម",
     "province": "កំពង់ចាម",
     "phoneNumbers": [
-      "០១២ ៧៨៨ ៩៧៣"
+      "០១១ ២២៤ ៦៤៦"
     ],
     "faxes": [
 
     ],
     "emails": [
 
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "សាលាឯកជន",
+    "departments": [
+      {
+        "name": "មហាវិទ្យាល័យ",
+        "majors": [
+          "កសិកម្ម"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 185,
+    "code": "uni_pri_0107",
+    "universityName": "សាខាសាកលវិទ្យាល័យ គ្រប់គ្រង និង សេដ្ឋកិច្ច",
+    "logoName": require('../../assets/images/schools/management_economic.png'),
+    "address": "សង្កាត់ព្រែកព្រះស្ដេច ក្រុងបាត់ដំបង ខេត្តបាត់ដំបង",
+    "province": "បាត់ដំបង",
+    "phoneNumbers": [
+      "០៥៣​ ៩៥២ ១៦០​​ / ០៩៩​ ៣៤៤ ៥៦៦ / ០១៧ ៨៦ ៨៣ ៨៦ ០១២ ៤៧ ៣៧ ៦៨"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+
+    ],
+    "websiteOrFacebook": [
+      "www.ume.edu.kh"
+    ],
+    "mailbox": null,
+    "category": "សាលាឯកជន",
+    "departments": [
+      {
+        "name": "មហាវិទ្យាល័យគ្រប់គ្រងពាណិជ្ជកម្ម និងទេសចរណ៍",
+        "majors": [
+          "គ្រប់គ្រងទូទៅ"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យសិល្បៈ មនុស្សសាស្រ្ត និងភាសាបរទេស",
+        "majors": [
+          "អក្សរសាស្រ្តអង់គ្លេស",
+          "អក្សរសាស្រ្តខ្មែរ"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យនិតីសាស្រ្ត និង\nសេដ្ឋកិច្ច",
+        "majors": [
+          "សេដ្ឋកិច្ច និងហិរញ្ញវត្ថុ",
+          "ច្បាប់"
+        ]
+      },
+      {
+        "name": "មហាវិទ្យាល័យវិទ្យាសាស្រ្ត \nបច្ចេកវិទ្យា",
+        "majors": [
+          "ពត៌មានវិទ្យា                                                 វិទ្យាសាស្រ្តកុំព្យូទ័រ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 186,
+    "code": "uni_ngo_0001",
+    "universityName": "អង្គការសកម្មភាព ពុទ្ធសាសនាដើម្បីអភិវឌ្ឍន៍សង្គម",
+    "logoName": require('../../assets/images/schools/bsda.png'),
+    "address": "ស្រុកកំពង់សៀម ខេត្តកំពង់ចាម",
+    "province": "កំពង់ចាម",
+    "phoneNumbers": [
+      "០៤២ ៥០ ៧៧ ៩៩៩"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "info@bsda-cambodia.org"
     ],
     "websiteOrFacebook": [
       "bsda-cambodia.org"
@@ -10170,10 +10296,10 @@
     ]
   },
   {
-    "id": 185,
+    "id": 187,
     "code": "uni_ngo_0002",
     "universityName": "អង្គការប៉ាសឺរ៉ែល នុយមឺរិកកម្ពុជា",
-    "logoName": "pnc",
+    "logoName": require('../../assets/images/schools/pnc.png'),
     "address": "ផ្លូវ ៣៧១ ភូមិត្រពាំងឈូក សង្កាត់ទឹកថ្លា ខណ្ឌសែនសុខ រាជធានីភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -10201,10 +10327,10 @@
     ]
   },
   {
-    "id": 186,
+    "id": 188,
     "code": "uni_ngo_0003",
     "universityName": "អង្គការ​ដើម្បី​ភាពញញឹម​នៃកុមារ",
-    "logoName": "pse",
+    "logoName": require('../../assets/images/schools/pse.png'),
     "address": "ផ្លូវ ៤០២ ភូមិទ្រា សង្កាត់ស្ទឹងមានជ័យ ខណ្ឌមានជ័យ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -10217,7 +10343,7 @@
       "contact-kh@pse.ngo"
     ],
     "websiteOrFacebook": [
-      "www.pse.ngo/education"
+      "www.pse.ngo"
     ],
     "mailbox": "2107.0",
     "category": "អង្គការ",
@@ -10234,10 +10360,10 @@
     ]
   },
   {
-    "id": 187,
+    "id": 189,
     "code": "uni_ngo_0004",
     "universityName": "សាលាបច្ចេកទេសដុនបូស្កូ កម្ពុជា",
-    "logoName": "don_bosco",
+    "logoName": require('../../assets/images/schools/don_bosco.png'),
     "address": "ភូមិជ្រេស ភ្នំពេញថ្មី ឬស្សីកែវ ភ្នំពេញ",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -10248,7 +10374,7 @@
       "០២៣ ២១៩ ៩៨៦"
     ],
     "emails": [
-      "donbosco1@camshin.net"
+      "management@donboscokhmer.org"
     ],
     "websiteOrFacebook": [
       "www.donboscokhmer.org"
@@ -10270,10 +10396,10 @@
     ]
   },
   {
-    "id": 188,
+    "id": 190,
     "code": "uni_ngo_0005",
-    "universityName": "Cambodia Legal Education for Women (CLEW) organization អង្គការផ្នែកច្បាប់សម្រាប់ស្រ្តីនៅកម្ពុជា",
-    "logoName": "clew",
+    "universityName": "អង្គការផ្នែកច្បាប់សម្រាប់ស្រ្តីនៅកម្ពុជា",
+    "logoName": require('../../assets/images/schools/clew.png'),
     "address": "",
     "province": "រាជធានីភ្នំពេញ",
     "phoneNumbers": [
@@ -10296,6 +10422,1114 @@
         "name": "",
         "majors": [
           "អាហារូបករណ៍ ច្បាប់ និងភាសាអង់គ្លេស"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 191,
+    "code": "uni_ngo_0006",
+    "universityName": "សមាគមភ្នំស្រីដើម្បីអភិវឌ្ឍន៍",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ផ្ទះលេខ១២៦ ភូមិជ្រោយថ្ម ឃុំបឹងកុក ខេត្តកំពង់ចាម",
+    "province": "កំពង់ចាម",
+    "phoneNumbers": [
+      "០២៤ ៣៩៥ ៩៧៩"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "psad2009@gmail.com"
+    ],
+    "websiteOrFacebook": [
+      "http://www.psadcambodia.wordpress.com"
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "",
+        "majors": [
+          "ផ្ដល់អាហារូបករណ៍ និង ជំនាញ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 192,
+    "code": "uni_ngo_0007",
+    "universityName": "អង្គការអប់រំកូនខ្មែរ ( អ.អ.ក.ខ )",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ឃុំពពែល ស្រុកបរិបូរណ៍ កំពង់ឆ្នាំង កំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០៩៧ ៤៦៣៣ ៧៧១"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "marinkceo@gmail.com"
+    ],
+    "websiteOrFacebook": [
+      "http://www.khmerchildren.org/"
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "កសាងសមត្ថភាព",
+        "majors": [
+          "ជំនាញការងារ និងលើកកម្ពស់ឳកាសយុវជន"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 193,
+    "code": "uni_ngo_0008",
+    "universityName": "សមាគមយុវជនខ្មែរ",
+    "logoName": require('../../assets/images/schools/khmer_youth_association.jpg'),
+    "address": "ផ្ទះលេខ១៦៤ ផ្លូវជាតិលេខ៥ ភូមិគូរូថាន ឃុះអូអំបិល ស្រុកសេរីសោភ័ណ្ឌ ខេត្តបន្ទាយមានជ័យ",
+    "province": "បន្ទាយមានជ័យ",
+    "phoneNumbers": [
+      "០១៧ ៧៨៨ ៩៥៥",
+      "០១២ ៥៧៤ ០៥៨"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "bmc@kya-cambodia.org kyabmc@yahoo.com"
+    ],
+    "websiteOrFacebook": [
+      "http://www.kya-cambodia.org"
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "",
+        "majors": [
+          "ផ្ដល់អាហារូបករណ៍ និង ជំនាញ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 194,
+    "code": "uni_ngo_0009",
+    "universityName": "អង្គការមិត្តសំឡាញ់",
+    "logoName": require('../../assets/images/schools/mith_samlanh.jpg'),
+    "address": "ផ្ទះលេខ២១៥ ផ្លូវ១៣ សង្កាត់ជ័យចំណាស់ ខ័ណ្ឌដូនពេញ ភ្នំពេញ",
+    "province": "ភ្នំពេញ",
+    "phoneNumbers": [
+      "០២៣ ២២០ ៥៩៦"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "info@mithsamlanh.org"
+    ],
+    "websiteOrFacebook": [
+      "http://www.mithsamlanh.org"
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "",
+        "majors": [
+          "បណ្តុះបណ្តាលជំនាញចុងភៅ",
+          "បណ្តុះបណ្តាលជំនាញផ្សាដែក",
+          "បណ្តុះបណ្តាលជំនាញអេឡ្ិចត្រូនិច",
+          "បណ្តុះបណ្តាលជួសជុល រថយន្ត និង ម៉ូតូ",
+          "បណ្តុះបណ្តាលជំនាញកែសម្ផស្ស",
+          "បណ្តុះបណ្តាលជំនាញកាត់ដេរ",
+          "បណ្តុះបណ្តាលជំនាញកាត់សក់",
+          "បណ្តុះបណ្តាលជំនាញបោកអ៊ុត",
+          "បណ្តុះបណ្តាលជំនាញកសិកម្ម"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 195,
+    "code": "uni_ngo_0010",
+    "universityName": "អង្គការទស្សនៈពិភពលោកកម្ពុជា",
+    "logoName": require('../../assets/images/schools/world_vision.jpg'),
+    "address": "ផ្ទះលេខ២០ ផ្លូវ៧១ សង្កាត់ទន្លេបាសាក់ ខ័ណ្ឌចំការមន ភ្នំពេញ",
+    "province": "ភ្នំពេញ",
+    "phoneNumbers": [
+      "០២៣ ២១៦ ០៥២",
+      "០២៣ ២១៧ ៩២៣"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "contact_cambodia@wvi.org"
+    ],
+    "websiteOrFacebook": [
+      "http://www.worldvision.org.kh"
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "",
+        "majors": [
+          "ផ្ដល់អាហារូបករណ៍ និង ជំនួយ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 196,
+    "code": "uni_ngo_0011",
+    "universityName": "ហ្វារពន្លឺសិល្បៈ",
+    "logoName": require('../../assets/images/schools/phare_ponleu_selpak.png'),
+    "address": "ភូមិអញ្ចាញ បាត់ដំបង ខេត្តបាត់ដំបង",
+    "province": "បាត់ដំបង",
+    "phoneNumbers": [
+      "០៧៧ ៥៥៤ ៤១៣"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "reservations@phareps.org"
+    ],
+    "websiteOrFacebook": [
+      "https://phareps.org/"
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "",
+        "majors": [
+          "សិល្បៈផ្នែកចក្ខុ",
+          "គំនូរជីវចល",
+          "រចនាក្រាហ្វិច",
+          "សៀក",
+          "ការរាំ/របាំ",
+          "ល្ខោន",
+          "តន្ត្រី"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 197,
+    "code": "uni_ngo_0012",
+    "universityName": "អង្គការសកម្មភាពសម្រាប់ការអប់រំនៅកម្ពុជា",
+    "logoName": require('../../assets/images/schools/kape.png'),
+    "address": "សាលាគរុកោសល្យនិងវិក្រឹតការខេត្តកំពង់ចាម ផ្លូវជាតិលេខ ៧ចាស់ ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
+    "province": "កំពង់ចាម",
+    "phoneNumbers": [
+      "០៤២ ៩៤១ ៩១៨"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "kape@kapekh.org"
+    ],
+    "websiteOrFacebook": [
+      "www.kapekh.org"
+    ],
+    "mailbox": "1621.0",
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "",
+        "majors": [
+          "អាហារូបករណ៍សម្រាប់និស្សិតកម្រិតឧត្ដមសិក្សា"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 198,
+    "code": "uni_ngo_0013",
+    "universityName": "អង្គការសម្រេចក្ដីសុបិន្តកុមារ",
+    "logoName": require('../../assets/images/schools/childsdream.png'),
+    "address": "ផ្លូវ១៦០ ក្រុមទី១០ ភូមិក្រួស សង្កាត់ស្វាយដង្គុំ ក្រុងសៀមរាប ខេត្តសៀមរាប",
+    "province": "ខេត្តសៀមរាប",
+    "phoneNumbers": [
+      "០៦៣ ៦៤ ៨៥ ៨៨៨"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "media@childsdream.org"
+    ],
+    "websiteOrFacebook": [
+      "https://childsdream.org/"
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "",
+        "majors": [
+          "អាហារូបករណ៍សម្រាប់និស្សិតកម្រិតឧត្ដមសិក្សា"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 199,
+    "code": "uni_ngo_0014",
+    "universityName": "អង្គការអ្នកអភិវឌ្ឍន៍សហគមន៍ (អអស)",
+    "logoName": require('../../assets/images/schools/nak_akphivath_sahakum.jpg'),
+    "address": "ផ្លូវ៨៥ ក្រុម៣ ភូមិទី៦ សង្កាត់វាលវង់ ក្រុងកំពង់ចាម",
+    "province": "កំពង់ចាម",
+    "phoneNumbers": [
+      "០៤២ ៩៤២ ០៥០",
+      "០៨៩ ៨៧៩ ៦៩៥"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "sreyvy.than@gmail.com"
+    ],
+    "websiteOrFacebook": [
+      "https://www.facebook.com/Nak-Akphivath-Sahakum-226514260793124"
+    ],
+    "mailbox": "(ccc-box):276",
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អភិវឌ្ឍន៍សហគមន៍ចំរុះ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 200,
+    "code": "uni_ngo_0015",
+    "universityName": "កសិករថ្មី",
+    "logoName": require('../../assets/images/schools/kasekor_thmey.jpg'),
+    "address": "ឃុំស្រឡប់ ស្រុកត្បូងឃ្មុំ",
+    "province": "ត្បូងឃ្មុំ",
+    "phoneNumbers": [
+      "០១៧ ៥៧០ ៩៧៣"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "kasekorthmey@yahoo.com"
+    ],
+    "websiteOrFacebook": [
+      "http://www.kasekorthmey.org"
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "កសិកម្ម និងសន្តិសុខស្បៀង"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 201,
+    "code": "uni_ngo_0016",
+    "universityName": "កាត់បន្ថយភាពក្រីក្រសហគមន៍",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ភូមិធម្មយុទ្ធ ឃុំផែ ស្រុកកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០៩២ ២៩០ ០៩២"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "sengtack777@gmail.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អភិវឌ្ឍសហគមន៍ចំរុះ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 202,
+    "code": "uni_ngo_0017",
+    "universityName": "សមាគមន៌បង្កើតធនធានមនុស្សនិងអប់រំសុខភាព ( អ.ម.អ.ភ )",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ភូមិអូធំ សង្កាត់ខ្សាម",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៨៦០ ៤៣១"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "phorn_neang@yahoo.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អប់រំ និងសុខភាព"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 203,
+    "code": "uni_ngo_0018",
+    "universityName": "ទ្រទ្រង់កុមារជនបទ ( ទ.ទ.ក.ជ )",
+    "logoName": require('../../assets/images/schools/srco.png'),
+    "address": "សង្កាត់ផ្អេ ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៥២៤ ៥៦១",
+      "០៨៨ ៨៥២៤ ៥៦១"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "kongchandy@gmail.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អភិវឌ្ឍសហគមន៍ចំរុះ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 204,
+    "code": "uni_ngo_0019",
+    "universityName": "វឌ្ឍនៈ",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "សង្កាត់កំពង់ឆ្នាំង ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០៨៨ ៣០១ ៤៤៧៧"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "chhoengsovuthy@yahoo.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "កសាងសមត្ថភាព",
+        "majors": [
+          "អភិវឌ្ឍសហគមន៍ចំរុះ ជំនាញ និងសមត្ថភាព"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 205,
+    "code": "uni_ngo_0020",
+    "universityName": "ជួយជ្រោមជ្រែងជនក្រីក្រនិងកុមារកំព្រា",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ឃុំរលៀផ្ធៀរ ស្រុករលៀផ្អៀរ កំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១៥ ២៩៩ ០០០",
+      "០៦៦ ២៩៩ ០០០",
+      "០៨៨ ៣២៩ ៩០០០"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "atmao.ngo@ovi.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អប់រំក្រៅប្រព័ន្ធ",
+        "majors": [
+          "អប់រំ និងបណ្តុះបណ្តាលវិជ្ជាជីវៈ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 206,
+    "code": "uni_ngo_0021",
+    "universityName": "ចម្រើនប្រាជ្ញា ( អ ជ ម )",
+    "logoName": require('../../assets/images/schools/chamroeun_prachnha.png'),
+    "address": "សង្កាត់ផ្អេ ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៣២៥ ២៤២",
+      "០២៦ ៩៨៨ ៨៨៨"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "cpo@cpocambodia.org"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អប់រំក្រៅប្រព័ន្ធ",
+        "majors": [
+          "អប់រំ និងបណ្តុះបណ្តាលវិជ្ជាជីវៈ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 207,
+    "code": "uni_ngo_0022",
+    "universityName": "ជើងមេឃថ្មីនៃជនពិការ ( ស ជ ថ ជ )",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "សង្កាត់ផ្អេ ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៨៨៩ ០០២"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "nhs.kvhhnang@gmail.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អភិវឌ្ឍសហគមន៍ចំរុះ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 208,
+    "code": "uni_ngo_0023",
+    "universityName": "អ្នកគាំទ្រថ្ងៃ7មករា ( ស.អ.គ.ម )",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "សង្កាត់កំពង់ឆ្នាំង ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៧៩៨ ៣១៨"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "ជួយជនពិការ",
+        "majors": [
+          "គាំទ្រជនពិការ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 209,
+    "code": "uni_ngo_0024",
+    "universityName": "រោងនៃក្តីសង្ឃឹម ( រ ន ក ង )",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "សង្កាត់កំពង់ឆ្នាំង ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៣២៥ ៦១៥"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អភិវឌ្ឍសហគមន៍ចំរុះ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 210,
+    "code": "uni_ngo_0025",
+    "universityName": "សមាគមន៍គាំទ្រជនពិការ ( ស.អ.គ.ជ.ក )",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "សង្កាត់ផ្សាឆ្នាំង ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៣៥៨ ០៣៨"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "luchcsiv@orukegmail.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "ជួយជនពិការ",
+        "majors": [
+          "គាំទ្រជនពិការ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 211,
+    "code": "uni_ngo_0026",
+    "universityName": "មជ្ឈមណ្ឌលបណ្តុះបណ្តាលធនធានមនុស្ស ( ម ប ធ​ ម )",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ឃុំស្រែថ្មី ស្រុករលៀផ្អៀរ កំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៩០០ ៥៥៣"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "phorn.neang@yahoo.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អប់រំក្រៅប្រព័ន្ធ",
+        "majors": [
+          "អប់រំ និងបណ្តុះបណ្តាលវិជ្ជាជីវៈ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 212,
+    "code": "uni_ngo_0027",
+    "universityName": "អង្គការកាត់បន្ថយភាពក្រីក្រក្នុ្ងងសហគមន៍ ( ស៊ី ភី អ័រ )",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "សង្កាត់ផ្អេ ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០៩២ ២៩០ ០៩២"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "Sengkim_cpr@yahoo.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អភិវឌ្ឍសហគមន៍ចំរុះ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 213,
+    "code": "uni_ngo_0028",
+    "universityName": "សហគមន៍អភិវឌ្ឍន៍សង្គមកម្ពុជា ( អ.ស.ក )",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ឃុំជ្រៃបាក់ ស្រុករលៀផ្អៀរ កំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អភិវឌ្ឍសហគមន៍ចំរុះ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 214,
+    "code": "uni_ngo_0029",
+    "universityName": "លើកស្ទួយសហគ្រាសខ្នាតតូច និងមធ្យមខេត្តកំពង ឆ្នា់ងំ ( ស.ស.ក.ឆ )",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "សង្កាត់កំពង់ឆ្នាំង ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៨៣៩ ៧៩៣"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "កសាងសមត្ថភាព",
+        "majors": [
+          "បណ្តុះបណ្តាលវិជ្ជាជីវៈ និងសហគ្រិនភាព"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 215,
+    "code": "uni_ngo_0030",
+    "universityName": "អភិវឌ្ឍន៏យុវជននិង កុមារ",
+    "logoName": require('../../assets/images/schools/developing_youth_and_children.png'),
+    "address": "ឃុំស្រែថ្មី ស្រុករលៀផ្អៀរ កំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "បណ្តុះបណ្តាលវិជ្ជាជីវ",
+        "majors": [
+          "កាតត់ដេរ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 216,
+    "code": "uni_ngo_0031",
+    "universityName": "សមាគមភ្នំនាងកង្រី",
+    "logoName": require('../../assets/images/schools/neang_kangrei.png'),
+    "address": "សង្កាត់ផ្អេ ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០៩២ ៩០៣ ៩០៨"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "kangreikcg@yahoo.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "កសិកម្ម",
+        "majors": [
+          "ចិញ្ចឹមសត្វ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 217,
+    "code": "uni_ngo_0032",
+    "universityName": "សេង តាក់",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ឃុំរលៀផ្ធៀរ ស្រុករលៀផ្អៀរ កំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០៩២ ២៩០ ០៩២"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "sengtack777@gmail.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍសហគមន៍",
+        "majors": [
+          "សន្តិសុខស្បៀង"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 218,
+    "code": "uni_ngo_0033",
+    "universityName": "អង្គការសាអូរី",
+    "logoName": require('../../assets/images/schools/saori.png'),
+    "address": "ភូមិកណ្តាល សង្កាត់កំពង់ឆ្នាំង ក្រុងកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០៩២ ៦៥៦ ៨៥៩"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "amararothum@gmai.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "បណ្តុះបណ្តាលវិជ្ជាជីវ",
+        "majors": [
+          "កាត់ដេរ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 219,
+    "code": "uni_ngo_0034",
+    "universityName": "អង្គការជនពិការស្រុកត្បូងឃ្មុំ",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ត្បូងឃ្មុំ",
+    "province": "ត្បូងឃ្មុំ",
+    "phoneNumbers": [
+      "០៩៩ ៧៤១ ៧២២",
+      "០៨៧ ៧៤១ ៧២២"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "ជួយជនពិការ",
+        "majors": [
+          "គាំទ្រជនពិការ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 220,
+    "code": "uni_ngo_0035",
+    "universityName": "អង្គការខែមរា",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ត្បូងឃ្មុំ",
+    "province": "ត្បូងឃ្មុំ",
+    "phoneNumbers": [
+      "០១៧ ៧៩៧ ៩១៣"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អភិវឌ្ឍន៍សហគមន៍ចំរុះ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 221,
+    "code": "uni_ngo_0036",
+    "universityName": "អង្គការស៊ីឌីស៊ី",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "សង្កាត់វាលវង់ ក្រុងកំពង់ចាម ខេត្តកំពង់ចាម",
+    "province": "កំពង់ចាម",
+    "phoneNumbers": [
+      "០១៧ ៩០៥ ៨៨៤",
+      "០៩៦ ២៥២២ ៥៤៤"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "nimolcdc@gmail.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អភិវឌ្ឍន៍សហគមន៍ចំរុះ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 222,
+    "code": "uni_ngo_0037",
+    "universityName": "ហ៊ូ វីល (ដឹបលយូដឹបលយូវី",
+    "logoName": require('../../assets/images/schools/who_will.png'),
+    "address": "ឃុំថ្មសេដ្ឋ ស្រុកកំពង់ត្រឡាច កំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៨០០ ៩៦០"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "info@whowill.org"
+    ],
+    "websiteOrFacebook": [
+      "www.whowill.org"
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន័សហគមន៍",
+        "majors": [
+          "ការកសាងសមត្ថភាពសហគមន៍"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 223,
+    "code": "uni_ngo_0038",
+    "universityName": "អង្គការ វ៉ាយស៍-ស្រ្តីក្នុងសហគ្រាសខ្នាតតូច កម្ពុជា",
+    "logoName": require('../../assets/images/schools/wise.png'),
+    "address": "ភូមិអូសណ្តាន់ ឃុំទឹកហួត រលៀផ្អៀរ កំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៧៥៥ ១៩៦"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+
+    ],
+    "websiteOrFacebook": [
+      "www.wisewomen.com.kh"
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "បណ្តុះបណ្តាលវិជ្ជាជីវ",
+        "majors": [
+          "កាត់ដេរ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 224,
+    "code": "uni_ngo_0039",
+    "universityName": "សមាគមអប់រំជនបទ (អ័រអ៊ីអេ)",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ភូមិកន្សែង ឃុំកូនរាំង ស្រុបបរិបូណ៍ កំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០១២ ៦៥៤ ៨៨៣",
+      "០១២ ៣៥០ ២៣៤"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "vichara@yahoo.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "អប់រំ សុខភាព អភិបាលកិច្ច និងការតស៊ូមតិ"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 225,
+    "code": "uni_ngo_0040",
+    "universityName": "សហគមន័ចំរើនផល តាំងក្រសាំង",
+    "logoName": require('../../assets/images/schools/taing_krasaing.png'),
+    "address": "ឃុំតាំងក្រសាំង ស្រុកទឹកផុស ខេត្តកំពង់ឆ្នាំង",
+    "province": "កំពង់ឆ្នាំង",
+    "phoneNumbers": [
+      "០៩២ ៧៩២ ០៩១",
+      "០៩៧ ៦៩៤៥ ៣៣៨"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អភិវឌ្ឍន៍សហគមន៍",
+        "majors": [
+          "សន្តិសុខស្បៀង អប់រំ និងសុខភាព"
+        ]
+      }
+    ]
+  },
+  {
+    "id": 226,
+    "code": "uni_ngo_0041",
+    "universityName": "មណ្ឌលសិក្សាបញ្ញាញាណ",
+    "logoName": require('../../assets/images/schools/default.png'),
+    "address": "ឃុំទ្រាន ស្រុកកំពង់សៀម ខេត្តកំពង់ចាម",
+    "province": "កំពង់ចាម",
+    "phoneNumbers": [
+      "០៧៧ ៧០៧ ១៤១"
+    ],
+    "faxes": [
+
+    ],
+    "emails": [
+      "bonsroeun16@gmail.com"
+    ],
+    "websiteOrFacebook": [
+
+    ],
+    "mailbox": null,
+    "category": "អង្គការ",
+    "departments": [
+      {
+        "name": "អប់រំក្រៅប្រព័ន្ធ",
+        "majors": [
+          "កម្មវិធីអប់រំយុវជន",
+          "ភាសាអង់គ្លេស",
+          "បណ្ណាល័យ",
+          "អភិវឌ្ឍសហគមន៍"
         ]
       }
     ]

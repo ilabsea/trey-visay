@@ -13,7 +13,7 @@ import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
 import OneList from '../../../components/list/one_list';
 import GridList from '../../../components/list/grid_list';
-import universities from '../../../data/json/universities.json';
+import universities from '../../../data/json/universities';
 import FooterBar from '../../../components/footer/FooterBar';
 import keyword from '../../../data/analytics/keyword';
 
