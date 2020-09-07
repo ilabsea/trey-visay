@@ -107,6 +107,7 @@ android {
         versionCode 156
         versionName "1.5.6"
         vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
     }
     splits {
         abi {
@@ -160,6 +161,8 @@ dependencies {
     // Firebase dependencies
     implementation "com.google.android.gms:play-services-base:16.1.0"
     implementation "com.google.firebase:firebase-core:16.0.9"
+
+    implementation 'com.android.support:multidex:1.0.3'
 }
 
 // Run this once to be able to run the application with BUCK

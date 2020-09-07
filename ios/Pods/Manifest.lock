@@ -117,9 +117,9 @@ PODS:
     - React/RCTBlob
   - RNBackgroundFetch (2.5.4):
     - React
-  - RNCAsyncStorage (1.4.2):
+  - RNCAsyncStorage (1.5.1):
     - React
-  - RNDeviceInfo (2.1.2):
+  - RNDeviceInfo (2.2.2):
     - React
   - RNImageCropPicker (0.21.3):
     - QBImagePickerController
@@ -221,6 +221,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
   yoga: 128daf064cacaede0c3bb27424b6b4c71052e6cd
 
-PODFILE CHECKSUM: 7166a5727151a5829edb5869dc23f3810075a9cc
+PODFILE CHECKSUM: 8b42cda34eb3f228f44cd58b58e147ca33c964d6
 
 COCOAPODS: 1.5.2

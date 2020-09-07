@@ -38,13 +38,22 @@ const HomeOptions = [
     description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សា បរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវៈ រយៈពេលខ្លី'
   },
   {
-    title: ' វីដេអូមុខរបរ',
+    title: 'វីដេអូមុខរបរ',
     url: 'VideoScreen',
     source_image: require('../../assets/images/home/video.png'),
     color: ['rgb(255, 102, 98)', 'rgb(255, 130, 97)', 'rgb(254, 159, 95)', 'rgb(254, 162, 95)', 'rgb(254, 191, 94)'],
     button_text: 'ពិស្តារ',
     firebase_event_name: keyword.VIDEO_VIEW,
     description: 'យល់ដឹងអំពីមុខរបរនិងអាជីពតាមរយៈ វីដេអូ'
+  },
+  {
+    title: 'ទីភ្នាក់ងារជាតិមុខរបរ និងការងារ',
+    url: 'NeaCareerScreen',
+    source_image: require('../../assets/images/home/career_test.png'),
+    color: ['#bdc3c7', '#2c3e50'],
+    button_text: 'ពិស្តារ',
+    firebase_event_name: keyword.NEA_PLATFORM,
+    description: 'យល់ដឹងអំពីការងារ កម្លាំងពល និងព័ត៌មានទីផ្សារការងារ'
   },
 ]
 
