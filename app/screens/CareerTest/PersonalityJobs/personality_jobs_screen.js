@@ -6,13 +6,14 @@ import {
   Platform
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
-import { NavigationActions } from 'react-navigation';
-import { Divider } from 'react-native-elements';
+// import { NavigationActions } from 'react-navigation';
+import { CommonActions } from '@react-navigation/native';
+import { Divider } from 'react-native-paper';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
 import { Colors } from '../../../assets/style_sheets/main/colors';
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
-import CheckboxGroup from '../../../components/checkbox_group';
+import CheckboxGroup from '../../../components/CheckboxGroup';
 import FooterBar from '../../../components/footer/FooterBar';
 import CloseButton from '../../../components/shared/close_button';
 
@@ -25,6 +26,9 @@ import scrollHeaderStyles from '../../../assets/style_sheets/scroll_header';
 import * as Progress from 'react-native-progress';
 import ProgressStep from '../ProgressStep/ProgressStep';
 import { Content } from 'native-base';
+
+
+import { getParam, navigate, reset } from '../../StackNav/RootNavigation';
 
 export default class PersonalityJobsScreen extends Component {
   constructor(props) {
@@ -93,7 +97,8 @@ export default class PersonalityJobsScreen extends Component {
 
   _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })])
+
+    reset({ routeName: 'CareerCounsellorScreen' });
   }
 
   _onNo() {
@@ -110,26 +115,9 @@ export default class PersonalityJobsScreen extends Component {
       <View style={[{backgroundColor: '#fff', margin: 20, marginTop: 10}]}>
         <CheckboxGroup
           onSelect={(selected) => {this._handleChecked(selected)}}
-          items={checkboxes}
+          options={checkboxes}
           checked={this.state.jobs}
           limitCheckedItems={3}
-          style={{
-            icon: {
-              color: Colors.blue,
-              size: 30
-            },
-            container: {
-              flexDirection: 'row',
-              borderTopWidth: 0.5,
-              borderColor: '#ccc',
-              paddingVertical: 8,
-            },
-            label: {
-              color: '#333',
-              fontSize: 16,
-              marginLeft: 10
-            }
-          }}
         />
       </View>
     )
@@ -162,7 +150,7 @@ export default class PersonalityJobsScreen extends Component {
   _handleSubmit() {
     realm.write(() => {
       realm.create('Game', this._buildData('SummaryScreen'), true);
-      this.props.navigation.navigate('SummaryScreen');
+      navigate('SummaryScreen');
     });
   }
 
@@ -181,8 +169,8 @@ export default class PersonalityJobsScreen extends Component {
   _renderNavigation = () => {
     return (
       <View style={{flexDirection: 'row'}}>
-        <CloseButton navigation={this.props.navigation}/>
-        <Text style={scrollHeaderStyles.whiteNavTitle}>{this.props.navigation.getParam('title')}</Text>
+        <CloseButton />
+        <Text style={scrollHeaderStyles.whiteNavTitle}>{!!this.props.route.params && this.props.route.params.title}</Text>
       </View>
     )
   }

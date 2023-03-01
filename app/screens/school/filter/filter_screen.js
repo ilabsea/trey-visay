@@ -3,7 +3,7 @@ import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, FlatList }
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Container, Content, Footer } from 'native-base';
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
 
 import SchoolUtil from '../../../utils/School/School';
 
@@ -26,7 +26,7 @@ class FilterScreen extends Component {
       majors: [],
       selectedValue: '',
       selectedProvince: '',
-      category: props.navigation.state.params.category
+      category: props.route.params.category
     }
   }
 
@@ -78,9 +78,9 @@ class FilterScreen extends Component {
     let selectedValue = this.state.selectedValue == null ? '' : this.state.selectedValue;
     SchoolUtil.setSelectedMajor(selectedValue);
 
-    firebase.analytics().logEvent(keyword.INSTITUTION_FILTER_APPLIED);
+    // firebase.analytics().logEvent(keyword.INSTITUTION_FILTER_APPLIED);
 
-    this.props.navigation.state.params.refreshValue();
+    this.props.route.params.refreshValue();
     this.props.navigation.goBack();
   }
 
@@ -134,6 +134,7 @@ class FilterScreen extends Component {
   }
 
   render(){
+    // return (null)
     let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
     return (
       <Container>

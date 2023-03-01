@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
-import {
-  View,
-  WebView
-} from 'react-native';
+import { View } from 'react-native';
+import { WebView } from 'react-native-webview';
 
 import LoadingIndicator from '../../components/loading_indicator';
 
@@ -18,7 +16,7 @@ export default class WebviewScreen extends Component {
         <WebView
           ref="webviewRef"
           style={{flex: 1}}
-          source={{ uri: this.props.navigation.getParam('url', 'http://nea.gov.kh/kh/') }}
+          source={{ uri: this.props.route.params.url || 'http://nea.gov.kh/index.do' }}
           javaScriptEnabled={true}
           domStorageEnabled={true}
           onLoadEnd={ () => this.setState({loading: false}) }

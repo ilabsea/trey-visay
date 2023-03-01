@@ -1,14 +1,11 @@
 import React from 'react';
 import {
-  TouchableOpacity,
   Platform,
-  StatusBar,
   StyleSheet,
 } from 'react-native';
-import { View, Header, Left, Title, Body, Right, Button, Icon, Text } from 'native-base';
+import {  Title, Body, Right, Button, Icon, Text } from 'native-base';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-import { createStackNavigator } from 'react-navigation';
 import BackButton from '../../../components/shared/back_button';
 import SaveButton from '../../../components/shared/save_button';
 
@@ -21,76 +18,50 @@ import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
 import SchoolUtil from '../../../utils/School/School';
 
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
+
 const headerStyle = {backgroundColor: '#fff'}
 const colorStyle = Platform.OS == 'android' ? {color: '#111'} : {}
-const SchoolStack = createStackNavigator(
-  {
-    Root: {
-      screen: SchoolScreen,
-      navigationOptions: ({navigation}) => ({
-        header: (
-          <Header hasSegment style={headerStyle} androidStatusBarColor="rgba(0, 0, 0, 0.251)">
-            <Left>
-              <Button transparent onPress={() => {
-                navigation.goBack(null);
-                SchoolUtil.clearSelectedValues();
-              }}>
-                <Icon name="arrow-back" style={colorStyle} />
-              </Button>
-            </Left>
 
-            <Body>
-              <Title style={[styles.title, colorStyle]}>គ្រឹះស្ថានសិក្សា</Title>
-            </Body>
-
-            <Right>
-            </Right>
-          </Header>
+function SchoolStack() {
+  return (
+    <Stack.Navigator screenOptions={{}} initialRouteName="Root">
+      <Stack.Screen name="Root" component={SchoolScreen} options={({ navigation, route }) => ({
+          headerLeft: (props) => (
+            <Button transparent onPress={() => {
+              navigation.goBack(null);
+              SchoolUtil.clearSelectedValues();
+            }}>
+              <Icon name="arrow-back" style={colorStyle} />
+            </Button>
+          ),
+          headerTitle: (props) => (<Title style={[styles.title, colorStyle]}>គ្រឹះស្ថានសិក្សា</Title>)
+      })}/>
+      <Stack.Screen name="InstitutionDetail" component={InstitutionDetail} options={{headerShown: false}} />
+      <Stack.Screen name="FilterScreen" component={FilterScreen} options={({ navigation, route }) => ({
+        title: "គ្រឹះស្ថានសិក្សា",
+        headerRight: (props) => (
+          <Button transparent onPress={() => route.params.handleReset()} >
+            <Text style={{width: wp('30%'), color: Colors.blue, paddingTop: 6}}>កំណត់ឡេីងវិញ</Text>
+          </Button>
         )
-      }),
-    },
-    InstitutionDetail: {
-      screen: InstitutionDetail,
-      navigationOptions: ({navigation}) => ({
-        header: null
-      })
-    },
-    FilterScreen: {
-      screen: FilterScreen,
-      navigationOptions: ({navigation, screenProps}) => ({
-        title: 'គ្រឹះស្ថានសិក្សា',
-        headerRight:(<Button transparent onPress={() => navigation.state.params.handleReset()} >
-                      <Text style={{width: wp('30%'), color: Colors.blue, paddingTop: 6}}>កំណត់ឡេីងវិញ</Text>
-                    </Button>)
-      })
-    },
-    FilterProvinces: {
-      screen: FilterProvinces,
-      navigationOptions: ({navigation, screenProps}) => ({
-        title: 'ជ្រេីសរេីសទីតាំង',
-        headerRight:(<SaveButton noIcon={true} navigation={navigation} />)
-      })
-    }
-  },
-  {
-    navigationOptions: ({
-      headerStyle: {
-        // marginTop: Platform.OS == 'android' ? StatusBar.currentHeight : 0,
-      },
-      headerTitleStyle: {
-        fontSize: FontSetting.nav_title,
-        fontFamily: Platform.OS === 'android' ? 'Kantumruy' : 'HelveticaNeue',
-        fontWeight: '300'
-      }
-    }),
-  }
+      })}/>
 
-);
+      <Stack.Screen name="FilterProvinces" component={FilterProvinces} options={({ navigation, route }) => ({
+        title: "ជ្រេីសរេីសទីតាំង",
+        headerRight: (props) => <SaveButton noIcon={true} navigation={navigation} />
+      })}/>
+
+    </Stack.Navigator>
+  )
+}
 
 const styles = StyleSheet.create({
   title: {
     fontSize: FontSetting.nav_title,
-    fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue' : 'Kantumruy'
+    fontFamily: Platform.OS === 'ios' ? 'HelveticaNeue' : 'KantumruyLight'
   }
 });
 

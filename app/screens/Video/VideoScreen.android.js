@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
-  Button,
   StyleSheet,
-  Linking,
   ActivityIndicator,
   FlatList,
   Platform,
   TouchableOpacity,
-  StatusBar
 } from 'react-native';
 
 import NetInfo from "@react-native-community/netinfo";
@@ -18,76 +14,41 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 import { ThemeContext, getTheme, Toolbar } from 'react-native-material-ui';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import headerStyles from '../../assets/style_sheets/header';
-import uiThemeAndroid from '../../assets/style_sheets/uiThemeAndroid.js';
-import uiThemeIOS from '../../assets/style_sheets/uiThemeIOS.js';
-
-import MyStatusBar from '../../components/shared/status_bar';
 import BackButton from '../../components/shared/back_button';
+import ScrollableHeader from '../../components/scrollable_header';
 import VideoListView from '../../components/video/video_list';
 import LoadingIndicator from '../../components/loading_indicator';
-import {FontSetting} from '../../assets/style_sheets/font_setting';
-import videoList from '../../data/json/videos';
 
-const uiTheme = Platform.select({
-  ios: uiThemeIOS,
-  android: {
-    palette: {
-      primaryColor: '#fff',
-    },
-    toolbar: {
-      titleText: {
-        color: '#111',
-        fontFamily: 'Kantumruy',
-        fontWeight: '300',
-        fontSize: FontSetting.nav_title,
-      },
-      leftElement: {
-        color: '#111'
-      },
-      rightElement: {
-        color: '#111'
-      }
-    },
-  }
-});
+import videoList from '../../data/json/videos';
+import scrollHeaderStyle from '../../assets/style_sheets/scroll_header';
+import { Item, Input, Icon, Header } from 'native-base';
+import Text from '../../components/Text';
+import { Button } from 'react-native-paper';
+import { Colors } from '../../assets/style_sheets/main/colors';
 
 export default class VideoScreen extends Component {
-  _keyExtractor = (item, index) => index.toString();
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       pagination: {},
-      videos: videoList
+      videos: videoList,
+      textSearch: ''
     }
   }
 
   componentDidMount() {
-    this._handleInternetConnection();
-  }
-
-  _handleInternetConnection() {
-    NetInfo.isConnected.fetch().then(isConnected => {
+    this.unsubscribe = NetInfo.addEventListener(state => {
       this.setState({
-        isConnected: isConnected,
-        isOnline: isConnected,
+        isInternetReachable: state.isInternetReachable,
         isLoaded: true,
         showLoading: false
       });
     });
-
-    NetInfo.isConnected.addEventListener(
-      'connectionChange',
-      this._handleFirstConnectivityChange
-    );
   }
 
-  _handleFirstConnectivityChange = (isConnected) => {
-    if (this.refs.myRef) {
-      this.setState({isOnline: isConnected});
-    }
+  componentWillUnMount() {
+    this.unsubscribe();
   }
 
   _renderItem(item) {
@@ -97,25 +58,9 @@ export default class VideoScreen extends Component {
 
     return (
       <VideoListView
-        onPress={() => this._onOpenUrl(item.url)}
-        item={item} />
+        item={item}
+        isInternetReachable={this.state.isInternetReachable} />
     )
-  }
-
-  _onOpenUrl(url) {
-    if (this.state.isOnline) {
-      Linking.canOpenURL(url).then((supported) => {
-        if (!supported) {
-          return;
-        }
-
-        return Linking.openURL(url);
-      }).catch(()=>{});
-
-      return;
-    }
-
-    this.refs.toast.show('Not available while offline!', DURATION.SHORT);
   }
 
   _onRefresh() {
@@ -139,13 +84,14 @@ export default class VideoScreen extends Component {
         renderItem={ ({item}) => this._renderItem(item) }
         refreshing={false}
         onRefresh={ () => this._onRefresh() }
-        keyExtractor={this._keyExtractor}
-        ListFooterComponent={<View style={{height: 20}}></View>}
+        keyExtractor={(item, index) => index.toString() }
       />
     )
   }
 
   _onChangeText(val) {
+    this.setState({textSearch: val});
+
     if (!val) {
       this._onRefresh();
     }
@@ -159,21 +105,27 @@ export default class VideoScreen extends Component {
   }
 
   _onSearchClosed() {
+    this.setState({textSearch: ''});
     this._onRefresh();
   }
 
   _renderNoInternetConnection() {
     return (
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff'}}>
+      <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', padding: 20, marginTop: 20}}>
         <View style={{flexDirection: 'row'}}>
-          <MaterialIcon name='info-outline' color='#111' size={24} style={{marginRight: 8}} />
-          <Text>មិនមានការតភ្ជាប់បណ្តាញទេឥឡូវនេះ។ សូមព្យាយាម​ម្តង​ទៀត​</Text>
+          <MaterialIcon name='info-outline' color='#111' size={24} style={{marginRight: 8, marginTop: 4}} />
+          <View>
+            <Text>មិនមានការតភ្ជាប់បណ្តាញទេឥឡូវនេះ។</Text>
+            <Text>សូមព្យាយាមម្តងទៀត</Text>
+          </View>
         </View>
 
         { this.state.showLoading && <ActivityIndicator size="small" /> }
 
         <View style={{marginTop: 20}}>
-          <Button title='ព្យាយាមម្តងទៀត' onPress={() => this._retryConnection()}/>
+          <Button buttonColor={Colors.blue} mode="contained" onPress={() => this._retryConnection()}>
+            ព្យាយាមម្តងទៀត
+          </Button>
         </View>
       </View>
     )
@@ -181,33 +133,69 @@ export default class VideoScreen extends Component {
 
   _retryConnection() {
     this.setState({showLoading: true})
-    NetInfo.isConnected.fetch().then(isConnected => {
-      this.setState({isConnected: isConnected, isOnline: isConnected, isLoaded: true, showLoading: false});
+    NetInfo.fetch().then(state => {
+      this.setState({isInternetReachable: state.isInternetReachable, isLoaded: true, showLoading: false});
     });
   }
 
-  render() {
-    return(
-      <ThemeContext.Provider value={getTheme(uiTheme)}>
-        <View style={{flex: 1}} ref="myRef">
-          <MyStatusBar />
-          <Toolbar
-            leftElement={ 'arrow-back' }
-            centerElement={'វីដេអូមុខរបរ'}
-            searchable={{
-              autoFocus: true,
-              placeholder: 'ស្វែងរក',
-              onChangeText: this._onChangeText.bind(this),
-              onSearchClosed: this._onSearchClosed.bind(this)
-            }}
-            onLeftElementPress={() => this.props.navigation.goBack()}
-          />
-
-          { this.state.isLoaded && this.state.isConnected && this._renderContent() }
-          { this.state.isLoaded && !this.state.isConnected && this._renderNoInternetConnection() }
-          <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+  _renderForeground = () => {
+    return (
+      <View>
+        <Text style={[scrollHeaderStyle.largeTitle, {marginBottom: -8}]}>វីដេអូមុខរបរ</Text>
+        <View style={[styles.searchBarHeader, {flexDirection: 'row'}]}>
+          <Icon name="ios-search" />
+          <Input
+            onChangeText={(text) => this._onChangeText(text)}
+            autoCorrect={false}
+            value={this.state.textSearch}
+            placeholder='ស្វែងរក'/>
+          { !!this.state.textSearch &&
+            <TouchableOpacity style={{height: '100%'}} onPress={() => this._onSearchClosed()}>
+              <Icon active name='close-circle' style={{paddingTop: 2, color: 'rgba(0,0,0,0.7)'}} />
+            </TouchableOpacity>
+          }
         </View>
-      </ThemeContext.Provider>
-    );
+      </View>
+    )
+  }
+
+  _renderMainContent = () => {
+    if (!this.state.isLoaded) {
+      return (null)
+    }
+
+    if (this.state.isInternetReachable) {
+      return (this._renderContent());
+    }
+
+    return (this._renderNoInternetConnection());
+  }
+
+  render() {
+    return (
+      <View style={{flex: 1}} ref="myRef">
+        <ScrollableHeader
+          renderContent={ this._renderMainContent }
+          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+          title={'វីដេអូមុខរបរ'}
+          renderForeground={ this._renderForeground }
+          headerMaxHeight={160}
+        />
+
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
+      </View>
+    )
   };
 }
+
+const styles = StyleSheet.create({
+  searchBarHeader: {
+    paddingRight: 0,
+    paddingLeft: 0,
+    paddingTop: 0,
+    marginTop: 0,
+    height: 30,
+    backgroundColor: 'transparent',
+    borderBottomWidth: 0
+  }
+})

@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 
-import { View, Text, ScrollView, StyleSheet } from 'react-native';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import { Content, ListItem, Body, Card, CardItem } from 'native-base';
 import subjectList from '../../data/json/subjects/subject_tips';
 import subjectTe from '../../data/translates/subject';
 import styles from '../../assets/style_sheets/assessment';
+import Text from '../../components/Text';
 
 export default class PersonalityAssessmentSubjectTip extends Component {
   constructor(props) {
     super(props);
 
-    let subjectCode = this.props.navigation.getParam('subjectCode');
+    let subjectCode = this.props.route.params.subjectCode;
     let subject = subjectList.find((obj) => obj.code == subjectCode);
 
     this.state = {

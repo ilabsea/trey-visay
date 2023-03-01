@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet} from 'react-native';
+import { View, StyleSheet} from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import mainStyles from '../../assets/style_sheets/main/main';
@@ -8,6 +8,7 @@ import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 import subjectList from '../../data/json/subjects/subject_tips';
 import subjectTe from '../../data/translates/subject';
+import Text from '../../components/Text';
 
 class Recommendation extends Component {
   state = { showMore: false };
@@ -176,7 +177,7 @@ class Recommendation extends Component {
       <View style={{paddingBottom: 20}}>
         <View style={{padding: 20}}>
           <Text style={styles.bigText}>សួស្តី {user.fullName}</Text>
-          <Text style={styles.boldText}>
+          <Text variant="titleMedium">
             អ្នកបានជ្រើសរើសមុខរបរដែលអ្នកចូលចិត្តបំផុតនោះគឺ “{currentJob.name}” ដែលមុខរបរនេះជា
             {currentGroup.career_title}។
           </Text>
@@ -208,7 +209,7 @@ const styles = StyleSheet.create({
     fontSize: FontSetting.big_title
   },
   boldText: {
-    fontWeight: 'bold'
+    // fontWeight: 'bold'
   },
   paragraph: {
     marginTop: 16,

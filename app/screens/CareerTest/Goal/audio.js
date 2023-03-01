@@ -12,7 +12,7 @@ import {
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Sound from 'react-native-sound';
-import { AudioRecorder, AudioUtils } from 'react-native-audio';
+// import { AudioRecorder, AudioUtils } from 'react-native-audio';
 import uuidv4 from '../../../utils/uuidv4';
 import mainStyles from '../../../assets/style_sheets/main/main';
 import * as Progress from 'react-native-progress';
@@ -23,7 +23,9 @@ export default class Audio extends Component {
   constructor(props) {
     super(props);
 
-    let audioPath = props.audioPath || (AudioUtils.DocumentDirectoryPath + '/' + uuidv4() + '.aac');
+    // Todo:
+    // let audioPath = props.audioPath || (AudioUtils.DocumentDirectoryPath + '/' + uuidv4() + '.aac');
+    let audioPath = props.audioPath;
 
     this.state = {
       currentTime: 0.0,
@@ -55,14 +57,15 @@ export default class Audio extends Component {
 
       this._prepareRecordingPath(this.state.audioPath);
 
-      AudioRecorder.onProgress = this._onProgress;
+      // Todo:
+      // AudioRecorder.onProgress = this._onProgress;
 
-      AudioRecorder.onFinished = (data) => {
-        // Android callback comes in the form of a promise instead.
-        if (Platform.OS === 'ios') {
-          this._finishRecording(data.status === "OK", data.audioFileURL);
-        }
-      };
+      // AudioRecorder.onFinished = (data) => {
+      //   // Android callback comes in the form of a promise instead.
+      //   if (Platform.OS === 'ios') {
+      //     this._finishRecording(data.status === "OK", data.audioFileURL);
+      //   }
+      // };
     });
 
     this._handleRenderingPlayButton();
@@ -330,6 +333,19 @@ export default class Audio extends Component {
   }
 
   render() {
+    // return (
+    //   <View style={{height: 220}}>
+    //     { this.state.visiblePlayButton && this._renderButtonPlay() }
+    //     { this.state.visibleProgressBar && this._renderProgressBar() }
+
+    //     <View style={{flex: 1}}></View>
+    //     <View style={styles.controls}>
+    //       { this.state.visibleBtnAction && this._renderButtonCancel()}
+    //       { this._renderButtonMicrophone() }
+    //       { this.state.visibleBtnAction && this._renderButtonSave()}
+    //     </View>
+    //   </View>
+    // )
     return (
       <View style={{height: 220}}>
         { this.state.visiblePlayButton && this._renderButtonPlay() }

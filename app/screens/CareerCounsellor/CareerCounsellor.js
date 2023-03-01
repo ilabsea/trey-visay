@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -23,6 +22,7 @@ import { Content, Body, Right, Icon, CardItem } from 'native-base';
 import ButtonList from '../../components/list/button_list';
 import TestListItem from '../../components/GameHistory/TestListItem';
 import keyword from '../../data/analytics/keyword';
+import Text from '../../components/Text';
 
 export default class CareerCounsellor extends Component {
   componentWillMount() {
@@ -51,7 +51,7 @@ export default class CareerCounsellor extends Component {
           hasLine={true}
           icon={{color: Colors.blue, src: require('../../assets/icons/others/info.png')}}
           onPress={() => { this.props.navigation.navigate('AboutCareerCounsellorScreen') }}
-          title='អំពីការធ្វើតេសវាយតម្លៃមុខរបរ​ និងអាជីព' />
+          title='អំពីការធ្វើតេសវាយតម្លៃមុខរបរ និងអាជីព' />
       </View>
     )
   }
@@ -63,7 +63,7 @@ export default class CareerCounsellor extends Component {
 
         <CardItem>
           <Body>
-            <Text>សួស្តីសាជាថ្មី </Text>
+            <Text>សួស្តីសាជាថ្មី</Text>
             <Text>ការធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព </Text>
           </Body>
         </CardItem>
@@ -95,7 +95,7 @@ export default class CareerCounsellor extends Component {
     let count = this.state.completedGames.length;
 
     return (
-      <Content padder style={{marginHorizontal: 8}}>
+      <View padder style={{marginHorizontal: 16}}>
         { !!this.state.completedGames.length &&
           <Text style={[mainStyles.sectionText, {marginLeft: 0}]}>លទ្ធផលធ្វើតេស្ត</Text>
         }
@@ -110,7 +110,7 @@ export default class CareerCounsellor extends Component {
             />
           )
         })}
-      </Content>
+      </View>
     )
   }
 
@@ -138,7 +138,7 @@ export default class CareerCounsellor extends Component {
   }
 
   _goToPersonalUnderstandingForm() {
-    firebase.analytics().logEvent(keyword.CAREER_ASSESSMENT_BEGAN);
+    // firebase.analytics().logEvent(keyword.CAREER_ASSESSMENT_BEGAN);
 
     let uncompletedGames = this.state.user.games.filtered('isDone = false');
 

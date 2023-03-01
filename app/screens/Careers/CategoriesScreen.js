@@ -18,8 +18,8 @@ import CardItem from '../../components/list/card_item';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
-import { NavigationActions } from 'react-navigation';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import { navigate, reset } from '../StackNav/RootNavigation';
 
 export default class CategoriesScreen extends Component {
   constructor(props) {
@@ -57,12 +57,12 @@ export default class CategoriesScreen extends Component {
 
   _goNext() {
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
-    this.props.navigation.navigate('SubjectScreen');
+    navigate('SubjectScreen');
   }
 
   _onYes() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })])
+    reset({ routeName: 'CareerCounsellorScreen' })
   }
 
   _onNo() {
@@ -81,7 +81,7 @@ export default class CategoriesScreen extends Component {
         index={index}
         width={'40%'}
         height={'18%'}
-        onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career: career.item})}
+        onPress={() => navigate('CareerDetailScreen', {career: career.item})}
       />
     )
   }
@@ -93,7 +93,7 @@ export default class CategoriesScreen extends Component {
       <View key={i} style={[mainStyles.carouselBox, { backgroundColor: '#fff' }]}>
         <ButtonList hasLine={false} title={category.career_title} boldFont={{fontWeight: 'bold'}}
           onPress={() => {
-            this.props.navigation.navigate('ShowCareerCategoryScreen', {careerId: category.id})
+            navigate('ShowCareerCategoryScreen', {careerId: category.id})
           }} />
         <CarouselItem
           data={data}

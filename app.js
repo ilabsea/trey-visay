@@ -1,9 +1,11 @@
 'use strict';
 
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
-import Task from './app/utils/task';
+import { Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+
 import realm from './app/db/schema';
+// import Sidekiq from './app/utils/models/sidekiq';
 
 import HomeStackNav from './app/screens/StackNav/Home/HomeStackNav';
 
@@ -14,10 +16,11 @@ export default class App extends Component {
     this.handlerPredefinedUser();
   }
 
-  componentDidMount(){
-    Task.configBackgroundFetch();
-    // Task.syncToServer();
-  }
+  // componentDidMount(){
+  //   setTimeout(() => {
+  //     Sidekiq.uploadAll();
+  //   }, 1000);
+  // }
 
   handlerPredefinedUser() {
     let uuid = '0335745d-daa3-485b-bc0f-3610db5udemo';
@@ -31,6 +34,8 @@ export default class App extends Component {
   }
 
   render() {
-    return (<HomeStackNav/>);
+    return (
+      <HomeStackNav/>
+    );
   }
 }

@@ -3,7 +3,6 @@ import Toast, { DURATION } from 'react-native-easy-toast';
 
 import {
   Button,
-  Text,
   Modal,
   ScrollView,
   View,
@@ -18,6 +17,9 @@ import styles from './styles';
 import { Colors } from '../../../assets/style_sheets/main/colors';
 
 import LinearGradient from 'react-native-linear-gradient';
+
+import { navigate } from "../../StackNav/RootNavigation";
+import Text from '../../../components/Text';
 
 export default class Result extends Component{
   constructor(props) {
@@ -90,7 +92,7 @@ export default class Result extends Component{
         { (this.props.testCount > 1 || isPass) &&
           <TouchableOpacity
             onPress={() => {
-              this.props.navigation.navigate('CareerCategoriesScreen');
+              navigate('CareerCategoriesScreen');
               this.props.setModalVisible(false);
             }}
             style={[styles.button, button]}>

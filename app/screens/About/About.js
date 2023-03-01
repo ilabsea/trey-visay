@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {
-  Text,
   View,
   StyleSheet,
   Image,
@@ -13,6 +12,7 @@ import DeviceInfo from 'react-native-device-info';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
+import Text from '../../components/Text';
 
 export default class About extends Component {
   _openLink(url) {

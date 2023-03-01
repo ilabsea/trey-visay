@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import {
   StyleSheet,
-  Text,
   ScrollView,
   View
 } from 'react-native';
@@ -18,6 +17,7 @@ import BackButton from '../../components/shared/back_button';
 import styles from '../../assets/style_sheets/assessment';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import ButtonList from '../../components/list/button_list';
+import Text from '../../components/Text';
 
 export default class PersonalityAssessmentHighSchoolStudyOption extends Component {
   constructor(props) {
@@ -27,10 +27,10 @@ export default class PersonalityAssessmentHighSchoolStudyOption extends Componen
   }
 
   _initState() {
-    let category = this.props.navigation.getParam('category');
+    let category = this.props.route.params.category;
     let id = category.group == 'science' ? 1 : 3;
     let currentGroup = characteristicList.find((obj) => obj.id == id);
-    let assessment = this.props.navigation.getParam('assessment');
+    let assessment = this.props.route.params.assessment;
 
     this.state = {
       currentGroup: currentGroup,

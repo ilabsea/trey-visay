@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   BackHandler,
 } from 'react-native';
 
 import FooterBar from '../../components/footer/FooterBar';
 import styles from '../../assets/style_sheets/profile_form';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
-import CheckboxGroup from '../../components/checkbox_group';
+import CheckboxGroup from '../../components/CheckboxGroup';
 import personalities from '../../data/json/personality';
 import BackConfirmDialog from '../../components/shared/back_confirm_dialog';
-import { NavigationActions } from 'react-navigation';
 import { Content, Left, Body, Right, Icon, Title, Button } from 'native-base';
 
 import ScrollableHeader from '../../components/scrollable_header';
@@ -19,6 +17,9 @@ import BackButton from '../../components/shared/back_button';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import ProgressStep from './ProgressStep';
 import {Colors} from '../../assets/style_sheets/main/colors';
+
+import { reset, navigate } from '../StackNav/RootNavigation';
+import Text from '../../components/Text';
 
 import realm from '../../db/schema';
 import User from '../../utils/user';
@@ -38,8 +39,8 @@ export default class PersonalityAssessmentRealistic extends Component {
     super(props);
 
     let index = 0;
-    if (!!props.navigation.state.params && !!props.navigation.state.params.category) {
-      index = this.screens.map(e => e.category).indexOf(props.navigation.state.params.category);
+    if (!!props.route.params && !!props.route.params.category) {
+      index = this.screens.map(e => e.category).indexOf(props.route.params.category);
     }
     this.screen = this.screens[index];
 
@@ -53,7 +54,9 @@ export default class PersonalityAssessmentRealistic extends Component {
       assessment: assessment,
       index: index
     }
+  }
 
+  componentDidMount() {
     this._backHandler();
   }
 
@@ -86,7 +89,8 @@ export default class PersonalityAssessmentRealistic extends Component {
 
   _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'PersonalityAssessmentScreen' })]);
+
+    reset({ routeName: 'PersonalityAssessmentScreen' });
   }
 
   _onNo() {
@@ -131,24 +135,8 @@ export default class PersonalityAssessmentRealistic extends Component {
         <View>
           <CheckboxGroup
             onSelect={(selected) => {this._handleChecked(selected)}}
-            items={checkboxes}
-            checked={this.state.data}
-            style={{
-              icon: {
-                size: 30
-              },
-              container: {
-                flexDirection: 'row',
-                borderTopWidth: 0.5,
-                borderColor: '#ccc',
-                paddingVertical: 8,
-              },
-              label: {
-                color: '#333',
-                fontSize: 16,
-                marginLeft: 10
-              }
-            }}
+            options={checkboxes}
+            selected={this.state.data}
           />
         </View>
       </View>
@@ -159,7 +147,7 @@ export default class PersonalityAssessmentRealistic extends Component {
     realm.write(() => {
       realm.create('PersonalityAssessment', this._buildData(this.screen.nextScreen), true);
 
-      this.props.navigation.navigate(this.screen.nextScreen, {category: this.screen.nextCategory});
+      navigate(this.screen.nextScreen, {category: this.screen.nextCategory});
     });
   }
 

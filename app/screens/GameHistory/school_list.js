@@ -11,7 +11,7 @@ export default class SchoolListScreen extends Component {
     super(props);
 
     this.state = {
-      schools: this.props.navigation.state.params.schools
+      schools: props.route.params.schools
     }
   }
 

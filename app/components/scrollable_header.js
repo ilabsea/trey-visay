@@ -5,7 +5,6 @@ import {
   Platform,
   StatusBar,
   StyleSheet,
-  Text,
   View,
   Dimensions,
 } from 'react-native';
@@ -14,7 +13,13 @@ import PropTypes from 'prop-types';
 import * as Progress from 'react-native-progress';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 import scrollHeaderStyles from '../assets/style_sheets/scroll_header';
-import { Header } from 'react-navigation';
+import Text from './Text';
+// import { Header } from 'react-navigation';
+// import { useHeaderHeight } from '@react-navigation/elements';
+
+// Todo:
+// const headerHeight = useHeaderHeight();
+const headerHeight = 64;
 
 const deviceHeight = Dimensions.get("window").height;
 const deviceWidth = Dimensions.get("window").width;
@@ -24,7 +29,7 @@ const IPHONE_HEADER_HEIGHT = isIphoneX ? 24 : 0;
 
 const STATUSBAR_HEIGHT = Platform.OS == 'android' ? StatusBar.currentHeight : 0;
 const DEFAULT_HEADER_MAX_HEIGHT = 140 - STATUSBAR_HEIGHT + IPHONE_HEADER_HEIGHT;
-const DEFAULT_HEADER_MIN_HEIGHT = platform === 'ios' ? 64 + IPHONE_HEADER_HEIGHT : Header.HEIGHT;
+const DEFAULT_HEADER_MIN_HEIGHT = platform === 'ios' ? 64 + IPHONE_HEADER_HEIGHT : headerHeight;
 const DEFAULT_HEADER_SCROLL_DISTANCE = DEFAULT_HEADER_MAX_HEIGHT - DEFAULT_HEADER_MIN_HEIGHT;
 const NAVIGATION_BUTTON_WIDTH = platform === 'ios' ? 30 : 44;
 const DEFAULT_HEADER_COLOR = '#fff';

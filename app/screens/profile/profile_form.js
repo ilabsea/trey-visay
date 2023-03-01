@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useRef } from 'react';
 import {
   Text,
   View,
@@ -15,8 +15,12 @@ import {Colors} from '../../assets/style_sheets/main/colors';
 import ScrollableHeader from '../../components/scrollable_header';
 import { Content, Icon, Button } from 'native-base';
 import FooterBar from '../../components/footer/FooterBar';
-import { NavigationActions } from 'react-navigation';
+import { CommonActions } from '@react-navigation/native';
 import FormScreen from './Form';
+import { reset } from '../StackNav/RootNavigation.js';
+
+import { useSelector, useDispatch } from 'react-redux'
+import { setCurrentUser } from '../../redux/features/user/userSlice';
 
 let formError = {};
 
@@ -29,12 +33,14 @@ export default class ProfileForm extends Component {
       errors: {},
     }
 
-    this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))];
-
     if (Platform.OS == 'android') {
       StatusBar.setBackgroundColor(Colors.grayStatusBar);
       StatusBar.setBarStyle('dark-content');
     }
+  }
+
+  componentDidMount() {
+    this._unsubscribe = this.props.navigation.addListener('focus', (payload) => this.componentDidFocus(payload));
   }
 
   componentDidFocus() {
@@ -43,12 +49,12 @@ export default class ProfileForm extends Component {
   }
 
   componentWillUnmount() {
-    this.subs.forEach(sub => sub.remove());
+    !!this._unsubscribe && this._unsubscribe();
   }
 
   _handleIfUserLogout() {
     if (!User.getCurrent()) {
-      this.props.navigation.reset([NavigationActions.navigate({ routeName: 'ProfileScreen' })]);
+      reset({ routeName: 'ProfileScreen' });
     }
   }
 
@@ -56,9 +62,12 @@ export default class ProfileForm extends Component {
     try {
       realm.write(() => {
         realm.create('User', { uuid: User.getID(), grade: 'other'}, true);
-        Sidekiq.create(User.getID(), 'User');
-        this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from') })]);
+        // Todo:
+        // Sidekiq.create(User.getID(), 'User');
+        reset({ routeName: this.props.route.params.from })
       });
+
+
     } catch (e) {
       alert(e);
     }
@@ -97,7 +106,7 @@ export default class ProfileForm extends Component {
       realm.write(() => {
         user = realm.create('User', this._buildData(), true);
         Sidekiq.create(this.state.user.uuid, 'User');
-        this.props.navigation.reset([NavigationActions.navigate({ routeName: this.props.navigation.getParam('from') })]);
+        reset({ routeName: this.props.route.params.from });
       });
     } catch (e) {
       alert(e);
@@ -143,6 +152,7 @@ export default class ProfileForm extends Component {
 
   render() {
     let title = 'បំពេញប្រវត្តិរូបសង្ខេប';
+
     return (
       <View style={{flex: 1}}>
         <ScrollableHeader

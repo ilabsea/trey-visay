@@ -9,7 +9,7 @@ import {
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
 
 import Images from '../../assets/images';
 import mainStyles from '../../assets/style_sheets/main/main';

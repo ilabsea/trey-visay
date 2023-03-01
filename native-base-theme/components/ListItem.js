@@ -5,7 +5,7 @@ import { Platform, PixelRatio } from "react-native";
 import pickerTheme from "./Picker";
 import variable from "./../variables/platform";
 
-const fontFamily = Platform.OS === "ios" ? 'HelveticaNeue' : 'Kantumruy';
+const fontFamily = Platform.OS === "ios" ? 'HelveticaNeue' : 'KantumruyLight';
 
 export default (variables /*: * */ = variable) => {
   const platform = variables.platform;

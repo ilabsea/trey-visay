@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 import StatusBar from '../../components/shared/status_bar';
@@ -18,7 +18,7 @@ import { Colors } from '../../assets/style_sheets/main/colors';
 export default class StudentPersonalityReport extends Component {
   componentWillMount() {
     let user = User.getCurrent();
-    let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
+    let game = user.games.filtered('uuid="' + this.props.route.params.gameUuid + '"')[0];
 
     this.setState({
       user: user,
