@@ -7,7 +7,6 @@ import {
 
 import Toast, { DURATION } from 'react-native-easy-toast';
 
-import { Provider } from 'react-redux';
 import store from '../../../redux/store';
 import PersonalUnderstandingScore from './PersonalUnderstandingScore';
 import Form from './_Form';
@@ -24,11 +23,14 @@ import FooterBar from '../../../components/footer/FooterBar';
 import Result from './Result';
 import BackButton from '../../../components/shared/back_button';
 import { Colors } from '../../../assets/style_sheets/main/colors';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import firebase from 'react-native-firebase';
+// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+// import firebase from 'react-native-firebase';
 import keyword from '../../../data/analytics/keyword';
 
-export default class PersonalUnderstandingForm extends Component {
+import { connect } from "react-redux";
+import { resetQuizOne } from '../../../redux/features/careerAssessment/quizOneSlice';
+
+class PersonalUnderstandingForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -46,7 +48,7 @@ export default class PersonalUnderstandingForm extends Component {
   };
 
   _handleBack() {
-    this.props.navigation.state.params.refresh();
+    this.props.route.params.refresh();
     this.props.navigation.goBack();
   }
 
@@ -55,8 +57,7 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   handleSubmit = () => {
-    let formValues = this.parseFormValue(this.formRef.current.selector.props.values);
-
+    let formValues = this.parseFormValue({...this.props.quizOneAnswer});
     if (!formValues) {
       return this.refs.toast.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     }
@@ -82,32 +83,28 @@ export default class PersonalUnderstandingForm extends Component {
     let resultKeyword = isPass ? keyword.CAREER_ASSESSMENT_PERSONAL_UNDERSTANDING_TEST_PASS : keyword.CAREER_ASSESSMENT_PERSONAL_UNDERSTANDING_TEST_FAIL;
 
     realm.write(() => {
-      firebase.analytics().logEvent(resultKeyword);
+      // firebase.analytics().logEvent(resultKeyword);
 
       list.push(values);
 
       this.setState({testCount: list.length, score: values.score});
       this.setModalVisible(true);
+      this.props.resetQuizOne();
     });
   };
 
   parseFormValue(values) {
-    if(!!values){
-      values['uuid'] = uuidv4();
-      if(values['everTalkedWithAnyoneAboutCareer']) {
-        values['everTalkedWithAnyoneAboutCareer'] = values['everTalkedWithAnyoneAboutCareer'].map(function(i){ return {value: i }; } );
-      }
+    values['uuid'] = uuidv4();
+    if(values['everTalkedWithAnyoneAboutCareer']) {
+      values['everTalkedWithAnyoneAboutCareer'] = values['everTalkedWithAnyoneAboutCareer'].map(function(i){ return {value: i }; } );
     }
+
     return values;
   };
 
   _renderContent = () => {
     return (
-      <KeyboardAwareScrollView>
-        <Provider store={store}>
-            <Form ref={this.formRef} />
-        </Provider>
-      </KeyboardAwareScrollView>
+      <Form ref={this.formRef} />
     )
   }
 
@@ -128,7 +125,7 @@ export default class PersonalUnderstandingForm extends Component {
   }
 
   _resetStore = () => {
-    store.dispatch({type: 'RESET'});
+    this.props.resetQuizOne();
   }
 
   _renderResult() {
@@ -165,3 +162,11 @@ export default class PersonalUnderstandingForm extends Component {
     )
   };
 }
+
+const mapStateToProps = (state) => ({
+  quizOneAnswer: state.quizOneAnswer.value
+});
+
+const mapDispatchToProps = { resetQuizOne };
+
+export default connect(mapStateToProps, mapDispatchToProps)(PersonalUnderstandingForm);

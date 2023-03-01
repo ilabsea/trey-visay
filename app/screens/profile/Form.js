@@ -2,17 +2,18 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  Picker,
 } from 'react-native';
 
 import styles from '../../assets/style_sheets/profile_form';
-import DatePicker from 'react-native-datepicker';
 import PickerSpecific from '../../components/picker/PickerSpecific';
 import grades from '../../data/json/grades.json';
 import provinces from '../../data/json/address/provinces.json';
 import communes from '../../data/json/address/communes.json';
 import districts from '../../data/json/address/districts.json';
 import highSchools from '../../data/json/address/highSchools.json';
+import Moment from 'moment';
+
+import DatePicker from './FormComponent/DatePicker';
 
 import { Icon, Item, Form, Input } from 'native-base';
 import SexOptions from '../../components/account/sex_options';
@@ -39,7 +40,6 @@ export default class FormScreen extends Component {
 
   _renderContent = () => {
     let noValue = [{ "code": "", "label": "គ្មានតម្លៃ" }]
-
     return (
       <View>
         { this._renderFullName() }
@@ -100,17 +100,11 @@ export default class FormScreen extends Component {
     return(
       <View style={styles.inputContainer}>
         <Text style={styles.labelColor}>ថ្ងៃខែឆ្នាំកំណើត</Text>
+
         <DatePicker
-          style={{width: 200}}
-          date={this.props.user.dateOfBirth}
-          mode="date"
-          androidMode='spinner'
-          placeholder="select date"
-          format="DD-MMM-YYYY"
-          confirmBtnText="យល់ព្រម"
-          cancelBtnText="បោះបង់"
-          maxDate={new Date()}
-          onDateChange={(date) => {this._setUserState('dateOfBirth', date)}} />
+          value={ this.props.user.dateOfBirth }
+          onChange={(date) => {this._setUserState('dateOfBirth', Moment(date).format('YYYY-MM-DD'))}} />
+
         <Text style={styles.errorText}>{this.props.errors.dateOfBirth}</Text>
       </View>
     )

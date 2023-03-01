@@ -1,34 +1,31 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   ScrollView,
 } from 'react-native';
 
 import realm from '../../db/schema';
 import Result from '../PersonalityAssessmentResult/Result';
+import Text from '../../components/Text';
 
-export default class PersonalityAssessmentHistory extends Component {
-  _renderContent = () => {
-    let assessment = realm.objects('PersonalityAssessment').filtered('uuid=="' + this.props.navigation.getParam('assessmentUuid') + '"')[0];
+const PersonalityAssessmentHistory = ({route}) => {
+  const _renderContent = () => {
+    let assessment = realm.objects('PersonalityAssessment').filtered('uuid=="' + route.params.assessmentUuid + '"')[0];
 
     return (
       <View>
         <Text style={{padding: 20, paddingBottom: 0}}>បុគ្គលិកលក្ខណៈរបស់អ្នក អាចជួយអ្នកក្នុងការជ្រើសរើសមុខជំនាញសិក្សា ឬអាជីពការងារមានភាពប្រសើរជាមូលដ្ឋាននាំអ្នកឆ្ពោះទៅមាគ៌ាជីវិតជោគជ័យនាថ្ងៃអនាគត។</Text>
 
-        <Result
-          assessment={assessment}
-          navigation={this.props.navigation}
-        />
+        <Result assessment={assessment}/>
       </View>
     )
   }
 
-  render () {
-    return (
-      <ScrollView>
-        { this._renderContent() }
-      </ScrollView>
-    )
-  }
+  return (
+    <ScrollView>
+      { _renderContent() }
+    </ScrollView>
+  )
 }
+
+export default PersonalityAssessmentHistory;

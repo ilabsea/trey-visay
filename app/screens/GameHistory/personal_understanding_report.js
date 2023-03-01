@@ -8,7 +8,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import realm from '../../db/schema';
@@ -23,7 +23,7 @@ import { Colors } from '../../assets/style_sheets/main/colors';
 export default class PersonalUnderstandingReport extends Component {
   componentWillMount() {
     let user = User.getCurrent();
-    let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
+    let game = user.games.filtered('uuid="' + this.props.route.params.gameUuid + '"')[0];
 
     this.setState({
       user: user,

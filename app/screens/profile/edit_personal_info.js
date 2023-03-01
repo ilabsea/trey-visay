@@ -60,7 +60,7 @@ export default class EditPersonalInfo extends Component {
       realm.write(() => {
         realm.create('User', this._buildData(), true);
         Sidekiq.create(this.state.user.uuid, 'User');
-        this.props.navigation.state.params.refresh();
+        this.props.route.params.refresh();
         this.props.navigation.goBack();
       });
     } catch (e) {

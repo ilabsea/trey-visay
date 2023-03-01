@@ -14,7 +14,8 @@ import FooterBar from '../../../components/footer/FooterBar';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
 
-import { NavigationActions } from 'react-navigation';
+// import { NavigationActions } from 'react-navigation';
+import { CommonActions } from '@react-navigation/native';
 
 import realm from '../../../db/schema';
 import User from '../../../utils/user';
@@ -74,7 +75,7 @@ export default class RecommendationScreen extends Component {
 
   _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })])
+    this.props.navigation.reset([CommonActions.navigate({ routeName: 'CareerCounsellorScreen' })])
   }
 
   _onNo() {

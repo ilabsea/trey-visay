@@ -3,10 +3,9 @@ import {
   View,
   TouchableOpacity,
   StyleSheet,
-  Text
 } from 'react-native';
 
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
 import Button from '../../components/shared/button';
 
 import { FontSetting } from '../../assets/style_sheets/font_setting';
@@ -15,13 +14,15 @@ import User from '../../utils/user';
 import uuidv4 from '../../utils/uuidv4';
 import mainStyles from '../../assets/style_sheets/main/main';
 import { Colors } from '../../assets/style_sheets/main/colors';
-import { Content, Body, Icon, CardItem } from 'native-base';
+import { Card } from 'react-native-paper';
 
 import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import ButtonList from '../../components/list/button_list';
 import TestListItem from '../../components/GameHistory/TestListItem';
 import keyword from '../../data/analytics/keyword';
+import { navigate } from '../StackNav/RootNavigation';
+import Text from '../../components/Text';
 
 export default class PersonalityAssessment extends Component {
   constructor(props) {
@@ -41,15 +42,13 @@ export default class PersonalityAssessment extends Component {
 
   _renderInstruction() {
     return (
-      <View>
-        <CardItem>
-          <Body>
-            <Text>សួរស្តីសាជាថ្មី </Text>
-            <Text>ការធ្វើតេស្តស្វែងយល់អំពី បុគ្គលិកលក្ខណៈ </Text>
-          </Body>
-        </CardItem>
+      <Card>
+        <Card.Content>
+            <Text>សួរស្តីសាជាថ្មី</Text>
+            <Text>ការធ្វើតេស្តស្វែងយល់អំពី បុគ្គលិកលក្ខណៈ</Text>
+        </Card.Content>
 
-        <CardItem footer style={{flexDirection: 'column'}}>
+        <Card.Content footer style={{flexDirection: 'column'}}>
           <Button
             style={[styles.button]}
             onPress={this._startNewAssessment.bind(this)}>
@@ -67,8 +66,8 @@ export default class PersonalityAssessment extends Component {
             </Button>
           }
 
-        </CardItem>
-      </View>
+        </Card.Content>
+      </Card>
     )
   }
 
@@ -78,7 +77,7 @@ export default class PersonalityAssessment extends Component {
   }
 
   _startNewAssessment() {
-    firebase.analytics().logEvent(keyword.PERSONALITY_ASSESSMENT_BEGAN);
+    // firebase.analytics().logEvent(keyword.PERSONALITY_ASSESSMENT_BEGAN);
     let uncompletedAssessments = realm.objects('PersonalityAssessment').filtered('isDone = false AND userUuid = "' + User.getID() + '"');
 
     realm.write(() => {
@@ -102,7 +101,7 @@ export default class PersonalityAssessment extends Component {
     let count = this.state.completedAssessments.length;
 
     return(
-      <Content padder style={{marginHorizontal: 8}}>
+      <View padder style={{marginHorizontal: 8}}>
         { !!count &&
           <Text style={[mainStyles.sectionText, {marginLeft: 0}]}>
             <Text>លទ្ធផលធ្វើតេស្ត</Text>
@@ -110,7 +109,7 @@ export default class PersonalityAssessment extends Component {
         }
 
         { this.state.completedAssessments.map((assessment, i) => this._renderListItem(assessment, i, count)) }
-      </Content>
+      </View>
     );
   }
 
@@ -120,7 +119,7 @@ export default class PersonalityAssessment extends Component {
         key={index}
         number={count - index}
         createdAt={assessment.createdAt}
-        onPress={() => this.props.navigation.navigate('AssessmentResultHistoryScreen', {num: (count - index), assessmentUuid: assessment.uuid})}
+        onPress={() => navigate('AssessmentResultHistoryScreen', {num: (count - index), assessmentUuid: assessment.uuid})}
       />
     )
   }
@@ -131,7 +130,7 @@ export default class PersonalityAssessment extends Component {
         <ButtonList
           hasLine={true}
           icon={{color: Colors.blue, src: require('../../assets/icons/others/info.png')}}
-          onPress={() => { this.props.navigation.navigate('AboutPersonalityAssessment') }}
+          onPress={() => { navigate('AboutPersonalityAssessment') }}
           title='អំពីការធ្វើតេស្តស្វែងយល់បុគ្គលិកលក្ខណៈ' />
       </View>
     )
@@ -139,11 +138,11 @@ export default class PersonalityAssessment extends Component {
 
   _renderContent = () => {
     return (
-      <Content>
+      <View>
         { this._renderAbout() }
         { this._renderInstruction() }
         { this._renderHistory() }
-      </Content>
+      </View>
     )
   }
 

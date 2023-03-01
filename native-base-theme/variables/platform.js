@@ -10,7 +10,7 @@ const platform = Platform.OS;
 const platformStyle = undefined;
 const isIphoneX =
 platform === "ios" && (deviceHeight === 812 || deviceWidth === 812 || deviceHeight === 896 || deviceWidth === 896);
-const fontFamily = platform === "ios" ? 'HelveticaNeue' : 'Kantumruy'
+const fontFamily = platform === "ios" ? 'HelveticaNeue' : 'KantumruyLight'
 
 export default {
   platformStyle,

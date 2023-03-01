@@ -23,7 +23,7 @@ export default class RecommendationReport extends Component {
 
   _initState() {
     let user = User.getCurrent();
-    let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
+    let game = user.games.filtered('uuid="' + this.props.route.params.gameUuid + '"')[0];
     let currentGroup = characteristicList.find((obj) => obj.id == game.characteristicId);
     let currentJob = currentGroup.careers.find((obj) => obj.code == game.mostFavorableJobCode);
 

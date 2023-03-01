@@ -1,59 +1,42 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StatusBar, Platform } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import CarouselView from '../../components/home/carousel_view';
 
-import { Container, Header} from "native-base";
+import { Header } from "native-base";
 
-import User from '../../utils/user';
 import SchoolUtil from '../../utils/School/School';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 
-export default class Home extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      user: null
-    }
-  }
+export default function Home({ navigation }) {
+  const height = Platform.OS == 'android' ? 140 - StatusBar.currentHeight : 140;
 
-  componentWillMount() {
+  useEffect(() => {
     SplashScreen.hide();
-    User.isLoggedin(() => {
-      let user = User.getCurrent();
-      this.setState({ user: user});
+
+    const unsubscribe = navigation.addListener('focus', () => {
+      SchoolUtil.clearSelectedValues();
+
+      if (Platform.OS == 'android') {
+        StatusBar.setBackgroundColor('rgba(0, 0, 0, 0.251)');
+        StatusBar.setBarStyle('dark-content');
+      }
     });
-    SchoolUtil.clearSelectedValues();
 
-    this.subs = [this.props.navigation.addListener('didFocus', (payload) => this.componentDidFocus(payload))];
-  }
+    return unsubscribe;
+  }, [navigation]);
 
-  componentWillUnmount(){
-    this.subs.forEach(sub => sub.remove());
-  }
+  return (
+    <View style={{flex: 1}}>
+      <Header
+        span
+        androidStatusBarColor="rgba(0, 0, 0, 0.251)"
+        style={{backgroundColor: '#fff', height: height}}
+      >
+        <Text style={[scrollHeaderStyles.largeTitle, scrollHeaderStyles.largeTitlePosition]}>ទំព័រដេីម</Text>
+      </Header>
 
-  componentDidFocus() {
-    if (Platform.OS == 'android') {
-      StatusBar.setBackgroundColor('rgba(0, 0, 0, 0.251)');
-      StatusBar.setBarStyle('dark-content');
-    }
-  }
-
-  render() {
-    let height = Platform.OS == 'android' ? 140 - StatusBar.currentHeight : 140;
-
-    return (
-      <View style={{flex: 1}}>
-        <Header
-          span
-          androidStatusBarColor="rgba(0, 0, 0, 0.251)"
-          style={{backgroundColor: '#fff', height: height}}
-        >
-          <Text style={[scrollHeaderStyles.largeTitle, scrollHeaderStyles.largeTitlePosition]}>ទំព័រដេីម</Text>
-        </Header>
-
-        <CarouselView navigation={this.props.navigation} user={this.state.user}/>
-      </View>
-    );
-  }
+      <CarouselView />
+    </View>
+  );
 }

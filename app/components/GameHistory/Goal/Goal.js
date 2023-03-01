@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
 import Sound from 'react-native-sound';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import { Colors } from '../../../assets/style_sheets/main/colors';
 import mainStyles from '../../../assets/style_sheets/main/main';
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Text from '../../Text';
 
 class Goal extends Component{
   constructor(props){

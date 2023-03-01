@@ -52,7 +52,8 @@ class RadioGroup extends Component {
 
 const styles = StyleSheet.create({
   label: {
-    lineHeight: 30
+    lineHeight: 30,
+    fontFamily: 'KantumruyLight'
   },
   buttonWrapper: {
     marginTop: 5

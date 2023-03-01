@@ -4,26 +4,26 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 import {
   View,
-  Text,
   ScrollView,
   StyleSheet,
   BackHandler,
 } from 'react-native';
 
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
 import majorList from '../../data/json/personality_major';
 import mainStyles from '../../assets/style_sheets/main/main';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import styles from '../../assets/style_sheets/assessment';
 import ButtonList from '../../components/list/button_list';
+import { goBack, navigate } from '../StackNav/RootNavigation';
+import Text from '../../components/Text';
 
 export default class PersonalityAssessmentPersonalityCategory extends Component {
   constructor(props) {
     super(props);
 
-    let category = props.navigation.getParam('category');
     this.state = {
-      category: category
+      category: props.route.params.category
     }
 
     BackHandler.addEventListener('hardwareBackPress', this._onClickBackHandler);
@@ -31,13 +31,14 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
 
   _onClickBackHandler = () => {
     BackHandler.removeEventListener('hardwareBackPress', this._onClickBackHandler);
-    this.props.navigation.goBack();
+
+    goBack();
 
     return true
   }
 
   _renderList() {
-    let entries = this.props.navigation.getParam('entries');
+    let entries = this.props.route.params.entries;
 
     if (!entries.length) { return (null); }
 
@@ -88,7 +89,7 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
         <View style={mainStyles.blueTitleBox}>
           <AwesomeIcon name='globe' color={Colors.blue} size={24} />
           <Text style={[mainStyles.title, { paddingLeft: 8 }]}>
-            មនុស្សបែប{this.props.navigation.getParam('title')}
+            មនុស្សបែប{this.props.route.params.title}
           </Text>
         </View>
 
@@ -111,9 +112,9 @@ export default class PersonalityAssessmentPersonalityCategory extends Component 
         <ButtonList
           key={index}
           onPress={() => {
-            this.props.navigation.navigate(option.screen, {
+            navigate(option.screen, {
               category: this.state.category,
-              assessment: this.props.navigation.getParam('assessment')
+              assessment: this.props.route.params.assessment
             })}
           }
           title={option.label}

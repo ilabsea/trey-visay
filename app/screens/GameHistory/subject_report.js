@@ -15,7 +15,7 @@ import StatusBar from '../../components/shared/status_bar';
 export default class SubjectReport extends Component {
   componentWillMount() {
     let user = User.getCurrent();
-    let game = user.games.filtered('uuid="' + this.props.navigation.state.params.gameUuid + '"')[0];
+    let game = user.games.filtered('uuid="' + this.props.route.params.gameUuid + '"')[0];
 
     this.setState({
       user: user,

@@ -9,7 +9,7 @@ const Description = (props) => {
   return (
     <View  style={styles.container}>
       <Text >
-        { props.navigation.state.params.content }
+        { props.route.params.content }
       </Text>
     </View>
   )

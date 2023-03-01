@@ -21,7 +21,7 @@ export default class ShowCategoryScreen extends Component {
   constructor(props){
     super(props);
 
-    let career = this.props.navigation.state.params.career;
+    let career = props.route.params.career;
     let schools = universities.filter((school, pos) => career.schools.includes(school.code));
     let careerCluster = mapping.find(code => code.career_code == career.code)
     let videos = [];

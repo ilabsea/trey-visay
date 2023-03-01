@@ -12,7 +12,7 @@ export default class DetailScreen extends Component {
   constructor(props){
     super(props);
 
-    this.state = { career: props.navigation.getParam('career') };
+    this.state = { career: props.route.params.career };
   }
 
   _renderContent = () => {

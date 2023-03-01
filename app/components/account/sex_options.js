@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {
-  Text,
   View,
   StyleSheet,
   TouchableOpacity,
   Image
 } from 'react-native';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import Text from '../Text';
 
 class SexOptions extends Component {
   constructor(props) {

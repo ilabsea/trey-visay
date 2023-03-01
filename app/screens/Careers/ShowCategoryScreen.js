@@ -16,7 +16,7 @@ export default class ShowCategoryScreen extends Component {
   constructor(props) {
     super(props);
 
-    let id = props.navigation.state.params.careerId || '1';
+    let id = props.route.params.careerId || '1';
     category = categoryList.find((obj) => obj.id == id);
     props.navigation.setParams({title: category.career_title});
 

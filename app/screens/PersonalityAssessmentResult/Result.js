@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {
   View,
   processColor,
-  Text,
 } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
@@ -14,6 +13,8 @@ import categoryList from '../../data/json/personality_category';
 import mainStyles from '../../assets/style_sheets/main/main';
 import styles from '../../assets/style_sheets/assessment';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import { navigate } from '../StackNav/RootNavigation';
+import Text from '../../components/Text';
 
 export default class Result extends Component {
   _renderChart() {
@@ -87,7 +88,7 @@ export default class Result extends Component {
     let codes = this.props.assessment[category.name_en].map(x => x.value);
     let personalities = personalityList.filter(x => codes.includes(x.code));
 
-    this.props.navigation.navigate('PersonalityCategoryScreen', {
+    navigate('PersonalityCategoryScreen', {
       title: category.name_km,
       entries: personalities,
       category: category,

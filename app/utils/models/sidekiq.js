@@ -1,6 +1,6 @@
 import realm from '../../db/schema';
 import App from '../app';
-import Queue from '../queue';
+import UploadWorker from '../../workers/upload_worker';
 
 export default class Sidekiq {
   static create( uuid, tableName ) {
@@ -10,7 +10,7 @@ export default class Sidekiq {
       version: App.getVersion()
     }, true)
 
-    Queue.makeJob();
+    UploadWorker.performAsync();
   }
 
   static increaseAttempt(sidekiq){
@@ -31,5 +31,11 @@ export default class Sidekiq {
       let obj = realm.objects('Sidekiq').filtered('paramUuid="' + sidekiq.paramUuid + '"')[0];
       realm.delete(obj);
     });
+  }
+
+  static uploadAll() {
+    if (!!realm.objects('Sidekiq').length) {
+      UploadWorker.performAsync();
+    }
   }
 }

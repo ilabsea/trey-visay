@@ -7,14 +7,13 @@ import {
 } from 'react-native';
 
 import Toast, { DURATION } from 'react-native-easy-toast';
-import { NavigationActions } from 'react-navigation';
 
 import BackConfirmDialog from '../../../components/shared/back_confirm_dialog';
 import CloseButton from '../../../components/shared/close_button';
 
 import mainStyles from '../../../assets/style_sheets/main/main';
 import { Colors } from '../../../assets/style_sheets/main/colors';
-import CheckboxGroup from '../../../components/checkbox_group';
+import CheckboxGroup from '../../../components/CheckboxGroup';
 import FooterBar from '../../../components/footer/FooterBar';
 import MathUtil from '../../../utils/math';
 
@@ -28,6 +27,7 @@ import realm from '../../../db/schema';
 import User from '../../../utils/user';
 import characteristicList from '../../../data/json/characteristic_jobs';
 import entries from '../../../data/json/personalities';
+import { navigate, reset } from '../../StackNav/RootNavigation';
 
 export default class PersonalityScreen extends Component {
   currentGroup;
@@ -83,7 +83,8 @@ export default class PersonalityScreen extends Component {
 
   _closeDialog() {
     this.setState({confirmDialogVisible: false});
-    this.props.navigation.reset([NavigationActions.navigate({ routeName: 'CareerCounsellorScreen' })])
+
+    reset({ routeName: 'CareerCounsellorScreen' })
   }
 
   _onNo() {
@@ -155,25 +156,8 @@ export default class PersonalityScreen extends Component {
       <View style={[mainStyles.curveBox, { paddingLeft: 0, marginTop: 10}]}>
         <CheckboxGroup
           onSelect={(selected) => {this._handleChecked(selected)}}
-          items={checkboxes}
+          options={checkboxes}
           checked={this.state.characteristicEntries}
-          style={{
-            icon: {
-              color: Colors.blue,
-              size: 30
-            },
-            container: {
-              flexDirection: 'row',
-              borderBottomWidth: 0.5,
-              borderColor: '#ccc',
-              paddingVertical: 8,
-            },
-            label: {
-              color: '#333',
-              fontSize: 16,
-              marginLeft: 10
-            }
-          }}
         />
       </View>
     )
@@ -181,7 +165,8 @@ export default class PersonalityScreen extends Component {
 
   _goToPersonalityJobsScreen(groupNumber, title) {
     this.currentGroup = groupNumber;
-    this.props.navigation.navigate('PersonalityJobsScreen', { title: title, groupNumber: groupNumber})
+
+    navigate('PersonalityJobsScreen', { title: title, groupNumber: groupNumber})
   }
 
   _renderContent = () => {
@@ -202,7 +187,7 @@ export default class PersonalityScreen extends Component {
   _renderNavigation = () => {
     return (
       <View style={{flexDirection: 'row'}}>
-        <CloseButton navigation={this.props.navigation}/>
+        <CloseButton />
         <Text style={scrollHeaderStyles.whiteNavTitle}>បំពេញបុគ្គលិកលក្ខណៈ</Text>
       </View>
     )

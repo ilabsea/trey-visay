@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
-import { View, StyleSheet, Text, ScrollView } from 'react-native';
-import { Content, ListItem, Left, Body, Icon, Right, Card, CardItem } from 'native-base';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { Card } from 'react-native-paper';
 import majorList from '../../data/json/personality_major';
 import styles from '../../assets/style_sheets/assessment';
 import ButtonList from '../../components/list/button_list';
+import Text from '../../components/Text';
 
 export default class PersonalityAssessmentMajorList extends Component {
   _onPressItem(major) {
@@ -16,7 +17,7 @@ export default class PersonalityAssessmentMajorList extends Component {
   }
 
   _renderMajorList = () => {
-    let category = this.props.navigation.getParam('category');
+    let category = this.props.route.params.category;
     let majors = majorList.filter(obj => category.majors.includes(obj.code));
     let arr = majors.filter(x => !!x.basic_knowledge);
     arr = arr.concat(majors.filter(x => !x.basic_knowledge));
@@ -33,17 +34,15 @@ export default class PersonalityAssessmentMajorList extends Component {
     });
 
     return (
-      <Content style={{padding: 20, paddingTop: 4}}>
+      <View style={{padding: 20, paddingTop: 4}}>
         <Card style={styles.curveBox}>
-          <CardItem bordered style={styles.header}>
-            <Body>
-              <Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរជ្រើសយកការសិក្សាលើមុខជំនាញពាក់ព័ន្ធដូចជា៖</Text>
-            </Body>
-          </CardItem>
+          <Card.Content style={styles.header}>
+            <Text>អ្នកដែលស្ថិតក្នុងក្រុមមនុស្សដែលមានប្រភេទបុគ្គលិកលក្ខណៈបែប{category.name_km}គួរជ្រើសយកការសិក្សាលើមុខជំនាញពាក់ព័ន្ធដូចជា៖</Text>
+          </Card.Content>
 
           { doms }
         </Card>
-      </Content>
+      </View>
     )
   }
 

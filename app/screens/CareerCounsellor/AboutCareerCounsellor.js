@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   Image,
 } from 'react-native';
 
 import { Container, Content } from 'native-base';
 import mainStyles from '../../assets/style_sheets/main/main';
+import Text from '../../components/Text';
 
 export default class AboutCareerCounsellor extends Component {
   _renderContent = () => {
     return (
       <Content style={{padding: 20}}>
         <Text>
-          ធ្វើតេស្តវាយតម្លៃមុខរបរ​ និងអាជីព ដើម្បីដឹងពីចំណង់​ចូលចិត្ត​​ ទេពកោសល្យ និងអាជីពដែលស័ក្តិសមសំរាប់អ្នកនៅពេលអនាគត
+          ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និងអាជីពដែលស័ក្តិសមសំរាប់អ្នកនៅពេលអនាគត
         </Text>
         <View style={styles.rowWrapper}>
           <View style={[styles.imageWrapper, mainStyles.boxShadow]}>

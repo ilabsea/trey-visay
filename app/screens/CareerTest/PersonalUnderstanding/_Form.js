@@ -1,104 +1,84 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import {
-  reduxForm,
-  Field,
-  formValueSelector,
-  getFormValues,
-  reset
-} from 'redux-form';
+import React, { useState, useEffect } from 'react';
 import {
   View,
-  Text,
-  StyleSheet
+  StyleSheet,
+  Button
 } from 'react-native';
 
-import CustomTextInput from '../../../components/CustomTextInput'
-import CustomCheckbox from '../../../components/CustomCheckbox';
-import CustomRadioGroup from '../../../components/CustomRadioGroup';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Question from '../../../data/json/personal_understanding.json';
-import FormRadio from '../../../components/PersonalUnderstanding/FormRadio';
-import { Colors } from '../../../assets/style_sheets/main/colors';
+import RadioGroup from '../../../components/PersonalUnderstanding/RadioGroup';
+import { RadioButton, Text, Card } from 'react-native-paper';
 
 import submit from './submit'
 
-function Form(props) {
+import { useSelector, useDispatch } from 'react-redux'
+import { setQuizOneAnswer, resetQuizOne } from '../../../redux/features/careerAssessment/quizOneSlice';
 
-  const formStates = ['asyncValidating', 'dirty', 'pristine', 'valid', 'invalid', 'submitting', 'reset',
-    'submitSucceeded', 'submitFailed', 'haveEverThoughtOfCareerIsYes'];
+import Question3 from '../../../components/PersonalUnderstanding/Question3';
+import Question4 from '../../../components/PersonalUnderstanding/Question4';
+import TextInput from '../../../components/PersonalUnderstanding/TextInput';
 
-  const getTextColor = props.haveEverThoughtOfCareerIsYes ? styles.labelGroup : [styles.labelGroup, {color: '#ccc'}];
-  const labelStyle = props.haveEverThoughtOfCareerIsYes ? {} : {color: '#ccc'};
-  const buttonColor = props.haveEverThoughtOfCareerIsYes ? Colors.blue : '#ccc';
+const Form = (props) => {
+  const dispatch = useDispatch();
+  const quizOneAnswer = useSelector((state) => state.quizOneAnswer.value);
+
+  const setAnswerState = (key, value) => {
+    let params = {};
+    params[key] = value;
+
+    dispatch(setQuizOneAnswer(params));
+  }
+
+  const question = (questionKey) => {
+    return (
+      <Card style={{marginBottom: 16}}>
+        <Card.Content>
+          <RadioGroup
+            value={quizOneAnswer[questionKey]}
+            onValueChange={(value) => setAnswerState(questionKey, value)}
+            questionKey={questionKey} />
+        </Card.Content>
+      </Card>
+    )
+  }
+
+  const question1 = () => (question('areYouGoingToStudyTillGrade12'))
+  const question2 = () => (question('areYourParentsAllowYouToStudyTillGrade12'))
+
+  const question5 = () => (
+    <Card style={{marginBottom: 16}}>
+      <Card.Content>
+        <TextInput
+          label={ Question['howToReachJobVacancy'] }
+          value={ quizOneAnswer['howToReachJobVacancy'] || '' }
+          onChangeText={ (text) => setAnswerState('howToReachJobVacancy', text) }
+        />
+      </Card.Content>
+    </Card>
+  )
+
 
   return (
     <View style={styles.scrollContainer}>
-      <Text style={styles.hintLable}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
+      <Text style={{marginBottom: 8}}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
 
-      <FormRadio
-        questionKey={'areYouGoingToStudyTillGrade12'}/>
-      <FormRadio
-        questionKey={'areYourParentsAllowYouToStudyTillGrade12'}/>
-      <FormRadio
-        questionKey={'haveYouEverThoughtOfCareer'}>
-        <View style={styles.formSubGroup3}>
-          <Text style={getTextColor} onPress={() => {this.careerName.focus()}}>
-            { Question.careerName }
-          </Text>
-          <Field
-            name={'careerName'}
-            component={CustomTextInput}
-            multiline={true}
-            numberOfLines={3}
-            placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
-            editable={props.haveEverThoughtOfCareerIsYes}
-            onRef={(input) => {this.careerName = input}}
-          />
-        </View>
+      { false &&
+        <Button title="test" onPress={() => {
+          dispatch(resetQuizOne());
+        }}/>
+      }
 
-        <View style={styles.formSubGroup3}>
-          <Text
-            style={getTextColor}
-            onPress={() => {this.howToReachCareerGoal.focus()}}> { Question.howToReachCareerGoal } </Text>
+      { question1() }
+      { question2() }
 
-          <Field
-            name={'howToReachCareerGoal'}
-            component={CustomTextInput}
-            placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
-            editable={props.haveEverThoughtOfCareerIsYes}
-            onRef={(input) => {this.howToReachCareerGoal = input}}
-          />
-        </View>
+      <Question3 />
+      <Question4 />
 
-        <FormRadio
-          questionKey={'doesParentsAgreeWith'}
-          pointerEvents={ props.haveEverThoughtOfCareerIsYes ? "auto" : "none"}
-          style={{padding: 0, marginBottom: 0}}
-          textStyle={getTextColor}
-          labelStyle={labelStyle}
-          buttonColor={buttonColor} />
-      </FormRadio>
+      { question5() }
 
-      <View style={styles.formGroup}>
-        <Text style={styles.labelGroup} >{ Question.everTalkedWithAnyoneAboutCareer }</Text>
-        <Field
-          name={'everTalkedWithAnyoneAboutCareer'}
-          component={CustomCheckbox}
-        />
-      </View>
 
-      <View style={styles.formGroup}>
-        <Text style={styles.labelGroup} onPress={() => {this.howToReachJobVacancy.focus()}}> { Question.howToReachJobVacancy } </Text>
-        <Field
-          name={ 'howToReachJobVacancy' }
-          component={CustomTextInput}
-          placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
-          onRef={(input) => {this.howToReachJobVacancy = input}}
-        />
-      </View>
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -107,44 +87,6 @@ const styles = StyleSheet.create({
     margin: 16,
     marginBottom: 4
   },
-  instruction: {
-    flexDirection: 'row',
-    marginVertical: 16
-  },
-  formGroup: {
-    padding: 16,
-    marginBottom: 16,
-    backgroundColor: '#fff',
-    borderRadius: 10
-  },
-  labelGroup: {
-    marginBottom: 10,
-  },
-  hintLable: {
-    marginBottom: 8
-  },
-  formSubGroup3: {
-    marginBottom: 24,
-    paddingVertical: 10,
-  }
 })
-
-Form = reduxForm({
-  form: 'personalUnderstandingForm',
-  onSubmit: submit,
-})(Form);
-
-const selector = formValueSelector('personalUnderstandingForm');
-
-Form = connect(
-  state => {
-    const values = getFormValues('personalUnderstandingForm')(state);
-    const haveEverThoughtOfCareerIsYes = (selector(state, 'haveYouEverThoughtOfCareer') == 'Yes');
-    return {
-      haveEverThoughtOfCareerIsYes,
-      values
-    }
-  }
-)(Form);
 
 export default Form;

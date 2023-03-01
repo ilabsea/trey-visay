@@ -1,7 +1,7 @@
 import React from 'react';
 import { TouchableOpacity } from 'react-native';
-import { withNavigation } from 'react-navigation';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import { DrawerActions } from '@react-navigation/native';
 
 class OpenDrawer extends React.Component {
   constructor(props) {
@@ -9,10 +9,10 @@ class OpenDrawer extends React.Component {
   }
 
   render() {
-    return <TouchableOpacity onPress={()=> {this.props.navigation.openDrawer()} } style={{marginHorizontal: 16}}>
+    return <TouchableOpacity onPress={()=> {DrawerActions.openDrawer()} } style={{marginHorizontal: 16}}>
               <MaterialIcon name='menu' color='#fff' size={24} />
             </TouchableOpacity>;
   }
 }
 
-export default withNavigation(OpenDrawer);
+export default OpenDrawer;

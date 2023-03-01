@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  Picker
 } from 'react-native';
-import IOSPicker from 'react-native-ios-picker';
+// import IOSPicker from 'react-native-ios-picker';
 import styles from '../../assets/style_sheets/profile_form';
+import { Picker } from 'native-base';
 
 class PickerSpecific extends Component {
   _getPickerValue(data){
@@ -15,6 +15,7 @@ class PickerSpecific extends Component {
 
   render() {
     let props = this.props;
+    return null
     return (
       <View style={styles.inputContainer}>
         <Text style={styles.labelColor}>{ props.data.label }</Text>

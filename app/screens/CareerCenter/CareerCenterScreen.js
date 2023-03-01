@@ -15,14 +15,14 @@ import BackButton from '../../components/shared/back_button';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 import mainStyles from "../../assets/style_sheets/main/main";
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
 
-import firebase from 'react-native-firebase';
+// import firebase from 'react-native-firebase';
 import keyword from '../../data/analytics/keyword';
 
 export default class CareerCenterScreen extends Component {
   _goTo = (career) => {
-    firebase.analytics().logEvent(career.firebase_event_name);
+    // firebase.analytics().logEvent(career.firebase_event_name);
     this.props.navigation.navigate(career.screen, {url: career.url});
   }
 
@@ -31,7 +31,7 @@ export default class CareerCenterScreen extends Component {
       {
         name: 'ទីភ្នាក់ងារជាតិមុខរបរ និងការងារ',
         description: 'ការងារ កម្លាំងពលកម្ម និងព័ត៌មានទីផ្សារការងារ',
-        url: 'http://nea.gov.kh/kh/',
+        url: 'http://nea.gov.kh/index.do',
         logo: require('../../assets/images/career_center/nea_logo.png'),
         screen: 'NeaCareerScreen',
         firebase_event_name: keyword.NEA_PLATFORM

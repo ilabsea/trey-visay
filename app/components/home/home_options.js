@@ -48,7 +48,7 @@ const HomeOptions = [
   },
   {
     title: 'មជ្ឈមណ្ឌលការងារ',
-    url: 'CareerCenterScreen',
+    url: 'CareerCenterStack',
     source_image: require('../../assets/images/home/career_center.png'),
     color: ['#bdc3c7', '#2c3e50'],
     button_text: 'ពិស្តារ',
