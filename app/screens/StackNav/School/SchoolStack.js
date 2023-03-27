@@ -29,14 +29,14 @@ function SchoolStack() {
   return (
     <Stack.Navigator screenOptions={{}} initialRouteName="Root">
       <Stack.Screen name="Root" component={SchoolScreen} options={({ navigation, route }) => ({
-          headerLeft: (props) => (
-            <Button transparent onPress={() => {
-              navigation.goBack(null);
-              SchoolUtil.clearSelectedValues();
-            }}>
-              <Icon name="arrow-back" style={colorStyle} />
-            </Button>
-          ),
+          // headerLeft: () => (
+          //   <Button transparent onPress={() => {
+          //     navigation.goBack(null);
+          //     SchoolUtil.clearSelectedValues();
+          //   }}>
+          //     <Icon name="arrow-back" style={colorStyle} />
+          //   </Button>
+          // ),
           headerTitle: (props) => (<Title style={[styles.title, colorStyle]}>គ្រឹះស្ថានសិក្សា</Title>)
       })}/>
       <Stack.Screen name="InstitutionDetail" component={InstitutionDetail} options={{headerShown: false}} />

@@ -1,3 +1,4 @@
+// To do: remove the screen
 import React, { useEffect } from 'react';
 import { View, Text, StatusBar, Platform } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
