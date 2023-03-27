@@ -8,7 +8,7 @@ import styles from '../../assets/style_sheets/assessment';
 
 export default class PersonalityAssessmentJobDetail extends Component {
   _renderDescription = () => {
-    let job = this.props.navigation.getParam('job');
+    let job = this.props.route.params.job;
     let arr = ['duty', 'working_environment', 'training_level', 'salary'];
     let doms = arr.map((item, index) => {
       return (<Text key={index}>{'\u2022' + " "} {te[item]}: {job[item]}</Text>);

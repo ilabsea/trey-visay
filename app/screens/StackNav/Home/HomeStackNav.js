@@ -1,11 +1,11 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from '../../home/home';
+import HomeScreen from '../../home/HomeScreen';
 import ProfileStack from '../profile_stack';
 import OthersStack from '../Others/OthersStack';
 import AccountStack from '../account_stack';
@@ -30,9 +30,14 @@ function HomeTab() {
       headerShown: false,
       tabBarLabelStyle: { lineHeight: Platform.OS == 'android' ? 20 : 0}
     }}>
-      <Tab.Screen name="Home" component={Home} options={{
+      <Tab.Screen name="Home" component={HomeScreen} options={{
+        headerShown: true,
+        title: "ត្រីវិស័យ",
         tabBarLabel: 'ទំព័រដេីម',
-        tabBarIcon: ({ focused, horizontal, tintColor }) => (<MaterialIcon name='home' size={22} color={tintColor} />)
+        tabBarIcon: ({ focused, horizontal, tintColor }) => (<MaterialIcon name='home' size={22} color={tintColor} />),
+        headerLeft: () => (
+          <Image source={require('../../../assets/images/logo.png')} style={{width: 40, height: 40, marginLeft: 16}} />
+        ),
       }} />
       <Tab.Screen name="Profile" component={ProfileStack} options={{
         tabBarLabel: 'ប្រវត្តិរូបសង្ខេប',
