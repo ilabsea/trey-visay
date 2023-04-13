@@ -5,23 +5,15 @@ import {
   View,
   TouchableWithoutFeedback
 } from 'react-native';
-import Question from '../../data/json/personal_understanding.json';
 import Text from '../Text';
 
-const RadioGroup = (props) => {
-  const question = Question[props.questionKey];
-  const [value, setValue] = useState(props.value);
-  const options = [
-    { label: 'បាទ/ចាស', value: 'Yes' },
-    { label: 'ទេ', value: 'No' },
-    { label: 'មិនដឹង', value: 'Don_Know' }
-  ];
+import { useFormikContext } from "formik";
 
-  const getTextStyle = props.disabled ? {color: '#ccc'} : {};
+const RadioGroup = ({name, options, disabled}) => {
+  const { setFieldValue, values } = useFormikContext();
 
-  useEffect(() => {
-    setValue(props.value);
-  }, [props.value])
+  const value = values[name];
+  const getTextStyle = disabled ? {color: '#ccc'} : {};
 
   const buttonGroups = () => (
     options.map((option, i) =>
@@ -31,11 +23,11 @@ const RadioGroup = (props) => {
           value={ option.value }
           color={ Colors.blue }
           uncheckedColor={Colors.blue}
-          disabled={!!props.disabled} />
+          disabled={!!disabled} />
 
         <TouchableWithoutFeedback onPress={() => onValueChange(option.value)}>
           <View style={{flex: 1}}>
-            <Text style={getTextStyle}>{option.label}</Text>
+            <Text style={getTextStyle}>{option.name}</Text>
           </View>
         </TouchableWithoutFeedback>
       </View>
@@ -43,22 +35,18 @@ const RadioGroup = (props) => {
   )
 
   const onValueChange = (newValue) => {
-    if (!!props.disabled) {
+    if (!!disabled) {
       return;
     }
 
-    setValue(newValue);
+    setFieldValue(name, newValue);
 
     // Callback
-    !!props.onValueChange && props.onValueChange(newValue);
+    // !!props.onValueChange && props.onValueChange(newValue);
   }
 
   return (
     <RadioButton.Group onValueChange={onValueChange} value={value}>
-      <Text style={getTextStyle}>{question}</Text>
-
-      <Divider style={{marginVertical: 8}} />
-
       { buttonGroups() }
     </RadioButton.Group>
   )

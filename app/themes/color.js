@@ -22,7 +22,16 @@ const color = {
   facebookColor: '#4267b2',
   telegramColor: '#229ED9',
   whatsappColor: '#4FCE5D',
-  arrowIcon: '#D3D3D3'
+  arrowIcon: '#D3D3D3',
+
+  blue: 'rgb(24, 118, 211)',
+  green: 'rgb(110, 176, 38)',
+  gray: 'rgb(155, 155, 155)',
+  orange: 'orange',
+  red: 'red',
+  greyishBrown: 'rgb(74, 74, 74)',
+  blueStatusBar: '#176bc1',
+  grayStatusBar: 'rgba(0, 0, 0, 0.251)',
 }
 
 export default color;
