@@ -9,6 +9,10 @@ class BackButton extends React.Component {
     if (!!this.props.route && this.props.route.params && this.props.route.params._handleBack) {
       return this.props.route.params._handleBack()
     }
+
+    if (!!this.props.onPress)
+      return this.props.onPress();
+
     goBack();
   }
 

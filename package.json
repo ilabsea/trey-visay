@@ -28,6 +28,7 @@
     "apisauce": "^2.1.6",
     "base-64": "^1.0.0",
     "deprecated-react-native-prop-types": "^4.0.0",
+    "formik": "^2.2.9",
     "install": "^0.13.0",
     "moment": "^2.29.4",
     "native-base": "^2.15.2",
@@ -62,7 +63,8 @@
     "react-native-youtube-popup-player": "^1.0.1",
     "react-redux": "^8.0.5",
     "realm": "^11.4.0",
-    "redux": "^4.2.1"
+    "redux": "^4.2.1",
+    "yup": "^1.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",

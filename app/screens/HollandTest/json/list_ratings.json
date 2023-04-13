@@ -1,0 +1,27 @@
+[
+  {
+    "name": "ចូលចិត្តខ្លាំង",
+    "icon": "very_like",
+    "value": 5
+  },
+  {
+    "name": "ចូលចិត្ត",
+    "icon": "like",
+    "value": 4
+  },
+  {
+    "name": "មិនច្បាស់",
+    "icon": "unsure",
+    "value": 3
+  },
+  {
+    "name": "មិនចូលចិត្ត",
+    "icon": "dislike",
+    "value": 2
+  },
+  {
+    "name": "មិនចូលចិត្តខ្លាំង",
+    "icon": "very_dislike",
+    "value": 1
+  }
+]
