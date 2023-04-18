@@ -8,7 +8,6 @@ import CareerDetailScreen from '../../Careers/DetailScreen';
 import CareerCounsellorScreen from '../../CareerCounsellor/CareerCounsellor';
 import AboutCareerCounsellor from '../../CareerCounsellor/AboutCareerCounsellor';
 
-import PersonalUnderstandingTest from '../../PersonalUnderstanding/PersonalUnderstandingTest';
 // import SubjectScreen from '../../CareerTest/Subject/subject_screen';
 // import PersonalityScreen from '../../CareerTest/Personality/personality_screen';
 // import PersonalityJobsScreen from '../../CareerTest/PersonalityJobs/personality_jobs_screen';
@@ -22,15 +21,18 @@ import PersonalUnderstandingTest from '../../PersonalUnderstanding/PersonalUnder
 // import GameHistoryScreen from '../../GameHistory/game_history_screen';
 // import PersonalUnderstandingReport from '../../GameHistory/personal_understanding_report';
 // import SubjectReport from '../../GameHistory/subject_report';
-import PersonalityJobsReport from '../../GameHistory/personality_jobs_report';
-import StudentPersonalityReport from '../../GameHistory/student_personality_report';
-import RecommendationReport from '../../GameHistory/recommendation_report';
-import SchoolListScreen from '../../GameHistory/school_list';
+// import PersonalityJobsReport from '../../GameHistory/personality_jobs_report';
+// import StudentPersonalityReport from '../../GameHistory/student_personality_report';
+// import RecommendationReport from '../../GameHistory/recommendation_report';
+// import SchoolListScreen from '../../GameHistory/school_list';
 
 // HollandTest
+import PersonalUnderstandingTest from '../../PersonalUnderstanding/PersonalUnderstandingTest';
 import HollandTestInstruction from '../../HollandTest/HollandTestInstruction';
 import HollandTest from '../../HollandTest/HollandTest';
 import HollandTestResult from '../../HollandTest/HollandTestResult';
+import MajorSelectMultiple from '../../MajorSelection/MajorSelectMultiple';
+import MajorSelectOne from '../../MajorSelection/MajorSelectOne';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -38,13 +40,15 @@ const Stack = createNativeStackNavigator();
 
 function CareerCounsellorStack() {
   return(
-    <Stack.Navigator screenOptions={{ }} initialRouteName='CareerCounsellorScreen'>
+    <Stack.Navigator screenOptions={{ }} initialRouteName='MajorSelectOne'>
       <Stack.Screen name="CareerCounsellorScreen" component={CareerCounsellorScreen} options={{headerShown: false}} />
       <Stack.Screen name="PersonalUnderstandingTestScreen" component={PersonalUnderstandingTest} options={{headerShown: false}} />
 
       <Stack.Screen name="HollandTestInstruction" component={HollandTestInstruction} options={{headerShown: false}} />
       <Stack.Screen name="HollandTest" component={HollandTest} options={{headerShown: false}} />
       <Stack.Screen name="HollandTestResult" component={HollandTestResult} options={{headerShown: false}} />
+      <Stack.Screen name="MajorSelectMultiple" component={MajorSelectMultiple} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+      <Stack.Screen name="MajorSelectOne" component={MajorSelectOne} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
     </Stack.Navigator>
   )
 }

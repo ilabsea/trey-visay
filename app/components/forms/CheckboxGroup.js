@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Checkbox from './Checkbox';
+import ErrorMessage from '../HollandTest/ErrorMessage';
 import { useFormikContext } from "formik";
+import { View } from 'react-native';
+import Color from '../../themes/color';
 
-const CheckboxGroup = (props) => {
+const CheckboxGroup = ({name, options}) => {
   const { setFieldTouched, handleChange, errors, touched, setFieldValue, values } = useFormikContext();
-  const selectedValues = values[props.name] || [];
-  var previousSelected = [];
+  const selectedValues = values[name] || [];
 
   const toggleSelectedValues = (isChecked, value) => {
     let newSelected;
@@ -21,30 +23,29 @@ const CheckboxGroup = (props) => {
   }
 
   const onPress = (isChecked, value) => {
-    const { onSelect, limitCheckedItems } = props;
     let newSelected = toggleSelectedValues(isChecked, value);
 
-    if (!!limitCheckedItems && newSelected.length > limitCheckedItems) {
-      setFieldValue(props.name, newSelected);
-      onSelect && onSelect(newSelected);
-      return;
-    }
-
-    previousSelected = newSelected;
-    setFieldValue(props.name, newSelected);
-    onSelect && onSelect(newSelected);
+    setFieldValue(name, newSelected);
   };
 
   return (
-    props.options.map((option, index) => (
-      <Checkbox
-        key={ index }
-        value={ option.value }
-        label={ option.name }
-        onPress={ onPress }
-        checked={ selectedValues && selectedValues.indexOf(option.value) !== -1 }
-      />
-    ))
+    <View>
+      {
+        options.map((option, index) => (
+          <View style={{minHeight: 50, borderBottomWidth: 0.5, justifyContent: 'center', borderColor: Color.gray}}>
+            <Checkbox
+              key={ index }
+              value={ option.value }
+              label={ option.name }
+              onPress={ onPress }
+              checked={ selectedValues && selectedValues.indexOf(option.value) !== -1 }
+            />
+          </View>
+        ))
+      }
+
+      <ErrorMessage error={errors[name]} visible={touched[name]} />
+    </View>
   );
 };
 
