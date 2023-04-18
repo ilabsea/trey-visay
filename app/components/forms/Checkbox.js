@@ -26,7 +26,7 @@ const MyCheckbox = (props) => {
         color={ Colors.blue }
       />
 
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={onPress} style={{flex: 1}}>
         <Text>{props.label}</Text>
       </TouchableOpacity>
     </View>
