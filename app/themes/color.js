@@ -32,6 +32,7 @@ const color = {
   greyishBrown: 'rgb(74, 74, 74)',
   blueStatusBar: '#176bc1',
   grayStatusBar: 'rgba(0, 0, 0, 0.251)',
+  borderColor: '#808080'
 }
 
 export default color;

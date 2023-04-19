@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import Rating from './Rating';
 import { useFormikContext } from "formik";
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from '../forms/ErrorMessage';
 
 const RatingGroup = ({name, options}) => {
   const { setFieldValue, values, errors, touched, isSubmitting } = useFormikContext();

@@ -18,8 +18,8 @@ export default StyleSheet.create({
   },
   inputContainer: {
     padding: 2,
-    marginTop: 30,
-    marginBottom: 18,
+    // marginTop: 30,
+    // marginBottom: 18,
     maxWidth: 500
   },
   errorText: {
@@ -80,5 +80,8 @@ export default StyleSheet.create({
   },
   labelColor: {
     color: 'black'
+  },
+  formGroup: {
+    marginBottom: 16
   }
 });

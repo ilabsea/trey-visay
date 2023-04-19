@@ -1,26 +1,32 @@
 import React, {Component, useState, useEffect} from 'react';
 import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
-import {Text, Button, View, TouchableOpacity} from 'react-native';
+import {Button, View, TouchableOpacity} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import dateTimeHelper from '../../../utils/DateTime/date_time_helper';
+import { Text, ErrorMessage } from '../../../components';
+import { mediumFontSize } from '../../../utils/font_size_util';
+import { useFormikContext } from "formik";
+import Moment from 'moment';
+import Color from '../../../themes/color';
 
-export default function DatePicker(props) {
-  const [date, setDate] = useState(new Date);
+export default function DatePicker({name, label}) {
+  const { errors, touched, setFieldValue, values } = useFormikContext();
+  const [date, setDate] = useState(new Date());
   const [displayDate, setDisplayDate] = useState(null);
 
   useEffect(() => {
-    if (!!props.value) {
-      setDisplayDate(props.value);
-      setDate(new Date(props.value));
+    if (!!values[name]) {
+      setDisplayDate(values[name]);
+      setDate(new Date(values[name]));
     }
   }, []);
 
   const onChange = (event, selectedDate) => {
     const currentDate = selectedDate;
     setDate(currentDate);
-    setDisplayDate(currentDate)
+    setDisplayDate(currentDate);
 
-    !!props.onChange && props.onChange(currentDate);
+    setFieldValue(name, Moment(currentDate).format('YYYY-MM-DD'));
   };
 
   const showMode = (currentMode) => {
@@ -37,13 +43,20 @@ export default function DatePicker(props) {
   };
 
   return (
-    <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={showDatepicker}>
-      <View style={{borderColor: '#ccc', borderWidth: 1, height: 40, flex: 1, alignItems: 'center', flexDirection: 'row', paddingHorizontal: 12}}>
-        <Text>{!!displayDate && dateTimeHelper.getTranslatedDate(displayDate)}</Text>
-        <Text style={{color: '#ccc'}}>{!displayDate && "select date"}</Text>
+    <View>
+      <View>
+        <Text>{label}</Text>
+
+        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={showDatepicker}>
+          <View style={{borderColor: Color.borderColor, borderWidth: 0.5, height: 50, flex: 1, alignItems: 'center', flexDirection: 'row', paddingHorizontal: 12}}>
+            <Text style={{color: '#000'}}>{!!displayDate && dateTimeHelper.getTranslatedDate(displayDate)}</Text>
+          </View>
+
+          <MaterialIcon name='date-range'  size={36} />
+        </TouchableOpacity>
       </View>
 
-      <MaterialIcon name='date-range'  size={36} />
-    </TouchableOpacity>
+      <ErrorMessage error={errors[name]} visible={touched[name]} />
+    </View>
   );
 };
