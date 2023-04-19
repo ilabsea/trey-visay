@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {
   Text,
   View,
-  Platform
+  Platform,
+  ScrollView
 } from 'react-native';
 import Toast, { DURATION } from 'react-native-easy-toast';
 
@@ -100,14 +101,14 @@ export default class EditPersonalInfo extends Component {
     return (
       <View style={{flex: 1}}>
         <StatusBar />
-        <Container>
-          <Content style={{padding: 16}}>
-            { this._renderContent() }
-          </Content>
 
-          <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
-          <FooterBar icon='keyboard-arrow-right' text='រក្សាទុក' onPress={() => this.handleSubmit()} />
-        </Container>
+        <ScrollView style={{flex: 1}}>
+          <View style={{backgroundColor: '#fff', padding: 16}}>
+            { this._renderContent() }
+          </View>
+        </ScrollView>
+
+        <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
     );
   }

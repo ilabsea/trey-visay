@@ -164,7 +164,6 @@ export default class ProfileForm extends Component {
         />
 
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
-        <FooterBar icon='keyboard-arrow-right' text='រក្សាទុក' onPress={() => this.handleSubmit()} />
       </View>
     )
   }

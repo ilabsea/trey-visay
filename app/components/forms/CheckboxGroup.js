@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Checkbox from './Checkbox';
-import ErrorMessage from '../HollandTest/ErrorMessage';
+import ErrorMessage from './ErrorMessage';
 import { useFormikContext } from "formik";
 import { View } from 'react-native';
 import Color from '../../themes/color';

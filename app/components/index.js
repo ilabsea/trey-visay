@@ -6,4 +6,4 @@ export { default as BackConfirmDialog } from "./shared/back_confirm_dialog";
 export { default as ProgressStep } from "./HollandTest/ProgressStep";
 export { default as RatingGroup } from "./HollandTest/RatingGroup";
 export { default as Rating } from "./HollandTest/Rating";
-export { default as ErrorMessage } from "./HollandTest/ErrorMessage";
+export { default as ErrorMessage } from "./forms/ErrorMessage";
