@@ -20,7 +20,7 @@ import ratings from './json/list_ratings'
 import { Form, SubmitButton } from '../../components/forms';
 import * as Yup from "yup";
 
-const HollandTest = ({route, navigation}) => {
+const HollandQuestionnaireScreen = ({route, navigation}) => {
   const pageSize = 6
   const [page, setPage] = useState(route.params?.page || 1);
   const [questions, setQuestions] = useState(paginate(list_questions, pageSize, page));
@@ -40,10 +40,12 @@ const HollandTest = ({route, navigation}) => {
 
   const renderQuestion = (question, index) => {
     return (
-      <Card key={index} style={{marginHorizontal: 8, marginVertical: 8, padding: 8}} >
+      <Card key={index} style={{marginVertical: 8, padding: 8}} >
         <Text>{index + 1}) {question.name}</Text>
 
-        <RatingGroup name={question.code} options={ratings}/>
+        <View style={{alignItems: 'center'}}>
+          <RatingGroup name={question.code} options={ratings}/>
+        </View>
       </Card>
     )
   }
@@ -52,24 +54,24 @@ const HollandTest = ({route, navigation}) => {
     console.log("values============", values)
 
     if (isPageEnd) {
-      return navigation.navigate('HollandTestResult');
+      return navigation.navigate('HollandTestResultScreen');
     }
 
     // if (!!values && !Object.keys(values).length) {
     //   return toastRef.current?.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     // }
 
-    // navigation.navigate('HollandTestInstruction')
+    // navigation.navigate('HollandQuestionnaireScreenInstruction')
     // resetForm();
     // resetForm({values: {"3_1": null, "4_1": null}});
-    navigation.push('HollandTest', {page: page + 1});
+    navigation.push('HollandQuestionnaireScreen', {page: page + 1});
   }
 
   const renderContent = () => {
     return (
-      <>
+      <View style={{marginVertical: 8}}>
         { questions.map(renderQuestion) }
-      </>
+      </View>
     )
   }
 
@@ -106,4 +108,4 @@ const HollandTest = ({route, navigation}) => {
   )
 }
 
-export default HollandTest
+export default HollandQuestionnaireScreen

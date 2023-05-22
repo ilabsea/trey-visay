@@ -2,7 +2,7 @@ import React from 'react';
 import { Platform, TouchableOpacity , Text } from 'react-native';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../assets/style_sheets/main/colors';
-import { goBack } from '../../screens/StackNav/RootNavigation';
+import { goBack } from '../../hooks/RootNavigation';
 
 class BackButton extends React.Component {
   handleOnPress = () => {
