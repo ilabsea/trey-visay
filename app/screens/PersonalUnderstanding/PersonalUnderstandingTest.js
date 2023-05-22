@@ -33,7 +33,7 @@ export default PersonalUnderstandingTest = (props) => {
   }
 
   const _renderNavigation = () => {
-    return (<BackButton buttonColor='#fff' />)
+    return (<BackButton buttonColor='#fff' onPress={() => navigation.popToTop()} />)
   }
 
   // Todo
@@ -55,7 +55,7 @@ export default PersonalUnderstandingTest = (props) => {
       return toastRef.current?.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     }
 
-    navigation.navigate('HollandTestInstruction')
+    navigation.navigate('HollandInstructionScreen')
     // resetForm();
     // resetForm({values: {"3_1": null, "4_1": null}});
   }

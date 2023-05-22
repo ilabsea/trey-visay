@@ -43,7 +43,7 @@ const HollandTestInstruction = ({route, navigation}) => {
     Alert.alert('', 'ប្អូនអ្នកចងចាំថា ការធ្វើតេស្ដនេះ មិនមាន ឡើយពាក្យថាជាប់ ឬធ្លាក់ ប៉ុន្ដែវាគឺជាមាគ៌ា មួយជួយដល់ប្អូនក្នុងសិក្សាឈ្វេងយល់ពី បុគ្គលិកលក្ខណៈផ្ទាល់ខ្លួន ផ្សារភ្ជាប់ទៅ នឹងជម្រើសមុខជំនាញសិក្សា និងអាជីព ការងារនាថ្ងៃអនាគតបានសមរម្យ!', [
       {
         text: 'បាទ/ចាស ខ្ញុំចងចាំ',
-        onPress: () => navigation.navigate('HollandTest'),
+        onPress: () => navigation.navigate('HollandQuestionnaireScreen'),
       },
     ])
   }

@@ -20,7 +20,6 @@ const PickerSpecific = ({label, name, options}) => {
       <View style={{borderBottomColor: Color.borderColor, borderWidth: 0.5}}>
         <SelectPicker
           mode='dialog'
-          prompt='សូមជ្រេីសរេីស'
           selectedValue={ values[name] }
           onValueChange={ (itemValue, itemIndex) => setFieldValue(name, itemValue) }>
 

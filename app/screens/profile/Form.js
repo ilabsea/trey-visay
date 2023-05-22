@@ -7,7 +7,7 @@ import {
 import styles from '../../assets/style_sheets/profile_form';
 import PickerSpecific from '../../components/picker/PickerSpecific';
 import grades from '../../data/json/grades.json';
-import gradeCategories from '../../data/json/grade_categories.json';
+import classGroups from '../../data/json/class_groups.json';
 import provinces from '../../data/json/address/provinces.json';
 import communes from '../../data/json/address/communes.json';
 import districts from '../../data/json/address/districts.json';
@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
   sex: Yup.string().required("សូមជ្រើសរើស"),
   dateOfBirth: Yup.string().required("មិនអាចទទេបានទេ"),
   grade: Yup.string().required("មិនអាចទទេបានទេ"),
-  gradeCategory: Yup.string().when("grade", {
+  classGroup: Yup.string().when("grade", {
     is: (grade) => ["11", "12"].includes(grade),
     then: (schema) => schema.required("មិនអាចទទេបានទេ")
   }),
@@ -35,7 +35,7 @@ const validationSchema = Yup.object().shape({
   highSchoolCode: Yup.string().required("មិនអាចទទេបានទេ"),
 });
 
-const FormScreen = ({user}) => {
+const FormScreen = ({handleSubmit}) => {
   const noValue = [{ "code": "", "label": "សូមជ្រើសរើស" }];
 
   const renderFullName = () => {
@@ -66,10 +66,6 @@ const FormScreen = ({user}) => {
     )
   }
 
-  const handleSubmit = (values) => {
-    console.log('-----values', values);
-  }
-
   const renderPicker = (params) => {
     return (
       <View style={styles.formGroup}>
@@ -79,15 +75,15 @@ const FormScreen = ({user}) => {
   }
 
   const initialValue = {
-    fullName: user.fullName,
-    sex: user.sex,
-    dateOfBirth: user.dateOfBirth,
-    grade: user.grade,
-    gradeCategory: '',
-    provinceCode: user.provinceCode,
-    districtCode: user.districtCode,
-    communeCode: user.communeCode,
-    highSchoolCode: user.highSchoolCode
+    fullName: '',
+    sex: '',
+    dateOfBirth: '',
+    grade: '',
+    classGroup: '',
+    provinceCode: '',
+    districtCode: '',
+    communeCode: '',
+    highSchoolCode: ''
   }
 
   const filterOption = (items, parendcode) => {
@@ -105,8 +101,8 @@ const FormScreen = ({user}) => {
           { renderFullName() }
           { renderGender() }
           { renderDateOfBirth() }
-          { renderPicker({label: 'ជាសិស្សថ្នាក់ទី', name: 'grade', options: grades}) }
-          { renderPicker({label: 'ជាសិស្សក្នុងបណ្តុំថ្នាក់', name: 'gradeCategory', options: noValue.concat(filterOption(gradeCategories, values.grade)) }) }
+          { renderPicker({label: 'ជាសិស្សថ្នាក់ទី', name: 'grade', options: noValue.concat(grades)}) }
+          { renderPicker({label: 'ជាសិស្សក្នុងបណ្តុំថ្នាក់', name: 'classGroup', options: noValue.concat(filterOption(classGroups, values.grade)) }) }
           { renderPicker({label: 'ខេត្ត/ក្រុង', name: 'provinceCode', options: noValue.concat(provinces) })}
           { renderPicker({label: 'ស្រុក/ខណ្ឌ', name: 'districtCode', options: noValue.concat(filterOption(districts, values.provinceCode)) })}
           { renderPicker({label: 'ឃុំ/សង្កាត់', name: 'communeCode', options: noValue.concat(filterOption(communes, values.districtCode)) })}

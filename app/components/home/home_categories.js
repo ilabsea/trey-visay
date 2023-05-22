@@ -3,7 +3,7 @@ import keyword from '../../data/analytics/keyword';
 const HomeCategories = [
   {
     title: 'វាយតម្លៃមុខរបរ',
-    url: 'CareerCounsellorStack',
+    url: 'HollandNavigator',
     source_image: require('../../assets/images/home/career_test.png'),
     color: ['rgb(53, 174, 235)', 'rgb(24, 118, 211)'],
     button_text: 'ចាប់ផ្តេីម',
@@ -23,7 +23,7 @@ const HomeCategories = [
   },
   {
     title: 'គ្រឹះស្ថានសិក្សា',
-    url: 'SchoolStack',
+    url: 'SchoolNavigator',
     source_image: require('../../assets/images/home/school.png'),
     color: ['rgb(160, 212, 104)', 'rgb(13, 161, 75)'],
     button_text: 'ពិស្តារ',
@@ -33,7 +33,7 @@ const HomeCategories = [
   },
   {
     title: 'ប្រភេទការងារ',
-    url: 'VocationalStack',
+    url: 'VocationalNavigator',
     source_image: require('../../assets/images/home/vocational_job.png'),
     color: ['rgb(247, 107, 28)', 'rgb(250, 217, 97)'],
     button_text: 'ពិស្តារ',
@@ -53,7 +53,7 @@ const HomeCategories = [
   },
   {
     title: 'មជ្ឈមណ្ឌលការងារ',
-    url: 'CareerCenterStack',
+    url: 'CareerWebsiteNavigator',
     source_image: require('../../assets/images/home/career_center.png'),
     color: ['#bdc3c7', '#2c3e50'],
     button_text: 'ពិស្តារ',

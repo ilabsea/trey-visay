@@ -5,36 +5,18 @@ import CardItemComponent from '../../components/shared/cards/CardItemComponent';
 import home_categories from '../../components/home/home_categories';
 import SplashScreen from 'react-native-splash-screen';
 import {View} from 'react-native';
-import User from '../../utils/user';
-import { navigate } from '../../screens/StackNav/RootNavigation';
+import { useNavigation } from '@react-navigation/native';
 
-const HomeScreen = ({navigation}) => {
+const HomeScreen = () => {
+  const navigation = useNavigation();
+
   useEffect(() => {
     SplashScreen.hide();
   }, []);
 
-  const handleLoginParams = (item) => {
-    let option = Object.assign({}, item);
-    option.params = {};
-
-    if (option.url != 'CareerCounsellorStack' && option.url != 'PersonalityAssessmentStack') {
-      return option;
-    }
-
-    if (!!User.getCurrent()) {
-      return option;
-    }
-
-    option.params = { screen: 'Login', params: {from: option.url} };
-    option.url = 'AccountStack';
-
-    return option
-  }
-
   const onPress = (item) => {
-    let option = handleLoginParams(item);
     // firebase.analytics().logEvent(item.firebase_event_name);
-    navigate(option.url, option.params);
+    navigation.navigate(item.url);
   }
 
   const renderBody = () => {
