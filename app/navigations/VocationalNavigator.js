@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import { createStackNavigator } from  'react-navigation';
-
 import ClusterScreen from '../screens/Vocational/cluster_screen';
 import CareerIndexScreen from '../screens/Vocational/index_screen';
 import CareerDetailScreen from '../screens/Vocational/career_detail_screen';

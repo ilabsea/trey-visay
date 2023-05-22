@@ -1,19 +1,10 @@
-import React, {useEffect} from 'react';
-
+import React from 'react';
 import GradientScrollViewComponent from '../../components/shared/GradientScrollViewComponent';
 import CardItemComponent from '../../components/shared/cards/CardItemComponent';
 import home_categories from '../../components/home/home_categories';
-import SplashScreen from 'react-native-splash-screen';
-import {View} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { View } from 'react-native';
 
-const HomeScreen = () => {
-  const navigation = useNavigation();
-
-  useEffect(() => {
-    SplashScreen.hide();
-  }, []);
-
+const HomeScreen = ({navigation}) => {
   const onPress = (item) => {
     // firebase.analytics().logEvent(item.firebase_event_name);
     navigation.navigate(item.url);
@@ -37,4 +28,4 @@ const HomeScreen = () => {
   )
 }
 
-export default HomeScreen
+export default HomeScreen;

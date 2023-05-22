@@ -20,7 +20,7 @@ import { Divider } from 'react-native-paper';
 // import firebase from 'react-native-firebase';
 import keyword from '../../data/analytics/keyword';
 
-export default class CareerCenterScreen extends Component {
+export default class CareerWebsiteHomeScreen extends Component {
   _goTo = (career) => {
     // firebase.analytics().logEvent(career.firebase_event_name);
     this.props.navigation.navigate(career.screen, {url: career.url});

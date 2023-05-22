@@ -14,8 +14,7 @@ import Share from 'react-native-share';
 import keyword from '../../data/analytics/keyword';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrentUser } from '../../redux/features/user/userSlice';
-import { navigate } from '../StackNav/RootNavigation';
-
+import { navigate } from '../../hooks/RootNavigation';
 
 export default function Others(props) {
   const currentUser = useSelector((state) => state.currentUser.value)
@@ -29,10 +28,10 @@ export default function Others(props) {
   }, []);
 
   const _logOut = () => {
-    User.logout(() => {
-      dispatch(setCurrentUser(null));
-      navigate('Home');
-    })
+    // User.logout(() => {
+    //   dispatch(setCurrentUser(null));
+    //   navigate('Home');
+    // })
   }
 
   const onPressShareApp = () => {
@@ -60,13 +59,6 @@ export default function Others(props) {
             icon={{color: Colors.blue, src: require('../../assets/icons/others/info.png')}}
             onPress={() => { navigate('About') }}
             title='អំពីកម្មវិធី' />
-          { !!currentUser &&
-            <ButtonList
-              hasLine={true}
-              icon={{color: 'rgb(245, 166, 35)', src: require('../../assets/icons/others/key.png')}}
-              onPress={() => { navigate('ChangePassword') }}
-              title='ផ្លាស់ប្តូរលេខសំងាត់' />
-          }
         </View>
 
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
