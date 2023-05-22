@@ -6,7 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import HomeScreen from '../screens/home/HomeScreen';
+import HomeScreen from '../screens/Home/HomeScreen';
 import SchoolNavigator from './SchoolNavigator';
 import HollandNavigator from './HollandNavigator';
 import OtherNavigator from './OtherNavigator';

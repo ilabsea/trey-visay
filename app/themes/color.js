@@ -1,4 +1,4 @@
-const color = {
+const Color = {
   primaryColor: '#1b91f7',
   secondaryColor: '#fa60ad',
   tertiaryColor: '#FCF8E8',
@@ -35,6 +35,6 @@ const color = {
   borderColor: '#808080'
 }
 
-export default color;
+export default Color;
 
-export const backgroundColors = [color.secondaryColor, color.primaryColor];
+export const backgroundColors = [Color.secondaryColor, Color.primaryColor];

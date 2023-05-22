@@ -5,7 +5,7 @@ import { Platform, StatusBar } from 'react-native';
 import PersonalUnderstandingTest from '../screens/PersonalUnderstanding/PersonalUnderstandingTest';
 import HollandHomeScreen from '../screens/HollandTest/HollandHomeScreen';
 import HollandAboutScreen from '../screens/HollandTest/HollandAboutScreen';
-import ProfileFormScreen from '../screens/profile/ProfileFormScreen';
+import ProfileFormScreen from '../screens/Profile/ProfileFormScreen';
 import HollandInstructionScreen from '../screens/HollandTest/HollandInstructionScreen';
 import HollandQuestionnaireScreen from '../screens/HollandTest/HollandQuestionnaireScreen';
 import HollandTestResultScreen from '../screens/HollandTest/HollandTestResultScreen';

@@ -19,14 +19,14 @@ import { Colors } from '../../assets/style_sheets/main/colors';
 // import firebase from 'react-native-firebase';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import keyword from '../../data/analytics/keyword';
-import navigate from '../StackNav/RootNavigation';
-import { useNavigation } from '@react-navigation/native';
+// import navigate from '../StackNav/RootNavigation';
+// import { useNavigation } from '@react-navigation/native';
 
 import { Form, SubmitButton } from '../../components/forms';
 
-export default PersonalUnderstandingTest = (props) => {
+export default PersonalUnderstandingTest = ({navigation}) => {
   const toastRef = useRef();
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
 
   const _renderContent = () => {
     return (<QuestionForm />)

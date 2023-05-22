@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import { StackActions } from '@react-navigation/native';
+import { StackActions } from '@react-navigation/native';
 
 export const navigationRef = React.createRef();
 
@@ -11,8 +11,8 @@ export function goBack() {
   navigationRef.current?.goBack();
 }
 
-// export function reset(options={}) {
-//   navigationRef.current?.dispatch(
-//     StackActions.replace(options.routeName, options.params)
-//   );
-// }
+export function reset(options={}) {
+  navigationRef.current?.dispatch(
+    StackActions.replace(options.routeName, options.params)
+  );
+}
