@@ -10,29 +10,44 @@ import {BarChart} from 'react-native-charts-wrapper';
 import { Text, BackButton, ScrollableHeader, FooterBar } from '../../components';
 import ButtonList from '../../components/list/button_list';
 import Color from '../../themes/color';
+import Quiz from '../../models/Quiz';
+import { useSelector, useDispatch } from 'react-redux'
 
-const R_COLOR = processColor('#B8D9C3');
-const I_COLOR = processColor('#E5BED3');
-const A_COLOR = processColor('#FCFCB3');
-const S_COLOR = processColor('#C6B8D9');
-const E_COLOR = processColor('#F2D3B5');
-const C_COLOR = processColor('#BFDAED');
+const COLOR = {
+  R: processColor('#B8D9C3'),
+  I: processColor('#E5BED3'),
+  A: processColor('#FCFCB3'),
+  S: processColor('#C6B8D9'),
+  E: processColor('#F2D3B5'),
+  C: processColor('#BFDAED'),
+}
 
 const HollandTestResult = () => {
   const title = "តេស្តបុគ្គលិកលក្ខណៈ"
+
+  const currentQuiz = useSelector((state) => state.currentQuiz.value);
+  let quiz = Quiz.findByUuid(currentQuiz);
+  let totalScore = Object.entries(quiz.totalScore).sort((a,b) => b[1] - a[1]);
+  let yData = totalScore.map(c => ({y: c[1]}));
+  let yColors = totalScore.map(c => COLOR[c[0]]);
+  let xData = totalScore.map(c => c[0]);
+
   const [data, setData] = useState({
     dataSets: [{
-      values: [{y: 500}, {y: 400}, {y: 300}, {y: 200}, {y: 100}, {y: 50}],
+      // values: [{y: 500}, {y: 400}, {y: 300}, {y: 200}, {y: 100}, {y: 50}],
+      values: yData,
       label: '',
       config: {
-        colors: [R_COLOR, I_COLOR, A_COLOR, S_COLOR, E_COLOR, C_COLOR]
+        // colors: [R_COLOR, I_COLOR, A_COLOR, S_COLOR, E_COLOR, C_COLOR]
+        colors: yColors
       }
     }],
   })
 
   const [xAxis, setXAxis] = useState({
     enabled: true,
-    valueFormatter: ['R', 'I', 'A', 'S', 'E', 'C'],
+    // valueFormatter: ['R', 'I', 'A', 'S', 'E', 'C'],
+    valueFormatter: xData,
     granularityEnabled: true,
     position: 'BOTTOM',
     gridColor: processColor('white'),

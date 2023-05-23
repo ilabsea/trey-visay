@@ -9,13 +9,15 @@ import Migration from './migration';
 import schema1 from './schemas/schema1';
 import schema2 from './schemas/schema2';
 import schema3 from './schemas/schema3';
+import schema4 from './schemas/schema4';
 
 const schemas = [
   { schema: schema1, schemaVersion: 1 },
   { schema: schema1, schemaVersion: 2 },
   { schema: schema1, schemaVersion: 3, migration: Migration.migrateSchoolsToCode },
   { schema: schema2, schemaVersion: 4, migration: Migration.migrateCareersToCode },
-  { schema: schema3, schemaVersion: 5 }
+  { schema: schema3, schemaVersion: 5 },
+  { schema: schema4, schemaVersion: 6 }
 ]
 
 // the first schema to update to is the current schema version

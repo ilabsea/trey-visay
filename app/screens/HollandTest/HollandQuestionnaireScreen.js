@@ -20,22 +20,68 @@ import ratings from './json/list_ratings'
 import { Form, SubmitButton } from '../../components/forms';
 import * as Yup from "yup";
 
-const HollandQuestionnaireScreen = ({route, navigation}) => {
+import { useSelector, useDispatch } from 'react-redux'
+import { appendAnswer } from '../../redux/features/quiz/hollandSlice';
+import Quiz from '../../models/Quiz';
+
+export default HollandQuestionnaireScreen = ({route, navigation}) => {
+  // Pagination
   const pageSize = 6
   const [page, setPage] = useState(route.params?.page || 1);
   const [questions, setQuestions] = useState(paginate(list_questions, pageSize, page));
   const isPageEnd = page * pageSize >= list_questions.length;
 
+  // Redux
+  const currentHollandResponse = useSelector((state) => state.currentHolland.value);
+  const currentQuiz = useSelector((state) => state.currentQuiz.value);
+  const currentUser = useSelector((state) => state.currentUser.value);
+  const dispatch = useDispatch();
+
+  // Form validation
   let validations = {};
   for(let i=0; i<questions.length; i++) {
     validations[questions[i].code] = Yup.string().required("សូមជ្រើសរើស");
   }
-
   const validationSchema = Yup.object().shape(validations);
 
+  // Form initial value
   const formValues = {};
   for(let i=0; i<questions.length; i++) {
-    formValues[questions[i].code] = "";
+    formValues[questions[i].code] = currentHollandResponse[questions[i].code] || "";
+  }
+
+  const sumValue = (values, code) => {
+    let total = 0;
+
+    for(i=0; i<7; i++) {
+      total += values[`${code}_0${i+1}`];
+    }
+
+    return total;
+  }
+
+  const totalScore = (values) => {
+    let columns = ['R', 'I', 'A', 'S', 'E', 'C'];
+    let obj = {};
+
+    for(let i=0; i<columns.length; i++) {
+      obj[columns[i]] = sumValue(values, columns[i])
+    }
+
+    return obj;
+  }
+
+  const handleSubmit = (values, {errors}) => {
+    dispatch(appendAnswer(values));
+
+    if (isPageEnd) {
+      let responses = {...currentHollandResponse, ...values}
+      Quiz.update(currentQuiz, { hollandResponse: responses, totalScore: totalScore(responses)})
+
+      return navigation.navigate('HollandTestResultScreen');
+    }
+
+    navigation.push('HollandQuestionnaireScreen', {page: page + 1});
   }
 
   const renderQuestion = (question, index) => {
@@ -48,23 +94,6 @@ const HollandQuestionnaireScreen = ({route, navigation}) => {
         </View>
       </Card>
     )
-  }
-
-  const handleSubmit = (values, {errors}) => {
-    console.log("values============", values)
-
-    if (isPageEnd) {
-      return navigation.navigate('HollandTestResultScreen');
-    }
-
-    // if (!!values && !Object.keys(values).length) {
-    //   return toastRef.current?.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
-    // }
-
-    // navigation.navigate('HollandQuestionnaireScreenInstruction')
-    // resetForm();
-    // resetForm({values: {"3_1": null, "4_1": null}});
-    navigation.push('HollandQuestionnaireScreen', {page: page + 1});
   }
 
   const renderContent = () => {
@@ -107,5 +136,3 @@ const HollandQuestionnaireScreen = ({route, navigation}) => {
     </Form>
   )
 }
-
-export default HollandQuestionnaireScreen

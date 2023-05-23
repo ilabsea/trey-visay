@@ -1,53 +1,31 @@
-import React, {Component, useRef} from 'react';
+import React, {Component, useRef, useEffect} from 'react';
 import {
-  Text,
   View,
   Platform,
 } from 'react-native';
 
-// import Toast, { DURATION } from 'react-native-easy-toast';
-
-import QuestionForm from './QuestionForm';
-import realm from '../../db/schema';
-import User from '../../utils/user';
-import uuidv4 from '../../utils/uuidv4';
-
-import * as Progress from 'react-native-progress';
 import { FooterBar, BackButton, ScrollableHeader } from '../../components';
-import { Colors } from '../../assets/style_sheets/main/colors';
-// import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-// import firebase from 'react-native-firebase';
+import Color from '../../themes/color';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import keyword from '../../data/analytics/keyword';
-// import navigate from '../StackNav/RootNavigation';
-// import { useNavigation } from '@react-navigation/native';
+import Quiz from '../../models/Quiz';
+import QuestionForm from './QuestionForm';
 
 import { Form, SubmitButton } from '../../components/forms';
+import { useSelector, useDispatch } from 'react-redux'
+import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 
 export default PersonalUnderstandingTest = ({navigation}) => {
+  const currentUser = useSelector((state) => state.currentUser.value);
+  const dispatch = useDispatch();
   const toastRef = useRef();
-  // const navigation = useNavigation();
 
-  const _renderContent = () => {
+  const renderContent = () => {
     return (<QuestionForm />)
   }
 
-  const _renderNavigation = () => {
+  const renderNavigation = () => {
     return (<BackButton buttonColor='#fff' onPress={() => navigation.popToTop()} />)
-  }
-
-  // Todo
-  const submitForm = () => {
-    // let user = User.getCurrent();
-    // let game = user.games[user.games.length - 1];
-    // let list = game.personalUnderstandings;
-
-    // realm.write(() => {
-    //   // firebase.analytics().logEvent(resultKeyword);
-
-    //   list.push(values);
-
-    // });
   }
 
   const handleSubmit = (values, {resetForm}) => {
@@ -55,9 +33,11 @@ export default PersonalUnderstandingTest = ({navigation}) => {
       return toastRef.current?.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     }
 
-    navigation.navigate('HollandInstructionScreen')
-    // resetForm();
-    // resetForm({values: {"3_1": null, "4_1": null}});
+    values.q5 = (values.q5 || []).join(",")
+    quizUuid = Quiz.create({userUuid: currentUser.uuid, selfUnderstandingReponse: values});
+    dispatch(setCurrentQuiz(quizUuid));
+
+    navigation.navigate('HollandInstructionScreen');
   }
 
   return (
@@ -67,12 +47,12 @@ export default PersonalUnderstandingTest = ({navigation}) => {
 
       <View style={{flex: 1}}>
         <ScrollableHeader
-          backgroundColor={Colors.blue}
+          backgroundColor={Color.blue}
           textColor={'#fff'}
-          statusBarColor={Colors.blueStatusBar}
+          statusBarColor={Color.blueStatusBar}
           barStyle={'light-content'}
-          renderContent={ _renderContent }
-          renderNavigation={ _renderNavigation }
+          renderContent={ renderContent }
+          renderNavigation={ renderNavigation }
           title={'ស្វែងយល់ពីខ្លួនឯង'}
           largeTitle={'ស្វែងយល់ពីខ្លួនឯង'}
         />
