@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { Footer, Button } from 'native-base';
 import {screenHorizontalPadding} from '../../constants/component_constant';
+import {getStyleOfDevice} from '../../utils/responsive_util';
 
 const FooterBar = (props) => {
   return(
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 20,
     fontWeight: 'bold',
-    marginTop: -6
+    marginTop: getStyleOfDevice(-3, -6)
   },
 })
 
