@@ -17,12 +17,14 @@
 
 import { configureStore } from '@reduxjs/toolkit'
 import userReducer from './features/user/userSlice'
-import quizOneReducer from './features/careerAssessment/quizOneSlice';
+import quizReducer from './features/quiz/quizSlice';
+import hollandReducer from './features/quiz/hollandSlice';
 
 export default configureStore({
   reducer: {
     currentUser: userReducer,
-    quizOneAnswer: quizOneReducer,
+    currentQuiz: quizReducer,
+    currentHolland: hollandReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}),
 })

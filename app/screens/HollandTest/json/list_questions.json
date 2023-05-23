@@ -1,212 +1,296 @@
 [
   {
-    "code": "1",
+    "id": "1",
+    "code": "R_01",
     "name": "ចិញ្ចឹមថែទាំសត្វ",
-    "personality_type": "R"
+    "personality_type": "R",
+    "display_order": 1
   },
   {
-    "code": "2",
+    "id": "2",
+    "code": "I_01",
     "name": "ល្បងប្រាជ្ញា",
-    "personality_type": "I"
+    "personality_type": "I",
+    "display_order": 2
   },
   {
-    "code": "3",
+    "id": "3",
+    "code": "A_01",
     "name": "ធ្វើការងារដោយឯករាជ្យម្ចាស់ការ",
-    "personality_type": "A"
+    "personality_type": "A",
+    "display_order": 3
   },
   {
-    "code": "4",
+    "id": "4",
+    "code": "S_01",
     "name": "ធ្វើការជាក្រុម ឬធ្វើកិច្ចសហការជាមួយអ្នកដទៃ",
-    "personality_type": "S"
+    "personality_type": "S",
+    "display_order": 4
   },
   {
-    "code": "5",
+    "id": "5",
+    "code": "E_01",
     "name": "មានមហិច្ឆតាខ្ពស់ និងគោលបំណងច្បាស់លាស់",
-    "personality_type": "E"
+    "personality_type": "E",
+    "display_order": 5
   },
   {
-    "code": "6",
+    "id": "6",
+    "code": "C_01",
     "name": "រៀបចំរបស់របរ ឯកសារ សម្ភារៈផ្សេងៗឱ្យរៀបរយ",
-    "personality_type": "C"
+    "personality_type": "C",
+    "display_order": 6
   },
   {
-    "code": "7",
+    "id": "7",
+    "code": "R_02",
     "name": "បង្កើត ឬសាងសង់អ្វីមួយ",
-    "personality_type": "R"
+    "personality_type": "R",
+    "display_order": 7
   },
   {
-    "code": "8",
+    "id": "8",
+    "code": "I_02",
     "name": "ធ្វើការពិសោធផ្សេងៗ",
-    "personality_type": "I"
+    "personality_type": "I",
+    "display_order": 8
   },
   {
-    "code": "9",
+    "id": "9",
+    "code": "A_02",
     "name": "អាន ឬទស្សនាស្នាដៃសិល្បៈ គំនូរ តន្ត្រី",
-    "personality_type": "A"
+    "personality_type": "A",
+    "display_order": 9
   },
   {
-    "code": "10",
+    "id": "10",
+    "code": "S_02",
     "name": "បង្រៀន ឬបណ្ដុះបណ្ដាលមនុស្ស",
-    "personality_type": "S"
+    "personality_type": "S",
+    "display_order": 10
   },
   {
-    "code": "11",
+    "id": "11",
+    "code": "E_02",
     "name": "បញ្ចុះបញ្ចូលអ្នកដទៃ ឬធ្វើឱ្យអ្នកដទៃស្ដាប់តាម",
-    "personality_type": "E"
+    "personality_type": "E",
+    "display_order": 11
   },
   {
-    "code": "12",
+    "id": "12",
+    "code": "C_02",
     "name": "ធ្វើការងារដែលមានការណែនាំច្បាស់លាស់",
-    "personality_type": "C"
+    "personality_type": "C",
+    "display_order": 12
   },
   {
-    "code": "13",
+    "id": "13",
+    "code": "R_03",
     "name": "ធ្វើការដោយប្រើសម្ភារៈផ្សេងៗ និងគ្រឿងម៉ាស៊ីន គ្រឿងយន្ដ",
-    "personality_type": "R"
+    "personality_type": "R",
+    "display_order": 13
   },
   {
-    "code": "14",
+    "id": "14",
+    "code": "I_03",
     "name": "មុខវិជ្ជា ឬកិច្ចការពាក់ព័ន្ធនឹងវិទ្យាសាស្ត្រ",
-    "personality_type": "I"
+    "personality_type": "I",
+    "display_order": 14
   },
   {
-    "code": "15",
+    "id": "15",
+    "code": "A_03",
     "name": "សរសេរ តែងនិពន្ធ អក្សរសាស្ត្រ",
-    "personality_type": "A"
+    "personality_type": "A",
+    "display_order": 15
   },
   {
-    "code": "16",
+    "id": "16",
+    "code": "S_03",
     "name": "ជួយអ្នកដទៃដោះស្រាយបញ្ហា ឬស្វែងរកដំណោះស្រាយ",
-    "personality_type": "S"
+    "personality_type": "S",
+    "display_order": 16
   },
   {
-    "code": "17",
+    "id": "17",
+    "code": "E_03",
     "name": "លក់ដូរ",
-    "personality_type": "E"
+    "personality_type": "E",
+    "display_order": 17
   },
   {
-    "code": "18",
+    "id": "18",
+    "code": "C_03",
     "name": "មិនធុញទ្រាន់នឹងការធ្វើការក្នុងការិយាល័យ ៨ម៉/ថ្ងៃ",
-    "personality_type": "C"
+    "personality_type": "C",
+    "display_order": 18
   },
   {
-    "code": "19",
+    "id": "19",
+    "code": "R_04",
     "name": "ផ្គុំរបស់បញ្ចូលគ្នា ឬដំឡើងគ្រឿងបង្គុំ",
-    "personality_type": "R"
+    "personality_type": "R",
+    "display_order": 19
   },
   {
-    "code": "20",
+    "id": "20",
+    "code": "I_04",
     "name": "ចង់ដឹង ឬស្វែងរកឫសគល់បញ្ហា",
-    "personality_type": "I"
+    "personality_type": "I",
+    "display_order": 20
   },
   {
-    "code": "21",
+    "id": "21",
+    "code": "A_04",
     "name": "ការបង្កើតថ្មី ឬច្នៃប្រតិដ្ឋ",
-    "personality_type": "A"
+    "personality_type": "A",
+    "display_order": 21
   },
   {
-    "code": "22",
+    "id": "22",
+    "code": "S_04",
     "name": "ជួយព្យាបាលជំងឺ ឬឈឺឆ្អាលនឹងការសង្គ្រោះអ្នកជំងឺ",
-    "personality_type": "S"
+    "personality_type": "S",
+    "display_order": 22
   },
   {
-    "code": "23",
+    "id": "23",
+    "code": "E_04",
     "name": "ទទួលយកការងារថ្មីៗ",
-    "personality_type": "E"
+    "personality_type": "E",
+    "display_order": 23
   },
   {
-    "code": "24",
+    "id": "24",
+    "code": "C_04",
     "name": "គិតល្អិតល្អន់គ្រប់ជ្រុងជ្រោយ",
-    "personality_type": "C"
+    "personality_type": "C",
+    "display_order": 24
   },
   {
-    "code": "25",
+    "id": "25",
+    "code": "R_05",
     "name": "ភាពជាក់ស្ដែង ប្រាកដនិយម ច្បាស់លាស់",
-    "personality_type": "R"
+    "personality_type": "R",
+    "display_order": 25
   },
   {
-    "code": "26",
+    "id": "26",
+    "code": "I_05",
     "name": "វិភាគរឿងរ៉ាវ/បញ្ហា/ស្ថានភាពនានា",
-    "personality_type": "I"
+    "personality_type": "I",
+    "display_order": 26
   },
   {
-    "code": "27",
+    "id": "27",
+    "code": "A_05",
     "name": "លេងឧបករណ៍ភ្លេង ឬច្រៀងចម្រៀង",
-    "personality_type": "A"
+    "personality_type": "A",
+    "display_order": 27
   },
   {
-    "code": "28",
+    "id": "28",
+    "code": "S_05",
     "name": "ស្វែងយល់ពីវប្បធម៌ចម្រុះ",
-    "personality_type": "S"
+    "personality_type": "S",
+    "display_order": 28
   },
   {
-    "code": "29",
+    "id": "29",
+    "code": "E_05",
     "name": "បង្កើតមុខរបររកស៊ី ឬធ្វើជំនួញដោយខ្លួនឯង",
-    "personality_type": "E"
+    "personality_type": "E",
+    "display_order": 29
   },
   {
-    "code": "30",
+    "id": "30",
+    "code": "C_05",
     "name": "ធ្វើការងារផ្នែករដ្ឋបាល/ការរៀបចំបែបបទ/លិខិតស្នាម",
-    "personality_type": "C"
+    "personality_type": "C",
+    "display_order": 30
   },
   {
-    "code": "31",
+    "id": "31",
+    "code": "R_06",
     "name": "ធ្វើកិច្ចការងារផ្ទះ ចម្អិនម្ហូបអាហារ",
-    "personality_type": "R"
+    "personality_type": "R",
+    "display_order": 31
   },
   {
-    "code": "32",
+    "id": "32",
+    "code": "I_06",
     "name": "ធ្វើការដោយប្រើលេខនព្វន្ដ ក្រាប តារាងស្ថិតិ",
-    "personality_type": "I"
+    "personality_type": "I",
+    "display_order": 32
   },
   {
-    "code": "33",
+    "id": "33",
+    "code": "A_06",
     "name": "ការងារសម្ដែងតួ ឬលេងរឿងផ្សេងៗ",
-    "personality_type": "A"
+    "personality_type": "A",
+    "display_order": 33
   },
   {
-    "code": "34",
+    "id": "34",
+    "code": "S_06",
     "name": "ជជែកពិភាក្សាវែកញែកពីបញ្ហាអ្វីមួយ",
-    "personality_type": "S"
+    "personality_type": "S",
+    "display_order": 34
   },
   {
-    "code": "34",
+    "id": "35",
+    "code": "E_06",
     "name": "ដឹកនាំ គ្រប់គ្រង ចាត់ចែងក្រុមការងារ",
-    "personality_type": "E"
+    "personality_type": "E",
+    "display_order": 35
   },
   {
-    "code": "36",
+    "id": "36",
+    "code": "C_06",
     "name": "កត់ត្រា រក្សាទុកដាក់ឯកសារ ឬធ្វើកំណត់ហេតុផ្សេងៗ",
-    "personality_type": "C"
+    "personality_type": "C",
+    "display_order": 36
   },
   {
-    "code": "37",
+    "id": "37",
+    "code": "R_07",
     "name": "ការងារខាងក្រៅ (មិននៅតែក្នុងការិយាល័យ)",
-    "personality_type": "R"
+    "personality_type": "R",
+    "display_order": 37
   },
   {
-    "code": "38",
+    "id": "38",
+    "code": "I_07",
     "name": "បង្កើតសម្មតិកម្មដើម្បីស្រាវជ្រាវរុករក",
-    "personality_type": "I"
+    "personality_type": "I",
+    "display_order": 38
   },
   {
-    "code": "39",
+    "id": "39",
+    "code": "A_07",
     "name": "គូរ ឬរចនារូបភាព",
-    "personality_type": "A"
+    "personality_type": "A",
+    "display_order": 39
   },
   {
-    "code": "40",
+    "id": "40",
+    "code": "S_07",
     "name": "ជួយយកអាសារអ្នកដទៃ ការងារស្មគ្រចិត្តសង្គម",
-    "personality_type": "S"
+    "personality_type": "S",
+    "display_order": 40
   },
   {
-    "code": "41",
+    "id": "41",
+    "code": "E_07",
     "name": "ពន្យល់បកស្រាយ ឬការនិយាយជាសាធារណៈ",
-    "personality_type": "E"
+    "personality_type": "E",
+    "display_order": 41
   },
   {
-    "code": "42",
+    "id": "42",
+    "code": "C_07",
     "name": "ធ្វើការងារក្នុងការិយាល័យ/កន្លែងធ្វើការជាក់លាក់",
-    "personality_type": "C"
+    "personality_type": "C",
+    "display_order": 42
   }
 ]

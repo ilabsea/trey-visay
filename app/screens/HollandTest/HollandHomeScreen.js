@@ -48,12 +48,12 @@ const HollandHomeScreen = ({route, navigation}) => {
   }
 
   const getStart = () => {
-    navigation.navigate('HollandQuestionnaireScreen')
-    // if(!currentUser) {
-    //   return goToNewProfile();
-    // }
+    // navigation.navigate('HollandTestResultScreen')
+    if(!currentUser) {
+      return goToNewProfile();
+    }
 
-    // showDialog();
+    showDialog();
   }
 
   const renderDialog = () => {
