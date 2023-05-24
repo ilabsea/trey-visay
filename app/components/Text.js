@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     fontSize: FontSetting.text,
     ...Platform.select({
       android: {
-        fontFamily: 'KantumruyRegular',
+        fontFamily: FontFamily.regular,
         lineHeight: 34,
       },
       ios: {
