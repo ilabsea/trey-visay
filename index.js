@@ -27,12 +27,6 @@ const theme = {
 
 export default class TreyVisay extends Component {
   render() {
-    // return(
-    //   <StyleProvider style={getTheme(commonColor)}>
-    //     <App/>
-    //   </StyleProvider>
-    // )
-
     return (
       <StyleProvider style={getTheme(commonColor)}>
         <StoreProvider store={store}>

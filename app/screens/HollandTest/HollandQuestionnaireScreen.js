@@ -35,7 +35,6 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
   // Redux
   const currentHollandResponse = useSelector((state) => state.currentHolland.value);
   const currentQuiz = useSelector((state) => state.currentQuiz.value);
-  const currentUser = useSelector((state) => state.currentUser.value);
   const dispatch = useDispatch();
 
   // Form validation

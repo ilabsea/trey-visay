@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -12,12 +12,9 @@ import { Content, Body, Right, Icon, CardItem } from 'native-base';
 import ButtonList from '../../components/list/button_list';
 import Text from '../../components/Text';
 import { StartQuizButton, ResumeQuizButton}  from './components';
-import { useSelector } from 'react-redux'
 
 const HollandHomeScreen = ({route, navigation}) => {
   const title = 'វាយតម្លៃមុខរបរនិងអាជីព';
-  const currentUser = useSelector((state) => state.currentUser.value);
-
   const renderAboutItem = () => {
     return (
       <View style={{marginVertical: 12, backgroundColor: 'white'}}>

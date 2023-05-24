@@ -11,8 +11,10 @@ import FormScreen from './Form';
 
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrentUser } from '../../redux/features/user/userSlice';
+import useAuth from "../../auth/useAuth";
 
 const ProfileFormScreen = ({navigation}) => {
+  const { logIn } = useAuth();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,7 +28,7 @@ const ProfileFormScreen = ({navigation}) => {
     try {
       User.write(() => {
         let user = User.create(values);
-        dispatch(setCurrentUser(user));
+        logIn(user);
 
         navigation.navigate('PersonalUnderstandingTestScreen');
       })
