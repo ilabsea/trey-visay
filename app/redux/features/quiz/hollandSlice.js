@@ -8,11 +8,14 @@ export const hollandSlice = createSlice({
   reducers: {
     appendAnswer: (state, action) => {
       state.value = {...state.value, ...action.payload }
+    },
+    resetAnswer: (state, action) => {
+      state.value = {}
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { appendAnswer } = hollandSlice.actions
+export const { appendAnswer, resetAnswer } = hollandSlice.actions
 
 export default hollandSlice.reducer
