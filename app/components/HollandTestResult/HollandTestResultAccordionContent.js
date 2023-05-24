@@ -5,6 +5,7 @@ import { Text } from '../../components';
 import Color from '../../themes/color';
 import {screenHorizontalPadding} from '../../constants/component_constant';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
+import {getStyleOfOS} from '../../utils/responsive_util';
 
 const HollandTestResultAccordionContent = (props) => {
   const renderContent = () => {
@@ -25,7 +26,7 @@ const HollandTestResultAccordionContent = (props) => {
   }
 
   return (
-    <View style={{backgroundColor: 'white', borderBottomWidth: 2, borderColor: Color.paleGray, paddingHorizontal: screenHorizontalPadding, paddingBottom: 6}}>
+    <View style={{backgroundColor: 'white', borderBottomWidth: getStyleOfOS(0.5, 2), borderColor: Color.paleGray, paddingHorizontal: screenHorizontalPadding, paddingBottom: 6}}>
       {renderContent()}
     </View>
   )
