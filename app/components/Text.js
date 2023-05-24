@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     ...Platform.select({
       android: {
         fontFamily: 'KantumruyRegular',
-        lineHeight: 38,
+        lineHeight: 34,
       },
       ios: {
         fontFamily: FontFamily.regular,
