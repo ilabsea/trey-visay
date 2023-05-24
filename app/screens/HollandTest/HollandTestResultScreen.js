@@ -21,6 +21,10 @@ const HollandTestResult = ({navigation}) => {
     )
   }
 
+  const showOptionsBottomSheet = () => {
+
+  }
+
   return (
     <View style={{flex: 1}}>
       <ScrollableHeader
