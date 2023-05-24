@@ -1,4 +1,4 @@
-import { Dimensions, PixelRatio } from 'react-native';
+import { Dimensions, PixelRatio, Platform } from 'react-native';
 import DeviceInfo from 'react-native-device-info'
 
 import { smallMobileHeight, mediumMobileHeight, smallWidthMobile, XHDPIRatio } from '../constants/screen_size_constant';
@@ -10,6 +10,10 @@ const screenWidth = Dimensions.get('screen').width;
 
 export const getStyleOfDevice = (tabletStyle, mobileStyle) => {
   return DeviceInfo.isTablet() ? tabletStyle : mobileStyle;
+}
+
+export const getStyleOfOS = (iOSStyle, androidStyle) => {
+  return Platform.OS === 'ios' ? iOSStyle : androidStyle;
 }
 
 export const isShortScreenDevice = () => {
