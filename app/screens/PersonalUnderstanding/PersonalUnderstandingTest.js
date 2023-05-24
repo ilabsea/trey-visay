@@ -34,8 +34,11 @@ export default PersonalUnderstandingTest = ({navigation}) => {
     }
 
     values.q5 = (values.q5 || []).join(",")
-    quizUuid = Quiz.create({userUuid: currentUser.uuid, selfUnderstandingReponse: values});
-    dispatch(setCurrentQuiz(quizUuid));
+
+    Quiz.write(() => {
+      quiz = Quiz.create({userUuid: currentUser.uuid, selfUnderstandingReponse: values});
+      dispatch(setCurrentQuiz(quiz));
+    })
 
     navigation.navigate('HollandInstructionScreen');
   }

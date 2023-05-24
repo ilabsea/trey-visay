@@ -21,8 +21,9 @@ import { Form, SubmitButton } from '../../components/forms';
 import * as Yup from "yup";
 
 import { useSelector, useDispatch } from 'react-redux'
-import { appendAnswer } from '../../redux/features/quiz/hollandSlice';
+import { appendAnswer, resetAnswer } from '../../redux/features/quiz/hollandSlice';
 import Quiz from '../../models/Quiz';
+import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 
 export default HollandQuestionnaireScreen = ({route, navigation}) => {
   // Pagination
@@ -76,7 +77,15 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
 
     if (isPageEnd) {
       let responses = {...currentHollandResponse, ...values}
-      Quiz.update(currentQuiz, { hollandResponse: responses, totalScore: totalScore(responses)})
+
+      Quiz.write(()=> {
+        currentQuiz.step = 1
+        currentQuiz.hollandResponse = responses
+        currentQuiz.totalScore = totalScore(responses)
+
+        dispatch(setCurrentQuiz(currentQuiz));
+        // dispatch(resetAnswer()); Todo: uncommend this one when done
+      })
 
       return navigation.navigate('HollandTestResultScreen');
     }

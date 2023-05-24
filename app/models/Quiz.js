@@ -1,5 +1,6 @@
 import BaseModel from './BaseModel';
 import uuidv4 from '../utils/uuidv4';
+import realm from '../db/schema';
 
 const MODEL = "Quiz"
 
@@ -13,13 +14,16 @@ export default class Quiz {
   }
 
   static create = (params) => {
-    uuid = uuidv4();
-    BaseModel.create(MODEL, {...params, createdAt: new Date(), uuid: uuid});
-
-    return uuid;
+    return realm.create(MODEL, {...params, createdAt: new Date(), uuid: uuidv4()});
   }
 
   static update = (uuid, params) => {
-    BaseModel.update(MODEL, uuid, params);
+    return realm.create(MODEL, Object.assign(params, { uuid: uuid }), 'modified');
+  }
+
+  static write = (callback) => {
+    realm.write(() => {
+      !!callback && callback();
+    });
   }
 }

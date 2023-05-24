@@ -22,15 +22,14 @@ const COLOR = {
   C: processColor('#BFDAED'),
 }
 
-const HollandTestResult = () => {
+const HollandTestResult = ({navigation}) => {
   const title = "តេស្តបុគ្គលិកលក្ខណៈ"
-
   const currentQuiz = useSelector((state) => state.currentQuiz.value);
-  let quiz = Quiz.findByUuid(currentQuiz);
-  let totalScore = Object.entries(quiz.totalScore).sort((a,b) => b[1] - a[1]);
-  let yData = totalScore.map(c => ({y: c[1]}));
-  let yColors = totalScore.map(c => COLOR[c[0]]);
-  let xData = totalScore.map(c => c[0]);
+
+  const totalScore = Object.entries(currentQuiz.totalScore).sort((a,b) => b[1] - a[1]);
+  const yData = totalScore.map(c => ({y: c[1]}));
+  const yColors = totalScore.map(c => COLOR[c[0]]);
+  const xData = totalScore.map(c => c[0]);
 
   const [data, setData] = useState({
     dataSets: [{
@@ -105,7 +104,7 @@ const HollandTestResult = () => {
     <View style={{flex: 1}}>
       <ScrollableHeader
         renderContent={ renderContent }
-        renderNavigation={ () => <BackButton /> }
+        renderNavigation={ () => <BackButton onPress={() => navigation.popToTop()} /> }
         title={title}
         largeTitle={title}
       />
