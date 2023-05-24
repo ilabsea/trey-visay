@@ -7,7 +7,7 @@ let { width } = Dimensions.get('window');
 const FontSetting = {
   nav_large_title: RF(4),
   big_title: RF(3),
-  nav_title: getStyleOfDevice(RF(2.2), RF(2.8)),
+  nav_title: getStyleOfDevice(RF(2.2), RF(2.6)),
   tab_label: RF(2.5),
   medium_title: RF(2.5),
   dashboard_subtitle: RF(2.3),

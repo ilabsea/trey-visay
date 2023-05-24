@@ -20,3 +20,4 @@ export const androidBigTabletWidth = 800;
 export const gradientScrollViewBigPaddingBottom = getStyleOfDevice(170, 125);
 export const gradientScrollViewPaddingBottom = getStyleOfDevice(90, 80);
 export const cardTitleLineHeight = getStyleOfDevice(Platform.OS == 'ios' ? 32 : 30, 28);
+export const pressableItemSize = 48
