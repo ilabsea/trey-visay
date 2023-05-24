@@ -8,6 +8,8 @@ import {
   setCustomImage,
   setCustomTouchableOpacity
 } from 'react-native-global-props';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import { FontSetting } from './app/assets/style_sheets/font_setting';
 import App from './app';
 
@@ -31,7 +33,11 @@ export default class TreyVisay extends Component {
       <StyleProvider style={getTheme(commonColor)}>
         <StoreProvider store={store}>
           <PaperProvider theme={theme}>
-            <App />
+            <GestureHandlerRootView style={{flex: 1}}>
+              <BottomSheetModalProvider>
+                <App />
+              </BottomSheetModalProvider>
+            </GestureHandlerRootView>
           </PaperProvider>
         </StoreProvider>
       </StyleProvider>

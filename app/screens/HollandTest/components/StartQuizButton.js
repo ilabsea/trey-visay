@@ -31,8 +31,7 @@ const StartQuizButton = () => {
   }
 
   const getStart = () => {
-    // navigation.navigate('HollandTestResultScreen')
-    if(!user) {
+    if(!currentUser) {
       return goToNewProfile();
     }
 
