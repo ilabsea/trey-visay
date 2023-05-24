@@ -14,11 +14,13 @@ import QuestionForm from './QuestionForm';
 import { Form, SubmitButton } from '../../components/forms';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
+import useAuth from "../../auth/useAuth";
 
 export default PersonalUnderstandingTest = ({navigation}) => {
-  const currentUser = useSelector((state) => state.currentUser.value);
+  const { user } = useAuth();
   const dispatch = useDispatch();
   const toastRef = useRef();
+  const currentQuiz = useSelector((state) => state.currentQuiz.value);
 
   const renderContent = () => {
     return (<QuestionForm />)
@@ -36,7 +38,9 @@ export default PersonalUnderstandingTest = ({navigation}) => {
     values.q5 = (values.q5 || []).join(",")
 
     Quiz.write(() => {
-      quiz = Quiz.create({userUuid: currentUser.uuid, selfUnderstandingReponse: values});
+      quiz = Quiz.create({userUuid: user.uuid, selfUnderstandingReponse: values});
+      Quiz.delete(currentQuiz.uuid);
+
       dispatch(setCurrentQuiz(quiz));
     })
 

@@ -7,13 +7,17 @@ import {
 import AppButton from '../../../components/shared/button';
 import { FontSetting } from '../../../assets/style_sheets/font_setting';
 import Text from '../../../components/Text';
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigation } from '@react-navigation/native';
 import Color from '../../../themes/color';
 import Quiz from '../../../models/Quiz';
+import { setCurrentQuiz } from '../../../redux/features/quiz/quizSlice';
+import useAuth from "../../../auth/useAuth";
 
 const ResumeQuizButton = () => {
   const navigation = useNavigation();
+  const { user } = useAuth();
+  const dispatch = useDispatch();
   const currentQuiz = useSelector((state) => state.currentQuiz.value);
 
   const onPress = () => {
@@ -23,6 +27,17 @@ const ResumeQuizButton = () => {
   const isQuizToResume = () => {
     return !!currentQuiz && !currentQuiz.isDone;
   }
+
+  const restoreResumeQuiz = () => {
+    if(!user) return dispatch(setCurrentQuiz(null));
+    let quiz = Quiz.getUnDone(user.uuid);
+
+    dispatch(setCurrentQuiz(quiz));
+  };
+
+  useEffect(() => {
+    restoreResumeQuiz();
+  }, [])
 
   return (
     <View style={{flex: 1}}>
