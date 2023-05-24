@@ -21,6 +21,22 @@ export default class Quiz {
     return realm.create(MODEL, Object.assign(params, { uuid: uuid }), 'modified');
   }
 
+  static getUnDone = (userUuid) => {
+    let quizzes = realm.objects(MODEL).filtered(`userUuid = '${userUuid}' AND step < 3`).sorted('createdAt', true);
+
+    return quizzes[quizzes.length - 1];
+  }
+
+  static delete = (uuid) => {
+    const item = this.findByUuid(MODEL, uuid);
+
+    if (!!item) {
+      realm.write(() => {
+        realm.delete(item);
+      });
+    }
+  }
+
   static write = (callback) => {
     realm.write(() => {
       !!callback && callback();

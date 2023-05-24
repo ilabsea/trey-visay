@@ -36,7 +36,7 @@ const HollandTestInstruction = ({route, navigation}) => {
   }
 
   const renderNavigation = () => {
-    return (<BackButton buttonColor='#fff' />)
+    return (<BackButton buttonColor='#fff' onPress={() => navigation.popToTop()} />)
   }
 
   const handleAlert = () => {
