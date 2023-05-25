@@ -25,11 +25,6 @@ export default function Others(props) {
     }
   }, []);
 
-  const _logOut = () => {
-    logOut();
-    navigation.navigate('Home');
-  }
-
   const onPressShareApp = () => {
     let url = Platform.OS === 'ios' ? 'https://apps.apple.com/kh/app/trey-visay/id1445506569' : 'https://play.google.com/store/apps/details?id=com.treyvisay';
 
@@ -53,7 +48,7 @@ export default function Others(props) {
           <ButtonList
             hasLine={true}
             icon={{color: Color.blue, src: require('../../assets/icons/others/info.png')}}
-            onPress={() => { navigate('About') }}
+            onPress={() => { navigation.navigate('About') }}
             title='អំពីកម្មវិធី' />
         </View>
 
@@ -67,19 +62,10 @@ export default function Others(props) {
           <ButtonList
             hasLine={true}
             icon={{color: 'rgb(172, 175, 193)', src: require('../../assets/icons/others/term_condition.png')}}
-            onPress={() => { navigate('TermsCondition') }}
+            onPress={() => { navigation.navigate('TermsCondition') }}
             title='Terms & Conditions' />
         </View>
 
-        { !!user &&
-          <View style={{marginTop: 16, backgroundColor: 'white'}}>
-            <ButtonList
-              hasLine={true}
-              icon={{color: 'rgb(238, 18, 45)', src: require('../../assets/icons/others/logout.png')}}
-              onPress={() => { _logOut() }}
-              title='ចាកចេញ' />
-          </View>
-        }
       </View>
     );
   }

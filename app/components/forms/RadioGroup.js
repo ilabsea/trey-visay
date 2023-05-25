@@ -8,9 +8,10 @@ import {
 import Text from '../Text';
 
 import { useFormikContext } from "formik";
+import ErrorMessage from './ErrorMessage';
 
 const RadioGroup = ({name, options, disabled}) => {
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values, errors, touched } = useFormikContext();
 
   const value = values[name];
   const getTextStyle = disabled ? {color: '#ccc'} : {};
@@ -48,6 +49,7 @@ const RadioGroup = ({name, options, disabled}) => {
   return (
     <RadioButton.Group onValueChange={onValueChange} value={value}>
       { buttonGroups() }
+      <ErrorMessage error={errors[name]} visible={touched[name]} />
     </RadioButton.Group>
   )
 }
