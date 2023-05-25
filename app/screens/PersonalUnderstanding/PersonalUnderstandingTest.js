@@ -39,7 +39,7 @@ export default PersonalUnderstandingTest = ({navigation}) => {
 
     Quiz.write(() => {
       quiz = Quiz.create({userUuid: user.uuid, selfUnderstandingReponse: values});
-      Quiz.delete(currentQuiz.uuid);
+      if (!!currentQuiz) Quiz.delete(currentQuiz.uuid);
 
       dispatch(setCurrentQuiz(quiz));
     })
