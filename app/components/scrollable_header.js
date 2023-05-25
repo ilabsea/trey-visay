@@ -14,6 +14,8 @@ import * as Progress from 'react-native-progress';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 import scrollHeaderStyles from '../assets/style_sheets/scroll_header';
 import Text from './Text';
+import {getStyleOfDevice} from '../utils/responsive_util';
+import {navHeaderHorizontalPadding, navHeaderBigTitleHorizontalPadding} from '../constants/component_constant';
 // import { Header } from 'react-navigation';
 // import { useHeaderHeight } from '@react-navigation/elements';
 
@@ -48,7 +50,8 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     height: DEFAULT_HEADER_MAX_HEIGHT,
     borderBottomWidth: 1,
-    borderBottomColor: '#ccc'
+    borderBottomColor: '#ccc',
+    paddingHorizontal: navHeaderBigTitleHorizontalPadding
   },
   overlay: {
     position: 'absolute',
@@ -70,13 +73,14 @@ const styles = StyleSheet.create({
     top: 0,
     left: 0,
     right: 0,
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingHorizontal: navHeaderHorizontalPadding
   },
   titleWrapper: {
     position: 'absolute',
     left: NAVIGATION_BUTTON_WIDTH,
     right: NAVIGATION_BUTTON_WIDTH,
-    bottom: 0,
+    bottom: platform === 'ios' ? getStyleOfDevice(2, 6) : -2,
     justifyContent: 'center',
     height: platform === 'ios' ? 'auto' : DEFAULT_HEADER_MIN_HEIGHT,
   },

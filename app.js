@@ -1,41 +1,36 @@
 'use strict';
 
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-import realm from './app/db/schema';
 // import Sidekiq from './app/utils/models/sidekiq';
+import SplashScreen from 'react-native-splash-screen';
+import AppNavigation from './app/navigations/AppNavigator';
+import AuthContext from "./app/auth/context";
+import authStorage from "./app/auth/storage";
 
-import HomeStackNav from './app/screens/StackNav/Home/HomeStackNav';
+const App = () => {
+  const [user, setUser] = useState();
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+  const restoreUser = async () => {
+    const user = await authStorage.getUser();
+    if (user) setUser(user);
+  };
 
-    this.handlerPredefinedUser();
-  }
+  useEffect(() => {
+    SplashScreen.hide();
+    restoreUser();
+    // setTimeout(() => {
+    //   Sidekiq.uploadAll();
+    // }, 1000);
+  }, []);
 
-  // componentDidMount(){
-  //   setTimeout(() => {
-  //     Sidekiq.uploadAll();
-  //   }, 1000);
-  // }
-
-  handlerPredefinedUser() {
-    let uuid = '0335745d-daa3-485b-bc0f-3610db5udemo';
-    let predefinedUser = realm.objects('User').filtered('uuid="' + uuid + '"')[0];
-
-    if (!!predefinedUser) { return; }
-
-    realm.write(() => {
-      realm.create('User', { uuid: uuid, fullName: 'Demo', username: 'Demo', password: '123456', dateOfBirth: Date()}, true);
-    });
-  }
-
-  render() {
-    return (
-      <HomeStackNav/>
-    );
-  }
+  return (
+    <AuthContext.Provider value={{ user, setUser }}>
+      <AppNavigation/>
+    </AuthContext.Provider>
+  );
 }
+
+export default App;

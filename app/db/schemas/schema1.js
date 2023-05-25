@@ -1,10 +1,10 @@
-import arrayInt from '../../data/models/arrayInt';
-import arrayString from '../../data/models/arrayString';
-import User from '../../data/models/v1/user';
-import PersonalUnderstanding from '../../data/models/v1/personal_understanding';
-import Game from '../../data/models/v1/game';
-import GameSubject from '../../data/models/v1/game_subject';
-import Sidekiq from '../../data/models/v1/sidekiq';
+import arrayInt from '../migrations/arrayInt';
+import arrayString from '../migrations/arrayString';
+import User from '../migrations/v1/user';
+import PersonalUnderstanding from '../migrations/v1/personal_understanding';
+import Game from '../migrations/v1/game';
+import GameSubject from '../migrations/v1/game_subject';
+import Sidekiq from '../migrations/v1/sidekiq';
 
 const schema1 = [
   User,

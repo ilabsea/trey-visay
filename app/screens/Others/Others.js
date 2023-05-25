@@ -5,34 +5,29 @@ import {
   Platform
 } from 'react-native';
 import ButtonList from '../../components/list/button_list';
-import User from '../../utils/user';
-import { Colors } from '../../assets/style_sheets/main/colors';
+import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
 import MyStatusBar from '../../components/shared/status_bar';
 import Share from 'react-native-share';
 // import firebase from 'react-native-firebase';
 import keyword from '../../data/analytics/keyword';
-import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentUser } from '../../redux/features/user/userSlice';
-import { navigate } from '../StackNav/RootNavigation';
-
+import useAuth from "../../auth/useAuth";
+import { useNavigation } from '@react-navigation/native';
 
 export default function Others(props) {
-  const currentUser = useSelector((state) => state.currentUser.value)
-  const dispatch = useDispatch();
+  const { user, logOut } = useAuth();
+  const navigation = useNavigation();
 
   useEffect(() => {
     if (Platform.OS == 'android') {
-      StatusBar.setBackgroundColor(Colors.grayStatusBar);
+      StatusBar.setBackgroundColor(Color.grayStatusBar);
       StatusBar.setBarStyle('dark-content');
     }
   }, []);
 
   const _logOut = () => {
-    User.logout(() => {
-      dispatch(setCurrentUser(null));
-      navigate('Home');
-    })
+    logOut();
+    navigation.navigate('Home');
   }
 
   const onPressShareApp = () => {
@@ -57,16 +52,9 @@ export default function Others(props) {
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
           <ButtonList
             hasLine={true}
-            icon={{color: Colors.blue, src: require('../../assets/icons/others/info.png')}}
+            icon={{color: Color.blue, src: require('../../assets/icons/others/info.png')}}
             onPress={() => { navigate('About') }}
             title='អំពីកម្មវិធី' />
-          { !!currentUser &&
-            <ButtonList
-              hasLine={true}
-              icon={{color: 'rgb(245, 166, 35)', src: require('../../assets/icons/others/key.png')}}
-              onPress={() => { navigate('ChangePassword') }}
-              title='ផ្លាស់ប្តូរលេខសំងាត់' />
-          }
         </View>
 
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
@@ -83,7 +71,7 @@ export default function Others(props) {
             title='Terms & Conditions' />
         </View>
 
-        { !!currentUser &&
+        { !!user &&
           <View style={{marginTop: 16, backgroundColor: 'white'}}>
             <ButtonList
               hasLine={true}

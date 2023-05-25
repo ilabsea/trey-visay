@@ -24,7 +24,7 @@ export default class InstitutionDetail extends Component {
     super(props);
 
     this.state = {
-      school: props.navigation.getParam('school')
+      school: props.route.params.school
     }
   }
 

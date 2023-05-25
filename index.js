@@ -1,13 +1,3 @@
-// /**
-//  * @format
-//  */
-
-// import {AppRegistry} from 'react-native';
-// import App from './App';
-// import {name as appName} from './app.json';
-
-// AppRegistry.registerComponent(appName, () => App);
-
 import React, { Component } from 'react';
 import { Platform, AppRegistry, Text } from 'react-native';
 
@@ -18,6 +8,8 @@ import {
   setCustomImage,
   setCustomTouchableOpacity
 } from 'react-native-global-props';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import { FontSetting } from './app/assets/style_sheets/font_setting';
 import App from './app';
 
@@ -37,17 +29,15 @@ const theme = {
 
 export default class TreyVisay extends Component {
   render() {
-    // return(
-    //   <StyleProvider style={getTheme(commonColor)}>
-    //     <App/>
-    //   </StyleProvider>
-    // )
-
     return (
       <StyleProvider style={getTheme(commonColor)}>
         <StoreProvider store={store}>
           <PaperProvider theme={theme}>
-            <App />
+            <GestureHandlerRootView style={{flex: 1}}>
+              <BottomSheetModalProvider>
+                <App />
+              </BottomSheetModalProvider>
+            </GestureHandlerRootView>
           </PaperProvider>
         </StoreProvider>
       </StyleProvider>

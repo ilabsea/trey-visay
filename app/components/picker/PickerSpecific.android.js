@@ -1,32 +1,35 @@
 import React, {Component} from 'react';
 import {
-  Text,
   View,
 } from 'react-native';
 import styles from '../../assets/style_sheets/profile_form';
-// import { Picker } from 'native-base';
-// import {Picker} from '@react-native-picker/picker';
+import { Picker as SelectPicker } from 'native-base';
+import { useFormikContext } from "formik";
+import {FontFamily} from '../../themes/font';
+import Color from '../../themes/color';
+import Text from '../Text';
+import ErrorMessage from '../forms/ErrorMessage';
 
-const PickerSpecific = (props) => {
-  const _getPickerValue = (data) => {
-    return props.user[data.stateName];
-  }
-
-  return null
+const PickerSpecific = ({label, name, options}) => {
+  const { errors, touched, setFieldValue, values } = useFormikContext();
 
   return (
     <View style={styles.inputContainer}>
-      <Text style={styles.labelColor}>{ props.data.label }</Text>
-      <Picker
-        mode='dialog'
-        prompt='សូមជ្រេីសរេីស'
-        selectedValue={ _getPickerValue(props.data) }
-        onValueChange={ props.onValueChange}>
-        { props.data.options.map((obj, i) => {
-          { return (<Picker.Item key={i} label={obj.label} value={obj.code} />) }
-          })
-        }
-      </Picker>
+      <Text>{ label }</Text>
+
+      <View style={{borderBottomColor: Color.borderColor, borderWidth: 0.5}}>
+        <SelectPicker
+          mode='dialog'
+          selectedValue={ values[name] }
+          onValueChange={ (itemValue, itemIndex) => setFieldValue(name, itemValue) }>
+
+          { options.map((obj, i) =>
+            <SelectPicker.Item key={i} label={obj.label} value={obj.code} fontFamily={FontFamily.regular} />
+          )}
+        </SelectPicker>
+      </View>
+
+      <ErrorMessage error={errors[name]} visible={touched[name]} />
     </View>
   )
 }
