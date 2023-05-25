@@ -9,10 +9,16 @@ import HollandTestResultAccordionContent from './HollandTestResultAccordionConte
 import Color from '../../themes/color';
 import {screenHorizontalPadding} from '../../constants/component_constant';
 import {getStyleOfOS, getStyleOfDevice} from '../../utils/responsive_util';
-import characteristics from './json/characteristics'
+import characteristicList from './json/characteristics'
 import { FontSetting } from '../../assets/style_sheets/font_setting';
+import { useSelector } from 'react-redux'
 
 const HollandTestResultCharacteristicAccordions = () => {
+  const currentQuiz = useSelector((state) => state.currentQuiz.value);
+  const hollandScores = currentQuiz.sortedHollandScore;
+  const personalityTypes = hollandScores.map(c => c[0]);
+  const characteristics = personalityTypes.map(a => characteristicList.filter(o => o.shortcut == a)[0]);
+
   const [statuses, setStatuses] = useState(new Array(characteristics.length))
   const renderAccordionTitle = (characteristic) => {
     return (
