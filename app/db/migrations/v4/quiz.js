@@ -17,6 +17,11 @@ export default class Quiz extends Realm.Object {
   get nextScreen() {
     return routes[this.step + 1];
   }
+
+  get sortedHollandScore() {
+    // [["C", 24], ["I", 21], ["R", 21], ["E", 20], ["A", 17], ["S", 17]]
+    return Object.entries(this.hollandScore).sort((a,b) => b[1] - a[1]);
+  }
 }
 
 Quiz.schema = {
@@ -28,7 +33,7 @@ Quiz.schema = {
     step: { type: 'int', default: 0 },
     selfUnderstandingReponse: '{}',
     hollandResponse: '{}',
-    totalScore: '{}',
+    hollandScore: '{}',
     majorResponse: 'string[]',
     jobResponse: 'string[]',
     majorCode: { type: 'string', optional: true },

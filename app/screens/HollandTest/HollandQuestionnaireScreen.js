@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { View, TouchableOpacity } from 'react-native'
 import {
-  FooterBar,
   Text,
   BackButton,
   BackConfirmDialog,
@@ -60,7 +59,7 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
     return total;
   }
 
-  const totalScore = (values) => {
+  const hollandScore = (values) => {
     let columns = ['R', 'I', 'A', 'S', 'E', 'C'];
     let obj = {};
 
@@ -80,7 +79,7 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
       Quiz.write(()=> {
         currentQuiz.step = 1
         currentQuiz.hollandResponse = responses
-        currentQuiz.totalScore = totalScore(responses)
+        currentQuiz.hollandScore = hollandScore(responses)
 
         dispatch(setCurrentQuiz(currentQuiz));
         // dispatch(resetAnswer()); Todo: uncommend this one when done

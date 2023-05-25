@@ -1,29 +1,33 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, processColor } from 'react-native';
-import {BarChart} from 'react-native-charts-wrapper';
-
-const R_COLOR = processColor('#6ED490');
-const I_COLOR = processColor('#E5BED3');
-const A_COLOR = processColor('#FCFCB3');
-const S_COLOR = processColor('#C6B8D9');
-const E_COLOR = processColor('#F2D3B5');
-const C_COLOR = processColor('#BFDAED');
+import { BarChart } from 'react-native-charts-wrapper';
+import { useSelector } from 'react-redux';
+import characteristicsColor from './json/characteristics_color';
 
 const HollandTestResultBarChart = (props) => {
+  const currentQuiz = useSelector((state) => state.currentQuiz.value);
+  const hollandScore = currentQuiz.sortedHollandScore;
+  const yData = hollandScore.map(c => ({y: c[1]}));
+  const yColors = hollandScore.map(c => characteristicsColor[c[0]]);
+  const xData = hollandScore.map(c => c[0]);
+
   const [data, setData] = useState({
     dataSets: [{
-      values: [{y: 500}, {y: 400}, {y: 300}, {y: 200}, {y: 100}, {y: 50}],
+      // values: [{y: 500}, {y: 400}, {y: 300}, {y: 200}, {y: 100}, {y: 50}],
+      values: yData,
       label: '',
       config: {
         drawValues: false,
-        colors: [R_COLOR, I_COLOR, A_COLOR, S_COLOR, E_COLOR, C_COLOR]
+        // colors: [R_COLOR, I_COLOR, A_COLOR, S_COLOR, E_COLOR, C_COLOR]
+        colors: yColors
       }
     }],
   })
 
   const [xAxis, setXAxis] = useState({
     enabled: true,
-    valueFormatter: ['R', 'I', 'A', 'S', 'E', 'C'],
+    // valueFormatter: ['R', 'I', 'A', 'S', 'E', 'C'],
+    valueFormatter: xData,
     granularityEnabled: true,
     position: 'BOTTOM',
     gridColor: processColor('white'),
@@ -74,4 +78,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default HollandTestResultBarChart
+export default HollandTestResultBarChart;

@@ -31,7 +31,7 @@ const StartQuizButton = () => {
   }
 
   const getStart = () => {
-    if(!currentUser) {
+    if(!user) {
       return goToNewProfile();
     }
 
