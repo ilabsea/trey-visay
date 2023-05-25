@@ -15,6 +15,20 @@ import { Form, SubmitButton } from '../../components/forms';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import useAuth from "../../auth/useAuth";
+import * as Yup from "yup";
+
+const validationSchema = Yup.object().shape({
+  q1: Yup.string().required("សូមជ្រើសរើស"),
+  q2: Yup.string().required("សូមជ្រើសរើស"),
+  q3: Yup.string().required("សូមបំពេញ"),
+  q4: Yup.string().required("សូមជ្រើសរើស"),
+  q4_1: Yup.string().when("q4", {
+    is: (value) => value == "decided",
+    then: (schema) => schema.required("សូមបំពេញ")
+  })
+});
+
+const initialValue = { q1: '', q2: '', q3: '', q4: '', q4_1: '', q5: ''};
 
 export default PersonalUnderstandingTest = ({navigation}) => {
   const { user } = useAuth();
@@ -49,7 +63,8 @@ export default PersonalUnderstandingTest = ({navigation}) => {
 
   return (
     <Form
-      initialValues={{}}
+      initialValues={ initialValue }
+      validationSchema={ validationSchema }
       onSubmit={ handleSubmit }>
 
       <View style={{flex: 1}}>

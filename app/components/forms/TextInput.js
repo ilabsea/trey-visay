@@ -4,6 +4,7 @@ import { TextInput } from 'react-native-paper';
 import Text from '../Text';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import { useFormikContext } from "formik";
+import ErrorMessage from './ErrorMessage';
 
 const Question3 = (props) => {
   const getTextColor = props.disabled ? [styles.labelGroup, {color: '#ccc'}] : styles.labelGroup;
@@ -24,6 +25,8 @@ const Question3 = (props) => {
         onBlur={() => setFieldTouched(props.name)}
         onChangeText={ handleChange(props.name) }
         disabled={ isDisabled() } />
+
+      <ErrorMessage error={errors[props.name]} visible={touched[props.name]} />
     </View>
   )
 }
