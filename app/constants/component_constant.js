@@ -1,4 +1,5 @@
 import {Platform} from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import { getStyleOfDevice, getStyleOfOS, isLowPixelDensityDevice } from '../utils/responsive_util';
 import {xLargeFontSize, largeFontSize} from '../utils/font_size_util';
 
@@ -9,7 +10,7 @@ export const outlinedButtonBorderWidth = 2.2;
 export const navigationHeaderIconSize = 24;
 export const navHeaderHorizontalPadding = getStyleOfDevice(12, 0);
 export const navHeaderBigTitleHorizontalPadding = getStyleOfDevice(4, 0);
-export const navheaderPaddingTop = getStyleOfOS(32, 16);
+export const navHeaderPaddingTop = getStyleOfOS(DeviceInfo.hasNotch() ? 0 : 4, 18);
 export const screenHorizontalPadding = getStyleOfDevice(24, 16);
 export const bottomTabBarHeight = 62;
 export const scrollViewPaddingBottom = bottomTabBarHeight + 18;
