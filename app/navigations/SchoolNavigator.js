@@ -8,7 +8,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 import SaveButton from '../components/shared/save_button';
 
-import SchoolScreen from '../screens/school/school_screen';
+import SchoolScreen from '../screens/school/SchoolScreen';
 import InstitutionDetail from '../screens/school/institution_detail';
 import FilterScreen from '../screens/school/filter/filter_screen';
 import FilterProvinces from '../screens/school/filter/filter_provinces';
@@ -27,7 +27,9 @@ const colorStyle = Platform.OS == 'android' ? {color: '#111'} : {}
 function SchoolNavigator() {
   return (
     <Stack.Navigator screenOptions={{}} initialRouteName="Root">
-      <Stack.Screen name="Root" component={SchoolScreen} options={({ navigation, route }) => ({
+      <Stack.Screen name ="Root" component={SchoolScreen} options={{headerShown: false}} />
+
+      {/* <Stack.Screen name="Root" component={SchoolScreen} options={({ navigation, route }) => ({
           // headerLeft: () => (
           //   <Button transparent onPress={() => {
           //     navigation.goBack(null);
@@ -37,7 +39,7 @@ function SchoolNavigator() {
           //   </Button>
           // ),
           headerTitle: (props) => (<Title style={[styles.title, colorStyle]}>គ្រឹះស្ថានសិក្សា</Title>)
-      })}/>
+      })}/> */}
       <Stack.Screen name="InstitutionDetail" component={InstitutionDetail} options={{headerShown: false}} />
       <Stack.Screen name="FilterScreen" component={FilterScreen} options={({ navigation, route }) => ({
         title: "គ្រឹះស្ថានសិក្សា",

@@ -1,16 +1,9 @@
 import React, { Component } from 'react';
+import { FlatList, ActivityIndicator, View } from 'react-native';
 
-import { Container, Content } from 'native-base';
-import {
-  FlatList,
-  ActivityIndicator,
-  View
-} from 'react-native';
-
-import SegmentView from '../../components/schools/segment_view';
+import SchoolNavigationHeader from '../../components/schools/SchoolNavigationHeader';
 import School from '../../components/schools/school';
 import FilterButton from '../../components/schools/filter_button';
-import StatusBar from '../../components/shared/status_bar';
 
 import SchoolUtil from '../../utils/School/School';
 import {Colors} from '../../assets/style_sheets/main/colors';
@@ -75,9 +68,7 @@ export default class SchoolScreen extends Component {
   }
 
   _renderRow(school) {
-    return(
-      <School school={school} showCategory={false} navigation={this.props.navigation}/>
-    )
+    return <School school={school} showCategory={false} navigation={this.props.navigation}/>
   }
 
   setContent(active){
@@ -106,38 +97,31 @@ export default class SchoolScreen extends Component {
     }
 
     return (
-      <View style={{paddingTop: 10}}>
-        <FlatList
-          data={ this.state.schools }
-          renderItem={ ({item}) => this._renderRow(item) }
-          refreshing={false}
-          keyExtractor={ this._keyExtractor }
-          onEndReached={ () => this.getMore() }
-          onEndReachedThreshold={0.7}
-        />
-      </View>
+      <FlatList
+        data={ this.state.schools }
+        renderItem={ ({item}) => this._renderRow(item) }
+        refreshing={false}
+        keyExtractor={ this._keyExtractor }
+        onEndReached={ () => this.getMore() }
+        onEndReachedThreshold={0.7}
+        contentContainerStyle={{paddingBottom: 70}}
+      />
     )
   }
 
   render() {
     return (
       <View style={{flex: 1}}>
-        <StatusBar />
-
-        <SegmentView
-          activePage={this.state.activePage}
-          setContent={(active) => this.setContent(active)}>
-        </SegmentView>
+        <SchoolNavigationHeader activePage={this.state.activePage} setContent={(active) => this.setContent(active)} />
 
         <View style={{flex: 1}}>
           { this.renderContent() }
-
           <FilterButton
             navigation={this.props.navigation}
             category={this.segments[this.state.activePage]}
             refreshValue={ this.refreshState.bind(this)}
             number={!!this.state.currentProvince + !!this.state.currentMajor}
-            />
+          />
         </View>
       </View>
     )
