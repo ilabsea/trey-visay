@@ -9,8 +9,18 @@ import ProfileFormScreen from '../screens/Profile/ProfileFormScreen';
 import HollandInstructionScreen from '../screens/HollandTest/HollandInstructionScreen';
 import HollandQuestionnaireScreen from '../screens/HollandTest/HollandQuestionnaireScreen';
 import HollandTestResultScreen from '../screens/HollandTest/HollandTestResultScreen';
-import MajorSelectMultiple from '../screens/MajorSelection/MajorSelectMultiple';
-import MajorSelectOne from '../screens/MajorSelection/MajorSelectOne';
+
+import MajorSelectMultipleScreen from '../screens/MajorSelection/MajorSelectMultipleScreen';
+import MajorSelectOneScreen from '../screens/MajorSelection/MajorSelectOneScreen';
+import MajorDetailScreen from '../screens/MajorSelection/MajorDetailScreen';
+import MajorRecommendationScreen from '../screens/MajorSelection/MajorRecommendationScreen';
+
+import JobSelectMultipleScreen from '../screens/JobSelection/JobSelectMultipleScreen';
+import JobSelectOneScreen from '../screens/JobSelection/JobSelectOneScreen';
+import JobDetailScreen from '../screens/JobSelection/JobDetailScreen';
+import JobRecommendationScreen from '../screens/JobSelection/JobRecommendationScreen';
+
+import HollandDetailScreen from '../screens/HollandTest/HollandDetailScreen';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -22,12 +32,23 @@ function CareerCounsellorStack() {
       <Stack.Screen name="HollandHomeScreen" component={HollandHomeScreen} options={{headerShown: false}} />
       <Stack.Screen name="HollandAboutScreen" component={HollandAboutScreen} options={{title: "អំពីការវាយតម្លៃមុខរបរនិងអាជីព"}} />
       <Stack.Screen name="ProfileFormScreen" component={ProfileFormScreen} options={{headerShown: false}} />
+
       <Stack.Screen name="HollandInstructionScreen" component={HollandInstructionScreen} options={{headerShown: false}} />
       <Stack.Screen name="PersonalUnderstandingTestScreen" component={PersonalUnderstandingTest} options={{headerShown: false}} />
       <Stack.Screen name="HollandQuestionnaireScreen" component={HollandQuestionnaireScreen} options={{headerShown: false}} />
       <Stack.Screen name="HollandTestResultScreen" component={HollandTestResultScreen} options={{headerShown: false}} />
-      <Stack.Screen name="MajorSelectMultiple" component={MajorSelectMultiple} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
-      <Stack.Screen name="MajorSelectOne" component={MajorSelectOne} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+
+      <Stack.Screen name="MajorSelectMultipleScreen" component={MajorSelectMultipleScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+      <Stack.Screen name="MajorSelectOneScreen" component={MajorSelectOneScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+      <Stack.Screen name="MajorDetailScreen" component={MajorDetailScreen} options={({route}) => {title: route.title}} />
+      <Stack.Screen name="MajorRecommendationScreen" component={MajorRecommendationScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+
+      <Stack.Screen name="JobSelectMultipleScreen" component={JobSelectMultipleScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+      <Stack.Screen name="JobSelectOneScreen" component={JobSelectOneScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+      <Stack.Screen name="JobDetailScreen" component={JobDetailScreen} options={({route}) => {title: route.title}} />
+      <Stack.Screen name="JobRecommendationScreen" component={JobRecommendationScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+
+      <Stack.Screen name="HollandDetailScreen" component={HollandDetailScreen} options={{headerShown: false}} />
     </Stack.Navigator>
   )
 }

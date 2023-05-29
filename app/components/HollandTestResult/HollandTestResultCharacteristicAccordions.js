@@ -13,9 +13,8 @@ import characteristicList from './json/characteristics'
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import { useSelector } from 'react-redux'
 
-const HollandTestResultCharacteristicAccordions = () => {
-  const currentQuiz = useSelector((state) => state.currentQuiz.value);
-  const hollandScores = currentQuiz.sortedHollandScore;
+const HollandTestResultCharacteristicAccordions = ({quiz}) => {
+  const hollandScores = quiz.sortedHollandScore;
   const personalityTypes = hollandScores.map(c => c[0]);
   const characteristics = personalityTypes.map(a => characteristicList.filter(o => o.shortcut == a)[0]);
 

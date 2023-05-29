@@ -12,8 +12,14 @@ import { Content, Body, Right, Icon, CardItem } from 'native-base';
 import ButtonList from '../../components/list/button_list';
 import Text from '../../components/Text';
 import { StartQuizButton, ResumeQuizButton}  from './components';
+import QuizListItem from './components/QuizListItem';
+import useAuth from "../../auth/useAuth";
+import Quiz from '../../models/Quiz';
 
 const HollandHomeScreen = ({route, navigation}) => {
+  const { user } = useAuth();
+  const quizzes = !!user ? Quiz.findAllByUser(user.uuid) : [];
+
   const title = 'វាយតម្លៃមុខរបរនិងអាជីព';
   const renderAboutItem = () => {
     return (
@@ -25,6 +31,29 @@ const HollandHomeScreen = ({route, navigation}) => {
           title='អំពីការធ្វើតេសវាយតម្លៃមុខរបរ និងអាជីព' />
       </View>
     )
+  }
+
+  const renderQuizList = () => {
+    let count = quizzes.length;
+
+    if (!count) return;
+
+    return (
+      <View style={{padding: 16}}>
+        <Text>លទ្ធផលធ្វើតេស្ត</Text>
+
+        { quizzes.map((quiz, i) =>
+          (
+            <QuizListItem
+              key={i}
+              number={i + 1}
+              createdAt={quiz.createdAt}
+              onPress={ () => navigation.navigate('HollandDetailScreen', {quiz: quiz, title: `តេស្តលើកទី ${i + 1}`}) }
+            />
+          )
+        )}
+      </View>
+    );
   }
 
   renderContent = () => {
@@ -43,6 +72,8 @@ const HollandHomeScreen = ({route, navigation}) => {
             </View>
           </Body>
         </CardItem>
+
+        { renderQuizList() }
       </Content >
     )
   }
