@@ -140,7 +140,7 @@ export default class VideoScreen extends Component {
 
   _renderForeground = () => {
     return (
-      <View>
+      <View style={{borderWidth: 0}}>
         <Text style={[scrollHeaderStyle.largeTitle, {marginBottom: -8}]}>វីដេអូមុខរបរ</Text>
         <View style={[styles.searchBarHeader, {flexDirection: 'row'}]}>
           <Icon name="ios-search" />
@@ -178,6 +178,7 @@ export default class VideoScreen extends Component {
           renderContent={ this._renderMainContent }
           renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
           title={'វីដេអូមុខរបរ'}
+          // largeTitle='វីដេអូមុខរបរ'
           renderForeground={ this._renderForeground }
           headerMaxHeight={160}
         />
