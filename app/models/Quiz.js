@@ -13,6 +13,10 @@ export default class Quiz {
     return BaseModel.findByUuid(MODEL, uuid);
   }
 
+  static findAllByUser = (userUuid) => {
+    return realm.objects(MODEL).filtered(`userUuid = '${userUuid}' AND step > 2`);
+  }
+
   static create = (params) => {
     return realm.create(MODEL, {...params, createdAt: new Date(), uuid: uuidv4()});
   }

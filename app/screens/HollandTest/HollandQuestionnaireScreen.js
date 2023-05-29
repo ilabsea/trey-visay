@@ -14,7 +14,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import HollandQuestionItem from './components/HollandQuestionItem';
 import Quiz from '../../models/Quiz';
 import { Form, SubmitButton } from '../../components/forms';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux';
 import { appendAnswer, resetAnswer } from '../../redux/features/quiz/hollandSlice';
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import { getQuestions, getForm, getHollandScore } from './services/question_service';

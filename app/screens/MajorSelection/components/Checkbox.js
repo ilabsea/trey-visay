@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { View, TouchableOpacity } from 'react-native';
-import { Checkbox } from 'react-native-paper';
-import Text from "./Text";
-import { Colors } from '../assets/style_sheets/main/colors';
+import { Checkbox, Divider } from 'react-native-paper';
+import { Text } from "../../../components";
+import Color from '../../../themes/color';
 
 const MyCheckbox = (props) => {
   const [checked, setChecked] = React.useState(props.checked);
@@ -23,11 +23,17 @@ const MyCheckbox = (props) => {
       <Checkbox
         status={ checked ? 'checked' : 'unchecked' }
         onPress={ onPress }
-        color={ Colors.blue }
+        color={ Color.blue }
       />
 
-      <TouchableOpacity onPress={onPress}>
+      <TouchableOpacity onPress={onPress} style={{flex: 1}}>
         <Text>{props.label}</Text>
+      </TouchableOpacity>
+
+      <Divider style={{width: 1, height: '100%',marginHorizontal: 8}} />
+
+      <TouchableOpacity onPress={() => {alert(0)}}>
+        <Text style={{fontSize: 12}}>ចូលមើលលម្អិត</Text>
       </TouchableOpacity>
     </View>
   );

@@ -4,9 +4,8 @@ import { BarChart } from 'react-native-charts-wrapper';
 import { useSelector } from 'react-redux';
 import characteristicsColor from './json/characteristics_color';
 
-const HollandTestResultBarChart = (props) => {
-  const currentQuiz = useSelector((state) => state.currentQuiz.value);
-  const hollandScore = currentQuiz.sortedHollandScore;
+const HollandTestResultBarChart = ({quiz}) => {
+  const hollandScore = quiz.sortedHollandScore;
   const yData = hollandScore.map(c => ({y: c[1]}));
   const yColors = hollandScore.map(c => characteristicsColor[c[0]]);
   const xData = hollandScore.map(c => c[0]);
