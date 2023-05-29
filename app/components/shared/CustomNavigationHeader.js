@@ -1,19 +1,19 @@
 import React from 'react'
-import {View, Text, StyleSheet} from 'react-native'
+import {View, StyleSheet} from 'react-native'
 import {Appbar} from 'react-native-paper';
 
 import {BackButton} from '..'
 import {goBack} from '../../hooks/RootNavigation'
 import { FontSetting } from '../../assets/style_sheets/font_setting';
-import {getStyleOfOS} from '../../utils/responsive_util';
+import {FontFamily} from '../../themes/font';
 import {navHeaderPaddingTop} from '../../constants/component_constant';
 
 const CustomNavigationHeader = (props) => {
   return (
-    <Appbar.Header style={styles.header}>
+    <Appbar.Header style={[styles.header, props.headerStyle]}>
       <View style={{flexDirection: 'row', alignItems: 'center', width: '100%'}}>
         <BackButton onPress={() => !!props.onPressBack ? props.onPressBack() : goBack()} />
-        <Text numberOfLines={1} style={styles.title}>{props.title}</Text>
+        <Appbar.Content title={props.title} titleStyle={styles.title} numberOfLines={1} />
       </View>
       {props.children}
     </Appbar.Header>
@@ -26,14 +26,13 @@ const styles = StyleSheet.create({
     elevation: 1,
     flexDirection: 'column',
     height: 'auto',
-    paddingBottom: 16,
+    paddingBottom: 13,
     paddingTop: navHeaderPaddingTop
   },
   title: {
     color: 'black',
+    fontFamily: FontFamily.regular,
     fontSize: FontSetting.nav_title,
-    marginTop: getStyleOfOS(0, -4),
-    paddingHorizontal: 16,
   }
 })
 

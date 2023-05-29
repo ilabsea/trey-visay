@@ -118,7 +118,6 @@ const FormScreen = ({onSubmit}) => {
             { renderPicker({label: 'រៀននៅសាលា', name: 'highSchoolCode', options: noValue.concat(filterOption(highSchools, values.districtCode)) })}
           </View>
         }
-
       </View>
     )
   }

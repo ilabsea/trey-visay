@@ -63,7 +63,7 @@ const ScrollableHeaderMain = (props) => {
     <Animated.View
       style={[
         styles.header,
-        { height: scrollableHeaderUtil.getHeaderMaxHeight(props.headerMaxHeight) },
+        { height: scrollableHeaderUtil.getHeaderMaxHeight(props.headerMaxHeight)},
         { backgroundColor: bgColor, transform: [{ translateY: scrollableHeaderUtil.getHeaderTranslate(props.scrollY, props.headerMaxHeight) }] },
         props.headerStyle,
       ]}
