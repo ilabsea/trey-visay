@@ -2,14 +2,27 @@ import React from 'react'
 import { View, ScrollView } from 'react-native'
 import { Text } from '../../components';
 import { Card, Divider } from 'react-native-paper';
-import { Form, SubmitButton, CheckboxGroup, ErrorMessage } from '../../components/forms';
+import { Form, SubmitButton } from '../../components/forms';
 import listMajor from './json/list_major';
+import Quiz from '../../models/Quiz';
 import * as Yup from "yup";
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
+import CheckboxGroup from './components/CheckboxGroup';
 
-const MajorSelectMultiple = ({navigation}) => {
-  const handleSubmit = () => {
-    console.log("----------------------submit multiple")
-    navigation.navigate('MajorSelectOne');
+const MajorSelectMultipleScreen = ({route, navigation}) => {
+  // const currentQuiz = useSelector((state) => state.currentQuiz.value);
+  const currentQuiz = route.params.quiz;
+  const dispatch = useDispatch();
+
+  const handleSubmit = (values, {errors}) => {
+    Quiz.write(()=> {
+      currentQuiz.majorOptions = values.majors;
+
+      dispatch(setCurrentQuiz(currentQuiz));
+    })
+
+    navigation.navigate('MajorSelectOneScreen', {quiz: currentQuiz});
   }
 
   const validationSchema = Yup.object().shape({
@@ -18,7 +31,7 @@ const MajorSelectMultiple = ({navigation}) => {
 
   return (
     <Form
-      initialValues={{}}
+      initialValues={{majors: []}}
       onSubmit={ handleSubmit }
       validationSchema={validationSchema}>
 
@@ -37,4 +50,4 @@ const MajorSelectMultiple = ({navigation}) => {
   )
 }
 
-export default MajorSelectMultiple
+export default MajorSelectMultipleScreen

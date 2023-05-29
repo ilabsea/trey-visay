@@ -9,8 +9,10 @@ import BottomSheetModalComponent from '../../components/shared/BottomSheetModalC
 import {screenHorizontalPadding} from '../../constants/component_constant';
 import {hollandTestResultOptionsSnapPoints} from '../../constants/modal_constant';
 import {getStyleOfOS} from '../../utils/responsive_util';
+import { useSelector } from 'react-redux';
 
 const HollandTestResult = ({navigation}) => {
+  const currentQuiz = useSelector((state) => state.currentQuiz.value);
   const modalRef = React.useRef();
   const title = "តេស្តបុគ្គលិកលក្ខណៈ"
   const renderContent = () => {
@@ -18,15 +20,15 @@ const HollandTestResult = ({navigation}) => {
       <View style={{marginBottom: 10}}>
         <View style={{paddingTop: 10, paddingHorizontal: screenHorizontalPadding}}>
           <Text style={{color: 'black', lineHeight: getStyleOfOS(30, 34)}}>ខាងក្រោមនេះ ជាលទ្ធផលតេស្ដរបស់អ្នក! សូមអ្នកឈ្វេងយល់ពីការពណ៌នាលម្អិតអំពីបុគ្គលិកលក្ខណៈរបស់អ្នកដូចខាងក្រោម </Text>
-          <HollandTestResultBarChart/>
+          <HollandTestResultBarChart quiz={currentQuiz}/>
         </View>
-        <HollandTestResultCharacteristicAccordions/>
+        <HollandTestResultCharacteristicAccordions quiz={currentQuiz}/>
       </View>
     )
   }
 
   const showOptionsBottomSheet = () => {
-    modalRef.current?.setContent(<HollandTestResultOptionsBottomSheet/>)
+    modalRef.current?.setContent(<HollandTestResultOptionsBottomSheet navigation={navigation} modalRef={modalRef} quiz={currentQuiz}/>)
     modalRef.current?.present()
   }
 
