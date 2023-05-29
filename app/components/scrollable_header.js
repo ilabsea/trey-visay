@@ -5,6 +5,8 @@ import {
   StatusBar,
   StyleSheet,
   View,
+  TouchableWithoutFeedback,
+  Keyboard
 } from 'react-native';
 import PropTypes from 'prop-types';
 import scrollableHeaderUtil from '../utils/scrollable_header_util';
@@ -98,12 +100,14 @@ class ScrollableHeader extends Component {
 
   render() {
     return (
-      <View style={styles.fill}>
-        { this.renderStatusBar() }
-        { this.renderContent() }
-        { this.renderHeader() }
-        { this.renderNavigation()}
-      </View>
+      <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+        <View style={styles.fill}>
+          { this.renderStatusBar() }
+          { this.renderNavigation()}
+          { this.renderContent() }
+          { this.renderHeader() }
+        </View>
+      </TouchableWithoutFeedback>
     );
   }
 }

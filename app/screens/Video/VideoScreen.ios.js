@@ -1,30 +1,24 @@
 import React, { Component } from 'react';
 import {
   View,
-  StyleSheet,
   ActivityIndicator,
   FlatList,
   Platform,
-  TouchableOpacity,
 } from 'react-native';
 
 import NetInfo from "@react-native-community/netinfo";
 import Toast, { DURATION } from 'react-native-easy-toast';
-
-import { ThemeContext, getTheme, Toolbar } from 'react-native-material-ui';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
-import BackButton from '../../components/shared/back_button';
-import ScrollableHeader from '../../components/scrollable_header';
 import VideoListView from '../../components/video/video_list';
 import LoadingIndicator from '../../components/loading_indicator';
+import SearchableHeader from '../../components/shared/searchableHeaders/SearchableHeader'
 
 import videoList from '../../data/json/videos';
-import scrollHeaderStyle from '../../assets/style_sheets/scroll_header';
-import { Item, Input, Icon, Header } from 'native-base';
 import Text from '../../components/Text';
 import { Button } from 'react-native-paper';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import color from '../../themes/color'
 
 export default class VideoScreen extends Component {
   constructor(props) {
@@ -138,27 +132,6 @@ export default class VideoScreen extends Component {
     });
   }
 
-  _renderForeground = () => {
-    return (
-      <View>
-        <Text style={[scrollHeaderStyle.largeTitle, {marginBottom: -8}]}>វីដេអូមុខរបរ</Text>
-        <View style={[styles.searchBarHeader, {flexDirection: 'row'}]}>
-          <Icon name="ios-search" />
-          <Input
-            onChangeText={(text) => this._onChangeText(text)}
-            autoCorrect={false}
-            value={this.state.textSearch}
-            placeholder='ស្វែងរក'/>
-          { !!this.state.textSearch &&
-            <TouchableOpacity style={{height: '100%'}} onPress={() => this._onSearchClosed()}>
-              <Icon active name='close-circle' style={{paddingTop: 2, color: 'rgba(0,0,0,0.7)'}} />
-            </TouchableOpacity>
-          }
-        </View>
-      </View>
-    )
-  }
-
   _renderMainContent = () => {
     if (!this.state.isLoaded) {
       return (null)
@@ -174,28 +147,13 @@ export default class VideoScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}} ref="myRef">
-        <ScrollableHeader
-          renderContent={ this._renderMainContent }
-          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
-          title={'វីដេអូមុខរបរ'}
-          renderForeground={ this._renderForeground }
-          headerMaxHeight={160}
+        <SearchableHeader title="វីដេអូមុខរបរ" placeholder="ស្វែងរកវីដេអូ" containerStyle={{borderBottomWidth: 1, borderColor: color.paleGray}}
+          searchedText={this.state.textSearch}
+          setSearchedText={(text) => this._onChangeText(text)}
         />
-
+        {this._renderMainContent()}
         <Toast ref='toast' positionValue={ Platform.OS == 'ios' ? 120 : 140 }/>
       </View>
     )
   };
 }
-
-const styles = StyleSheet.create({
-  searchBarHeader: {
-    paddingRight: 0,
-    paddingLeft: 0,
-    paddingTop: 0,
-    marginTop: 0,
-    height: 30,
-    backgroundColor: 'transparent',
-    borderBottomWidth: 0
-  }
-})

@@ -10,11 +10,11 @@ const ScrollableHeaderForeground = (props) => {
   return (
     <Animated.View
       style={[
-        { transform: [{ translateY:scrollableHeaderUtil.getTitleScale(props.scrollY, props.headerMaxHeight) }] },
-        { opacity: scrollableHeaderUtil.getOverlayOpacity(props.scrollY, props.headerMaxHeight) }
-      ]}>
-
-      <View style={{position: 'absolute', left: 20, right: 20, bottom: 10}}>
+        { opacity: scrollableHeaderUtil.getOverlayOpacity(props.scrollY, props.headerMaxHeight) },
+        {position: 'relative', top: 56, position: 'absolute', width: '100%'}
+      ]}
+    >
+      <View style={{width: '100%', marginHorizontal: 16}}>
         { props.renderForeground() }
       </View>
     </Animated.View>
