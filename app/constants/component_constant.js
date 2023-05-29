@@ -1,5 +1,6 @@
 import {Platform} from 'react-native';
-import { getStyleOfDevice, isLowPixelDensityDevice } from '../utils/responsive_util';
+import DeviceInfo from 'react-native-device-info';
+import { getStyleOfDevice, getStyleOfOS, isLowPixelDensityDevice } from '../utils/responsive_util';
 import {xLargeFontSize, largeFontSize} from '../utils/font_size_util';
 
 export const buttonBorderRadius = 10;
@@ -9,6 +10,7 @@ export const outlinedButtonBorderWidth = 2.2;
 export const navigationHeaderIconSize = 24;
 export const navHeaderHorizontalPadding = getStyleOfDevice(12, 0);
 export const navHeaderBigTitleHorizontalPadding = getStyleOfDevice(4, 0);
+export const navHeaderPaddingTop = getStyleOfOS(DeviceInfo.hasNotch() ? 0 : 4, 18);
 export const screenHorizontalPadding = getStyleOfDevice(24, 16);
 export const bottomTabBarHeight = 62;
 export const scrollViewPaddingBottom = bottomTabBarHeight + 18;
@@ -21,3 +23,4 @@ export const gradientScrollViewBigPaddingBottom = getStyleOfDevice(170, 125);
 export const gradientScrollViewPaddingBottom = getStyleOfDevice(90, 80);
 export const cardTitleLineHeight = getStyleOfDevice(Platform.OS == 'ios' ? 32 : 30, 28);
 export const pressableItemSize = 48
+export const arrowRightIconSize = getStyleOfDevice(30, 24)

@@ -3,16 +3,20 @@ import {
   StyleSheet,
   Image,
   View,
-  Text
+  Text,
+  Platform
 } from 'react-native';
 import { Button } from 'native-base';
+import DeviceInfo from 'react-native-device-info';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
+import {pressableItemSize} from '../../constants/component_constant';
+import {getStyleOfDevice, getStyleOfOS} from '../../utils/responsive_util';
 
 class FilterButton extends React.Component {
-
   render() {
+    const imageSize = getStyleOfDevice(getStyleOfOS(22, 18), 18) // ipad 22dp
     return (
       <Button
         style={styles.btn}
@@ -27,7 +31,7 @@ class FilterButton extends React.Component {
 
         <Image
           source={require('../../assets/icons/school/filter.png')}
-          style={{width: 18, height: 18}} />
+          style={{width: imageSize, height: imageSize}} />
 
         <Text style={styles.findText}>ស្វែងរក</Text>
 
@@ -52,12 +56,15 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 16,
     padding: 16,
-    backgroundColor: Colors.blue
+    backgroundColor: Colors.blue,
+    height: pressableItemSize,
+    marginBottom: Platform.OS === 'ios' ? getStyleOfDevice(14, DeviceInfo.hasNotch() ? 14 : 0) : 0
   },
   findText: {
     fontSize: FontSetting.text,
     marginLeft: 10,
     color: '#fff',
+    marginTop: getStyleOfOS(getStyleOfDevice(0, 2), -3)
   }
 })
 
