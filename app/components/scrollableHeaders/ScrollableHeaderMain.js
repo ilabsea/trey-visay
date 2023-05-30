@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: NAVIGATION_BUTTON_WIDTH,
     right: NAVIGATION_BUTTON_WIDTH,
-    bottom: getStyleOfOS(getStyleOfDevice(2, 6), -2),
+    bottom: getStyleOfOS(getStyleOfDevice(2, 6), -5),
     justifyContent: 'center',
     height: getStyleOfOS('auto', DEFAULT_HEADER_MIN_HEIGHT),
   },
