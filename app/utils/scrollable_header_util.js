@@ -19,7 +19,8 @@ const scrollableHeaderUtil = (() => {
   }
 
   function getHeaderScrollDistance(headerMaxHeight) {
-    return getHeaderMaxHeight(headerMaxHeight) - DEFAULT_HEADER_MIN_HEIGHT;
+    // return getHeaderMaxHeight(headerMaxHeight) - DEFAULT_HEADER_MIN_HEIGHT;
+    return getHeaderMaxHeight(headerMaxHeight) - (DEFAULT_HEADER_MIN_HEIGHT - 8);
   }
 
   function getOverlayOpacity(scrollY, headerMaxHeight) {
