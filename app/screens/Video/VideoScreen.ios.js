@@ -16,7 +16,7 @@ import SearchableHeader from '../../components/shared/searchableHeaders/Searchab
 
 import videoList from '../../data/json/videos';
 import Text from '../../components/Text';
-import { Button } from 'react-native-paper';
+import { Button, Divider } from 'react-native-paper';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import color from '../../themes/color'
 
@@ -79,6 +79,7 @@ export default class VideoScreen extends Component {
         refreshing={false}
         onRefresh={ () => this._onRefresh() }
         keyExtractor={(item, index) => index.toString() }
+        ItemSeparatorComponent={() => <Divider style={{marginVertical: 0.5}}/>}
       />
     )
   }
