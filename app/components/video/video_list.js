@@ -14,7 +14,8 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import RF from "react-native-responsive-fontsize";
 import YoutubePopupPlayer from 'react-native-youtube-popup-player';
 import {arrowRightIconSize} from '../../constants/component_constant'
-import {getStyleOfDevice} from '../../utils/responsive_util'
+import {getStyleOfDevice, getStyleOfOS} from '../../utils/responsive_util'
+import videoUtil from '../../utils/video_util'
 import color from '../../themes/color'
 
 export default function VideoList (props) {
@@ -30,7 +31,7 @@ export default function VideoList (props) {
           imageWidth={imageWidth}
           imageHeight={getStyleOfDevice(120, 100)}
           iconStyle={{width: '20%', height: '30%', resizeMode: 'contain'}}
-          onPress={() => {}}
+          onPress={() => setModalVisible(true)}
         />
         <View style={styles.textContainer}>
           <Text style={[mainStyles.title, styles.title]}>{ props.item.title }</Text>
@@ -48,8 +49,10 @@ export default function VideoList (props) {
         videoUrl={ props.item.url }
         modalVisible={ modalVisible }
         hasInternet={props.isInternetReachable}
-        playerPaddingTop='31%'
+        // playerPaddingTop='31%'
         closeModal={() => setModalVisible(false)}
+        // iframeHeight={getStyleOfDevice(getStyleOfOS(hp('36%'), 330), getStyleOfOS(210, 220))}
+        iframeHeight={videoUtil.getIframeHeight()}
       />
     </View>
   )
