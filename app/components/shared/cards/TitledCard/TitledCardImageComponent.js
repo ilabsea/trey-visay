@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
+import {getStyleOfDevice} from '../../../../utils/responsive_util'
 
 const TitledCardImageComponent = (props) => {
   return <View style={{flex: 1.5}}>
@@ -9,7 +10,7 @@ const TitledCardImageComponent = (props) => {
 
 const styles = StyleSheet.create({
   image: {
-    height: 115,
+    height: getStyleOfDevice(125, 115),
     width: '100%',
     top: -46,
     zIndex: 1,

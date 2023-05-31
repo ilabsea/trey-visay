@@ -32,10 +32,8 @@ const TitledCardComponent = (props) => {
 
       <View style={styles.backgroundContainer}>
         <View style={styles.infoContainer}>
-
           <TiltedCardImageComponent image={props.item.source_image} />
-
-          <View style={{top: -30, alignItems: 'center'}}>
+          <View style={styles.titleContainer}>
             <BoldLabelComponent label={props.item.title} numberOfLines={2} style={styles.title} />
           </View>
         </View>

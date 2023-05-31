@@ -12,7 +12,7 @@ const HomeScreen = ({navigation}) => {
 
   const renderBody = () => {
     return (
-      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between'}}>
+      <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-between', paddingBottom: 16}}>
         { home_categories.map((item, index) =>
           <CardItemComponent key={index} item={item} onPress={() => onPress(item)}/>
         )}
