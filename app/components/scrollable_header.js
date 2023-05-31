@@ -6,14 +6,14 @@ import {
   StyleSheet,
   View,
   TouchableWithoutFeedback,
-  Keyboard
+  Keyboard,
+  Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 import scrollableHeaderUtil from '../utils/scrollable_header_util';
 
 import ScrollableHeaderMain from './scrollableHeaders/ScrollableHeaderMain';
 import ScrollableHeaderNavigation from './scrollableHeaders/ScrollableHeaderNavigation'
-import {DEFAULT_HEADER_MAX_HEIGHT} from '../constants/nav_header_constant'
 // import { Header } from 'react-navigation';
 // import { useHeaderHeight } from '@react-navigation/elements';
 
@@ -23,9 +23,6 @@ import {DEFAULT_HEADER_MAX_HEIGHT} from '../constants/nav_header_constant'
 const styles = StyleSheet.create({
   fill: {
     flex: 1,
-  },
-  scrollViewContent: {
-    marginTop: DEFAULT_HEADER_MAX_HEIGHT,
   },
   row: {
     height: 40,
@@ -65,7 +62,7 @@ class ScrollableHeader extends Component {
           [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
           { useNativeDriver: true },
         )}>
-        <View style={[styles.scrollViewContent, { marginTop: scrollableHeaderUtil.getHeaderMaxHeight(this.props.headerMaxHeight) }]}>
+        <View style={[{ marginTop: scrollableHeaderUtil.getContentMarginTop(this.props.headerMaxHeight)}]}>
           { this.props.renderContent() }
         </View>
 
