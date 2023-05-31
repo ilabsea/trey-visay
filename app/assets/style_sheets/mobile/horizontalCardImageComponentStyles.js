@@ -1,20 +1,15 @@
 import { StyleSheet } from 'react-native';
-import { cardBorderRadius } from '../../../constants/component_constant';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 const HorizontalCardImageComponentStyles = StyleSheet.create({
   container:{
-    flex: 2,
-    height: 110
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: wp('26%')
   },
   image: {
-    // borderRadius: cardBorderRadius,
-    // elevation: 6,
-    // width: '100%',
-    // height: '100%',
     width: 105,
     height: 86,
-    // position: 'absolute',
-    // top: -16,
   }
 });
 
