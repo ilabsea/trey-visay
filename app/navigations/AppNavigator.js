@@ -29,13 +29,8 @@ function HomeTab() {
       tabBarLabelStyle: { lineHeight: Platform.OS == 'android' ? 20 : 0}
     }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{
-        headerShown: true,
-        title: "ត្រីវិស័យ",
         tabBarLabel: 'ទំព័រដេីម',
         tabBarIcon: ({ focused, horizontal, tintColor }) => (<MaterialIcon name='home' size={22} color={tintColor} />),
-        headerLeft: () => (
-          <Image source={require('../assets/images/logo.png')} style={{width: 40, height: 40, marginLeft: 16}} />
-        ),
       }} />
       {/*<Tab.Screen name="Profile" component={ProfileStack} options={{
         tabBarLabel: 'ប្រវត្តិរូបសង្ខេប',
