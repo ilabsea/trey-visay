@@ -2,6 +2,7 @@ import React from 'react';
 import GradientScrollViewComponent from '../../components/shared/GradientScrollViewComponent';
 import CardItemComponent from '../../components/shared/cards/CardItemComponent';
 import home_categories from '../../components/home/home_categories';
+import HomeNavigationHeader from '../../components/home/HomeNavigationHeader'
 import { View } from 'react-native';
 
 const HomeScreen = ({navigation}) => {
@@ -22,7 +23,7 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <GradientScrollViewComponent
-      header={<></>}
+      header={<HomeNavigationHeader/>}
       body={ renderBody() }
     />
   )

@@ -1,6 +1,5 @@
 import React from 'react';
 import {ScrollView, StyleSheet, View} from 'react-native';
-// import LinearGradient from 'react-native-linear-gradient';
 import {backgroundColors} from '../../themes/color';
 import {screenHorizontalPadding, gradientScrollViewBigPaddingBottom} from '../../constants/component_constant';
 
@@ -14,7 +13,7 @@ const GradientScrollViewComponent = (props) => {
       { props.isNotScrollView ?
           props.body
         :
-        <ScrollView contentContainerStyle={[styles.scrollView, props.scrollViewStyle]}
+        <ScrollView contentContainerStyle={[styles.scrollView,props.scrollViewStyle]}
           nestedScrollEnabled={true}
           scrollEnabled={props.scrollable ?? true}
           scrollEventThrottle={16}
@@ -31,7 +30,7 @@ const styles = StyleSheet.create({
   scrollView: {
     flexGrow: 1,
     paddingHorizontal: screenHorizontalPadding,
-    // paddingBottom: gradientScrollViewBigPaddingBottom
+    paddingBottom: gradientScrollViewBigPaddingBottom
   }
 });
 
