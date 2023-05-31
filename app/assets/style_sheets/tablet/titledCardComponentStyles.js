@@ -1,8 +1,8 @@
-import {StyleSheet, Platform, Dimensions} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 import color from '../../../themes/color';
-import {cardTitleFontSize} from '../../../constants/component_constant';
 import componentUtil from '../../../utils/component_util';
 import {getiPadStyle, getAndroidTabletStyle} from '../../../utils/responsive_util';
+import {FontSetting} from '../../../assets/style_sheets/font_setting';
 
 const titledCardComponentStyles = StyleSheet.create({
   container: {
@@ -67,9 +67,12 @@ const titledCardComponentStyles = StyleSheet.create({
     flexDirection: 'column',
     flexGrow: 1,
   },
+  titleContainer: {
+    alignItems: 'center',
+    top: -30
+  },
   title: {
-    fontSize: cardTitleFontSize,
-    flex: 1,
+    fontSize: FontSetting.title,
     lineHeight: 27,
     paddingHorizontal: 8,
     ...Platform.select({
@@ -77,10 +80,6 @@ const titledCardComponentStyles = StyleSheet.create({
         paddingTop: 8,
       }
     })
-  },
-  footer: {
-    flex: 3,
-    paddingTop: 8
   }
 });
 

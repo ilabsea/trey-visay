@@ -1,13 +1,12 @@
 import {StyleSheet, Platform} from 'react-native';
 import color from '../../../themes/color';
-import {cardTitleFontSize} from '../../../constants/component_constant';
 import componentUtil from '../../../utils/component_util';
-import {isLowPixelDensityDevice} from '../../../utils/responsive_util';
+import {isLowPixelDensityDevice, isShortScreenDevice} from '../../../utils/responsive_util';
+import {FontSetting} from '../../../assets/style_sheets/font_setting';
 
 const tiltedCardComponentStyles = StyleSheet.create({
   container: {
-    maxHeight: 160,
-    // maxHeight: 246,
+    maxHeight: isShortScreenDevice() ? 140 : 155,
     width: componentUtil.getGridCardWidth(),
     borderRadius: 70
   },
@@ -52,15 +51,13 @@ const tiltedCardComponentStyles = StyleSheet.create({
     flexDirection: 'column',
     flexGrow: 1,
   },
-  title: {
-    fontSize: cardTitleFontSize,
-    // flex: 1,
-    paddingHorizontal: 8,
+  titleContainer: {
+    alignItems: 'center',
+    top: isShortScreenDevice() ? -15 : -20
   },
-  footer: {
-    // flex: 3,
-    backgroundColor: 'yellow'
-    // paddingTop: 8
+  title: {
+    fontSize: FontSetting.title,
+    paddingHorizontal: 8,
   }
 });
 
