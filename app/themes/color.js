@@ -34,6 +34,7 @@ const Color = {
   grayStatusBar: 'rgba(0, 0, 0, 0.251)',
   borderColor: '#808080',
   paleGray: '#e6e7e9',
+  pressable: '#1876D3'
 }
 
 export default Color;

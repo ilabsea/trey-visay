@@ -19,20 +19,14 @@ const HorizontalCardComponent = (props) => {
 
   return (
     <Card style={[styles.container, props.containerStyle]} onPress={() => onPress()} >
-      <View style={{flexDirection: 'row'}}>
-        <View style={{}}>
-          <HorizontalCardImageComponent image={props.item.source_image} />
-        </View>
-
-        <View style={{flexGrow: 1, justifyContent: 'center', marginHorizontal: 4}}>
+      <View style={{flexDirection: 'row', height: '100%'}}>
+        <HorizontalCardImageComponent image={props.item.source_image} />
+        <View style={styles.labelContainer}>
           <BoldLabelComponent label={props.item.title} numberOfLines={2} style={styles.title} />
         </View>
-
-        <View style={{justifyContent: 'center'}}>
-          <View style={{flexDirection: 'row', alignItems: 'center'}}>
-            <Text style={styles.startLabel}>ចាប់ផ្តើម</Text>
-            <Icon name="chevron-right" size={24} style={[styles.arrowIcon, {marginHorizontal: 4}]}/>
-          </View>
+        <View style={styles.rightBtnContainer}>
+          <Text style={styles.startLabel}>ចាប់ផ្តើម</Text>
+          <Icon name="chevron-right" size={24} style={styles.arrowIcon}/>
         </View>
       </View>
     </Card>
