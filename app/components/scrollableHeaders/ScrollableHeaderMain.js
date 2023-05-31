@@ -78,6 +78,7 @@ const ScrollableHeaderMain = (props) => {
   )
 }
 
+const iosTitleBottom = getStyleOfDevice(6, 12)
 const styles = StyleSheet.create({
   header: {
     position: 'absolute',
@@ -95,7 +96,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: NAVIGATION_BUTTON_WIDTH,
     right: NAVIGATION_BUTTON_WIDTH,
-    bottom: getStyleOfOS(getStyleOfDevice(2, 6), -5),
+    bottom: getStyleOfOS(iosTitleBottom, -5),
     justifyContent: 'center',
     height: getStyleOfOS('auto', DEFAULT_HEADER_MIN_HEIGHT),
   },

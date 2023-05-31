@@ -1,4 +1,7 @@
+import {Platform} from 'react-native'
+import DeviceInfo from 'react-native-device-info'
 import {IPHONE_HEADER_HEIGHT, DEFAULT_HEADER_MAX_HEIGHT, DEFAULT_HEADER_MIN_HEIGHT} from '../constants/nav_header_constant'
+import {getStyleOfDevice} from './responsive_util'
 
 const scrollableHeaderUtil = (() => {
   return {
@@ -8,7 +11,8 @@ const scrollableHeaderUtil = (() => {
     getInputRange,
     getOverlayTranslate,
     getTitleScale,
-    getHeaderTranslate
+    getHeaderTranslate,
+    getContentMarginTop
   }
 
   function getHeaderMaxHeight(headerMaxHeight) {
@@ -19,8 +23,11 @@ const scrollableHeaderUtil = (() => {
   }
 
   function getHeaderScrollDistance(headerMaxHeight) {
-    // return getHeaderMaxHeight(headerMaxHeight) - DEFAULT_HEADER_MIN_HEIGHT;
-    return getHeaderMaxHeight(headerMaxHeight) - (DEFAULT_HEADER_MIN_HEIGHT - 8);
+    let margin = 9     // Android mobile and tablet margin
+    if (Platform.OS === 'ios')
+      margin = getStyleOfDevice(-14, DeviceInfo.hasNotch() ? -15 : -12)
+
+    return getHeaderMaxHeight(headerMaxHeight) - (DEFAULT_HEADER_MIN_HEIGHT - margin)
   }
 
   function getOverlayOpacity(scrollY, headerMaxHeight) {
@@ -59,6 +66,14 @@ const scrollableHeaderUtil = (() => {
       outputRange: [0, -getHeaderScrollDistance(headerMaxHeight)],
       extrapolate: 'clamp',
     });
+  }
+
+  function getContentMarginTop(headerMaxHeight) {
+    if (headerMaxHeight)
+      return headerMaxHeight
+
+    const iPhoneMargin = !DeviceInfo.hasNotch() ? 19 : 47
+    return Platform.OS === 'ios' ? DEFAULT_HEADER_MAX_HEIGHT - getStyleOfDevice(24, iPhoneMargin) : DEFAULT_HEADER_MAX_HEIGHT
   }
 })()
 
