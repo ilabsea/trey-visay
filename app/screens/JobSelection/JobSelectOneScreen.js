@@ -15,7 +15,7 @@ import Quiz from '../../models/Quiz';
 import {FontSetting} from '../../assets/style_sheets/font_setting';
 
 const JobSelectOneScreen = ({route}) => {
-  const [modalVisible, setModalVisible] = React.useState(false)
+  const [confirmModalVisible, setConfirmModalVisible] = React.useState(false)
   const [selectedJob, setSelectedJob] = React.useState(null)
   const [resetAction, setResetAction] = React.useState(null)
   const currentQuiz = route.params.quiz;
@@ -31,7 +31,7 @@ const JobSelectOneScreen = ({route}) => {
 
   const renderConfirmModal = () => {
     return <ConfirmationModal
-              visible={modalVisible}
+              visible={confirmModalVisible}
               message={() => renderMessage()}
               leftButtonLabel='ជ្រើសរើសម្ដងទៀត'
               rightButtonLabel='បាទ/ចាស'
@@ -41,12 +41,12 @@ const JobSelectOneScreen = ({route}) => {
   }
 
   const selectAgain = () => {
-    setModalVisible(false);
+    setConfirmModalVisible(false);
     resetAction && resetAction();
   }
 
   const onConfirm = () => {
-    setModalVisible(false);
+    setConfirmModalVisible(false);
     updateQuiz(selectedJob);
     showCongratulation(selectedJob);
   }
@@ -75,7 +75,7 @@ const JobSelectOneScreen = ({route}) => {
   }
 
   const handleSubmit = (values, {errors, resetForm}) => {
-    setModalVisible(true)
+    setConfirmModalVisible(true)
     setSelectedJob(values.job)
     setResetAction(resetForm)
   }
