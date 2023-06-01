@@ -3,6 +3,8 @@ import { View, ScrollView, Alert } from 'react-native'
 import { Text } from '../../components';
 import { Divider } from 'react-native-paper';
 import { Form, SubmitButton, SelectOneListItemGroup } from '../../components/forms';
+import ConfirmationModal from '../../components/shared/ConfirmationModal'
+import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
 import listJob from './json/list_job';
 import * as Yup from "yup";
 import RadioGroup from '../MajorSelection/components/RadioGroup';
@@ -10,12 +12,44 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import { useNavigation } from '@react-navigation/native';
 import Quiz from '../../models/Quiz';
+import {FontSetting} from '../../assets/style_sheets/font_setting';
 
 const JobSelectOneScreen = ({route}) => {
+  const [modalVisible, setModalVisible] = React.useState(false)
+  const [selectedJob, setSelectedJob] = React.useState(null)
+  const [resetAction, setResetAction] = React.useState(null)
   const currentQuiz = route.params.quiz;
   const dispatch = useDispatch();
   const jobs = listJob.filter(o => Object.values(currentQuiz.jobOptions).includes(o.value))
   const navigation = useNavigation();
+
+  const renderMessage = () => {
+    return <Text style={{color: 'black'}}>
+              តើអ្នកពិតជាសម្រេចចិត្តជ្រើសរើសអាជីពការងារ “<BoldLabelComponent label={selectedJob}/>” សម្រាប់នាពេលអនាគត មែនឬទេ?
+           </Text>
+  }
+
+  const renderConfirmModal = () => {
+    return <ConfirmationModal
+              visible={modalVisible}
+              message={() => renderMessage()}
+              leftButtonLabel='ជ្រើសរើសម្ដងទៀត'
+              rightButtonLabel='បាទ/ចាស'
+              onLeftPress={() => selectAgain()}
+              onRightPress={() => onConfirm()}
+          />
+  }
+
+  const selectAgain = () => {
+    setModalVisible(false);
+    resetAction && resetAction();
+  }
+
+  const onConfirm = () => {
+    setModalVisible(false);
+    updateQuiz(selectedJob);
+    showCongratulation(selectedJob);
+  }
 
   const showCongratulation = (job) => {
     Alert.alert(
@@ -40,28 +74,10 @@ const JobSelectOneScreen = ({route}) => {
     })
   }
 
-  const handleAlert = (job, resetForm) => {
-    Alert.alert('', `តើអ្នកពិតជាសម្រេចចិត្តជ្រើសរើសអាជីពការងារ “${job}” សម្រាប់នាពេលអនាគត មែនឬទេ?`,
-      [
-        {
-          text: 'ជ្រើសរើសម្តងទៀត',
-          onPress: () => {
-            resetForm();
-          },
-        },
-        {
-          text: 'បាទ/ចាស',
-          onPress: () => {
-            updateQuiz(job);
-            showCongratulation(job);
-          },
-        }
-      ],
-    )
-  }
-
   const handleSubmit = (values, {errors, resetForm}) => {
-    handleAlert(values.job, resetForm);
+    setModalVisible(true)
+    setSelectedJob(values.job)
+    setResetAction(resetForm)
   }
 
   const validationSchema = Yup.object().shape({
@@ -72,16 +88,14 @@ const JobSelectOneScreen = ({route}) => {
     <Form
       initialValues={{job: ''}}
       onSubmit={ handleSubmit }
-      validationSchema={validationSchema}>
-
+      validationSchema={validationSchema}
+    >
       <ScrollView style={{padding: 16}}>
         <Text>ដំណាក់កាលនេះ អ្នកអាចចូលទៅអានព័ត៌មាន លម្អិតក្នុងមុខជំនាញនីមួយៗខាងក្រោម។ បន្ទាប់មកអ្នកត្រូវឆ្លុះបញ្ចាំងនិង ធ្វើការសម្រេច ចិត្តជ្រើសរើសចុងក្រោយ ថាតើមុខជំនាញណា មួយដែល ស័ក្តិសម សម្រាប់អ្នកជាងគេ៖</Text>
-
         <Divider />
-
         <RadioGroup name={"job"} options={jobs} />
       </ScrollView>
-
+      {renderConfirmModal()}
       <SubmitButton title='បន្តទៀត' />
     </Form>
   )
