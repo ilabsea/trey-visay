@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TouchableWithoutFeedback } from 'react-native';
 
 import { Text, BackButton, ScrollableHeader, FooterBar } from '../../components';
 import HollandTestResultBarChart from '../../components/HollandTestResult/HollandTestResultBarChart';
@@ -17,13 +17,15 @@ const HollandTestResult = ({navigation}) => {
   const title = "តេស្តបុគ្គលិកលក្ខណៈ"
   const renderContent = () => {
     return (
-      <View style={{marginBottom: 10}}>
-        <View style={{paddingTop: 10, paddingHorizontal: screenHorizontalPadding}}>
-          <Text style={{color: 'black', lineHeight: getStyleOfOS(30, 34)}}>ខាងក្រោមនេះ ជាលទ្ធផលតេស្ដរបស់អ្នក! សូមអ្នកឈ្វេងយល់ពីការពណ៌នាលម្អិតអំពីបុគ្គលិកលក្ខណៈរបស់អ្នកដូចខាងក្រោម </Text>
-          <HollandTestResultBarChart quiz={currentQuiz}/>
+      <TouchableWithoutFeedback>
+        <View style={{marginBottom: 10}}>
+          <View style={{paddingTop: 10, paddingHorizontal: screenHorizontalPadding}}>
+            <Text style={{color: 'black', lineHeight: getStyleOfOS(30, 34)}}>ខាងក្រោមនេះ ជាលទ្ធផលតេស្ដរបស់អ្នក! សូមអ្នកឈ្វេងយល់ពីការពណ៌នាលម្អិតអំពីបុគ្គលិកលក្ខណៈរបស់អ្នកដូចខាងក្រោម </Text>
+            <HollandTestResultBarChart quiz={currentQuiz}/>
+          </View>
+          <HollandTestResultCharacteristicAccordions quiz={currentQuiz}/>
         </View>
-        <HollandTestResultCharacteristicAccordions quiz={currentQuiz}/>
-      </View>
+      </TouchableWithoutFeedback>
     )
   }
 

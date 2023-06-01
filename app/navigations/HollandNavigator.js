@@ -12,7 +12,7 @@ import HollandTestResultScreen from '../screens/HollandTest/HollandTestResultScr
 
 import MajorSelectMultipleScreen from '../screens/MajorSelection/MajorSelectMultipleScreen';
 import MajorSelectOneScreen from '../screens/MajorSelection/MajorSelectOneScreen';
-import MajorDetailScreen from '../screens/MajorSelection/MajorDetailScreen';
+import MajorDetailScreen from '../screens/MajorDetails/MajorDetailScreen';
 import MajorRecommendationScreen from '../screens/MajorSelection/MajorRecommendationScreen';
 
 import JobSelectMultipleScreen from '../screens/JobSelection/JobSelectMultipleScreen';
@@ -40,7 +40,7 @@ function CareerCounsellorStack() {
 
       <Stack.Screen name="MajorSelectMultipleScreen" component={MajorSelectMultipleScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
       <Stack.Screen name="MajorSelectOneScreen" component={MajorSelectOneScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
-      <Stack.Screen name="MajorDetailScreen" component={MajorDetailScreen} options={({route}) => {title: route.title}} />
+      <Stack.Screen name="MajorDetailScreen" component={MajorDetailScreen} options={{headerShown: false}} />
       <Stack.Screen name="MajorRecommendationScreen" component={MajorRecommendationScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
 
       <Stack.Screen name="JobSelectMultipleScreen" component={JobSelectMultipleScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />

@@ -3,6 +3,7 @@ import { View, TouchableOpacity } from 'react-native';
 import { Checkbox, Divider } from 'react-native-paper';
 import { Text } from "../../../components";
 import Color from '../../../themes/color';
+import {navigate} from '../../../hooks/RootNavigation';
 
 const MyCheckbox = (props) => {
   const [checked, setChecked] = React.useState(props.checked);
@@ -32,7 +33,7 @@ const MyCheckbox = (props) => {
 
       <Divider style={{width: 1, height: '100%',marginHorizontal: 8}} />
 
-      <TouchableOpacity onPress={() => {alert(0)}}>
+      <TouchableOpacity onPress={() => navigate('MajorDetailScreen', {major: props.value})}>
         <Text style={{fontSize: 12}}>ចូលមើលលម្អិត</Text>
       </TouchableOpacity>
     </View>
