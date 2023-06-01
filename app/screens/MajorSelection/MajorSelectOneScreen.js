@@ -3,12 +3,14 @@ import { View, ScrollView, Alert } from 'react-native'
 import { Text } from '../../components';
 import { Divider } from 'react-native-paper';
 import { Form, SubmitButton, SelectOneListItemGroup } from '../../components/forms';
+import ConfirmationModal from '../../components/shared/ConfirmationModal'
 import listMajor from './json/list_major';
 import * as Yup from "yup";
 import RadioGroup from './components/RadioGroup';
 import Quiz from '../../models/Quiz';
 
 const MajorSelectOneScreen = ({route, navigation}) => {
+  const [modalVisible, setModalVisible] = React.useState(false)
   const currentQuiz = route.params.quiz;
   const majors = listMajor.filter(o => Object.values(currentQuiz.majorOptions).includes(o.value))
 
@@ -34,6 +36,17 @@ const MajorSelectOneScreen = ({route, navigation}) => {
     })
   }
 
+  const renderConfirmModal = () => {
+    return <ConfirmationModal
+              visible={modalVisible}
+              message={renderMessage}
+              leftButtonLabel='ជ្រើសរើសម្ដងទៀត'
+              rightButtonLabel='បាទ/ចាស'
+              onCancel={() => console.log('== cancel')}
+              onConfirm={() => console.log('== Confirm')}
+          />
+  }
+
   const handleAlert = (major, resetForm) => {
     Alert.alert('', `តើអ្នកពិតជាសម្រេចចិត្តជ្រើសរើសមុខ ជំនាញ ”${major}” សម្រាប់បន្តការ សិក្សានាពេលអនាគត មែនឬទេ?`,
       [
@@ -55,7 +68,9 @@ const MajorSelectOneScreen = ({route, navigation}) => {
   }
 
   const handleSubmit = (values, {errors, resetForm}) => {
-    handleAlert(values.major, resetForm);
+    // handleAlert(values.major, resetForm);
+    console.log('=== handle submitt =======')
+    setModalVisible(true)
   }
 
   const validationSchema = Yup.object().shape({
@@ -75,6 +90,8 @@ const MajorSelectOneScreen = ({route, navigation}) => {
 
         <RadioGroup name={"major"} options={majors} />
       </ScrollView>
+
+      {renderConfirmModal()}
 
       <SubmitButton title='បន្តទៀត' />
     </Form>
