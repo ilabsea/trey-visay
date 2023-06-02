@@ -1,21 +1,22 @@
 import React from 'react'
-import { View, ScrollView, Alert } from 'react-native'
+import { ScrollView } from 'react-native'
 import { Text } from '../../components';
 import { Divider } from 'react-native-paper';
 import { Form, SubmitButton, SelectOneListItemGroup } from '../../components/forms';
 import ConfirmationModal from '../../components/shared/ConfirmationModal'
+import CongratulationModal from '../../components/shared/CongratulationModal'
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
 import listJob from './json/list_job';
 import * as Yup from "yup";
 import RadioGroup from '../MajorSelection/components/RadioGroup';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import { useNavigation } from '@react-navigation/native';
 import Quiz from '../../models/Quiz';
-import {FontSetting} from '../../assets/style_sheets/font_setting';
 
 const JobSelectOneScreen = ({route}) => {
   const [confirmModalVisible, setConfirmModalVisible] = React.useState(false)
+  const [congratsModalVisible, setCongratsModalVisible] = React.useState(false)
   const [selectedJob, setSelectedJob] = React.useState(null)
   const [resetAction, setResetAction] = React.useState(null)
   const currentQuiz = route.params.quiz;
@@ -23,21 +24,31 @@ const JobSelectOneScreen = ({route}) => {
   const jobs = listJob.filter(o => Object.values(currentQuiz.jobOptions).includes(o.value))
   const navigation = useNavigation();
 
-  const renderMessage = () => {
-    return <Text style={{color: 'black'}}>
-              តើអ្នកពិតជាសម្រេចចិត្តជ្រើសរើសអាជីពការងារ “<BoldLabelComponent label={selectedJob}/>” សម្រាប់នាពេលអនាគត មែនឬទេ?
-           </Text>
+  const modalMessage = (prefixLabel, suffixLabel) => {
+    return <Text>{prefixLabel} “<BoldLabelComponent label={selectedJob}/>” {suffixLabel}</Text>
   }
 
-  const renderConfirmModal = () => {
-    return <ConfirmationModal
-              visible={confirmModalVisible}
-              message={() => renderMessage()}
-              leftButtonLabel='ជ្រើសរើសម្ដងទៀត'
-              rightButtonLabel='បាទ/ចាស'
-              onLeftPress={() => selectAgain()}
-              onRightPress={() => onConfirm()}
-          />
+  const renderPopupModals = () => {
+    return (
+      <React.Fragment>
+        <ConfirmationModal
+          visible={confirmModalVisible}
+          message={() => modalMessage('តើអ្នកពិតជាសម្រេចចិត្តជ្រើសរើសអាជីពការងារ', 'សម្រាប់នាពេលអនាគតមែនឬទេ?')}
+          leftButtonLabel='ជ្រើសរើសម្ដងទៀត'
+          rightButtonLabel='បាទ/ចាស'
+          onLeftPress={() => selectAgain()}
+          onRightPress={() => onConfirm()}
+        />
+        <CongratulationModal
+          visible={congratsModalVisible}
+          message={() => modalMessage('សូមអបអរសាទរដែលអ្នកបានធ្វើការសម្រេចចិត្តផ្ទាល់ខ្លួនក្នុងការជ្រើសរើសយកអាជីពការងារ', 'សម្រាប់បន្តការសិក្សានាពេលអនាគត!')}
+          onPressButton={() => {
+            setCongratsModalVisible(false)
+            navigation.navigate('JobRecommendationScreen', {quiz: currentQuiz})
+          }}
+        />
+      </React.Fragment>
+    )
   }
 
   const selectAgain = () => {
@@ -48,22 +59,7 @@ const JobSelectOneScreen = ({route}) => {
   const onConfirm = () => {
     setConfirmModalVisible(false);
     updateQuiz(selectedJob);
-    showCongratulation(selectedJob);
-  }
-
-  const showCongratulation = (job) => {
-    Alert.alert(
-      'Congratulation!',
-      `សូមអបអរសាទរដែលអ្នកបានធ្វើការសម្រេចចិត្តផ្ទាល់ខ្លួនក្នុងការ ជ្រើសរើសយក មុខជំនាញ ”${job}” សម្រាប់ បន្តការសិក្សានាពេលអនាគត!`,
-      [
-        {
-          text: 'ការផុ្តល់អនុសាសន៍',
-          onPress: () => {
-            navigation.navigate('JobRecommendationScreen', {quiz: currentQuiz})
-          }
-        }
-      ]
-    )
+    setCongratsModalVisible(true);
   }
 
   const updateQuiz = (job) => {
@@ -77,7 +73,7 @@ const JobSelectOneScreen = ({route}) => {
   const handleSubmit = (values, {errors, resetForm}) => {
     setConfirmModalVisible(true)
     setSelectedJob(values.job)
-    setResetAction(resetForm)
+    setResetAction(() => resetForm)
   }
 
   const validationSchema = Yup.object().shape({
@@ -95,7 +91,7 @@ const JobSelectOneScreen = ({route}) => {
         <Divider />
         <RadioGroup name={"job"} options={jobs} />
       </ScrollView>
-      {renderConfirmModal()}
+      {renderPopupModals()}
       <SubmitButton title='បន្តទៀត' />
     </Form>
   )
