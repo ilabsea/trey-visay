@@ -1,13 +1,15 @@
 import React from 'react'
-import { View, Image, Alert } from 'react-native'
+import { View, Image } from 'react-native'
 
 import Color from '../../themes/color';
 import { Text, BackButton, FooterBar } from '../../components';
 import images from '../../assets/images';
 import ratings from './json/list_ratings';
 import ScrollableHeader from '../../components/scrollable_header';
+import ConfirmationModal from '../../components/shared/ConfirmationModal';
 
 const HollandTestInstruction = ({route, navigation}) => {
+  const [modalVisible, setModalVisible] = React.useState(false);
   const renderRating = (item, index) => {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 16}} key={index}>
@@ -39,15 +41,6 @@ const HollandTestInstruction = ({route, navigation}) => {
     return (<BackButton buttonColor='#fff' onPress={() => navigation.popToTop()} />)
   }
 
-  const handleAlert = () => {
-    Alert.alert('', 'ប្អូនអ្នកចងចាំថា ការធ្វើតេស្ដនេះ មិនមាន ឡើយពាក្យថាជាប់ ឬធ្លាក់ ប៉ុន្ដែវាគឺជាមាគ៌ា មួយជួយដល់ប្អូនក្នុងសិក្សាឈ្វេងយល់ពី បុគ្គលិកលក្ខណៈផ្ទាល់ខ្លួន ផ្សារភ្ជាប់ទៅ នឹងជម្រើសមុខជំនាញសិក្សា និងអាជីព ការងារនាថ្ងៃអនាគតបានសមរម្យ!', [
-      {
-        text: 'បាទ/ចាស ខ្ញុំចងចាំ',
-        onPress: () => navigation.navigate('HollandQuestionnaireScreen'),
-      },
-    ])
-  }
-
   return (
     <View style={{flex: 1}}>
       <ScrollableHeader
@@ -61,7 +54,17 @@ const HollandTestInstruction = ({route, navigation}) => {
         largeTitle={'តេស្តបុគ្គលិកលក្ខណៈ'}
       />
 
-      <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={handleAlert} />
+      <ConfirmationModal
+        visible={modalVisible}
+        onDismiss={() => setModalVisible(false)}
+        message={() => <Text>ប្អូនអ្នកចងចាំថាការធ្វើតេស្ដនេះមិនមានឡើយពាក្យថាជាប់ ឬធ្លាក់ ប៉ុន្ដែវាគឺជាមាគ៌ាមួយជួយដល់ប្អូនក្នុងសិក្សាឈ្វេងយល់ពីបុគ្គលិកលក្ខណៈផ្ទាល់ខ្លួន ផ្សារភ្ជាប់ទៅនឹងជម្រើសមុខជំនាញសិក្សា និងអាជីពការងារនាថ្ងៃអនាគតបានសមរម្យ!</Text>}
+        rightButtonLabel='បាទ/ចាស ខ្ញុំចងចាំ'
+        onRightPress={() => {
+          setModalVisible(false)
+          navigation.navigate('HollandQuestionnaireScreen')
+        }}
+      />
+      <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={() => setModalVisible(true)} />
     </View>
   )
 }
