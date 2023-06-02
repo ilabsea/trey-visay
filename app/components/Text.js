@@ -12,6 +12,7 @@ const MyText = (props) => {
 
 const styles = StyleSheet.create({
   textStyle: {
+    color: 'black',
     fontSize: FontSetting.text,
     ...Platform.select({
       android: {

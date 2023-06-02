@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView, Alert } from 'react-native'
+import { ScrollView } from 'react-native'
 import { Text } from '../../components';
 import { Divider } from 'react-native-paper';
 import { Form, SubmitButton, SelectOneListItemGroup } from '../../components/forms';
@@ -13,25 +13,11 @@ import Quiz from '../../models/Quiz';
 
 const MajorSelectOneScreen = ({route, navigation}) => {
   const [confirmModalVisible, setConfirmModalVisible] = React.useState(false)
+  const [congratsModalVisible, setCongratsModalVisible] = React.useState(false)
   const [selectedMajor, setSelectedMajor] = React.useState(null)
   const [resetAction, setResetAction] = React.useState(null)
   const currentQuiz = route.params.quiz;
   const majors = listMajor.filter(o => Object.values(currentQuiz.majorOptions).includes(o.value))
-
-  const showCongratulation = (major) => {
-    Alert.alert(
-      'Congratulation!',
-      `សូមអបអរសាទរដែលអ្នកបានធ្វើការសម្រេចចិត្តផ្ទាល់ខ្លួនក្នុងការ ជ្រើសរើសយក មុខជំនាញ ”${major}” សម្រាប់ បន្តការសិក្សានាពេលអនាគត!`,
-      [
-        {
-          text: 'ការផុ្តល់អនុសាសន៍',
-          onPress: () => {
-            navigation.navigate('MajorRecommendationScreen', {quiz: currentQuiz})
-          }
-        }
-      ]
-    )
-  }
 
   const updateQuiz = (major) => {
     Quiz.write(()=> {
@@ -40,21 +26,31 @@ const MajorSelectOneScreen = ({route, navigation}) => {
     })
   }
 
-  const renderMessage = () => {
-    return <Text style={{color: 'black'}}>
-              តើអ្នកពិតជាសម្រេចចិត្តជ្រើសរើសមុខជំនាញ “<BoldLabelComponent label={selectedMajor}/>” សម្រាប់បន្តការសិក្សានាពេលអនាគតមែនឬទេ?
-           </Text>
+  const modalMessage = (prefixLabel, suffixLabel) => {
+    return <Text>{prefixLabel} “<BoldLabelComponent label={selectedMajor}/>” {suffixLabel}</Text>
   }
 
-  const renderConfirmModal = () => {
-    return <ConfirmationModal
-              visible={confirmModalVisible}
-              message={renderMessage}
-              leftButtonLabel='ជ្រើសរើសម្ដងទៀត'
-              rightButtonLabel='បាទ/ចាស'
-              onLeftPress={() => selectAgain()}
-              onRightPress={() => onConfirm()}
-          />
+  const renderPopupModals = () => {
+    return (
+      <React.Fragment>
+        <ConfirmationModal
+          visible={confirmModalVisible}
+          message={() => modalMessage('តើអ្នកពិតជាសម្រេចចិត្តជ្រើសរើសមុខជំនាញ', 'សម្រាប់បន្តការសិក្សានាពេលអនាគតមែនឬទេ?')}
+          leftButtonLabel='ជ្រើសរើសម្ដងទៀត'
+          rightButtonLabel='បាទ/ចាស'
+          onLeftPress={() => selectAgain()}
+          onRightPress={() => onConfirm()}
+        />
+        <CongratulationModal
+          visible={congratsModalVisible}
+          message={() => modalMessage('សូមអបអរសាទរដែលអ្នកបានធ្វើការសម្រេចចិត្តផ្ទាល់ខ្លួនក្នុងការជ្រើសរើសយកមុខជំនាញ', 'សម្រាប់បន្តការសិក្សានាពេលអនាគត!')}
+          onPressButton={() => {
+            setCongratsModalVisible(false)
+            navigation.navigate('MajorRecommendationScreen', {quiz: currentQuiz})
+          }}
+        />
+      </React.Fragment>
+    )
   }
 
   const selectAgain = () => {
@@ -65,13 +61,13 @@ const MajorSelectOneScreen = ({route, navigation}) => {
   const onConfirm = () => {
     setConfirmModalVisible(false);
     updateQuiz(selectedMajor);
-    showCongratulation(selectedMajor);
+    setCongratsModalVisible(true);
   }
 
   const handleSubmit = (values, {errors, resetForm}) => {
     setConfirmModalVisible(true)
     setSelectedMajor(values.major)
-    setResetAction(resetForm)
+    setResetAction(() => resetForm)
   }
 
   const validationSchema = Yup.object().shape({
@@ -89,7 +85,7 @@ const MajorSelectOneScreen = ({route, navigation}) => {
         <Divider />
         <RadioGroup name={"major"} options={majors} />
       </ScrollView>
-      {renderConfirmModal()}
+      {renderPopupModals()}
       <SubmitButton title='បន្តទៀត' />
     </Form>
   )

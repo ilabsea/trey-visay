@@ -14,8 +14,8 @@ const ConfirmationModalButtons = (props) => {
   }
 
   return <View style={styles.container}>
-            {renderButton(props.leftButtonLabel, props.onLeftPress, {marginRight: 22})}
-            {renderButton(props.rightButtonLabel, props.onRightPress)}
+            { !!props.leftButtonLabel && renderButton(props.leftButtonLabel, props.onLeftPress, {marginRight: 22}) }
+            { !!props.rightButtonLabel && renderButton(props.rightButtonLabel, props.onRightPress) }
           </View>
 }
 
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginTop: 14,
+    marginTop: 26,
     marginBottom: 16
   },
   btn: {
