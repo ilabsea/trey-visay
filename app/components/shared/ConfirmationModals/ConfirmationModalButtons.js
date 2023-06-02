@@ -23,8 +23,6 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     justifyContent: 'flex-end',
-    marginTop: 26,
-    marginBottom: 16
   },
   btn: {
     alignItems: 'center',

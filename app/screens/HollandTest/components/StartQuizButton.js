@@ -7,8 +7,9 @@ import {
 import AppButton from '../../../components/shared/button';
 import { FontSetting } from '../../../assets/style_sheets/font_setting';
 import Text from '../../../components/Text';
+import ConfirmationModal from '../../../components/shared/ConfirmationModal';
+import BoldLabelComponent from '../../../components/shared/BoldLabelComponent';
 import { useSelector } from 'react-redux'
-import { Dialog, Portal, Button } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import useAuth from "../../../auth/useAuth";
 
@@ -40,19 +41,14 @@ const StartQuizButton = () => {
 
   return (
     <View style={{flex: 1}}>
-      <Portal>
-        <Dialog visible={visible} onDismiss={hideDialog}>
-          <Dialog.Content>
-            <Text>តើប្អូននឹងបន្តធ្វើតេស្តក្រោមគណនី {!!user && user.fullName}</Text>
-          </Dialog.Content>
-
-          <Dialog.Actions>
-            <Button onPress={goToPersonalUnderstandingTest}>បាទ/ចាស</Button>
-            <Button onPress={goToNewProfile}>ចូលគណនីថ្មី</Button>
-          </Dialog.Actions>
-        </Dialog>
-      </Portal>
-
+      <ConfirmationModal
+        visible={visible}
+        message={() => <Text>តើប្អូននឹងបន្តធ្វើតេស្តក្រោមគណនី <BoldLabelComponent label={!!user && user.fullName} /> ដែរឬទេ?</Text>}
+        leftButtonLabel='បាទ/ចាស'
+        rightButtonLabel='ចូលគណនីថ្មី'
+        onLeftPress={goToPersonalUnderstandingTest}
+        onRightPress={goToNewProfile}
+      />
       <AppButton style={styles.button} onPress={() => getStart() }>
         <Text style={styles.btnText}>ធ្វើតេស្តថ្មី</Text>
       </AppButton>
