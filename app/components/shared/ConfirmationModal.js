@@ -7,7 +7,7 @@ import {cardBorderRadius} from '../../constants/component_constant';
 const ConfirmationModal = (props) => {
   return (
     <Portal>
-      <Dialog visible={props.visible} style={{borderRadius: cardBorderRadius}}>
+      <Dialog visible={props.visible} onDismiss={() => !!props.onDismiss && props.onDismiss()} style={{borderRadius: cardBorderRadius}}>
         <Dialog.Content>{props.message()}</Dialog.Content>
         <Dialog.Actions style={{paddingHorizontal: 24, paddingBottom: 16}}>
           <ConfirmationModalButtons
