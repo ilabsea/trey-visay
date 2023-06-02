@@ -38,12 +38,12 @@ function CareerCounsellorStack() {
       <Stack.Screen name="HollandQuestionnaireScreen" component={HollandQuestionnaireScreen} options={{headerShown: false}} />
       <Stack.Screen name="HollandTestResultScreen" component={HollandTestResultScreen} options={{headerShown: false}} />
 
-      <Stack.Screen name="MajorSelectMultipleScreen" component={MajorSelectMultipleScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+      <Stack.Screen name="MajorSelectMultipleScreen" component={MajorSelectMultipleScreen} options={{headerShown: false}} />
       <Stack.Screen name="MajorSelectOneScreen" component={MajorSelectOneScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
       <Stack.Screen name="MajorDetailScreen" component={MajorDetailScreen} options={{headerShown: false}} />
       <Stack.Screen name="MajorRecommendationScreen" component={MajorRecommendationScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
 
-      <Stack.Screen name="JobSelectMultipleScreen" component={JobSelectMultipleScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+      <Stack.Screen name="JobSelectMultipleScreen" component={JobSelectMultipleScreen} options={{headerShown: false}} />
       <Stack.Screen name="JobSelectOneScreen" component={JobSelectOneScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
       <Stack.Screen name="JobDetailScreen" component={JobDetailScreen} options={({route}) => {title: route.title}} />
       <Stack.Screen name="JobRecommendationScreen" component={JobRecommendationScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />

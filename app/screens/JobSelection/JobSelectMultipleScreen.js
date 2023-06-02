@@ -9,9 +9,11 @@ import * as Yup from "yup";
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import CheckboxGroup from '../MajorSelection/components/CheckboxGroup';
+import SearchableHeader from '../../components/shared/searchableHeaders/SearchableHeader'
 
 const JobSelectMultipleScreen = ({route, navigation}) => {
   // const currentQuiz = useSelector((state) => state.currentQuiz.value);
+  const [textSearch, setTextSearch] = React.useState('');
   const currentQuiz = route.params.quiz;
   const dispatch = useDispatch();
 
@@ -30,23 +32,25 @@ const JobSelectMultipleScreen = ({route, navigation}) => {
   });
 
   return (
-    <Form
-      initialValues={{jobs: []}}
-      onSubmit={ handleSubmit }
-      validationSchema={validationSchema}>
-
-      <ScrollView style={{padding: 16}}>
-        <Card style={{padding: 16}}>
-          <Text>ចូរជ្រើសរើសអាជីពការងារដែលអ្នកពេញចិត្តក្នុងការបន្តការសិក្សានាពេលអនាគត យ៉ាងច្រើនបំផុត៣មុខជំនាញ៖</Text>
-
-          <Divider />
-
-          <CheckboxGroup name={"jobs"} options={listJobs} />
-        </Card>
-      </ScrollView>
-
-      <SubmitButton title='បន្តទៀត' />
-    </Form>
+    <React.Fragment>
+      <SearchableHeader title="ជម្រើសអាជីពការងារ" placeholder="ស្វែងរកអាជីពការងារ"
+        searchedText={textSearch} setSearchedText={(text) => setTextSearch(text)}
+      />
+      <Form
+        initialValues={{jobs: []}}
+        onSubmit={ handleSubmit }
+        validationSchema={validationSchema}
+      >
+        <ScrollView style={{padding: 16}}>
+          <Card style={{padding: 16}}>
+            <Text>ចូរជ្រើសរើសអាជីពការងារដែលអ្នកពេញចិត្តក្នុងការបន្តការសិក្សានាពេលអនាគត យ៉ាងច្រើនបំផុត៣មុខជំនាញ៖</Text>
+            <Divider />
+            <CheckboxGroup name={"jobs"} options={listJobs.filter(job => job.name.includes(textSearch))} />
+          </Card>
+        </ScrollView>
+        <SubmitButton title='បន្តទៀត' />
+      </Form>
+    </React.Fragment>
   )
 }
 
