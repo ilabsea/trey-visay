@@ -38,6 +38,7 @@
     "react": "18.2.0",
     "react-final-form": "^6.5.9",
     "react-native": "0.71.2",
+    "react-native-bottom-sheet-picker": "github:limkimsan/react-native-bottom-sheet-picker#allow-changing-selected-fieldname",
     "react-native-charts-wrapper": "^0.5.11",
     "react-native-device-info": "^10.3.0",
     "react-native-easy-toast": "^2.3.0",
