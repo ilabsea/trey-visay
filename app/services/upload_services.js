@@ -6,7 +6,7 @@ import {
 import NetInfo from "@react-native-community/netinfo";
 import characteristicList from '../data/json/characteristic_jobs';
 import realm from '../db/schema';
-import Sidekiq from '../utils/models/sidekiq';
+// import Sidekiq from '../utils/models/sidekiq';
 import { environment } from '../config/environment';
 import api from './../utils/api';
 
@@ -15,14 +15,17 @@ export default class UploadServices  {
   static data = [];
 
   static syncToServer(){
-    NetInfo.isConnected.fetch().then(isConnected => {
-      api.get('/me').then((res) => {
-        if(res.data && res.data.success){
-          this.cursor = 0;
-          this.data = realm.objects('Sidekiq').slice();
-          this.uploadSidekiq();
-        }
-      })
+    NetInfo.fetch().then(state => {
+      console.log("state=================", state)
+      if (state.isInternetReachable) {
+        api.get('/me').then((res) => {
+          if(res.data && res.data.success){
+            this.cursor = 0;
+            this.data = realm.objects('Sidekiq').slice();
+            this.uploadSidekiq();
+          }
+        })
+      }
     });
   }
 

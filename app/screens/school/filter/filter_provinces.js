@@ -7,7 +7,7 @@ import {
 
 import { Container, Content } from 'native-base';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
 import SchoolUtil from '../../../utils/School/School';
 import mainStyles from '../../../assets/style_sheets/main/main';
 
@@ -17,8 +17,8 @@ class FilterProvinces extends Component {
 
     this.state = {
       provinces: [],
-      category: props.navigation.state.params.category,
-      selectedProvince: props.navigation.state.params.selectedProvince
+      category: props.route.params.category,
+      selectedProvince: props.route.params.selectedProvince
     }
   };
 
@@ -35,7 +35,7 @@ class FilterProvinces extends Component {
     this.setState({ selectedProvince: province });
 
     SchoolUtil.setSelectedProvince(province);
-    this.props.navigation.state.params.refreshValue();
+    this.props.route.params.refreshValue();
     this.props.navigation.goBack();
   }
 

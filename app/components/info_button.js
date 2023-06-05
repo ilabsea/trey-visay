@@ -8,8 +8,8 @@ const InfoButton = (props) => {
             onPress={
               () => {
                 props.navigation.navigate('Description', {
-                  title: 'អំពី' + props.navigation.state.params.title || "ជំនាញវិជ្ជាជីវៈ",
-                  content: props.navigation.state.params.content
+                  title: 'អំពី' + props.route.params.title || "ជំនាញវិជ្ជាជីវៈ",
+                  content: props.route.params.content
                 })
               }
             }>

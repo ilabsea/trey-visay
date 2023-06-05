@@ -17,7 +17,7 @@ export default class CareerIndexScreen extends Component {
     super(props);
 
     this.state = {
-      careers: this.props.navigation.state.params.careers
+      careers: props.route.params.careers
     }
   }
 

@@ -71,6 +71,13 @@ const images = {
   vanda: require('./images/schools/vanda.jpeg'),
   western: require('./images/schools/western.jpg'),
   zaman: require('./images/schools/zaman.jpg'),
+
+  // Emoji
+  very_like: require('./images/emoji/5.png'),
+  like: require('./images/emoji/4.png'),
+  unsure: require('./images/emoji/3.png'),
+  dislike: require('./images/emoji/2.png'),
+  very_dislike: require('./images/emoji/1.png'),
 };
 
 export default images;

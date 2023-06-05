@@ -1,14 +1,14 @@
 import React from 'react';
 import {
   View,
-  Text,
   TouchableOpacity,
   StyleSheet,
   Image
 } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
-import { Divider } from 'react-native-elements';
+import { Divider } from 'react-native-paper';
+import Text from '../Text';
 
 import mainStyles from "../../assets/style_sheets/main/main";
 
@@ -21,7 +21,7 @@ class ButtonList extends React.Component {
     return (
       <View>
         <TouchableOpacity
-          style={[mainStyles.btnList, {alignItems: 'center'}]}
+          style={[mainStyles.btnList, {alignItems: 'center'}, this.props.buttonListStyle]}
           onPress={this.props.onPress}
         >
           { this.props.icon &&

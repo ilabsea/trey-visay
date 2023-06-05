@@ -1,0 +1,62 @@
+[
+  {
+    "code": "q1",
+    "question": "១) តើប្អូននឹងបន្ដការសិក្សារហូតដល់បញ្ចប់ថ្នាក់ ឬកម្រិតណាដែរ?",
+    "type": "SelectOne",
+    "options": [
+      { "name": "ថ្នាក់ទី១២", "value": "grade12" },
+      { "name": "ឧត្តមសិក្សា", "value": "higher" },
+      { "name": "មិនច្បាស់", "value": "unsure" }
+    ],
+    "sub_questions": []
+  },
+  {
+    "code": "q2",
+    "question": "២) តើឪពុកម្ដាយប្អូន នឹងអនុញ្ញាតឱ្យប្អូនបន្ដការសិក្សារហូតដល់ចប់ថ្នាក់ ឬកម្រិតណាដែរ?",
+    "type": "SelectOne",
+    "options": [
+      { "name": "ថ្នាក់ទី១២", "value": "grade12" },
+      { "name": "ឧត្តមសិក្សា", "value": "higher" },
+      { "name": "មិនច្បាស់", "value": "unsure" }
+    ],
+    "sub_questions": []
+  },
+  {
+    "code": "q3",
+    "question": "៣) បើអ្នកបន្តការសិក្សាទៅឧត្តមសិក្សា តើអ្នកនឹងរៀនមុខជំនាញអ្វី? (សិស្សសរសេរចម្លើយ)",
+    "type": "Text",
+    "sub_questions": []
+  },
+  {
+    "code": "q4",
+    "question": "៤)តើប្អូនបានសម្រេចចិត្តក្នុងការជ្រើស រើសអាជីពមុខរបរថ្ងៃអនាគតហើយឬនៅ?",
+    "type": "SelectOne",
+    "options": [
+      { "name": "សម្រេចចិត្តហើយ", "value": "decided" },
+      { "name": "មិនទាន់សម្រេចចិត្ត", "value": "not_yet_decide" },
+      { "name": "មិនច្បាស់", "value": "unsure" }
+    ],
+    "sub_questions": [
+      {
+        "code": "q4_1",
+        "question": "៤.១) បើសម្រេចចិត្តហើយ ប្អូនចង់ធ្វើការងារអ្វី? (សិស្សសរសេរចម្លើយ)",
+        "condition": "q4|decided",
+        "type": "Text",
+        "sub_questions": []
+      }
+    ]
+  },
+  {
+    "code": "q5",
+    "question": "៥)តើប្អូនធ្លាប់ជជែកជាមួយនរណាម្នាក់ អំពីការជ្រើសរើសមុខជំនាញបន្ដការសិក្សា ឬអាជីពមុខរបរដែរឬទេ?",
+    "type": "SelectMultiple",
+    "options": [
+      { "name": "ឪពុកម្ដាយ", "value": "parent" },
+      { "name": "សាច់ញាតិបងប្អូន", "value": "relative" },
+      { "name": "គ្រូប្រឹក្សាអាជីព", "value": "counselor" },
+      { "name": "គ្រូបង្រៀន", "value": "teacher" },
+      { "name": "មិត្តភក្ដិ", "value": "friend" },
+    ],
+    "sub_questions": []
+  }
+]

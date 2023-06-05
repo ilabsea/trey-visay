@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Platform, AppRegistry} from 'react-native';
+import { Platform, AppRegistry, Text } from 'react-native';
 
 import {
   setCustomView,
@@ -8,74 +8,41 @@ import {
   setCustomImage,
   setCustomTouchableOpacity
 } from 'react-native-global-props';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
+import {BottomSheetModalProvider} from '@gorhom/bottom-sheet';
 import { FontSetting } from './app/assets/style_sheets/font_setting';
-import BackgroundFetch from "react-native-background-fetch";
-
 import App from './app';
-import Task from './app/utils/task';
-import Queue from './app/utils/queue';
 
-import { Container, Content, Button, Text, StyleProvider } from 'native-base';
+import { StyleProvider } from 'native-base';
+import { Provider as PaperProvider, configureFonts, MD2LightTheme } from 'react-native-paper';
+import { Provider as StoreProvider } from 'react-redux';
+import store from './app/redux/store';
+
 import getTheme from './native-base-theme/components';
 import commonColor from './native-base-theme/variables/commonColor';
+import { fontConfig } from './react-native-paper/fontConfig';
 
-const customTextProps = {
-  style: {
-    fontSize: FontSetting.text,
-    color: 'black',
-    ...Platform.select({
-      android: {
-        fontFamily: 'Kantumruy',
-        lineHeight: 38,
-      },
-      ios: {
-        fontFamily: 'HelveticaNeue',
-        lineHeight: 0,
-      }
-    })
-
-  }
+const theme = {
+  ...MD2LightTheme,
+  fonts: configureFonts({config: fontConfig, isV3: false}),
 };
-
-const customTextInputProps = {
-  style: {
-    height: 48,
-    fontSize: FontSetting.text,
-    ...Platform.select({
-      android: {
-        fontFamily: 'Kantumruy',
-        lineHeight: 48,
-      },
-      ios: {
-        fontFamily: 'HelveticaNeue',
-        lineHeight: 28
-      }
-    })
-  }
-};
-
-setCustomText(customTextProps);
-setCustomTextInput(customTextInputProps);
 
 export default class TreyVisay extends Component {
-  componentDidMount() {
-    Queue.initWorker();
-  }
-
   render() {
-    return(
+    return (
       <StyleProvider style={getTheme(commonColor)}>
-        <App/>
+        <StoreProvider store={store}>
+          <PaperProvider theme={theme}>
+            <GestureHandlerRootView style={{flex: 1}}>
+              <BottomSheetModalProvider>
+                <App />
+              </BottomSheetModalProvider>
+            </GestureHandlerRootView>
+          </PaperProvider>
+        </StoreProvider>
       </StyleProvider>
-    )
+    );
   }
 }
-
-let MyHeadlessTask = async (event) => {
-  Task.syncToServer();
-  BackgroundFetch.finish();
-}
-
-BackgroundFetch.registerHeadlessTask(MyHeadlessTask);
 
 AppRegistry.registerComponent('TreyVisay', () => TreyVisay);

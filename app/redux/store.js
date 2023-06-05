@@ -1,16 +1,11 @@
-import { createStore, combineReducers } from 'redux';
-import { reducer as form } from 'redux-form';
+import { configureStore } from '@reduxjs/toolkit'
+import quizReducer from './features/quiz/quizSlice';
+import hollandReducer from './features/quiz/hollandSlice';
 
-const appReducer = combineReducers({
-  form
+export default configureStore({
+  reducer: {
+    currentQuiz: quizReducer,
+    currentHolland: hollandReducer,
+  },
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false}),
 })
-
-const rootReducer = (state, action) => {
-  if (action.type === 'RESET') {
-    state = undefined;
-  }
-
-  return appReducer(state, action)
-}
-
-export default createStore(rootReducer);

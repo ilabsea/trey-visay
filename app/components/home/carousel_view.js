@@ -1,27 +1,29 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
+  // Text,
   TouchableOpacity,
   Dimensions,
   StyleSheet,
   Platform,
   Image
 } from 'react-native';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import { Pagination } from 'react-native-snap-carousel';
-import firebase from 'react-native-firebase';
+// Todo:
+// import firebase from 'react-native-firebase';
 
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import { Colors } from '../../assets/style_sheets/main/colors';
 
 import CarouselItem from '../shared/carousel_item';
 import HomeOptions from './home_options';
+
 import User from '../../utils/user';
 import LinearGradient from 'react-native-linear-gradient';
 import Ripple from 'react-native-material-ripple';
+import { navigate } from '../../screens/StackNav/RootNavigation';
+import Text from '../Text';
 
 const { width, height } = Dimensions.get('window');
 
@@ -37,7 +39,7 @@ class CarouselView extends Component {
     this.countView = 0;
   }
 
-  _handleLoginOption(item) {
+  _handleLoginParams(item) {
     let option = Object.assign({}, item);
     option.params = {};
 
@@ -49,16 +51,16 @@ class CarouselView extends Component {
       return option;
     }
 
-    option.params = { from: option.url + "" };
+    option.params = { screen: 'Login', params: {from: option.url} };
     option.url = 'AccountStack';
 
     return option
   }
 
   onPressButton(item) {
-    let option = this._handleLoginOption(item);
-    firebase.analytics().logEvent(item.firebase_event_name);
-    this.props.navigation.navigate(option.url, option.params);
+    let option = this._handleLoginParams(item);
+    // firebase.analytics().logEvent(item.firebase_event_name);
+    navigate(option.url, option.params);
   }
 
   onLayout = (e) => {
@@ -176,7 +178,8 @@ const styles = StyleSheet.create({
   },
   btnLabel: {
     fontSize: FontSetting.big_title,
-    fontWeight: 'bold',
+    fontWeight:'bold',
+    // fontFamily: 'KantumruyBold',
     ...Platform.select({
       android: {
         lineHeight: 48,

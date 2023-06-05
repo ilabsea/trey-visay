@@ -2,13 +2,18 @@ import React from 'react';
 import { Platform, TouchableOpacity , Text } from 'react-native';
 import IonicIcon from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import { goBack } from '../../hooks/RootNavigation';
 
 class BackButton extends React.Component {
   handleOnPress = () => {
-    if (this.props.navigation.state.params && this.props.navigation.state.params._handleBack) {
-      return this.props.navigation.state.params._handleBack()
+    if (!!this.props.route && this.props.route.params && this.props.route.params._handleBack) {
+      return this.props.route.params._handleBack()
     }
-    this.props.navigation.goBack(null)
+
+    if (!!this.props.onPress)
+      return this.props.onPress();
+
+    goBack();
   }
 
   getButtonColor() {
@@ -19,9 +24,9 @@ class BackButton extends React.Component {
   }
 
   render() {
-    let width = Platform.OS === 'ios' ? 30 : 44;
+    let width = Platform.OS === 'ios' ? 50 : 44;
     let paddingHorizontal = Platform.OS === 'ios' ? 8 : 12;
-    let iconName = Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-back';
+    let iconName = Platform.OS === 'ios' ? 'ios-arrow-back' : 'arrow-back';
     let iconSize = Platform.OS === 'ios' ? 34 : 24
     return <TouchableOpacity onPress={this.handleOnPress}
                 style={[{paddingHorizontal: paddingHorizontal, width: width}, this.props.style]}>
