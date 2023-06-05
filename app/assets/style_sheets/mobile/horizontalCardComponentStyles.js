@@ -1,29 +1,35 @@
 import { StyleSheet } from 'react-native';
-import {
-  cardBorderRadius,
-  cardTitleFontSize,
-  descriptionFontSize
-} from '../../../constants/component_constant';
+import {cardBorderRadius} from '../../../constants/component_constant';
 import color from '../../../themes/color';
+import {FontSetting} from '../../../assets/style_sheets/font_setting';
 
 const horizontalCardComponentStyles = StyleSheet.create({
   container: {
     borderRadius: cardBorderRadius,
-    // height: 112,
-    // height: 142,
-    paddingLeft: 12,
-    paddingRight: 4,
+    height: 110,
+    paddingHorizontal: 12,
     width: '100%',
   },
+  labelContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingHorizontal: 8
+  },
   title: {
-    fontSize: cardTitleFontSize
+    fontSize: FontSetting.title
+  },
+  rightBtnContainer: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
   startLabel: {
-    fontSize: descriptionFontSize,
-    color: color.primaryColor
+    color: color.primaryColor,
+    marginRight: 4,
+    fontSize: FontSetting.text,
   },
   arrowIcon: {
-    color: color.arrowIcon
+    color: color.pressable
   }
 });
 
