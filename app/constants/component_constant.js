@@ -24,3 +24,5 @@ export const gradientScrollViewPaddingBottom = getStyleOfDevice(90, 80);
 export const cardTitleLineHeight = getStyleOfDevice(Platform.OS == 'ios' ? 32 : 30, 28);
 export const pressableItemSize = 48
 export const arrowRightIconSize = getStyleOfDevice(30, 24)
+export const inputBoxBorderRadius = 6
+export const inputBoxHeight = 56

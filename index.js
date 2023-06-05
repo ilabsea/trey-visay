@@ -21,10 +21,15 @@ import store from './app/redux/store';
 import getTheme from './native-base-theme/components';
 import commonColor from './native-base-theme/variables/commonColor';
 import { fontConfig } from './react-native-paper/fontConfig';
+import Color from './app/themes/color';
 
 const theme = {
   ...MD2LightTheme,
   fonts: configureFonts({config: fontConfig, isV3: false}),
+  colors: {
+    ...MD2LightTheme.colors,
+    primary: Color.primaryColor
+  }
 };
 
 export default class TreyVisay extends Component {
