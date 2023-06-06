@@ -82,6 +82,6 @@ export default StyleSheet.create({
     color: 'black'
   },
   formGroup: {
-    marginBottom: 16
+    marginBottom: 18
   }
 });

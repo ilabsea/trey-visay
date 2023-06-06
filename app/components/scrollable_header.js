@@ -7,7 +7,6 @@ import {
   View,
   TouchableWithoutFeedback,
   Keyboard,
-  Platform
 } from 'react-native';
 import PropTypes from 'prop-types';
 import scrollableHeaderUtil from '../utils/scrollable_header_util';
@@ -61,11 +60,11 @@ class ScrollableHeader extends Component {
         onScroll={Animated.event(
           [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
           { useNativeDriver: true },
-        )}>
+        )}
+      >
         <View style={[{ marginTop: scrollableHeaderUtil.getContentMarginTop(this.props.headerMaxHeight)}]}>
           { this.props.renderContent() }
         </View>
-
       </Animated.ScrollView>
     );
   }
@@ -98,12 +97,12 @@ class ScrollableHeader extends Component {
   render() {
     return (
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-        <View style={styles.fill}>
+        <React.Fragment>
           { this.renderStatusBar() }
-          { this.renderNavigation()}
+          { this.renderNavigation()} 
           { this.renderContent() }
           { this.renderHeader() }
-        </View>
+        </React.Fragment>
       </TouchableWithoutFeedback>
     );
   }
