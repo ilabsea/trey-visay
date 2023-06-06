@@ -2,6 +2,7 @@ import React from "react";
 import { StyleSheet } from "react-native";
 
 import Text from "../Text";
+import {FontSetting} from '../../assets/style_sheets/font_setting';
 
 function ErrorMessage({ error, visible }) {
   if (!visible || !error) return null;
@@ -12,7 +13,7 @@ function ErrorMessage({ error, visible }) {
 const styles = StyleSheet.create({
   error: {
     color: 'rgb(221,44,0)',
-    fontSize: 12
+    fontSize: FontSetting.small_text
   },
 });
 

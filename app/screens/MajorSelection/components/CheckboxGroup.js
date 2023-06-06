@@ -1,53 +1,87 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useState, useRef} from 'react';
+import { View, FlatList, ActivityIndicator } from 'react-native';
+
 import { ErrorMessage } from '../../../components/forms';
-import { Text } from '../../../components';
-import { useFormikContext } from "formik";
-import { View, TouchableOpacity } from 'react-native';
 import Color from '../../../themes/color';
 import Checkbox from './Checkbox';
 
-const CheckboxGroup = ({name, options}) => {
-  const { setFieldTouched, handleChange, errors, touched, setFieldValue, values } = useFormikContext();
-  const selectedValues = values[name] || [];
+const {useImperativeHandle} = React
 
-  const toggleSelectedValues = (isChecked, value) => {
-    let newSelected;
+const CheckboxGroup = ({options, errorMessage, updateSelectedItem}, ref) => {
+  const selectedValues = useRef([])
+  const [paginateLoading, setPaginateLoading] = useState(false);
+  const [renderOptions, setRenderOptions] = useState([])
+  const listIndices = useRef({start: 0, end: 15})
 
-    if (isChecked) {
-      newSelected = [...selectedValues, value];
-    } else {
-      let index = selectedValues.indexOf(value);
-      newSelected = [...selectedValues.slice(0, index), ...selectedValues.slice(index + 1)]
-    }
+  useEffect(() => {
+    if (options.length > 0 && renderOptions.length == 0)
+      setRenderOptions([...options.slice(0, 15)])
+  }, [options])
 
-    return newSelected;
+  const getSelectedValues = () => {
+    return selectedValues.current
   }
 
-  const onPress = (isChecked, value) => {
-    let newSelected = toggleSelectedValues(isChecked, value);
+  useImperativeHandle(ref, () => ({
+    getSelectedValues
+  }))
 
-    setFieldValue(name, newSelected);
+  const onPress = (isChecked, value) => {
+    if (isChecked)
+      selectedValues.current.push(value)
+    else {
+      let index = selectedValues.current.indexOf(value);
+      selectedValues.current.splice(index, 1)
+    }
+    !!updateSelectedItem && updateSelectedItem(selectedValues.current.length)
   };
 
+  const onEndReached = () => {
+    if (listIndices.current.end >= options.length) return
+
+    setPaginateLoading(true)
+    const start = listIndices.current.end;
+    const end = parseInt(listIndices.current.end) + 15
+    listIndices.current = {start: start, end: end}
+    setTimeout(() => {
+      setRenderOptions(renderOptions.concat([...options.slice(start, end)]))
+      setPaginateLoading(false)
+    }, 200)
+  }
+
+  const renderListFooter = () => {
+    if (!paginateLoading) return <View/>
+
+    return <ActivityIndicator size={'large'} color={Color.primaryColor} style={{marginTop: 10}} />
+  }
+
   return (
-    <View>
-      {
-        options.map((option, index) => (
-          <View style={{minHeight: 50, borderBottomWidth: 0.5, justifyContent: 'center', borderColor: Color.gray}}>
+    <View style={{flexGrow: 1}}>
+      <View style={{paddingHorizontal: 16}}>
+        <ErrorMessage error={errorMessage} visible={errorMessage} />
+      </View>
+
+      <FlatList
+        style={{marginBottom: 1, paddingHorizontal: 16, flexGrow: 1}}
+        data={renderOptions}
+        keyExtractor={(option) => option.value.toString()}
+        onEndReached={() => onEndReached()}
+        renderItem={({ item, index }) => (
+          <View style={{minHeight: 56, borderBottomWidth: 0.5, justifyContent: 'center', borderColor: Color.gray}}>
             <Checkbox
-              key={ index }
-              value={ option.value }
-              label={ option.name }
+              index={index}
+              value={ item.value }
+              label={ item.name }
               onPress={ onPress }
-              checked={ selectedValues && selectedValues.indexOf(option.value) !== -1 }
+              checked={ selectedValues.current && selectedValues.current.indexOf(item.value) !== -1 }
+              onEndReached={() => onEndReached()}
             />
           </View>
-        ))
-      }
-
-      <ErrorMessage error={errors[name]} visible={touched[name]} />
+        )}
+        ListFooterComponent={renderListFooter()}
+      />
     </View>
-  );
+  )
 };
 
-export default CheckboxGroup;
+export default React.forwardRef(CheckboxGroup);

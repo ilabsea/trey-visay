@@ -22,7 +22,7 @@ const ListItem = ({caption, item={}}) => {
       </View>
 
       <List.Item
-        onPress={() => navigation.navigate(item.route, {title: item.title, quiz: item.quiz}) }
+        onPress={() => navigation.navigate(item.route, {title: item.title, quiz: item.quiz, major_code: item.quiz.selectedMajor}) }
         title={title}
         style={[{ backgroundColor: Color.whiteColor, borderBottomWidth: 1, borderColor: Color.paleGray , paddingHorizontal: getStyleOfDevice(14, 6)}]}
         right={props => <List.Icon {...props} icon="chevron-right" />}
