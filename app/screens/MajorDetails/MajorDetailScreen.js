@@ -5,12 +5,11 @@ import { Text } from '../../components';
 import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader'
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
 import MajorDetailAccordion from '../../components/MajorDetails/MajorDetailAccordion'
-import { FontSetting } from '../../assets/style_sheets/font_setting'
 import {screenHorizontalPadding} from '../../constants/component_constant'
-import majorHelper from '../../helpers/major_helper'
+import CollegeMajor from '../../models/CollegeMajor';
 
 const MajorDetailScreen = ({route}) => {
-  const major = majorHelper.findByCode(route.params.major_code) || {};
+  const major = CollegeMajor.findByCode(route.params.major_code) || {};
 
   return (
     <View style={{flex: 1}}>
@@ -26,4 +25,4 @@ const MajorDetailScreen = ({route}) => {
   )
 }
 
-export default MajorDetailScreen
+export default MajorDetailScreen;

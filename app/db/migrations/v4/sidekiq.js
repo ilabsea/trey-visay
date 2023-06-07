@@ -6,11 +6,12 @@ export default class Sidekiq extends Realm.Object {}
 
 Sidekiq.schema = {
   name: 'Sidekiq',
-  primaryKey: 'paramUuid',
+  primaryKey: 'uuid',
   properties: {
+    uuid: 'string',
     paramUuid: 'string',
-    tableName: 'string',
-    version: 'string',
-    attempt: { type: 'int', default: 0 }
+    modelName: 'string',
+    attempt: { type: 'int', default: 0 },
+    isDone: { type: 'bool', default: false }
   }
 }

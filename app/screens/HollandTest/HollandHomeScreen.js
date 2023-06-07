@@ -2,6 +2,7 @@ import React, { Component, useEffect } from 'react';
 import {
   View,
   StyleSheet,
+  TouchableOpacity
 } from 'react-native';
 // import firebase from 'react-native-firebase';
 
@@ -15,6 +16,8 @@ import { StartQuizButton, ResumeQuizButton}  from './components';
 import QuizListItem from './components/QuizListItem';
 import useAuth from "../../auth/useAuth";
 import Quiz from '../../models/Quiz';
+
+import Sidekiq from '../../models/Sidekiq';
 
 const HollandHomeScreen = ({route, navigation}) => {
   const { user } = useAuth();
@@ -69,6 +72,12 @@ const HollandHomeScreen = ({route, navigation}) => {
             <View style={{width: '100%'}}>
               <StartQuizButton />
               <ResumeQuizButton />
+
+              { false &&
+                <TouchableOpacity onPress={() => Sidekiq.syncToServer()}>
+                  <Text>test upload</Text>
+                </TouchableOpacity>
+              }
             </View>
           </Body>
         </CardItem>

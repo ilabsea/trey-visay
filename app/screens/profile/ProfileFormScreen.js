@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 
 import User from '../../models/User';
-import Sidekiq from '../../utils/models/sidekiq';
 import Color from '../../themes/color';
 import FormScreen from './Form';
 

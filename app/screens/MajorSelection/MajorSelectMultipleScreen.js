@@ -8,7 +8,7 @@ import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import CheckboxGroup from './components/CheckboxGroup';
 import SearchableHeader from '../../components/shared/searchableHeaders/SearchableHeader'
 import FooterBar from "../../components/footer/FooterBar";
-import useMajor from '../../hooks/useMajor';
+import CollegeMajor from '../../models/CollegeMajor';
 
 const MajorSelectMultipleScreen = ({route, navigation}) => {
   const [textSearch, setTextSearch] = useState('');
@@ -16,7 +16,7 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
   const [errorMsg, setErrorMsg] = useState('')
   const currentQuiz = route.params.quiz;
   const dispatch = useDispatch();
-  const { data, loading } = useMajor(currentQuiz);
+  const data = CollegeMajor.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
 
   let formRef = React.useRef()
 
@@ -25,7 +25,7 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
       return setErrorMsg(selectedItem == 0 ? "សូមជ្រើសរើសយ៉ាងតិច 1" : "សូមជ្រើសរើសយ៉ាងច្រើន 3")
 
     Quiz.write(()=> {
-      currentQuiz.majorOptions = formRef.current?.getSelectedValues();
+      currentQuiz.majorCodeSelections = formRef.current?.getSelectedValues();
       dispatch(setCurrentQuiz(currentQuiz));
     })
     navigation.navigate('MajorSelectOneScreen', {quiz: currentQuiz});
@@ -43,7 +43,9 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
             <Text>{selectedItem}/3</Text>
           </View>
         </TouchableWithoutFeedback>
+
         <Divider />
+
         <View style={{flex: 1}}>
           <CheckboxGroup
             ref={formRef}
@@ -55,6 +57,7 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
           />
         </View>
       </View>
+
       <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={handleSubmit} />
     </React.Fragment>
   )
