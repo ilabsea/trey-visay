@@ -31,3 +31,13 @@ export default class MathUtil {
     return arr;
   }
 }
+
+export const containsAny = (str, substrings) => {
+  for (var i = 0; i != substrings.length; i++) {
+     var substring = substrings[i];
+     if (str.indexOf(substring) != - 1) {
+       return substring;
+     }
+  }
+  return null;
+}

@@ -30,6 +30,10 @@ export default class Quiz extends Realm.Object {
   get jobRoute() {
     return !!this.selectedJob ? 'JobDetailScreen' : 'JobSelectMultipleScreen';
   }
+
+  get topPersonalityTypes() {
+    return this.sortedHollandScore.slice(0, 3).map(b => b[0]);
+  }
 }
 
 Quiz.schema = {

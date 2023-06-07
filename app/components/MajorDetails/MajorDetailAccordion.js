@@ -1,31 +1,81 @@
 import React from 'react';
 
+import {View} from 'react-native';
 import { Text } from '../../components';
 import Color from '../../themes/color';
 import InfoAccordion from '../shared/InfoAccordion';
 
-const MajorDetailAccordion = (props) => {
+const MajorDetailAccordion = ({major}) => {
   const details = [
     {
       title: "ក. ការពិពណ៌នាទូទៅ",
-      detail: "វិស្វករកសិកម្មបាននិងកំពុងពង្រីកដែនសក្តានុពលនៃការងារគម្រោងជាច្រើន ដែលទាក់ទងនឹងការងាររបស់ពួកគេ។ គម្រោងមួយចំនួន កំពុងទាមទារ ស្វែងរកអាជីពការងារនេះ តួយ៉ាងដូចជា គម្រោងផ្នែកថាមពលនិងជីវៈឥន្ទនៈ បច្ចេកវិទ្យាស្វ័យប្រវត្តិកម្មសម្រាប់ការងារកសិកម្មដូចជា ប្រព័ន្ធទឹក ការប្រើប្រាស់ថ្នាំ សម្លាប់សត្វល្អិត ការប្រមូលផលជាដើម។"
+      detail: major.general_info || "មិនទាន់មានទិន្នន័យ",
+      children: []
     },
     {
       title: "ខ. លក្ខខណ្ឌការងារ",
-      detail: "វិស្វករកសិកម្មបាននិងកំពុងពង្រីកដែនសក្តានុពលនៃការងារគម្រោងជាច្រើន ដែលទាក់ទងនឹងការងាររបស់ពួកគេ។ គម្រោងមួយចំនួន កំពុងទាមទារ ស្វែងរកអាជីពការងារនេះ តួយ៉ាងដូចជា គម្រោងផ្នែកថាមពលនិងជីវៈឥន្ទនៈ បច្ចេកវិទ្យាស្វ័យប្រវត្តិកម្មសម្រាប់ការងារកសិកម្មដូចជា ប្រព័ន្ធទឹក ការប្រើប្រាស់ថ្នាំ សម្លាប់សត្វល្អិត ការប្រមូលផលជាដើម។"
+      detail: "",
+      children: [
+        { title: "មុខវិជ្ជាតម្រង់ទិស", detail: major.orien_orientation_subjects },
+        { title: "លក្ខខណ្ឌចូលរៀន", detail: major.orien_study_condition },
+        { title: "លក្ខខណ្ឌបញ្ចប់ការសិក្សា", detail: major.orien_graduation_condition },
+      ]
     },
     {
-      title: "គ. ការសិក្សាអប់រំ និងបណ្ដុះបណ្ដាល",
-      detail: "វិស្វករកសិកម្មបាននិងកំពុងពង្រីកដែនសក្តានុពលនៃការងារគម្រោងជាច្រើន ដែលទាក់ទងនឹងការងាររបស់ពួកគេ។ គម្រោងមួយចំនួន កំពុងទាមទារ ស្វែងរកអាជីពការងារនេះ តួយ៉ាងដូចជា គម្រោងផ្នែកថាមពលនិងជីវៈឥន្ទនៈ បច្ចេកវិទ្យាស្វ័យប្រវត្តិកម្មសម្រាប់ការងារកសិកម្មដូចជា ប្រព័ន្ធទឹក ការប្រើប្រាស់ថ្នាំ សម្លាប់សត្វល្អិត ការប្រមូលផលជាដើម។"
+      title: "គ. កម្មវិធីសិក្សា",
+      detail: major.curriculum,
+      children: []
     },
     {
-      title: "ឃ. គុណវឌ្ឍគាំទ្រសំខាន់ៗ",
-      detail: "វិស្វករកសិកម្មបាននិងកំពុងពង្រីកដែនសក្តានុពលនៃការងារគម្រោងជាច្រើន ដែលទាក់ទងនឹងការងាររបស់ពួកគេ។ គម្រោងមួយចំនួន កំពុងទាមទារ ស្វែងរកអាជីពការងារនេះ តួយ៉ាងដូចជា គម្រោងផ្នែកថាមពលនិងជីវៈឥន្ទនៈ បច្ចេកវិទ្យាស្វ័យប្រវត្តិកម្មសម្រាប់ការងារកសិកម្មដូចជា ប្រព័ន្ធទឹក ការប្រើប្រាស់ថ្នាំ សម្លាប់សត្វល្អិត ការប្រមូលផលជាដើម។"
+      title: "ឃ. ដំណើរការបង្រៀន និងរៀន",
+      detail: major.teaching_and_learning_process,
+      children: []
+    },
+    {
+      title: "ង. ចំណេះដឹងទទួលបាន",
+      detail: major.gain_knowledge,
+      children: []
+    },
+    {
+      title: "ច. អាជីពការងារសក្ដិសម",
+      detail: major.worthy_career,
+      children: []
     },
   ]
 
+  const renderDetail = (detail) => {
+    let arr = (detail + "").split(' - ');
+    let arr2 = (arr.slice(1, arr.length) || []);
+
+    return (
+      <View>
+        <Text style={{color: Color.blackColor}}>
+          { arr[0] }
+        </Text>
+
+        { arr2.map((a, i) => <Text key={`detail-${i}`}>- {a}</Text>) }
+      </View>
+    )
+  }
+
   const renderAccordionDetail = (item) => {
-    return <Text style={{color: Color.blackColor}}>{item.detail}</Text>
+    if(!item.children.length) {
+      return (
+        renderDetail(item.detail)
+      )
+    }
+
+    return (
+      <View>
+        {item.children.map((obj, i) =>
+          <View key={i}>
+            <Text style={{color: Color.grayColor}}>{obj.title}</Text>
+            { renderDetail(obj.detail) }
+          </View>
+        )}
+
+      </View>
+    )
   }
 
   return (
