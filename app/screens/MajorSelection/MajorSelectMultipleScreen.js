@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View } from 'react-native'
+import { View, Keyboard, TouchableWithoutFeedback } from 'react-native'
 import { Text } from '../../components';
 import { Divider } from 'react-native-paper';
 import Quiz from '../../models/Quiz';
@@ -37,16 +37,19 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
         searchedText={textSearch} setSearchedText={(text) => setTextSearch(text)}
       />
       <View style={{margin: 16, flex: 1, backgroundColor: '#fff', borderRadius: 4, overflow: 'hidden'}}>
-        <View style={{padding: 16}}>
-          <Text>ចូរជ្រើសរើសមុខជំនាញដែលអ្នកពេញចិត្តក្នុងការបន្តការសិក្សានាពេលអនាគតយ៉ាងច្រើនបំផុត ៣មុខជំនាញ៖ </Text>
-          <Text>{selectedItem}/3</Text>
-        </View>
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+          <View style={{padding: 16}}>
+            <Text>ចូរជ្រើសរើសមុខជំនាញដែលអ្នកពេញចិត្តក្នុងការបន្តការសិក្សានាពេលអនាគតយ៉ាងច្រើនបំផុត ៣មុខជំនាញ៖ </Text>
+            <Text>{selectedItem}/3</Text>
+          </View>
+        </TouchableWithoutFeedback>
         <Divider />
         <View style={{flex: 1}}>
           <CheckboxGroup
             ref={formRef}
             name={"majors"}
             options={data.filter(major => major.name.includes(textSearch))}
+            textSearch={textSearch}
             errorMessage={errorMsg}
             updateSelectedItem={(items) => setSelectedItem(items)}
           />
