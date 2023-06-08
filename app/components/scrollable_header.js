@@ -74,6 +74,7 @@ class ScrollableHeader extends Component {
               scrollY={this.state.scrollY}
               headerMaxHeight={this.props.headerMaxHeight}
               renderNavigation={this.props.renderNavigation}
+              buttonColor={this.props.buttonColor}
            />
   }
 

@@ -52,6 +52,7 @@ const HollandTestInstruction = ({route, navigation}) => {
         renderNavigation={ renderNavigation }
         title={'តេស្តបុគ្គលិកលក្ខណៈ'}
         largeTitle={'តេស្តបុគ្គលិកលក្ខណៈ'}
+        buttonColor={Color.whiteColor}
       />
 
       <ConfirmationModal

@@ -12,7 +12,7 @@ const CustomNavigationHeader = (props) => {
   return (
     <Appbar.Header style={[styles.header, props.headerStyle]}>
       <View style={{flexDirection: 'row', alignItems: 'center', width: '100%'}}>
-        <BackButton onPress={() => !!props.onPressBack ? props.onPressBack() : goBack()} />
+        <BackButton onPress={() => !!props.onPressBack ? props.onPressBack() : goBack()} buttonColor={props.buttonColor} />
         <Appbar.Content title={props.title} titleStyle={styles.title} numberOfLines={1} />
       </View>
       {props.children}
