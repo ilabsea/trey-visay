@@ -4,10 +4,10 @@ import { StyleSheet } from "react-native";
 import Text from "../Text";
 import {FontSetting} from '../../assets/style_sheets/font_setting';
 
-function ErrorMessage({ error, visible }) {
+function ErrorMessage({ error, visible, style }) {
   if (!visible || !error) return null;
 
-  return <Text style={styles.error}>{error}</Text>;
+  return <Text style={[styles.error, style]}>{error}</Text>;
 }
 
 const styles = StyleSheet.create({

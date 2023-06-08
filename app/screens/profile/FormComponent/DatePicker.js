@@ -32,7 +32,7 @@ export default function DatePicker({name, label}) {
   return (
     <View>
       <View>
-        <Text>{label}</Text>
+        <Text>{label} <Text style={{color: Color.requiredColor}}>*</Text></Text>
         <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => setOpen(true)}>
           <View style={{borderColor: Color.borderColor, borderWidth: 0.5, flex: 1, alignItems: 'center', flexDirection: 'row', paddingHorizontal: 12, borderRadius: inputBoxBorderRadius, height: inputBoxHeight}}>
             <Text style={{flex: 1}}>{!!date && dateTimeHelper.getTranslatedDate(date)}</Text>

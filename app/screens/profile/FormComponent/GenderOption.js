@@ -31,7 +31,7 @@ const GenderOption = ({name}) => {
 
   return (
     <View>
-      <Text>ភេទ</Text>
+      <Text>ភេទ <Text style={{color: Color.requiredColor}}>*</Text></Text>
 
       <View style={{flexDirection: 'row', width: '100%'}}>
         { options.map(renderOption) }
