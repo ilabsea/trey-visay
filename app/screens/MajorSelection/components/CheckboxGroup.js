@@ -7,14 +7,16 @@ import Checkbox from './Checkbox';
 
 const {useImperativeHandle} = React
 
-const CheckboxGroup = ({options, errorMessage, updateSelectedItem}, ref) => {
+const CheckboxGroup = ({options, textSearch, errorMessage, updateSelectedItem}, ref) => {
   const selectedValues = useRef([])
   const [paginateLoading, setPaginateLoading] = useState(false);
   const [renderOptions, setRenderOptions] = useState([])
   const listIndices = useRef({start: 0, end: 15})
 
   useEffect(() => {
-    if (options.length > 0 && renderOptions.length == 0)
+    if (!!textSearch)
+      setRenderOptions(options)
+    else if (options.length > 0 && renderOptions.length == 0 || !textSearch)
       setRenderOptions([...options.slice(0, 15)])
   }, [options])
 
