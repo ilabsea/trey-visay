@@ -7,18 +7,18 @@ import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
 import MajorDetailAccordion from '../../components/MajorDetails/MajorDetailAccordion'
 import { FontSetting } from '../../assets/style_sheets/font_setting'
 import {screenHorizontalPadding} from '../../constants/component_constant'
-import listMajors from '../MajorSelection/json/list_majors';
+import majorHelper from '../../helpers/major_helper'
 
 const MajorDetailScreen = ({route}) => {
-  const major = listMajors.filter(x => x.code == route.params.major_code)[0] || {};
+  const major = majorHelper.findByCode(route.params.major_code) || {};
 
   return (
     <View style={{flex: 1}}>
-      <CustomNavigationHeader title={major.name} />
+      <CustomNavigationHeader title={route.params.title} />
 
       <ScrollView>
         <Text style={{marginTop: 16, marginBottom: 8, paddingHorizontal: screenHorizontalPadding, color: '#000'}}>
-          ការសិក្សាមុខវិជ្ជាថ្នាក់បរិញ្ញាបត្រ <BoldLabelComponent label={major.name} />៖
+          ការសិក្សាមុខវិជ្ជាថ្នាក់បរិញ្ញាបត្រ <BoldLabelComponent label={route.params.title} />៖
         </Text>
         <MajorDetailAccordion major={major}/>
       </ScrollView>

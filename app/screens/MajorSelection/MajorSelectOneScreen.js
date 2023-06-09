@@ -10,6 +10,7 @@ import listMajor from './json/list_majors';
 import * as Yup from "yup";
 import RadioGroup from './components/RadioGroup';
 import Quiz from '../../models/Quiz';
+import majorHelper from '../../helpers/major_helper';
 
 const MajorSelectOneScreen = ({route, navigation}) => {
   const [confirmModalVisible, setConfirmModalVisible] = React.useState(false)
@@ -17,7 +18,7 @@ const MajorSelectOneScreen = ({route, navigation}) => {
   const [selectedMajor, setSelectedMajor] = React.useState(null)
   const [resetAction, setResetAction] = React.useState(null)
   const currentQuiz = route.params.quiz;
-  const majors = listMajor.filter(o => Object.values(currentQuiz.majorOptions).includes(o.code)).map(x => ({name: x.name, value: x.value}))
+  const majors = listMajor.filter(o => Object.values(currentQuiz.majorOptions).includes(o.code)).map(x => ({name: x.name, value: x.code}))
 
   const updateQuiz = (major) => {
     Quiz.write(()=> {
@@ -27,7 +28,8 @@ const MajorSelectOneScreen = ({route, navigation}) => {
   }
 
   const modalMessage = (prefixLabel, suffixLabel) => {
-    return <Text>{prefixLabel} “<BoldLabelComponent label={selectedMajor}/>” {suffixLabel}</Text>
+    if (!!selectedMajor)
+      return <Text>{prefixLabel} “<BoldLabelComponent label={majorHelper.findByCode(selectedMajor).name}/>” {suffixLabel}</Text>
   }
 
   const renderPopupModals = () => {
