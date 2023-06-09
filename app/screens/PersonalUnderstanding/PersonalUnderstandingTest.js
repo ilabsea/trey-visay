@@ -77,6 +77,7 @@ export default PersonalUnderstandingTest = ({navigation}) => {
           renderNavigation={ renderNavigation }
           title={'ស្វែងយល់ពីខ្លួនឯង'}
           largeTitle={'ស្វែងយល់ពីខ្លួនឯង'}
+          buttonColor={Color.whiteColor}
         />
 
         { <SubmitButton title="បន្តទៀត"/> }

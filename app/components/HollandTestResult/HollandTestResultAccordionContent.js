@@ -4,6 +4,7 @@ import { View } from 'react-native';
 import { Text } from '../../components';
 import Color from '../../themes/color';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
+import {FontFamily} from '../../themes/font';
 
 const HollandTestResultAccordionContent = (props) => {
   const renderContent = () => {
@@ -16,7 +17,7 @@ const HollandTestResultAccordionContent = (props) => {
     return sections.map((section, index) => {
       return (
         <View key={index}>
-          <Text style={{fontSize: FontSetting.small_text, marginTop: index == 0 ? 6 : 10, marginBottom: -4, color: Color.grayColor}}>{section.title}</Text>
+          <Text style={{color: Color.gray, marginTop: index == 0 ? 6 : 12, fontFamily: FontFamily.bold}}>{section.title}</Text>
           <Text style={{color: 'black'}}>{section.description}</Text>
         </View>
       )

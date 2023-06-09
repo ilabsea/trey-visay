@@ -49,7 +49,8 @@ export default StyleSheet.create({
     lineHeight: 22
   },
   iconText: {
-    fontSize: 20,
+    fontSize: FontSetting.text,
+    fontWeight: 'bold',
     color: 'rgb(24,118,211)'
   },
   line: {

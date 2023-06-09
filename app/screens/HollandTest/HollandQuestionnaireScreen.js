@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import { View, TouchableOpacity } from 'react-native'
+import { View, TouchableOpacity, ScrollView } from 'react-native'
 import {
   Text,
   BackButton,
@@ -11,6 +11,7 @@ import {
 import Color from '../../themes/color';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import HollandQuestionNavHeader from './components/HollandQuestionNavHeader';
 import HollandQuestionItem from './components/HollandQuestionItem';
 import Quiz from '../../models/Quiz';
 import { Form, SubmitButton } from '../../components/forms';
@@ -60,38 +61,20 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
     )
   }
 
-  const renderNavigation = () => {
-    return (
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <BackButton buttonColor='#fff' style={{width: 48}}/>
-        <Text style={[scrollHeaderStyles.navTitle, { paddingTop: 2, flex: 1,  justifyContent: 'center' }]}>តេស្តបុគ្គលិកលក្ខណៈ</Text>
-
-        <TouchableOpacity onPress={() => {}} style={{padding: 16}}>
-          <AwesomeIcon name='home' color={Color.whiteColor} size={28} />
-        </TouchableOpacity>
-      </View>
-    )
-  }
-
   return (
     <Form
       initialValues={initialValues}
       onSubmit={ handleSubmit }
-      validationSchema={validationSchema} >
-
-      <View style={{flex: 1}}>
-        <ScrollableHeader
-          backgroundColor={Color.blue}
-          statusBarColor={Color.blueStatusBar}
-          barStyle={'light-content'}
-          renderContent={ renderContent }
-          renderNavigation={ renderNavigation }
-          headerMaxHeight={140}
-          renderForeground={ () => <ProgressStep step={page} /> }
-        />
-
-        <SubmitButton title='បន្តទៀត' />
-      </View>
+      validationSchema={validationSchema}
+    >
+      <HollandQuestionNavHeader/>
+      <ScrollView contentContainerStyle={{flexGrow: 1}}>
+        <View style={{backgroundColor: Color.blue, paddingHorizontal: 16, paddingTop: 8}}>
+          <ProgressStep step={page}/>
+        </View>
+        {renderContent()}
+      </ScrollView>
+      <SubmitButton title='បន្តទៀត' />
     </Form>
   )
 }

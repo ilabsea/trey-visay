@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     height: pressableItemSize,
     minWidth: pressableItemSize,
-    paddingHorizontal: 12
+    paddingHorizontal: 18
   }
 });
 
