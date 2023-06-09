@@ -4,6 +4,7 @@ import { Footer, Button } from 'native-base';
 import {screenHorizontalPadding} from '../../constants/component_constant';
 import {getStyleOfDevice} from '../../utils/responsive_util';
 import Text from '../Text';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 const FooterBar = (props) => {
   return(
@@ -28,7 +29,8 @@ const styles = StyleSheet.create({
   },
   btnText: {
     color: '#fff',
-    marginTop: getStyleOfDevice(-3, -1)
+    marginTop: getStyleOfDevice(-3, -1),
+    fontSize: FontSetting.button_text,
   },
 })
 
