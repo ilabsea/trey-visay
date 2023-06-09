@@ -31,7 +31,7 @@ const MyCheckbox = (props) => {
 
       <Divider style={{width: 1, height: '65%',marginHorizontal: 8}} />
 
-      <TouchableOpacity onPress={() => navigate('MajorDetailScreen', {major_code: props.value})}>
+      <TouchableOpacity onPress={() => navigate('MajorDetailScreen', {title: props.label, major_code: props.value})}>
         <Text style={{fontSize: 13, color: Color.pressable}}>ចូលមើលលម្អិត</Text>
       </TouchableOpacity>
     </View>
