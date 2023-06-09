@@ -5,7 +5,7 @@ import { Text } from '../../components';
 import images from '../../assets/images';
 
 const Rating = (props) => {
-  const style = props.active ? {backgroundColor: 'pink'} : {};
+  const style = props.active ? {backgroundColor: Color.blue} : {};
 
   return (
     <View style={[{padding: 8, borderWidth: 1, borderRadius: 5, marginRight: 16, borderColor: Color.gray}, style]}>

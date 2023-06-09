@@ -10,7 +10,6 @@ import {getStyleOfOS, getStyleOfDevice} from '../../utils/responsive_util';
 import Quiz from '../../models/Quiz';
 import Color from '../../themes/color';
 import { useNavigation } from '@react-navigation/native';
-import majorHelper from '../../helpers/major_helper';
 
 const ListItem = ({caption, item={}}) => {
   const navigation = useNavigation();
@@ -23,7 +22,7 @@ const ListItem = ({caption, item={}}) => {
       </View>
 
       <List.Item
-        onPress={() => navigation.navigate(item.route, {title: item.title, quiz: item.quiz, major_code: item.quiz.selectedMajor}) }
+        onPress={() => navigation.navigate(item.route, {title: item.title, quiz: item.quiz, major_code: item.quiz.majorCodeSelected}) }
         title={title}
         style={[{ backgroundColor: Color.whiteColor, borderBottomWidth: 1, borderColor: Color.paleGray , paddingHorizontal: getStyleOfDevice(14, 6)}]}
         right={props => <List.Icon {...props} icon="chevron-right" />}
@@ -45,8 +44,8 @@ const HollandTestResult = ({route, navigation}) => {
         </View>
 
         <HollandTestResultCharacteristicAccordions quiz={currentQuiz}/>
-        <ListItem caption={"ជំនាញកម្រិតឧត្តមសិក្សារបស់អ្នក"} item={{title: majorHelper.findByCode(currentQuiz.selectedMajor).name, route: currentQuiz.majorRoute, quiz: currentQuiz}}/>
-        <ListItem caption={"មុខរបរ ឬអាជីពសាកសមរបស់អ្នក"} item={{title: currentQuiz.selectedJob, route: currentQuiz.jobRoute, quiz: currentQuiz}}/>
+        <ListItem caption={"ជំនាញកម្រិតឧត្តមសិក្សារបស់អ្នក"} item={{title: !!currentQuiz.selectedMajor && currentQuiz.selectedMajor.name, route: currentQuiz.majorRoute, quiz: currentQuiz}}/>
+        <ListItem caption={"មុខរបរ ឬអាជីពសាកសមរបស់អ្នក"} item={{title: !!currentQuiz.selectedJob && currentQuiz.selectedJob.name_km, route: currentQuiz.jobRoute, quiz: currentQuiz}}/>
       </View>
     )
   }

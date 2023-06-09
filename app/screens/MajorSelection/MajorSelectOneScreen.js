@@ -6,11 +6,11 @@ import { Form, SubmitButton, SelectOneListItemGroup } from '../../components/for
 import ConfirmationModal from '../../components/shared/ConfirmationModal'
 import CongratulationModal from '../../components/shared/CongratulationModal'
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
-import listMajor from './json/list_majors';
 import * as Yup from "yup";
 import RadioGroup from './components/RadioGroup';
 import Quiz from '../../models/Quiz';
-import majorHelper from '../../helpers/major_helper';
+import CollegeMajor from '../../models/CollegeMajor';
+import Sidekiq from '../../models/Sidekiq';
 
 const MajorSelectOneScreen = ({route, navigation}) => {
   const [confirmModalVisible, setConfirmModalVisible] = React.useState(false)
@@ -18,18 +18,20 @@ const MajorSelectOneScreen = ({route, navigation}) => {
   const [selectedMajor, setSelectedMajor] = React.useState(null)
   const [resetAction, setResetAction] = React.useState(null)
   const currentQuiz = route.params.quiz;
-  const majors = listMajor.filter(o => Object.values(currentQuiz.majorOptions).includes(o.code)).map(x => ({name: x.name, value: x.code}))
+  const majors = CollegeMajor.findAllByCodes(Object.values(currentQuiz.majorCodeSelections)).map(x => ({name: x.name, value: x.code}))
 
   const updateQuiz = (major) => {
     Quiz.write(()=> {
       currentQuiz.step = 3
-      currentQuiz.selectedMajor = major;
+      currentQuiz.majorCodeSelected = major;
+
+      Sidekiq.create({paramUuid: currentQuiz.uuid, modelName: 'uploadMajorResponse'});
     })
   }
 
   const modalMessage = (prefixLabel, suffixLabel) => {
     if (!!selectedMajor)
-      return <Text>{prefixLabel} “<BoldLabelComponent label={majorHelper.findByCode(selectedMajor).name}/>” {suffixLabel}</Text>
+      return <Text>{prefixLabel} “<BoldLabelComponent label={CollegeMajor.findByCode(selectedMajor).name}/>” {suffixLabel}</Text>
   }
 
   const renderPopupModals = () => {

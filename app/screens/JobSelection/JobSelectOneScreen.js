@@ -6,13 +6,14 @@ import { Form, SubmitButton, SelectOneListItemGroup } from '../../components/for
 import ConfirmationModal from '../../components/shared/ConfirmationModal'
 import CongratulationModal from '../../components/shared/CongratulationModal'
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
-import listJob from './json/list_job';
 import * as Yup from "yup";
 import RadioGroup from '../MajorSelection/components/RadioGroup';
 import { useDispatch } from 'react-redux';
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import { useNavigation } from '@react-navigation/native';
 import Quiz from '../../models/Quiz';
+import Sidekiq from '../../models/Sidekiq';
+import Job from '../../models/Job';
 
 const JobSelectOneScreen = ({route}) => {
   const [confirmModalVisible, setConfirmModalVisible] = React.useState(false)
@@ -21,11 +22,12 @@ const JobSelectOneScreen = ({route}) => {
   const [resetAction, setResetAction] = React.useState(null)
   const currentQuiz = route.params.quiz;
   const dispatch = useDispatch();
-  const jobs = listJob.filter(o => Object.values(currentQuiz.jobOptions).includes(o.value))
+  const jobs = Job.findAllByCodes(Object.values(currentQuiz.jobCodeSelections)).map(job => ({name: job.name_km, value: job.code}))
   const navigation = useNavigation();
 
   const modalMessage = (prefixLabel, suffixLabel) => {
-    return <Text>{prefixLabel} “<BoldLabelComponent label={selectedJob}/>” {suffixLabel}</Text>
+    let job = Job.findByCode(selectedJob) || {};
+    return <Text>{prefixLabel} “<BoldLabelComponent label={job.name_km}/>” {suffixLabel}</Text>
   }
 
   const renderPopupModals = () => {
@@ -64,9 +66,11 @@ const JobSelectOneScreen = ({route}) => {
 
   const updateQuiz = (job) => {
     Quiz.write(()=> {
-      currentQuiz.step = 4
-      currentQuiz.selectedJob = job;
+      currentQuiz.step = 3
+      currentQuiz.jobCodeSelected = job;
       dispatch(setCurrentQuiz(currentQuiz));
+
+      Sidekiq.create({paramUuid: currentQuiz.uuid, modelName: 'uploadJobResponse'});
     })
   }
 
