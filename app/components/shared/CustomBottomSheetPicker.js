@@ -8,9 +8,10 @@ import {FontFamily} from '../../themes/font';
 import {FontSetting} from '../../assets/style_sheets/font_setting';
 import {defaultBottomSheetContentHeight, defaultBottomSheetSnapPoints} from '../../constants/modal_constant';
 import {inputBoxBorderRadius} from '../../constants/component_constant';
+import { ErrorMessage } from '../forms';
 
 const CustomBottomSheetPickerComponent = (props) => {
-  const { setFieldValue, values } = useFormikContext();
+  const { setFieldValue, values, errors, touched } = useFormikContext();
   const colorSet = (type) => {
     const colors = {
       background: props.disabled ? Color.disabledCardColor : Color.whiteColor,
@@ -20,11 +21,12 @@ const CustomBottomSheetPickerComponent = (props) => {
     return colors[type];
   }
 
-  return <BottomSheetPicker
+  return <React.Fragment>
+          <BottomSheetPicker
             {...props}
             primaryColor={colorSet('primary')}
             secondaryColor={Color.secondaryColor}
-            titleStyle={[{marginTop: 2, fontSize: FontSetting.text, fontFamily: FontFamily.regular, color: Color.lightBlackColor, marginBottom: 0}, props.titleStyle]}
+            titleStyle={[{marginTop: 6, fontSize: FontSetting.text, fontFamily: FontFamily.regular, color: Color.lightBlackColor, marginBottom: 0}, props.titleStyle]}
             pickerStyle={{backgroundColor: colorSet('background'), borderColor: Color.borderColor, borderWidth: 0.5, borderRadius: inputBoxBorderRadius, paddingLeft: 12, paddingRight: 4}}
             bottomSheetTitleStyle={[{fontSize: FontSetting.title, fontFamily: FontFamily.bold, lineHeight: 28, marginTop: 6}, Platform.OS === 'android' && {fontWeight: 'normal'}]}
             placeholderStyle={[{fontSize: FontSetting.text, fontFamily: FontFamily.regular, alignSelf: 'center', color: colorSet('text')}, props.placeholderStyle]}
@@ -37,6 +39,8 @@ const CustomBottomSheetPickerComponent = (props) => {
             showRadioStyle={true}
             outlineColor='red'
           />
+          <ErrorMessage error={errors[props.fieldName]} visible={touched[props.fieldName]} style={{marginBottom: -10}} />
+        </React.Fragment>
 }
 
 export default CustomBottomSheetPickerComponent;

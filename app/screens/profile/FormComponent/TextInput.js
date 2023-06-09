@@ -7,15 +7,15 @@ import { useFormikContext } from "formik";
 import Color from '../../../themes/color';
 import {inputBoxBorderRadius} from '../../../constants/component_constant';
 
-const TextInputComponent = ({label, name, iconName, ...otherProps}) => {
+const TextInputComponent = ({label, name, iconName, required, ...otherProps}) => {
   const { errors, touched, setFieldValue, values } = useFormikContext();
 
   return (
     <View>
-      <Text>{label}</Text>
+      <Text>{label} {required && <Text style={{color: Color.requiredColor}}>*</Text>}</Text>
       <TextInput
         mode="outlined"
-        left={<TextInput.Icon icon='account' size={30} iconColor={Color.grayColor} />}
+        left={<TextInput.Icon icon={iconName} size={30} iconColor={Color.grayColor} />}
         style={{backgroundColor: Color.whiteColor}}
         outlineColor={Color.borderColor}
         outlineStyle={{borderWidth: 0.5, borderRadius: inputBoxBorderRadius}}

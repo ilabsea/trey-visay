@@ -27,7 +27,7 @@ const requireGrade = {
 const validationSchema = Yup.object().shape({
   fullName: Yup.string().required("សូមបញ្ចូលឈ្មោះ"),
   sex: Yup.string().required("សូមជ្រើសរើស"),
-  dateOfBirth: Yup.string().required("មិនអាចទទេបានទេ"),
+  dateOfBirth: Yup.string().required("សូមបញ្ចូលថ្ងៃខែឆ្នាំកំណើត"),
   grade: Yup.string().required("មិនអាចទទេបានទេ"),
   classGroup: Yup.string().when("grade", {
     is: (grade) => ["11", "12"].includes(grade),
@@ -48,7 +48,8 @@ const FormScreen = ({onSubmit}) => {
         <TextInput
           name="fullName"
           label="ឈ្មោះពេញ"
-          iconName="md-person"
+          iconName="account"
+          required={true}
         />
       </View>
     )
@@ -66,6 +67,20 @@ const FormScreen = ({onSubmit}) => {
     return(
       <View style={styles.formGroup}>
         <DatePicker name="dateOfBirth" label={"ថ្ងៃ/ខែ/ឆ្នាំកំណើត"} />
+      </View>
+    )
+  }
+
+  const renderPhoneNumber = () => {
+    return (
+      <View style={styles.formGroup}>
+        <TextInput
+          name="phoneNumber"
+          label="លេខទូរស័ព្ទ"
+          iconName="phone"
+          inputMode='tel'
+          maxLength={10}
+        />
       </View>
     )
   }
@@ -113,6 +128,7 @@ const FormScreen = ({onSubmit}) => {
         { renderFullName() }
         { renderGender() }
         { renderDateOfBirth() }
+        { renderPhoneNumber() }
         {renderBottomSheetPicker('ជាសិស្សថ្នាក់ទី', 'សូមជ្រើសរើសថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'ជ្រើសរើសថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'grade', grades, 'value')}
 
         { isGradeSelected(values) &&
