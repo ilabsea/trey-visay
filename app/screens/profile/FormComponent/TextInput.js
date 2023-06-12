@@ -1,5 +1,5 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { Text } from '../../../components';
 import { ErrorMessage } from '../../../components/forms';
@@ -12,7 +12,9 @@ const TextInputComponent = ({label, name, iconName, required, ...otherProps}) =>
 
   return (
     <View>
-      <Text>{label} {required && <Text style={{color: Color.requiredColor}}>*</Text>}</Text>
+      <View style={styles.labelContainer}>
+        <Text>{label}{required && <Text style={{color: Color.requiredColor}}> *</Text>}</Text>
+      </View>
       <TextInput
         mode="outlined"
         left={<TextInput.Icon icon={iconName} size={30} iconColor={Color.grayColor} />}
@@ -28,5 +30,18 @@ const TextInputComponent = ({label, name, iconName, required, ...otherProps}) =>
     </View>
   )
 }
+
+const styles = StyleSheet.create({
+  labelContainer: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    height: 32,
+    paddingHorizontal: 5,
+    position: 'absolute',
+    left: 16,
+    top: -10,
+    zIndex: 1,
+  }
+})
 
 export default TextInputComponent;
