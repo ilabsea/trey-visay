@@ -44,9 +44,9 @@ function CareerCounsellorStack() {
       <Stack.Screen name="MajorRecommendationScreen" component={MajorRecommendationScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
 
       <Stack.Screen name="JobSelectMultipleScreen" component={JobSelectMultipleScreen} options={{headerShown: false}} />
-      <Stack.Screen name="JobSelectOneScreen" component={JobSelectOneScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+      <Stack.Screen name="JobSelectOneScreen" component={JobSelectOneScreen} options={{title: "ជម្រើសអាជីពការងារ"}} />
       <Stack.Screen name="JobDetailScreen" component={JobDetailScreen} options={({route}) => {title: route.title}} />
-      <Stack.Screen name="JobRecommendationScreen" component={JobRecommendationScreen} options={{title: "ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា"}} />
+      <Stack.Screen name="JobRecommendationScreen" component={JobRecommendationScreen} options={{title: "ជម្រើសអាជីពការងារ"}} />
 
       <Stack.Screen name="HollandDetailScreen" component={HollandDetailScreen} options={{headerShown: false}} />
     </Stack.Navigator>
