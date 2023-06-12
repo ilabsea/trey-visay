@@ -57,7 +57,7 @@ const FormScreen = ({onSubmit}) => {
 
   const renderGender = () => {
     return (
-      <View style={styles.formGroup}>
+      <View style={[styles.formGroup]}>
         <GenderOption name={"sex"} />
       </View>
     )
@@ -106,7 +106,7 @@ const FormScreen = ({onSubmit}) => {
   }
 
   const renderBottomSheetPicker = (title, placeholder, bottomSheetTitle, name, items, selectedFieldName = null) => {
-    return <View style={styles.formGroup}>
+    return <View style={[styles.formGroup, {marginTop: 12}]}>
               <CustomBottomSheetPicker
                 title={title}
                 placeholder={placeholder}

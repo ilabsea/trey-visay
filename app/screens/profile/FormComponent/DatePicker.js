@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     height: 32,
     paddingHorizontal: 5,
     position: 'absolute',
-    left: 10,
+    left: 12,
     top: -16,
     zIndex: 1,
   },

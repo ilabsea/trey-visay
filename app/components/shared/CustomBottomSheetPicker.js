@@ -14,9 +14,9 @@ const CustomBottomSheetPickerComponent = (props) => {
   const { setFieldValue, values, errors, touched } = useFormikContext();
   const colorSet = (type) => {
     const colors = {
-      background: props.disabled ? Color.disabledCardColor : Color.whiteColor,
       primary: props.disabled ? Color.gray : Color.primaryColor,
       text: props.disabled ? Color.gray : Color.blackColor,
+      title: props.disabled ? Color.gray : Color.lightBlackColor
     }
     return colors[type];
   }
@@ -26,8 +26,8 @@ const CustomBottomSheetPickerComponent = (props) => {
             {...props}
             primaryColor={colorSet('primary')}
             secondaryColor={Color.secondaryColor}
-            titleStyle={[{marginTop: 6, fontSize: FontSetting.text, fontFamily: FontFamily.regular, color: Color.lightBlackColor, marginBottom: 0}, props.titleStyle]}
-            pickerStyle={{backgroundColor: colorSet('background'), borderColor: Color.borderColor, borderWidth: 0.5, borderRadius: inputBoxBorderRadius, paddingLeft: 12, paddingRight: 4}}
+            titleStyle={[{color: colorSet('title'), fontSize: FontSetting.sub_title}, props.titleStyle]}
+            pickerStyle={{backgroundColor: 'white', borderColor: Color.borderColor, borderWidth: 0.5, borderRadius: inputBoxBorderRadius, paddingLeft: 12, paddingRight: 4}}
             bottomSheetTitleStyle={[{fontSize: FontSetting.title, fontFamily: FontFamily.bold, lineHeight: 28, marginTop: 6}, Platform.OS === 'android' && {fontWeight: 'normal'}]}
             placeholderStyle={[{fontSize: FontSetting.text, fontFamily: FontFamily.regular, alignSelf: 'center', color: colorSet('text')}, props.placeholderStyle]}
             itemTextStyle={{fontSize: FontSetting.text, fontFamily: FontFamily.regular}}
@@ -37,7 +37,9 @@ const CustomBottomSheetPickerComponent = (props) => {
             selectedItem={values[props.fieldName]}
             onSelectItem={(item) => {setFieldValue(props.fieldName, item)}}
             showRadioStyle={true}
-            outlineColor='red'
+            isOutlined={true}
+            titleFontFamily={FontFamily.regular}
+            requiredTitleStyle={{fontSize: FontSetting.sub_title}}
           />
           <ErrorMessage error={errors[props.fieldName]} visible={touched[props.fieldName]} style={{marginBottom: -10}} />
         </React.Fragment>
