@@ -4,6 +4,7 @@ import {Appbar} from 'react-native-paper';
 
 import {BackButton, Text} from '../../../components'
 import ConfirmationModal from '../../../components/shared/ConfirmationModal';
+import HollandProgressArrow from './HollandProgressArrow';
 
 import {goBack, reset} from '../../../hooks/RootNavigation'
 import { FontSetting } from '../../../assets/style_sheets/font_setting';
@@ -42,6 +43,7 @@ const CustomNavigationHeader = (props) => {
           <Appbar.Action icon="home" onPress={() => setModalVisible(true)} color={Color.whiteColor} size={getStyleOfOS(getStyleOfDevice(28, 24), 24)} />
         </View>
       </Appbar.Header>
+      <HollandProgressArrow step={props.step} />
       {renderConfirmation()}
     </React.Fragment>
   )

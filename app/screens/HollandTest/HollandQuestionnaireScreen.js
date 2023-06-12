@@ -69,7 +69,7 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
       onSubmit={ handleSubmit }
       validationSchema={validationSchema}
     >
-      <HollandQuestionNavHeader/>
+      <HollandQuestionNavHeader step={page}/>
       <ScrollView contentContainerStyle={{flexGrow: 1}}>
         <View style={{backgroundColor: Color.blue, paddingHorizontal: 16, paddingTop: 8}}>
           <ProgressStep step={page}/>
