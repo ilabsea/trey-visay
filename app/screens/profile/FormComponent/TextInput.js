@@ -14,7 +14,7 @@ const TextInputComponent = ({label, name, iconName, required, ...otherProps}) =>
   return (
     <View>
       <View style={styles.labelContainer}>
-        <Text style={{fontSize: FontSetting.sub_title}}>{label}{required && <Text style={{color: Color.requiredColor, fontSize: FontSetting.sub_title}}> *</Text>}</Text>
+        <Text style={{fontSize: FontSetting.sub_title, color: Color.lightBlackColor}}>{label}{required && <Text style={{color: Color.requiredColor, fontSize: FontSetting.sub_title}}> *</Text>}</Text>
       </View>
       <TextInput
         mode="outlined"

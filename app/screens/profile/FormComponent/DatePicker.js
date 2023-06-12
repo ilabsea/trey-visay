@@ -34,7 +34,7 @@ export default function DatePicker({name, label}) {
     <View style={{marginTop: 14, marginBottom: 8}}>
       <View>
         <View style={styles.labelContainer}>
-          <Text style={{fontSize: FontSetting.sub_title}}>{label}<Text style={{color: Color.requiredColor, fontSize: FontSetting.sub_title}}> *</Text></Text>
+          <Text style={{fontSize: FontSetting.sub_title, color: Color.lightBlackColor}}>{label}<Text style={{color: Color.requiredColor, fontSize: FontSetting.sub_title}}> *</Text></Text>
         </View>
         <TouchableOpacity style={styles.datePickerContainer} onPress={() => setOpen(true)}>
           <Text style={{flex: 1}}>{!!date && dateTimeHelper.getTranslatedDate(date)}</Text>
