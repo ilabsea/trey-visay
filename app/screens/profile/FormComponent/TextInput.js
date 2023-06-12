@@ -6,6 +6,7 @@ import { ErrorMessage } from '../../../components/forms';
 import { useFormikContext } from "formik";
 import Color from '../../../themes/color';
 import {inputBoxBorderRadius} from '../../../constants/component_constant';
+import {FontSetting} from '../../../assets/style_sheets/font_setting';
 
 const TextInputComponent = ({label, name, iconName, required, ...otherProps}) => {
   const { errors, touched, setFieldValue, values } = useFormikContext();
@@ -13,7 +14,7 @@ const TextInputComponent = ({label, name, iconName, required, ...otherProps}) =>
   return (
     <View>
       <View style={styles.labelContainer}>
-        <Text>{label}{required && <Text style={{color: Color.requiredColor}}> *</Text>}</Text>
+        <Text style={{fontSize: FontSetting.sub_title}}>{label}{required && <Text style={{color: Color.requiredColor, fontSize: FontSetting.sub_title}}> *</Text>}</Text>
       </View>
       <TextInput
         mode="outlined"
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     height: 32,
     paddingHorizontal: 5,
     position: 'absolute',
-    left: 16,
+    left: 10,
     top: -10,
     zIndex: 1,
   }
