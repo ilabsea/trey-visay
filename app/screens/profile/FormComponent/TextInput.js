@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { Text } from '../../../components';
-import { ErrorMessage } from '../../../components/forms';
+import FormErrorMessage from './FormErrorMessage';
 import { useFormikContext } from "formik";
 import Color from '../../../themes/color';
 import {inputBoxBorderRadius} from '../../../constants/component_constant';
@@ -26,8 +26,7 @@ const TextInputComponent = ({label, name, iconName, required, ...otherProps}) =>
         value={values[name]}
         {...otherProps}
       />
-
-      <ErrorMessage error={errors[name]} visible={touched[name]} />
+      <FormErrorMessage error={errors[name]} visible={touched[name]} />
     </View>
   )
 }

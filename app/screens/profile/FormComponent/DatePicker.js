@@ -6,7 +6,8 @@ import { useFormikContext } from "formik";
 import Moment from 'moment';
 
 import dateTimeHelper from '../../../utils/DateTime/date_time_helper';
-import { Text, ErrorMessage } from '../../../components';
+import { Text } from '../../../components';
+import FormErrorMessage from './FormErrorMessage';
 import Color from '../../../themes/color';
 import {inputBoxBorderRadius, inputBoxHeight} from '../../../constants/component_constant';
 import {pickerLabels} from '../../../constants/datepicker_constant';
@@ -51,7 +52,7 @@ export default function DatePicker({name, label}) {
           typeInDate={null}
         />
       </View>
-      <ErrorMessage error={errors[name]} visible={touched[name]} />
+      <FormErrorMessage error={errors[name]} visible={touched[name]} />
     </View>
   );
 };

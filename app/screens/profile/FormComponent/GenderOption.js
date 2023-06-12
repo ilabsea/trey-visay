@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import Color from '../../../themes/color';
 import { Text } from '../../../components';
-import { ErrorMessage } from '../../../components/forms';
+import FormErrorMessage from './FormErrorMessage';
 import {FontSetting} from '../../../assets/style_sheets/font_setting';
 import { useFormikContext } from "formik";
 
@@ -31,15 +31,16 @@ const GenderOption = ({name}) => {
   }
 
   return (
-    <View style={{flexDirection: 'row'}}>
-      <Text style={{fontSize: FontSetting.sub_title, color: Color.lightBlackColor}}>ភេទ <Text style={{color: Color.requiredColor, fontSize: FontSetting.sub_title}}>*</Text></Text>
+    <React.Fragment>
+      <View style={{flexDirection: 'row'}}>
+        <Text style={{fontSize: FontSetting.sub_title, color: Color.lightBlackColor}}>ភេទ <Text style={{color: Color.requiredColor, fontSize: FontSetting.sub_title}}>*</Text></Text>
 
-      <View style={{flexDirection: 'row', width: '100%', paddingLeft: 22, marginTop: 10}}>
-        { options.map(renderOption) }
+        <View style={{flexDirection: 'row', width: '100%', paddingLeft: 22, marginTop: 10}}>
+          { options.map(renderOption) }
+        </View>
       </View>
-
-      <ErrorMessage error={errors[name]} visible={touched[name]} />
-    </View>
+      <FormErrorMessage error={errors[name]} visible={touched[name]} />
+    </React.Fragment>
   )
 }
 

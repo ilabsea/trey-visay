@@ -41,7 +41,7 @@ const CustomBottomSheetPickerComponent = (props) => {
             titleFontFamily={FontFamily.regular}
             requiredTitleStyle={{fontSize: FontSetting.sub_title}}
           />
-          <ErrorMessage error={errors[props.fieldName]} visible={touched[props.fieldName]} style={{marginBottom: -10}} />
+          <ErrorMessage error={errors[props.fieldName]} visible={touched[props.fieldName]} style={{lineHeight: 20, marginBottom: -10, marginTop: 4}} />
         </React.Fragment>
 }
 
