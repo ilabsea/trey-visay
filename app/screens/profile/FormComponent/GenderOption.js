@@ -30,10 +30,10 @@ const GenderOption = ({name}) => {
   }
 
   return (
-    <View>
+    <View style={{flexDirection: 'row'}}>
       <Text>ភេទ <Text style={{color: Color.requiredColor}}>*</Text></Text>
 
-      <View style={{flexDirection: 'row', width: '100%'}}>
+      <View style={{flexDirection: 'row', width: '100%', paddingLeft: 22}}>
         { options.map(renderOption) }
       </View>
 
@@ -44,8 +44,8 @@ const GenderOption = ({name}) => {
 
 const styles = StyleSheet.create({
   sexImageWrapper: {
-    width: 100,
-    height: 100,
+    width: 76,
+    height: 76,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 8,
@@ -55,8 +55,8 @@ const styles = StyleSheet.create({
     marginRight: 20
   },
   sexImage: {
-    width: 66,
-    height: 73
+    width: 52,
+    height: 58,
   }
 })
 
