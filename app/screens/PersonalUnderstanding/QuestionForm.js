@@ -11,13 +11,13 @@ import { Text } from '../../components';
 import questions from './json/list_questions';
 
 const QuestionForm = (props) => {
-  const renderQuestion = (question) => {
+  const renderQuestion = (question, index) => {
     return (
-      <View>
+      <View key={`question_${index}`}>
         <QuestionField question={question}/>
 
-        { question.sub_questions.map((sub_question) => (
-            <View style={{marginTop: 16}}>
+        { question.sub_questions.map((sub_question, index) => (
+            <View style={{marginTop: 16}} key={index}>
               <QuestionField question={sub_question} />
             </View>
           ))

@@ -32,7 +32,7 @@ const CheckboxGroup = ({name, options}) => {
     <View>
       {
         options.map((option, index) => (
-          <View style={{minHeight: 50, borderBottomWidth: 0.5, justifyContent: 'center', borderColor: Color.gray}}>
+          <View key={`c_${index}`} style={{minHeight: 50, borderBottomWidth: 0.5, justifyContent: 'center', borderColor: Color.gray}}>
             <Checkbox
               key={ index }
               value={ option.value }

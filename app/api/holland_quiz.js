@@ -74,7 +74,7 @@ export const uploadHollandQuiz = (quizUuid) => {
   const data = {
     holland_quiz: {
       user_id: user.serverId,
-      quizzed_at: quiz.createdAt,
+      quizzed_at: quiz.createdAt + '',
       personality_type_results: quiz.sortedPersonalityTypes,
       self_understanding_responses_attributes: self_understanding_responses_attributes(quiz),
       holland_responses_attributes: holland_responses_attributes(quiz)

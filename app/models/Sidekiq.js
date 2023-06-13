@@ -1,59 +1,45 @@
-import BaseModel from './BaseModel';
 import realm from '../db/schema';
 import uuidv4 from '../utils/uuidv4';
-import api from '../api/index';
-import NetInfo from "@react-native-community/netinfo";
+import { environment } from '../config/environment';
 
 const MODEL = "Sidekiq";
 
 export default class Sidekiq {
   static getAll = () => {
-    return realm.objects(MODEL).filtered("isDone = false");
+    let jobs = realm.objects(MODEL).filtered("isDone = false") || [];
+    return JSON.parse(JSON.stringify(jobs)) ;
   }
 
-  static create = (params) => {
-    let sidekiq = realm.create(MODEL, {...params, uuid: uuidv4()});
-
-    NetInfo.fetch().then(state => {
-      if (state.isInternetReachable) {
-        this.sync(sidekiq);
-      }
-    });
-
-    return sidekiq;
-  }
-
-  static syncToServer = () => {
-    NetInfo.fetch().then(state => {
-      if (state.isInternetReachable) {
-        this.syncAll();
-      }
-    });
-  }
-
-  static syncAll = () => {
-    let sidekiqs = this.getAll();
-    console.log(sidekiqs)
-
-    for(let i=0; i<sidekiqs.length; i++) {
-      this.sync(sidekiqs[i]);
-    }
-  }
-
-  static sync = async (sidekiq) => {
-    // api.uploadUser('123456')
-    const result = await api[sidekiq.modelName](sidekiq.paramUuid);
-
-    if (result.ok) {
-      realm.write(() => {
-        sidekiq.isDone = true
-      });
-    }
-  }
-
-  static write = (callback) => {
+  static setDone = (sidekiq) => {
     realm.write(() => {
-      !!callback && callback();
+      realm.create(MODEL, {uuid: sidekiq.uuid, isDone: true}, 'modified');
+    });
+  }
+
+  static increaseAttempt = (sidekiq) => {
+    realm.write(() => {
+      realm.create(MODEL, {uuid: sidekiq.uuid, attempt: sidekiq.attempt + 1}, 'modified');
+    });
+  }
+
+  static updateFromResponse = (result = {}, sidekiq) => {
+    if (result.ok) {
+      this.setDone(sidekiq);
+    } else {
+      if (sidekiq.attempt >= environment.maxFailedAttempt) {
+        this.setDone(sidekiq);
+      } else {
+        this.increaseAttempt(sidekiq);
+      }
+    }
+  }
+
+  static deleteDoneJob = () => {
+    let jobs = realm.objects(MODEL).filtered("isDone = true");
+
+    realm.write(() => {
+      console.log("--------delete jobs: ", jobs.length);
+      realm.delete(jobs);
     });
   }
 }

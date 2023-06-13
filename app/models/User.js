@@ -1,7 +1,6 @@
 import BaseModel from './BaseModel';
 import realm from '../db/schema';
 import uuidv4 from '../utils/uuidv4';
-import Sidekiq from './Sidekiq';
 
 const MODEL = "User"
 
@@ -15,10 +14,7 @@ export default class User {
   }
 
   static create = (params) => {
-    let user = realm.create(MODEL, {...params, uuid: uuidv4(), createdAt: new Date()});
-    Sidekiq.create({paramUuid: user.uuid, modelName: 'uploadUser'});
-
-    return user;
+    return realm.create(MODEL, {...params, uuid: uuidv4(), createdAt: new Date()});
   }
 
   static update = (uuid, params) => {
