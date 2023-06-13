@@ -29,7 +29,7 @@ export default FormFieldComponent = ({question}) => {
   const renderQuestion = () => {
     return (
       <View key={uuidv4()}>
-        <Text style={{}}>{question.question}</Text>
+        <Text>{question.question}</Text>
 
         <Divider style={{marginVertical: 8}} />
 
