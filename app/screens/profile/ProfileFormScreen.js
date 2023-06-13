@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 
 import User from '../../models/User';
+import SidekiqJob from '../../models/SidekiqJob';
 import Color from '../../themes/color';
 import FormScreen from './Form';
 
@@ -27,6 +28,8 @@ const ProfileFormScreen = ({navigation}) => {
     try {
       User.write(() => {
         let user = User.create(values);
+        SidekiqJob.create(user.uuid, 'uploadUser');
+
         logIn(user);
 
         navigation.navigate('PersonalUnderstandingTestScreen');

@@ -10,7 +10,7 @@ import * as Yup from "yup";
 import RadioGroup from './components/RadioGroup';
 import Quiz from '../../models/Quiz';
 import CollegeMajor from '../../models/CollegeMajor';
-import Sidekiq from '../../models/Sidekiq';
+import SidekiqJob from '../../models/SidekiqJob';
 
 const MajorSelectOneScreen = ({route, navigation}) => {
   const [confirmModalVisible, setConfirmModalVisible] = React.useState(false)
@@ -25,7 +25,7 @@ const MajorSelectOneScreen = ({route, navigation}) => {
       currentQuiz.step = 3
       currentQuiz.majorCodeSelected = major;
 
-      Sidekiq.create({paramUuid: currentQuiz.uuid, modelName: 'uploadMajorResponse'});
+      SidekiqJob.create(currentQuiz.uuid, 'uploadMajorResponse');
     })
   }
 

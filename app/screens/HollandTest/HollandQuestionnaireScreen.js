@@ -19,7 +19,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { appendAnswer, resetAnswer } from '../../redux/features/quiz/hollandSlice';
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import { getQuestions, getForm, getHollandScore } from './services/question_service';
-import Sidekiq from '../../models/Sidekiq';
+import SidekiqJob from '../../models/SidekiqJob';
 
 export default HollandQuestionnaireScreen = ({route, navigation}) => {
   // Redux
@@ -41,7 +41,7 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
         currentQuiz.step = 1
         currentQuiz.hollandResponse = responses
         currentQuiz.hollandScore = getHollandScore(responses)
-        Sidekiq.create({paramUuid: currentQuiz.uuid, modelName: 'uploadHollandQuiz'});
+        SidekiqJob.create(currentQuiz.uuid, 'uploadHollandQuiz');
 
         dispatch(setCurrentQuiz(currentQuiz));
         // dispatch(resetAnswer()); Todo: uncommend this one when done

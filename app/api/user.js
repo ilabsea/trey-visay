@@ -17,7 +17,7 @@ export const uploadUser = async(userUuid) => {
     province_id: user.provinceCode,
     district_id: user.districtCode,
     commune_code: user.communeCode,
-    class_group: user.classGroup,
+    class_group: (user.classGroup + '').toLowerCase(),
     high_school_code: user.highSchoolCode,
     middle_school_id: user.middleSchoolId,
     registered_at: user.createdAt,
@@ -30,7 +30,7 @@ export const uploadUser = async(userUuid) => {
   return new Promise((resolve, reject) => {
     client.post(endpoint, data).then((res) => {
       if (res.ok) {
-        User.write(() => { user.serverId = res.data.id})
+        User.write(() => { user.serverId = res.data.id })
 
         resolve(res)
       } else {

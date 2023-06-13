@@ -8,7 +8,7 @@ import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
 const numbers = {0: '០', 1: '១', 2: '២', 3: '៣', 4: '៤', 5: '៥', 6: '៦', 7: '៧', 8: '៨', 9: '៩'};
 
-const QuizListItem = ({number, createdAt, onPress}) => {
+const QuizListItem = ({number, quiz, onPress}) => {
   let kmNumber = number.toString().split('').map(x => numbers[x]).join('');
 
   return (
@@ -21,7 +21,7 @@ const QuizListItem = ({number, createdAt, onPress}) => {
 
         <View style={styles.textWrapper}>
           <Text style={[mainStyles.title, {lineHeight: 42}]}>តេស្តលើកទី {kmNumber}</Text>
-          <Text style={[mainStyles.subTitle, {flex: 1}]}>ធ្វើនៅ: {dateFormat(createdAt)}</Text>
+          <Text style={[mainStyles.subTitle, {flex: 1}]}>ធ្វើនៅ: {dateFormat(quiz.createdAt + '')}</Text>
         </View>
 
         <View style={{alignItems: 'center', justifyContent: 'center', paddingRight: 16}}>

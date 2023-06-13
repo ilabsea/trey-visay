@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import GradientScrollViewComponent from '../../components/shared/GradientScrollViewComponent';
 import CardItemComponent from '../../components/shared/cards/CardItemComponent';
 import home_categories from '../../components/home/home_categories';
 import HomeNavigationHeader from '../../components/home/HomeNavigationHeader'
 import { View } from 'react-native';
+import SidekiqService from '../../services/SidekiqService';
 
 const HomeScreen = ({navigation}) => {
+  useEffect(() => {
+    const unsubscribe = SidekiqService.syncToServer();
+
+    return () => {
+      unsubscribe();
+    };
+  })
+
   const onPress = (item) => {
     // firebase.analytics().logEvent(item.firebase_event_name);
     navigation.navigate(item.url);

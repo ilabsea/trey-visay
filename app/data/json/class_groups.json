@@ -1,25 +1,25 @@
 [
   {
-    "code": "SCIENCE",
+    "code": "science",
     "label": "វិទ្យាសាស្ត្រ",
     "name_en": "Science",
     "parent_code": "11"
   },
   {
-    "code": "SCIENCE",
+    "code": "science",
     "label": "វិទ្យាសាស្ត្រ",
     "name_en": "Science",
     "parent_code": "12"
   },
   {
-    "code": "SOCIAL_SCIENCE",
+    "code": "social_science",
     "label": "វិទ្យាសាស្ត្រសង្គម",
     "name_en": "Social Science",
     "parent_code": "11"
   },
 
   {
-    "code": "SOCIAL_SCIENCE",
+    "code": "social_science",
     "label": "វិទ្យាសាស្ត្រសង្គម",
     "name_en": "Social Science",
     "parent_code": "12"

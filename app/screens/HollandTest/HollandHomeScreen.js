@@ -16,8 +16,7 @@ import { StartQuizButton, ResumeQuizButton}  from './components';
 import QuizListItem from './components/QuizListItem';
 import useAuth from "../../auth/useAuth";
 import Quiz from '../../models/Quiz';
-
-import Sidekiq from '../../models/Sidekiq';
+import SidekiqService from '../../services/SidekiqService';
 
 const HollandHomeScreen = ({route, navigation}) => {
   const { user } = useAuth();
@@ -50,7 +49,7 @@ const HollandHomeScreen = ({route, navigation}) => {
             <QuizListItem
               key={i}
               number={i + 1}
-              createdAt={quiz.createdAt}
+              quiz={quiz}
               onPress={ () => navigation.navigate('HollandDetailScreen', {quiz: quiz, title: `តេស្តលើកទី ${i + 1}`}) }
             />
           )
@@ -74,7 +73,7 @@ const HollandHomeScreen = ({route, navigation}) => {
               <ResumeQuizButton />
 
               { false &&
-                <TouchableOpacity onPress={() => Sidekiq.syncToServer()}>
+                <TouchableOpacity onPress={() => SidekiqService.handleSyncing()}>
                   <Text>test upload</Text>
                 </TouchableOpacity>
               }

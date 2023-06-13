@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import { useNavigation } from '@react-navigation/native';
 import Quiz from '../../models/Quiz';
-import Sidekiq from '../../models/Sidekiq';
+import SidekiqJob from '../../models/SidekiqJob';
 import Job from '../../models/Job';
 
 const JobSelectOneScreen = ({route}) => {
@@ -70,7 +70,7 @@ const JobSelectOneScreen = ({route}) => {
       currentQuiz.jobCodeSelected = job;
       dispatch(setCurrentQuiz(currentQuiz));
 
-      Sidekiq.create({paramUuid: currentQuiz.uuid, modelName: 'uploadJobResponse'});
+      SidekiqJob.create(currentQuiz.uuid, 'uploadJobResponse');
     })
   }
 

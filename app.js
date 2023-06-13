@@ -4,7 +4,6 @@ import React, { Component, useEffect, useState } from 'react';
 import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
-import Sidekiq from './app/models/Sidekiq';
 import SplashScreen from 'react-native-splash-screen';
 import AppNavigation from './app/navigations/AppNavigator';
 import AuthContext from "./app/auth/context";
@@ -21,10 +20,6 @@ const App = () => {
   useEffect(() => {
     SplashScreen.hide();
     restoreUser();
-
-    setTimeout(() => {
-      Sidekiq.syncToServer();
-    }, 1000);
   }, []);
 
   return (
