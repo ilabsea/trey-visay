@@ -1,5 +1,6 @@
 import React from 'react'
-import { View, Image } from 'react-native'
+import { View, Image, BackHandler } from 'react-native'
+import { useFocusEffect } from '@react-navigation/native';
 
 import Color from '../../themes/color';
 import { Text, FooterBar } from '../../components';
@@ -10,6 +11,17 @@ import ConfirmationModal from '../../components/shared/ConfirmationModal';
 
 const HollandTestInstruction = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = React.useState(false);
+  let backHandler = null
+  useFocusEffect(
+    React.useCallback(() => {
+      backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+        navigation.popToTop()
+        return true;
+      })
+      return () => !!backHandler && backHandler.remove()
+    }, [])
+  )
+
   const renderRating = (item, index) => {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 16}} key={index}>

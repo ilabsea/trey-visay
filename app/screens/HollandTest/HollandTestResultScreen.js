@@ -1,5 +1,6 @@
-import React from 'react';
-import { View, TouchableWithoutFeedback } from 'react-native';
+import React, {useEffect} from 'react';
+import { View, TouchableWithoutFeedback, BackHandler } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { Text, ScrollableHeader, FooterBar } from '../../components';
 import HollandTestResultBarChart from '../../components/HollandTestResult/HollandTestResultBarChart';
@@ -15,6 +16,18 @@ const HollandTestResult = ({navigation}) => {
   const currentQuiz = useSelector((state) => state.currentQuiz.value);
   const modalRef = React.useRef();
   const title = "តេស្តបុគ្គលិកលក្ខណៈ"
+  let backHandler = null
+
+  useFocusEffect(
+    React.useCallback(() => {
+      backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+        navigation.popToTop()
+        return true;
+      })
+      return () => !!backHandler && backHandler.remove()
+    }, [])
+  )
+
   const renderContent = () => {
     return (
       <TouchableWithoutFeedback>

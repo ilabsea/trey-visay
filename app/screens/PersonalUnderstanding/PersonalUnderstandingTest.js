@@ -1,8 +1,6 @@
 import React, {Component, useRef, useEffect} from 'react';
-import {
-  View,
-  Platform,
-} from 'react-native';
+import { View, Platform, BackHandler} from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
 import { ScrollableHeader } from '../../components';
 import Color from '../../themes/color';
@@ -35,6 +33,17 @@ export default PersonalUnderstandingTest = ({navigation}) => {
   const dispatch = useDispatch();
   const toastRef = useRef();
   const currentQuiz = useSelector((state) => state.currentQuiz.value);
+  let backHandler = null
+
+  useFocusEffect(
+    React.useCallback(() => {
+      backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+        navigation.popToTop()
+        return true;
+      })
+      return () => !!backHandler && backHandler.remove()
+    }, [])
+  )
 
   const renderContent = () => {
     return (<QuestionForm />)
