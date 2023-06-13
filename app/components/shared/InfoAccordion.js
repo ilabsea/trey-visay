@@ -10,10 +10,10 @@ import { FontSetting } from '../../assets/style_sheets/font_setting';
 import {screenHorizontalPadding} from '../../constants/component_constant';
 
 const InfoAccordion = (props) => {
-  const [statuses, setStatuses] = useState(new Array(props.items.length))
+  const [statuses, setStatuses] = useState(new Array(props.items.length).fill(false))
   const onToggle = (index) => {
-    const newStatuses = statuses
-    newStatuses[index] = !statuses[index];
+    const newStatuses = new Array(props.items.length).fill(false)
+    newStatuses[index] = !statuses[index]
     setStatuses([...newStatuses])
   }
 
