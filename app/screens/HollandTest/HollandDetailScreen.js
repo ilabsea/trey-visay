@@ -32,7 +32,7 @@ const ListItem = ({caption, item={}}) => {
 }
 
 const HollandTestResult = ({route, navigation}) => {
-  const currentQuiz = route.params.quiz;
+  const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const title = route.params.title;
 
   const renderContent = () => {

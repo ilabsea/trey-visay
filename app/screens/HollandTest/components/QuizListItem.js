@@ -21,7 +21,7 @@ const QuizListItem = ({number, quiz, onPress}) => {
 
         <View style={styles.textWrapper}>
           <Text style={[mainStyles.title, {lineHeight: 42}]}>តេស្តលើកទី {kmNumber}</Text>
-          <Text style={[mainStyles.subTitle, {flex: 1}]}>ធ្វើនៅ: {dateFormat(quiz.createdAt + '')}</Text>
+          <Text style={[mainStyles.subTitle, {flex: 1}]}>ធ្វើនៅ: {dateFormat(quiz.createdAt)}</Text>
         </View>
 
         <View style={{alignItems: 'center', justifyContent: 'center', paddingRight: 16}}>

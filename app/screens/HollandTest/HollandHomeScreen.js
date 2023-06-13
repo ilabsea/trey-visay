@@ -50,7 +50,7 @@ const HollandHomeScreen = ({route, navigation}) => {
               key={i}
               number={i + 1}
               quiz={quiz}
-              onPress={ () => navigation.navigate('HollandDetailScreen', {quiz: quiz, title: `តេស្តលើកទី ${i + 1}`}) }
+              onPress={ () => navigation.navigate('HollandDetailScreen', {quizUuid: quiz.uuid, title: `តេស្តលើកទី ${i + 1}`}) }
             />
           )
         )}
