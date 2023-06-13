@@ -65,6 +65,20 @@ const holland_job_responses_attributes = (quiz) => {
   return attributes;
 }
 
+const holland_scores_attributes = (quiz) => {
+  let attributes = []
+  let personalityTypes = Object.keys(quiz.hollandScore);
+
+  for(let i = 0; i < personalityTypes.length; i++) {
+    attributes.push({
+      personality_type: personalityTypes[i],
+      score: quiz.hollandScore[personalityTypes[i]]
+    })
+  }
+
+  return attributes;
+}
+
 // =============================================
 
 export const uploadHollandQuiz = (quizUuid) => {
@@ -74,9 +88,10 @@ export const uploadHollandQuiz = (quizUuid) => {
   const data = {
     holland_quiz: {
       user_id: user.serverId,
-      quizzed_at: quiz.createdAt + '',
+      quizzed_at: quiz.createdAt,
       personality_type_results: quiz.sortedPersonalityTypes,
       self_understanding_responses_attributes: self_understanding_responses_attributes(quiz),
+      holland_scores_attributes: holland_scores_attributes(quiz),
       holland_responses_attributes: holland_responses_attributes(quiz)
     }
   }
