@@ -1,16 +1,7 @@
-import React, {useState} from 'react'
-import { View, TouchableOpacity, ScrollView } from 'react-native'
-import {
-  Text,
-  BackButton,
-  BackConfirmDialog,
-  ProgressStep,
-  ScrollableHeader,
-} from '../../components';
+import React from 'react'
+import { Animated, View } from 'react-native'
+import DeviceInfo from 'react-native-device-info'
 
-import Color from '../../themes/color';
-import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import HollandQuestionNavHeader from './components/HollandQuestionNavHeader';
 import HollandQuestionItem from './components/HollandQuestionItem';
 import Quiz from '../../models/Quiz';
@@ -20,6 +11,7 @@ import { appendAnswer, resetAnswer } from '../../redux/features/quiz/hollandSlic
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import { getQuestions, getForm, getHollandScore } from './services/question_service';
 import SidekiqJob from '../../models/SidekiqJob';
+import {getStyleOfOS} from '../../utils/responsive_util';
 
 export default HollandQuestionnaireScreen = ({route, navigation}) => {
   // Redux
@@ -30,6 +22,8 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
   // Pagination and form validation
   const { questions, isPageEnd, page } = getQuestions(route.params?.page);
   const { validationSchema, initialValues } = getForm(questions, currentHollandResponse);
+
+  const scrollY = React.useRef(new Animated.Value(0));
 
   const handleSubmit = (values, {errors}) => {
     dispatch(appendAnswer(values));
@@ -69,13 +63,15 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
       onSubmit={ handleSubmit }
       validationSchema={validationSchema}
     >
-      <HollandQuestionNavHeader/>
-      <ScrollView contentContainerStyle={{flexGrow: 1}}>
-        <View style={{backgroundColor: Color.blue, paddingHorizontal: 16, paddingTop: 8}}>
-          <ProgressStep step={page}/>
-        </View>
+      <HollandQuestionNavHeader step={page} scrollY={scrollY.current}/>
+      <Animated.ScrollView contentContainerStyle={{flexGrow: 1, paddingTop: getStyleOfOS(DeviceInfo.hasNotch() ? 152 : 124, 105)}}
+        onScroll={Animated.event(
+          [{ nativeEvent: { contentOffset: { y: scrollY.current } } }],
+          { useNativeDriver: true },
+        )}
+      >
         {renderContent()}
-      </ScrollView>
+      </Animated.ScrollView>
       <SubmitButton title='បន្តទៀត' />
     </Form>
   )
