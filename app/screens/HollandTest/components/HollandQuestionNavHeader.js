@@ -1,8 +1,8 @@
 import React from 'react'
-import {View, StyleSheet} from 'react-native'
+import {Animated, View, StyleSheet} from 'react-native'
 import {Appbar} from 'react-native-paper';
 
-import {BackButton, Text} from '../../../components'
+import {BackButton, Text, ProgressStep} from '../../../components'
 import ConfirmationModal from '../../../components/shared/ConfirmationModal';
 import HollandProgressArrow from './HollandProgressArrow';
 
@@ -34,18 +34,47 @@ const CustomNavigationHeader = (props) => {
             />
   }
 
+  const progressOpacity = props.scrollY.interpolate({
+    inputRange: [0, 60],
+    outputRange: [0, 1],
+    extrapolate: 'clamp'
+  })
+
+  const bigProgresStepOpacity = props.scrollY.interpolate({
+    inputRange: [0, 60],
+    outputRange: [1, 0],
+    extrapolate: 'clamp'
+  })
+
+  const bigProgressStepTranslateY = props.scrollY.interpolate({
+    inputRange: [0, 60],
+    outputRange: [0, -23],
+    extrapolate: 'clamp',
+  })
+
+  const renderProgressIndicator = () => {
+    return <Animated.View style={[{backgroundColor: Color.blue}, { transform: [{ translateY: bigProgressStepTranslateY }] }]}>
+              <Animated.View style={{paddingHorizontal: 16, paddingTop: 6, opacity: bigProgresStepOpacity}}>
+                <ProgressStep step={props.step}/>
+              </Animated.View>
+              <Animated.View style={{opacity: progressOpacity, position: 'absolute', bottom: 4, left: 0, right: 0}}>
+                <HollandProgressArrow step={props.step} />
+              </Animated.View>
+           </Animated.View>
+  }
+
   return (
-    <React.Fragment>
-      <Appbar.Header style={{backgroundColor: Color.blue}}>
+    <View style={styles.header}>
+      <Appbar.Header style={styles.navigation}>
         <View style={{flexDirection: 'row', alignItems: 'center', width: '100%'}}>
           <BackButton onPress={() => !!props.onPressBack ? props.onPressBack() : goBack()} buttonColor={Color.whiteColor} />
           <Appbar.Content title='តេស្តបុគ្គលិកលក្ខណៈ' titleStyle={styles.title} numberOfLines={1} />
           <Appbar.Action icon="home" onPress={() => setModalVisible(true)} color={Color.whiteColor} size={getStyleOfOS(getStyleOfDevice(28, 24), 24)} />
         </View>
       </Appbar.Header>
-      <HollandProgressArrow step={props.step} />
+      {renderProgressIndicator()}
       {renderConfirmation()}
-    </React.Fragment>
+    </View>
   )
 }
 
@@ -54,6 +83,18 @@ const styles = StyleSheet.create({
     color: Color.whiteColor,
     fontFamily: FontFamily.regular,
     fontSize: FontSetting.nav_title,
+  },
+  header: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 1,
+  },
+  navigation: {
+    backgroundColor: Color.blue,
+    elevation: 0,
+    zIndex: 1,
   }
 })
 

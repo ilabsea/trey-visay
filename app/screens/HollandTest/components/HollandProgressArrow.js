@@ -4,15 +4,14 @@ import Svg, {Polygon} from 'react-native-svg'
 
 import BoldLabelComponent from '../../../components/shared/BoldLabelComponent';
 import Color from '../../../themes/color';
-import { FontSetting } from '../../../assets/style_sheets/font_setting';
 
 const HollandProgressArrow = ({step}) => {
   const progressStepStyles = (index) => {
     let defaultStyles = { width: '100%', height: 12, justifyContent: 'center', width: '100%', position: 'relative' }
     if (index == 0)
-      defaultStyles = {...defaultStyles, borderTopLeftRadius: 5, borderBottomLeftRadius: 5}
+      defaultStyles = {...defaultStyles, borderTopLeftRadius: 3, borderBottomLeftRadius: 3}
     else if (index == 6)
-      defaultStyles = {...defaultStyles, borderTopRightRadius: 5, borderBottomRightRadius: 5}
+      defaultStyles = {...defaultStyles, borderTopRightRadius: 3, borderBottomRightRadius: 3}
 
     return (index + 1 == step) ? {...defaultStyles, backgroundColor: 'white'} : defaultStyles
   }
@@ -24,7 +23,7 @@ const HollandProgressArrow = ({step}) => {
     const points = (index == (step - 1) || index == (step - 2)) ? "20,0 28,15 20,30 18,30 18,0" : "20,0 28,15 20,30 18,30 26,15 18,0"
     return <Svg height="30" width="30" style={{position: 'absolute', right: -22, top: 0}}>
               <Polygon points={points} fill={color} scale="0.4" />
-            </Svg>
+           </Svg>
   }
 
   const renderArrows = () => {
@@ -38,8 +37,8 @@ const HollandProgressArrow = ({step}) => {
     })
   }
 
-  return <View style={{height: 24, justifyContent: 'flex-start', backgroundColor: Color.blue, paddingHorizontal: 16, borderWidth: 0}}>
-            <View style={{flexDirection: 'row', borderWidth: 1, borderColor: 'white', borderRadius: 6}}>
+  return <View style={{height: 24, justifyContent: 'flex-start', paddingTop: 4, backgroundColor: Color.blue, paddingHorizontal: 16}}>
+            <View style={{flexDirection: 'row', borderWidth: 0.5, borderColor: 'white', borderRadius: 4}}>
               {renderArrows()}
             </View>
          </View>

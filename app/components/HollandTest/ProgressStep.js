@@ -52,7 +52,7 @@ export default class ProgressStep extends Component {
     }
 
     return (
-      <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', marginBottom: 18}}>
+      <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', marginBottom: 12}}>
         { doms }
       </View>
     )
