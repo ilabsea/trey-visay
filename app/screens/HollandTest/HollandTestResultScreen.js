@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, TouchableWithoutFeedback } from 'react-native';
 
-import { Text, BackButton, ScrollableHeader, FooterBar } from '../../components';
+import { Text, ScrollableHeader, FooterBar } from '../../components';
 import HollandTestResultBarChart from '../../components/HollandTestResult/HollandTestResultBarChart';
 import HollandTestResultCharacteristicAccordions from '../../components/HollandTestResult/HollandTestResultCharacteristicAccordions';
 import HollandTestResultOptionsBottomSheet from '../../components/HollandTestResult/HollandTestResultOptionsBottomSheet';
@@ -38,9 +38,9 @@ const HollandTestResult = ({navigation}) => {
     <View style={{flex: 1}}>
       <ScrollableHeader
         renderContent={ renderContent }
-        renderNavigation={ () => <BackButton onPress={() => navigation.popToTop()} /> }
         title={title}
         largeTitle={title}
+        onPressBack={() => navigation.popToTop()}
       />
       <FooterBar icon='keyboard-arrow-right' text='បន្តជ្រើសរើសជំនាញសិក្សា ឬអាជីពការងារ' onPress={() => showOptionsBottomSheet()} />
       <BottomSheetModalComponent ref={modalRef} snapPoints={hollandTestResultOptionsSnapPoints} />

@@ -6,10 +6,10 @@ import CustomNavigationHeader from '../shared/CustomNavigationHeader'
 import {getStyleOfOS, getStyleOfDevice} from '../../utils/responsive_util'
 
 const ScrollableHeaderNavigation = (props) => {
-  if (!props.renderNavigation)
-    return null
+  if (!!props.renderNavigation)
+    return props.renderNavigation()
 
-  return <CustomNavigationHeader headerStyle={styles.bar} buttonColor={props.buttonColor}/>
+  return <CustomNavigationHeader headerStyle={styles.bar} buttonColor={props.buttonColor} onPressBack={props.onPressBack}/>
 }
 
 const iosTop = getStyleOfDevice(29, DeviceInfo.hasNotch() ? 56 : 26)

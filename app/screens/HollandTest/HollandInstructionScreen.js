@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Image } from 'react-native'
 
 import Color from '../../themes/color';
-import { Text, BackButton, FooterBar } from '../../components';
+import { Text, FooterBar } from '../../components';
 import images from '../../assets/images';
 import ratings from './json/list_ratings';
 import ScrollableHeader from '../../components/scrollable_header';
@@ -37,10 +37,6 @@ const HollandTestInstruction = ({route, navigation}) => {
     )
   }
 
-  const renderNavigation = () => {
-    return (<BackButton buttonColor='#fff' onPress={() => navigation.popToTop()} />)
-  }
-
   return (
     <View style={{flex: 1}}>
       <ScrollableHeader
@@ -49,7 +45,7 @@ const HollandTestInstruction = ({route, navigation}) => {
         statusBarColor={Color.blueStatusBar}
         barStyle={'light-content'}
         renderContent={ renderContent }
-        renderNavigation={ renderNavigation }
+        onPressBack={() => navigation.popToTop()}
         title={'តេស្តបុគ្គលិកលក្ខណៈ'}
         largeTitle={'តេស្តបុគ្គលិកលក្ខណៈ'}
         buttonColor={Color.whiteColor}

@@ -4,7 +4,7 @@ import {
   Platform,
 } from 'react-native';
 
-import { FooterBar, BackButton, ScrollableHeader } from '../../components';
+import { ScrollableHeader } from '../../components';
 import Color from '../../themes/color';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import keyword from '../../data/analytics/keyword';
@@ -40,10 +40,6 @@ export default PersonalUnderstandingTest = ({navigation}) => {
     return (<QuestionForm />)
   }
 
-  const renderNavigation = () => {
-    return (<BackButton buttonColor='#fff' onPress={() => navigation.popToTop()} />)
-  }
-
   const handleSubmit = (values, {resetForm}) => {
     if (!!values && !Object.keys(values).length) {
       return toastRef.current?.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
@@ -74,10 +70,10 @@ export default PersonalUnderstandingTest = ({navigation}) => {
           statusBarColor={Color.blueStatusBar}
           barStyle={'light-content'}
           renderContent={ renderContent }
-          renderNavigation={ renderNavigation }
           title={'ស្វែងយល់ពីខ្លួនឯង'}
           largeTitle={'ស្វែងយល់ពីខ្លួនឯង'}
           buttonColor={Color.whiteColor}
+          onPressBack={() => navigation.popToTop()}
         />
 
         { <SubmitButton title="បន្តទៀត"/> }

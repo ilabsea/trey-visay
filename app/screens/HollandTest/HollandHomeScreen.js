@@ -1,15 +1,10 @@
-import React, { Component, useEffect } from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity
-} from 'react-native';
+import React from 'react';
+import { View, TouchableOpacity } from 'react-native';
 // import firebase from 'react-native-firebase';
 
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
-import { Content, Body, Right, Icon, CardItem } from 'native-base';
+import { Content, Body, CardItem } from 'native-base';
 import ButtonList from '../../components/list/button_list';
 import Text from '../../components/Text';
 import { StartQuizButton, ResumeQuizButton}  from './components';
@@ -89,7 +84,6 @@ const HollandHomeScreen = ({route, navigation}) => {
   return(
     <ScrollableHeader
       renderContent={ renderContent }
-      renderNavigation={ () => <BackButton /> }
       title={title}
       largeTitle={title}
     />

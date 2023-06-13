@@ -156,7 +156,6 @@ const FormScreen = ({onSubmit}) => {
             <ScrollableHeader
               style={{backgroundColor: '#fff'}}
               renderContent={ () => renderContent(values) }
-              renderNavigation={ () => <BackButton /> }
               title={title}
               largeTitle={title}
             />

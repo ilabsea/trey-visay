@@ -75,6 +75,7 @@ class ScrollableHeader extends Component {
               headerMaxHeight={this.props.headerMaxHeight}
               renderNavigation={this.props.renderNavigation}
               buttonColor={this.props.buttonColor}
+              onPressBack={this.props.onPressBack}
            />
   }
 
