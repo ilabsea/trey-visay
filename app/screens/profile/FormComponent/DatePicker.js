@@ -1,15 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import { DatePickerModal, registerTranslation } from 'react-native-paper-dates'
-import {View, TouchableOpacity} from 'react-native';
+import {View, TouchableOpacity, StyleSheet} from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { useFormikContext } from "formik";
 import Moment from 'moment';
 
 import dateTimeHelper from '../../../utils/DateTime/date_time_helper';
-import { Text, ErrorMessage } from '../../../components';
+import { Text } from '../../../components';
+import FormErrorMessage from './FormErrorMessage';
 import Color from '../../../themes/color';
 import {inputBoxBorderRadius, inputBoxHeight} from '../../../constants/component_constant';
 import {pickerLabels} from '../../../constants/datepicker_constant';
+import {FontSetting} from '../../../assets/style_sheets/font_setting';
 
 export default function DatePicker({name, label}) {
   const { errors, touched, setFieldValue, values } = useFormikContext();
@@ -30,15 +32,16 @@ export default function DatePicker({name, label}) {
   registerTranslation('km', pickerLabels)
 
   return (
-    <View>
+    <View style={{marginTop: 14, marginBottom: 8}}>
       <View>
-        <Text>{label} <Text style={{color: Color.requiredColor}}>*</Text></Text>
-        <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center'}} onPress={() => setOpen(true)}>
-          <View style={{borderColor: Color.borderColor, borderWidth: 0.5, flex: 1, alignItems: 'center', flexDirection: 'row', paddingHorizontal: 12, borderRadius: inputBoxBorderRadius, height: inputBoxHeight}}>
-            <Text style={{flex: 1}}>{!!date && dateTimeHelper.getTranslatedDate(date)}</Text>
-            <MaterialIcon name='date-range' size={32} style={{color: Color.grayColor, width: 30}} />
-          </View>
+        <View style={styles.labelContainer}>
+          <Text style={{fontSize: FontSetting.sub_title, color: Color.lightBlackColor}}>{label}<Text style={{color: Color.requiredColor, fontSize: FontSetting.sub_title}}> *</Text></Text>
+        </View>
+        <TouchableOpacity style={styles.datePickerContainer} onPress={() => setOpen(true)}>
+          <Text style={{flex: 1}}>{!!date && dateTimeHelper.getTranslatedDate(date)}</Text>
+          <MaterialIcon name='date-range' size={32} style={{color: Color.grayColor, width: 30}} />
         </TouchableOpacity>
+
         <DatePickerModal
           locale="km"
           mode="single"
@@ -49,7 +52,30 @@ export default function DatePicker({name, label}) {
           typeInDate={null}
         />
       </View>
-      <ErrorMessage error={errors[name]} visible={touched[name]} />
+      <FormErrorMessage error={errors[name]} visible={touched[name]} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  labelContainer: {
+    alignItems: 'center',
+    backgroundColor: 'white',
+    height: 32,
+    paddingHorizontal: 5,
+    position: 'absolute',
+    left: 12,
+    top: -16,
+    zIndex: 1,
+  },
+  datePickerContainer: {
+    alignItems: 'center',
+    borderColor: Color.borderColor,
+    borderWidth: 0.5,
+    borderRadius: inputBoxBorderRadius,
+    flex: 1,
+    flexDirection: 'row',
+    height: inputBoxHeight,
+    paddingHorizontal: 12,
+  }
+})
