@@ -1,14 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import {
-  View,
-  StyleSheet,
-  Button
-} from 'react-native';
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
 
 import { Card } from 'react-native-paper';
 import { QuestionField }  from '../../components/forms';
 import { Text } from '../../components';
 import questions from './json/list_questions';
+import Color from '../../themes/color';
 
 const QuestionForm = (props) => {
   const renderQuestion = (question, index) => {
@@ -17,7 +14,7 @@ const QuestionForm = (props) => {
         <QuestionField question={question}/>
 
         { question.sub_questions.map((sub_question, index) => (
-            <View style={{marginTop: 16}} key={index}>
+            <View style={{borderTopWidth: 0.5, borderColor: Color.gray, marginTop: 16, paddingTop: 8}} key={index}>
               <QuestionField question={sub_question} />
             </View>
           ))
@@ -36,19 +33,10 @@ const QuestionForm = (props) => {
     )
   }
 
-  const renderForm = () => {
-    return (
-      <View>
-        { questions.map((question, index) => renderQuestionCard(question, index)) }
-      </View>
-    )
-  }
-
   return (
     <View style={styles.scrollContainer}>
       <Text style={{marginBottom: 8}}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
-
-      { renderForm() }
+      <View>{ questions.map((question, index) => renderQuestionCard(question, index)) }</View>
     </View>
   )
 }

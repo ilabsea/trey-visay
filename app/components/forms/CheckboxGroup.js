@@ -4,6 +4,7 @@ import ErrorMessage from './ErrorMessage';
 import { useFormikContext } from "formik";
 import { View } from 'react-native';
 import Color from '../../themes/color';
+import {pressableItemSize} from '../../constants/component_constant';
 
 const CheckboxGroup = ({name, options}) => {
   const { setFieldTouched, handleChange, errors, touched, setFieldValue, values } = useFormikContext();
@@ -32,7 +33,7 @@ const CheckboxGroup = ({name, options}) => {
     <View>
       {
         options.map((option, index) => (
-          <View key={`c_${index}`} style={{minHeight: 50, borderBottomWidth: 0.5, justifyContent: 'center', borderColor: Color.gray}}>
+          <View key={`c_${index}`} style={{minHeight: 50, borderBottomWidth: index == options.length - 1 ? 0 : 0.5, justifyContent: 'center', borderColor: Color.gray, height: pressableItemSize}}>
             <Checkbox
               key={ index }
               value={ option.value }

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { RadioButton, Divider, Card } from 'react-native-paper';
+import React from 'react';
+import { RadioButton } from 'react-native-paper';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import {
   View,
@@ -9,6 +9,8 @@ import Text from '../Text';
 
 import { useFormikContext } from "formik";
 import ErrorMessage from './ErrorMessage';
+import Color from '../../themes/color';
+import {pressableItemSize} from '../../constants/component_constant';
 
 const RadioGroup = ({name, options, disabled}) => {
   const { setFieldValue, values, errors, touched } = useFormikContext();
@@ -18,16 +20,17 @@ const RadioGroup = ({name, options, disabled}) => {
 
   const buttonGroups = () => (
     options.map((option, i) =>
-      <View key={i} style={{flexDirection: 'row', aligItems: 'center'}}>
+      <View key={i} style={{flexDirection: 'row', alignItems: 'center', borderBottomWidth: i == options.length - 1 ? 0 : 0.5, borderColor: Color.gray, height: pressableItemSize}}>
         <RadioButton
           status={ value == option.value ? "checked" : "unchecked" }
           value={ option.value }
           color={ Colors.blue }
           uncheckedColor={Colors.blue}
-          disabled={!!disabled} />
+          disabled={!!disabled}
+        />
 
         <TouchableWithoutFeedback onPress={() => onValueChange(option.value)}>
-          <View style={{flex: 1}}>
+          <View style={{flex: 1, justifyContent: 'center', height: '100%'}}>
             <Text style={getTextStyle}>{option.name}</Text>
           </View>
         </TouchableWithoutFeedback>
