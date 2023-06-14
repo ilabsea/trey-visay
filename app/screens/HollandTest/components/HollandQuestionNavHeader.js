@@ -34,7 +34,7 @@ const CustomNavigationHeader = (props) => {
             />
   }
 
-  const progressOpacity = props.scrollY.interpolate({
+  const progressArrowOpacity = props.scrollY.interpolate({
     inputRange: [0, 60],
     outputRange: [0, 1],
     extrapolate: 'clamp'
@@ -48,7 +48,7 @@ const CustomNavigationHeader = (props) => {
 
   const bigProgressStepTranslateY = props.scrollY.interpolate({
     inputRange: [0, 60],
-    outputRange: [0, -23],
+    outputRange: [0, -33],
     extrapolate: 'clamp',
   })
 
@@ -57,7 +57,7 @@ const CustomNavigationHeader = (props) => {
               <Animated.View style={{paddingHorizontal: 16, paddingTop: 6, opacity: bigProgresStepOpacity}}>
                 <ProgressStep step={props.step}/>
               </Animated.View>
-              <Animated.View style={{opacity: progressOpacity, position: 'absolute', bottom: 4, left: 0, right: 0}}>
+              <Animated.View style={{opacity: progressArrowOpacity, position: 'absolute', bottom: 0, left: 0, right: 0}}>
                 <HollandProgressArrow step={props.step} />
               </Animated.View>
            </Animated.View>

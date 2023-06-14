@@ -8,11 +8,6 @@ import Color from '../../../themes/color';
 const HollandProgressArrow = ({step}) => {
   const progressStepStyles = (index) => {
     let defaultStyles = { width: '100%', height: 12, justifyContent: 'center', width: '100%', position: 'relative' }
-    if (index == 0)
-      defaultStyles = {...defaultStyles, borderTopLeftRadius: 3, borderBottomLeftRadius: 3}
-    else if (index == 6)
-      defaultStyles = {...defaultStyles, borderTopRightRadius: 3, borderBottomRightRadius: 3}
-
     return (index + 1 == step) ? {...defaultStyles, backgroundColor: 'white'} : defaultStyles
   }
 
@@ -37,10 +32,8 @@ const HollandProgressArrow = ({step}) => {
     })
   }
 
-  return <View style={{height: 24, justifyContent: 'flex-start', paddingTop: 4, backgroundColor: Color.blue, paddingHorizontal: 16}}>
-            <View style={{flexDirection: 'row', borderWidth: 0.5, borderColor: 'white', borderRadius: 4}}>
-              {renderArrows()}
-            </View>
+  return <View style={{flexDirection: 'row', borderWidth: 0.8, borderColor: 'white', borderLeftWidth: 0, borderRightWidth: 0, backgroundColor: Color.blue}}>
+            {renderArrows()}
          </View>
 }
 
