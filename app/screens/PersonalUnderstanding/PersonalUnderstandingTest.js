@@ -1,10 +1,8 @@
 import React, {Component, useRef, useEffect} from 'react';
-import {
-  View,
-  Platform,
-} from 'react-native';
+import { View, Platform, BackHandler} from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 
-import { FooterBar, BackButton, ScrollableHeader } from '../../components';
+import { ScrollableHeader } from '../../components';
 import Color from '../../themes/color';
 import Toast, { DURATION } from 'react-native-easy-toast';
 import keyword from '../../data/analytics/keyword';
@@ -35,13 +33,20 @@ export default PersonalUnderstandingTest = ({navigation}) => {
   const dispatch = useDispatch();
   const toastRef = useRef();
   const currentQuiz = useSelector((state) => state.currentQuiz.value);
+  let backHandler = null
+
+  useFocusEffect(
+    React.useCallback(() => {
+      backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+        navigation.popToTop()
+        return true;
+      })
+      return () => !!backHandler && backHandler.remove()
+    }, [])
+  )
 
   const renderContent = () => {
     return (<QuestionForm />)
-  }
-
-  const renderNavigation = () => {
-    return (<BackButton buttonColor='#fff' onPress={() => navigation.popToTop()} />)
   }
 
   const handleSubmit = (values, {resetForm}) => {
@@ -74,10 +79,10 @@ export default PersonalUnderstandingTest = ({navigation}) => {
           statusBarColor={Color.blueStatusBar}
           barStyle={'light-content'}
           renderContent={ renderContent }
-          renderNavigation={ renderNavigation }
           title={'ស្វែងយល់ពីខ្លួនឯង'}
           largeTitle={'ស្វែងយល់ពីខ្លួនឯង'}
           buttonColor={Color.whiteColor}
+          onPressBack={() => navigation.popToTop()}
         />
 
         { <SubmitButton title="បន្តទៀត"/> }

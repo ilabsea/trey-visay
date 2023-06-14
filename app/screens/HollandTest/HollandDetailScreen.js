@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { List } from 'react-native-paper';
-import { Text, BackButton, ScrollableHeader } from '../../components';
+import { Text, ScrollableHeader } from '../../components';
 import HollandTestResultBarChart from '../../components/HollandTestResult/HollandTestResultBarChart';
 import HollandTestResultCharacteristicAccordions from '../../components/HollandTestResult/HollandTestResultCharacteristicAccordions';
 import {screenHorizontalPadding} from '../../constants/component_constant';
@@ -54,9 +54,9 @@ const HollandTestResult = ({route, navigation}) => {
     <View style={{flex: 1}}>
       <ScrollableHeader
         renderContent={ renderContent }
-        renderNavigation={ () => <BackButton onPress={() => navigation.popToTop()} /> }
         title={title}
         largeTitle={title}
+        onPressBack={() => navigation.popToTop()}
       />
     </View>
   )
