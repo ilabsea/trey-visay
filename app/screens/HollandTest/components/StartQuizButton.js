@@ -48,6 +48,7 @@ const StartQuizButton = () => {
         rightButtonLabel='ចូលគណនីថ្មី'
         onLeftPress={goToPersonalUnderstandingTest}
         onRightPress={goToNewProfile}
+        onDismiss={() => setVisible(false)}
       />
       <AppButton style={styles.button} onPress={() => getStart() }>
         <Text style={styles.btnText}>ធ្វើតេស្តថ្មី</Text>
