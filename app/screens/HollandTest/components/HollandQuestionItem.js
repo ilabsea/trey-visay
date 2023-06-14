@@ -6,9 +6,9 @@ import ratings from '../json/list_ratings';
 
 export default HollandQuestionItem = ({question, index}) => {
   return (
-    <Card key={index} style={{marginVertical: 8, padding: 8}} >
+    <Card key={index} style={{marginVertical: 8, padding: 8, paddingTop: 4}}>
       <Text style={{marginHorizontal: 6}}>{index + 1}) {question.name}</Text>
-      <View style={{alignItems: 'center'}}>
+      <View style={{paddingHorizontal: 8}}>
         <RatingGroup name={question.code} options={ratings}/>
       </View>
     </Card>
