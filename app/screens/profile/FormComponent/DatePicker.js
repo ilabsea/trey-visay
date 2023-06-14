@@ -50,6 +50,9 @@ export default function DatePicker({name, label}) {
           onDismiss={() => setOpen(false)}
           onConfirm={onConfirm}
           typeInDate={null}
+          validRange={{endDate: new Date()}}
+          startYear={1980}
+          endYear={new Date().getFullYear()}
         />
       </View>
       <FormErrorMessage error={errors[name]} visible={touched[name]} />
