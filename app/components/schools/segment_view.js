@@ -23,7 +23,7 @@ export default class SegmentView extends Component {
 
   render() {
     return (
-      <Segment style={{marginTop: 12}}>
+      <Segment style={{marginTop: 6}}>
         <Button first active={this.props.activePage == 1} onPress={()=>this.props.setContent(1)}
           style={[styles.button, {borderTopLeftRadius: borderRadius, borderBottomLeftRadius: borderRadius}]}
         >

@@ -22,6 +22,7 @@ export default class SchoolScreen extends Component {
       currentProvince: '',
       currentMajor: '',
       loading: true,
+      searchText: '',
     }
   }
 
@@ -112,7 +113,10 @@ export default class SchoolScreen extends Component {
   render() {
     return (
       <View style={{flex: 1}}>
-        <SchoolNavigationHeader activePage={this.state.activePage} setContent={(active) => this.setContent(active)} />
+        <SchoolNavigationHeader activePage={this.state.activePage} setContent={(active) => this.setContent(active)}
+          searchedText={this.state.searchText}
+          setSearchedText={(text) => this.setState({searchText: text})}
+        />
 
         <View style={{flex: 1}}>
           { this.renderContent() }
