@@ -23,7 +23,7 @@ const RatingGroup = ({name, options}) => {
 
   return (
     <View>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{flexDirection: 'row', justifyContent: 'space-around'}}>
         { options.map(renderRating) }
       </View>
 
