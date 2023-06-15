@@ -3,7 +3,6 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-import {  Title, Body, Right, Button, Icon, Text } from 'native-base';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import SaveButton from '../components/shared/save_button';
@@ -14,8 +13,6 @@ import FilterScreen from '../screens/school/filter/filter_screen';
 import FilterProvinces from '../screens/school/filter/filter_provinces';
 import { Colors } from '../assets/style_sheets/main/colors';
 import { FontSetting } from '../assets/style_sheets/font_setting';
-
-import SchoolUtil from '../utils/School/School';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -42,15 +39,6 @@ function SchoolNavigator() {
       })}/> */}
       <Stack.Screen name="InstitutionDetail" component={InstitutionDetail} options={{headerShown: false}} />
       <Stack.Screen name="FilterScreen" component={FilterScreen} options={{headerShown: false}}/>
-      {/* <Stack.Screen name="FilterScreen" component={FilterScreen} options={({ navigation, route }) => ({
-        title: "គ្រឹះស្ថានសិក្សា",
-        headerRight: (props) => (
-          <Button transparent onPress={() => route.params.handleReset()} >
-            <Text style={{width: wp('30%'), color: Colors.blue, paddingTop: 6}}>កំណត់ឡេីងវិញ</Text>
-          </Button>
-        )
-      })}/> */}
-
       <Stack.Screen name="FilterProvinces" component={FilterProvinces} options={({ navigation, route }) => ({
         title: "ជ្រេីសរេីសទីតាំង",
         headerRight: (props) => <SaveButton noIcon={true} navigation={navigation} />

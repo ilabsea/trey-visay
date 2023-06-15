@@ -13,6 +13,7 @@ const CustomNavigationHeader = (props) => {
       <View style={{flexDirection: 'row', alignItems: 'center', width: '100%'}}>
         <BackButton onPress={props.onPressBack} buttonColor={props.buttonColor} />
         <Appbar.Content title={props.title} titleStyle={styles.title} numberOfLines={1} />
+        { props.rightButton && props.rightButton() }
       </View>
       {props.children}
     </Appbar.Header>
@@ -26,7 +27,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     height: 'auto',
     paddingBottom: 13,
-    paddingTop: navHeaderPaddingTop
+    paddingTop: navHeaderPaddingTop,
+    zIndex: 1
   },
   title: {
     color: 'black',

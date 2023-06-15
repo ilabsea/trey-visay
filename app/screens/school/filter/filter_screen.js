@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 // import firebase from 'react-native-firebase';
 
 import SchoolUtil from '../../../utils/School/School';
-
-import mainStyles from '../../../assets/style_sheets/main/main';
 import { Colors } from '../../../assets/style_sheets/main/colors';
-import { FontSetting } from '../../../assets/style_sheets/font_setting';
-
 import {Text} from '../../../components';
-import BoldLabelComponent from '../../../components/shared/BoldLabelComponent';
 import FilterNavigationHeader from '../../../components/schools/FilterNavigationHeader'
 import OneList from '../../../components/list/one_list';
-import GridList from '../../../components/list/grid_list';
 import universities from '../../../data/json/universities';
 import FooterBar from '../../../components/footer/FooterBar';
 import keyword from '../../../data/analytics/keyword';
@@ -33,16 +27,8 @@ class FilterScreen extends Component {
     }
   }
 
-  // componentWillMount(){
-  //   this.refreshProvinceValue();
-  // }
-
   componentDidMount() {
     this.refreshProvinceValue();
-
-    this.props.navigation.setParams({
-      handleReset: this.resetValues
-    });
   }
 
   resetValues = () => {
@@ -126,41 +112,37 @@ class FilterScreen extends Component {
     let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
     return (
       <React.Fragment>
-        <OneList onPress={() => {
+        <OneList text='ជ្រើសរើសទីតាំង' selectedValue={province}
+          onPress={() => {
             this.props.navigation.navigate('FilterProvinces', {
               title: 'ជ្រើសរើសទីតាំង',
               category: this.state.category,
               selectedProvince: province,
               refreshValue: this.refreshProvinceValue.bind(this)
             })
-          }} text='ជ្រើសរើសទីតាំង' selectedValue={province}
+          }}
         />
         <Text style={{marginLeft: 16, marginTop: 10, marginBottom: 6, color: Color.paleBlackColor}}>
-          ជ្រេីសរេីសជំនាញ
+          ជ្រើសរើសជំនាញ
         </Text>
       </React.Fragment>
     )
   }
 
-  renderMajors(){
-    let majors = ['គ្រប់ជំនាញ'].concat(this.state.majors);
-    return <FlatList
-              data={ majors }
-              renderItem={ ({item, index}) => this.renderButton(item, index) }
-              refreshing={false}
-              keyExtractor={this._keyExtractor}
-              horizontal={false}
-              numColumns={2}
-              ListHeaderComponent={() => this.renderTopSection()}
-           />
-  }
-
   render(){
-    let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
+    let majors = ['គ្រប់ជំនាញ'].concat(this.state.majors);
     return (
       <View style={{flex: 1}}>
-        <FilterNavigationHeader/>
-        { this.renderMajors() }
+        <FilterNavigationHeader resetValues={() => this.resetValues()} />
+        <FlatList
+          data={ majors }
+          renderItem={ ({item, index}) => this.renderButton(item, index) }
+          refreshing={false}
+          keyExtractor={this._keyExtractor}
+          horizontal={false}
+          numColumns={2}
+          ListHeaderComponent={() => this.renderTopSection()}
+        />
         <FooterBar text='យល់ព្រម' onPress={this.setFilterValues.bind(this)} />
       </View>
     )
