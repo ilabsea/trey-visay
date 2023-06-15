@@ -13,7 +13,7 @@ import color from '../../../themes/color'
 const SearchableHeader = (props) => {
   const [searchVisible, setSearchVisible] = React.useState(false)
   const searchBox = () => {
-    return <View style={{flex: 1, flexDirection: 'row', borderRadius: 12, marginLeft: 6, marginRight: 16, backgroundColor: color.paleGray, height: 40, marginVertical: 4}}>
+    return <View style={{flex: 1, flexDirection: 'row', borderRadius: 12, marginLeft: 6, marginRight: 16, backgroundColor: color.paleGray, height: 40, marginVertical: getStyleOfOS(6, 4)}}>
               <TextInput
                 autoCorrect={false} autoFocus={true} placeholder={props.placeholder}
                 value={props.searchedText}
@@ -32,7 +32,7 @@ const SearchableHeader = (props) => {
   const renderTitle = () => {
     return <React.Fragment>
               <Appbar.Content title={props.title} titleStyle={{fontSize: FontSetting.nav_title, fontFamily: FontFamily.regular, color: 'black'}} />
-              <Appbar.Action icon="magnify" onPress={() => setSearchVisible(true)} color="black" size={getStyleOfOS(getStyleOfDevice(28, 24), 24)} />
+              <Appbar.Action icon="magnify" onPress={() => setSearchVisible(true)} color="black" size={getStyleOfOS(getStyleOfDevice(28, 26), 24)} />
            </React.Fragment>
   }
 
