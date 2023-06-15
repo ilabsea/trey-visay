@@ -6,7 +6,7 @@ import SearchableHeader from '../shared/searchableHeaders/SearchableHeader';
 
 const SchoolNavigationHeader = (props) => {
   return <SearchableHeader title="គ្រឹះស្ថានសិក្សា" placeholder="ស្វែងរកគ្រឹះស្ថានសិក្សា" containerStyle={[styles.header, {paddingTop: 4}]}
-            searchedText={props.searchText}
+            searchedText={props.searchedText}
             setSearchedText={props.setSearchedText}
          >
             <SegmentView activePage={props.activePage} setContent={(active) => props.setContent(active)}/>

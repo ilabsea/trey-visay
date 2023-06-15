@@ -1,5 +1,5 @@
 import React from 'react'
-import {TouchableOpacity, View, TextInput} from 'react-native'
+import {TouchableOpacity, View, TextInput, TouchableWithoutFeedback, Keyboard} from 'react-native'
 import {Appbar} from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -47,13 +47,15 @@ const SearchableHeader = (props) => {
   }
 
   return (
-    <Appbar.Header style={[{backgroundColor: 'white', elevation: 1}, props.containerStyle]}>
-      <View style={{flexDirection: 'row', alignItems: 'center'}}>
-        <BackButton onPress={() => handlePressBack()} />
-        {searchVisible ? searchBox() : renderTitle()}
-      </View>
-      {props.children}
-    </Appbar.Header>
+    <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+      <Appbar.Header style={[{backgroundColor: 'white', elevation: 1}, props.containerStyle]}>
+        <View style={{flexDirection: 'row', alignItems: 'center'}}>
+          <BackButton onPress={() => handlePressBack()} />
+          {searchVisible ? searchBox() : renderTitle()}
+        </View>
+        {props.children}
+      </Appbar.Header>
+    </TouchableWithoutFeedback>
   )
 }
 

@@ -43,12 +43,13 @@ export default class SchoolScreen extends Component {
     });
   }
 
-  setSchools(active) {
+  setSchools(active, searchText = '') {
     let options = {
       category: this.segments[active],
       province: this.state.currentProvince,
       major: this.state.currentMajor,
-      page: this.page
+      page: this.page,
+      searchText: searchText
     }
 
     let schools = SchoolUtil.getSchools(options);
@@ -75,7 +76,7 @@ export default class SchoolScreen extends Component {
   setContent(active){
     this.resetData();
     this.setState({activePage: active});
-    this.setSchools(active);
+    this.setSchools(active, this.state.searchText);
   }
 
   getMore() {
@@ -99,7 +100,7 @@ export default class SchoolScreen extends Component {
 
     return (
       <FlatList
-        data={ this.state.schools }
+        data={ this.state.schools.filter(school => school.universityName.includes(this.state.searchText)) }
         renderItem={ ({item}) => this._renderRow(item) }
         refreshing={false}
         keyExtractor={ this._keyExtractor }
@@ -110,12 +111,20 @@ export default class SchoolScreen extends Component {
     )
   }
 
+  onSearchChange(text) {
+    if (text == '') {
+      this.resetData();
+      this.setSchools(this.state.activePage, text);
+    }
+    this.setState({searchText: text})
+  }
+
   render() {
     return (
       <View style={{flex: 1}}>
         <SchoolNavigationHeader activePage={this.state.activePage} setContent={(active) => this.setContent(active)}
           searchedText={this.state.searchText}
-          setSearchedText={(text) => this.setState({searchText: text})}
+          setSearchedText={(text) => this.onSearchChange(text)}
         />
 
         <View style={{flex: 1}}>

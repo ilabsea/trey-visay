@@ -28,6 +28,9 @@ export default class School {
   static getSchools(options) {
     let uniList = util.sortByName(universities, 'universityName');
 
+    if (!!options.searchText)
+      uniList = uniList.filter(school => school.universityName.includes(options.searchText))
+
     if (!!options.category) {
       uniList = uniList.filter(school => school.category == options.category);
     }
