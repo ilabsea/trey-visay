@@ -41,14 +41,15 @@ function SchoolNavigator() {
           headerTitle: (props) => (<Title style={[styles.title, colorStyle]}>គ្រឹះស្ថានសិក្សា</Title>)
       })}/> */}
       <Stack.Screen name="InstitutionDetail" component={InstitutionDetail} options={{headerShown: false}} />
-      <Stack.Screen name="FilterScreen" component={FilterScreen} options={({ navigation, route }) => ({
+      <Stack.Screen name="FilterScreen" component={FilterScreen} options={{headerShown: false}}/>
+      {/* <Stack.Screen name="FilterScreen" component={FilterScreen} options={({ navigation, route }) => ({
         title: "គ្រឹះស្ថានសិក្សា",
         headerRight: (props) => (
           <Button transparent onPress={() => route.params.handleReset()} >
             <Text style={{width: wp('30%'), color: Colors.blue, paddingTop: 6}}>កំណត់ឡេីងវិញ</Text>
           </Button>
         )
-      })}/>
+      })}/> */}
 
       <Stack.Screen name="FilterProvinces" component={FilterProvinces} options={({ navigation, route }) => ({
         title: "ជ្រេីសរេីសទីតាំង",

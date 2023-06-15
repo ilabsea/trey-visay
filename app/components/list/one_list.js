@@ -1,13 +1,15 @@
 import React from 'react';
 import {
   View,
-  Text,
   TouchableOpacity,
   StyleSheet
 } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 
+import {Text} from '..'
 import mainStyles from '../../assets/style_sheets/main/main';
+import {pressableItemSize, arrowRightIconSize} from '../../constants/component_constant';
+import Color from '../../themes/color';
 
 class OneList extends React.Component {
   constructor(props) {
@@ -16,17 +18,15 @@ class OneList extends React.Component {
 
   render() {
     return (
-      <View style={[mainStyles.box, {marginTop: 24}]}>
-        <TouchableOpacity
-          style={mainStyles.btnList}
-          onPress={this.props.onPress}>
-          <Text style={mainStyles.title}>{this.props.text}</Text>
-        { !!this.props.selectedValue &&
-            <View style={{flex:1}}>
-              <Text style={[mainStyles.title,styles.rightText]}>{this.props.selectedValue}</Text>
-            </View>
+      <View style={[mainStyles.box, {marginTop: 14}]}>
+        <TouchableOpacity style={[mainStyles.btnList, {height: pressableItemSize, alignItems: 'center'}]}
+          onPress={this.props.onPress}
+        >
+          <Text style={{color: Color.paleBlackColor}}>{this.props.text}</Text>
+          { !!this.props.selectedValue &&
+            <Text style={styles.rightText}>{this.props.selectedValue}</Text>
           }
-          <AwesomeIcon name='angle-right' size={24} color='#bbb' />
+          <AwesomeIcon name='angle-right' size={arrowRightIconSize} color='#bbb' />
         </TouchableOpacity>
       </View>
     )
@@ -35,9 +35,9 @@ class OneList extends React.Component {
 
 const styles = StyleSheet.create({
   rightText: {
-    alignSelf: 'flex-end',
+    flex: 1,
     paddingRight: 16,
-    color: '#bababa'
+    textAlign: 'right'
   }
 })
 
