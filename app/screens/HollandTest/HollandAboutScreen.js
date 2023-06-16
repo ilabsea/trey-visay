@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
   View,
   StyleSheet,
   Image,
 } from 'react-native';
 
-import { Container, Content } from 'native-base';
 import mainStyles from '../../assets/style_sheets/main/main';
 import Text from '../../components/Text';
+import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader';
+import {screenHorizontalPadding} from '../../constants/component_constant';
 
 const HollandAboutScreen = ({route, navigation}) => {
   renderContent = () => {
     return (
-      <Content style={{padding: 20}}>
-        <Text>
+      <View style={{padding: screenHorizontalPadding, paddingTop: 8, backgroundColor: 'white', flex: 1}}>
+        <Text style={{marginBottom: 10}}>
           ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និងអាជីពដែលស័ក្តិសមសំរាប់អ្នកនៅពេលអនាគត
         </Text>
         <View style={styles.rowWrapper}>
@@ -29,15 +30,16 @@ const HollandAboutScreen = ({route, navigation}) => {
           </View>
           <Text>២. វាយតម្លៃផែនការមុខរបរ</Text>
         </View>
-      </Content>
+      </View>
     )
   }
 
-    return (
-      <Container>
-        { renderContent() }
-      </Container>
-    )
+  return (
+    <View style={{flex: 1}}>
+      <CustomNavigationHeader title='អំពីការវាយតម្លៃមុខរបរនិងអាជីព' headerStyle={{zIndex: 1}} />
+      {renderContent()}
+    </View>
+  )
 }
 
 export default HollandAboutScreen

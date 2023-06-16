@@ -30,7 +30,7 @@ function CareerCounsellorStack() {
   return(
     <Stack.Navigator screenOptions={{ }} initialRouteName='HollandHomeScreen'>
       <Stack.Screen name="HollandHomeScreen" component={HollandHomeScreen} options={{headerShown: false}} />
-      <Stack.Screen name="HollandAboutScreen" component={HollandAboutScreen} options={{title: "អំពីការវាយតម្លៃមុខរបរនិងអាជីព"}} />
+      <Stack.Screen name="HollandAboutScreen" component={HollandAboutScreen} options={{headerShown: false}} />
       <Stack.Screen name="ProfileFormScreen" component={ProfileFormScreen} options={{headerShown: false}} />
 
       <Stack.Screen name="HollandInstructionScreen" component={HollandInstructionScreen} options={{headerShown: false}} />
