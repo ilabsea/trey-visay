@@ -4,4 +4,4 @@ import {getStyleOfDevice, isLowPixelDensityDevice} from '../utils/responsive_uti
 
 export const defaultBottomSheetSnapPoints = getStyleOfDevice([hp('60%')], [hp('65%')]);
 export const defaultBottomSheetContentHeight = hp('55%');
-export const hollandTestResultOptionsSnapPoints = getStyleOfDevice([hp('26%')], Platform.OS === 'ios' ? [hp('36%')] : isLowPixelDensityDevice() ? [hp('40%')] : [hp('34%')])
+export const hollandTestResultOptionsSnapPoints = getStyleOfDevice([hp('26%')], Platform.OS === 'ios' ? isLowPixelDensityDevice() ? [hp('40%')] : [hp('36%')] : isLowPixelDensityDevice() ? [hp('40%')] : [hp('34%')])
