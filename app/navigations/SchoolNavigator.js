@@ -5,8 +5,6 @@ import {
 } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
-import SaveButton from '../components/shared/save_button';
-
 import SchoolScreen from '../screens/school/SchoolScreen';
 import InstitutionDetail from '../screens/school/institution_detail';
 import FilterScreen from '../screens/school/filter/filter_screen';
@@ -39,11 +37,7 @@ function SchoolNavigator() {
       })}/> */}
       <Stack.Screen name="InstitutionDetail" component={InstitutionDetail} options={{headerShown: false}} />
       <Stack.Screen name="FilterScreen" component={FilterScreen} options={{headerShown: false}}/>
-      <Stack.Screen name="FilterProvinces" component={FilterProvinces} options={({ navigation, route }) => ({
-        title: "ជ្រេីសរេីសទីតាំង",
-        headerRight: (props) => <SaveButton noIcon={true} navigation={navigation} />
-      })}/>
-
+      <Stack.Screen name="FilterProvinces" component={FilterProvinces} options={{headerShown: false}}/>
     </Stack.Navigator>
   )
 }

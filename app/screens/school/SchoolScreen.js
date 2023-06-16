@@ -25,10 +25,6 @@ export default class SchoolScreen extends Component {
     }
   }
 
-  // UNSAFE_componentWillMount() {
-  //   this.refreshState();
-  // }
-
   componentDidMount() {
     this.refreshState();
   }
