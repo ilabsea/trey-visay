@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: getStyleOfOS(0.5, 2),
     borderColor: Color.paleGray,
     paddingHorizontal: screenHorizontalPadding,
-    paddingBottom: 6
+    paddingVertical: 16
   }
 })
 
