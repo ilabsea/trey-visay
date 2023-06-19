@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import { FlatList, ActivityIndicator, View } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 
 import SchoolNavigationHeader from '../../components/schools/SchoolNavigationHeader';
 import School from '../../components/schools/school';
 import FilterButton from '../../components/schools/filter_button';
+import CustomFlatListComponent from '../../components/shared/CustomFlatListComponent';
 
 import SchoolUtil from '../../utils/school_util';
 import {Colors} from '../../assets/style_sheets/main/colors';
 import {schoolCategories} from '../../constants/school_constant';
+import {pullSchools} from '../../api/school_api';
 
 export default class SchoolScreen extends Component {
   // segments = { 1 : 'សាលារដ្ឋ', 2:'សាលាឯកជន', 3:'អង្គការ'}
@@ -24,11 +27,21 @@ export default class SchoolScreen extends Component {
       currentMajor: '',
       loading: true,
       searchText: '',
+      hasInternet: false,
     }
+    this.listRef = React.createRef()
+    this.netInfoUnsubscribe = null;
   }
 
   componentDidMount() {
     this.refreshState();
+    this.netInfoUnsubscribe = NetInfo.addEventListener(state => {
+      this.setState({hasInternet: state.isConnected && state.isInternetReachable})
+    });
+  }
+
+  componentWillUnmount() {
+    !!this.netInfoUnsubscribe && this.netInfoUnsubscribe();
   }
 
   refreshState() {
@@ -90,6 +103,25 @@ export default class SchoolScreen extends Component {
     this.setSchools(this.state.activePage);
   }
 
+  onEndReached() {
+    console.log('==== on school end reached ===')
+  }
+
+  onRefresh() {
+    console.log('==== on school refresh ===')
+    const fetchedSchools = pullSchools()
+    fetchedSchools
+      .then((res) => {
+        console.log('==== pull schools success == ', res)
+      })
+      .catch(err => {
+        console.log('=== pull schools error = ', err)
+      })
+
+
+    this.listRef.current?.stopRefreshLoading()
+  }
+
   renderContent() {
     if (this.state.loading) {
       return (
@@ -99,17 +131,27 @@ export default class SchoolScreen extends Component {
       )
     }
 
-    return (
-      <FlatList
-        data={ this.state.schools.filter(school => school.universityName.includes(this.state.searchText)) }
-        renderItem={ ({item}) => this._renderRow(item) }
-        refreshing={false}
-        keyExtractor={ this._keyExtractor }
-        onEndReached={ () => this.getMore() }
-        onEndReachedThreshold={0.7}
-        contentContainerStyle={{paddingBottom: 78}}
-      />
-    )
+    return <CustomFlatListComponent
+              ref={this.listRef}
+              data={ this.state.schools.filter(school => school.name.includes(this.state.searchText)) }
+              renderItem={ ({item}) => this._renderRow(item) }
+              hasInternet={this.state.hasInternet}
+              keyExtractor={ this._keyExtractor }
+              endReachedAction={() => this.onEndReached()}
+              refreshingAction={() => this.onRefresh()}
+           />
+
+    // return (
+    //   <FlatList
+    //     data={ this.state.schools.filter(school => school.name.includes(this.state.searchText)) }
+    //     renderItem={ ({item}) => this._renderRow(item) }
+    //     refreshing={false}
+    //     keyExtractor={ this._keyExtractor }
+    //     onEndReached={ () => this.getMore() }
+    //     onEndReachedThreshold={0.7}
+    //     contentContainerStyle={{paddingBottom: 78}}
+    //   />
+    // )
   }
 
   onSearchChange(text) {

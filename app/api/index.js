@@ -5,12 +5,12 @@ import {
   uploadJobResponse
 } from "./holland_quiz";
 
-import {pullUniversities} from './school'
+import {pullSchools} from './school_api'
 
 export default {
   uploadUser,
   uploadHollandQuiz,
   uploadMajorResponse,
   uploadJobResponse,
-  pullUniversities,
+  pullSchools,
 }
