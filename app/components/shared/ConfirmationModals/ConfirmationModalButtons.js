@@ -10,7 +10,7 @@ import {pressableItemSize, buttonBorderRadius} from '../../../constants/componen
 const ConfirmationModalButtons = (props) => {
   const renderButton = (label, mode, onPress, style) => {
     return <Button mode={mode} style={[styles.btn, style]} onPress={() => onPress()} textColor={mode == 'outlined' ? Color.pressable : Color.whiteColor}
-              labelStyle={{fontFamily: FontFamily.regular, fontSize: FontSetting.text}}
+              labelStyle={{fontFamily: FontFamily.regular, fontWeight: 'normal', fontSize: FontSetting.text}}
               contentStyle={{minWidth: 70, height: pressableItemSize}}
            >
               {label}
