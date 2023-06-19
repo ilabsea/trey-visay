@@ -5,11 +5,12 @@ import SchoolNavigationHeader from '../../components/schools/SchoolNavigationHea
 import School from '../../components/schools/school';
 import FilterButton from '../../components/schools/filter_button';
 
-import SchoolUtil from '../../utils/School/School';
+import SchoolUtil from '../../utils/school_util';
 import {Colors} from '../../assets/style_sheets/main/colors';
+import {schoolCategories} from '../../constants/school_constant';
 
 export default class SchoolScreen extends Component {
-  segments = { 1 : 'សាលារដ្ឋ', 2:'សាលាឯកជន', 3:'អង្គការ'}
+  // segments = { 1 : 'សាលារដ្ឋ', 2:'សាលាឯកជន', 3:'អង្គការ'}
   _keyExtractor = (item, index) => index.toString();
 
   constructor(props) {
@@ -45,7 +46,7 @@ export default class SchoolScreen extends Component {
 
   setSchools(active, searchText = '') {
     let options = {
-      category: this.segments[active],
+      category: schoolCategories[active],
       province: this.state.currentProvince,
       major: this.state.currentMajor,
       page: this.page,
@@ -131,7 +132,7 @@ export default class SchoolScreen extends Component {
           { this.renderContent() }
           <FilterButton
             navigation={this.props.navigation}
-            category={this.segments[this.state.activePage]}
+            category={schoolCategories[this.state.activePage]}
             refreshValue={ this.refreshState.bind(this)}
             number={!!this.state.currentProvince + !!this.state.currentMajor}
           />

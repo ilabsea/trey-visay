@@ -1,5 +1,5 @@
 import School from '../models/School'
 
 export const seedDataToRealm = () => {
-  School.seedData()
+  School.getAll().length == 0 && School.seedData()
 }

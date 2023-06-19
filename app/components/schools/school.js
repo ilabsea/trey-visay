@@ -29,11 +29,11 @@ class School extends Component {
           >
 
           <View style={styles.imageContainer}>
-            <Image source={school.logoName} style={styles.image} resizeMode='contain' />
+            {/* <Image source={school.logoName} style={styles.image} resizeMode='contain' /> */}
           </View>
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 8, justifyContent: 'center'}}>
-            <BoldLabelComponent label={school.universityName} numberOfLines={1} style={[mainStyles.title, styles.nameLabel]} />
+            <BoldLabelComponent label={school.name} numberOfLines={1} style={[mainStyles.title, styles.nameLabel]} />
 
             { this.props.showCategory &&
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -71,7 +71,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 16,
     padding: 4,
-    borderColor: 'rgb(151,151, 151)'
+    borderColor: 'rgb(151,151, 151)',
+    width: getStyleOfDevice(getStyleOfOS(75, 65), 50),
+    height: getStyleOfDevice(getStyleOfOS(75, 65), 50),
   },
   image: {
     width: getStyleOfDevice(getStyleOfOS(75, 65), 50),

@@ -1,6 +1,6 @@
 import BaseModel from './BaseModel'
 import uuidv4 from '../utils/uuidv4';
-import schools from '../data/json/school.json';
+import schools from '../data/json/schools.json';
 
 const MODEL = 'School'
 
@@ -13,6 +13,10 @@ export default class School {
 
   static getAll = () => {
     return BaseModel.getAll(MODEL).sorted('name', true)
+  }
+
+  static findByCategory = (category) => {
+    return BaseModel.findByAttr(MODEL, {category: `'${category}'`})
   }
 
   // private method
