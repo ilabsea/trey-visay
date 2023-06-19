@@ -20,13 +20,13 @@ const MyCheckbox = (props) => {
 
   return (
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
-      <Checkbox
+      <Checkbox.Android
         status={ checked ? 'checked' : 'unchecked' }
         onPress={ onPress }
         color={ Colors.blue }
       />
 
-      <TouchableOpacity onPress={onPress} style={{flex: 1}}>
+      <TouchableOpacity onPress={onPress} style={{flex: 1, marginLeft: 10}}>
         <Text>{props.label}</Text>
       </TouchableOpacity>
     </View>

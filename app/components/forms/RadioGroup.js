@@ -21,7 +21,7 @@ const RadioGroup = ({name, options, disabled}) => {
   const buttonGroups = () => (
     options.map((option, i) =>
       <View key={i} style={{flexDirection: 'row', alignItems: 'center', borderBottomWidth: i == options.length - 1 ? 0 : 0.5, borderColor: Color.gray, height: pressableItemSize}}>
-        <RadioButton
+        <RadioButton.Android
           status={ value == option.value ? "checked" : "unchecked" }
           value={ option.value }
           color={ Colors.blue }
@@ -30,7 +30,7 @@ const RadioGroup = ({name, options, disabled}) => {
         />
 
         <TouchableWithoutFeedback onPress={() => onValueChange(option.value)}>
-          <View style={{flex: 1, justifyContent: 'center', height: '100%'}}>
+          <View style={{flex: 1, justifyContent: 'center', height: '100%', marginLeft: 10}}>
             <Text style={getTextStyle}>{option.name}</Text>
           </View>
         </TouchableWithoutFeedback>
