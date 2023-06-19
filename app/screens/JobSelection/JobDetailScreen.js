@@ -1,22 +1,24 @@
 import React from 'react'
-import { View, ScrollView, Alert } from 'react-native'
-import { Text, FooterBar } from '../../components';
-import { Card } from 'react-native-paper';
-import { useSelector, useDispatch } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
+import { View, ScrollView } from 'react-native'
 
-const JobDetailScreen = () => {
+import { Text } from '../../components';
+import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader'
+import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
+import JobDetailAccordion from '../../components/jobDetails/JobDetailAccordion'
+import {screenHorizontalPadding} from '../../constants/component_constant'
+import Job from '../../models/Job';
+
+const JobDetailScreen = ({route}) => {
+  const job = Job.findByCode(route.params.job_code) || {}
   return (
     <View style={{flex: 1}}>
+    <CustomNavigationHeader title={route.params.title} headerStyle={{zIndex: 1}} />
+
       <ScrollView>
-        <Text style={{textAlign: 'center', marginVertical: 16}}>ការផ្តល់អនុសាសន៍</Text>
-
-        <Card style={{padding: 16}}>
-          <Text>
-            job detail
-          </Text>
-        </Card>
-
+        <Text style={{marginTop: 16, marginBottom: 8, paddingHorizontal: screenHorizontalPadding, color: '#000'}}>
+          ស្វែងយល់អំពីការសិក្សាមុខរបរ <BoldLabelComponent label={route.params.title} />៖
+        </Text>
+        <JobDetailAccordion job={job} />
       </ScrollView>
     </View>
   )

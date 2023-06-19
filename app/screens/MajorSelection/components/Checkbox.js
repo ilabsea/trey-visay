@@ -17,6 +17,13 @@ const MyCheckbox = (props) => {
     setChecked(props.checked);
   }, [props.checked])
 
+  const showDetail = () => {
+    if (props.type == 'major')
+      return navigate('MajorDetailScreen', {title: props.label, major_code: props.value})
+
+    navigate('JobDetailScreen', {title: props.label, job_code: props.value})
+  }
+
   return (
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
       <Checkbox
@@ -31,7 +38,7 @@ const MyCheckbox = (props) => {
 
       <Divider style={{width: 1, height: '65%',marginHorizontal: 8}} />
 
-      <TouchableOpacity onPress={() => navigate('MajorDetailScreen', {title: props.label, major_code: props.value})}>
+      <TouchableOpacity onPress={() => showDetail()}>
         <Text style={{fontSize: 13, color: Color.pressable}}>ចូលមើលលម្អិត</Text>
       </TouchableOpacity>
     </View>

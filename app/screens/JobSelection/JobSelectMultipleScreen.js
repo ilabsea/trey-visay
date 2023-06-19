@@ -53,6 +53,7 @@ const JobSelectMultipleScreen = ({route, navigation}) => {
             textSearch={textSearch}
             errorMessage={errorMsg}
             updateSelectedItem={(items) => setSelectedItem(items)}
+            type='job'
           />
         </View>
       </View>

@@ -54,6 +54,7 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
             textSearch={textSearch}
             errorMessage={errorMsg}
             updateSelectedItem={(items) => setSelectedItem(items)}
+            type='major'
           />
         </View>
       </View>

@@ -7,7 +7,7 @@ import Checkbox from './Checkbox';
 
 const {useImperativeHandle} = React
 
-const CheckboxGroup = ({options, textSearch, errorMessage, updateSelectedItem}, ref) => {
+const CheckboxGroup = ({options, textSearch, errorMessage, updateSelectedItem, type}, ref) => {
   const selectedValues = useRef([])
   const [paginateLoading, setPaginateLoading] = useState(false);
   const [renderOptions, setRenderOptions] = useState([])
@@ -77,6 +77,7 @@ const CheckboxGroup = ({options, textSearch, errorMessage, updateSelectedItem}, 
               onPress={ onPress }
               checked={ selectedValues.current && selectedValues.current.indexOf(item.value) !== -1 }
               onEndReached={() => onEndReached()}
+              type={type}
             />
           </View>
         )}
