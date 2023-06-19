@@ -8,6 +8,7 @@ import SplashScreen from 'react-native-splash-screen';
 import AppNavigation from './app/navigations/AppNavigator';
 import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
+import {seedDataToRealm} from './app/services/seed_data_service';
 
 const App = () => {
   const [user, setUser] = useState();
@@ -20,6 +21,7 @@ const App = () => {
   useEffect(() => {
     SplashScreen.hide();
     restoreUser();
+    seedDataToRealm();
   }, []);
 
   return (

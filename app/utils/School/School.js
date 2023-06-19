@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import universities from '../../data/json/universities';
 import util from '../math';
+import SchoolModel from '../../models/School';
 
 const PER_PAGE = 20;
 
@@ -26,7 +27,8 @@ export default class School {
   }
 
   static getSchools(options) {
-    let uniList = util.sortByName(universities, 'universityName');
+    // let uniList = util.sortByName(universities, 'universityName');
+    let uniList = SchoolModel.getAll()
 
     if (!!options.searchText)
       uniList = uniList.filter(school => school.universityName.includes(options.searchText))
@@ -35,16 +37,20 @@ export default class School {
       uniList = uniList.filter(school => school.category == options.category);
     }
 
-    if (!!options.province) {
-      uniList = uniList.filter(school => school.province == options.province);
-    }
+    // if (!!options.category) {
+    //   uniList = uniList.filter(school => school.category == options.category);
+    // }
 
-    if (!!options.major) {
-      uniList = uniList.filter((school) => {
-        let departments = school.departments.filter((department) => department.majors.includes(options.major));
-        return !!departments.length;
-      });
-    }
+    // if (!!options.province) {
+    //   uniList = uniList.filter(school => school.province == options.province);
+    // }
+
+    // if (!!options.major) {
+    //   uniList = uniList.filter((school) => {
+    //     let departments = school.departments.filter((department) => department.majors.includes(options.major));
+    //     return !!departments.length;
+    //   });
+    // }
 
     let page = options.page || 1;
     let start = (page - 1) * PER_PAGE;
