@@ -1,21 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import { Container, Content, Footer } from 'native-base';
 // import firebase from 'react-native-firebase';
 
 import SchoolUtil from '../../../utils/School/School';
-
-import mainStyles from '../../../assets/style_sheets/main/main';
 import { Colors } from '../../../assets/style_sheets/main/colors';
-import { FontSetting } from '../../../assets/style_sheets/font_setting';
-
+import {Text} from '../../../components';
+import FilterNavigationHeader from '../../../components/schools/FilterNavigationHeader'
 import OneList from '../../../components/list/one_list';
-import GridList from '../../../components/list/grid_list';
 import universities from '../../../data/json/universities';
 import FooterBar from '../../../components/footer/FooterBar';
 import keyword from '../../../data/analytics/keyword';
+import Color from '../../../themes/color';
 
 class FilterScreen extends Component {
   _keyExtractor = (item, index) => index.toString();
@@ -30,14 +27,8 @@ class FilterScreen extends Component {
     }
   }
 
-  componentWillMount(){
-    this.refreshProvinceValue();
-  }
-
   componentDidMount() {
-    this.props.navigation.setParams({
-      handleReset: this.resetValues
-    });
+    this.refreshProvinceValue();
   }
 
   resetValues = () => {
@@ -112,54 +103,48 @@ class FilterScreen extends Component {
             style={styles.icon}
           />
         </View>
-        <Text numberOfLines={2} style={[activeText , { flex: 1 , paddingRight: 16, fontSize: FontSetting.small_title}]}>{major}</Text>
+        <Text numberOfLines={2} style={[activeText , { flex: 1 , paddingRight: 16, lineHeight: 28}]}>{major}</Text>
       </TouchableOpacity>
     )
   }
 
-  renderMajors(){
-    let majors = ['គ្រប់ជំនាញ'].concat(this.state.majors);
-    return(
-      <View style={[ mainStyles.grid, { justifyContent: 'flex-start', margin: 0 }]}>
-        <FlatList
-          data={ majors }
-          renderItem={ ({item, i}) => this.renderButton(item, i) }
-          refreshing={false}
-          keyExtractor={this._keyExtractor}
-          horizontal={false}
-          numColumns={2}
+  renderTopSection() {
+    let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
+    return (
+      <React.Fragment>
+        <OneList text='ជ្រើសរើសទីតាំង' selectedValue={province}
+          onPress={() => {
+            this.props.navigation.navigate('FilterProvinces', {
+              title: 'ជ្រើសរើសទីតាំង',
+              category: this.state.category,
+              selectedProvince: province,
+              refreshValue: this.refreshProvinceValue.bind(this)
+            })
+          }}
         />
-      </View>
+        <Text style={{marginLeft: 16, marginTop: 10, marginBottom: 6, color: Color.paleBlackColor}}>
+          ជ្រើសរើសជំនាញ
+        </Text>
+      </React.Fragment>
     )
   }
 
   render(){
-    // return (null)
-    let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
+    let majors = ['គ្រប់ជំនាញ'].concat(this.state.majors);
     return (
-      <Container>
-        <Content style={{ backgroundColor: 'rgb(239, 240, 244)' }}>
-          <ScrollView>
-            <OneList onPress={() => {
-                this.props.navigation.navigate('FilterProvinces', {
-                  title: 'ជ្រើសរើសទីតាំង',
-                  category: this.state.category,
-                  selectedProvince: province,
-                  refreshValue: this.refreshProvinceValue.bind(this)
-                })
-              }} text='ជ្រើសរើសទីតាំង' selectedValue={province} />
-
-            <Text style={[ mainStyles.sectionText, { margin: 16, marginBottom: 0 }]}>
-              ជ្រេីសរេីសជំនាញ
-            </Text>
-
-            { this.renderMajors() }
-
-          </ScrollView>
-        </Content>
-
+      <View style={{flex: 1}}>
+        <FilterNavigationHeader resetValues={() => this.resetValues()} />
+        <FlatList
+          data={ majors }
+          renderItem={ ({item, index}) => this.renderButton(item, index) }
+          refreshing={false}
+          keyExtractor={this._keyExtractor}
+          horizontal={false}
+          numColumns={2}
+          ListHeaderComponent={() => this.renderTopSection()}
+        />
         <FooterBar text='យល់ព្រម' onPress={this.setFilterValues.bind(this)} />
-      </Container>
+      </View>
     )
   }
 }

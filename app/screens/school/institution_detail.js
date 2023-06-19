@@ -11,7 +11,6 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import Images from '../../assets/images';
 import ListItem from '../../components/schools/list_item';
-import BackButton from '../../components/shared/back_button';
 import ScrollableHeader from '../../components/scrollable_header';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
@@ -152,7 +151,7 @@ export default class InstitutionDetail extends Component {
         barStyle={'light-content'}
         headerStyle={{borderBottomWidth: 0}}
         renderContent={ this.renderContent }
-        renderNavigation={ () => <BackButton buttonColor='#fff' navigation={this.props.navigation}/> }
+        buttonColor={'#fff'}
         title={this.state.school.universityName}
         renderLogo={ () => this._renderLogo() }
       />

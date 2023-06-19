@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity
-} from 'react-native';
+import { View, TouchableOpacity, ScrollView} from 'react-native';
 
-import { Container, Content } from 'native-base';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Divider } from 'react-native-paper';
 import SchoolUtil from '../../../utils/School/School';
-import mainStyles from '../../../assets/style_sheets/main/main';
+import CustomNavigationHeader from '../../../components/shared/CustomNavigationHeader'
+import {Text} from '../../../components'
+import {pressableItemSize, screenHorizontalPadding} from '../../../constants/component_constant'
+import Color from '../../../themes/color'
+import {isShortScreenDevice} from '../../../utils/responsive_util'
 
 class FilterProvinces extends Component {
   constructor(props){
@@ -22,7 +21,7 @@ class FilterProvinces extends Component {
     }
   };
 
-  componentWillMount(){
+  componentDidMount() {
     this.setProvinces();
   }
 
@@ -43,30 +42,30 @@ class FilterProvinces extends Component {
     return (
       <View key={i}>
         <TouchableOpacity
-          style={mainStyles.btnList}
+          style={{flexDirection: 'row', minHeight: isShortScreenDevice() ? pressableItemSize : 56, paddingHorizontal: screenHorizontalPadding, alignItems: 'center', paddingVertical: 6}}
           onPress={()=> this.setSelectedProvince(province)}
         >
-          <Text style={mainStyles.title}>{province}</Text>
+          <Text style={{flex: 1, marginTop: 2}}>{province}</Text>
           { this.state.selectedProvince == province &&
-            <AwesomeIcon name='check' size={18} color='green' />
+            <Icon name='check' size={24} color={Color.pressable} />
           }
         </TouchableOpacity>
-        <Divider style={{marginLeft: 16}}/>
+        <Divider style={{marginHorizontal: screenHorizontalPadding}}/>
       </View>
     )
   }
 
   render(){
     let provinces = ['គ្រប់ទីកន្លែង'].concat(this.state.provinces)
-    return(
-
-      <Container>
-        <Content style={mainStyles.box}>
+    return (
+      <View style={{flexGrow: 1}}>
+        <CustomNavigationHeader title="ជ្រើសរើសទីតាំង"/>
+        <ScrollView>
           { provinces.map((province, i) => {
             { return (this.renderProvinces(province, i))}
           })}
-        </Content>
-      </Container>
+        </ScrollView>
+      </View>
     )
   }
 }

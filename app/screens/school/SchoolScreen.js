@@ -26,7 +26,7 @@ export default class SchoolScreen extends Component {
     }
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.refreshState();
   }
 

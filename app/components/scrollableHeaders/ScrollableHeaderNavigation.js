@@ -9,7 +9,7 @@ const ScrollableHeaderNavigation = (props) => {
   if (!!props.renderNavigation)
     return props.renderNavigation()
 
-  return <CustomNavigationHeader headerStyle={styles.bar} buttonColor={props.buttonColor} onPressBack={props.onPressBack}/>
+  return <CustomNavigationHeader headerStyle={styles.bar} buttonColor={props.buttonColor} onPressBack={props.onPressBack} showStyleWithChild={true}/>
 }
 
 const iosTop = getStyleOfDevice(29, DeviceInfo.hasNotch() ? 56 : 26)
