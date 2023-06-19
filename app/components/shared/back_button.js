@@ -17,16 +17,13 @@ class BackButton extends React.Component {
   }
 
   getButtonColor() {
-    const {buttonColor} = this.props;
-    let btnColor = Platform.OS == 'ios' ? Colors.blue : '#000';
-
-    return buttonColor || btnColor;
+    return this.props.buttonColor || '#000';
   }
 
   render() {
     let width = Platform.OS === 'ios' ? 50 : 44;
     let paddingHorizontal = Platform.OS === 'ios' ? 8 : 12;
-    let iconName = Platform.OS === 'ios' ? 'ios-arrow-back' : 'arrow-back';
+    let iconName = Platform.OS === 'ios' ? 'ios-chevron-back' : 'arrow-back';
     let iconSize = Platform.OS === 'ios' ? 34 : 24
     return <TouchableOpacity onPress={this.handleOnPress}
                 style={[{paddingHorizontal: paddingHorizontal, width: width}, this.props.style]}>
