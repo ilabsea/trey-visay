@@ -19,8 +19,8 @@ export default class School {
     return BaseModel.findByAttr(MODEL, {category: `'${category}'`})
   }
 
-  static findById = (id) => {
-    return BaseModel.findByAttr(MODEL, {id: `'${id}'`})[0]
+  static create = (data) => {
+    BaseModel.create(MODEL, this.getFormattedData(data), 'modified')
   }
 
   static update = (uuid, data) => {

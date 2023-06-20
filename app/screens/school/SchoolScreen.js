@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FlatList, ActivityIndicator, View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 
 import SchoolNavigationHeader from '../../components/schools/SchoolNavigationHeader';
@@ -10,7 +10,8 @@ import CustomFlatListComponent from '../../components/shared/CustomFlatListCompo
 import SchoolUtil from '../../utils/school_util';
 import {Colors} from '../../assets/style_sheets/main/colors';
 import {schoolCategories} from '../../constants/school_constant';
-import {pullSchools} from '../../api/school_api';
+import schoolSyncService from '../../services/school_sync_service';
+import DownloadedImage from '../../models/DownloadedImage';
 
 export default class SchoolScreen extends Component {
   // segments = { 1 : 'សាលារដ្ឋ', 2:'សាលាឯកជន', 3:'អង្គការ'}
@@ -103,23 +104,15 @@ export default class SchoolScreen extends Component {
     this.setSchools(this.state.activePage);
   }
 
-  onEndReached() {
-    console.log('==== on school end reached ===')
-  }
-
   onRefresh() {
-    console.log('==== on school refresh ===')
-    const fetchedSchools = pullSchools()
-    fetchedSchools
-      .then((res) => {
-        console.log('==== pull schools success == ', res)
-      })
-      .catch(err => {
-        console.log('=== pull schools error = ', err)
-      })
-
-
-    this.listRef.current?.stopRefreshLoading()
+    schoolSyncService.syncAllData((schools) => {
+      console.log('===== SYNC school success = ', schools.length)
+      this.setState({schools: schools})
+      this.listRef.current?.stopRefreshLoading()
+    }, () => {
+      console.log('===== SYNC school error =====')
+      this.listRef.current?.stopRefreshLoading()
+    })
   }
 
   renderContent() {
@@ -137,21 +130,8 @@ export default class SchoolScreen extends Component {
               renderItem={ ({item}) => this._renderRow(item) }
               hasInternet={this.state.hasInternet}
               keyExtractor={ this._keyExtractor }
-              endReachedAction={() => this.onEndReached()}
               refreshingAction={() => this.onRefresh()}
            />
-
-    // return (
-    //   <FlatList
-    //     data={ this.state.schools.filter(school => school.name.includes(this.state.searchText)) }
-    //     renderItem={ ({item}) => this._renderRow(item) }
-    //     refreshing={false}
-    //     keyExtractor={ this._keyExtractor }
-    //     onEndReached={ () => this.getMore() }
-    //     onEndReachedThreshold={0.7}
-    //     contentContainerStyle={{paddingBottom: 78}}
-    //   />
-    // )
   }
 
   onSearchChange(text) {
@@ -163,6 +143,8 @@ export default class SchoolScreen extends Component {
   }
 
   render() {
+    // console.log('==== DL images = ', DownloadedImage.getAll())
+
     return (
       <View style={{flex: 1}}>
         <SchoolNavigationHeader activePage={this.state.activePage} setContent={(active) => this.setContent(active)}

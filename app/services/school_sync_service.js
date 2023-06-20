@@ -1,6 +1,9 @@
 import fileDownloadService from './file_download_service'
 import School from '../models/School'
+import DownloadedImage from '../models/DownloadedImage';
 import {pullSchools} from '../api/school_api';
+import {itemsPerPage} from '../constants/sync_data_constant';
+import fileUtil from '../utils/file_util';
 
 const schoolSyncService = (() => {
   return {
@@ -14,8 +17,7 @@ const schoolSyncService = (() => {
   // private method
   function _handleSaveSchool(schools) {
     schools.map(school => {
-      const savedSchool = School.findById(school.id)
-      !!savedSchool ? School.update(savedSchool.uuid, school) : School.create(school)
+      School.create(school)
     });
   }
 
@@ -29,39 +31,26 @@ const schoolSyncService = (() => {
     const fetchedSchools = pullSchools()
     fetchedSchools
       .then((res) => {
-        console.log('==== pull schools success == ', res)
-        // _handleDownloadLogo(0, res.facilities, () => {
-        //   const allPage = Math.ceil(res.pagy.count / itemsPerPage)
-        //   _syncAndRemoveByPage(page+1, allPage, successCallback, failureCallback, [...prevSchools, ...res.facilities])
-        // })
+        _handleDownloadLogo(0, res.schools, () => {
+          const allPage = Math.ceil(res.pagy.count / itemsPerPage)
+          _syncAndRemoveByPage(page+1, allPage, successCallback, failureCallback, [...prevSchools, ...res.schools])
+        })
       })
-      .catch(err => {
-        console.log('=== pull schools error = ', err)
-        !!failureCallback && failureCallback()
-      })
-
-
-    // const response = await new FacilityApi().load(page)
-    // apiService.handleApiResponse(response, (res) => {
-    //   _handleDownloadLogo(0, res.facilities, () => {
-    //     const allPage = Math.ceil(res.pagy.count / itemsPerPage)
-    //     _syncAndRemoveByPage(page+1, allPage, successCallback, failureCallback, [...prevSchools, ...res.facilities])
-    //   })
-    // }, (error) => !!failureCallback && failureCallback())
+      .catch(err => !!failureCallback && failureCallback())
   }
 
-  function _handleDownloadLogo(index, facilities, callback) {
-    if (index >= facilities.length)
+  function _handleDownloadLogo(index, schools, callback) {
+    if (index >= schools.length)
       return !!callback && callback();
 
-    const facility = facilities[index]
-    if (!!facility.logo && !FacilityImage.isFileNameExisted(facility.logo)) {
-      fileDownloadService.download(facility.logo, (filename, isNewFile) => {
-        !!isNewFile && FacilityImage.create({name: filename})
-        _handleDownloadLogo(index + 1, facilities, callback)
-      }, () => _handleDownloadLogo(index + 1, facilities, callback))
+    const school = schools[index]
+    if (!!school.logo && !DownloadedImage.isFileNameExisted(school.logo.url) && fileUtil.isFileImage(school.logo.url)) {
+      fileDownloadService.download(school.logo.url, (filename, isNewFile) => {
+        !!isNewFile && DownloadedImage.create({name: filename})
+        _handleDownloadLogo(index + 1, schools, callback)
+      }, () => _handleDownloadLogo(index + 1, schools, callback))
     }
-    else _handleDownloadLogo(index + 1, facilities, callback)
+    else _handleDownloadLogo(index + 1, schools, callback)
   }
 })()
 

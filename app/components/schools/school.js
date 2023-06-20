@@ -12,6 +12,7 @@ import { Divider } from 'react-native-paper';
 
 import Text from '../Text';
 import BoldLabelComponent from '../shared/BoldLabelComponent';
+import CustomImageComponent from '../shared/CustomImageComponent';
 import mainStyles from '../../assets/style_sheets/main/main';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import {getStyleOfDevice, getStyleOfOS} from '../../utils/responsive_util';
@@ -20,7 +21,6 @@ import {arrowRightIconSize} from '../../constants/component_constant';
 class School extends Component {
   render() {
     let school = this.props.school;
-
     return (
       <View>
         <TouchableOpacity
@@ -29,7 +29,7 @@ class School extends Component {
           >
 
           <View style={styles.imageContainer}>
-            {/* <Image source={school.logoName} style={styles.image} resizeMode='contain' /> */}
+            <CustomImageComponent source={!!school.logoSource ? { uri: school.logoSource} : null} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
           </View>
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 8, justifyContent: 'center'}}>
@@ -72,8 +72,6 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     padding: 4,
     borderColor: 'rgb(151,151, 151)',
-    width: getStyleOfDevice(getStyleOfOS(75, 65), 50),
-    height: getStyleOfDevice(getStyleOfOS(75, 65), 50),
   },
   image: {
     width: getStyleOfDevice(getStyleOfOS(75, 65), 50),
