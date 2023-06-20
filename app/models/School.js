@@ -19,6 +19,18 @@ export default class School {
     return BaseModel.findByAttr(MODEL, {category: `'${category}'`})
   }
 
+  static findById = (id) => {
+    return BaseModel.findByAttr(MODEL, {id: `'${id}'`})[0]
+  }
+
+  static update = (uuid, data) => {
+    BaseModel.update(MODEL, uuid, this.getFormattedData(data))
+  }
+
+  static deleteAll = () => {
+    BaseModel.deleteAll(MODEL)
+  }
+
   // private method
   static getFormattedData(school) {
     return {
