@@ -12,7 +12,7 @@ export default class School {
   }
 
   static getAll = () => {
-    return BaseModel.getAll(MODEL).sorted('name', true).sorted('id', false)
+    return BaseModel.getAll(MODEL).sorted('id', false)
   }
 
   static findByCategory = (category) => {

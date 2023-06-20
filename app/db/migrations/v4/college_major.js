@@ -9,7 +9,8 @@ CollegeMajor.schema = {
   primaryKey: 'uuid',
   properties: {
     uuid: 'string',
-    id: 'string?',       // store the id of the college major from the server
+    id: 'string',       // store the id of the college major from the server
+    code: 'string',
     name: 'string',
     personality_type: 'string?',
     general_info: 'string?',
