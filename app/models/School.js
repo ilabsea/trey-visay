@@ -12,7 +12,7 @@ export default class School {
   }
 
   static getAll = () => {
-    return BaseModel.getAll(MODEL).sorted('name', true)
+    return BaseModel.getAll(MODEL).sorted('name', true).sorted('id', false)
   }
 
   static findByCategory = (category) => {
@@ -35,9 +35,9 @@ export default class School {
   static getFormattedData(school) {
     return {
       uuid: uuidv4(),
-      id: school.id.toString(),
+      id: parseInt(school.id),
       name: school.name,
-      logo: JSON.stringify(school.logo),
+      logo: school.logo.url,
       address: school.address,
       province: school.province,
       phone_numbers: school.phone_numbers,
@@ -46,7 +46,7 @@ export default class School {
       website: school.website_or_facebook,
       mailbox: school.mailbox,
       category: school.category,
-      departments: JSON.stringify(school.departments)
+      departments: JSON.stringify(school.departments),
     }
   }
 }

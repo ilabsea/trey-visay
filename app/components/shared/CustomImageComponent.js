@@ -13,7 +13,7 @@ const CustomImageComponent = (props) => {
   }
 
   if (isError && !props.source)
-    return <View style={[{width: '100%', height: '100%', backgroundColor: Color.lightGrayColor, justifyContent: 'center', alignItems: 'center'}, props.emptyImageStyle]}>
+    return <View style={[{width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}, props.emptyImageStyle]}>
               <Icon name='image' size={props.size || 22} color={Color.grayColor} />
            </View>
 

@@ -17,10 +17,13 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import {getStyleOfDevice, getStyleOfOS} from '../../utils/responsive_util';
 import {arrowRightIconSize} from '../../constants/component_constant';
+import DownloadedImage from '../../models/DownloadedImage';
 
 class School extends Component {
   render() {
-    let school = this.props.school;
+    const {school} = this.props
+    const logo = DownloadedImage.getImagePath(school.logo)
+
     return (
       <View>
         <TouchableOpacity
@@ -29,7 +32,7 @@ class School extends Component {
           >
 
           <View style={styles.imageContainer}>
-            <CustomImageComponent source={!!school.logoSource ? { uri: school.logoSource} : null} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
+            <CustomImageComponent name={school.name} source={!!logo ? {uri: logo} : null} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
           </View>
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 8, justifyContent: 'center'}}>

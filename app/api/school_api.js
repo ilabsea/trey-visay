@@ -5,14 +5,10 @@ const endpoint = "/schools";
 export const pullSchools = () => {
   return new Promise((resolve, reject) => {
     client.get(endpoint, {kind: 1}).then((res) => {
-        if (res.ok) {
-          console.log('=== school api OK ==')
+        if (res.ok)
           resolve(res.data)
-        }
-        else {
-          console.log('=== school api REJECT ==')
+        else
           reject(res)
-        }
     })
   })
 }

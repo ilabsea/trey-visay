@@ -15,17 +15,18 @@ const schoolSyncService = (() => {
   }
 
   // private method
-  function _handleSaveSchool(schools) {
+  function _handleSaveSchool(schools, callback) {
     schools.map(school => {
       School.create(school)
     });
+    !!callback && callback()
   }
 
   async function _syncAndRemoveByPage(page, totalPage, successCallback, failureCallback, prevSchools = []) {
     if (page > totalPage) {
       School.deleteAll()
-      _handleSaveSchool(prevSchools)
-      return successCallback(prevSchools)
+      _handleSaveSchool(prevSchools, successCallback)
+      return 
     }
 
     const fetchedSchools = pullSchools()
@@ -36,15 +37,17 @@ const schoolSyncService = (() => {
           _syncAndRemoveByPage(page+1, allPage, successCallback, failureCallback, [...prevSchools, ...res.schools])
         })
       })
-      .catch(err => !!failureCallback && failureCallback())
+      .catch(err => {
+        !!failureCallback && failureCallback()
+      })
   }
 
   function _handleDownloadLogo(index, schools, callback) {
     if (index >= schools.length)
       return !!callback && callback();
 
-    const school = schools[index]
-    if (!!school.logo && !DownloadedImage.isFileNameExisted(school.logo.url) && fileUtil.isFileImage(school.logo.url)) {
+    const school = schools[index]  
+    if (school.logo.url != null && !DownloadedImage.isFileNameExisted(school.logo.url) && fileUtil.isFileImage(school.logo.url)) {
       fileDownloadService.download(school.logo.url, (filename, isNewFile) => {
         !!isNewFile && DownloadedImage.create({name: filename})
         _handleDownloadLogo(index + 1, schools, callback)

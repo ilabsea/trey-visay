@@ -11,7 +11,7 @@ import SchoolUtil from '../../utils/school_util';
 import {Colors} from '../../assets/style_sheets/main/colors';
 import {schoolCategories} from '../../constants/school_constant';
 import schoolSyncService from '../../services/school_sync_service';
-import DownloadedImage from '../../models/DownloadedImage';
+import SchoolModel from '../../models/School';
 
 export default class SchoolScreen extends Component {
   // segments = { 1 : 'សាលារដ្ឋ', 2:'សាលាឯកជន', 3:'អង្គការ'}
@@ -76,7 +76,6 @@ export default class SchoolScreen extends Component {
       schools: this.schools,
       loading: false,
     });
-
   }
 
   resetData() {
@@ -105,12 +104,10 @@ export default class SchoolScreen extends Component {
   }
 
   onRefresh() {
-    schoolSyncService.syncAllData((schools) => {
-      console.log('===== SYNC school success = ', schools.length)
-      this.setState({schools: schools})
+    schoolSyncService.syncAllData(() => {
+      this.setState({schools: SchoolModel.getAll()})
       this.listRef.current?.stopRefreshLoading()
     }, () => {
-      console.log('===== SYNC school error =====')
       this.listRef.current?.stopRefreshLoading()
     })
   }
@@ -143,8 +140,6 @@ export default class SchoolScreen extends Component {
   }
 
   render() {
-    // console.log('==== DL images = ', DownloadedImage.getAll())
-
     return (
       <View style={{flex: 1}}>
         <SchoolNavigationHeader activePage={this.state.activePage} setContent={(active) => this.setContent(active)}

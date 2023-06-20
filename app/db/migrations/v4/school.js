@@ -1,20 +1,15 @@
 'use strict';
 
 import Realm from 'realm';
-import DownloadedImage from '../../../models/DownloadedImage';
 
-export default class School extends Realm.Object {
-  get logoSource() {
-    return DownloadedImage.getImagePath(JSON.parse(this.logo).url)
-  }
-}
+export default class School extends Realm.Object {}
 
 School.schema = {
   name: 'School',
   primaryKey: 'uuid',
   properties: {
     uuid: 'string',
-    id: 'string?',
+    id: 'int?',
     name: 'string',
     address: 'string',
     province: 'string?',
