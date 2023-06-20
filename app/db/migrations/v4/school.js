@@ -20,7 +20,7 @@ School.schema = {
     mailbox: 'string?',
     category: 'string',
     code: 'string?',
-    kind: 'int?',
+    kind: 'string?',
     logo: 'string?',
     departments: 'string'
   }

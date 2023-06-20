@@ -9,12 +9,14 @@ import CustomFlatListComponent from '../../components/shared/CustomFlatListCompo
 
 import SchoolUtil from '../../utils/school_util';
 import {Colors} from '../../assets/style_sheets/main/colors';
-import {schoolCategories} from '../../constants/school_constant';
 import schoolSyncService from '../../services/school_sync_service';
-import SchoolModel from '../../models/School';
+
+const kinds = {
+  1: "higher_education",
+  2: "vocational_education"
+}
 
 export default class SchoolScreen extends Component {
-  // segments = { 1 : 'សាលារដ្ឋ', 2:'សាលាឯកជន', 3:'អង្គការ'}
   _keyExtractor = (item, index) => index.toString();
 
   constructor(props) {
@@ -60,7 +62,7 @@ export default class SchoolScreen extends Component {
 
   setSchools(active, searchText = '') {
     let options = {
-      category: schoolCategories[active],
+      kind: kinds[active],
       province: this.state.currentProvince,
       major: this.state.currentMajor,
       page: this.page,
@@ -104,8 +106,8 @@ export default class SchoolScreen extends Component {
   }
 
   onRefresh() {
-    schoolSyncService.syncAllData(() => {
-      this.setState({schools: SchoolModel.getAll()})
+    schoolSyncService.syncAllData(kinds[this.state.activePage], (schools) => {
+      this.setState({schools: schools})
       this.listRef.current?.stopRefreshLoading()
     }, () => {
       this.listRef.current?.stopRefreshLoading()
@@ -151,7 +153,7 @@ export default class SchoolScreen extends Component {
           { this.renderContent() }
           <FilterButton
             navigation={this.props.navigation}
-            category={schoolCategories[this.state.activePage]}
+            kind={kinds[this.state.activePage]}
             refreshValue={ this.refreshState.bind(this)}
             number={!!this.state.currentProvince + !!this.state.currentMajor}
           />

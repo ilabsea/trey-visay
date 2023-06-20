@@ -26,8 +26,8 @@ export default class SchoolUtil {
 
   static getSchools(options) {
     let uniList = SchoolModel.getAll()
-    if (!!options.category)
-      uniList = uniList.filter(school => school.category == options.category);
+    if (!!options.kind)
+      uniList = uniList.filter(school => school.kind == options.kind);
 
     if (!!options.province)
       uniList = uniList.filter(school => school.province == options.province);
@@ -46,8 +46,8 @@ export default class SchoolUtil {
     return uniList.slice(start, end);
   }
 
-  static getProvinces(category) {
-    const schools = !!category ? SchoolModel.findByCategory(category) : SchoolModel.getAll()
+  static getProvinces(kind) {
+    const schools = !!kind ? SchoolModel.findByKind(kind) : SchoolModel.getAll()
     let provinces = [...new Set(schools.map(school => school.province))];
     provinces = provinces.filter(v => v);
     provinces.sort();

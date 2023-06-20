@@ -19,6 +19,10 @@ export default class School {
     return BaseModel.findByAttr(MODEL, {category: `'${category}'`})
   }
 
+  static findByKind = (kind) => {
+    return BaseModel.findByAttr(MODEL, {kind: `'${kind}'`})
+  }
+
   static create = (data) => {
     BaseModel.create(MODEL, this.getFormattedData(data), 'modified')
   }
@@ -47,6 +51,7 @@ export default class School {
       mailbox: school.mailbox,
       category: school.category,
       departments: JSON.stringify(school.departments),
+      kind: school.kind,
     }
   }
 }

@@ -16,7 +16,7 @@ class FilterProvinces extends Component {
 
     this.state = {
       provinces: [],
-      category: props.route.params.category,
+      kind: props.route.params.kind,
       selectedProvince: props.route.params.selectedProvince
     }
   };
@@ -26,7 +26,7 @@ class FilterProvinces extends Component {
   }
 
   setProvinces() {
-    let provinces = SchoolUtil.getProvinces(this.state.category);
+    let provinces = SchoolUtil.getProvinces(this.state.kind);
     this.setState({provinces: provinces});
   }
 

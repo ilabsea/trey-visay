@@ -10,36 +10,33 @@ const schoolSyncService = (() => {
     syncAllData
   }
 
-  function syncAllData(successCallback, failureCallback) {
-    _syncAndRemoveByPage(1, 1, successCallback, failureCallback)
+  function syncAllData(kind, successCallback, failureCallback) {
+    _syncAndRemoveByPage(1, 1, kind, successCallback, failureCallback)
   }
 
   // private method
-  function _handleSaveSchool(schools, callback) {
+  function _handleSaveSchool(schools) {
     schools.map(school => {
       School.create(school)
     });
-    !!callback && callback()
   }
 
-  async function _syncAndRemoveByPage(page, totalPage, successCallback, failureCallback, prevSchools = []) {
+  async function _syncAndRemoveByPage(page, totalPage, kind, successCallback, failureCallback, prevSchools = []) {
     if (page > totalPage) {
       School.deleteAll()
-      _handleSaveSchool(prevSchools, successCallback)
+      _handleSaveSchool(prevSchools)
+      !!successCallback && successCallback(School.findByKind(kind))
       return 
     }
 
-    const fetchedSchools = pullSchools()
-    fetchedSchools
-      .then((res) => {
-        _handleDownloadLogo(0, res.schools, () => {
-          const allPage = Math.ceil(res.pagy.count / itemsPerPage)
-          _syncAndRemoveByPage(page+1, allPage, successCallback, failureCallback, [...prevSchools, ...res.schools])
-        })
+    pullSchools((res) => {
+      _handleDownloadLogo(0, res.schools, () => {
+        const allPage = Math.ceil(res.pagy.count / itemsPerPage)
+        _syncAndRemoveByPage(page+1, allPage, kind, successCallback, failureCallback, [...prevSchools, ...res.schools])
       })
-      .catch(err => {
-        !!failureCallback && failureCallback()
-      })
+    }, (error) => {
+      !!failureCallback && failureCallback()
+    })
   }
 
   function _handleDownloadLogo(index, schools, callback) {

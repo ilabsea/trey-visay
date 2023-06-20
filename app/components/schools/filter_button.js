@@ -24,7 +24,7 @@ class FilterButton extends React.Component {
         primary block
         onPress={ () =>
           this.props.navigation.navigate('FilterScreen', {
-            category: this.props.category,
+            kind: this.props.kind,
             refreshValue: this.props.refreshValue
           })
         }>

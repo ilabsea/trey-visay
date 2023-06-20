@@ -22,7 +22,7 @@ class FilterScreen extends Component {
       majors: [],
       selectedValue: '',
       selectedProvince: '',
-      category: props.route.params.category
+      kind: props.route.params.kind
     }
   }
 
@@ -93,7 +93,7 @@ class FilterScreen extends Component {
           onPress={() => {
             this.props.navigation.navigate('FilterProvinces', {
               title: 'ជ្រើសរើសទីតាំង',
-              category: this.state.category,
+              kind: this.state.kind,
               selectedProvince: province,
               refreshValue: this.refreshProvinceValue.bind(this)
             })
