@@ -3,12 +3,12 @@ import { View, TouchableOpacity, ScrollView} from 'react-native';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Divider } from 'react-native-paper';
-import SchoolUtil from '../../../utils/School/School';
 import CustomNavigationHeader from '../../../components/shared/CustomNavigationHeader'
 import {Text} from '../../../components'
 import {pressableItemSize, screenHorizontalPadding} from '../../../constants/component_constant'
 import Color from '../../../themes/color'
 import {isShortScreenDevice} from '../../../utils/responsive_util'
+import SchoolUtil from '../../../utils/school_util';
 
 class FilterProvinces extends Component {
   constructor(props){
@@ -16,7 +16,7 @@ class FilterProvinces extends Component {
 
     this.state = {
       provinces: [],
-      category: props.route.params.category,
+      kind: props.route.params.kind,
       selectedProvince: props.route.params.selectedProvince
     }
   };
@@ -26,7 +26,7 @@ class FilterProvinces extends Component {
   }
 
   setProvinces() {
-    let provinces = SchoolUtil.getProvinces(this.state.category);
+    let provinces = SchoolUtil.getProvinces(this.state.kind);
     this.setState({provinces: provinces});
   }
 

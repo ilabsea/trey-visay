@@ -12,14 +12,17 @@ import { Divider } from 'react-native-paper';
 
 import Text from '../Text';
 import BoldLabelComponent from '../shared/BoldLabelComponent';
+import CustomImageComponent from '../shared/CustomImageComponent';
 import mainStyles from '../../assets/style_sheets/main/main';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import {getStyleOfDevice, getStyleOfOS} from '../../utils/responsive_util';
 import {arrowRightIconSize} from '../../constants/component_constant';
+import DownloadedImage from '../../models/DownloadedImage';
 
 class School extends Component {
   render() {
-    let school = this.props.school;
+    const {school} = this.props
+    const logo = DownloadedImage.getImagePath(school.logo)
 
     return (
       <View>
@@ -29,11 +32,11 @@ class School extends Component {
           >
 
           <View style={styles.imageContainer}>
-            <Image source={school.logoName} style={styles.image} resizeMode='contain' />
+            <CustomImageComponent name={school.name} source={!!logo ? {uri: logo} : null} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
           </View>
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 8, justifyContent: 'center'}}>
-            <BoldLabelComponent label={school.universityName} numberOfLines={1} style={[mainStyles.title, styles.nameLabel]} />
+            <BoldLabelComponent label={school.name} numberOfLines={1} style={[mainStyles.title, styles.nameLabel]} />
 
             { this.props.showCategory &&
               <View style={{flexDirection: 'row', alignItems: 'center'}}>
@@ -71,7 +74,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 16,
     padding: 4,
-    borderColor: 'rgb(151,151, 151)'
+    borderColor: 'rgb(151,151, 151)',
   },
   image: {
     width: getStyleOfDevice(getStyleOfOS(75, 65), 50),

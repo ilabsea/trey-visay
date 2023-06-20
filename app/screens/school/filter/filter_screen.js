@@ -4,12 +4,11 @@ import { View, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-nativ
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 // import firebase from 'react-native-firebase';
 
-import SchoolUtil from '../../../utils/School/School';
+import SchoolUtil from '../../../utils/school_util';
 import { Colors } from '../../../assets/style_sheets/main/colors';
 import {Text} from '../../../components';
 import FilterNavigationHeader from '../../../components/schools/FilterNavigationHeader'
 import OneList from '../../../components/list/one_list';
-import universities from '../../../data/json/universities';
 import FooterBar from '../../../components/footer/FooterBar';
 import keyword from '../../../data/analytics/keyword';
 import Color from '../../../themes/color';
@@ -23,7 +22,7 @@ class FilterScreen extends Component {
       majors: [],
       selectedValue: '',
       selectedProvince: '',
-      category: props.route.params.category
+      kind: props.route.params.kind
     }
   }
 
@@ -35,30 +34,6 @@ class FilterScreen extends Component {
     SchoolUtil.clearSelectedValues();
     this.setState({ selectedValue: '', selectedProvince: '' });
     this.refreshProvinceValue();
-  }
-
-  getMajors() {
-    let category = this.state.category;
-    let province = this.state.selectedProvince;
-    let departments = [];
-    universities.map(school => {
-      if(province){
-        if((school.category == category) && (school.province == province)){
-          departments.push(school.departments);
-        }
-      }else{
-        if(school.category == category){
-          departments.push(school.departments);
-        }
-      }
-    });
-
-    departments = [].concat.apply([], departments);
-    let majors = departments.map(department => department.majors);
-    majors = [].concat.apply([], majors);
-    majors = [...new Set(majors)];
-
-    this.setState({majors : majors});
   }
 
   setActive(value){
@@ -78,8 +53,10 @@ class FilterScreen extends Component {
   refreshProvinceValue() {
     SchoolUtil.getSelectedProvince((province) => {
       province = province == 'គ្រប់ទីកន្លែង'? '' : province;
-      this.setState({ selectedProvince: province });
-      this.getMajors();
+      this.setState({
+        selectedProvince: province,
+        majors: SchoolUtil.getMajors(this.state.selectedProvince, 'public')
+      });
       SchoolUtil.getSelectedMajor((major) => {
         major = major == 'គ្រប់ជំនាញ' ? '': major;
         this.setState({ selectedValue: major });
@@ -116,7 +93,7 @@ class FilterScreen extends Component {
           onPress={() => {
             this.props.navigation.navigate('FilterProvinces', {
               title: 'ជ្រើសរើសទីតាំង',
-              category: this.state.category,
+              kind: this.state.kind,
               selectedProvince: province,
               refreshValue: this.refreshProvinceValue.bind(this)
             })

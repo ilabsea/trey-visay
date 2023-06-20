@@ -41,6 +41,7 @@
     "react-native-charts-wrapper": "^0.5.11",
     "react-native-device-info": "^10.3.0",
     "react-native-easy-toast": "^2.3.0",
+    "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "^2.10.1",
     "react-native-global-props": "^1.1.5",
     "react-native-image-crop-picker": "^0.39.0",
