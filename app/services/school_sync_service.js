@@ -1,7 +1,7 @@
 import fileDownloadService from './file_download_service'
 import School from '../models/School'
 import DownloadedImage from '../models/DownloadedImage';
-import {pullSchools} from '../api/school_api';
+import SchoolApi from '../api/school_api';
 import {itemsPerPage} from '../constants/sync_data_constant';
 import fileUtil from '../utils/file_util';
 
@@ -21,7 +21,7 @@ const schoolSyncService = (() => {
     });
   }
 
-  async function _syncAndRemoveByPage(page, totalPage, kind, successCallback, failureCallback, prevSchools = []) {
+  function _syncAndRemoveByPage(page, totalPage, kind, successCallback, failureCallback, prevSchools = []) {
     if (page > totalPage) {
       School.deleteAll()
       _handleSaveSchool(prevSchools)
@@ -29,7 +29,7 @@ const schoolSyncService = (() => {
       return 
     }
 
-    pullSchools((res) => {
+    new SchoolApi().load((res) => {
       _handleDownloadLogo(0, res.schools, () => {
         const allPage = Math.ceil(res.pagy.count / itemsPerPage)
         _syncAndRemoveByPage(page+1, allPage, kind, successCallback, failureCallback, [...prevSchools, ...res.schools])
