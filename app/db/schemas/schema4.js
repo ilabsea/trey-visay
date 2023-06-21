@@ -5,6 +5,7 @@ import School from '../migrations/v4/school';
 import DownloadedImage from '../migrations/v4/downloaded_image';
 import CollegeMajor from '../migrations/v4/college_major';
 import Job from '../migrations/v4/job';
+import JobCluster from '../migrations/v4/job_cluster';
 
 const schema4 = [
   Sidekiq,
@@ -13,7 +14,8 @@ const schema4 = [
   School,
   DownloadedImage,
   CollegeMajor,
-  Job
+  Job,
+  JobCluster,
 ];
 
 export default schema4;

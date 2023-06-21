@@ -22,6 +22,9 @@ export default class CareerClusterScreen extends Component {
     super(props);
     CareersClusterObj.setCareersClusters();
     this.careersClusters = CareersClusterObj.getCareersClusters();
+
+    // console.log('Career cluster = ', this.careersClusters)
+
     this.state = {
       loading: false,
       size: 3,
