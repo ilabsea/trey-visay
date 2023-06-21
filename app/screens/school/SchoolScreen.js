@@ -10,6 +10,7 @@ import CustomFlatListComponent from '../../components/shared/CustomFlatListCompo
 import SchoolUtil from '../../utils/school_util';
 import {Colors} from '../../assets/style_sheets/main/colors';
 import schoolSyncService from '../../services/school_sync_service';
+import collegeMajorSyncService from '../../services/college_major_sync_service';
 
 const kinds = {
   1: "higher_education",
@@ -106,6 +107,7 @@ export default class SchoolScreen extends Component {
   }
 
   onRefresh() {
+    collegeMajorSyncService.syncAllData()
     schoolSyncService.syncAllData(kinds[this.state.activePage], (schools) => {
       this.setState({schools: schools})
       this.listRef.current?.stopRefreshLoading()

@@ -1,17 +1,7 @@
-import client from "./client";
+import BaseApi from './base_api'
 
-const endpoint = "/schools";
-
-export const pullSchools = (successCallback, failureCallback) => {
-  client.get(endpoint)
-        .then((res) => {
-          if (res.ok)
-            successCallback && successCallback(res.data)
-          else
-            failureCallback && failureCallback(res)
-        })
-}
-
-export default {
-  pullSchools
+export default class SchoolApi extends BaseApi {
+  constructor() {
+    super('/schools', '')
+  }
 }

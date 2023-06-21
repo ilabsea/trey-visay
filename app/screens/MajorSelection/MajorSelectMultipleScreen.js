@@ -16,7 +16,8 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
   const [errorMsg, setErrorMsg] = useState('')
   const currentQuiz = route.params.quiz;
   const dispatch = useDispatch();
-  const data = CollegeMajor.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
+  // const data = CollegeMajor.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
+  const data = CollegeMajor.getAll().map(x => ({ name: x.name, value: x.code }))
 
   let formRef = React.useRef()
 

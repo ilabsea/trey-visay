@@ -24,7 +24,7 @@ const MODEL = 'CollegeMajor'
 export default class CollegeMajor {
   static seedData = () => {
     collegeMajors.map((collegeMajor) => {
-      BaseModel.create(MODEL, {...collegeMajor, uuid: uuidv4()}, 'modified')
+      this.create(collegeMajor)
     })
   }
 
@@ -48,6 +48,23 @@ export default class CollegeMajor {
     let result = []
     types.maps(type => {
       result = [...result, ...BaseModel.findByAttr(MODEL, {personality_type: `'${type}'`})]
+    })
+    return result
+  }
+
+  static create = (data) => {
+    BaseModel.create(MODEL, {...data, uuid: uuidv4(), schools: this.getFomattedSchools(data.schools)}, 'modified')
+  }
+
+  static deleteAll = () => {
+    BaseModel.deleteAll(MODEL)
+  }
+
+  // private method
+  static getFomattedSchools = (schools) => {
+    let result = []
+    schools.map(school => {
+      result.push(school.id)
     })
     return result
   }
