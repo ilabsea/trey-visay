@@ -23,6 +23,10 @@ export default class School {
     return BaseModel.findByAttr(MODEL, {kind: `'${kind}'`})
   }
 
+  static findById = (id) => {
+    return BaseModel.findByAttr(MODEL, {id: parseInt(id)})[0]
+  }
+
   static create = (data) => {
     BaseModel.create(MODEL, this.getFormattedData(data), 'modified')
   }

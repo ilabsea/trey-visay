@@ -1,20 +1,3 @@
-// import listMajors from '../data/json/list_majors';
-// import { containsAny } from '../utils/math';
-
-// export default class CollegeMajor {
-//   static findByCode = (code) => {
-//     return listMajors.filter(x => x.code == code)[0];
-//   }
-
-//   static findAllByCodes = (codes = []) => {
-//     return listMajors.filter(major => codes.includes(major.code))
-//   }
-
-//   static findAllByPersonalityTypes = (types = []) => {
-//     return listMajors.filter(major => containsAny(major.personality_type + '', types))
-//   }
-// }
-
 import BaseModel from './BaseModel'
 import uuidv4 from '../utils/uuidv4';
 import collegeMajors from '../data/json/college_majors.json';
@@ -36,20 +19,20 @@ export default class CollegeMajor {
     return BaseModel.findByAttr(MODEL, {code: `'${code}'`})[0]
   }
 
-  static findByCodes = (codes) => {
-    let result = []
-    codes.maps(code => {
-      result = [...result, ...BaseModel.findByAttr(MODEL, {code: `'${code}'`})]
+  static findAllByCodes = (codes) => {
+    let majors = []
+    codes.map(code => {
+      majors = [...majors, ...BaseModel.findByAttr(MODEL, {code: `'${code}'`})]
     })
-    return result
+    return majors
   }
 
   static findAllByPersonalityTypes = (types) => {
-    let result = []
-    types.maps(type => {
-      result = [...result, ...BaseModel.findByAttr(MODEL, {personality_type: `'${type}'`})]
+    let majors = []
+    types.map(type => {
+      majors = [...majors, ...BaseModel.containsByAttr(MODEL, 'personality_type', `'${type}'`)]
     })
-    return result
+    return this.filterDuplicate(majors)
   }
 
   static create = (data) => {
@@ -66,6 +49,16 @@ export default class CollegeMajor {
     schools.map(school => {
       result.push(school.id)
     })
+    return result
+  }
+
+  static filterDuplicate = (majors) => {
+    const result = majors.reduce((prevArr, current) => {
+      if (prevArr.filter(item => item.id === current.id).length == 0)
+        prevArr.push(current);
+
+      return prevArr;
+    }, []);
     return result
   }
 }
