@@ -4,6 +4,7 @@ import Quiz from '../migrations/v4/quiz';
 import School from '../migrations/v4/school';
 import DownloadedImage from '../migrations/v4/downloaded_image';
 import CollegeMajor from '../migrations/v4/college_major';
+import Job from '../migrations/v4/job';
 
 const schema4 = [
   Sidekiq,
@@ -11,7 +12,8 @@ const schema4 = [
   Quiz,
   School,
   DownloadedImage,
-  CollegeMajor
+  CollegeMajor,
+  Job
 ];
 
 export default schema4;
