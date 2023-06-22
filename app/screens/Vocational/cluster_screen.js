@@ -10,9 +10,9 @@ import CarouselItem from '../../components/shared/carousel_item';
 import CustomFlatListComponent from '../../components/shared/CustomFlatListComponent';
 import ScrollableHeader from '../../components/scrollable_header';
 import scrollableHeaderUtil from '../../utils/scrollable_header_util';
-
 import JobCluster from '../../models/JobCluster'
 import Job from '../../models/Job'
+import jobSyncService from '../../services/job_sync_service'
 
 export default class CareerClusterScreen extends Component {
   careersClusters = [];
@@ -65,17 +65,7 @@ export default class CareerClusterScreen extends Component {
   }
 
   onRefresh() {
-    // collegeMajorSyncService.syncAllData()
-    // schoolSyncService.syncAllData(kinds[this.state.activePage], (schools) => {
-    //   this.setState({schools: schools})
-    //   this.listRef.current?.stopRefreshLoading()
-    // }, () => {
-    //   this.listRef.current?.stopRefreshLoading()
-    // })
-
-    console.log('on Refresh ==============')
-
-    this.listRef.current?.stopRefreshLoading()
+    jobSyncService.syncAllData(() => this.listRef.current?.stopRefreshLoading())
   }
 
   renderContent = () => {

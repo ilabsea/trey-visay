@@ -1,21 +1,3 @@
-// import listJobs from '../data/json/list_jobs';
-// import { containsAny } from '../utils/math';
-
-// export default class Job {
-//   static findByCode = (code) => {
-//     return listJobs.filter(x => x.code == code)[0];
-//   }
-
-//   static findAllByCodes = (codes = []) => {
-//     return listJobs.filter(job => codes.includes(job.code))
-//   }
-
-//   static findAllByPersonalityTypes = (types = []) => {
-//     return listJobs.filter(job => containsAny(job.personality_type + '', types))
-//   }
-// }
-
-
 import BaseModel from './BaseModel'
 import uuidv4 from '../utils/uuidv4';
 import jobs from '../data/json/jobs.json';
@@ -26,8 +8,12 @@ const MODEL = 'Job'
 export default class Job {
   static seedData = () => {
     jobs.map((job) => {
-      BaseModel.create(MODEL, this.getFormattedData(job), 'modified')
+      this.create(job)
     })
+  }
+
+  static create = (data) => {
+    BaseModel.create(MODEL, this.getFormattedData(data), 'modified')
   }
 
   static getAll = () => {
@@ -53,6 +39,10 @@ export default class Job {
         videos.push(video)
     })
     return videos
+  }
+
+  static deleteAll = () => {
+    BaseModel.deleteAll(MODEL)
   }
 
   // private method
