@@ -5,13 +5,11 @@ import NetInfo from '@react-native-community/netinfo';
 
 // Utils
 import mainStyles from '../../assets/style_sheets/main/main';
-import StatusBar from '../../components/shared/status_bar';
 import ButtonList from '../../components/list/button_list';
 import CardItem from '../../components/list/card_item';
 import CarouselItem from '../../components/shared/carousel_item';
 import CustomFlatListComponent from '../../components/shared/CustomFlatListComponent';
 import ScrollableHeader from '../../components/scrollable_header';
-import CareersClusterObj from '../../utils/Vocational/CareerCluster';
 import scrollableHeaderUtil from '../../utils/scrollable_header_util';
 
 import JobCluster from '../../models/JobCluster'
@@ -23,11 +21,6 @@ export default class CareerClusterScreen extends Component {
 
   constructor(props){
     super(props);
-    CareersClusterObj.setCareersClusters();
-    this.careersClusters = CareersClusterObj.getCareersClusters();
-
-    // console.log('Career cluster = ', this.careersClusters)
-
     this.state = {
       loading: false,
       size: 3,
@@ -114,13 +107,11 @@ export default class CareerClusterScreen extends Component {
   renderContent = () => {
     return <CustomFlatListComponent
             ref={this.listRef}
-            // data={ this.careersClusters.slice(0, this.state.size) }
             data={ JobCluster.getAll() }
             renderItem={ ({item, i}) => this.renderCareerCluster(item, i) }
             hasInternet={this.state.hasInternet}
             keyExtractor={ this._keyExtractor }
             refreshingAction={() => this.onRefresh()}
-            // endReachedAction={this.handleLoadMore.bind(this)}
             customContentContainerStyle={{flex: 1, paddingTop: scrollableHeaderUtil.getContentMarginTop() + 20}}
             onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }], { useNativeDriver: true })}
             refreshControllOffset={scrollableHeaderUtil.getContentMarginTop()}

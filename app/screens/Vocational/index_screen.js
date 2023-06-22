@@ -1,14 +1,9 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  ScrollView,
-  View,
-} from 'react-native';
+import { ScrollView, View } from 'react-native';
 
 // Utils
 import mainStyles from '../../assets/style_sheets/main/main';
-import ButtonList from '../../components/list/button_list';
-import StatusBar from '../../components/shared/status_bar';
+import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader'
 import CardItem from '../../components/list/card_item';
 import Job from '../../models/Job';
 
@@ -18,7 +13,6 @@ export default class CareerIndexScreen extends Component {
     super(props);
 
     this.state = {
-      // careers: props.route.params.careers
       careers: Job.findAllByJobCluster(props.route.params.cluster_id)
     }
   }
@@ -33,8 +27,11 @@ export default class CareerIndexScreen extends Component {
           width={'42%'}
           height={'20%'}
           onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
-            career: career
+            career_id: career.id
           })}/>
+          {/* onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
+            career: career
+          })}/> */}
       </View>
     )
   }
@@ -42,7 +39,7 @@ export default class CareerIndexScreen extends Component {
   render() {
     return(
       <View style={{flex: 1}}>
-        <StatusBar />
+        <CustomNavigationHeader title={this.props.route.params.title} />
 
         <ScrollView>
           <View style={[mainStyles.grid, {marginBottom: 0}]}>

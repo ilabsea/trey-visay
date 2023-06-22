@@ -14,9 +14,7 @@ function VocationalNavigator() {
   return (
     <Stack.Navigator initialRouteName="ClusterScreen">
       <Stack.Screen name="ClusterScreen" component={ClusterScreen} options={{headerShown: false}}/>
-      <Stack.Screen name="CareerIndexScreen" component={CareerIndexScreen} navigationOptions={({navigation}) => ({
-        title: navigation.state.params.title
-      })}/>
+      <Stack.Screen name="CareerIndexScreen" component={CareerIndexScreen} options={{headerShown: false}}/>
       <Stack.Screen name="CareerDetailScreen" component={CareerDetailScreen} options={{headerShown: false}}/>
       <Stack.Screen name="InstitutionDetail" component={InstitutionDetail} options={{headerShown: false}}/>
       <Stack.Screen name="Description" component={Description} navigationOptions={({navigation}) => ({

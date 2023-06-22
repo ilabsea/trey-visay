@@ -17,38 +17,44 @@ import ScrollableHeader from '../../components/scrollable_header';
 import BackButton from '../../components/shared/back_button';
 import CareerProfile from '../../components/careers/CareerProfile';
 
+import Job from '../../models/Job';
+
 export default class ShowCategoryScreen extends Component {
   constructor(props){
     super(props);
 
-    let career = props.route.params.career;
-    let schools = universities.filter((school, pos) => career.schools.includes(school.code));
-    let careerCluster = mapping.find(code => code.career_code == career.code)
-    let videos = [];
+    // let career = props.route.params.career;
+    const career = Job.findById(props.route.params.career_id)
 
-    if (careerCluster.video_code) {
-      let videoCodes = careerCluster.video_code.split(';').map(item => item.trim());
-      videos = videoList.filter((video, pos) => videoCodes.includes(video.code));
-    }
+    // console.log('===== Career = ', career)
+
+    // let schools = universities.filter((school, pos) => career.schools.includes(school.code));
+    // let careerCluster = mapping.find(code => code.career_code == career.code)
+    // let videos = [];
+
+    // if (careerCluster.video_code) {
+    //   let videoCodes = careerCluster.video_code.split(';').map(item => item.trim());
+    //   videos = videoList.filter((video, pos) => videoCodes.includes(video.code));
+    // }
 
     this.state = {
-      schools: schools,
+      // schools: schools,
       career: career,
-      videos: videos
+      // videos: videos
     };
   }
 
   _keyExtractor = (item, index) => index.toString();
 
-  renderSchoolList(){
-    return (
-      <View>
-        { !!this.state.schools.length && <Text style={mainStyles.sectionText}>មហាវិទ្យាល័យ</Text>}
+  // renderSchoolList(){
+  //   return (
+  //     <View>
+  //       { !!this.state.schools.length && <Text style={mainStyles.sectionText}>មហាវិទ្យាល័យ</Text>}
 
-        <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
-      </View>
-    )
-  }
+  //       <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
+  //     </View>
+  //   )
+  // }
 
   _onOpenUrl(url) {
     Linking.canOpenURL(url).then((supported) => {
@@ -86,8 +92,8 @@ export default class ShowCategoryScreen extends Component {
   _renderContent = () => {
     return (
       <View style={{paddingBottom: 20}}>
-        {this.renderSchoolList()}
-        {this.renderVideoList()}
+        {/* {this.renderSchoolList()} */}
+        {/* {this.renderVideoList()} */}
       </View>
     )
   }
@@ -96,8 +102,9 @@ export default class ShowCategoryScreen extends Component {
     return (
       <ScrollableHeader
         renderContent={ this._renderContent }
-        title={this.state.career.name}
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        // title={this.state.career.name}
+        title={Job.findById(this.props.route.params.career_id).name}
+        // renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
         renderForeground={ () => <CareerProfile career={this.state.career} /> }
         headerMaxHeight={240}
       />

@@ -37,6 +37,10 @@ export default class Job {
     return [...BaseModel.findByAttr(MODEL, { job_cluster_id: `'${jobClusterId}'` })]
   }
 
+  static findById = (id) => {
+    return BaseModel.findByAttr(MODEL, { id: `'${id}'` })[0]
+  }
+
   // private method
   static getFomattedVideos = (videos) => {
     let result = []
