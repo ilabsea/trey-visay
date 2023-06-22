@@ -14,7 +14,6 @@ import universities from '../../data/json/universities';
 import mapping from '../../data/json/careers/mapping';
 import videoList from '../../data/json/videos';
 import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
 import CareerProfile from '../../components/careers/CareerProfile';
 
 import Job from '../../models/Job';
@@ -25,8 +24,7 @@ export default class ShowCategoryScreen extends Component {
 
     // let career = props.route.params.career;
     const career = Job.findById(props.route.params.career_id)
-
-    // console.log('===== Career = ', career)
+    let videos = []
 
     // let schools = universities.filter((school, pos) => career.schools.includes(school.code));
     // let careerCluster = mapping.find(code => code.career_code == career.code)
@@ -40,7 +38,7 @@ export default class ShowCategoryScreen extends Component {
     this.state = {
       // schools: schools,
       career: career,
-      // videos: videos
+      videos: Job.getVideosById(props.route.params.career_id)
     };
   }
 
@@ -67,25 +65,20 @@ export default class ShowCategoryScreen extends Component {
   }
 
   renderItem(item) {
-    return (
-      <VideoListView
-        onPress={() => this._onOpenUrl(item.url)}
-        item={item} />
-    )
+    return <VideoListView onPress={() => this._onOpenUrl(item.url)} item={item} />
   }
 
   renderVideoList(){
     let { width } = Dimensions.get('window');
     return(
-      <View>
-        { !!this.state.videos.length && <Text style={mainStyles.sectionText}>វីដេអូ</Text> }
-
+      <React.Fragment>
+        <Text style={[mainStyles.sectionText, {marginBottom: 4}]}>វីដេអូ</Text>
         <FlatList
           data={ this.state.videos }
           renderItem={ ({item}) => this.renderItem(item) }
           keyExtractor={this._keyExtractor}
         />
-      </View>
+      </React.Fragment>
     )
   }
 
@@ -93,7 +86,7 @@ export default class ShowCategoryScreen extends Component {
     return (
       <View style={{paddingBottom: 20}}>
         {/* {this.renderSchoolList()} */}
-        {/* {this.renderVideoList()} */}
+        {!!this.state.videos.length && this.renderVideoList()}
       </View>
     )
   }
@@ -102,9 +95,7 @@ export default class ShowCategoryScreen extends Component {
     return (
       <ScrollableHeader
         renderContent={ this._renderContent }
-        // title={this.state.career.name}
-        title={Job.findById(this.props.route.params.career_id).name}
-        // renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
+        title={this.state.career.name}
         renderForeground={ () => <CareerProfile career={this.state.career} /> }
         headerMaxHeight={240}
       />

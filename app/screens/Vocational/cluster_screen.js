@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Animated, View, Text, FlatList } from 'react-native';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Animated, View } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 
 // Utils
@@ -22,8 +21,6 @@ export default class CareerClusterScreen extends Component {
   constructor(props){
     super(props);
     this.state = {
-      loading: false,
-      size: 3,
       scrollY: new Animated.Value(0),
       hasInternet: false,
       jobCluster: JobCluster.getAll()
@@ -42,12 +39,10 @@ export default class CareerClusterScreen extends Component {
     !!this.netInfoUnsubscribe && this.netInfoUnsubscribe();
   }
 
-  renderItem(item, index){
-    console.log('== Card item = ', item)
-
+  renderItem(career, index){
     return(
-      <CardItem item={item} text={item.name} image={item.logo} index={index} width={'40%'} height={'18%'}
-        onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career: item})}
+      <CardItem item={career} text={career.name} image={career.logo} index={index} width={'40%'} height={'18%'}
+        onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career_id: career.id})}
       />
     )
   }
@@ -67,28 +62,7 @@ export default class CareerClusterScreen extends Component {
         <CarouselItem data={Job.findAllByJobCluster(cluster.id)} renderItem={({item, index}) => this.renderItem(item, index)}/>
       </View>
     )
-
-    // return (
-    //   <View key={i} style={mainStyles.carouselBox}>
-    //     <ButtonList hasLine={false} title={cluster.name_kh} boldFont={{fontWeight: 'bold'}}
-    //       onPress={() => {
-    //         this.props.navigation.navigate('CareerIndexScreen', {
-    //           code: cluster.code,
-    //           title: cluster.name_kh,
-    //           careers: cluster.careers
-    //         })
-    //       }} />
-    //     <CarouselItem
-    //       data={cluster.careers}
-    //       renderItem={({item, index}) => this.renderItem(item, index)}/>
-    //   </View>
-    // )
   }
-
-  // handleLoadMore = () => {
-  //   size = this.state.size + 3;
-  //   this.setState({size: size})
-  // }
 
   onRefresh() {
     // collegeMajorSyncService.syncAllData()

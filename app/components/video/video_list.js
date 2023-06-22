@@ -34,7 +34,7 @@ export default function VideoList (props) {
           onPress={() => setModalVisible(true)}
         />
         <View style={styles.textContainer}>
-          <Text style={[mainStyles.title, styles.title]}>{ props.item.title }</Text>
+          <Text style={[mainStyles.title, styles.title]}>{ props.item.name || props.item.title }</Text>
           <Text style={styles.source}>{ props.item.author }</Text>
         </View>
 

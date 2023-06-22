@@ -19,6 +19,7 @@
 import BaseModel from './BaseModel'
 import uuidv4 from '../utils/uuidv4';
 import jobs from '../data/json/jobs.json';
+import Video from './Video';
 
 const MODEL = 'Job'
 
@@ -41,6 +42,19 @@ export default class Job {
     return BaseModel.findByAttr(MODEL, { id: `'${id}'` })[0]
   }
 
+  static getVideosById = (jobId) => {
+    const job = this.findById(jobId)
+    if (!job) return []
+
+    let videos = []
+    job.videos.map(videoId => {
+      const video = Video.findById(videoId)
+      if (!!video)
+        videos.push(video)
+    })
+    return videos
+  }
+
   // private method
   static getFomattedVideos = (videos) => {
     let result = []
@@ -51,8 +65,7 @@ export default class Job {
   }
 
   static getFormattedData(school) {
-    let {logo, videos, name_km, name_en, ...data} = school
-    // data = {...data, uuid: uuidv4(), logo: school.logo.url, videos: this.getFomattedVideos(school.videos)}
+    const {logo, videos, name_km, name_en, ...data} = school
     return {...data, uuid: uuidv4(), logo: school.logo.url, videos: this.getFomattedVideos(school.videos)}
   }
 }

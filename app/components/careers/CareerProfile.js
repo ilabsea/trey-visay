@@ -15,9 +15,9 @@ export default class CareerProfile extends Component  {
         <Image
           resizeMode="cover"
           style={{width: imageHeight, height: imageHeight, borderRadius: 8}}
-          source={imageUrl}/>
-
-        <Text style={{marginTop: 8, fontSize: FontSetting.nav_title, textAlign: 'center'}}>{career.name}</Text>
+          source={imageUrl}
+        />
+        <Text style={{fontSize: FontSetting.nav_title, textAlign: 'center', height: 60, verticalAlign: 'middle'}}>{career.name}</Text>
       </View>
     )
   }

@@ -26,12 +26,7 @@ export default class CareerIndexScreen extends Component {
           text={career.name}
           width={'42%'}
           height={'20%'}
-          onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
-            career_id: career.id
-          })}/>
-          {/* onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
-            career: career
-          })}/> */}
+          onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career_id: career.id})}/>
       </View>
     )
   }
