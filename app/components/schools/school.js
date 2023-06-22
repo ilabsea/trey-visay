@@ -32,7 +32,7 @@ class School extends Component {
           >
 
           <View style={styles.imageContainer}>
-            <CustomImageComponent name={school.name} source={!!logo ? {uri: logo} : null} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
+            <CustomImageComponent source={!!logo ? {uri: logo} : null} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
           </View>
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 8, justifyContent: 'center'}}>
