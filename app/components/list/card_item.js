@@ -1,13 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import careersImages from '../../assets/images_js/careers_images';
+import DownloadedImage from '../../models/DownloadedImage';
 
 const CardItem = (props) => {
   let width = props.width ? props.width : '38%';
   let height = props.height ? props.height : '18%';
-  let item = props.item || {};
-  let imageUrl = !!props.image ? {uri: props.image} : careersImages['default'];
+  const imagePath = DownloadedImage.getImagePath(props.image)
+  const imageUrl = !!imagePath ? {uri: imagePath} : careersImages['default'];
   let imageRadius = props.borderRadiusOnlyOnTop ? { borderTopLeftRadius: 8, borderTopRightRadius: 8 }: { borderRadius: 8 };
 
   return(
