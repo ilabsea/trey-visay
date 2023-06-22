@@ -11,6 +11,7 @@ import { Divider } from 'react-native-paper';
 import Text from '../Text';
 
 import mainStyles from "../../assets/style_sheets/main/main";
+import BoldLabelComponent from '../shared/BoldLabelComponent';
 
 class ButtonList extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class ButtonList extends React.Component {
               />
             </View>
           }
-          <Text style={[mainStyles.text, this.props.boldFont]}>{this.props.title}</Text>
+          <BoldLabelComponent label={this.props.title} style={mainStyles.text} />
           <Text style={{paddingRight: 8}}>{this.props.numberAtRight}</Text>
           { !this.props.hideArrow && <AwesomeIcon name='angle-right' size={30} color='#bbb' /> }
         </TouchableOpacity>

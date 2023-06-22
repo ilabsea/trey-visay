@@ -33,6 +33,10 @@ export default class Job {
     return BaseModel.getAll(MODEL)
   }
 
+  static findAllByJobCluster = (jobClusterId) => {
+    return [...BaseModel.findByAttr(MODEL, { job_cluster_id: `'${jobClusterId}'` })]
+  }
+
   // private method
   static getFomattedVideos = (videos) => {
     let result = []

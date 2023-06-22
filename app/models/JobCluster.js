@@ -7,12 +7,12 @@ const MODEL = 'JobCluster'
 export default class JobCluster {
   static seedData = () => {
     jobClusters.map(jobCluster => {
-      BaseModel.create(MODEL, {...jobCluster, uuid: uuidv4(), videos: this.getFomattedVideos(jobCluster)}, 'modified')
+      BaseModel.create(MODEL, {...jobCluster, uuid: uuidv4(), videos: this.getFomattedVideos(jobCluster.videos)}, 'modified')
     })
   }
 
   static getAll() {
-    return BaseModel.getAll(MODEL)
+    return [...BaseModel.getAll(MODEL)]
   }
 
   // private method

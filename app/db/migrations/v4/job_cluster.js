@@ -4,7 +4,7 @@ import Realm from 'realm';
 
 export default class JobCluster extends Realm.Object {}
 
-Job.schema = {
+JobCluster.schema = {
   name: 'JobCluster',
   primaryKey: 'uuid',
   properties: {

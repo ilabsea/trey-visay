@@ -14,6 +14,9 @@ import ScrollableHeader from '../../components/scrollable_header';
 import CareersClusterObj from '../../utils/Vocational/CareerCluster';
 import scrollableHeaderUtil from '../../utils/scrollable_header_util';
 
+import JobCluster from '../../models/JobCluster'
+import Job from '../../models/Job'
+
 export default class CareerClusterScreen extends Component {
   careersClusters = [];
   _keyExtractor = (item, index) => index.toString();
@@ -30,6 +33,7 @@ export default class CareerClusterScreen extends Component {
       size: 3,
       scrollY: new Animated.Value(0),
       hasInternet: false,
+      jobCluster: JobCluster.getAll()
     }
     this.listRef = React.createRef()
     this.netInfoUnsubscribe = null
@@ -46,36 +50,52 @@ export default class CareerClusterScreen extends Component {
   }
 
   renderItem(item, index){
+    console.log('== Card item = ', item)
+
     return(
-      <CardItem item={item} text={item.name} index={index} width={'40%'} height={'18%'}
-        onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
-          career: item
-        })} />
+      <CardItem item={item} text={item.name} image={item.logo} index={index} width={'40%'} height={'18%'}
+        onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career: item})}
+      />
     )
   }
 
   renderCareerCluster(cluster, i) {
     return (
-      <View key={i} style={mainStyles.carouselBox}>
-        <ButtonList hasLine={false} title={cluster.name_kh} boldFont={{fontWeight: 'bold'}}
+      <View key={cluster.uuid} style={mainStyles.carouselBox}>
+        <ButtonList hasLine={false} title={cluster.name}
           onPress={() => {
             this.props.navigation.navigate('CareerIndexScreen', {
+              cluster_id: cluster.id,
               code: cluster.code,
-              title: cluster.name_kh,
-              careers: cluster.careers
+              title: cluster.name,
             })
-          }} />
-        <CarouselItem
-          data={cluster.careers}
-          renderItem={({item, index}) => this.renderItem(item, index)}/>
+          }}
+        />
+        <CarouselItem data={Job.findAllByJobCluster(cluster.id)} renderItem={({item, index}) => this.renderItem(item, index)}/>
       </View>
     )
+
+    // return (
+    //   <View key={i} style={mainStyles.carouselBox}>
+    //     <ButtonList hasLine={false} title={cluster.name_kh} boldFont={{fontWeight: 'bold'}}
+    //       onPress={() => {
+    //         this.props.navigation.navigate('CareerIndexScreen', {
+    //           code: cluster.code,
+    //           title: cluster.name_kh,
+    //           careers: cluster.careers
+    //         })
+    //       }} />
+    //     <CarouselItem
+    //       data={cluster.careers}
+    //       renderItem={({item, index}) => this.renderItem(item, index)}/>
+    //   </View>
+    // )
   }
 
-  handleLoadMore = () => {
-    size = this.state.size + 3;
-    this.setState({size: size})
-  }
+  // handleLoadMore = () => {
+  //   size = this.state.size + 3;
+  //   this.setState({size: size})
+  // }
 
   onRefresh() {
     // collegeMajorSyncService.syncAllData()
@@ -94,12 +114,13 @@ export default class CareerClusterScreen extends Component {
   renderContent = () => {
     return <CustomFlatListComponent
             ref={this.listRef}
-            data={ this.careersClusters.slice(0, this.state.size) }
+            // data={ this.careersClusters.slice(0, this.state.size) }
+            data={ JobCluster.getAll() }
             renderItem={ ({item, i}) => this.renderCareerCluster(item, i) }
             hasInternet={this.state.hasInternet}
             keyExtractor={ this._keyExtractor }
             refreshingAction={() => this.onRefresh()}
-            endReachedAction={this.handleLoadMore.bind(this)}
+            // endReachedAction={this.handleLoadMore.bind(this)}
             customContentContainerStyle={{flex: 1, paddingTop: scrollableHeaderUtil.getContentMarginTop() + 20}}
             onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }], { useNativeDriver: true })}
             refreshControllOffset={scrollableHeaderUtil.getContentMarginTop()}

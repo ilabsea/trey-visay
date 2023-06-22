@@ -10,6 +10,7 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import ButtonList from '../../components/list/button_list';
 import StatusBar from '../../components/shared/status_bar';
 import CardItem from '../../components/list/card_item';
+import Job from '../../models/Job';
 
 export default class CareerIndexScreen extends Component {
 
@@ -17,7 +18,8 @@ export default class CareerIndexScreen extends Component {
     super(props);
 
     this.state = {
-      careers: props.route.params.careers
+      // careers: props.route.params.careers
+      careers: Job.findAllByJobCluster(props.route.params.cluster_id)
     }
   }
 
