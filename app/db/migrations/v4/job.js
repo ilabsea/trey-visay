@@ -10,6 +10,7 @@ Job.schema = {
   properties: {
     uuid: 'string',
     id: 'string',
+    code: 'string',
     name: 'string',
     value: 'string',
     personality_type: 'string?',

@@ -1,5 +1,6 @@
 import BaseModel from './BaseModel'
 import uuidv4 from '../utils/uuidv4';
+import arrayUtil from '../utils/array_util';
 import jobs from '../data/json/jobs.json';
 import Video from './Video';
 
@@ -26,6 +27,18 @@ export default class Job {
 
   static findById = (id) => {
     return BaseModel.findByAttr(MODEL, { id: `'${id}'` })[0]
+  }
+
+  static findByCode = (code) => {
+    return BaseModel.findByAttr(MODEL, {code: `'${code}'`})[0]
+  }
+
+  static findAllByPersonalityTypes = (types) => {
+    let jobs = []
+    types.map(type => {
+      jobs = [...jobs, ...BaseModel.containsByAttr(MODEL, 'personality_type', `'${type}'`)]
+    })
+    return arrayUtil.filterDuplicate(jobs, 'id')
   }
 
   static getVideosById = (jobId) => {
