@@ -9,7 +9,7 @@ export default class JobCluster {
   static seedData = () => {
     jobClusters.map(jobCluster => {
       Video.seedData(jobCluster.videos)
-      BaseModel.create(MODEL, {...jobCluster, uuid: uuidv4(), videos: this.getFomattedVideos(jobCluster.videos)}, 'modified')
+      BaseModel.create(MODEL, {...jobCluster, uuid: uuidv4(), video_ids: this.getFomattedVideoIds(jobCluster.videos)}, 'modified')
     })
   }
 
@@ -18,7 +18,7 @@ export default class JobCluster {
   }
 
   // private method
-  static getFomattedVideos = (videos) => {
+  static getFomattedVideoIds = (videos) => {
     let result = []
     videos.map(video => {
       result.push(video.id)

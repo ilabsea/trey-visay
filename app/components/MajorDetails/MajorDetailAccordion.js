@@ -42,7 +42,7 @@ const MajorDetailAccordion = ({major}) => {
     },
     {
       title: "ឆ. គ្រឹះស្ថានសិក្សា",
-      detail: SchoolUtil.getSchoolNamesByIds(major.schools),
+      detail: SchoolUtil.getSchoolNamesByIds(major.school_ids),
       children: []
     }
   ]

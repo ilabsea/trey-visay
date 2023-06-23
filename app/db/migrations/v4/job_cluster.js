@@ -12,6 +12,6 @@ JobCluster.schema = {
     id: 'string',
     code: 'string',
     name: 'string',
-    videos: { type: 'string[]', default: [], optional: true }
+    video_ids: { type: 'string[]', default: [], optional: true }
   }
 }

@@ -47,7 +47,7 @@ export default class Job {
     if (!job) return []
 
     let videos = []
-    job.videos.map(videoId => {
+    job.video_ids.map(videoId => {
       const video = Video.findById(videoId)
       if (!!video)
         videos.push(video)
@@ -64,7 +64,7 @@ export default class Job {
     if (!job) return []
 
     let result = []
-    job.schools.map(schoolId => {
+    job.school_ids.map(schoolId => {
       if (!!School.findById(schoolId))
         result.push(School.findById(schoolId))
     })
@@ -72,7 +72,7 @@ export default class Job {
   }
 
   // private method
-  static getFomattedVideos = (videos) => {
+  static getFomattedVideoIds = (videos) => {
     let result = []
     videos.map(video => {
       result.push(video.id)
@@ -80,7 +80,7 @@ export default class Job {
     return result
   }
 
-  static getFomattedSchools = (schools) => {
+  static getFomattedSchoolIds = (schools) => {
     let result = []
     schools.map(school => {
       result.push(school.id)
@@ -90,6 +90,6 @@ export default class Job {
 
   static getFormattedData(job) {
     const {logo, videos, schools, name_km, name_en, ...data} = job
-    return {...data, uuid: uuidv4(), logo: job.logo.url, videos: this.getFomattedVideos(videos), schools: this.getFomattedSchools(schools)}
+    return {...data, uuid: uuidv4(), logo: job.logo.url, video_ids: this.getFomattedVideoIds(videos), school_ids: this.getFomattedSchoolIds(schools)}
   }
 }

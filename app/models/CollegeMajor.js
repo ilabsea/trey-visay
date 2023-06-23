@@ -37,7 +37,7 @@ export default class CollegeMajor {
   }
 
   static create = (data) => {
-    BaseModel.create(MODEL, {...data, uuid: uuidv4(), schools: this.getFomattedSchools(data.schools)}, 'modified')
+    BaseModel.create(MODEL, {...data, uuid: uuidv4(), school_ids: this.getFomattedSchoolIds(data.schools)}, 'modified')
   }
 
   static deleteAll = () => {
@@ -45,7 +45,7 @@ export default class CollegeMajor {
   }
 
   // private method
-  static getFomattedSchools = (schools) => {
+  static getFomattedSchoolIds = (schools) => {
     let result = []
     schools.map(school => {
       result.push(school.id)

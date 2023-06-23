@@ -49,7 +49,7 @@ const JobDetailAccordion = ({job}) => {
     },
     {
       title: "ច. គ្រឹះស្ថានសិក្សា",
-      detail: SchoolUtil.getSchoolNamesByIds(job.schools),
+      detail: SchoolUtil.getSchoolNamesByIds(job.school_ids),
       children: []
     }
   ]
