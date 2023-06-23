@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -8,13 +8,13 @@ import {
   Platform
 } from 'react-native';
 import { Thumbnail } from 'react-native-thumbnail-video';
+import {Divider} from 'react-native-paper';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 import mainStyles from "../../assets/style_sheets/main/main";
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import RF from "react-native-responsive-fontsize";
 import YoutubePopupPlayer from 'react-native-youtube-popup-player';
 import {arrowRightIconSize} from '../../constants/component_constant'
-import {getStyleOfDevice, getStyleOfOS} from '../../utils/responsive_util'
+import {getStyleOfDevice} from '../../utils/responsive_util'
 import videoUtil from '../../utils/video_util'
 import color from '../../themes/color'
 
@@ -44,14 +44,13 @@ export default function VideoList (props) {
           </View>
         }
       </TouchableOpacity>
+      <Divider style={{marginVertical: 0.5}}/>
 
       <YoutubePopupPlayer
         videoUrl={ props.item.url }
         modalVisible={ modalVisible }
         hasInternet={props.isInternetReachable}
-        // playerPaddingTop='31%'
         closeModal={() => setModalVisible(false)}
-        // iframeHeight={getStyleOfDevice(getStyleOfOS(hp('36%'), 330), getStyleOfOS(210, 220))}
         iframeHeight={videoUtil.getIframeHeight()}
       />
     </View>

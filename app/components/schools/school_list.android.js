@@ -17,7 +17,7 @@ class SchoolListView extends Component {
     const logo = DownloadedImage.getImagePath(school.logo)
     return (
       <View key={i}>
-        <TouchableOpacity style={mainStyles.btnList} onPress={() => this.props.navigation.navigate('InstitutionDetail', {school: school})}>
+        <TouchableOpacity style={{paddingTop: 10, paddingBottom: 6, paddingHorizontal: 16, flexDirection: 'row', alignItems: 'center'}} onPress={() => this.props.navigation.navigate('InstitutionDetail', {school: school})}>
           <CustomImageComponent source={!!logo ? {uri: logo} : null} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
 
           <View style={{flex: 1, marginLeft: 16, marginRight: 8}}>
@@ -37,7 +37,7 @@ class SchoolListView extends Component {
           </View>
           <View><AwesomeIcon name='angle-right' size={24} color='#bbb' style={{flexGrow: 1, verticalAlign: 'middle'}} /></View>
         </TouchableOpacity>
-        <Divider style={{marginLeft: 100}}/>
+        <Divider />
       </View>
     )
   }
