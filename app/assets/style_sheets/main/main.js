@@ -1,5 +1,6 @@
 import { StyleSheet , Platform } from 'react-native';
 import { FontSetting } from '../font_setting';
+import {FontFamily} from '../../../themes/font';
 
 export default StyleSheet.create({
   container: {
@@ -32,7 +33,7 @@ export default StyleSheet.create({
     borderColor: '#d3d3d3',
   },
   sectionText: {
-    fontWeight: 'bold',
+    fontFamily: FontFamily.bold,
     fontSize: FontSetting.text,
     marginLeft: 20,
     marginTop: 16
