@@ -6,7 +6,7 @@ import images from '../../assets/images';
 import {isShortWidthScreen} from '../../utils/responsive_util';
 
 const Rating = (props) => {
-  const style = props.active ? {borderColor: Color.blue, borderWidth: 2} : {};
+  const style = props.active ? {backgroundColor: 'rgba(24, 118, 211, 0.3)', borderColor: Color.blue, borderWidth: 3} : {};
 
   return (
     <View style={[{borderWidth: 1, borderRadius: 5, borderColor: Color.gray, height: 95, flexDirection: 'column'}, style]}>
