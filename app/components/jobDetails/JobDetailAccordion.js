@@ -2,6 +2,7 @@ import React from 'react';
 
 import InfoAccordion from '../shared/InfoAccordion';
 import InfoAccordionContent from '../shared/InfoAccordionContent';
+import SchoolUtil from '../../utils/school_util';
 
 const JobDetailAccordion = ({job}) => {
   const details = [
@@ -45,6 +46,11 @@ const JobDetailAccordion = ({job}) => {
         {title: "ទីផ្សារការងារ", detail: job.info_job_market},
         {title: "អាជីពប្រហាក់ប្រហែល", detail: job.info_similar_job}
       ]
+    },
+    {
+      title: "ច. គ្រឹះស្ថានសិក្សា",
+      detail: SchoolUtil.getSchoolNamesByIds(job.school_ids),
+      children: []
     }
   ]
 

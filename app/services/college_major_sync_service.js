@@ -25,7 +25,7 @@ const collegeMajorSyncService = (() => {
       return
     }
 
-    new CollegeMajorApi().load((res) => {
+    new CollegeMajorApi().load(page, (res) => {
       const allPage = Math.ceil(res.pagy.count / itemsPerPage)
       _syncAndRemoveByPage(page+1, allPage, [...prevCollegeMajors, ...res.college_majors])
     })

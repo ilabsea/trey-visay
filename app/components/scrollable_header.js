@@ -13,6 +13,7 @@ import scrollableHeaderUtil from '../utils/scrollable_header_util';
 
 import ScrollableHeaderMain from './scrollableHeaders/ScrollableHeaderMain';
 import ScrollableHeaderNavigation from './scrollableHeaders/ScrollableHeaderNavigation'
+import CustomFlatListComponent from './shared/CustomFlatListComponent';
 // import { Header } from 'react-navigation';
 // import { useHeaderHeight } from '@react-navigation/elements';
 
@@ -53,6 +54,9 @@ class ScrollableHeader extends Component {
   }
 
   renderContent() {
+    if (this.props.useCustomScrollContent)
+      return this.props.renderContent()
+
     return (
       <Animated.ScrollView
         style={[styles.fill, this.props.style]}
@@ -71,7 +75,7 @@ class ScrollableHeader extends Component {
 
   renderNavigation() {
     return <ScrollableHeaderNavigation
-              scrollY={this.state.scrollY}
+              scrollY={this.props.scrollY || this.state.scrollY}
               headerMaxHeight={this.props.headerMaxHeight}
               renderNavigation={this.props.renderNavigation}
               buttonColor={this.props.buttonColor}
@@ -86,7 +90,7 @@ class ScrollableHeader extends Component {
               enableProgressBar={this.props.enableProgressBar}
               largeTitle={this.props.largeTitle}
               title={this.props.title}
-              scrollY={this.state.scrollY}
+              scrollY={this.props.scrollY || this.state.scrollY}
               headerMaxHeight={this.props.headerMaxHeight}
               textColor={this.props.textColor}
               renderLogo={this.props.renderLogo}

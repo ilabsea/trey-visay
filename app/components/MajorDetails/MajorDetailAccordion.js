@@ -2,19 +2,9 @@ import React from 'react';
 
 import InfoAccordion from '../shared/InfoAccordion';
 import InfoAccordionContent from '../shared/InfoAccordionContent';
-import School from '../../models/School';
+import SchoolUtil from '../../utils/school_util';
 
 const MajorDetailAccordion = ({major}) => {
-  const getSchoolNames = () => {
-    let result = ''
-    major.schools.map(schoolId => {
-      const school = School.findById(schoolId)
-      if (!!school)
-        result += `- ${school.name}`
-    })
-    return result
-  }
-
   const details = [
     {
       title: "ក. ការពិពណ៌នាទូទៅ",
@@ -52,7 +42,7 @@ const MajorDetailAccordion = ({major}) => {
     },
     {
       title: "ឆ. គ្រឹះស្ថានសិក្សា",
-      detail: getSchoolNames(),
+      detail: SchoolUtil.getSchoolNamesByIds(major.school_ids),
       children: []
     }
   ]

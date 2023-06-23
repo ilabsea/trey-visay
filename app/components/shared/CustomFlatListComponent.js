@@ -1,5 +1,5 @@
 import React, {useState, useRef} from 'react';
-import {View, FlatList, RefreshControl, ActivityIndicator} from 'react-native';
+import {Animated, View, FlatList, RefreshControl, ActivityIndicator} from 'react-native';
 
 import color from '../../themes/color';
 import {screenHorizontalPadding} from '../../constants/component_constant';
@@ -47,14 +47,14 @@ const CustomFlatListComponent = React.forwardRef((props, ref) => {
   }
 
   return <View ref={ref}>
-            <FlatList
+            <Animated.FlatList
               {...props}
               ref={ref => !!props.setFlatListRef && props.setFlatListRef(ref)}
               onEndReachedThreshold={0.3}
               onEndReached={() => !!props.endReachedAction && onEndReached()}
               contentContainerStyle={!!props.customContentContainerStyle ? props.customContentContainerStyle : {paddingHorizontal: screenHorizontalPadding, paddingBottom: 78}}
               ListFooterComponent={!!props.endReachedAction && renderListFooter()}
-              refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[color.primaryColor]} />}
+              refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[color.primaryColor]} style={{marginTop: 60}} progressViewOffset={props.refreshControllOffset || 0} />}
               onMomentumScrollBegin = {() => {onEndReachedCalledDuringMomentum.current = false}}
             />
         </View>

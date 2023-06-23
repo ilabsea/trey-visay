@@ -14,7 +14,7 @@ const ScrollableHeaderForeground = (props) => {
         {position: 'relative', top: 56, position: 'absolute', width: '100%'}
       ]}
     >
-      <View style={{width: '100%', marginHorizontal: 16}}>
+      <View style={{width: '100%'}}>
         { props.renderForeground() }
       </View>
     </Animated.View>

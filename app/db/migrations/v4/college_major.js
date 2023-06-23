@@ -22,6 +22,6 @@ CollegeMajor.schema = {
     gain_knowledge : 'string?',
     worthy_career : 'string?',
     recommendation : 'string?',
-    schools: { type: 'int[]', default: [], optional: true }    // store array of school ID
+    school_ids: { type: 'int[]', default: [], optional: true }    // store array of school ID
   }
 }

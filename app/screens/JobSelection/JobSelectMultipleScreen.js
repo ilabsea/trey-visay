@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
 import { View, TouchableWithoutFeedback, Keyboard } from 'react-native'
 import { Text } from '../../components';
-import { Card, Divider } from 'react-native-paper';
+import { Divider } from 'react-native-paper';
 import Quiz from '../../models/Quiz';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import CheckboxGroup from '../MajorSelection/components/CheckboxGroup';
 import SearchableHeader from '../../components/shared/searchableHeaders/SearchableHeader'
@@ -17,7 +17,7 @@ const JobSelectMultipleScreen = ({route, navigation}) => {
   const currentQuiz = route.params.quiz;
   const dispatch = useDispatch();
   let formRef = React.useRef()
-  const data = Job.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name_km, value: x.code }))
+  const data = Job.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
 
   const handleSubmit = () => {
     if (selectedItem == 0 || selectedItem > 3)

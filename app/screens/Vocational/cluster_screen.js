@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, FlatList } from 'react-native';
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import { Animated, View } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 
 // Utils
 import mainStyles from '../../assets/style_sheets/main/main';
-import StatusBar from '../../components/shared/status_bar';
 import ButtonList from '../../components/list/button_list';
 import CardItem from '../../components/list/card_item';
 import CarouselItem from '../../components/shared/carousel_item';
-import BackButton from '../../components/shared/back_button';
+import CustomFlatListComponent from '../../components/shared/CustomFlatListComponent';
 import ScrollableHeader from '../../components/scrollable_header';
-import CareersClusterObj from '../../utils/Vocational/CareerCluster';
+import scrollableHeaderUtil from '../../utils/scrollable_header_util';
+import JobCluster from '../../models/JobCluster'
+import Job from '../../models/Job'
+import jobSyncService from '../../services/job_sync_service'
 
 export default class CareerClusterScreen extends Component {
   careersClusters = [];
@@ -18,76 +20,78 @@ export default class CareerClusterScreen extends Component {
 
   constructor(props){
     super(props);
-    CareersClusterObj.setCareersClusters();
-    this.careersClusters = CareersClusterObj.getCareersClusters();
     this.state = {
-      loading: false,
-      size: 3
+      scrollY: new Animated.Value(0),
+      hasInternet: false,
+      jobCluster: JobCluster.getAll()
     }
+    this.listRef = React.createRef()
+    this.netInfoUnsubscribe = null
   }
 
-  renderItem(item, index){
+  componentDidMount() {
+    this.netInfoUnsubscribe = NetInfo.addEventListener(state => {
+      this.setState({hasInternet: state.isConnected && state.isInternetReachable})
+    });
+  }
+
+  componentWillUnmount() {
+    !!this.netInfoUnsubscribe && this.netInfoUnsubscribe();
+  }
+
+  renderItem(career, index){
     return(
-      <CardItem item={item} text={item.name} index={index} width={'40%'} height={'18%'}
-        onPress={() => this.props.navigation.navigate('CareerDetailScreen', {
-          career: item
-        })} />
+      <CardItem item={career} text={career.name} image={career.logo} index={index} width={'40%'} height={'18%'}
+        onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career_id: career.id})}
+      />
     )
   }
 
   renderCareerCluster(cluster, i) {
     return (
-      <View key={i} style={mainStyles.carouselBox}>
-        <ButtonList hasLine={false} title={cluster.name_kh} boldFont={{fontWeight: 'bold'}}
+      <View key={cluster.uuid} style={mainStyles.carouselBox}>
+        <ButtonList hasLine={false} title={cluster.name}
           onPress={() => {
             this.props.navigation.navigate('CareerIndexScreen', {
+              cluster_id: cluster.id,
               code: cluster.code,
-              title: cluster.name_kh,
-              careers: cluster.careers
+              title: cluster.name,
             })
-          }} />
-        <CarouselItem
-          data={cluster.careers}
-          renderItem={({item, index}) => this.renderItem(item, index)}/>
+          }}
+        />
+        <CarouselItem data={Job.findAllByJobCluster(cluster.id)} renderItem={({item, index}) => this.renderItem(item, index)}/>
       </View>
     )
   }
 
-  handleLoadMore = () => {
-    size = this.state.size + 3;
-    this.setState({size: size})
+  onRefresh() {
+    jobSyncService.syncAllData(() => this.listRef.current?.stopRefreshLoading())
   }
 
   renderContent = () => {
-    return (
-      <View style={{backgroundColor: 'paleGrey', marginTop: 20}}>
-        <FlatList
-          data={ this.careersClusters.slice(0, this.state.size) }
-          renderItem={ ({item, i}) => this.renderCareerCluster(item, i) }
-          refreshing={false}
-          keyExtractor={this._keyExtractor}
-          onEndReached={this.handleLoadMore.bind(this)}
-          onEndReachedThreshold={0.4}
-        />
-      </View>
-    )
-  }
-
-  renderNavigation = () => {
-    return (
-      <BackButton navigation={this.props.navigation} text='ត្រលប់ក្រោយ'/>
-    )
+    return <CustomFlatListComponent
+            ref={this.listRef}
+            data={ JobCluster.getAll() }
+            renderItem={ ({item, i}) => this.renderCareerCluster(item, i) }
+            hasInternet={this.state.hasInternet}
+            keyExtractor={ this._keyExtractor }
+            refreshingAction={() => this.onRefresh()}
+            customContentContainerStyle={{flex: 1, paddingTop: scrollableHeaderUtil.getContentMarginTop() + 20}}
+            onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }], { useNativeDriver: true })}
+            refreshControllOffset={scrollableHeaderUtil.getContentMarginTop()}
+          />
   }
 
   render() {
     let title = 'ប្រភេទការងារ';
-
     return (
       <ScrollableHeader
         renderContent={ this.renderContent }
-        renderNavigation={ this.renderNavigation }
         title={title}
         largeTitle={title}
+        buttonColor='black'
+        useCustomScrollContent={true}
+        scrollY={this.state.scrollY}
       />
     );
   }

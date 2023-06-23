@@ -75,4 +75,9 @@ export default class SchoolUtil {
     this.setSelectedProvince('');
     this.setSelectedMajor('');
   }
+
+  static getSchoolNamesByIds(schoolIds) {
+    const schools = SchoolModel.findAllByIds(schoolIds);
+    return schools.map(school => `- ${school.name}`).join("")
+  }
 }
