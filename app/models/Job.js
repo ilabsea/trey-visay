@@ -2,8 +2,7 @@ import BaseModel from './BaseModel'
 import uuidv4 from '../utils/uuidv4';
 import arrayUtil from '../utils/array_util';
 import jobs from '../data/json/jobs.json';
-import Video from './Video';
-import School from './School';
+import realm from '../db/schema';
 
 const MODEL = 'Job'
 
@@ -46,13 +45,8 @@ export default class Job {
     const job = this.findById(jobId)
     if (!job) return []
 
-    let videos = []
-    job.video_ids.map(videoId => {
-      const video = Video.findById(videoId)
-      if (!!video)
-        videos.push(video)
-    })
-    return videos
+    const idsQuery = job.video_ids.map(id => `id = '${id}'`).join(' OR ');
+    return realm.objects('Video').filtered(`(${idsQuery})`)
   }
 
   static deleteAll = () => {
@@ -63,29 +57,16 @@ export default class Job {
     const job = this.findById(id)
     if (!job) return []
 
-    let result = []
-    job.school_ids.map(schoolId => {
-      if (!!School.findById(schoolId))
-        result.push(School.findById(schoolId))
-    })
-    return result
+    return realm.objects('School').filtered('id IN $0', Object.values(job.school_ids));
   }
 
   // private method
   static getFomattedVideoIds = (videos) => {
-    let result = []
-    videos.map(video => {
-      result.push(video.id)
-    })
-    return result
+    return videos.map(video => video.id)
   }
 
   static getFomattedSchoolIds = (schools) => {
-    let result = []
-    schools.map(school => {
-      result.push(school.id)
-    })
-    return result
+    return schools.map(school => school.id)
   }
 
   static getFormattedData(job) {

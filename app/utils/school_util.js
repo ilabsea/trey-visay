@@ -77,12 +77,7 @@ export default class SchoolUtil {
   }
 
   static getSchoolNamesByIds(schoolIds) {
-    let result = ''
-    schoolIds.map(schoolId => {
-      const school = SchoolModel.findById(schoolId)
-      if (!!school)
-        result += `- ${school.name}`
-    })
-    return result
+    const schools = SchoolModel.findAllByIds(schoolIds);
+    return schools.map(school => `- ${school.name}`).join("")
   }
 }

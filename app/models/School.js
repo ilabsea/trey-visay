@@ -1,6 +1,7 @@
 import BaseModel from './BaseModel'
 import uuidv4 from '../utils/uuidv4';
 import schools from '../data/json/schools.json';
+import realm from '../db/schema';
 
 const MODEL = 'School'
 
@@ -33,6 +34,10 @@ export default class School {
 
   static update = (uuid, data) => {
     BaseModel.update(MODEL, uuid, this.getFormattedData(data))
+  }
+
+  static findAllByIds = (ids) => {
+    return realm.objects('School').filtered('id IN $0', Object.values(ids));
   }
 
   static deleteAll = () => {

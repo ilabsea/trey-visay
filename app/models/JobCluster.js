@@ -19,10 +19,6 @@ export default class JobCluster {
 
   // private method
   static getFomattedVideoIds = (videos) => {
-    let result = []
-    videos.map(video => {
-      result.push(video.id)
-    })
-    return result
+    return videos.map(video => video.id)
   }
 }

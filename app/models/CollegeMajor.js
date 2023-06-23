@@ -46,10 +46,6 @@ export default class CollegeMajor {
 
   // private method
   static getFomattedSchoolIds = (schools) => {
-    let result = []
-    schools.map(school => {
-      result.push(school.id)
-    })
-    return result
+    return schools.map(school => school.id)
   }
 }
