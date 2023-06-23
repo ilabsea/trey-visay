@@ -83,7 +83,6 @@ export default class CareerWebsiteHomeScreen extends Component {
       <View style={{flex: 1}}>
         <ScrollableHeader
           renderContent={ this._renderContent }
-          renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
           title={'មជ្ឈមណ្ឌលការងារ'}
           largeTitle={'មជ្ឈមណ្ឌលការងារ'}
         />
