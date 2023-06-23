@@ -23,4 +23,8 @@ export default class Video {
   static findById = (id) => {
     return BaseModel.findByAttr(MODEL, {id: `'${id}'`})[0]
   }
+
+  static deleteAll = () => {
+    BaseModel.deleteAll(MODEL)
+  }
 }
