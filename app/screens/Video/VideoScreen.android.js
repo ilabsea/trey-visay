@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
-import {
-  View,
-  ActivityIndicator,
-  FlatList,
-  Platform,
-} from 'react-native';
+import { View, Platform } from 'react-native';
 
 import NetInfo from "@react-native-community/netinfo";
-import Toast, { DURATION } from 'react-native-easy-toast';
-
-import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
+import Toast from 'react-native-easy-toast';
 
 import VideoListView from '../../components/video/video_list';
+import VideoNoInternetMessage from '../../components/video/VideoNoInternetMessage';
 import LoadingIndicator from '../../components/loading_indicator';
 import SearchableHeader from '../../components/shared/searchableHeaders/SearchableHeader'
+import CustomFlatListComponent from '../../components/shared/CustomFlatListComponent'
 
-import videoList from '../../data/json/videos';
-import Text from '../../components/Text';
-import { Button } from 'react-native-paper';
-import { Colors } from '../../assets/style_sheets/main/colors';
 import color from '../../themes/color'
+import Video from '../../models/Video';
+import videoSyncService from '../../services/video_sync_service';
+import {scrollViewPaddingBottom} from '../../constants/component_constant';
 
 export default class VideoScreen extends Component {
   constructor(props) {
@@ -27,9 +21,11 @@ export default class VideoScreen extends Component {
 
     this.state = {
       pagination: {},
-      videos: videoList,
-      textSearch: ''
+      videos: Video.getAll(),
+      textSearch: '',
+      isInternetReachable: false
     }
+    this.listRef = React.createRef()
   }
 
   componentDidMount() {
@@ -51,79 +47,38 @@ export default class VideoScreen extends Component {
       return <LoadingIndicator loading={ item.loading } />
     }
 
-    return (
-      <VideoListView
-        item={item}
-        isInternetReachable={this.state.isInternetReachable} />
-    )
+    return <VideoListView item={item} isInternetReachable={this.state.isInternetReachable} />
   }
 
   _onRefresh() {
-    this.setState({videos: videoList})
-  }
-
-  _onEndReached() {
-    const { pagination } = this.state
-    const { page, perPage, pageCount, totalCount } = pagination
-    const lastPage = totalCount <= (page - 1) * perPage + pageCount
-
-    if (!pagination.loading && !lastPage) {
-      this._getVideos(page + 1)
-    }
+    videoSyncService.syncAllData((videos) => {
+      this.setState({videos: videos})
+      this.listRef.current?.stopRefreshLoading()
+    })
   }
 
   _renderContent() {
     return (
-      <FlatList
+      <CustomFlatListComponent
+        ref={this.listRef}
         data={ this.state.videos }
         renderItem={ ({item}) => this._renderItem(item) }
-        refreshing={false}
-        onRefresh={ () => this._onRefresh() }
-        keyExtractor={(item, index) => index.toString() }
+        keyExtractor={(item, index) => item.uuid}
+        hasInternet={this.state.isInternetReachable}
+        refreshingAction={() => this._onRefresh()}
+        customContentContainerStyle={{flex: 1, paddingBottom: scrollViewPaddingBottom}}
       />
     )
   }
 
   _onChangeText(val) {
     this.setState({textSearch: val});
-
-    if (!val) {
-      this._onRefresh();
-    }
-
-    if (val.length > 1) {
-      list = videoList.filter((video) => {
-        return video.title.toLowerCase().indexOf(val.toLowerCase()) > -1
-      })
-      this.setState({videos: list})
-    }
+    this.setState({videos: val.length > 1 ? Video.findAllByName(val) : Video.getAll()})
   }
 
   _onSearchClosed() {
     this.setState({textSearch: ''});
     this._onRefresh();
-  }
-
-  _renderNoInternetConnection() {
-    return (
-      <View style={{justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', padding: 20, marginTop: 20}}>
-        <View style={{flexDirection: 'row'}}>
-          <MaterialIcon name='info-outline' color='#111' size={24} style={{marginRight: 8, marginTop: 4}} />
-          <View>
-            <Text>មិនមានការតភ្ជាប់បណ្តាញទេឥឡូវនេះ។</Text>
-            <Text>សូមព្យាយាមម្តងទៀត</Text>
-          </View>
-        </View>
-
-        { this.state.showLoading && <ActivityIndicator size="small" /> }
-
-        <View style={{marginTop: 20}}>
-          <Button buttonColor={Colors.blue} mode="contained" onPress={() => this._retryConnection()}>
-            ព្យាយាមម្តងទៀត
-          </Button>
-        </View>
-      </View>
-    )
   }
 
   _retryConnection() {
@@ -142,7 +97,7 @@ export default class VideoScreen extends Component {
       return (this._renderContent());
     }
 
-    return (this._renderNoInternetConnection());
+    return <VideoNoInternetMessage showLoading={this.state.showLoading} retryConnection={() => this._retryConnection()} />
   }
 
   render() {
