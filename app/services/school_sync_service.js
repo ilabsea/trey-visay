@@ -27,7 +27,7 @@ const schoolSyncService = (() => {
       return 
     }
 
-    new SchoolApi().load((res) => {
+    new SchoolApi().load(page, (res) => {
       imageDownloadService.handleDownloadItemsLogo(0, res.schools, () => {
         const allPage = Math.ceil(res.pagy.count / itemsPerPage)
         _syncAndRemoveByPage(page+1, allPage, kind, successCallback, failureCallback, [...prevSchools, ...res.schools])

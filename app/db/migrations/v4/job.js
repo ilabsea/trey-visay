@@ -30,6 +30,7 @@ Job.schema = {
     info_job_market: 'string?',
     info_similar_job: 'string?',
     logo: 'string?',
-    videos: { type: 'string[]', default: [], optional: true }
+    videos: { type: 'string[]', default: [], optional: true },
+    schools: { type: 'int[]', default: [], optional: true }    // store array of school ID
   }
 }

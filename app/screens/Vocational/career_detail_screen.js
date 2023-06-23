@@ -37,6 +37,7 @@ export default class ShowCategoryScreen extends Component {
 
     this.state = {
       // schools: schools,
+      schools: Job.getSchoolsByJobId(props.route.params.career_id),
       career: career,
       videos: Job.getVideosById(props.route.params.career_id)
     };
@@ -44,15 +45,14 @@ export default class ShowCategoryScreen extends Component {
 
   _keyExtractor = (item, index) => index.toString();
 
-  // renderSchoolList(){
-  //   return (
-  //     <View>
-  //       { !!this.state.schools.length && <Text style={mainStyles.sectionText}>មហាវិទ្យាល័យ</Text>}
-
-  //       <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
-  //     </View>
-  //   )
-  // }
+  renderSchoolList(){
+    return (
+      <View>
+        { !!this.state.schools.length && <Text style={mainStyles.sectionText}>មហាវិទ្យាល័យ</Text>}
+        <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
+      </View>
+    )
+  }
 
   _onOpenUrl(url) {
     Linking.canOpenURL(url).then((supported) => {
@@ -72,7 +72,7 @@ export default class ShowCategoryScreen extends Component {
     let { width } = Dimensions.get('window');
     return(
       <React.Fragment>
-        <Text style={[mainStyles.sectionText, {marginBottom: 4}]}>វីដេអូ</Text>
+        <Text style={[mainStyles.sectionText, {marginBottom: 4, marginTop: 8}]}>វីដេអូ</Text>
         <FlatList
           data={ this.state.videos }
           renderItem={ ({item}) => this.renderItem(item) }
@@ -85,7 +85,7 @@ export default class ShowCategoryScreen extends Component {
   _renderContent = () => {
     return (
       <View style={{paddingBottom: 20}}>
-        {/* {this.renderSchoolList()} */}
+        {this.renderSchoolList()}
         {!!this.state.videos.length && this.renderVideoList()}
       </View>
     )

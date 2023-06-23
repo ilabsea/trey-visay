@@ -27,7 +27,7 @@ const jobSyncService = (() => {
       return 
     }
 
-    new JobApi().load((res) => {
+    new JobApi().load(page, (res) => {
       imageDownloadService.handleDownloadItemsLogo(0, res.jobs, () => {
         const allPage = Math.ceil(res.pagy.count / itemsPerPage)
         _syncAndRemoveByPage(page+1, allPage, callback, [...prevJobs, ...res.jobs])
