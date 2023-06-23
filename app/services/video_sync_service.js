@@ -22,13 +22,11 @@ const videoSyncService = (() => {
     if (page > totalPage) {
       Video.deleteAll()
       _handleSaveVideo(prevVideos)
-      !!callback && callback()
+      !!callback && callback(Video.getAll())
       return 
     }
 
-    new VideoApi().load((res) => {
-      console.log('=== video api res = ', res)
-      console.log('======================================')
+    new VideoApi().load(page, (res) => {
       const allPage = Math.ceil(res.pagy.count / itemsPerPage)
       _syncAndRemoveByPage(page+1, allPage, callback, [...prevVideos, ...res.videos])
     }, (error) => {
