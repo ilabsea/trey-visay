@@ -4,7 +4,6 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import careersImages from '../../assets/images_js/careers_images';
 import DownloadedImage from '../../models/DownloadedImage';
 import Text from '../Text';
-import {FontSetting} from '../../assets/style_sheets/font_setting';
 
 const CardItem = (props) => {
   let width = props.width ? props.width : '38%';
@@ -24,7 +23,7 @@ const CardItem = (props) => {
       />
 
       <View style={styles.textContainer}>
-        <Text numberOfLines={1} style={{fontSize: FontSetting.small_text }}>{ props.text }</Text>
+        <Text numberOfLines={1} style={{fontSize: 15 }}>{ props.text }</Text>
       </View>
     </TouchableOpacity>
   )
