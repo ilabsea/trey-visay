@@ -26,7 +26,7 @@ const MyCheckbox = (props) => {
 
   return (
     <View style={{flexDirection: 'row', alignItems: 'center'}}>
-      <Checkbox
+      <Checkbox.Android
         status={ checked ? 'checked' : 'unchecked' }
         onPress={ onPress }
         color={ Color.blue }

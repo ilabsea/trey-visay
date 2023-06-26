@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
     color: 'black',
     fontFamily: FontFamily.regular,
     fontSize: FontSetting.nav_title,
+    lineHeight: 32
   },
   headerWithChild: {
     flexDirection: 'column',
