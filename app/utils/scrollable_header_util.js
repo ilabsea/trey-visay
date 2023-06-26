@@ -70,7 +70,7 @@ const scrollableHeaderUtil = (() => {
 
   function getContentMarginTop(headerMaxHeight) {
     if (headerMaxHeight)
-      return headerMaxHeight
+      return Platform.OS == 'ios' ? headerMaxHeight - 18 : headerMaxHeight
 
     const iPhoneMargin = !DeviceInfo.hasNotch() ? 19 : 47
     return Platform.OS === 'ios' ? DEFAULT_HEADER_MAX_HEIGHT - getStyleOfDevice(24, iPhoneMargin) : DEFAULT_HEADER_MAX_HEIGHT
