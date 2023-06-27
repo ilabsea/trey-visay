@@ -5,6 +5,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import Text from '../Text';
 import { Button } from 'react-native-paper';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import {FontFamily} from '../../themes/font';
 
 const VideoNoInternetMessage = (props) => {
   return (
@@ -20,7 +21,7 @@ const VideoNoInternetMessage = (props) => {
       { props.showLoading && <ActivityIndicator size="small" /> }
 
       <View style={{marginTop: 20}}>
-        <Button buttonColor={Colors.blue} mode="contained" onPress={() => props.retryConnection()}>
+        <Button buttonColor={Colors.blue} mode="contained" onPress={() => props.retryConnection()} labelStyle={{fontFamily: FontFamily.regular, fontWeight: 'normal', fontSize: 16}} style={{height: 48, justifyContent: 'center'}}>
           ព្យាយាមម្តងទៀត
         </Button>
       </View>
