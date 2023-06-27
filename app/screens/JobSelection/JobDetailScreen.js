@@ -10,6 +10,7 @@ import Job from '../../models/Job';
 
 const JobDetailScreen = ({route}) => {
   const job = Job.findByCode(route.params.job_code) || {}
+
   return (
     <View style={{flex: 1}}>
     <CustomNavigationHeader title={job.name} headerStyle={{zIndex: 1}} />

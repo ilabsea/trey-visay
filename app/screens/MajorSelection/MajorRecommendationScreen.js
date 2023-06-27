@@ -27,6 +27,13 @@ const MajorRecommendationScreen = ({route, navigation}) => {
            />
   }
 
+  const onPressDone = () => {
+    if (!currentQuiz.jobCodeSelected)
+      return setModalVisible(true)
+    
+    navigation.dispatch(StackActions.replace('HollandNavigator'))
+  }
+
   return (
     <View style={{flex: 1}}>
       <ScrollView>
@@ -42,7 +49,7 @@ const MajorRecommendationScreen = ({route, navigation}) => {
 
       </ScrollView>
       {renderModal()}
-      <FooterBar icon='keyboard-arrow-right' text='រួចរាល់' onPress={() => setModalVisible(true)} />
+      <FooterBar icon='keyboard-arrow-right' text='រួចរាល់' onPress={() => onPressDone()} />
     </View>
   )
 }
