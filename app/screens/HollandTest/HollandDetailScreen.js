@@ -15,6 +15,13 @@ const ListItem = ({caption, item={}}) => {
   const navigation = useNavigation();
   let title = !!item.title ? item.title : () => (<Text>ឈ្វេងយល់បន្ថែម <Text style={{color: Color.red}}>(មិនទាន់បានកំណត់)</Text></Text>);
 
+  const navigateToDetail = (item) => {
+    if (item.type == 'major')
+      return navigation.navigate(item.route, {title: item.title, quiz: item.quiz, major_code: item.quiz.majorCodeSelected})
+
+    navigation.navigate(item.route, {title: item.title, quiz: item.quiz, job_code: item.quiz.jobCodeSelected})
+  }
+
   return (
     <View>
       <View style={{paddingTop: 10, paddingHorizontal: screenHorizontalPadding}}>
