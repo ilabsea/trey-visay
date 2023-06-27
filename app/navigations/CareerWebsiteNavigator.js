@@ -12,8 +12,8 @@ function CareerWebsiteNavigator() {
   return (
     <Stack.Navigator initialRouteName="CareerWebsiteHomeScreen">
       <Stack.Screen name="CareerWebsiteHomeScreen" component={CareerWebsiteHomeScreen} options={{headerShown: false}}/>
-      <Stack.Screen name="NeaCareerScreen" component={WebviewScreen} options={{title: "ទីភ្នាក់ងារជាតិមុខរបរ និងការងារ"}}/>
-      <Stack.Screen name="BongSreyCareerScreen" component={WebviewScreen} options={{title: "បងស្រី ទីប្រឹក្សាការងារ"}}/>
+      <Stack.Screen name="NeaCareerScreen" component={WebviewScreen} options={{headerShown: false}}/>
+      <Stack.Screen name="BongSreyCareerScreen" component={WebviewScreen} options={{headerShown: false}}/>
     </Stack.Navigator>
   )
 }

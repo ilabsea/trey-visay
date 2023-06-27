@@ -23,7 +23,7 @@ import keyword from '../../data/analytics/keyword';
 export default class CareerWebsiteHomeScreen extends Component {
   _goTo = (career) => {
     // firebase.analytics().logEvent(career.firebase_event_name);
-    this.props.navigation.navigate(career.screen, {url: career.url});
+    this.props.navigation.navigate(career.screen, {url: career.url, title: career.screen_title});
   }
 
   _renderContent = () => {
@@ -34,6 +34,7 @@ export default class CareerWebsiteHomeScreen extends Component {
         url: 'http://nea.gov.kh/index.do',
         logo: require('../../assets/images/career_center/nea_logo.png'),
         screen: 'NeaCareerScreen',
+        screen_title: 'ទីភ្នាក់ងារជាតិមុខរបរ និងការងារ',
         firebase_event_name: keyword.NEA_PLATFORM
       },
       {
@@ -42,6 +43,7 @@ export default class CareerWebsiteHomeScreen extends Component {
         url: 'https://bongsrey.com/',
         logo: require('../../assets/images/career_center/bongsrey_logo.png'),
         screen: 'BongSreyCareerScreen',
+        screen_title: 'បងស្រី ទីប្រឹក្សាការងារ',
         firebase_event_name: keyword.BONG_SREY
       },
     ]
