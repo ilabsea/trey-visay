@@ -65,6 +65,7 @@ class ScrollableHeader extends Component {
           [{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }],
           { useNativeDriver: true },
         )}
+        bounces={false}
       >
         <View style={[{ marginTop: scrollableHeaderUtil.getContentMarginTop(this.props.headerMaxHeight)}]}>
           { this.props.renderContent() }

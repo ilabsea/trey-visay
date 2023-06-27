@@ -69,7 +69,7 @@ const CustomNavigationHeader = (props) => {
         <View style={{flexDirection: 'row', alignItems: 'center', width: '100%'}}>
           <BackButton onPress={() => !!props.onPressBack ? props.onPressBack() : goBack()} buttonColor={Color.whiteColor} />
           <Appbar.Content title='តេស្តបុគ្គលិកលក្ខណៈ' titleStyle={styles.title} numberOfLines={1} />
-          <Appbar.Action icon="home" onPress={() => setModalVisible(true)} color={Color.whiteColor} size={getStyleOfOS(getStyleOfDevice(28, 24), 24)} />
+          <Appbar.Action icon="home" onPress={() => setModalVisible(true)} color={Color.whiteColor} size={getStyleOfOS(28, 24)} />
         </View>
       </Appbar.Header>
       {renderProgressIndicator()}

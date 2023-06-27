@@ -4,7 +4,7 @@ import { View, TouchableOpacity } from 'react-native';
 
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
-import { Content, Body, CardItem } from 'native-base';
+import { Body, CardItem } from 'native-base';
 import ButtonList from '../../components/list/button_list';
 import Text from '../../components/Text';
 import { StartQuizButton, ResumeQuizButton}  from './components';
@@ -55,7 +55,7 @@ const HollandHomeScreen = ({route, navigation}) => {
 
   renderContent = () => {
     return (
-      <Content>
+      <React.Fragment>
         { renderAboutItem() }
 
         <CardItem>
@@ -77,7 +77,7 @@ const HollandHomeScreen = ({route, navigation}) => {
         </CardItem>
 
         { renderQuizList() }
-      </Content >
+      </React.Fragment>
     )
   }
 
