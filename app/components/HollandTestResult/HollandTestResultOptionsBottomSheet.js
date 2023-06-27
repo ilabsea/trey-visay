@@ -19,7 +19,7 @@ const HollandTestResultOptionsBottomSheet = ({navigation, modalRef, quiz}) => {
               <ButtonList
                 onPress={ () => {
                   modalRef.current?.dismiss();
-                  navigation.navigate(option.route, {quiz: quiz});
+                  navigation.navigate(option.route, {quizUuid: quiz.uuid});
                 }}
                 title={option.name} boldFont={{color: 'black', fontFamily: FontFamily.bold, fontSize: FontSetting.title}} buttonListStyle={{height: 56}} />
               <Divider style={{backgroundColor: Color.grayColor}} />

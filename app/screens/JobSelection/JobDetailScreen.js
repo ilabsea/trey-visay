@@ -12,7 +12,7 @@ const JobDetailScreen = ({route}) => {
   const job = Job.findByCode(route.params.job_code) || {}
   return (
     <View style={{flex: 1}}>
-    <CustomNavigationHeader title={route.params.title} headerStyle={{zIndex: 1}} />
+    <CustomNavigationHeader title={job.name} headerStyle={{zIndex: 1}} />
 
       <ScrollView>
         <Text style={{marginTop: 16, marginBottom: 8, paddingHorizontal: screenHorizontalPadding, color: '#000'}}>
