@@ -5,10 +5,11 @@ import { Card } from 'react-native-paper';
 import { StackActions } from '@react-navigation/native';
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
 import ConfirmationModal from '../../components/shared/ConfirmationModal';
+import Quiz from '../../models/Quiz';
 
 const MajorRecommendationScreen = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = React.useState(false);
-  const currentQuiz = route.params.quiz;
+  const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const major = currentQuiz.selectedMajor || {};
 
   const renderModal = () => {

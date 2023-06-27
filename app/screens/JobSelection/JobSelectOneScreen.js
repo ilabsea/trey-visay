@@ -20,14 +20,14 @@ const JobSelectOneScreen = ({route}) => {
   const [congratsModalVisible, setCongratsModalVisible] = React.useState(false)
   const [selectedJob, setSelectedJob] = React.useState(null)
   const [resetAction, setResetAction] = React.useState(null)
-  const currentQuiz = route.params.quiz;
+  const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const dispatch = useDispatch();
-  const jobs = Job.findAllByCodes(Object.values(currentQuiz.jobCodeSelections)).map(job => ({name: job.name_km, value: job.code}))
+  const jobs = Job.findAllByCodes(Object.values(currentQuiz.jobCodeSelections)).map(job => ({name: job.name, value: job.code}))
   const navigation = useNavigation();
 
   const modalMessage = (prefixLabel, suffixLabel) => {
     let job = Job.findByCode(selectedJob) || {};
-    return <Text>{prefixLabel} “<BoldLabelComponent label={job.name_km}/>” {suffixLabel}</Text>
+    return <Text>{prefixLabel} “<BoldLabelComponent label={job.name}/>” {suffixLabel}</Text>
   }
 
   const renderPopupModals = () => {
@@ -46,7 +46,7 @@ const JobSelectOneScreen = ({route}) => {
           message={() => modalMessage('សូមអបអរសាទរដែលអ្នកបានធ្វើការសម្រេចចិត្តផ្ទាល់ខ្លួនក្នុងការជ្រើសរើសយកអាជីពការងារ', 'សម្រាប់បន្តការសិក្សានាពេលអនាគត!')}
           onPressButton={() => {
             setCongratsModalVisible(false)
-            navigation.navigate('JobRecommendationScreen', {quiz: currentQuiz})
+            navigation.navigate('JobRecommendationScreen', {quizUuid: currentQuiz.uuid})
           }}
         />
       </React.Fragment>

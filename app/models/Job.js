@@ -30,7 +30,17 @@ export default class Job {
   }
 
   static findByCode = (code) => {
+    if(!code) return null;
+
     return BaseModel.findByAttr(MODEL, {code: `'${code}'`})[0]
+  }
+
+  static findAllByCodes = (codes) => {
+    let jobs = []
+    codes.map(code => {
+      jobs = [...jobs, ...BaseModel.findByAttr(MODEL, {code: `'${code}'`})]
+    })
+    return jobs
   }
 
   static findAllByPersonalityTypes = (types) => {

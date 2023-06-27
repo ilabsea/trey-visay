@@ -13,7 +13,7 @@ const MajorDetailScreen = ({route}) => {
 
   return (
     <View style={{flex: 1}}>
-      <CustomNavigationHeader title={route.params.title} />
+      <CustomNavigationHeader title={major.name} />
 
       <ScrollView>
         <Text style={{marginTop: 16, marginBottom: 8, paddingHorizontal: screenHorizontalPadding, color: '#000'}}>

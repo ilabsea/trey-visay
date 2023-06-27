@@ -17,7 +17,7 @@ const MajorSelectOneScreen = ({route, navigation}) => {
   const [congratsModalVisible, setCongratsModalVisible] = React.useState(false)
   const [selectedMajor, setSelectedMajor] = React.useState(null)
   const [resetAction, setResetAction] = React.useState(null)
-  const currentQuiz = route.params.quiz;
+  const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const majors = CollegeMajor.findAllByCodes(Object.values(currentQuiz.majorCodeSelections)).map(x => ({name: x.name, value: x.code}))
 
   const updateQuiz = (major) => {
@@ -50,7 +50,7 @@ const MajorSelectOneScreen = ({route, navigation}) => {
           message={() => modalMessage('សូមអបអរសាទរដែលអ្នកបានធ្វើការសម្រេចចិត្តផ្ទាល់ខ្លួនក្នុងការជ្រើសរើសយកមុខជំនាញ', 'សម្រាប់បន្តការសិក្សានាពេលអនាគត!')}
           onPressButton={() => {
             setCongratsModalVisible(false)
-            navigation.navigate('MajorRecommendationScreen', {quiz: currentQuiz})
+            navigation.navigate('MajorRecommendationScreen', {quizUuid: currentQuiz.uuid})
           }}
         />
       </React.Fragment>

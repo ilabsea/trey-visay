@@ -22,7 +22,7 @@ const ListItem = ({caption, item={}}) => {
       </View>
 
       <List.Item
-        onPress={() => navigation.navigate(item.route, {title: item.title, quiz: item.quiz, major_code: item.quiz.majorCodeSelected}) }
+        onPress={() => navigation.navigate(item.route, {...item.routeParam}) }
         title={title}
         style={[{ backgroundColor: Color.whiteColor, borderBottomWidth: 1, borderColor: Color.paleGray , paddingHorizontal: getStyleOfDevice(14, 6)}]}
         right={props => <List.Icon {...props} icon="chevron-right" />}
@@ -44,8 +44,8 @@ const HollandTestResult = ({route, navigation}) => {
         </View>
 
         <HollandTestResultCharacteristicAccordions quiz={currentQuiz}/>
-        <ListItem caption={"ជំនាញកម្រិតឧត្តមសិក្សារបស់អ្នក"} item={{title: !!currentQuiz.selectedMajor && currentQuiz.selectedMajor.name, route: currentQuiz.majorRoute, quiz: currentQuiz}}/>
-        <ListItem caption={"មុខរបរ ឬអាជីពសាកសមរបស់អ្នក"} item={{title: !!currentQuiz.selectedJob && currentQuiz.selectedJob.name_km, route: currentQuiz.jobRoute, quiz: currentQuiz}}/>
+        <ListItem caption={"ជំនាញកម្រិតឧត្តមសិក្សារបស់អ្នក"} item={{title: !!currentQuiz.selectedMajor && currentQuiz.selectedMajor.name, route: currentQuiz.majorRoute, routeParam: {quizUuid: currentQuiz.uuid, major_code: currentQuiz.majorCodeSelected}}}/>
+        <ListItem caption={"មុខរបរ ឬអាជីពសាកសមរបស់អ្នក"} item={{title: !!currentQuiz.selectedJob && currentQuiz.selectedJob.name, route: currentQuiz.jobRoute, routeParam: {quizUuid: currentQuiz.uuid, job_code: currentQuiz.jobCodeSelected}}}/>
       </View>
     )
   }

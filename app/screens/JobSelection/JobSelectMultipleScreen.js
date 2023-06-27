@@ -14,7 +14,7 @@ const JobSelectMultipleScreen = ({route, navigation}) => {
   const [textSearch, setTextSearch] = useState('');
   const [selectedItem, setSelectedItem] = useState(0);
   const [errorMsg, setErrorMsg] = useState('')
-  const currentQuiz = route.params.quiz;
+  const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const dispatch = useDispatch();
   let formRef = React.useRef()
   const data = Job.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
@@ -27,7 +27,7 @@ const JobSelectMultipleScreen = ({route, navigation}) => {
       currentQuiz.jobCodeSelections = formRef.current?.getSelectedValues();
       dispatch(setCurrentQuiz(currentQuiz));
     })
-    navigation.navigate('JobSelectOneScreen', {quiz: currentQuiz});
+    navigation.navigate('JobSelectOneScreen', {quizUuid: currentQuiz.uuid});
   }
 
   return (

@@ -14,7 +14,7 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
   const [textSearch, setTextSearch] = useState('');
   const [selectedItem, setSelectedItem] = useState(0);
   const [errorMsg, setErrorMsg] = useState('')
-  const currentQuiz = route.params.quiz;
+  const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const dispatch = useDispatch();
   const data = CollegeMajor.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
 
@@ -28,7 +28,7 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
       currentQuiz.majorCodeSelections = formRef.current?.getSelectedValues();
       dispatch(setCurrentQuiz(currentQuiz));
     })
-    navigation.navigate('MajorSelectOneScreen', {quiz: currentQuiz});
+    navigation.navigate('MajorSelectOneScreen', {quizUuid: currentQuiz.uuid});
   }
 
   return (
