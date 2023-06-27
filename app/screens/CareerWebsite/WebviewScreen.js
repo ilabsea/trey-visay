@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
-import { View } from 'react-native';
+import { View, Platform } from 'react-native';
 import { WebView } from 'react-native-webview';
+import DeviceInfo from 'react-native-device-info';
 
 import LoadingIndicator from '../../components/loading_indicator';
+import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader'
 
 export default class WebviewScreen extends Component {
   constructor(props) {
@@ -12,7 +14,8 @@ export default class WebviewScreen extends Component {
 
   render() {
     return(
-      <View style={{flex: 1}}>
+      <View style={{flex: 1, paddingBottom: (Platform.OS == 'ios' && DeviceInfo.hasNotch()) ? 22 : 0, backgroundColor: 'white'}}>
+        <CustomNavigationHeader title={this.props.route.params.title} headerStyle={{zIndex: 2}} />
         <WebView
           ref="webviewRef"
           style={{flex: 1}}
