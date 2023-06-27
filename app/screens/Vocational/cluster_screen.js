@@ -10,9 +10,11 @@ import CarouselItem from '../../components/shared/carousel_item';
 import CustomFlatListComponent from '../../components/shared/CustomFlatListComponent';
 import ScrollableHeader from '../../components/scrollable_header';
 import scrollableHeaderUtil from '../../utils/scrollable_header_util';
+import {getStyleOfOS} from '../../utils/responsive_util';
 import JobCluster from '../../models/JobCluster'
 import Job from '../../models/Job'
 import jobSyncService from '../../services/job_sync_service'
+import {scrollViewPaddingBottom} from '../../constants/component_constant';
 
 export default class CareerClusterScreen extends Component {
   careersClusters = [];
@@ -76,7 +78,7 @@ export default class CareerClusterScreen extends Component {
             hasInternet={this.state.hasInternet}
             keyExtractor={ this._keyExtractor }
             refreshingAction={() => this.onRefresh()}
-            customContentContainerStyle={{flexGrow: 1, paddingTop: scrollableHeaderUtil.getContentMarginTop() + 20}}
+            customContentContainerStyle={{flexGrow: 1, paddingTop: scrollableHeaderUtil.getContentMarginTop() + 20, paddingBottom: getStyleOfOS(scrollViewPaddingBottom, 0)}}
             onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }], { useNativeDriver: true })}
             refreshControllOffset={scrollableHeaderUtil.getContentMarginTop()}
           />

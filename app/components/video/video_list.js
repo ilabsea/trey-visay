@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   Dimensions,
   TouchableOpacity,
@@ -17,6 +16,7 @@ import {arrowRightIconSize} from '../../constants/component_constant'
 import {getStyleOfDevice} from '../../utils/responsive_util'
 import videoUtil from '../../utils/video_util'
 import color from '../../themes/color'
+import Text from '../Text';
 
 export default function VideoList (props) {
   const { width } = Dimensions.get('window');
@@ -63,6 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flexDirection: 'row',
     padding: 16,
+    paddingVertical: 10,
     alignItems: 'center'
   },
   textContainer: {
@@ -76,5 +77,6 @@ const styles = StyleSheet.create({
   source: {
     fontSize: FontSetting.sub_title,
     color: color.grayColor,
+    lineHeight: 26
   },
 });

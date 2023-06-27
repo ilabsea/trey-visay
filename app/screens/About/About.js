@@ -11,7 +11,6 @@ import DeviceInfo from 'react-native-device-info';
 
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
 import Text from '../../components/Text';
 
 export default class About extends Component {
@@ -111,7 +110,6 @@ export default class About extends Component {
       <ScrollableHeader
         style={{backgroundColor: '#fff'}}
         renderContent={ this._renderContent }
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
         title={title}
         largeTitle={title}
       />

@@ -1,8 +1,9 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import careersImages from '../../assets/images_js/careers_images';
 import DownloadedImage from '../../models/DownloadedImage';
+import Text from '../Text';
 
 const CardItem = (props) => {
   let width = props.width ? props.width : '38%';
@@ -22,7 +23,7 @@ const CardItem = (props) => {
       />
 
       <View style={styles.textContainer}>
-        <Text numberOfLines={1}>{ props.text }</Text>
+        <Text numberOfLines={1} style={{fontSize: 15 }}>{ props.text }</Text>
       </View>
     </TouchableOpacity>
   )

@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
-import { Text, View, Linking } from 'react-native';
+import { View, Linking, Platform } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 import SchoolListView from '../../components/schools/school_list';
 import VideoListView from '../../components/video/video_list';
 import ScrollableHeader from '../../components/scrollable_header';
+import Text from '../../components/Text';
 import CareerProfile from '../../components/careers/CareerProfile';
 
 import Job from '../../models/Job';
@@ -68,7 +70,7 @@ export default class ShowCategoryScreen extends Component {
         renderContent={ this._renderContent }
         title={this.state.career.name}
         renderForeground={ () => <CareerProfile career={this.state.career} /> }
-        headerMaxHeight={240}
+        headerMaxHeight={ (Platform.OS === 'ios' && DeviceInfo.hasNotch()) ? 220 : 240}
       />
     )
   }
