@@ -13,7 +13,6 @@ import scrollableHeaderUtil from '../utils/scrollable_header_util';
 
 import ScrollableHeaderMain from './scrollableHeaders/ScrollableHeaderMain';
 import ScrollableHeaderNavigation from './scrollableHeaders/ScrollableHeaderNavigation'
-import CustomFlatListComponent from './shared/CustomFlatListComponent';
 // import { Header } from 'react-navigation';
 // import { useHeaderHeight } from '@react-navigation/elements';
 

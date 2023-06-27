@@ -7,7 +7,6 @@ import {
 } from 'react-native';
 
 import ScrollableHeader from '../../components/scrollable_header';
-import BackButton from '../../components/shared/back_button';
 
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
@@ -32,12 +31,11 @@ export default class TermsCondition extends Component {
   }
 
   render() {
-    let title = 'Terms & Condition';
+    let title = 'Terms & Conditions';
     return (
       <ScrollableHeader
         style={{backgroundColor: '#fff'}}
         renderContent={ this._renderContent }
-        renderNavigation={ () => <BackButton navigation={this.props.navigation}/> }
         title={title}
         largeTitle={title}
       />
