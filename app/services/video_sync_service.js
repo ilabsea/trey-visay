@@ -30,7 +30,7 @@ const videoSyncService = (() => {
       const allPage = Math.ceil(res.pagy.count / itemsPerPage)
       _syncAndRemoveByPage(page+1, allPage, callback, [...prevVideos, ...res.videos])
     }, (error) => {
-      !!callback && callback()
+      !!callback && callback(Video.getAll())
     })
   }
 })()

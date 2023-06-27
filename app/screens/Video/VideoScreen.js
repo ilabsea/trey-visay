@@ -66,7 +66,7 @@ export default class VideoScreen extends Component {
         keyExtractor={(item, index) => item.uuid}
         hasInternet={this.state.isInternetReachable}
         refreshingAction={() => this._onRefresh()}
-        customContentContainerStyle={{flex: 1, paddingBottom: scrollViewPaddingBottom}}
+        customContentContainerStyle={{flexGrow: 1, paddingBottom: scrollViewPaddingBottom}}
       />
     )
   }

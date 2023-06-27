@@ -3,6 +3,7 @@ import {Animated, View, FlatList, RefreshControl, ActivityIndicator} from 'react
 
 import color from '../../themes/color';
 import {screenHorizontalPadding} from '../../constants/component_constant';
+import {getStyleOfOS} from '../../utils/responsive_util';
 
 const {useImperativeHandle} = React
 
@@ -54,7 +55,7 @@ const CustomFlatListComponent = React.forwardRef((props, ref) => {
               onEndReached={() => !!props.endReachedAction && onEndReached()}
               contentContainerStyle={!!props.customContentContainerStyle ? props.customContentContainerStyle : {paddingHorizontal: screenHorizontalPadding, paddingBottom: 78}}
               ListFooterComponent={!!props.endReachedAction && renderListFooter()}
-              refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[color.primaryColor]} style={{marginTop: 60}} progressViewOffset={props.refreshControllOffset || 0} />}
+              refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[color.primaryColor]} style={{marginTop: getStyleOfOS(0, 60)}} progressViewOffset={props.refreshControllOffset || 0} />}
               onMomentumScrollBegin = {() => {onEndReachedCalledDuringMomentum.current = false}}
             />
         </View>
