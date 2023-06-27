@@ -12,6 +12,7 @@ import { useNavigation } from '@react-navigation/native';
 import Color from '../../../themes/color';
 import Quiz from '../../../models/Quiz';
 import { setCurrentQuiz } from '../../../redux/features/quiz/quizSlice';
+import { resetAnswer } from '../../../redux/features/quiz/hollandSlice';
 import useAuth from "../../../auth/useAuth";
 
 const ResumeQuizButton = () => {
@@ -21,6 +22,7 @@ const ResumeQuizButton = () => {
   const currentQuiz = useSelector((state) => state.currentQuiz.value);
 
   const onPress = () => {
+    dispatch(resetAnswer());
     navigation.navigate(currentQuiz.nextScreen)
   }
 

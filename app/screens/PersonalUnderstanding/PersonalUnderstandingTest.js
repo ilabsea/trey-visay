@@ -12,6 +12,7 @@ import QuestionForm from './QuestionForm';
 import { Form, SubmitButton } from '../../components/forms';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
+import { resetAnswer } from '../../redux/features/quiz/hollandSlice';
 import useAuth from "../../auth/useAuth";
 import * as Yup from "yup";
 
@@ -61,6 +62,7 @@ export default PersonalUnderstandingTest = ({navigation}) => {
       if (!!currentQuiz) Quiz.delete(currentQuiz.uuid);
 
       dispatch(setCurrentQuiz(quiz));
+      dispatch(resetAnswer());
     })
 
     navigation.navigate('HollandInstructionScreen');

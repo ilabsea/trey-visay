@@ -22,7 +22,7 @@ const MajorRecommendationScreen = ({route, navigation}) => {
               }}
               onRightPress={() => {
                 setModalVisible(false)
-                navigation.navigate('JobSelectMultipleScreen', {quiz: currentQuiz})
+                navigation.navigate('JobSelectMultipleScreen', {quizUuid: currentQuiz.uuid})
               }}
            />
   }
