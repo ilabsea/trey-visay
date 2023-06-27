@@ -76,7 +76,7 @@ export default class CareerClusterScreen extends Component {
             hasInternet={this.state.hasInternet}
             keyExtractor={ this._keyExtractor }
             refreshingAction={() => this.onRefresh()}
-            customContentContainerStyle={{flex: 1, paddingTop: scrollableHeaderUtil.getContentMarginTop() + 20}}
+            customContentContainerStyle={{flexGrow: 1, paddingTop: scrollableHeaderUtil.getContentMarginTop() + 20}}
             onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }], { useNativeDriver: true })}
             refreshControllOffset={scrollableHeaderUtil.getContentMarginTop()}
           />
