@@ -4,6 +4,7 @@ import { Text, FooterBar } from '../../components';
 import { Card } from 'react-native-paper';
 import { StackActions } from '@react-navigation/native';
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
+import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader';
 import { reset } from '../../hooks/RootNavigation';
 import Quiz from '../../models/Quiz';
 
@@ -13,6 +14,7 @@ const JobRecommendationScreen = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1}}>
+      <CustomNavigationHeader title='ជម្រើសអាជីពការងារ' headerStyle={{zIndex: 1}} onPressBack={() => navigation.dispatch(StackActions.replace('HollandNavigator'))} />
       <ScrollView>
         <Text style={{textAlign: 'center', marginVertical: 16}}>ការផ្តល់អនុសាសន៍</Text>
 
