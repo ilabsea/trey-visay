@@ -38,7 +38,7 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
         SidekiqJob.create(currentQuiz.uuid, 'uploadHollandQuiz');
 
         dispatch(setCurrentQuiz(currentQuiz));
-        // dispatch(resetAnswer()); Todo: uncommend this one when done
+        dispatch(resetAnswer());
       })
 
       return navigation.navigate('HollandTestResultScreen');
