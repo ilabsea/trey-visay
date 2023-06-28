@@ -16,7 +16,7 @@ const Stack = createNativeStackNavigator();
 function OtherNavigator() {
   return (
     <Stack.Navigator screenOptions={{headerShown: false}} initialRouteName="Others">
-      <Stack.Screen name="Others" component={Others} />
+      <Stack.Screen name="OthersScreen" component={Others} />
       <Stack.Screen name="About" component={About} />
       <Stack.Screen name="TermsCondition" component={TermsCondition} />
     </Stack.Navigator>
