@@ -1,24 +1,23 @@
 import { FontSetting } from '../app/assets/style_sheets/font_setting';
+import {FontFamily} from '../app/themes/font';
 
 export const fontConfig = {
-  // ios: {
-  //   regular: {
-  //     fontFamily: 'sans-serif',
-  //     fontWeight: 'normal',
-  //   },
-  //   medium: {
-  //     fontFamily: 'sans-serif-medium',
-  //     fontWeight: 'normal',
-  //   },
-  // },
+  ios: {
+    medium: {
+      fontFamily: FontFamily.regular,
+      fontWeight: 'normal',
+      fontSize: FontSetting.text,
+    }
+  },
   android: {
     regular: {
       fontFamily: 'KantumruyRegular',
       fontWeight: 'normal',
     },
     medium: {
-      fontFamily: 'KantumruyBold',
+      fontFamily: FontFamily.regular,
       fontWeight: 'normal',
+      fontSize: FontSetting.text,
     },
     light: {
       fontFamily: 'KantumruyLight',
