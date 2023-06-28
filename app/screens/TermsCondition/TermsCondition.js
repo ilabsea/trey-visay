@@ -31,7 +31,7 @@ export default class TermsCondition extends Component {
   }
 
   render() {
-    let title = 'Terms & Conditions';
+    let title = 'គោលការណ៏ និងលក្ខខណ្ឌ';
     return (
       <ScrollableHeader
         style={{backgroundColor: '#fff'}}

@@ -105,7 +105,7 @@ class ScrollableHeader extends Component {
       <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
         <React.Fragment>
           { this.renderStatusBar() }
-          { this.renderNavigation()} 
+          { !this.props.hideNavigation && this.renderNavigation()} 
           { this.renderContent() }
           { this.renderHeader() }
         </React.Fragment>

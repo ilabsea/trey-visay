@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   titleWrapper: {
     position: 'absolute',
     left: NAVIGATION_BUTTON_WIDTH,
-    right: NAVIGATION_BUTTON_WIDTH,
+    // right: NAVIGATION_BUTTON_WIDTH,
     bottom: getStyleOfOS(iosTitleBottom, -5),
     justifyContent: 'center',
     height: getStyleOfOS('auto', DEFAULT_HEADER_MIN_HEIGHT),

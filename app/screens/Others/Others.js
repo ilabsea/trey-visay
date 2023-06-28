@@ -4,6 +4,7 @@ import {
   StatusBar,
   Platform
 } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import ButtonList from '../../components/list/button_list';
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
@@ -13,6 +14,7 @@ import Share from 'react-native-share';
 import keyword from '../../data/analytics/keyword';
 import useAuth from "../../auth/useAuth";
 import { useNavigation } from '@react-navigation/native';
+import {getStyleOfOS} from '../../utils/responsive_util';
 
 export default function Others(props) {
   const { user, logOut } = useAuth();
@@ -57,13 +59,13 @@ export default function Others(props) {
             hasLine={true}
             icon={{color: 'rgb(53, 174, 235)', src: require('../../assets/icons/others/share.png')}}
             onPress={() => onPressShareApp() }
-            title='Share App' />
+            title='ចែករំលែកកម្មវិធី' />
 
           <ButtonList
             hasLine={true}
             icon={{color: 'rgb(172, 175, 193)', src: require('../../assets/icons/others/term_condition.png')}}
             onPress={() => { navigation.navigate('TermsCondition') }}
-            title='Terms & Conditions' />
+            title='គោលការណ៏ និងលក្ខខណ្ឌ' />
         </View>
 
       </View>
@@ -75,6 +77,9 @@ export default function Others(props) {
       renderContent={ renderContent }
       title={'ផ្សេងៗ'}
       largeTitle={'ផ្សេងៗ'}
+      hideNavigation={true}
+      headerMaxHeight={getStyleOfOS(DeviceInfo.hasNotch() ? 80 : 85, 60)}
+      style={{marginTop: getStyleOfOS(DeviceInfo.hasNotch() ? 40 : 17, 0)}}
     />
   )
 }
