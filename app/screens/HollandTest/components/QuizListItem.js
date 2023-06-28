@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import mainStyles from '../../../assets/style_sheets/main/main';
 import Color from '../../../themes/color';
 import { longDateFormat as dateFormat } from '../../../utils/date';
+import {getStyleOfOS} from '../../../utils/responsive_util';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import Text from '../../../components/Text';
 
 const numbers = {0: '០', 1: '១', 2: '២', 3: '៣', 4: '៤', 5: '៥', 6: '៦', 7: '៧', 8: '៨', 9: '៩'};
 
@@ -16,7 +18,7 @@ const QuizListItem = ({number, quiz, onPress}) => {
       style={styles.list}
       onPress={onPress}>
         <View style={styles.number}>
-          <Text style={{color: Color.blue, fontSize: 40, lineHeight: 50}}>{kmNumber}</Text>
+          <Text style={{color: Color.blue, fontSize: 42, lineHeight: getStyleOfOS(0, 42), marginTop: getStyleOfOS(0, 6)}}>{kmNumber}</Text>
         </View>
 
         <View style={styles.textWrapper}>
