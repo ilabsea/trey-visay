@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, ScrollView, Alert } from 'react-native'
+import React, {useEffect} from 'react'
+import { View, ScrollView, BackHandler } from 'react-native'
 import { Text, FooterBar } from '../../components';
 import { Card } from 'react-native-paper';
 import { StackActions } from '@react-navigation/native';
@@ -12,6 +12,14 @@ const MajorRecommendationScreen = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = React.useState(false);
   const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const major = currentQuiz.selectedMajor || {};
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      navigation.dispatch(StackActions.replace('HollandNavigator'))
+      return true;
+    })
+    return () => !!backHandler && backHandler.remove()
+  }, [])
 
   const renderModal = () => {
     return <ConfirmationModal visible={modalVisible} message={() => <Text>តើអ្នកចង់បន្តឈ្វេងយល់ពីជម្រើសអាជីពការងារស័ក្តិសមសម្រាប់អ្នកទៀតដែរឬទេ?</Text>}

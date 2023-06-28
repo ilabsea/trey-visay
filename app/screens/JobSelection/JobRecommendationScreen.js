@@ -1,5 +1,5 @@
-import React from 'react'
-import { View, ScrollView, Alert } from 'react-native'
+import React, {useEffect} from 'react'
+import { View, ScrollView, BackHandler } from 'react-native'
 import { Text, FooterBar } from '../../components';
 import { Card } from 'react-native-paper';
 import { StackActions } from '@react-navigation/native';
@@ -11,6 +11,14 @@ import Quiz from '../../models/Quiz';
 const JobRecommendationScreen = ({route, navigation}) => {
   const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const job = currentQuiz.selectedJob;
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      navigation.dispatch(StackActions.replace('HollandNavigator'))
+      return true;
+    })
+    return () => !!backHandler && backHandler.remove()
+  }, [])
 
   return (
     <View style={{flex: 1}}>
