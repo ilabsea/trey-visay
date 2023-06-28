@@ -1,11 +1,12 @@
 import React from 'react'
-import { ScrollView } from 'react-native'
+import { ScrollView, View } from 'react-native'
 import { Text } from '../../components';
 import { Divider } from 'react-native-paper';
 import { Form, SubmitButton, SelectOneListItemGroup } from '../../components/forms';
 import ConfirmationModal from '../../components/shared/ConfirmationModal'
 import CongratulationModal from '../../components/shared/CongratulationModal'
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
+import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader';
 import * as Yup from "yup";
 import RadioGroup from './components/RadioGroup';
 import Quiz from '../../models/Quiz';
@@ -79,19 +80,22 @@ const MajorSelectOneScreen = ({route, navigation}) => {
   });
 
   return (
-    <Form
-      initialValues={{major: ''}}
-      onSubmit={ handleSubmit }
-      validationSchema={validationSchema}
-    >
-      <ScrollView style={{padding: 16, flex: 1}}>
-        <Text>ដំណាក់កាលនេះ អ្នកអាចចូលទៅអានព័ត៌មាន លម្អិតក្នុងមុខជំនាញនីមួយៗខាងក្រោម។ បន្ទាប់មកអ្នកត្រូវឆ្លុះបញ្ចាំងនិង ធ្វើការសម្រេច ចិត្តជ្រើសរើសចុងក្រោយ ថាតើមុខជំនាញណា មួយដែល ស័ក្តិសម សម្រាប់អ្នកជាងគេ៖</Text>
-        <Divider />
-        <RadioGroup name={"major"} options={majors} />
-      </ScrollView>
-      {renderPopupModals()}
-      <SubmitButton title='បន្តទៀត' />
-    </Form>
+    <View style={{flex: 1}}>
+      <CustomNavigationHeader title='ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា' headerStyle={{zIndex: 1}} />
+      <Form
+        initialValues={{major: ''}}
+        onSubmit={ handleSubmit }
+        validationSchema={validationSchema}
+      >
+        <ScrollView style={{padding: 16, flex: 1}}>
+          <Text>ដំណាក់កាលនេះ អ្នកអាចចូលទៅអានព័ត៌មាន លម្អិតក្នុងមុខជំនាញនីមួយៗខាងក្រោម។ បន្ទាប់មកអ្នកត្រូវឆ្លុះបញ្ចាំងនិង ធ្វើការសម្រេច ចិត្តជ្រើសរើសចុងក្រោយ ថាតើមុខជំនាញណា មួយដែល ស័ក្តិសម សម្រាប់អ្នកជាងគេ៖</Text>
+          <Divider />
+          <RadioGroup name={"major"} options={majors} />
+        </ScrollView>
+        {renderPopupModals()}
+        <SubmitButton title='បន្តទៀត' />
+      </Form>
+    </View>
   )
 }
 

@@ -28,7 +28,7 @@ const RadioGroup = ({name, options, disabled}) => {
             </View>
           </TouchableWithoutFeedback>
 
-          <RadioButton
+          <RadioButton.Android
             status={ isChecked ? "checked" : "unchecked" }
             value={ option.value }
             color={ Color.blue }

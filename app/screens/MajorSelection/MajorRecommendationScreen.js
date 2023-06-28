@@ -1,16 +1,25 @@
-import React from 'react'
-import { View, ScrollView, Alert } from 'react-native'
+import React, {useEffect} from 'react'
+import { View, ScrollView, BackHandler } from 'react-native'
 import { Text, FooterBar } from '../../components';
 import { Card } from 'react-native-paper';
 import { StackActions } from '@react-navigation/native';
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
 import ConfirmationModal from '../../components/shared/ConfirmationModal';
+import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader';
 import Quiz from '../../models/Quiz';
 
 const MajorRecommendationScreen = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = React.useState(false);
   const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const major = currentQuiz.selectedMajor || {};
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      navigation.dispatch(StackActions.replace('HollandNavigator'))
+      return true;
+    })
+    return () => !!backHandler && backHandler.remove()
+  }, [])
 
   const renderModal = () => {
     return <ConfirmationModal visible={modalVisible} message={() => <Text>តើអ្នកចង់បន្តឈ្វេងយល់ពីជម្រើសអាជីពការងារស័ក្តិសមសម្រាប់អ្នកទៀតដែរឬទេ?</Text>}
@@ -36,6 +45,7 @@ const MajorRecommendationScreen = ({route, navigation}) => {
 
   return (
     <View style={{flex: 1}}>
+      <CustomNavigationHeader title='ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា' headerStyle={{zIndex: 1}} onPressBack={() => navigation.dispatch(StackActions.replace('HollandNavigator'))} />
       <ScrollView>
         <Text style={{textAlign: 'center', marginVertical: 16}}>ការផ្តល់អនុសាសន៍</Text>
 
