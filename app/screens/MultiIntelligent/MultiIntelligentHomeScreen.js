@@ -51,7 +51,8 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
   // }
 
   const renderButton = () => {
-    return <AppButton style={styles.button} onPress={() => navigation.navigate('IntelligentProfileScreen')}>
+    // return <AppButton style={styles.button} onPress={() => navigation.navigate('IntelligentProfileScreen')}>
+    return <AppButton style={styles.button} onPress={() => navigation.navigate('MultiIntelligentQuestionnaireScreen')}>
               <Text style={styles.btnText}>ធ្វើតេស្តថ្មី</Text>
            </AppButton>
   }

@@ -49,7 +49,7 @@ const ProgressStep = (props) => {
 
   return (
     <View style={{ width: '100%', flexDirection: 'row', alignItems: 'center', marginBottom: 12}}>
-      { doms }
+      {renderContent()}
     </View>
   )
 }

@@ -1,4 +1,4 @@
-import intelligent_questions from '../data/json/intelligent_questions';
+import intelligent_questions from '../data/json/intelligent_questions.json';
 import paginate from '../utils/paginate_util';
 
 export const getQuestions = (page=1) => {

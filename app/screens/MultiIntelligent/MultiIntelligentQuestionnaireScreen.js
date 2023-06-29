@@ -4,7 +4,11 @@ import DeviceInfo from 'react-native-device-info'
 
 import MultiIntelligentNavHeader from '../../components/MultiIntelligent/MultiIntelligentNavHeader';
 import QuestionItem from '../../components/MultiIntelligent/QuestionItem';
+import { Form, SubmitButton } from '../../components/forms';
 import { getQuestions, getForm, getHollandScore } from '../../services/intelligent_question_service';
+import {getStyleOfOS} from '../../utils/responsive_util';
+
+const initialValues = {"A_01": "", "C_01": "", "E_01": "", "I_01": "", "R_01": "", "S_01": ""}
 
 export default MultiINtelligentQuestionnaireScreen = ({route, navigation}) => {
   const scrollY = React.useRef(new Animated.Value(0));
@@ -15,7 +19,7 @@ export default MultiINtelligentQuestionnaireScreen = ({route, navigation}) => {
       return navigation.navigate('HollandTestResultScreen');
     }
 
-    navigation.push('HollandQuestionnaireScreen', {page: page + 1});
+    navigation.push('MultiIntelligentQuestionnaireScreen', {page: page + 1});
   }
 
   const renderContent = () => {
@@ -32,7 +36,7 @@ export default MultiINtelligentQuestionnaireScreen = ({route, navigation}) => {
     <Form
       initialValues={initialValues}
       onSubmit={ handleSubmit }
-      validationSchema={validationSchema}
+      // validationSchema={validationSchema}
     >
       <MultiIntelligentNavHeader step={page} scrollY={scrollY.current}/>
       <Animated.ScrollView contentContainerStyle={{flexGrow: 1, paddingTop: getStyleOfOS(DeviceInfo.hasNotch() ? 152 : 124, 105)}}
@@ -41,7 +45,7 @@ export default MultiINtelligentQuestionnaireScreen = ({route, navigation}) => {
           { useNativeDriver: true },
         )}
       >
-        {/* {renderContent()} */}
+        {renderContent()}
       </Animated.ScrollView>
       <SubmitButton title='បន្តទៀត' />
     </Form>
