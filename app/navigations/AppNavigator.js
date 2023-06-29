@@ -14,6 +14,7 @@ import { navigationRef } from '../hooks/RootNavigation';
 import VideoScreen from '../screens/Video/VideoScreen';
 import VocationalNavigator from './VocationalNavigator';
 import CareerWebsiteNavigator from './CareerWebsiteNavigator';
+import MultiIntelligentNavigator from './MultiIntelligentNavigator';
 
 import { Platform } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -61,6 +62,7 @@ function RootStack() {
         }}
       >
         <Stack.Screen name="HomeTab" component={HomeTab} options={{}}/>
+        <Stack.Screen name="MultiIntelligentNavigator" component={MultiIntelligentNavigator} options={{}}/>
         <Stack.Screen name="SchoolNavigator" component={SchoolNavigator} options={{}}/>
         <Stack.Screen name="HollandNavigator" component={HollandNavigator} options={{}}/>
         <Stack.Screen name="VideoScreen" component={VideoScreen} options={{}}/>

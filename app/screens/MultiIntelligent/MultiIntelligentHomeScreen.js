@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
@@ -21,8 +21,8 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
         <ButtonList
           hasLine={true}
           icon={{color: Color.blue, src: require('../../assets/icons/others/info.png')}}
-          onPress={() => { navigation.navigate('HollandAboutScreen') }}
-          title='អំពីការធ្វើតេសវាយតម្លៃមុខរបរ និងអាជីព' />
+          onPress={() => { }}
+          title='អំពីតេស្តភាពឆ្លាតវៃ' />
       </View>
     )
   }
@@ -51,7 +51,7 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
   // }
 
   const renderButton = () => {
-    return <AppButton style={styles.button} onPress={() => {}}>
+    return <AppButton style={styles.button} onPress={() => navigation.navigate('IntelligentProfileScreen')}>
               <Text style={styles.btnText}>ធ្វើតេស្តថ្មី</Text>
            </AppButton>
   }
