@@ -37,7 +37,7 @@ const HollandTestResult = ({route, navigation}) => {
 
   const renderContent = () => {
     return (
-      <View style={{marginBottom: 10}}>
+      <View style={{marginBottom: 25}}>
         <View style={{paddingTop: 10, paddingHorizontal: screenHorizontalPadding}}>
           <Text style={{color: 'black', lineHeight: getStyleOfOS(30, 34)}}>ខាងក្រោមនេះ ជាលទ្ធផលតេស្ដរបស់អ្នក! សូមអ្នកឈ្វេងយល់ពីការពណ៌នាលម្អិតអំពីបុគ្គលិកលក្ខណៈរបស់អ្នកដូចខាងក្រោម </Text>
           <HollandTestResultBarChart quiz={currentQuiz}/>

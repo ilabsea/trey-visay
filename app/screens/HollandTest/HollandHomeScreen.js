@@ -7,6 +7,7 @@ import ScrollableHeader from '../../components/scrollable_header';
 import { Body, CardItem } from 'native-base';
 import ButtonList from '../../components/list/button_list';
 import Text from '../../components/Text';
+import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
 import { StartQuizButton, ResumeQuizButton}  from './components';
 import QuizListItem from './components/QuizListItem';
 import useAuth from "../../auth/useAuth";
@@ -37,7 +38,7 @@ const HollandHomeScreen = ({route, navigation}) => {
 
     return (
       <View style={{padding: 16}}>
-        <Text>លទ្ធផលធ្វើតេស្ត</Text>
+        <BoldLabelComponent label="លទ្ធផលធ្វើតេស្ត" />
 
         { quizzes.map((quiz, i) =>
           (
