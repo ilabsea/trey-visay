@@ -7,6 +7,7 @@ import MultiIntelligentInstructionScreen from '../screens/MultiIntelligent/Multi
 import MultiIntelligentQuestionnaireScreen from '../screens/MultiIntelligent/MultiIntelligentQuestionnaireScreen';
 import MultiIntelligentResultScreen from '../screens/MultiIntelligent/MultiIntelligentResultScreen';
 import IntelligenceDetailScreen from '../screens/IntelligenceDetail/IntelligenceDetailScreen';
+import MultiIntelligentRecommendationScreen from '../screens/MultiIntelligent/MultiIntelligentRecommendationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,7 @@ const MultiIntelligentStackNavigator = () => {
       <Stack.Screen name="MultiIntelligentQuestionnaireScreen" component={MultiIntelligentQuestionnaireScreen} options={{headerShown: false}} />
       <Stack.Screen name="MultiIntelligentResultScreen" component={MultiIntelligentResultScreen} options={{headerShown: false}} />
       <Stack.Screen name="IntelligenceDetailScreen" component={IntelligenceDetailScreen} options={{headerShown: false}} />
+      <Stack.Screen name="MultiIntelligentRecommendationScreen" component={MultiIntelligentRecommendationScreen} options={{headerShown: false}} />
     </Stack.Navigator>
   )
 }
