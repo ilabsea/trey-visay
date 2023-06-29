@@ -5,6 +5,7 @@ import DeviceInfo from 'react-native-device-info'
 import MultiIntelligentNavHeader from '../../components/MultiIntelligent/MultiIntelligentNavHeader';
 import QuestionItem from '../../components/MultiIntelligent/QuestionItem';
 import { Form, SubmitButton } from '../../components/forms';
+import Text from '../../components/Text'
 import { getQuestions, getForm, getHollandScore } from '../../services/intelligent_question_service';
 import {getStyleOfOS} from '../../utils/responsive_util';
 
@@ -16,9 +17,8 @@ export default MultiINtelligentQuestionnaireScreen = ({route, navigation}) => {
 
   const handleSubmit = (values, {errors}) => {
     if (isPageEnd) {
-      return navigation.navigate('HollandTestResultScreen');
+      return navigation.navigate('MultiIntelligentResultScreen');
     }
-
     navigation.push('MultiIntelligentQuestionnaireScreen', {page: page + 1});
   }
 
@@ -45,6 +45,7 @@ export default MultiINtelligentQuestionnaireScreen = ({route, navigation}) => {
           { useNativeDriver: true },
         )}
       >
+        <Text style={{marginLeft: 16, marginTop: 4, marginBottom: -12}}>ចូរជ្រើសរើសរូបតំណាងចំណាប់អារម្មណ៍របស់អ្នក</Text>
         {renderContent()}
       </Animated.ScrollView>
       <SubmitButton title='បន្តទៀត' />
