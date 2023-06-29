@@ -4,16 +4,14 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
 import AppButton from '../../components/shared/button';
+import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
 import { Body, CardItem } from 'native-base';
 import ButtonList from '../../components/list/button_list';
 import Text from '../../components/Text';
-// import QuizListItem from './components/QuizListItem';
-// import Quiz from '../../models/Quiz';
+import QuizListItem from '../HollandTest/components/QuizListItem';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 const MultiIntelligentHomeScreen = ({route, navigation}) => {
-  // const quizzes = !!user ? Quiz.findAllByUser(user.uuid) : [];
-
   const title = 'តេស្តភាពឆ្លាតវៃ';
   const renderAboutItem = () => {
     return (
@@ -27,32 +25,31 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
     )
   }
 
-  // const renderQuizList = () => {
-  //   let count = quizzes.length;
+  const renderHistories = () => {
+    const quizzes = [
+      {createdAt: new Date()}
+    ]
 
-  //   if (!count) return;
+    return (
+      <View style={{padding: 16}}>
+        <BoldLabelComponent label="លទ្ធផលធ្វើតេស្ត" />
 
-  //   return (
-  //     <View style={{padding: 16}}>
-  //       <Text>លទ្ធផលធ្វើតេស្ត</Text>
-
-  //       { quizzes.map((quiz, i) =>
-  //         (
-  //           <QuizListItem
-  //             key={i}
-  //             number={i + 1}
-  //             quiz={quiz}
-  //             onPress={ () => navigation.navigate('HollandDetailScreen', {quizUuid: quiz.uuid, title: `តេស្តលើកទី ${i + 1}`}) }
-  //           />
-  //         )
-  //       )}
-  //     </View>
-  //   );
-  // }
+        { quizzes.map((quiz, i) =>
+          (
+            <QuizListItem
+              key={i}
+              number={i + 1}
+              quiz={quiz}
+              onPress={ () => navigation.navigate('MultiIntelligentResultScreen') }
+            />
+          )
+        )}
+      </View>
+    );
+  }
 
   const renderButton = () => {
-    // return <AppButton style={styles.button} onPress={() => navigation.navigate('IntelligentProfileScreen')}>
-    return <AppButton style={styles.button} onPress={() => navigation.navigate('MultiIntelligentResultScreen')}>
+    return <AppButton style={styles.button} onPress={() => navigation.navigate('IntelligentProfileScreen')}>
               <Text style={styles.btnText}>ធ្វើតេស្តថ្មី</Text>
            </AppButton>
   }
@@ -61,7 +58,6 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
     return (
       <React.Fragment>
         { renderAboutItem() }
-
         <CardItem>
           <Body>
             <Text>សូមស្វាគមន៍មកកាន់</Text>
@@ -72,8 +68,7 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
             </View>
           </Body>
         </CardItem>
-
-        {/* { renderQuizList() } */}
+        {/* { renderHistories() } */}
       </React.Fragment>
     )
   }

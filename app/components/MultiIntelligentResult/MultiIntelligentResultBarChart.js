@@ -12,7 +12,6 @@ const MultiIntelligentResultBarChart = () => {
         colors: [processColor('#6ED490'), processColor('#9D4072'), processColor('#8B8000'), processColor('#C6B8D9'), processColor('#F2D3B5'), processColor('#BFDAED'), processColor('#1076DA')]
       }
     }],
-    legend: ["Linguistic", "Logical–mathematical", "Bodily–kinaesthetic", "Musical", "Spatial-Visual", "Interpersonal", "Intrapersonal"]
   })
 
   const [xAxis, setXAxis] = useState({

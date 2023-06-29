@@ -26,10 +26,10 @@ const ratings = [
   }
 ]
 
-export default QuestionItem = ({question, index}) => {
+export default QuestionItem = ({question, index, page}) => {
   return (
     <Card key={index} style={{marginVertical: 8, padding: 8, paddingTop: 4}}>
-      <Text style={{marginHorizontal: 6}}>{index + 1}) {question.name}</Text>
+      <Text style={{marginHorizontal: 6}}>{ ((page - 1)  * 7) + index + 1}) {question.name}</Text>
       <View style={{paddingHorizontal: 8}}>
         <RatingGroup name={question.code} options={ratings}/>
       </View>

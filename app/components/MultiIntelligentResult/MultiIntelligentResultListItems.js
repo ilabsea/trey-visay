@@ -13,17 +13,17 @@ const MultiIntelligentResultListItems = ({navigation}) => {
   const renderList = () => {
     return intelligenceTypes.map((item, index) => {
       return (
-        <React.Fragment>
+        <View key={index}>
           <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate('IntelligenceDetailScreen', {shortcut: item.shortcut})}>
             <Text style={{fontSize: FontSetting.text, flex: 1, paddingRight: 16}} numberOfLines={1}>{item.label}</Text>
 
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
               <Text style={{fontSize: 13, marginRight: 6, color: Color.gray}}>មើលលម្អិត</Text>
-              <Icon name='angle-right' size={24} color={Color.gray} style={{marginTop: -3}} />
+              <Icon name='angle-right' size={24} color='#bbb' style={{marginTop: -3}} />
             </View>
           </TouchableOpacity>
           <Divider/>
-        </React.Fragment>
+        </View>
       )
     })
   }

@@ -26,7 +26,7 @@ export default MultiINtelligentQuestionnaireScreen = ({route, navigation}) => {
     return (
       <View style={{marginVertical: 8}}>
         { questions.map((q, index) =>
-          <QuestionItem question={q} index={index} key={index}/>)
+          <QuestionItem question={q} index={index} page={page} key={index}/>)
         }
       </View>
     )

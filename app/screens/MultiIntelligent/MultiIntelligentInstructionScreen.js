@@ -34,24 +34,21 @@ const ratings = [
 const MultiIntelligentInstructionScreen = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = React.useState(false);
   let backHandler = null
-  // useFocusEffect(
-  //   React.useCallback(() => {
-  //     backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-  //       navigation.popToTop()
-  //       return true;
-  //     })
-  //     return () => !!backHandler && backHandler.remove()
-  //   }, [])
-  // )
+  useFocusEffect(
+    React.useCallback(() => {
+      backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+        navigation.popToTop()
+        return true;
+      })
+      return () => !!backHandler && backHandler.remove()
+    }, [])
+  )
 
   const renderRating = (item, index) => {
     return (
       <View style={{flexDirection: 'row', alignItems: 'center', marginBottom: 16}} key={index}>
         <View style={{padding: 8, borderWidth: 1, borderRadius: 5, marginRight: 16, borderColor: Color.gray}}>
-          <Image
-            source={ images[item.icon] }
-            style={{width: 50, height: 50}}
-          />
+          <Image source={ images[item.icon] } style={{width: 50, height: 50}} />
         </View>
 
         <Text>{item.name}</Text>
@@ -63,7 +60,7 @@ const MultiIntelligentInstructionScreen = ({route, navigation}) => {
     return (
       <View style={{padding: 16, backgroundColor: '#fff'}}>
         <Text style={{marginBottom: 10}}>
-          ក្នុងតេស្តពហុបញ្ញានេះ អ្នកនឹងត្រូវឆ្លើយសំណួរ ចំនួន ៣៥ ដែលសួរអំពីខ្លួនអ្នក។
+          ក្នុងតេស្តពហុបញ្ញានេះ អ្នកនឹងត្រូវឆ្លើយសំណួរចំនួន ៣៥ ដែលសួរអំពីខ្លួនអ្នក។
         </Text>
         <Text style={{marginBottom: 13}}>
           ចូរអ្នកឆ្លើយដោយយកចិត្តទុកដាក់តាមរយៈការកំណត់ពិន្ទុដូចខាងក្រោម
