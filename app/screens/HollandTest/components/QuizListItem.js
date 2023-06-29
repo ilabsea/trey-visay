@@ -2,6 +2,7 @@ import React from 'react';
 
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import mainStyles from '../../../assets/style_sheets/main/main';
+import {FontSetting} from '../../../assets/style_sheets/font_setting';
 import Color from '../../../themes/color';
 import { longDateFormat as dateFormat } from '../../../utils/date';
 import {getStyleOfOS} from '../../../utils/responsive_util';
@@ -22,7 +23,7 @@ const QuizListItem = ({number, quiz, onPress}) => {
         </View>
 
         <View style={styles.textWrapper}>
-          <Text style={[mainStyles.title, {lineHeight: 42}]}>តេស្តលើកទី {kmNumber}</Text>
+          <Text style={[mainStyles.title, {lineHeight: 42, fontSize: FontSetting.big_title}]}>តេស្តលើកទី {kmNumber}</Text>
           <Text style={[mainStyles.subTitle, {flex: 1}]}>ធ្វើនៅ: {dateFormat(quiz.createdAt)}</Text>
         </View>
 
@@ -36,7 +37,7 @@ const QuizListItem = ({number, quiz, onPress}) => {
 const styles = StyleSheet.create({
   number: {
     width: 60,
-    height: 99,
+    minHeight: 99,
     borderRightWidth: 1,
     borderRightColor: Color.blue,
     alignItems: 'center',
