@@ -1,35 +1,20 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet } from 'react-native';
-import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 import {Divider} from 'react-native-paper'
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import { Text } from '../../components';
-import BoldLabelComponent from '../shared/BoldLabelComponent';
 import {screenHorizontalPadding} from '../../constants/component_constant';
-import {getStyleOfOS} from '../../utils/responsive_util';
-import intelligentList from './json/intelligentGroups.json'
+import intelligenceTypes from '../../data/json/intelligence_types.json'
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import Color from '../../themes/color';
 
-const MultiIntelligentResultListItems = () => {
-  const renderAccordionTitle = (intelligentItem) => {
-    return (
-      <View style={{flexDirection: 'row', width: wp('75%'), alignItems: 'center', paddingTop: getStyleOfOS(6, 0)}}>
-        <BoldLabelComponent label={intelligentItem.label} style={{fontSize: FontSetting.title}} />
-      </View>
-    )
-  }
-
-  const renderContent = (intelligentItem) => {
-    return <Text style={{color: 'black'}}>{intelligentItem.impression}</Text>
-  }
-
+const MultiIntelligentResultListItems = ({navigation}) => {
   const renderList = () => {
-    return intelligentList.map((item, index) => {
+    return intelligenceTypes.map((item, index) => {
       return (
         <React.Fragment>
-          <TouchableOpacity style={styles.itemContainer}>
+          <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate('IntelligenceDetailScreen', {shortcut: item.shortcut})}>
             <Text style={{fontSize: FontSetting.text, flex: 1, paddingRight: 16}} numberOfLines={1}>{item.label}</Text>
 
             <View style={{flexDirection: 'row', alignItems: 'center'}}>

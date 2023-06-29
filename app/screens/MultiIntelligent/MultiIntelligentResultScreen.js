@@ -36,11 +36,9 @@ const MultiIntelligentResultScreen = ({navigation}) => {
         <View style={{marginBottom: 10}}>
           <View style={{paddingTop: 10, paddingHorizontal: screenHorizontalPadding}}>
             <Text style={{color: 'black', lineHeight: getStyleOfOS(30, 34)}}>ខាងក្រោមនេះ ជាលទ្ធផលតេស្ដរបស់អ្នក! សូមអ្នកឈ្វេងយល់ពីការពណ៌នាលម្អិតអំពី ទម្រង់បញ្ញារបស់អ្នកដូចខាងក្រោម៖</Text>
-            {/* <HollandTestResultBarChart quiz={currentQuiz}/> */}
             <MultiIntelligentResultBarChart quiz={currentQuiz}/>
           </View>
-          <MultiIntelligentResultListItems />
-          {/* <HollandTestResultCharacteristicAccordions quiz={currentQuiz}/> */}
+          <MultiIntelligentResultListItems navigation={navigation} />
         </View>
       </TouchableWithoutFeedback>
     )
