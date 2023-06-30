@@ -10,7 +10,7 @@ const FilterButton = (props) => {
   let activeIconBg = active ? { backgroundColor: Colors.blue }: { backgroundColor: Colors.gray };
   let activeText = active ? { color: Colors.blue }: '';
 
-  return <TouchableOpacity style={[styles.btn, props.style]} onPress={() => props.updateSelectedItem()}>
+  return <TouchableOpacity style={[styles.btn, props.style]} onPress={() => props.updateSelectedItem(props.selectedItem == props.item ? '' : props.item)}>
             <View style={[styles.iconWrapper, activeIconBg]}>
               <Image
                 source={require("../../../assets/icons/school/major.png")}

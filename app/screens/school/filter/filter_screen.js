@@ -81,7 +81,7 @@ class FilterScreen extends Component {
               item={major}
               label={major}
               selectedItem={this.state.selectedValue}
-              updateSelectedItem={() => this.setActive(major)}
+              updateSelectedItem={(item) => this.setActive(item)}
            />
   }
 
