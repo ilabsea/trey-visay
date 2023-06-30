@@ -3,11 +3,12 @@ import {
   StyleSheet,
   Image,
   View,
-  Text,
-  Platform
+  Platform,
 } from 'react-native';
 import { Button } from 'native-base';
 import DeviceInfo from 'react-native-device-info';
+import Text from '../Text';
+import BoldLabelComponent from '../shared/BoldLabelComponent';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
@@ -38,7 +39,7 @@ class FilterButton extends React.Component {
         {!!this.props.number &&
           <View style={[scrollHeaderStyles.numberWrapper, {marginRight: 12, marginLeft: 20}]}>
             <View style={scrollHeaderStyles.numberIcon}>
-              <Text style={[scrollHeaderStyles.iconText, {fontSize: 16}]}>{this.props.number}</Text>
+              <BoldLabelComponent label={this.props.number} style={{fontSize: 16, marginTop: getStyleOfOS(0, 2), color: Colors.blue}} />
             </View>
           </View>
         }
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
     fontSize: FontSetting.text,
     marginLeft: 10,
     color: '#fff',
-    marginTop: getStyleOfOS(getStyleOfDevice(0, 2), -3)
+    // marginTop: getStyleOfOS(getStyleOfDevice(0, 2), -3)
   }
 })
 

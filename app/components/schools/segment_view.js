@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
 import {StyleSheet} from 'react-native';
-import { Container, Header, Left, Title, Body, Right, Button, Icon, Segment,
-  Content, Text } from 'native-base';
+import { Button, Segment, Text } from 'native-base';
 
-  import { SegmentedButtons } from 'react-native-paper';
-
-import { Platform } from 'react-native';
-import { Colors } from '../../assets/style_sheets/main/colors';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import {pressableItemSize} from '../../constants/component_constant';
 import {getStyleOfOS} from '../../utils/responsive_util';
+import {FontFamily} from '../../themes/font';
 
 const borderRadius = 6
 export default class SegmentView extends Component {
@@ -27,12 +23,12 @@ export default class SegmentView extends Component {
         <Button first active={this.props.activePage == 1} onPress={()=>this.props.setContent(1)}
           style={[styles.button, {borderTopLeftRadius: borderRadius, borderBottomLeftRadius: borderRadius}]}
         >
-          <Text style={{fontSize: FontSetting.text, marginTop: getStyleOfOS(2, -2)}}>ឧត្ដមសិក្សា</Text>
+          <Text style={[styles.text, {marginTop: getStyleOfOS(-2, 0)}]}>ឧត្ដមសិក្សា</Text>
         </Button>
         <Button last active={this.props.activePage == 2} onPress={()=>this.props.setContent(2)}
-          style={[styles.button, {borderTopRightRadius: borderRadius, borderBottomRightRadius: borderRadius}]}
+          style={[styles.button, {borderTopRightRadius: borderRadius, borderBottomRightRadius: borderRadius, marginLeft: -1}]}
         >
-          <Text style={{fontSize: FontSetting.text}}>TVET</Text>
+          <Text style={styles.text}>TVET</Text>
         </Button>
       </Segment>
     )
@@ -45,5 +41,9 @@ const styles = StyleSheet.create({
     height: pressableItemSize,
     justifyContent: 'center',
     minWidth: 110
+  },
+  text: {
+    fontFamily: FontFamily.regular,
+    fontSize: FontSetting.text
   }
 })
