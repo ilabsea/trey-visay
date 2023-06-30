@@ -24,6 +24,16 @@ export default class SchoolUtil {
     })
   }
 
+  static setSelectedCategory(category) {
+    AsyncStorage.setItem('selectedCategory', category);
+  }
+
+  static getSelectedCategory(callback){
+    AsyncStorage.getItem('selectedCategory', (err, result) => {
+      !!callback && callback(result);
+    })
+  }
+
   static getSchools(options) {
     let uniList = SchoolModel.getAll()
     if (!!options.kind)
@@ -38,6 +48,9 @@ export default class SchoolUtil {
         return !!departments.length;
       });
     }
+
+    if (!!options.category)
+      uniList = uniList.filter(school => school.category == options.category);
 
     let page = options.page || 1;
     let start = (page - 1) * PER_PAGE;
@@ -74,6 +87,7 @@ export default class SchoolUtil {
   static clearSelectedValues(){
     this.setSelectedProvince('');
     this.setSelectedMajor('');
+    this.setSelectedCategory('');
   }
 
   static getSchoolNamesByIds(schoolIds) {

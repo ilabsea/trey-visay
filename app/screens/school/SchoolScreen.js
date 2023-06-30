@@ -29,6 +29,7 @@ export default class SchoolScreen extends Component {
       majors: [],
       currentProvince: '',
       currentMajor: '',
+      currentCategory: '',
       loading: true,
       searchText: '',
       hasInternet: false,
@@ -53,10 +54,12 @@ export default class SchoolScreen extends Component {
 
     SchoolUtil.getSelectedProvince((province) => {
       SchoolUtil.getSelectedMajor((major) => {
-        province = province == 'គ្រប់ទីកន្លែង' ? '': province;
-        major = major == 'គ្រប់ជំនាញ' ? '': major;
-        this.setState({ currentProvince: province, currentMajor: major });
-        this.setSchools(this.state.activePage);
+        SchoolUtil.getSelectedCategory((category) => {
+          province = province == 'គ្រប់ទីកន្លែង' ? '': province;
+          major = major == 'គ្រប់ជំនាញ' ? '': major;
+          this.setState({ currentProvince: province, currentMajor: major, currentCategory: category });
+          this.setSchools(this.state.activePage);
+        })
       });
     });
   }
@@ -66,8 +69,9 @@ export default class SchoolScreen extends Component {
       kind: kinds[active],
       province: this.state.currentProvince,
       major: this.state.currentMajor,
+      category: this.state.currentCategory,
       page: this.page,
-      searchText: searchText
+      searchText: this.state.searchText
     }
 
     let schools = SchoolUtil.getSchools(options);
@@ -109,7 +113,15 @@ export default class SchoolScreen extends Component {
   onRefresh() {
     collegeMajorSyncService.syncAllData()
     schoolSyncService.syncAllData(kinds[this.state.activePage], (schools) => {
-      this.setState({schools: schools})
+      let options = {
+        kind: kinds[this.state.activePage],
+        province: this.state.currentProvince,
+        major: this.state.currentMajor,
+        category: this.state.currentCategory,
+        page: this.page,
+        searchText: ''
+      }
+      this.setState({schools: SchoolUtil.getSchools(options)})
       this.listRef.current?.stopRefreshLoading()
     }, () => {
       this.listRef.current?.stopRefreshLoading()
@@ -157,7 +169,7 @@ export default class SchoolScreen extends Component {
             navigation={this.props.navigation}
             kind={kinds[this.state.activePage]}
             refreshValue={ this.refreshState.bind(this)}
-            number={!!this.state.currentProvince + !!this.state.currentMajor}
+            number={!!this.state.currentProvince + !!this.state.currentMajor + !!this.state.currentCategory}
           />
         </View>
       </View>
