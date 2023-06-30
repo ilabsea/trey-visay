@@ -13,7 +13,8 @@ const HomeCategories = [
   },
   {
     title: 'តេស្តភាពឆ្លាតវៃ',
-    url: 'PersonalityAssessmentStack',
+    // url: 'PersonalityAssessmentStack',
+    url: 'MultiIntelligentNavigator',
     source_image: require('../../assets/images/home/personality_test.png'),
     color: ['rgb(236, 135, 192)', 'rgb(191, 76, 144)'],
     button_text: 'ចាប់ផ្តេីម',
