@@ -4,7 +4,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Color from '../../themes/color';
 
 const CustomImageComponent = (props) => {
-  const [isError, setIsError] = useState(!props.source)
+  const [isError, setIsError] = useState(false)
+
   const renderImage = () => {
     return <Image source={props.source} resizeMode={props.resizeMode}
             onError={() => setIsError(true)}
@@ -12,7 +13,7 @@ const CustomImageComponent = (props) => {
          />
   }
 
-  if (isError && !props.source)
+  if (isError || !props.source)
     return <View style={[{width: '100%', height: '100%', justifyContent: 'center', alignItems: 'center'}, props.emptyImageStyle]}>
               <Icon name='image' size={props.size || 22} color={Color.grayColor} />
            </View>
