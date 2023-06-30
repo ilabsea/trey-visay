@@ -13,7 +13,7 @@ export default class CareerIndexScreen extends Component {
     super(props);
 
     this.state = {
-      careers: Job.findAllByJobCluster(props.route.params.cluster_id)
+      careers: Job.findAllByJobCluster(props.route.params.cluster_code)
     }
   }
 
