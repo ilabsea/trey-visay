@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, TouchableOpacity, Image, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 // import firebase from 'react-native-firebase';
 
 import SchoolUtil from '../../../utils/school_util';
-import { Colors } from '../../../assets/style_sheets/main/colors';
 import {Text} from '../../../components';
 import FilterNavigationHeader from '../../../components/schools/FilterNavigationHeader'
 import OneList from '../../../components/list/one_list';
 import FooterBar from '../../../components/footer/FooterBar';
+import FilterButton from './filter_button';
+import FilterCategoryButtons from './filter_category_buttons';
 import keyword from '../../../data/analytics/keyword';
 import Color from '../../../themes/color';
+
+const categories = {
+  'public': 'សាលារដ្ឋ',
+  'private': 'សាលាឯកជន',
+  'ngo': 'អង្គការ'
+}
 
 class FilterScreen extends Component {
   _keyExtractor = (item, index) => index.toString();
@@ -22,6 +28,7 @@ class FilterScreen extends Component {
       majors: [],
       selectedValue: '',
       selectedProvince: '',
+      selectedCategory: '',
       kind: props.route.params.kind
     }
   }
@@ -32,7 +39,7 @@ class FilterScreen extends Component {
 
   resetValues = () => {
     SchoolUtil.clearSelectedValues();
-    this.setState({ selectedValue: '', selectedProvince: '' });
+    this.setState({ selectedValue: '', selectedProvince: '', selectedCategory: '' });
     this.refreshProvinceValue();
   }
 
@@ -43,6 +50,7 @@ class FilterScreen extends Component {
   setFilterValues(){
     let selectedValue = this.state.selectedValue == null ? '' : this.state.selectedValue;
     SchoolUtil.setSelectedMajor(selectedValue);
+    SchoolUtil.setSelectedCategory(!this.state.selectedCategory ? '' : this.state.selectedCategory);
 
     // firebase.analytics().logEvent(keyword.INSTITUTION_FILTER_APPLIED);
 
@@ -61,28 +69,27 @@ class FilterScreen extends Component {
         major = major == 'គ្រប់ជំនាញ' ? '': major;
         this.setState({ selectedValue: major });
       });
+      SchoolUtil.getSelectedCategory(category => {
+        this.setState({ selectedCategory: category })
+      })
     });
   }
 
   renderButton(major,i){
-    let active = this.state.selectedValue == major;
-    let activeIconBg = active ? { backgroundColor: Colors.blue }: { backgroundColor: Colors.gray };
-    let activeText = active ? { color: Colors.blue }: '';
-    return(
-      <TouchableOpacity
-        style={styles.btn}
-        key={i}
-        onPress={() => this.setActive(major)}>
-        <View style={[styles.iconWrapper, activeIconBg]}>
-          <Image
-            source={require("../../../assets/icons/school/major.png")}
-            resizeMode='contain'
-            style={styles.icon}
-          />
-        </View>
-        <Text numberOfLines={2} style={[activeText , { flex: 1 , paddingRight: 16, lineHeight: 28}]}>{major}</Text>
-      </TouchableOpacity>
-    )
+    return <FilterButton
+              key={`major-${i}`}
+              item={major}
+              label={major}
+              selectedItem={this.state.selectedValue}
+              updateSelectedItem={() => this.setActive(major)}
+           />
+  }
+
+  renderCategories() {
+    return <FilterCategoryButtons
+              selectedCategory={this.state.selectedCategory}
+              updateSelectedCategory={(category) => this.setState({selectedCategory: category})}
+           />
   }
 
   renderTopSection() {
@@ -99,6 +106,8 @@ class FilterScreen extends Component {
             })
           }}
         />
+        {this.renderCategories()}
+
         <Text style={{marginLeft: 16, marginTop: 10, marginBottom: 6, color: Color.paleBlackColor}}>
           ជ្រើសរើសជំនាញ
         </Text>
@@ -125,32 +134,5 @@ class FilterScreen extends Component {
     )
   }
 }
-
-const styles = StyleSheet.create({
-  btn: {
-    flexDirection: 'row',
-    width: wp('50%'),
-    height: hp('10%'),
-    backgroundColor: 'white',
-    borderColor: 'rgb(200, 199, 204)',
-    borderWidth: 0.5,
-    alignItems: 'center'
-  },
-  iconWrapper:{
-    width: 32,
-    height: 32,
-    borderRadius: 12,
-    marginRight: 16,
-    marginLeft: 16,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor:  'rgb(155, 155, 155)'
-  },
-  icon:{
-    width: 18,
-    height: 18
-  }
-})
-
 
 export default FilterScreen;
