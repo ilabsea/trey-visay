@@ -71,7 +71,7 @@ export default class SchoolScreen extends Component {
       major: this.state.currentMajor,
       category: this.state.currentCategory,
       page: this.page,
-      searchText: searchText
+      searchText: this.state.searchText
     }
 
     let schools = SchoolUtil.getSchools(options);
@@ -113,7 +113,15 @@ export default class SchoolScreen extends Component {
   onRefresh() {
     collegeMajorSyncService.syncAllData()
     schoolSyncService.syncAllData(kinds[this.state.activePage], (schools) => {
-      this.setState({schools: schools})
+      let options = {
+        kind: kinds[this.state.activePage],
+        province: this.state.currentProvince,
+        major: this.state.currentMajor,
+        category: this.state.currentCategory,
+        page: this.page,
+        searchText: ''
+      }
+      this.setState({schools: SchoolUtil.getSchools(options)})
       this.listRef.current?.stopRefreshLoading()
     }, () => {
       this.listRef.current?.stopRefreshLoading()
