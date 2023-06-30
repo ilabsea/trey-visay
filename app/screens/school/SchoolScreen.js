@@ -14,7 +14,7 @@ import collegeMajorSyncService from '../../services/college_major_sync_service';
 
 const kinds = {
   1: "higher_education",
-  2: "vocational_education"
+  2: "tvet_institute"
 }
 
 export default class SchoolScreen extends Component {
