@@ -78,6 +78,7 @@ const CheckboxGroup = ({options, textSearch, errorMessage, updateSelectedItem, t
               checked={ selectedValues.current && selectedValues.current.indexOf(item.value) !== -1 }
               onEndReached={() => onEndReached()}
               type={type}
+              disabled={selectedValues.current.length == 3}
             />
           </View>
         )}
