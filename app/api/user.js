@@ -16,7 +16,6 @@ export const uploadUser = async(userUuid) => {
     grade: user.grade,
     province_id: user.provinceCode,
     district_id: user.districtCode,
-    commune_code: user.communeCode,
     class_group: (user.classGroup + '').toLowerCase(),
     high_school_code: user.highSchoolCode,
     middle_school_id: user.middleSchoolId,
