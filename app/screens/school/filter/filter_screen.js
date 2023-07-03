@@ -80,7 +80,7 @@ class FilterScreen extends Component {
               key={`major-${i}`}
               item={major}
               label={major}
-              selectedItem={this.state.selectedValue}
+              isSelected={this.state.selectedValue == major}
               updateSelectedItem={(item) => this.setActive(item)}
            />
   }
