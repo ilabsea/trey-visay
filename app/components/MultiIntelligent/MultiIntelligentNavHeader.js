@@ -4,6 +4,7 @@ import {Appbar} from 'react-native-paper';
 import { useDispatch } from 'react-redux';
 
 import {BackButton, Text} from '../../components'
+import QuizExitConfirmationModal from '../../components/shared/QuizExitConfirmationModal';
 import {goBack, reset} from '../../hooks/RootNavigation'
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import {FontFamily} from '../../themes/font';
@@ -56,7 +57,7 @@ const MultiIntelligentNavHeader = (props) => {
         </View>
       </Appbar.Header>
       {renderProgressIndicator()}
-      {/* {renderConfirmation()} */}
+      <QuizExitConfirmationModal visible={modalVisible} type='intelligentTest' closeModal={() => setModalVisible(false)} />
     </View>
   )
 }

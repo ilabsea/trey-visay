@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import { Body, CardItem } from 'native-base';
 
 import Color from '../../themes/color';
@@ -9,10 +9,8 @@ import StartQuizButton from '../../components/shared/StartQuizButton';
 import ButtonList from '../../components/list/button_list';
 import Text from '../../components/Text';
 import QuizListItem from '../HollandTest/components/QuizListItem';
-import { FontSetting } from '../../assets/style_sheets/font_setting';
 import useAuth from "../../auth/useAuth";
 import IntelligentQuiz from '../../models/IntelligentQuiz';
-
 
 const MultiIntelligentHomeScreen = ({route, navigation}) => {
   const { user } = useAuth();
@@ -79,19 +77,3 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
 }
 
 export default MultiIntelligentHomeScreen;
-
-const styles = StyleSheet.create({
-  button: {
-    borderRadius: 8,
-    height: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
-    width: '100%',
-    marginTop: 20
-  },
-  btnText: {
-    fontSize: FontSetting.button_text,
-    color: '#fff',
-  }
-});

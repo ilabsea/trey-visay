@@ -8,8 +8,8 @@ import MultiIntelligentResultListItems from '../../components/MultiIntelligentRe
 import {screenHorizontalPadding} from '../../constants/component_constant';
 import {getStyleOfOS} from '../../utils/responsive_util';
 
-const MultiIntelligentResultScreen = ({navigation}) => {
-  const title = "លទ្ធផលតេស្តពហុបញ្ញា"
+const MultiIntelligentResultScreen = ({navigation, route}) => {
+  const title = route.params.order ? `លទ្ធផលតេស្តលើកទី ${route.params.order}` : "លទ្ធផលតេស្តពហុបញ្ញា"
   let backHandler = null
 
   useFocusEffect(

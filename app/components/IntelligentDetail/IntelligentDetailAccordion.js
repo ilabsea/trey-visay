@@ -3,7 +3,7 @@ import React from 'react';
 import InfoAccordion from '../shared/InfoAccordion';
 import InfoAccordionContent from '../shared/InfoAccordionContent';
 
-const IntelligenceDetailAccordion = ({intelligence}) => {
+const IntelligentDetailAccordion = ({intelligence}) => {
   const details = [
     {
       title: "ក. ការពិពណ៌នាទូទៅ",
@@ -32,4 +32,4 @@ const IntelligenceDetailAccordion = ({intelligence}) => {
          />
 }
 
-export default IntelligenceDetailAccordion
+export default IntelligentDetailAccordion
