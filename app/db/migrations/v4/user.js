@@ -17,7 +17,6 @@ User.schema = {
     classGroup: { type: 'string', optional: true },
     provinceCode: { type: 'string', optional: true },
     districtCode: { type: 'string', optional: true },
-    communeCode: { type: 'string', optional: true },
     highSchoolCode: { type: 'string', optional: true },
     serverId: { type: 'int', optional: true },
     createdAt: 'date'
