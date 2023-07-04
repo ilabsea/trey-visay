@@ -13,11 +13,11 @@ import {getStyleOfOS} from '../../utils/responsive_util';
 const initialValues = {"A_01": "", "C_01": "", "E_01": "", "I_01": "", "R_01": "", "S_01": ""}
 
 export default MultiIntelligentQuestionnaireScreen = ({route, navigation}) => {
-  const currentIntelligentResponse = useSelector((state) => state.currentQuiz.value)
+  const currentIntelligentResponse = useSelector((state) => state.currentIntelligentQuiz.value)
 
   const scrollY = React.useRef(new Animated.Value(0));
   const { questions, isPageEnd, page } = getMultiIntelligentQuestions(route.params?.page);
-  // const { validationSchema, initialValues } = getForm(questions, currentIntelligentResponse);
+  const { validationSchema, initialValues } = getForm(questions, currentIntelligentResponse);
 
   const handleSubmit = (values, {errors}) => {
     if (isPageEnd) {
@@ -40,7 +40,7 @@ export default MultiIntelligentQuestionnaireScreen = ({route, navigation}) => {
     <Form
       initialValues={initialValues}
       onSubmit={ handleSubmit }
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
     >
       <MultiIntelligentNavHeader step={page} scrollY={scrollY.current}/>
       <Animated.ScrollView contentContainerStyle={{flexGrow: 1, paddingTop: getStyleOfOS(DeviceInfo.hasNotch() ? 152 : 124, 105)}}
