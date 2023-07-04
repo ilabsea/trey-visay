@@ -8,6 +8,9 @@ import {navigate} from '../../../hooks/RootNavigation';
 const MyCheckbox = (props) => {
   const [checked, setChecked] = React.useState(props.checked);
   const onPress = () => {
+    if (props.disabled && !checked)
+      return;
+
     const isChecked = !checked;
     setChecked(isChecked);
     !!props.onPress && props.onPress(isChecked, props.value);
@@ -30,10 +33,11 @@ const MyCheckbox = (props) => {
         status={ checked ? 'checked' : 'unchecked' }
         onPress={ onPress }
         color={ Color.blue }
+        uncheckedColor={props.disabled ? Color.lightGrayColor : null}
       />
 
       <TouchableOpacity onPress={onPress} style={{flex: 1, justifyContent: 'center', paddingVertical: 8}}>
-        <Text style={{lineHeight: 28}}>{props.label}</Text>
+        <Text style={{lineHeight: 28, color: props.disabled && !checked ? Color.gray : Color.blackColor}}>{props.label}</Text>
       </TouchableOpacity>
 
       <Divider style={{width: 1, height: '65%',marginHorizontal: 8}} />
