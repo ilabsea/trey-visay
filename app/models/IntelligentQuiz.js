@@ -14,7 +14,7 @@ export default class IntelligentQuiz {
   }
 
   static findAllByUser = (userUuid) => {
-    return realm.objects(MODEL).filtered(`userUuid = '${userUuid}' AND step > 2`);
+    return realm.objects(MODEL).filtered(`userUuid = '${userUuid}' AND isDone = true`);
   }
 
   static create = (params) => {
@@ -39,5 +39,11 @@ export default class IntelligentQuiz {
         realm.delete(item);
       });
     }
+  }
+
+  static write = (callback) => {
+    realm.write(() => {
+      !!callback && callback();
+    });
   }
 }

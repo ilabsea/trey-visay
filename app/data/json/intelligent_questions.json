@@ -1,245 +1,245 @@
 [
   {
     "id": "1",
-    "code": "R_01",
+    "code": "L_01",
     "name": "ខ្ញុំចេះលេងឧបករណ៍តន្ត្រី",
     "personality_type": "R",
     "display_order": 1
   },
   {
     "id": "2",
-    "code": "I_01",
+    "code": "LM_01",
     "name": "ខ្ញុំតែងមានចម្រៀង ឬតន្រ្តីក្នុងអារម្មណ៍",
     "personality_type": "I",
     "display_order": 2
   },
   {
     "id": "3",
-    "code": "A_01",
+    "code": "BK_01",
     "name": "ខ្ញុំអាចបង្កើតសាច់រឿងណាមួយបានយ៉ាង ងាយស្រួល",
     "personality_type": "A",
     "display_order": 3
   },
   {
     "id": "4",
-    "code": "S_01",
+    "code": "M_01",
     "name": "ខ្ញុំមានទំនាក់ទំនងផែ្នករាងកាយល្អ(រត់ លោត តុល្យភាពទម្ងន់…)",
     "personality_type": "S",
     "display_order": 4
   },
   {
     "id": "5",
-    "code": "E_01",
+    "code": "SV_01",
     "name": "តន្ត្រីមានសារៈសំខាន់ណាស់សំរាប់ខ្ញុំ",
     "personality_type": "E",
     "display_order": 5
   },
   {
     "id": "6",
-    "code": "C_01",
+    "code": "IEP_01",
     "name": "ខ្ញុំពូកែកុហក(បើសិនខ្ញុំចង់ធ្វើ)",
     "personality_type": "C",
     "display_order": 6
   },
   {
     "id": "7",
-    "code": "R_02",
+    "code": "L_02",
     "name": "ខ្ញុំលេងកីឡា ឬរាំ",
     "personality_type": "R",
     "display_order": 7
   },
   {
     "id": "8",
-    "code": "I_02",
+    "code": "LM_02",
     "name": "ខ្ញុំជាមនុស្សរួសរាយ និងចូលចិត្តនៅជាមួយអ្នកដទៃ",
     "personality_type": "I",
     "display_order": 8
   },
   {
     "id": "9",
-    "code": "A_02",
+    "code": "BK_02",
     "name": "ខ្ញុំងាយយល់ក្រាហ្វ តារាង និងដ្យាក្រាម",
     "personality_type": "A",
     "display_order": 9
   },
   {
     "id": "10",
-    "code": "S_02",
+    "code": "M_02",
     "name": "ខ្ញុំអាចចងចាំសម្រង់ពាក្យសម្តី ឃ្លាកំណាព្យ ឬទំនុកច្រៀងយ៉ាងងាយ",
     "personality_type": "S",
     "display_order": 10
   },
   {
     "id": "11",
-    "code": "E_02",
+    "code": "SV_02",
     "name": "ខ្ញុំអាចចាំបាននូវកន្លែងដែលខ្ញុំធ្លាប់ទៅ ទោះបីកន្លងទៅយូរហើយក្តី",
     "personality_type": "E",
     "display_order": 11
   },
   {
     "id": "12",
-    "code": "C_02",
+    "code": "IEP_02",
     "name": "ពេលខ្ញុំផ្ចង់អារម្មណ៍ ខ្ញុំមានទំនោរទៅខាងគូរ រូប",
     "personality_type": "C",
     "display_order": 12
   },
   {
     "id": "13",
-    "code": "R_03",
+    "code": "L_03",
     "name": "ខ្ញុំពូកែគិតលេខ(គណនាក្នុងខួរក្បាល)",
     "personality_type": "R",
     "display_order": 13
   },
   {
     "id": "14",
-    "code": "I_03",
+    "code": "LM_03",
     "name": "នៅសាលា មុខវិជ្ជាដែលខ្ញុំចូលចិត្តគឺ ភាសាខ្មែរ",
     "personality_type": "I",
     "display_order": 14
   },
   {
     "id": "15",
-    "code": "A_03",
+    "code": "BK_03",
     "name": "ខ្ញុំតែងគិតយ៉ាងប្រុងប្រយ័ត្នលើរាល់បញ្ហា និងពិចារណាពីផលវិបាក",
     "personality_type": "A",
     "display_order": 15
   },
   {
     "id": "16",
-    "code": "S_03",
+    "code": "M_03",
     "name": "ខ្ញុំចូលចិត្តកីឡាដែលជួយបន្ធូរភាពតានតឹង",
     "personality_type": "S",
     "display_order": 16
   },
   {
     "id": "17",
-    "code": "E_03",
+    "code": "SV_03",
     "name": "ខ្ញុំចូលចិត្តកីឡាដែលលេងជាលក្ខណៈ បុគ្គល",
     "personality_type": "E",
     "display_order": 17
   },
   {
     "id": "18",
-    "code": "C_03",
+    "code": "IEP_03",
     "name": "ខ្ញុំអាចចាំលេខទូរសព្ទបានយ៉ាងងាយ",
     "personality_type": "C",
     "display_order": 18
   },
   {
     "id": "19",
-    "code": "R_04",
+    "code": "L_04",
     "name": "ខ្ញុំបានរៀបចំគោលដៅ និងផែនការសម្រាប់ អនាគត",
     "personality_type": "R",
     "display_order": 19
   },
   {
     "id": "20",
-    "code": "I_04",
+    "code": "LM_04",
     "name": "ខ្ញុំអាចប្រាប់បានពីអ្នកណាចូលចិត្ត ឬមិនចូលចិត្តខ្ញុំ",
     "personality_type": "I",
     "display_order": 20
   },
   {
     "id": "21",
-    "code": "A_04",
+    "code": "BK_04",
     "name": "ដើម្បីរៀនអ្វីមួយដែលថ្មី ខ្ញុំត្រូវការធ្វើការសាក ល្បងសិន",
     "personality_type": "A",
     "display_order": 21
   },
   {
     "id": "22",
-    "code": "S_04",
+    "code": "M_04",
     "name": "ខ្ញុំអាចស្រម៉ៃមើលរូបភាពអ្វីមួយបានច្បាស់ នៅពេលបិទភ្នែក",
     "personality_type": "S",
     "display_order": 22
   },
   {
     "id": "23",
-    "code": "E_04",
+    "code": "SV_04",
     "name": "ខ្ញុំអាចរាប់លេខដោយមិនបាច់ប្រើម្រាមដៃ",
     "personality_type": "E",
     "display_order": 23
   },
   {
     "id": "24",
-    "code": "C_04",
+    "code": "IEP_04",
     "name": "នៅសាលា ខ្ញុំចូលចិត្តមុខវិជ្ជាតន្រ្តី",
     "personality_type": "C",
     "display_order": 24
   },
   {
     "id": "25",
-    "code": "R_05",
+    "code": "L_05",
     "name": "ខ្ញុំយល់ថាល្បែងឬកីឡាទាក់ទងនឹងបាល់ស្រួលលេង ហើយសប្បាយ",
     "personality_type": "R",
     "display_order": 25
   },
   {
     "id": "26",
-    "code": "I_05",
+    "code": "LM_05",
     "name": "មុខវិជ្ជាដែលខ្ញុំចូលចិត្តជាងគេនៅសាលាគឺ គណិតវិទ្យា",
     "personality_type": "I",
     "display_order": 26
   },
   {
     "id": "27",
-    "code": "A_05",
+    "code": "BK_05",
     "name": "ខ្ញុំតែងយល់ពីអារម្មណ៍ខ្លួនឯងច្បាស់",
     "personality_type": "A",
     "display_order": 27
   },
   {
     "id": "28",
-    "code": "S_05",
+    "code": "M_05",
     "name": "ខ្ញុំមានសៀវភៅកំណត់ហេតុផ្ទាល់ខ្លួន",
     "personality_type": "S",
     "display_order": 28
   },
   {
     "id": "29",
-    "code": "E_05",
+    "code": "SV_05",
     "name": "មុខវិជ្ជាដែលខ្ញុំចូលចិត្តជាងគេនៅសាលាគឺ សិល្បៈ",
     "personality_type": "E",
     "display_order": 29
   },
   {
     "id": "30",
-    "code": "C_05",
+    "code": "IEP_05",
     "name": "ខ្ញុំចូលចិត្តអានសៀវភៅណាស់",
     "personality_type": "C",
     "display_order": 30
   },
   {
     "id": "31",
-    "code": "R_06",
+    "code": "L_06",
     "name": "ខ្ញុំមិនសប្បាយចិត្តពេលឃើញនរណាម្នាក់ យំ ហើយមិនអាចជួយបាន",
     "personality_type": "R",
     "display_order": 31
   },
   {
     "id": "32",
-    "code": "I_06",
+    "code": "LM_06",
     "name": "ខ្ញុំចូលចិត្តកីឡាលេងជាក្រុម",
     "personality_type": "I",
     "display_order": 32
   },
   {
     "id": "33",
-    "code": "A_06",
+    "code": "BK_06",
     "name": "ការច្រៀងធ្វើឱ្យខ្ញុំសប្បាយចិត្ត",
     "personality_type": "A",
     "display_order": 33
   },
   {
     "id": "34",
-    "code": "S_06",
+    "code": "M_06",
     "name": "ខ្ញុំសប្បាយចិត្តនឹងការចំណាយពេលនៅម្នាក់ឯង",
     "personality_type": "S",
     "display_order": 34
   },
   {
     "id": "35",
-    "code": "E_06",
+    "code": "SV_06",
     "name": "មិត្តភក្តិតែងមករកការលើកទឹកចិត្ត និងដំបូន្មានផ្នែកអារម្មណ៍ពីខ្ញុំ",
     "personality_type": "E",
     "display_order": 35

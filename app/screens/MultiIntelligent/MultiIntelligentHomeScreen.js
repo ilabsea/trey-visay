@@ -4,15 +4,20 @@ import { Body, CardItem } from 'native-base';
 
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
-import AppButton from '../../components/shared/button';
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
 import StartQuizButton from '../../components/shared/StartQuizButton';
 import ButtonList from '../../components/list/button_list';
 import Text from '../../components/Text';
 import QuizListItem from '../HollandTest/components/QuizListItem';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
+import useAuth from "../../auth/useAuth";
+import IntelligentQuiz from '../../models/IntelligentQuiz';
+
 
 const MultiIntelligentHomeScreen = ({route, navigation}) => {
+  const { user } = useAuth();
+  const quizzes = !!user ? IntelligentQuiz.findAllByUser(user.uuid) : [];
+
   const title = 'តេស្តភាពឆ្លាតវៃ';
   const renderAboutItem = () => {
     return (
@@ -27,10 +32,6 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
   }
 
   const renderHistories = () => {
-    const quizzes = [
-      {createdAt: new Date()}
-    ]
-
     return (
       <View style={{padding: 16}}>
         <BoldLabelComponent label="លទ្ធផលធ្វើតេស្ត" />
@@ -41,18 +42,12 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
               key={i}
               number={i + 1}
               quiz={quiz}
-              onPress={ () => navigation.navigate('MultiIntelligentResultScreen') }
+              onPress={ () => navigation.navigate('MultiIntelligentResultScreen', {quizUuid: quiz.uuid, order: i+1}) }
             />
           )
         )}
       </View>
     );
-  }
-
-  const renderButton = () => {
-    return <AppButton style={styles.button} onPress={() => navigation.navigate('ProfileFormScreen')}>
-              <Text style={styles.btnText}>ធ្វើតេស្តថ្មី</Text>
-           </AppButton>
   }
 
   const renderContent = () => {
@@ -66,11 +61,10 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
 
             <View style={{width: '100%'}}>
               <StartQuizButton type='intelligentTest' />
-              {/* {renderButton()} */}
             </View>
           </Body>
         </CardItem>
-        {/* { renderHistories() } */}
+        { renderHistories() }
       </React.Fragment>
     )
   }
