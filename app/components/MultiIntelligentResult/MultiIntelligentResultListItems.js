@@ -14,7 +14,7 @@ const MultiIntelligentResultListItems = ({navigation}) => {
     return intelligenceTypes.map((item, index) => {
       return (
         <View key={index}>
-          <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate('IntelligenceDetailScreen', {shortcut: item.shortcut})}>
+          <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate('IntelligentDetailScreen', {shortcut: item.shortcut})}>
             <Text style={{fontSize: FontSetting.text, flex: 1, paddingRight: 16}} numberOfLines={1}>{item.label}</Text>
 
             <View style={{flexDirection: 'row', alignItems: 'center'}}>
