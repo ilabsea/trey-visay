@@ -32,13 +32,9 @@ export default class IntelligentQuiz {
   }
 
   static delete = (uuid) => {
-    const item = this.findByUuid(MODEL, uuid);
-
-    if (!!item) {
-      realm.write(() => {
-        realm.delete(item);
-      });
-    }
+    const item = this.findByUuid(uuid);
+    if (!!item)
+      realm.delete(item);
   }
 
   static write = (callback) => {

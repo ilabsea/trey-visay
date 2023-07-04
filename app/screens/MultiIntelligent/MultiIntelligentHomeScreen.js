@@ -62,7 +62,7 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
             </View>
           </Body>
         </CardItem>
-        { renderHistories() }
+        { quizzes.length > 0 && renderHistories() }
       </React.Fragment>
     )
   }

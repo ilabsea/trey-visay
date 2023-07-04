@@ -34,7 +34,7 @@ export default MultiIntelligentQuestionnaireScreen = ({route, navigation}) => {
 
         // Todo: send API to upload the intellgent quiz
 
-        dispatch(setCurrentQuiz(currentQuiz));
+        dispatch(setCurrentQuiz(null))
         dispatch(resetAnswer());
       });
       return navigation.navigate('MultiIntelligentResultScreen');
