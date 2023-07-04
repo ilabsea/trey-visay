@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
@@ -6,11 +6,10 @@ import { Colors } from '../../../assets/style_sheets/main/colors';
 import {Text} from '../../../components';
 
 const FilterButton = (props) => {
-  let active = props.selectedItem == props.item;
-  let activeIconBg = active ? { backgroundColor: Colors.blue }: { backgroundColor: Colors.gray };
-  let activeText = active ? { color: Colors.blue }: '';
+  let activeIconBg = props.isSelected ? { backgroundColor: Colors.blue }: { backgroundColor: Colors.gray };
+  let activeText = props.isSelected ? { color: Colors.blue }: '';
 
-  return <TouchableOpacity style={[styles.btn, props.style]} onPress={() => props.updateSelectedItem(props.selectedItem == props.item ? '' : props.item)}>
+  return <TouchableOpacity style={[styles.btn, props.style]} onPress={() => props.updateSelectedItem(props.isSelected ? '' : props.item)}>
             <View style={[styles.iconWrapper, activeIconBg]}>
               <Image
                 source={require("../../../assets/icons/school/major.png")}
@@ -48,4 +47,10 @@ const styles = StyleSheet.create({
   }
 })
 
-export default FilterButton;
+// This function checks if the old props are equal to the new props, this component will not re-render
+const areEqual = (oldProps, newProps) => {
+  const isSelectedEqual = newProps.isSelected === oldProps.isSelected;    // if the isSelected props is not changed, the component will not re-render
+  return isSelectedEqual;
+};
+
+export default memo(FilterButton, areEqual);

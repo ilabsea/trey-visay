@@ -19,9 +19,9 @@ const  FilterCategoryButtons = (props) => {
                   key={`category-${type}`}
                   item={type}
                   label={categories[type]}
-                  selectedItem={props.selectedCategory}
+                  isSelected={props.selectedCategory == type}
                   style={{flexBasis: '50%'}}
-                  updateSelectedItem={(item) => props.updateSelectedCategory(item)}
+                  updateSelectedItem={() => props.updateSelectedCategory(props.selectedCategory ? '' : type)}
                 />)
     }
     return doms
