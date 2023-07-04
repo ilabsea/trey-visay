@@ -8,7 +8,8 @@ import { Body, CardItem } from 'native-base';
 import ButtonList from '../../components/list/button_list';
 import Text from '../../components/Text';
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
-import { StartQuizButton, ResumeQuizButton}  from './components';
+import { ResumeQuizButton}  from './components';
+import StartQuizButton from '../../components/shared/StartQuizButton';
 import QuizListItem from './components/QuizListItem';
 import useAuth from "../../auth/useAuth";
 import Quiz from '../../models/Quiz';
@@ -65,7 +66,7 @@ const HollandHomeScreen = ({route, navigation}) => {
             <Text>ការធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព</Text>
 
             <View style={{width: '100%'}}>
-              <StartQuizButton />
+              <StartQuizButton type='hollandTest' />
               <ResumeQuizButton />
 
               { false &&
