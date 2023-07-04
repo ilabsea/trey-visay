@@ -1,19 +1,23 @@
 import React from 'react'
 import { Animated, View } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
+import { useSelector, useDispatch } from 'react-redux';
 
 import MultiIntelligentNavHeader from '../../components/MultiIntelligent/MultiIntelligentNavHeader';
 import QuestionItem from '../../components/MultiIntelligent/QuestionItem';
 import { Form, SubmitButton } from '../../components/forms';
 import Text from '../../components/Text'
-import { getQuestions, getForm, getHollandScore } from '../../services/intelligent_question_service';
+import { getForm, getMultiIntelligentQuestions } from '../../services/question_service';
 import {getStyleOfOS} from '../../utils/responsive_util';
 
 const initialValues = {"A_01": "", "C_01": "", "E_01": "", "I_01": "", "R_01": "", "S_01": ""}
 
-export default MultiINtelligentQuestionnaireScreen = ({route, navigation}) => {
+export default MultiIntelligentQuestionnaireScreen = ({route, navigation}) => {
+  const currentIntelligentResponse = useSelector((state) => state.currentQuiz.value)
+
   const scrollY = React.useRef(new Animated.Value(0));
-  const { questions, isPageEnd, page } = getQuestions(route.params?.page);
+  const { questions, isPageEnd, page } = getMultiIntelligentQuestions(route.params?.page);
+  // const { validationSchema, initialValues } = getForm(questions, currentIntelligentResponse);
 
   const handleSubmit = (values, {errors}) => {
     if (isPageEnd) {

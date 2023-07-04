@@ -1,13 +1,14 @@
-import list_questions from '../json/list_questions';
-import paginate from '../../../utils/paginate_util';
+import hollandQuestions from '../screens/HollandTest/json/list_questions';
+import intelligentQuestions from '../data/json/intelligent_questions.json';
+import paginate from '../utils/paginate_util';
 import * as Yup from "yup";
 
-export const getQuestions = (page=1) => {
-  const pageSize = 6;
-  const questions = paginate(list_questions, pageSize, page);
-  const isPageEnd = page * pageSize >= list_questions.length;
+export const getHollandQuestions = (page = 1) => {
+  return getQuestions(hollandQuestions, 6, page);
+}
 
-  return { questions, isPageEnd, page };
+export const getMultiIntelligentQuestions = (page = 1) => {
+  return getQuestions(intelligentQuestions, 7, page);
 }
 
 export const getForm = (questions, responses) => {
@@ -25,6 +26,13 @@ export const getForm = (questions, responses) => {
   }
 
   return { validationSchema, initialValues }
+}
+
+const getQuestions = (listQuestions, pageSize, page = 1) => {
+  const questions = paginate(listQuestions, pageSize, page);
+  const isPageEnd = page * pageSize >= listQuestions.length;
+
+  return { questions, isPageEnd, page };
 }
 
 export const getHollandScore = (values) => {
