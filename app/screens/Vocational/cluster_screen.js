@@ -55,13 +55,13 @@ export default class CareerClusterScreen extends Component {
         <ButtonList hasLine={false} title={cluster.name}
           onPress={() => {
             this.props.navigation.navigate('CareerIndexScreen', {
-              cluster_id: cluster.id,
+              cluster_code: cluster.code,
               code: cluster.code,
               title: cluster.name,
             })
           }}
         />
-        <CarouselItem data={Job.findAllByJobCluster(cluster.id)} renderItem={({item, index}) => this.renderItem(item, index)}/>
+        <CarouselItem data={Job.findAllByJobCluster(cluster.code)} renderItem={({item, index}) => this.renderItem(item, index)}/>
       </View>
     )
   }

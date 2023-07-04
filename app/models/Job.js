@@ -21,8 +21,8 @@ export default class Job {
     return BaseModel.getAll(MODEL)
   }
 
-  static findAllByJobCluster = (jobClusterId) => {
-    return [...BaseModel.findByAttr(MODEL, { job_cluster_id: `'${jobClusterId}'` })]
+  static findAllByJobCluster = (jobClusterCode) => {
+    return [...BaseModel.findByAttr(MODEL, { job_cluster_code: `'${jobClusterCode}'` })]
   }
 
   static findById = (id) => {
@@ -80,7 +80,9 @@ export default class Job {
   }
 
   static getFormattedData(job) {
-    const {logo, videos, schools, name_km, name_en, ...data} = job
-    return {...data, uuid: uuidv4(), logo: job.logo.url, video_ids: this.getFomattedVideoIds(videos), school_ids: this.getFomattedSchoolIds(schools)}
+    const {logo, videos, schools, job_cluster, name_km, name_en, ...data} = job
+    return {...data, uuid: uuidv4(), logo: job.logo.url, video_ids: this.getFomattedVideoIds(videos), school_ids: this.getFomattedSchoolIds(schools),
+            job_cluster_id: job_cluster.id || null, job_cluster_code: job_cluster.code || null, job_cluster_name: job_cluster.name || null
+           }
   }
 }

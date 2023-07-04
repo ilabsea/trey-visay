@@ -16,6 +16,7 @@ Job.schema = {
     personality_type: 'string?',
     job_cluster_name: 'string?',
     job_cluster_id: 'string?',
+    job_cluster_code: 'string?',
     general_description: 'string?',
     jd_main_task: 'string?',
     jd_environment: 'string?',
