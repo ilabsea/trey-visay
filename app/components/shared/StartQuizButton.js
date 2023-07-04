@@ -19,7 +19,7 @@ const StartQuizButton = ({type}) => {
 
   const goToNewProfile = () => {
     hideDialog();
-    navigation.navigate('ProfileFormScreen');
+    navigation.navigate('ProfileFormScreen', {type: type});
   }
 
   const resumeWithCurrentUser = () => {

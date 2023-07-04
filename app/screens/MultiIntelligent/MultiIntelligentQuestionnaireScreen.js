@@ -7,20 +7,36 @@ import MultiIntelligentNavHeader from '../../components/MultiIntelligent/MultiIn
 import QuestionItem from '../../components/MultiIntelligent/QuestionItem';
 import { Form, SubmitButton } from '../../components/forms';
 import Text from '../../components/Text'
-import { getForm, getMultiIntelligentQuestions } from '../../services/question_service';
+import { getForm, getMultiIntelligentQuestions, getIntelligentScore } from '../../services/question_service';
 import {getStyleOfOS} from '../../utils/responsive_util';
-
-const initialValues = {"A_01": "", "C_01": "", "E_01": "", "I_01": "", "R_01": "", "S_01": ""}
+import IntelligentQuiz from '../../models/IntelligentQuiz';
+import {appendAnswer, resetAnswer} from '../../redux/features/quiz/intelligentSlice';
+import {setCurrentQuiz} from '../../redux/features/quiz/intelligentQuizSlice';
 
 export default MultiIntelligentQuestionnaireScreen = ({route, navigation}) => {
-  const currentIntelligentResponse = useSelector((state) => state.currentIntelligentQuiz.value)
+  const currentIntelligentResponse = useSelector((state) => state.currentIntelligent.value);
+  const currentQuiz = useSelector((state) => state.currentIntelligentQuiz.value);
+  const dispatch = useDispatch();
 
   const scrollY = React.useRef(new Animated.Value(0));
   const { questions, isPageEnd, page } = getMultiIntelligentQuestions(route.params?.page);
   const { validationSchema, initialValues } = getForm(questions, currentIntelligentResponse);
 
   const handleSubmit = (values, {errors}) => {
+    dispatch(appendAnswer(values));
+
     if (isPageEnd) {
+      const response = {...currentIntelligentResponse, ...values}
+      IntelligentQuiz.write(() => {
+        currentQuiz.response = response;
+        currentQuiz.score = getIntelligentScore(response);
+        currentQuiz.isDone = true;
+
+        // Todo: send API to upload the intellgent quiz
+
+        dispatch(setCurrentQuiz(currentQuiz));
+        dispatch(resetAnswer());
+      });
       return navigation.navigate('MultiIntelligentResultScreen');
     }
     navigation.push('MultiIntelligentQuestionnaireScreen', {page: page + 1});

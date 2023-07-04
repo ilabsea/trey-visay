@@ -56,3 +56,25 @@ export const getHollandScore = (values) => {
 
   return hash;
 }
+
+export const getIntelligentScore = (values) => {
+  const columns = ['L', 'LM', 'BK', 'M', 'SV', 'IEP', 'IAP'];
+
+  const sumValue = (values, code) => {
+    let total = 0;
+
+    for(i=0; i<5; i++) {
+      total += values[`${code}_0${i+1}`] || 0;
+    }
+
+    return total;
+  }
+
+  const hash = {};
+
+  for(let i=0; i<columns.length; i++) {
+    hash[columns[i]] = sumValue(values, columns[i]);
+  }
+
+  return hash;
+}
