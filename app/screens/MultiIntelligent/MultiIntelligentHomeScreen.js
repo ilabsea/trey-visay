@@ -1,11 +1,12 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Body, CardItem } from 'native-base';
 
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
 import AppButton from '../../components/shared/button';
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
-import { Body, CardItem } from 'native-base';
+import StartQuizButton from '../../components/shared/StartQuizButton';
 import ButtonList from '../../components/list/button_list';
 import Text from '../../components/Text';
 import QuizListItem from '../HollandTest/components/QuizListItem';
@@ -49,7 +50,7 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
   }
 
   const renderButton = () => {
-    return <AppButton style={styles.button} onPress={() => navigation.navigate('IntelligentProfileScreen')}>
+    return <AppButton style={styles.button} onPress={() => navigation.navigate('ProfileFormScreen')}>
               <Text style={styles.btnText}>ធ្វើតេស្តថ្មី</Text>
            </AppButton>
   }
@@ -64,7 +65,8 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
             <Text>តេស្តភាពឆ្លាតវៃ</Text>
 
             <View style={{width: '100%'}}>
-              {renderButton()}
+              <StartQuizButton type='intelligentTest' />
+              {/* {renderButton()} */}
             </View>
           </Body>
         </CardItem>
