@@ -12,11 +12,18 @@ import {hollandTestResultOptionsSnapPoints} from '../../constants/modal_constant
 import {getStyleOfOS} from '../../utils/responsive_util';
 import { useSelector } from 'react-redux';
 
+import Quiz from '../../models/Quiz';
+
 const HollandTestResult = ({navigation}) => {
   const currentQuiz = useSelector((state) => state.currentQuiz.value);
   const modalRef = React.useRef();
   const title = "តេស្តបុគ្គលិកលក្ខណៈ"
   let backHandler = null
+
+  const quiz = Quiz.getAll()[0];
+  console.log('+ Quiz holland response = ', quiz)
+  // console.log('+ Quiz holland score = ', quiz.hollandResponse)
+  // console.log('+ Quiz server id  = ', quiz.serverId)
 
   useFocusEffect(
     React.useCallback(() => {
