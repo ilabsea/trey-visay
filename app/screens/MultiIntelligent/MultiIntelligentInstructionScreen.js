@@ -1,43 +1,27 @@
 import React from 'react'
 import { View, Image, BackHandler } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Color from '../../themes/color';
 import { Text, FooterBar } from '../../components';
 import images from '../../assets/images';
 import ScrollableHeader from '../../components/scrollable_header';
 import ConfirmationModal from '../../components/shared/ConfirmationModal';
-
-const ratings = [
-  {
-    "name": "មិនឯកភាពទាំងស្រុង",
-    "icon": "very_dislike",
-    "value": 1
-  },
-  {
-    "name": "មិនឯកភាព",
-    "icon": "dislike",
-    "value": 2
-  },
-  {
-    "name": "ឯកភាព",
-    "icon": "like",
-    "value": 3
-  },
-  {
-    "name": "ឯកភាពទាំងស្រុង",
-    "icon": "very_like",
-    "value": 4
-  }
-]
+import {ratings} from '../../constants/intelligent_test_constant';
+import { resetAnswer } from '../../redux/features/quiz/intelligentSlice';
+import {setCurrentQuiz} from '../../redux/features/quiz/intelligentQuizSlice';
+import IntelligentQuiz from '../../models/IntelligentQuiz';
 
 const MultiIntelligentInstructionScreen = ({route, navigation}) => {
+  const currentIntelligentQuiz = useSelector((state) => state.currentIntelligentQuiz.value);
+  const dispatch = useDispatch();
   const [modalVisible, setModalVisible] = React.useState(false);
   let backHandler = null
   useFocusEffect(
     React.useCallback(() => {
       backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-        navigation.popToTop()
+        onPressBack();
         return true;
       })
       return () => !!backHandler && backHandler.remove()
@@ -71,6 +55,17 @@ const MultiIntelligentInstructionScreen = ({route, navigation}) => {
     )
   }
 
+  const onPressBack = () => {
+    if (!!currentIntelligentQuiz) {
+      IntelligentQuiz.write(() => {
+        IntelligentQuiz.delete(currentIntelligentQuiz.uuid);
+      })
+    }
+    dispatch(setCurrentQuiz(null))
+    dispatch(resetAnswer());
+    navigation.popToTop();
+  }
+
   return (
     <View style={{flex: 1, backgroundColor: 'white'}}>
       <ScrollableHeader
@@ -79,7 +74,7 @@ const MultiIntelligentInstructionScreen = ({route, navigation}) => {
         statusBarColor={Color.blueStatusBar}
         barStyle={'light-content'}
         renderContent={ renderContent }
-        onPressBack={() => navigation.popToTop()}
+        onPressBack={() => onPressBack()}
         title={'តេស្តពហុបញ្ញា'}
         largeTitle={'តេស្តពហុបញ្ញា'}
         buttonColor={Color.whiteColor}

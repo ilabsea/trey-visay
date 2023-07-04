@@ -7,15 +7,16 @@ import MultiIntelligentResultBarChart from '../../components/MultiIntelligentRes
 import MultiIntelligentResultListItems from '../../components/MultiIntelligentResult/MultiIntelligentResultListItems';
 import {screenHorizontalPadding} from '../../constants/component_constant';
 import {getStyleOfOS} from '../../utils/responsive_util';
+import { reset } from '../../hooks/RootNavigation';
 
 const MultiIntelligentResultScreen = ({navigation, route}) => {
-  const title = route.params.order ? `លទ្ធផលតេស្តលើកទី ${route.params.order}` : "លទ្ធផលតេស្តពហុបញ្ញា"
+  const title = !!route.params && !!route.params.order ? `លទ្ធផលតេស្តលើកទី ${route.params.order}` : "លទ្ធផលតេស្តពហុបញ្ញា"
   let backHandler = null
 
   useFocusEffect(
     React.useCallback(() => {
       backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-        navigation.popToTop()
+        reset({routeName: 'MultiIntelligentNavigator'})
         return true;
       })
       return () => !!backHandler && backHandler.remove()
@@ -42,7 +43,7 @@ const MultiIntelligentResultScreen = ({navigation, route}) => {
         renderContent={ renderContent }
         title={title}
         largeTitle={title}
-        onPressBack={() => navigation.popToTop()}
+        onPressBack={() => reset({routeName: 'MultiIntelligentNavigator'})}
       />
       <FooterBar icon='keyboard-arrow-right' text='ការផ្តល់អនុសាសន៍' onPress={() => navigation.navigate('MultiIntelligentRecommendationScreen')} />
     </View>

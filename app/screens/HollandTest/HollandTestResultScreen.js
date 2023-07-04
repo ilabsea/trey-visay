@@ -20,11 +20,6 @@ const HollandTestResult = ({navigation}) => {
   const title = "តេស្តបុគ្គលិកលក្ខណៈ"
   let backHandler = null
 
-  const quiz = Quiz.getAll()[0];
-  console.log('+ Quiz holland response = ', quiz)
-  // console.log('+ Quiz holland score = ', quiz.hollandResponse)
-  // console.log('+ Quiz server id  = ', quiz.serverId)
-
   useFocusEffect(
     React.useCallback(() => {
       backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
