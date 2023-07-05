@@ -26,7 +26,8 @@ const validationSchema = Yup.object().shape({
   }),
   provinceCode: Yup.string().when("grade", requireGrade),
   districtCode: Yup.string().when("grade", requireGrade),
-  highSchoolCode: Yup.string().when("grade", requireGrade)
+  highSchoolCode: Yup.string().when("grade", requireGrade),
+  otherOccupation: Yup.string().when("grade", {is: (grade) => grade == 'other', then: (schema) => schema.required("មិនអាចទទេបានទេ")})
 });
 
 const FormScreen = ({onSubmit}) => {
@@ -85,7 +86,8 @@ const FormScreen = ({onSubmit}) => {
     classGroup: '',
     provinceCode: '',
     districtCode: '',
-    highSchoolCode: ''
+    highSchoolCode: '',
+    otherOccupation: '',
   }
 
   const renderContent = (values) => {

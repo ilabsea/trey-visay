@@ -1,5 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
+import { useFormikContext } from "formik";
 
 import styles from '../../../assets/style_sheets/profile_form';
 import CustomBottomSheetPicker from '../../../components/shared/CustomBottomSheetPicker';
@@ -10,9 +11,11 @@ import provinces from '../../../data/json/address/provinces.json';
 import districts from '../../../data/json/address/districts.json';
 import highSchools from '../../../data/json/address/highSchools.json';
 import profileFormHelper from '../../../helpers/profile_form_helper';
+import {occupations} from '../../../constants/profile_constant';
 
 const FormPickers = (props) => {
-  const renderBottomSheetPicker = (title, placeholder, bottomSheetTitle, name, items, selectedFieldName = null) => {
+  const { setFieldValue } = useFormikContext();
+  const renderBottomSheetPicker = (title, placeholder, bottomSheetTitle, name, items, selectedFieldName = null, onSelectItem = null) => {
     return <View style={[styles.formGroup, {marginTop: 12}]}>
               <CustomBottomSheetPicker
                 title={title}
@@ -25,6 +28,7 @@ const FormPickers = (props) => {
                 disabled={items.length == 0}
                 snapPoints={profileFormHelper.getPickerDimension(name).snapPoints}
                 contentHeight={profileFormHelper.getPickerDimension(name).contentHeight}
+                onSelectItem={onSelectItem}
               />
            </View>
   }
@@ -37,11 +41,21 @@ const FormPickers = (props) => {
     return !!props.values.grade && props.values.grade != 'other'
   }
 
+  const renderGradePicker = () => {
+    return renderBottomSheetPicker('ជាសិស្សថ្នាក់ទី', 'សូមជ្រើសរើសថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'ជ្រើសរើសថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'grade', grades, 'value', (value) => {
+      if (value != 'other')
+        return setFieldValue('otherOccupation', '');
+
+      ['classGroup', 'provinceCode', 'districtCode', 'highSchoolCode'].map(fieldName => {
+        setFieldValue(fieldName, '');
+      })
+    })
+  }
+
   return (
     <React.Fragment>
-      {renderBottomSheetPicker('ជាសិស្សថ្នាក់ទី', 'សូមជ្រើសរើសថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'ជ្រើសរើសថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'grade', grades, 'value')}
-
-      {/* {values.grade == 'other' && renderOccupation()} */}
+      {renderGradePicker()}
+      {props.values.grade == 'other' && renderBottomSheetPicker('មុខរបរ', 'សូមជ្រើសរើសមុខរបររបស់ប្អូន', 'ជ្រើសរើសមុខរបររបស់ប្អូន', 'otherOccupation', occupations, 'value')}
 
       { isGradeSelected() &&
           <View>
