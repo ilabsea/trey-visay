@@ -25,13 +25,13 @@ const Question3 = (props) => {
         style={[{fontSize: FontSetting.small_text}, isDisabled() && {backgroundColor: Color.disabledCardColor}]}
         outlineColor={Color.borderColor}
         outlineStyle={{borderWidth: 0.5, borderRadius: inputBoxBorderRadius}}
-        value={ values[props.name] }
-        onChangeText={ handleChange(props.name) }
-        onBlur={() => setFieldTouched(props.name)}
+        value={ values[props.code] }
+        onChangeText={ handleChange(props.code) }
+        onBlur={() => setFieldTouched(props.code)}
         disabled={ isDisabled() }
       />
 
-      <ErrorMessage error={errors[props.name]} visible={touched[props.name]} />
+      <ErrorMessage error={errors[props.code]} visible={touched[props.code]} />
     </View>
   )
 }

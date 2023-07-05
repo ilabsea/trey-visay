@@ -6,9 +6,9 @@ import { View } from 'react-native';
 import Color from '../../themes/color';
 import {pressableItemSize} from '../../constants/component_constant';
 
-const CheckboxGroup = ({name, options}) => {
+const CheckboxGroup = ({code, options}) => {
   const { setFieldTouched, handleChange, errors, touched, setFieldValue, values } = useFormikContext();
-  const selectedValues = values[name] || [];
+  const selectedValues = values[code] || [];
 
   const toggleSelectedValues = (isChecked, value) => {
     let newSelected;
@@ -26,7 +26,7 @@ const CheckboxGroup = ({name, options}) => {
   const onPress = (isChecked, value) => {
     let newSelected = toggleSelectedValues(isChecked, value);
 
-    setFieldValue(name, newSelected);
+    setFieldValue(code, newSelected);
   };
 
   return (
@@ -45,7 +45,7 @@ const CheckboxGroup = ({name, options}) => {
         ))
       }
 
-      <ErrorMessage error={errors[name]} visible={touched[name]} />
+      <ErrorMessage error={errors[code]} visible={touched[code]} />
     </View>
   );
 };

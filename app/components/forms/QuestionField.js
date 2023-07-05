@@ -15,13 +15,13 @@ export default FormFieldComponent = ({question}) => {
   const renderFormField = () => {
     switch (question.type) {
       case SELECT_ONE:
-        return <RadioGroup name={question.code} {...question} />
+        return <RadioGroup {...question} />
         break;
       case SELECT_MULTIPLE:
-        return <CheckboxGroup name={question.code} {...question} />
+        return <CheckboxGroup {...question} />
         break;
       case TEXT:
-        return <TextInput name={question.code} {...question} />
+        return <TextInput {...question} />
         break;
     }
   }
@@ -29,7 +29,7 @@ export default FormFieldComponent = ({question}) => {
   const renderQuestion = () => {
     return (
       <View key={uuidv4()}>
-        <Text>{question.question}</Text>
+        <Text>{question.name}</Text>
 
         <Divider style={{marginVertical: 8}} />
 

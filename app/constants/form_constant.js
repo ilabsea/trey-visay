@@ -1,3 +1,3 @@
-export const SELECT_ONE = "SelectOne";
-export const SELECT_MULTIPLE = "SelectMultiple";
-export const TEXT = "Text";
+export const SELECT_ONE = "Fields::SelectoneField";
+export const SELECT_MULTIPLE = "Fields::SelectMultipleField";
+export const TEXT = "Fields::TextInputField";

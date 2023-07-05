@@ -12,20 +12,19 @@ const QuestionForm = (props) => {
     return (
       <View key={`question_${index}`}>
         <QuestionField question={question}/>
-
-        { question.sub_questions.map((sub_question, index) => (
-            <View style={{borderTopWidth: 0.5, borderColor: Color.gray, marginTop: 16, paddingTop: 8}} key={index}>
-              <QuestionField question={sub_question} />
-            </View>
-          ))
-        }
       </View>
     )
   }
 
+  const cardStyle = (isRelevant) => {
+    if (!isRelevant) return  {marginTop: 16}
+
+    return {borderTopLeftRadius: 0, borderTopRightRadius: 0, marginTop: -5}
+  }
+
   const renderQuestionCard = (question, index) => {
     return (
-      <Card style={{marginBottom: 16}} key={index}>
+      <Card style={cardStyle(question.relevant)} key={index}>
         <Card.Content>
           { renderQuestion(question)}
         </Card.Content>
@@ -35,7 +34,7 @@ const QuestionForm = (props) => {
 
   return (
     <View style={styles.scrollContainer}>
-      <Text style={{marginBottom: 8}}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
+      <Text style={{marginBottom: -8}}>ចូរបំពេញចម្លើយខាងក្រោម៖</Text>
       <View>{ questions.map((question, index) => renderQuestionCard(question, index)) }</View>
     </View>
   )

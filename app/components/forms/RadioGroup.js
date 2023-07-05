@@ -12,10 +12,10 @@ import ErrorMessage from './ErrorMessage';
 import Color from '../../themes/color';
 import {pressableItemSize} from '../../constants/component_constant';
 
-const RadioGroup = ({name, options, disabled}) => {
+const RadioGroup = ({code, options, disabled}) => {
   const { setFieldValue, values, errors, touched } = useFormikContext();
 
-  const value = values[name];
+  const value = values[code];
   const getTextStyle = disabled ? {color: '#ccc'} : {};
 
   const buttonGroups = () => (
@@ -43,7 +43,7 @@ const RadioGroup = ({name, options, disabled}) => {
       return;
     }
 
-    setFieldValue(name, newValue);
+    setFieldValue(code, newValue);
 
     // Callback
     // !!props.onValueChange && props.onValueChange(newValue);
@@ -52,7 +52,7 @@ const RadioGroup = ({name, options, disabled}) => {
   return (
     <RadioButton.Group onValueChange={onValueChange} value={value}>
       { buttonGroups() }
-      <ErrorMessage error={errors[name]} visible={touched[name]} />
+      <ErrorMessage error={errors[code]} visible={touched[code]} />
     </RadioButton.Group>
   )
 }
