@@ -19,6 +19,7 @@ User.schema = {
     districtCode: { type: 'string', optional: true },
     highSchoolCode: { type: 'string', optional: true },
     serverId: { type: 'int', optional: true },
-    createdAt: 'date'
+    createdAt: 'date',
+    other_occupation: 'string?'
   }
 }

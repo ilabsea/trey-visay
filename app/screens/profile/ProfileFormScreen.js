@@ -25,18 +25,20 @@ const ProfileFormScreen = ({navigation}) => {
   }, [])
 
   const handleSubmit = (values) => {
-    try {
-      User.write(() => {
-        let user = User.create(values);
-        SidekiqJob.create(user.uuid, 'uploadUser');
+    console.log('Profile values == ', values)
 
-        logIn(user);
+    // try {
+    //   User.write(() => {
+    //     let user = User.create(values);
+    //     SidekiqJob.create(user.uuid, 'uploadUser');
 
-        navigation.navigate('PersonalUnderstandingTestScreen');
-      })
-    } catch (e) {
-      console.log(e);
-    }
+    //     logIn(user);
+
+    //     navigation.navigate('PersonalUnderstandingTestScreen');
+    //   })
+    // } catch (e) {
+    //   console.log(e);
+    // }
   }
 
   return (
