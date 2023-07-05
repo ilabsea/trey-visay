@@ -20,6 +20,6 @@ User.schema = {
     highSchoolCode: { type: 'string', optional: true },
     serverId: { type: 'int', optional: true },
     createdAt: 'date',
-    other_occupation: 'string?'
+    otherGrade: 'string?'
   }
 }

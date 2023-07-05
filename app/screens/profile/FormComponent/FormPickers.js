@@ -11,7 +11,7 @@ import provinces from '../../../data/json/address/provinces.json';
 import districts from '../../../data/json/address/districts.json';
 import highSchools from '../../../data/json/address/highSchools.json';
 import profileFormHelper from '../../../helpers/profile_form_helper';
-import {occupations} from '../../../constants/profile_constant';
+import {otherGrades} from '../../../constants/profile_constant';
 
 const FormPickers = (props) => {
   const { setFieldValue } = useFormikContext();
@@ -44,7 +44,7 @@ const FormPickers = (props) => {
   const renderGradePicker = () => {
     return renderBottomSheetPicker('ជាសិស្សថ្នាក់ទី', 'សូមជ្រើសរើសថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'ជ្រើសរើសថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'grade', grades, 'value', (value) => {
       if (value != 'other')
-        return setFieldValue('otherOccupation', '');
+        return setFieldValue('otherGrade', '');
 
       ['classGroup', 'provinceCode', 'districtCode', 'highSchoolCode'].map(fieldName => {
         setFieldValue(fieldName, '');
@@ -55,7 +55,7 @@ const FormPickers = (props) => {
   return (
     <React.Fragment>
       {renderGradePicker()}
-      {props.values.grade == 'other' && renderBottomSheetPicker('មុខរបរ', 'សូមជ្រើសរើសមុខរបររបស់ប្អូន', 'ជ្រើសរើសមុខរបររបស់ប្អូន', 'otherOccupation', occupations, 'value')}
+      {props.values.grade == 'other' && renderBottomSheetPicker('មុខរបរ', 'សូមជ្រើសរើសមុខរបររបស់ប្អូន', 'ជ្រើសរើសមុខរបររបស់ប្អូន', 'otherGrade', otherGrades, 'value')}
 
       { isGradeSelected() &&
           <View>
