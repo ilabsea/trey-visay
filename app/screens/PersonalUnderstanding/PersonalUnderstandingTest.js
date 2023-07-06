@@ -27,7 +27,7 @@ const validationSchema = Yup.object().shape({
   })
 });
 
-const initialValue = { q1: '', q2: '', q3: '', q4: '', q4_1: '', q5: ''};
+const initialValue = { q1: '', q2: '', q3: '', q4: '', q4_1: '', q5: '', q5_1: ''};
 
 export default PersonalUnderstandingTest = ({navigation}) => {
   const { user } = useAuth();
@@ -51,6 +51,8 @@ export default PersonalUnderstandingTest = ({navigation}) => {
   }
 
   const handleSubmit = (values, {resetForm}) => {
+    // console.log('== personal understanding values = ', values)
+
     if (!!values && !Object.keys(values).length) {
       return toastRef.current?.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     }
@@ -72,8 +74,8 @@ export default PersonalUnderstandingTest = ({navigation}) => {
     <Form
       initialValues={ initialValue }
       validationSchema={ validationSchema }
-      onSubmit={ handleSubmit }>
-
+      onSubmit={ handleSubmit }
+    >
       <View style={{flex: 1}}>
         <ScrollableHeader
           backgroundColor={Color.blue}

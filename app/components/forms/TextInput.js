@@ -6,40 +6,37 @@ import { useFormikContext } from "formik";
 import ErrorMessage from './ErrorMessage';
 import {inputBoxBorderRadius} from '../../constants/component_constant';
 import Color from '../../themes/color';
+import FormCard from './FormCard';
+import personalUnderstandingHelper from '../../helpers/personal_understanding_helper';
 
-const Question3 = (props) => {
-  const getTextColor = props.disabled ? [styles.labelGroup, {color: '#ccc'}] : styles.labelGroup;
-  const { setFieldTouched, handleChange, errors, touched, setFieldValue, values } = useFormikContext();
-  const conditions = (props.condition || "").split('|');
+const Question3 = ({question}) => {
+  const { setFieldTouched, handleChange, errors, touched, values } = useFormikContext();
 
-  const isDisabled = () => {
-    return !!conditions && values[conditions[0]] != conditions[1];
+  if (!personalUnderstandingHelper.isQuestionVisible(question, values))
+    return;
+
+  const renderTextInput = () => {
+    const {code} = question;
+    return <View>
+              <TextInput
+                mode="outlined"
+                placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
+                placeholderTextColor={Color.grayColor}
+                style={[{fontSize: FontSetting.small_text}]}
+                outlineColor={Color.borderColor}
+                outlineStyle={{borderWidth: 0.5, borderRadius: inputBoxBorderRadius}}
+                value={ values[code] }
+                onChangeText={ handleChange(code) }
+                onBlur={() => setFieldTouched(code)}
+              />
+
+              <ErrorMessage error={errors[code]} visible={touched[code]} />
+            </View>
   }
 
-  return (
-    <View>
-      <TextInput
-        mode="outlined"
-        placeholder='ចុចទីនេះដើម្បីសរសេរចម្លើយ'
-        placeholderTextColor={Color.grayColor}
-        style={[{fontSize: FontSetting.small_text}, isDisabled() && {backgroundColor: Color.disabledCardColor}]}
-        outlineColor={Color.borderColor}
-        outlineStyle={{borderWidth: 0.5, borderRadius: inputBoxBorderRadius}}
-        value={ values[props.code] }
-        onChangeText={ handleChange(props.code) }
-        onBlur={() => setFieldTouched(props.code)}
-        disabled={ isDisabled() }
-      />
-
-      <ErrorMessage error={errors[props.code]} visible={touched[props.code]} />
-    </View>
-  )
+  return <FormCard question={question}>
+          {renderTextInput()}
+         </FormCard>
 }
-
-const styles = StyleSheet.create({
-  labelGroup: {
-    marginBottom: 10,
-  },
-})
 
 export default Question3;
