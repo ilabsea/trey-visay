@@ -10,13 +10,15 @@ import FormCard from './FormCard';
 import personalUnderstandingHelper from '../../helpers/personal_understanding_helper';
 
 const Question3 = ({question}) => {
+  const {code} = question;
   const { setFieldTouched, handleChange, errors, touched, values } = useFormikContext();
 
-  if (!personalUnderstandingHelper.isQuestionVisible(question, values))
+  if (!personalUnderstandingHelper.isQuestionVisible(question, values)) {
+    values[code] = '';
     return;
+  }
 
   const renderTextInput = () => {
-    const {code} = question;
     return <View>
               <TextInput
                 mode="outlined"

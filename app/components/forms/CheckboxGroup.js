@@ -52,8 +52,10 @@ const CheckboxGroup = ({question}) => {
           </View>
   }
 
-  if (!personalUnderstandingHelper.isQuestionVisible(question, values))
+  if (!personalUnderstandingHelper.isQuestionVisible(question, values)) {
+    values[code] = '';
     return;
+  }
 
   return <FormCard question={question}>
             {renderCheckboxes()}

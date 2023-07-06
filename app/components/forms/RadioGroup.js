@@ -52,8 +52,10 @@ const RadioGroup = ({question}) => {
     // !!props.onValueChange && props.onValueChange(newValue);
   }
 
-  if (!personalUnderstandingHelper.isQuestionVisible(question, values))
+  if (!personalUnderstandingHelper.isQuestionVisible(question, values)) {
+    values[code] = '';
     return;
+  }
 
   return (
     <FormCard question={question}>
