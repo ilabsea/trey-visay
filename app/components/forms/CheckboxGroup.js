@@ -28,7 +28,6 @@ const CheckboxGroup = ({question}) => {
 
   const onPress = (isChecked, value) => {
     let newSelected = toggleSelectedValues(isChecked, value);
-
     setFieldValue(code, newSelected);
   };
 
@@ -53,7 +52,7 @@ const CheckboxGroup = ({question}) => {
   }
 
   if (!personalUnderstandingHelper.isQuestionVisible(question, values)) {
-    values[code] = '';
+    values[code] = [];
     return;
   }
 
