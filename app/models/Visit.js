@@ -5,6 +5,10 @@ import realm from '../db/schema';
 const MODEL = 'Visit';
 
 export default class Visit {
+  static getAll = () => {
+    return [...BaseModel.getAll(MODEL)];
+  }
+
   static create = (params) => {
     BaseModel.create(MODEL, {...params, uuid: uuidv4(), visit_date: new Date()})
   }

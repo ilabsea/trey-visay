@@ -10,6 +10,7 @@ const HomeCategories = [
     firebase_event_name: keyword.CAREER_ASSESSMENT_VIEW,
     description: 'ធ្វើតេស្តផ្អែកលើ បុគ្គលិកលក្ខណៈដើម្បីជ្រើសរើសមុខរបរសមស្រប',
     display: "row_card",
+    visit_code: "holland"
   },
   {
     title: 'តេស្តភាពឆ្លាតវៃ',
@@ -21,6 +22,7 @@ const HomeCategories = [
     firebase_event_name: keyword.PERSONALITY_ASSESSMENT_VIEW,
     description: 'ចូលទៅកាន់បណ្តុំព័ត៌មានអាហារូបករណ៍',
     display: "row_card",
+    visit_code: "multi_intelligent"
   },
   {
     title: 'គ្រឹះស្ថានសិក្សា',
@@ -31,6 +33,7 @@ const HomeCategories = [
     firebase_event_name: keyword.INSTITUTION_VIEW,
     description: 'ព័ត៌មានអាស័យដ្ឋានទំនាក់ទំនង និងមុខវិជ្ជាសិក្សាក្រោយបញ្ចប់ថ្នាក់ទី១២',
     display: "tilted_card",
+    visit_code: "school"
   },
   {
     title: 'ប្រភេទការងារ',
@@ -41,6 +44,7 @@ const HomeCategories = [
     firebase_event_name: keyword.VOCATIONAL_VIEW,
     description: 'សំរាប់អ្នកគ្មានលទ្ធភាពបន្តការសិក្សា បរិញ្ញាប័ត្រ អ្នកអាចរៀនជំនាញវិជ្ជាជីវៈ រយៈពេលខ្លី',
     display: "tilted_card",
+    visit_code: "job"
   },
   {
     title: 'វីដេអូមុខរបរ',
@@ -51,6 +55,7 @@ const HomeCategories = [
     firebase_event_name: keyword.VIDEO_VIEW,
     description: 'យល់ដឹងអំពីមុខរបរនិងអាជីពតាមរយៈ វីដេអូ',
     display: "tilted_card",
+    visit_code: "video"
   },
   {
     title: 'មជ្ឈមណ្ឌលការងារ',
@@ -61,6 +66,7 @@ const HomeCategories = [
     firebase_event_name: keyword.CAREER_CENTER,
     description: 'យល់ដឹងអំពីការងារ កម្លាំងពលកម្ម និងព័ត៌មានទីផ្សារការងារ',
     display: "tilted_card",
+    visit_code: "career_website"
   },
 ]
 

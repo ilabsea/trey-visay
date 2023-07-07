@@ -9,7 +9,7 @@ Visit.schema = {
   primaryKey: 'uuid',
   properties: {
     uuid: 'string',
-    user_id: 'string?',
+    user_id: 'int?',
     visit_date: 'date',
     name: 'string',
     code: 'string',

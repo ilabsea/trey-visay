@@ -5,6 +5,7 @@ import home_categories from '../../components/home/home_categories';
 import HomeNavigationHeader from '../../components/home/HomeNavigationHeader'
 import { View } from 'react-native';
 import SidekiqService from '../../services/SidekiqService';
+import visitService from '../../services/visit_service';
 
 const HomeScreen = ({navigation}) => {
   useEffect(() => {
@@ -17,6 +18,7 @@ const HomeScreen = ({navigation}) => {
 
   const onPress = (item) => {
     // firebase.analytics().logEvent(item.firebase_event_name);
+    visitService.recordVisitPage(item.visit_code, item.title);
     navigation.navigate(item.url);
   }
 

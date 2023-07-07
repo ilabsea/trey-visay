@@ -6,6 +6,7 @@ import mainStyles from '../../assets/style_sheets/main/main';
 import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader'
 import CardItem from '../../components/list/card_item';
 import Job from '../../models/Job';
+import visitService from '../../services/visit_service';
 
 export default class CareerIndexScreen extends Component {
 
@@ -15,6 +16,11 @@ export default class CareerIndexScreen extends Component {
     this.state = {
       careers: Job.findAllByJobCluster(props.route.params.cluster_code)
     }
+  }
+
+  viewJobDetail(career) {
+    visitService.recordVisitDetailScreen('job', career.id)
+    this.props.navigation.navigate('CareerDetailScreen', {career_id: career.id})
   }
 
   renderCareer(career, i) {
@@ -27,7 +33,7 @@ export default class CareerIndexScreen extends Component {
           image={career.logo}
           width={'42%'}
           height={'20%'}
-          onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career_id: career.id})}/>
+          onPress={() => this.viewJobDetail(career)}/>
       </View>
     )
   }
