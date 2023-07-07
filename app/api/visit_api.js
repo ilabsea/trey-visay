@@ -2,11 +2,8 @@ import Visit from '../models/Visit';
 import client from "./client";
 
 export const uploadVisit = (visitUuid) => {
-  console.log('== All visit = ', Visit.getAll())
-
   const visit = Visit.findByUuid(visitUuid);
-
-  console.log('**** Visit API = ', visit)
+  if (!visit) return;
 
   const data = {
     visit: {
@@ -22,16 +19,14 @@ export const uploadVisit = (visitUuid) => {
     }
   };
 
-  console.log('== updated visit data = ', data)
-
-  client.post('/visits', data).then((res) => {
-    if (res.ok) {
-      console.log('== upload visit success = ', res);
-      // Todo: remove the uploaded visit
-    }
-    else {
-      console.log('== upload visit failed = ', res);
-
-    }
+  return new Promise((resolve, reject) => {
+    client.post('/visits', data).then((res) => {
+      if (res.ok) {
+        Visit.delete(visitUuid);       // delete the visit from realm after submit server successfully
+        resolve(res);
+      }
+      else
+        reject(res);
+    });
   });
 }
