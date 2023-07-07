@@ -1,5 +1,7 @@
 import authStorage from "../auth/storage";
 import Visit from '../models/Visit';
+import SidekiqJob from '../models/SidekiqJob';
+import uuidv4 from '../utils/uuidv4';
 
 const detailTypes = {
   school: { pageable_type: 'School', code: 'school_detail', parent_code: 'school', name: 'school detail' },
@@ -25,6 +27,7 @@ const visitService = (() => {
   async function _saveVisit(params) {
     const user = await authStorage.getUser();
     const data = {
+      uuid: uuidv4(),
       name: params.name,
       code: params.code,
       parent_code: params.parent_code || null,
@@ -32,8 +35,10 @@ const visitService = (() => {
       pageable_type: params.pageable_type,
       user_id: (!!user && user.serverId) ? user.serverId : null
     }
-    console.log('Visit data = ', data)
-    Visit.create(data);
+    Visit.write(() => {
+      Visit.create(data);
+      SidekiqJob.create(data.uuid, 'uploadVisit');
+    });
   }
 })();
 
