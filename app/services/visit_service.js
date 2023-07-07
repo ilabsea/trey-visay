@@ -13,18 +13,29 @@ const visitService = (() => {
   return {
     recordVisitPage,
     recordVisitDetailScreen,
+    recordAppVisit,
   }
 
   function recordVisitPage(code, name, parentCode = null) {
-    _saveVisit({ pageable_type: "Page", code: code, name: name, parent_code: parentCode});
+    _saveAndSubmitToServer({ pageable_type: "Page", code: code, name: name, parent_code: parentCode});
   }
 
   function recordVisitDetailScreen(type, pageableId) {
-    _saveVisit({ ...detailTypes[type], pageable_id: pageableId });
+    _saveAndSubmitToServer({ ...detailTypes[type], pageable_id: pageableId });
+  }
+
+  function recordAppVisit() {
+    const data = {
+      code: 'app_visit',
+      name: 'App visit',
+      parent_code: null,
+      pageable_type: 'Page'
+    };
+    _saveAndSubmitToServer(data);
   }
 
   // private method
-  async function _saveVisit(params) {
+  async function _saveAndSubmitToServer(params) {
     const user = await authStorage.getUser();
     const data = {
       uuid: uuidv4(),
