@@ -4,10 +4,6 @@ import realm from '../db/schema';
 const MODEL = 'Visit';
 
 export default class Visit {
-  static getAll = () => {
-    return [...BaseModel.getAll(MODEL)];
-  }
-
   static findByUuid = (uuid) => {
     return BaseModel.findByUuid(MODEL, uuid)
   }

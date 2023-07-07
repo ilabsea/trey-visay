@@ -10,6 +10,7 @@ import Text from '../../components/Text';
 import CareerProfile from '../../components/careers/CareerProfile';
 
 import Job from '../../models/Job';
+import visitService from '../../services/visit_service';
 
 export default class ShowCategoryScreen extends Component {
   constructor(props){
@@ -19,6 +20,10 @@ export default class ShowCategoryScreen extends Component {
       career: Job.findById(props.route.params.career_id),
       videos: Job.getVideosById(props.route.params.career_id)
     };
+  }
+
+  componentDidMount() {
+    visitService.recordVisitDetailScreen('job', this.props.route.params.career_id)
   }
 
   _keyExtractor = (item, index) => index.toString();

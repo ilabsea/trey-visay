@@ -18,24 +18,18 @@ import { FontSetting } from '../../assets/style_sheets/font_setting';
 import {getStyleOfDevice, getStyleOfOS} from '../../utils/responsive_util';
 import {arrowRightIconSize} from '../../constants/component_constant';
 import DownloadedImage from '../../models/DownloadedImage';
-import visitService from '../../services/visit_service';
 
 class School extends Component {
   render() {
     const {school} = this.props
     const logo = DownloadedImage.getImagePath(school.logo)
 
-    const viewSchoolDetail = () => {
-      visitService.recordVisitDetailScreen('school', school.id)
-      this.props.navigation.navigate('InstitutionDetail', {school: school})
-    }
-
     return (
       <View>
         <TouchableOpacity
           style={[mainStyles.btnList, {alignItems: 'center', paddingVertical: getStyleOfDevice(18, 12)}]}
-          onPress={() => viewSchoolDetail()}
-        >
+          onPress={() => this.props.navigation.navigate('InstitutionDetail', {school: school})}
+          >
           <View style={styles.imageContainer}>
             <CustomImageComponent source={!!logo ? {uri: logo} : null} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
           </View>

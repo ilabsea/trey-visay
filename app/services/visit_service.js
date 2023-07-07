@@ -3,7 +3,7 @@ import Visit from '../models/Visit';
 import SidekiqJob from '../models/SidekiqJob';
 import uuidv4 from '../utils/uuidv4';
 
-const detailTypes = {
+const detailScreenAttrs = {
   school: { pageable_type: 'School', code: 'school_detail', parent_code: 'school', name: 'school detail' },
   job: { pageable_type: 'Job', code: 'job_detail', parent_code: 'job', name: 'job detail' },
   video: { pageable_type: 'Video', code: 'video_detail', parent_code: 'video', name: 'video detail' }
@@ -21,7 +21,7 @@ const visitService = (() => {
   }
 
   function recordVisitDetailScreen(type, pageableId) {
-    _saveAndSubmitToServer({ ...detailTypes[type], pageable_id: pageableId });
+    _saveAndSubmitToServer({ ...detailScreenAttrs[type], pageable_id: pageableId });
   }
 
   function recordAppVisit() {
