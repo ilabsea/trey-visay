@@ -34,9 +34,8 @@ const StartQuizButton = ({type}) => {
       return navigation.navigate('PersonalUnderstandingTestScreen');
 
     IntelligentQuiz.write(() => {
-      const intelligentQuiz = IntelligentQuiz.create({userUuid: user.uuid});
-      if (!!currentIntelligentQuiz)
-        IntelligentQuiz.delete(currentIntelligentQuiz.uuid);
+      const intelligentQuiz = IntelligentQuiz.create({userUuid: user.uuid, createdAt: new Date()});
+      if (!!currentIntelligentQuiz) IntelligentQuiz.delete(currentIntelligentQuiz.uuid);
 
       dispatch(setCurrentQuiz(intelligentQuiz));
       dispatch(resetAnswer());

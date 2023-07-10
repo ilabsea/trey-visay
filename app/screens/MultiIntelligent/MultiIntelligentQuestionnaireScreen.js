@@ -12,6 +12,7 @@ import {getStyleOfOS} from '../../utils/responsive_util';
 import IntelligentQuiz from '../../models/IntelligentQuiz';
 import {appendAnswer, resetAnswer} from '../../redux/features/quiz/intelligentSlice';
 import {setCurrentQuiz} from '../../redux/features/quiz/intelligentQuizSlice';
+import SidekiqJob from '../../models/SidekiqJob';
 
 export default MultiIntelligentQuestionnaireScreen = ({route, navigation}) => {
   const currentIntelligentResponse = useSelector((state) => state.currentIntelligent.value);
@@ -31,7 +32,8 @@ export default MultiIntelligentQuestionnaireScreen = ({route, navigation}) => {
         currentQuiz.intelligenceScore = getIntelligentScore(response);
         currentQuiz.intelligenceResponse = response;
         currentQuiz.finishedAt = new Date();
-        // Todo: send API to upload the intellgent quiz
+        SidekiqJob.create(currentQuiz.uuid, 'uploadIntelligenceQuiz');
+
         dispatch(setCurrentQuiz(null))
         dispatch(resetAnswer());
       });
