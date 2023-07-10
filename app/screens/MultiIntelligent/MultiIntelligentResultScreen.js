@@ -35,7 +35,7 @@ const MultiIntelligentResultScreen = ({navigation, route}) => {
             <Text style={{color: 'black', lineHeight: getStyleOfOS(30, 34)}}>ខាងក្រោមនេះ ជាលទ្ធផលតេស្ដរបស់អ្នក! សូមអ្នកឈ្វេងយល់ពីការពណ៌នាលម្អិតអំពី ទម្រង់បញ្ញារបស់អ្នកដូចខាងក្រោម៖</Text>
             <MultiIntelligentResultBarChart quiz={quiz}/>
           </View>
-          <MultiIntelligentResultListItems navigation={navigation} />
+          <MultiIntelligentResultListItems navigation={navigation} quiz={quiz} />
         </View>
       </TouchableWithoutFeedback>
     )

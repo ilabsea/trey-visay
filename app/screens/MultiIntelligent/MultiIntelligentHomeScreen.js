@@ -1,6 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Body, CardItem } from 'native-base';
+import { useDispatch } from 'react-redux';
 
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
@@ -11,8 +12,10 @@ import Text from '../../components/Text';
 import QuizListItem from '../HollandTest/components/QuizListItem';
 import useAuth from "../../auth/useAuth";
 import IntelligentQuiz from '../../models/IntelligentQuiz';
+import {setCurrentQuiz} from '../../redux/features/quiz/intelligentQuizSlice';
 
 const MultiIntelligentHomeScreen = ({route, navigation}) => {
+  const dispatch = useDispatch();
   const { user } = useAuth();
   const quizzes = !!user ? IntelligentQuiz.findAllByUser(user.uuid) : [];
 
@@ -29,6 +32,11 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
     )
   }
 
+  const viewDetail = (quizUuid, order) => {
+    dispatch(setCurrentQuiz(null))
+    navigation.navigate('MultiIntelligentResultScreen', {quizUuid, order})
+  }
+
   const renderHistories = () => {
     return (
       <View style={{padding: 16}}>
@@ -40,7 +48,7 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
               key={i}
               number={i + 1}
               quiz={quiz}
-              onPress={ () => navigation.navigate('MultiIntelligentResultScreen', {quizUuid: quiz.uuid, order: i+1}) }
+              onPress={ () => viewDetail(quiz.uuid, i+1) }
             />
           )
         )}

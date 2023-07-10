@@ -2,14 +2,15 @@ import React, {useState} from 'react';
 import { StyleSheet, View, processColor } from 'react-native';
 import { BarChart } from 'react-native-charts-wrapper';
 
-import intelligenceColors from '../../data/json/intelligence_color';
-import intelligenceTypes from '../../data/json/intelligence_types';
+import intelligenceTypes from '../../data/json/intelligence_types.json';
 
 const MultiIntelligentResultBarChart = ({quiz}) => {
   const intelligenceScore = quiz.sortedIntelligenceScore;
   const yData = intelligenceScore.map(c => ({y: c[1]}));
-  const yColors = intelligenceScore.map(c => intelligenceColors[c[0]])
-  const xData = intelligenceScore.map(c => intelligenceTypes.filter(type => type.code = c[0])[0].name_km)
+  const xData = intelligenceScore.map(c => {
+    const index = intelligenceTypes.findIndex((type) => type.code == c[0])
+    return index != -1 ? intelligenceTypes[index].name_km : '';
+  })
 
   const [data, setData] = useState({
     dataSets: [{
@@ -17,7 +18,7 @@ const MultiIntelligentResultBarChart = ({quiz}) => {
       label: '',
       config: {
         drawValues: false,
-        colors: yColors
+        colors: [processColor('#6ED490'), processColor('#9D4072'), processColor('#8B8000'), processColor('#C6B8D9'), processColor('#F2D3B5'), processColor('#BFDAED'), processColor('#1076DA')]
       }
     }],
   })

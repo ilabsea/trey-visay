@@ -6,23 +6,18 @@ import InfoAccordionContent from '../shared/InfoAccordionContent';
 const IntelligentDetailAccordion = ({intelligence}) => {
   const details = [
     {
-      title: "ក. ការពិពណ៌នាទូទៅ",
-      detail: intelligence.general_description || "មិនទាន់មានទិន្នន័យ",
+      title: "ក. ការពណ៌នាទូទៅ",
+      detail: intelligence.description || "មិនទាន់មានទិន្នន័យ",
       children: []
     },
     {
-      title: "ខ. ទម្រង់នៃសិក្សាដែលពេញចិត្ត",
-      detail: intelligence.preferred_study || "មិនទាន់មានទិន្នន័យ",
+      title: "ខ. វិធីសាស្រ្តរៀនដែលសមស្រប",
+      detail: intelligence.appropriate_learning_method || "មិនទាន់មានទិន្នន័យ",
       children: []
     },
     {
-      title: "គ. កិច្ចការ និងសកម្មភាពដែលទាក់ទង",
-      detail: intelligence.related_activity || "មិនទាន់មានទិន្នន័យ",
-      children: []
-    },
-    {
-      title: "ឃ. អាជីពការងារស័ក្តិសម",
-      detail: intelligence.related_job || "មិនទាន់មានទិន្នន័យ",
+      title: "គ. អាជីពមុខរបររដែលស័ក្តិសម",
+      detail: intelligence.suitable_job || "មិនទាន់មានទិន្នន័យ",
       children: []
     },
   ]
