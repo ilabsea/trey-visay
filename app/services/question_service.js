@@ -58,22 +58,19 @@ export const getHollandScore = (values) => {
 }
 
 export const getIntelligentScore = (values) => {
-  const columns = ['L', 'LM', 'BK', 'M', 'SV', 'IEP', 'IAP'];
-
-  const sumValue = (values, code) => {
+  const categories = [... new Set(intelligentQuestions.map(q => q.intelligence_category.code))];
+  const sumValue = (categoryCode) => {
     let total = 0;
-
-    for(i=0; i<5; i++) {
-      total += values[`${code}_0${i+1}`] || 0;
-    }
-
+    const questions = intelligentQuestions.filter(q => q.intelligence_category.code == categoryCode);
+    questions.map(question => {
+      total += values[question.code] || 0;
+    });
     return total;
   }
 
   const hash = {};
-
-  for(let i=0; i<columns.length; i++) {
-    hash[columns[i]] = sumValue(values, columns[i]);
+  for(let i=0; i<categories.length; i++) {
+    hash[categories[i]] = sumValue(categories[i]);
   }
 
   return hash;

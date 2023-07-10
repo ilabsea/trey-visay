@@ -46,7 +46,7 @@ const ProfileFormScreen = ({navigation, route}) => {
     if (route.params.type == 'hollandTest')
       return navigation.navigate('PersonalUnderstandingTestScreen')
 
-    const intelligentQuiz = IntelligentQuiz.create({userUuid: user.uuid});
+    const intelligentQuiz = IntelligentQuiz.create({userUuid: user.uuid, createdAt: new Date()});
     if (!!currentIntelligentQuiz) IntelligentQuiz.delete(currentIntelligentQuiz.uuid);
 
     dispatch(setCurrentQuiz(intelligentQuiz));

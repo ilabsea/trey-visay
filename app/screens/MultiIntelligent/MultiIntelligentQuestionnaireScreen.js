@@ -28,12 +28,10 @@ export default MultiIntelligentQuestionnaireScreen = ({route, navigation}) => {
     if (isPageEnd) {
       const response = {...currentIntelligentResponse, ...values}
       IntelligentQuiz.write(() => {
-        currentQuiz.response = response;
-        currentQuiz.score = getIntelligentScore(response);
-        currentQuiz.isDone = true;
-
+        currentQuiz.intelligenceScore = getIntelligentScore(response);
+        currentQuiz.intelligenceResponse = response;
+        currentQuiz.finishedAt = new Date();
         // Todo: send API to upload the intellgent quiz
-
         dispatch(setCurrentQuiz(null))
         dispatch(resetAnswer());
       });

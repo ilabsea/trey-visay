@@ -14,7 +14,7 @@ export default class IntelligentQuiz {
   }
 
   static findAllByUser = (userUuid) => {
-    return realm.objects(MODEL).filtered(`userUuid = '${userUuid}' AND isDone = true`);
+    return realm.objects(MODEL).filtered(`userUuid = '${userUuid}' AND finishedAt != null`);
   }
 
   static create = (params) => {
@@ -26,7 +26,7 @@ export default class IntelligentQuiz {
   }
 
   static getUnDone = (userUuid) => {
-    let quizzes = realm.objects(MODEL).filtered(`userUuid = '${userUuid}' AND isDone = false`).sorted('createdAt', true);
+    let quizzes = realm.objects(MODEL).filtered(`userUuid = '${userUuid}' AND finishedAt = null`).sorted('createdAt', true);
 
     return quizzes[quizzes.length - 1];
   }
