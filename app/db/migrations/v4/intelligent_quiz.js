@@ -2,7 +2,11 @@
 
 import Realm from 'realm';
 
-export default class IntelligentQuiz extends Realm.Object {}
+export default class IntelligentQuiz extends Realm.Object {
+  get sortedIntelligenceScore() {
+    return Object.entries(this.intelligenceScore).sort((a,b) => b[1] - a[1]);
+  }
+}
 
 IntelligentQuiz.schema = {
   name: 'IntelligentQuiz',

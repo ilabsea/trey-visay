@@ -1,28 +1,35 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, processColor, Text } from 'react-native';
+import { StyleSheet, View, processColor } from 'react-native';
 import { BarChart } from 'react-native-charts-wrapper';
 
-const MultiIntelligentResultBarChart = () => {
+import intelligenceColors from '../../data/json/intelligence_color';
+import intelligenceTypes from '../../data/json/intelligence_types';
+
+const MultiIntelligentResultBarChart = ({quiz}) => {
+  const intelligenceScore = quiz.sortedIntelligenceScore;
+  const yData = intelligenceScore.map(c => ({y: c[1]}));
+  const yColors = intelligenceScore.map(c => intelligenceColors[c[0]])
+  const xData = intelligenceScore.map(c => intelligenceTypes.filter(type => type.code = c[0])[0].name_km)
+
   const [data, setData] = useState({
     dataSets: [{
-      values: [{y: 500}, {y: 400}, {y: 300}, {y: 200}, {y: 100}, {y: 70}, {y: 50}],
+      values: yData,
       label: '',
       config: {
         drawValues: false,
-        colors: [processColor('#6ED490'), processColor('#9D4072'), processColor('#8B8000'), processColor('#C6B8D9'), processColor('#F2D3B5'), processColor('#BFDAED'), processColor('#1076DA')]
+        colors: yColors
       }
     }],
   })
 
   const [xAxis, setXAxis] = useState({
     enabled: true,
-    valueFormatter: ['Linguistic', 'Logical–mathematical', 'Bodily–kinaesthetic', 'Musical', 'Spatial-Visual', 'Interpersonal', 'Intrapersonal'],
+    valueFormatter: xData,
 	  labelRotationAngle: -70,
     granularityEnabled: true,
     position: 'BOTTOM',
     gridColor: processColor('white'),
     textSize: 10,
-    // avoidFirstLastClipping: true,
   })
 
   const [yAxis, setYAxis] = useState({

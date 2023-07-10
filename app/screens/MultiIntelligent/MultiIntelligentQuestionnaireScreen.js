@@ -34,7 +34,7 @@ export default MultiIntelligentQuestionnaireScreen = ({route, navigation}) => {
         currentQuiz.finishedAt = new Date();
         SidekiqJob.create(currentQuiz.uuid, 'uploadIntelligenceQuiz');
 
-        dispatch(setCurrentQuiz(null))
+        dispatch(setCurrentQuiz(currentQuiz))
         dispatch(resetAnswer());
       });
       return navigation.navigate('MultiIntelligentResultScreen');
