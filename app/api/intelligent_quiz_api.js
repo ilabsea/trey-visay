@@ -12,6 +12,7 @@ export const uploadIntelligenceQuiz = (quizUuid) => {
     intelligence_quiz: {
       user_id: user.serverId,
       quizzed_at: quiz.createdAt,
+      finished_at: quiz.finishedAt,
       intelligence_scores_attributes: getIntelligentScoreAttrs(quiz),
       intelligence_responses_attributes: getIntelligentResponses(quiz),
     }
