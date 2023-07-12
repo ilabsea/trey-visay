@@ -73,6 +73,7 @@ Quiz.schema = {
     jobSelectedAt: { type: 'date', optional: true },
     serverId: { type: 'string', optional: true },
     createdAt: 'date',
-    selfUnderstandingScore: { type: 'int', default: 0 }
+    selfUnderstandingScore: { type: 'int', default: 0 },
+    finishedAt: 'date?'
   }
 }
