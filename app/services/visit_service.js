@@ -42,7 +42,7 @@ const visitService = (() => {
       parent_code: params.parent_code || null,
       pageable_id: !!params.pageable_id ? params.pageable_id.toString() : null,
       pageable_type: params.pageable_type,
-      user_id: (!!user && user.serverId) ? user.serverId : null
+      user_uuid: !!user ? user.uuid : null
     }
     Visit.write(() => {
       Visit.create(data);
