@@ -18,7 +18,7 @@ const HomeScreen = ({navigation}) => {
 
   const onPress = (item) => {
     // firebase.analytics().logEvent(item.firebase_event_name);
-    visitService.recordVisitPage(item.visit_code, item.title);
+    visitService.recordVisitPage(item.visit_code);
     navigation.navigate(item.url);
   }
 

@@ -2,12 +2,7 @@ import authStorage from "../auth/storage";
 import Visit from '../models/Visit';
 import SidekiqJob from '../models/SidekiqJob';
 import uuidv4 from '../utils/uuidv4';
-
-const detailScreenAttrs = {
-  school: { pageable_type: 'School', code: 'school_detail', parent_code: 'school', name: 'school detail' },
-  job: { pageable_type: 'Job', code: 'job_detail', parent_code: 'job', name: 'job detail' },
-  video: { pageable_type: 'Video', code: 'video_detail', parent_code: 'video', name: 'video detail' }
-}
+import {pageAttrs, detailScreenAttrs} from '../constants/visit_constant';
 
 const visitService = (() => {
   return {
@@ -16,8 +11,11 @@ const visitService = (() => {
     recordAppVisit,
   }
 
-  function recordVisitPage(code, name, parentCode = null) {
-    _saveAndSubmitToServer({ pageable_type: "Page", code: code, name: name, parent_code: parentCode});
+  function recordVisitPage(code, name = null, parentCode = null) {
+    if (!!parentCode)
+      return _saveAndSubmitToServer({...pageAttrs[code], code: code, name: name, parent_code: parentCode});
+
+    _saveAndSubmitToServer(pageAttrs[code])
   }
 
   function recordVisitDetailScreen(type, pageableId) {
