@@ -57,8 +57,8 @@ Quiz.schema = {
     uuid: 'string',
     userUuid: 'string',
     step: { type: 'int', default: 0 },
-    // selfUnderstandingReponse: { q1: "", q2: "", q3: "", q4: "", q4_1: "", q5: ""}
-    selfUnderstandingReponse: '{}',
+    // selfUnderstandingResponse: { q1: "", q2: "", q3: "", q4: "", q4_1: "", q5: ""}
+    selfUnderstandingResponse: '{}',
     // hollandResponse: { R_01: 1, I_01: 1, A_01: 1, S_01: 3, ..., C_07: 5 }
     hollandResponse: '{}',
     // hollandScore: { R: 84, I: 42, A: 43, S: 50, E: 46, C: 90 }

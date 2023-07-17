@@ -29,7 +29,7 @@ const validationSchema = Yup.object().shape({
   q5: Yup.string().required("សូមជ្រើសរើស"),
   q5_1: Yup.array().when("q5", {
     is: (value) => personalUnderstandingHelper.isQuestionVisibleByCode("q5_1", value),
-    then: (schema) => schema.required("សូមជ្រើសរើស")
+    then: (schema) => schema.min(1, "សូមជ្រើសរើស"),
   })
 });
 
@@ -61,16 +61,19 @@ export default PersonalUnderstandingTest = ({navigation}) => {
       return toastRef.current?.show('សូមបំពេញសំណួរខាងក្រោមជាមុនសិន...!', DURATION.SHORT);
     }
 
-    values.q5_1 = (values.q5_1 || []).join(",")
+    let answers = {...values};
+    answers.q5_1 = (answers.q5_1 || []).join(",")
 
     Quiz.write(() => {
-      const quiz = Quiz.create({userUuid: user.uuid, selfUnderstandingReponse: values});
+      const quiz = Quiz.create({
+        userUuid: user.uuid,
+        selfUnderstandingResponse: answers,
+        selfUnderstandingScore: personalUnderstandingHelper.getTotalScore(values)
+      });
       if (!!currentQuiz) Quiz.delete(currentQuiz.uuid);
-
       dispatch(setCurrentQuiz(quiz));
       dispatch(resetAnswer());
     })
-
     navigation.navigate('HollandInstructionScreen');
   }
 

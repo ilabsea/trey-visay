@@ -11,12 +11,12 @@ const endpoint = "/holland_quizzes";
 // =============================================
 const self_understanding_responses_attributes = (quiz) => {
   const attributes = []
-  const questionCodes = Object.keys(quiz.selfUnderstandingReponse);
+  const questionCodes = Object.keys(quiz.selfUnderstandingResponse);
 
   for(let i = 0; i < questionCodes.length; i++) {
     attributes.push({
       self_understanding_question_code: questionCodes[i],
-      value: quiz.selfUnderstandingReponse[questionCodes[i]]
+      value: quiz.selfUnderstandingResponse[questionCodes[i]]
     })
   }
 
@@ -92,7 +92,8 @@ export const uploadHollandQuiz = (quizUuid) => {
       personality_type_results: quiz.sortedPersonalityTypes,
       self_understanding_responses_attributes: self_understanding_responses_attributes(quiz),
       holland_scores_attributes: holland_scores_attributes(quiz),
-      holland_responses_attributes: holland_responses_attributes(quiz)
+      holland_responses_attributes: holland_responses_attributes(quiz),
+      self_understanding_score: quiz.selfUnderstandingScore,
     }
   }
 

@@ -1,9 +1,11 @@
 import questions from '../screens/PersonalUnderstanding/json/list_questions';
+import { SELECT_ONE, SELECT_MULTIPLE, TEXT } from '../constants/form_constant';
 
 const personalUnderstandingHelper = (() => {
   return {
     isQuestionVisible,
     isQuestionVisibleByCode,
+    getTotalScore,
   }
 
   function isQuestionVisible(question, formValues) {
@@ -24,6 +26,20 @@ const personalUnderstandingHelper = (() => {
     const question = _findQuestionByCode(code);
     const {operator, relevantValue} = _getRelevantCondition(question.relevant);
     return eval(`'${parentValue}' ${operator} '${relevantValue}'`)
+  }
+
+  function getTotalScore(answers) {
+    let score = 0;
+    Object.keys(answers).map((key, index) => {
+      const answer = answers[key];
+      if (questions[index].type == TEXT && !!answer)
+        score += 1;
+      else if (questions[index].type == SELECT_ONE)
+        score += questions[index].options.filter(option => option.value == answer)[0].score;
+      else if (questions[index].type == SELECT_MULTIPLE && answer.length > 0)
+        score += 1;
+    })
+    return score;
   }
 
   function _getRelevantCondition(relevant) {
