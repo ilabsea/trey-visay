@@ -34,6 +34,16 @@ export default class SchoolUtil {
     })
   }
 
+  static setSelectedDepartment(department) {
+    AsyncStorage.setItem('selectedDepartment', department);
+  }
+
+  static getSelectedDepartment(callback){
+    AsyncStorage.getItem('selectedDepartment', (err, result) => {
+      !!callback && callback(result);
+    })
+  }
+
   static getSchools(options) {
     let uniList = SchoolModel.getAll()
     if (!!options.kind)
@@ -41,6 +51,13 @@ export default class SchoolUtil {
 
     if (!!options.province)
       uniList = uniList.filter(school => school.province == options.province);
+
+    if (!!options.department) {
+      uniList = uniList.filter((school) => {
+        let departments = JSON.parse(school.departments).filter((department) => department.name == options.department);
+        return !!departments.length;
+      });
+    }
 
     if (!!options.major) {
       uniList = uniList.filter((school) => {
@@ -88,6 +105,7 @@ export default class SchoolUtil {
     this.setSelectedProvince('');
     this.setSelectedMajor('');
     this.setSelectedCategory('');
+    this.setSelectedDepartment('');
   }
 
   static getSchoolNamesByIds(schoolIds) {

@@ -41,7 +41,7 @@ class FilterScreen extends Component {
 
   resetValues = () => {
     SchoolUtil.clearSelectedValues();
-    this.setState({ selectedValue: '', selectedProvince: '', selectedCategory: '' });
+    this.setState({ selectedValue: '', selectedProvince: '', selectedCategory: '', selectedDepartment: '' });
     this.refreshProvinceValue();
   }
 
@@ -53,6 +53,7 @@ class FilterScreen extends Component {
     let selectedValue = this.state.selectedValue == null ? '' : this.state.selectedValue;
     SchoolUtil.setSelectedMajor(selectedValue);
     SchoolUtil.setSelectedCategory(!this.state.selectedCategory ? '' : this.state.selectedCategory);
+    SchoolUtil.setSelectedDepartment(!this.state.selectedDepartment ? '' : this.state.selectedDepartment);
 
     // firebase.analytics().logEvent(keyword.INSTITUTION_FILTER_APPLIED);
 
@@ -73,6 +74,9 @@ class FilterScreen extends Component {
       });
       SchoolUtil.getSelectedCategory(category => {
         this.setState({ selectedCategory: category })
+      })
+      SchoolUtil.getSelectedDepartment(department => {
+        this.setState({ selectedDepartment: department })
       })
     });
   }
