@@ -10,6 +10,7 @@ import OneList from '../../../components/list/one_list';
 import FooterBar from '../../../components/footer/FooterBar';
 import FilterButton from './filter_button';
 import FilterCategoryButtons from './filter_category_buttons';
+import FilterDepartmentButtons from './filter_department_buttons';
 import keyword from '../../../data/analytics/keyword';
 import Color from '../../../themes/color';
 
@@ -29,6 +30,7 @@ class FilterScreen extends Component {
       selectedValue: '',
       selectedProvince: '',
       selectedCategory: '',
+      selectedDepartment: '',
       kind: props.route.params.kind
     }
   }
@@ -85,6 +87,10 @@ class FilterScreen extends Component {
            />
   }
 
+  renderTvetDepartments() {
+    return <FilterDepartmentButtons selectedDepartment={this.state.selectedDepartment} updateSelectedDepartment={(department) => this.setState({selectedDepartment: department})} />
+  }
+
   renderCategories() {
     return <FilterCategoryButtons
               selectedCategory={this.state.selectedCategory}
@@ -107,6 +113,7 @@ class FilterScreen extends Component {
           }}
         />
         {this.renderCategories()}
+        {this.props.route.params.kind == 'tvet_institute' && this.renderTvetDepartments()}
 
         <Text style={{marginLeft: 16, marginTop: 10, marginBottom: 6, color: Color.paleBlackColor}}>
           ជ្រើសរើសជំនាញ

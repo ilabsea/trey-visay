@@ -96,4 +96,12 @@ export default class SchoolUtil {
     const schools = SchoolModel.findAllByIds(schoolIds);
     return schools.map(school => `- ${school.name}`).join("")
   }
+
+  static getTvetDepartments() {
+    let tvetDepartments = []
+    SchoolModel.findByKind('tvet_institute').map(school => {
+      tvetDepartments = [...tvetDepartments, ...JSON.parse(school.departments).map(department => department.name)]
+    });
+    return [...new Set(tvetDepartments)]
+  }
 }
