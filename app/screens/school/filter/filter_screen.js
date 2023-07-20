@@ -13,6 +13,7 @@ import FilterCategoryButtons from './filter_category_buttons';
 import FilterDepartmentButtons from './filter_department_buttons';
 import keyword from '../../../data/analytics/keyword';
 import Color from '../../../themes/color';
+import provinces from '../../../data/json/address/provinces.json';
 
 const categories = {
   'public': 'សាលារដ្ឋ',
@@ -21,7 +22,7 @@ const categories = {
 }
 
 class FilterScreen extends Component {
-  _keyExtractor = (item, index) => index.toString();
+  _keyExtractor = (item, index) => item.toString();
 
   constructor(props){
     super(props);
@@ -36,7 +37,23 @@ class FilterScreen extends Component {
   }
 
   componentDidMount() {
-    this.refreshProvinceValue();
+    SchoolUtil.getSelectedProvince((province) => {
+      this.setState({ selectedProvince: province || '' });
+    });
+    SchoolUtil.getSelectedCategory(category => {
+      this.setState({ selectedCategory: category })
+    })
+    SchoolUtil.getSelectedDepartment(department => {
+      this.setState({selectedDepartment: department})
+    })
+    SchoolUtil.getSelectedMajor((major) => {
+      major = major == 'គ្រប់ជំនាញ' ? '': major;
+      this.setState({ selectedValue: major });
+    });
+
+    setTimeout(() => {
+      this.setState({majors: SchoolUtil.getMajors(this.state.selectedProvince, this.state.selectedCategory || 'public', this.state.selectedDepartment)})
+    }, 300)
   }
 
   resetValues = () => {
@@ -63,24 +80,22 @@ class FilterScreen extends Component {
 
   refreshProvinceValue() {
     SchoolUtil.getSelectedProvince((province) => {
-      province = province == 'គ្រប់ទីកន្លែង'? '' : province;
+      // province = province || '';
       this.setState({
-        selectedProvince: province,
+        selectedProvince: province || '',
         // majors: SchoolUtil.getMajors(this.state.selectedProvince, 'public')
+        majors: SchoolUtil.getMajors(province, this.state.selectedCategory || 'public', this.state.selectedDepartment)
       });
-      SchoolUtil.getSelectedMajor((major) => {
-        major = major == 'គ្រប់ជំនាញ' ? '': major;
-        this.setState({ selectedValue: major });
-      });
-      SchoolUtil.getSelectedCategory(category => {
-        this.setState({ selectedCategory: category })
-        SchoolUtil.getSelectedDepartment(department => {
-          this.setState({
-            selectedDepartment: department,
-            majors: SchoolUtil.getMajors(province, category || 'public', department)
-          })
-        })
-      })
+      // SchoolUtil.getSelectedMajor((major) => {
+      //   major = major == 'គ្រប់ជំនាញ' ? '': major;
+      //   this.setState({ selectedValue: major });
+      // });
+      // SchoolUtil.getSelectedCategory(category => {
+      //   this.setState({ selectedCategory: category })
+      //   SchoolUtil.getSelectedDepartment(department => {
+      //     this.setState({selectedDepartment: department})
+      //   })
+      // })
     });
   }
 
@@ -95,7 +110,9 @@ class FilterScreen extends Component {
   }
 
   renderTvetDepartments() {
-    return <FilterDepartmentButtons selectedDepartment={this.state.selectedDepartment} updateSelectedDepartment={(department) => this.setState({selectedDepartment: department})} />
+    return <FilterDepartmentButtons selectedDepartment={this.state.selectedDepartment}
+              updateSelectedDepartment={(department) => this.setState({selectedDepartment: department, majors: SchoolUtil.getMajors(this.state.selectedProvince, this.state.selectedCategory || 'public', department)})}
+           />
   }
 
   renderCategories() {
@@ -106,7 +123,7 @@ class FilterScreen extends Component {
   }
 
   renderTopSection() {
-    let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
+    let province = !!this.state.selectedProvince ? provinces.filter(province => province.code == this.state.selectedProvince)[0].label : 'គ្រប់ទីកន្លែង';
     return (
       <React.Fragment>
         <OneList text='ជ្រើសរើសទីតាំង' selectedValue={province}
@@ -114,7 +131,7 @@ class FilterScreen extends Component {
             this.props.navigation.navigate('FilterProvinces', {
               title: 'ជ្រើសរើសទីតាំង',
               kind: this.state.kind,
-              selectedProvince: province,
+              selectedProvince: this.state.selectedProvince,
               refreshValue: this.refreshProvinceValue.bind(this)
             })
           }}

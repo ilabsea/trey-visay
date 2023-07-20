@@ -48,7 +48,7 @@ export default class SchoolUtil {
   static getSchools(options) {
     let uniList = SchoolModel.getAll()
 
-    console.log('++++ school list = ', SchoolModel.getAll().length)
+    // console.log('++++ school list = ', SchoolModel.getAll().length)
 
 
     if (!!options.kind)
@@ -83,27 +83,25 @@ export default class SchoolUtil {
 
   static getProvinces(kind) {
     const schools = !!kind ? SchoolModel.findByKind(kind) : SchoolModel.getAll()
-    const provinces = [...new Set(schools.map(school => { return provinceList.filter(province => province.code == parseInt(school.province))[0].label}))];
+    const provinces = [...new Set(schools.map(school => { return provinceList.filter(province => province.code == parseInt(school.province))[0]}))];
     provinces.sort();
     return provinces;
   }
 
   static getMajors(selectedProvince, category, department) {
-    console.log('+ selected province = ', selectedProvince);
-    console.log('+ selected category = ', category);
-    console.log('+ selected department = ', department);
-    console.log('========================================');
+    const schools = SchoolModel.getAll().filter(school => {
+      if (!!selectedProvince)
+        return parseInt(school.province) == selectedProvince && school.category == category
 
-    const schools = SchoolModel.getAll()
+      return school.category == category
+    });
+
     let majors = []
     let departments = []
+
     schools.map(school => {
-      if(school.province == selectedProvince && school.category == category)
-        departments = [...departments, ...JSON.parse(school.departments)]
-      else if (school.category == category) {
-        console.log('== matched category ==== ', category)
-        departments = [...departments, ...JSON.parse(school.departments)]
-      }
+      const schoolDepartments = JSON.parse(school.departments)
+      departments = [...departments, ...(!!department ? schoolDepartments.filter(item => item.name == department)  : schoolDepartments)]
     })
 
     departments.map(department => {
@@ -111,23 +109,6 @@ export default class SchoolUtil {
     })
     return [...new Set(majors)]
   }
-
-  // static getMajors(selectedProvince, category) {
-  //   const schools = SchoolModel.getAll()
-  //   let majors = []
-  //   let departments = []
-  //   schools.map(school => {
-  //     if(school.province == selectedProvince && school.category == category)
-  //       departments = [...departments, ...JSON.parse(school.departments)]
-  //     else if (school.category == category)
-  //       departments = [...departments, ...JSON.parse(school.departments)]
-  //   })
-
-  //   departments.map(department => {
-  //     majors = [...majors, ...department.majors]
-  //   })
-  //   return [...new Set(majors)]
-  // }
 
   static clearSelectedValues(){
     this.setSelectedProvince('');

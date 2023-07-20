@@ -17,7 +17,7 @@ const FilterButton = (props) => {
                 style={styles.icon}
               />
             </View>
-            <Text numberOfLines={2} style={[activeText, { flex: 1 , paddingRight: 16, lineHeight: 28}]}>{props.label}</Text>
+            <Text numberOfLines={props.numberOfLines || 2} style={[activeText, { flex: 1 , paddingRight: 16, lineHeight: 28}, props.labelStyle]}>{props.label}</Text>
           </TouchableOpacity>
 }
 

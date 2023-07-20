@@ -51,6 +51,8 @@ export default class SchoolScreen extends Component {
   }
 
   refreshState() {
+    console.log('refreh state =========')
+
     this.resetData();
 
     SchoolUtil.getSelectedProvince((province) => {
