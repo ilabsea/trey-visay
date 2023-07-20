@@ -66,7 +66,7 @@ class FilterScreen extends Component {
       province = province == 'គ្រប់ទីកន្លែង'? '' : province;
       this.setState({
         selectedProvince: province,
-        majors: SchoolUtil.getMajors(this.state.selectedProvince, 'public')
+        // majors: SchoolUtil.getMajors(this.state.selectedProvince, 'public')
       });
       SchoolUtil.getSelectedMajor((major) => {
         major = major == 'គ្រប់ជំនាញ' ? '': major;
@@ -74,9 +74,12 @@ class FilterScreen extends Component {
       });
       SchoolUtil.getSelectedCategory(category => {
         this.setState({ selectedCategory: category })
-      })
-      SchoolUtil.getSelectedDepartment(department => {
-        this.setState({ selectedDepartment: department })
+        SchoolUtil.getSelectedDepartment(department => {
+          this.setState({
+            selectedDepartment: department,
+            majors: SchoolUtil.getMajors(province, category || 'public', department)
+          })
+        })
       })
     });
   }
@@ -98,7 +101,7 @@ class FilterScreen extends Component {
   renderCategories() {
     return <FilterCategoryButtons
               selectedCategory={this.state.selectedCategory}
-              updateSelectedCategory={(category) => this.setState({selectedCategory: category})}
+              updateSelectedCategory={(category) => this.setState({selectedCategory: category, majors: SchoolUtil.getMajors(this.state.selectedProvince, category || 'public', this.state.selectedDepartment)})}
            />
   }
 

@@ -1,5 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import SchoolModel from '../models/School';
+import provinceList from '../data/json/address/provinces.json';
 
 const PER_PAGE = 20;
 
@@ -46,6 +47,10 @@ export default class SchoolUtil {
 
   static getSchools(options) {
     let uniList = SchoolModel.getAll()
+
+    console.log('++++ school list = ', SchoolModel.getAll().length)
+
+
     if (!!options.kind)
       uniList = uniList.filter(school => school.kind == options.kind);
 
@@ -78,21 +83,27 @@ export default class SchoolUtil {
 
   static getProvinces(kind) {
     const schools = !!kind ? SchoolModel.findByKind(kind) : SchoolModel.getAll()
-    let provinces = [...new Set(schools.map(school => school.province))];
-    provinces = provinces.filter(v => v);
+    const provinces = [...new Set(schools.map(school => { return provinceList.filter(province => province.code == parseInt(school.province))[0].label}))];
     provinces.sort();
     return provinces;
   }
 
-  static getMajors(selectedProvince, category) {
+  static getMajors(selectedProvince, category, department) {
+    console.log('+ selected province = ', selectedProvince);
+    console.log('+ selected category = ', category);
+    console.log('+ selected department = ', department);
+    console.log('========================================');
+
     const schools = SchoolModel.getAll()
     let majors = []
     let departments = []
     schools.map(school => {
       if(school.province == selectedProvince && school.category == category)
         departments = [...departments, ...JSON.parse(school.departments)]
-      else if (school.category == category)
+      else if (school.category == category) {
+        console.log('== matched category ==== ', category)
         departments = [...departments, ...JSON.parse(school.departments)]
+      }
     })
 
     departments.map(department => {
@@ -100,6 +111,23 @@ export default class SchoolUtil {
     })
     return [...new Set(majors)]
   }
+
+  // static getMajors(selectedProvince, category) {
+  //   const schools = SchoolModel.getAll()
+  //   let majors = []
+  //   let departments = []
+  //   schools.map(school => {
+  //     if(school.province == selectedProvince && school.category == category)
+  //       departments = [...departments, ...JSON.parse(school.departments)]
+  //     else if (school.category == category)
+  //       departments = [...departments, ...JSON.parse(school.departments)]
+  //   })
+
+  //   departments.map(department => {
+  //     majors = [...majors, ...department.majors]
+  //   })
+  //   return [...new Set(majors)]
+  // }
 
   static clearSelectedValues(){
     this.setSelectedProvince('');

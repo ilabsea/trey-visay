@@ -60,7 +60,7 @@ class FilterProvinces extends Component {
     return (
       <View style={{flexGrow: 1}}>
         <CustomNavigationHeader title="ជ្រើសរើសទីតាំង"/>
-        <ScrollView>
+        <ScrollView contentContainerStyle={{paddingBottom: 56}}>
           { provinces.map((province, i) => {
             { return (this.renderProvinces(province, i))}
           })}
