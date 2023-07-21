@@ -8,7 +8,7 @@ import schoolUtil from '../../../utils/school_util';
 
 const FilterDepartmentButtons = (props) => {
   const renderDepartmentBtns = () => {
-    return schoolUtil.getTvetDepartments().map((department, index) => {
+    return schoolUtil.getTvetDepartments(props.selectedProvince).map((department, index) => {
       return <FilterButton
                 key={`department-${index}`}
                 item={department}

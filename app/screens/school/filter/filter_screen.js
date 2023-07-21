@@ -110,7 +110,7 @@ class FilterScreen extends Component {
   }
 
   renderTvetDepartments() {
-    return <FilterDepartmentButtons selectedDepartment={this.state.selectedDepartment}
+    return <FilterDepartmentButtons selectedDepartment={this.state.selectedDepartment} selectedProvince={this.state.selectedProvince}
               updateSelectedDepartment={(department) => this.setState({selectedDepartment: department, majors: SchoolUtil.getMajors(this.state.selectedProvince, this.state.selectedCategory || 'public', department)})}
            />
   }

@@ -124,9 +124,10 @@ export default class SchoolUtil {
     return schools.map(school => `- ${school.name}`).join("")
   }
 
-  static getTvetDepartments() {
+  static getTvetDepartments(province) {
     let tvetDepartments = []
-    SchoolModel.findByKind('tvet_institute').map(school => {
+    const schools = !!province ? SchoolModel.findByKindAndProvince('tvet_institute', province) : SchoolModel.findByKind('tvet_institute');
+    schools.map(school => {
       tvetDepartments = [...tvetDepartments, ...JSON.parse(school.departments).map(department => department.name)]
     });
     return [...new Set(tvetDepartments)]
