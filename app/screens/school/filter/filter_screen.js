@@ -80,22 +80,10 @@ class FilterScreen extends Component {
 
   refreshProvinceValue() {
     SchoolUtil.getSelectedProvince((province) => {
-      // province = province || '';
       this.setState({
-        selectedProvince: province || '',
-        // majors: SchoolUtil.getMajors(this.state.selectedProvince, 'public')
+        selectedProvince: province,
         majors: SchoolUtil.getMajors(province, this.state.selectedCategory || 'public', this.state.selectedDepartment)
       });
-      // SchoolUtil.getSelectedMajor((major) => {
-      //   major = major == 'គ្រប់ជំនាញ' ? '': major;
-      //   this.setState({ selectedValue: major });
-      // });
-      // SchoolUtil.getSelectedCategory(category => {
-      //   this.setState({ selectedCategory: category })
-      //   SchoolUtil.getSelectedDepartment(department => {
-      //     this.setState({selectedDepartment: department})
-      //   })
-      // })
     });
   }
 

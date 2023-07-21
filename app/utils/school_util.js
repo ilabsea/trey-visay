@@ -47,10 +47,6 @@ export default class SchoolUtil {
 
   static getSchools(options) {
     let uniList = SchoolModel.getAll()
-
-    // console.log('++++ school list = ', SchoolModel.getAll().length)
-
-
     if (!!options.kind)
       uniList = uniList.filter(school => school.kind == options.kind);
 

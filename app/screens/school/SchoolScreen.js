@@ -51,8 +51,6 @@ export default class SchoolScreen extends Component {
   }
 
   refreshState() {
-    console.log('refreh state =========')
-
     this.resetData();
 
     SchoolUtil.getSelectedProvince((province) => {
@@ -108,12 +106,14 @@ export default class SchoolScreen extends Component {
 
   getMore() {
     if (this.isRequestingData || this.isEndPage) {
+      this.listRef.current?.stopPaginateLoading()
       return;
     }
 
     this.isRequestingData = true;
     this.page++;
     this.setSchools(this.state.activePage);
+    this.listRef.current?.stopPaginateLoading()
   }
 
   onRefresh() {
@@ -150,7 +150,9 @@ export default class SchoolScreen extends Component {
               renderItem={ ({item}) => this._renderRow(item) }
               hasInternet={this.state.hasInternet}
               keyExtractor={ this._keyExtractor }
+              offlineEndReached={true}
               refreshingAction={() => this.onRefresh()}
+              endReachedAction={() => this.getMore()}
            />
   }
 
