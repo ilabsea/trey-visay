@@ -105,10 +105,8 @@ export default class SchoolScreen extends Component {
   }
 
   getMore() {
-    if (this.isRequestingData || this.isEndPage) {
-      this.listRef.current?.stopPaginateLoading()
-      return;
-    }
+    if (this.isRequestingData || this.isEndPage)
+      return this.listRef.current?.stopPaginateLoading();
 
     this.isRequestingData = true;
     this.page++;

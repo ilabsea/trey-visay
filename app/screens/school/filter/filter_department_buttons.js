@@ -15,8 +15,6 @@ const FilterDepartmentButtons = (props) => {
                 label={department}
                 isSelected={props.selectedDepartment == department}
                 style={{flexBasis: '50%'}}
-                numberOfLines={3}
-                labelStyle={{fontSize: 14, lineHeight: 22}}
                 updateSelectedItem={() => props.updateSelectedDepartment(props.selectedDepartment == department ? '' : department)}
              />
     })

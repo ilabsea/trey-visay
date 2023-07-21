@@ -87,7 +87,7 @@ export default class SchoolUtil {
   static getMajors(selectedProvince, category, department) {
     const schools = SchoolModel.getAll().filter(school => {
       if (!!selectedProvince)
-        return parseInt(school.province) == selectedProvince && school.category == category
+        return school.province == selectedProvince && school.category == category
 
       return school.category == category
     });
