@@ -49,6 +49,10 @@ class BaseModel {
     return realm.objects(model).filtered(`${column} CONTAINS[c] ${value}`);
   }
 
+  static beginsWith = (model, column, value) => {
+    return realm.objects(model).filtered(`${column} BEGINSWITH[c] ${value}`);
+  }
+
   // private method
   static #findByAttrQuery = (attr, operator = '', sortAttr = {}) => {
     const columns = Object.keys(attr);
