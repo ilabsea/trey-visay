@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
-import { View, Keyboard, TouchableWithoutFeedback } from 'react-native'
-import { Text } from '../../components';
-import { Divider } from 'react-native-paper';
+import { View } from 'react-native'
 import Quiz from '../../models/Quiz';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
@@ -12,7 +10,6 @@ import CollegeMajor from '../../models/CollegeMajor';
 
 const MajorSelectMultipleScreen = ({route, navigation}) => {
   const [textSearch, setTextSearch] = useState('');
-  const [selectedItem, setSelectedItem] = useState(0);
   const [errorMsg, setErrorMsg] = useState('')
   const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const dispatch = useDispatch();
@@ -21,8 +18,8 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
   let formRef = React.useRef()
 
   const handleSubmit = () => {
-    if (selectedItem == 0 || selectedItem > 3)
-      return setErrorMsg(selectedItem == 0 ? "សូមជ្រើសរើសយ៉ាងតិច 1" : "សូមជ្រើសរើសយ៉ាងច្រើន 3")
+    if (formRef.current?.getSelectedValues().length == 0 || formRef.current?.getSelectedValues().length > 3)
+      return setErrorMsg(formRef.current?.getSelectedValues().length == 0 ? "សូមជ្រើសរើសយ៉ាងតិច 1" : "សូមជ្រើសរើសយ៉ាងច្រើន 3")
 
     Quiz.write(()=> {
       currentQuiz.majorCodeSelections = formRef.current?.getSelectedValues();
@@ -31,32 +28,25 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
     navigation.navigate('MajorSelectOneScreen', {quizUuid: currentQuiz.uuid});
   }
 
+  const onSetTextSearch = (text) => {
+    setTextSearch(text);
+    !text && formRef.current?.resetListIndices();
+  }
+
   return (
     <React.Fragment>
       <SearchableHeader title="ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា" placeholder="ស្វែងរកជំនាញកម្រិតឧត្តមសិក្សា"
-        searchedText={textSearch} setSearchedText={(text) => setTextSearch(text)}
+        searchedText={textSearch} setSearchedText={(text) => onSetTextSearch(text)}
       />
       <View style={{margin: 16, flex: 1, backgroundColor: '#fff', borderRadius: 4, overflow: 'hidden'}}>
-        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
-          <View style={{padding: 16}}>
-            <Text>ចូរជ្រើសរើសមុខជំនាញដែលអ្នកពេញចិត្តក្នុងការបន្តការសិក្សានាពេលអនាគតយ៉ាងច្រើនបំផុត ៣មុខជំនាញ៖ </Text>
-            <Text>{selectedItem}/3</Text>
-          </View>
-        </TouchableWithoutFeedback>
-
-        <Divider />
-
-        <View style={{flex: 1}}>
-          <CheckboxGroup
-            ref={formRef}
-            name={"majors"}
-            options={data.filter(major => major.name.includes(textSearch))}
-            textSearch={textSearch}
-            errorMessage={errorMsg}
-            updateSelectedItem={(items) => setSelectedItem(items)}
-            type='major'
-          />
-        </View>
+        <CheckboxGroup
+          ref={formRef}
+          options={data.filter(major => major.name.includes(textSearch))}
+          textSearch={textSearch}
+          errorMessage={errorMsg}
+          type='major'
+          headerLabel={`ចូរជ្រើសរើសមុខជំនាញដែលអ្នកពេញចិត្តក្នុងការបន្តការសិក្សានាពេលអនាគតយ៉ាងច្រើនបំផុត 3មុខជំនាញក្នុងចំណោម ${data.length}មុខជំនាញ៖ `}
+        />
       </View>
 
       <FooterBar icon='keyboard-arrow-right' text='បន្តទៀត' onPress={handleSubmit} />
