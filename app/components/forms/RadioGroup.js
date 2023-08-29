@@ -6,16 +6,19 @@ import {
   TouchableWithoutFeedback
 } from 'react-native';
 import Text from '../Text';
+import FormCard from './FormCard';
 
 import { useFormikContext } from "formik";
 import ErrorMessage from './ErrorMessage';
 import Color from '../../themes/color';
 import {pressableItemSize} from '../../constants/component_constant';
+import personalUnderstandingHelper from '../../helpers/personal_understanding_helper';
 
-const RadioGroup = ({name, options, disabled}) => {
+const RadioGroup = ({question}) => {
+  const {code, options, disabled} = question;
   const { setFieldValue, values, errors, touched } = useFormikContext();
 
-  const value = values[name];
+  const value = values[code];
   const getTextStyle = disabled ? {color: '#ccc'} : {};
 
   const buttonGroups = () => (
@@ -43,17 +46,24 @@ const RadioGroup = ({name, options, disabled}) => {
       return;
     }
 
-    setFieldValue(name, newValue);
+    setFieldValue(code, newValue);
 
     // Callback
     // !!props.onValueChange && props.onValueChange(newValue);
   }
 
+  if (!personalUnderstandingHelper.isQuestionVisible(question, values)) {
+    values[code] = '';
+    return;
+  }
+
   return (
-    <RadioButton.Group onValueChange={onValueChange} value={value}>
-      { buttonGroups() }
-      <ErrorMessage error={errors[name]} visible={touched[name]} />
-    </RadioButton.Group>
+    <FormCard question={question}>
+      <RadioButton.Group onValueChange={onValueChange} value={value}>
+        { buttonGroups() }
+        <ErrorMessage error={errors[code]} visible={touched[code]} />
+      </RadioButton.Group>
+    </FormCard>
   )
 }
 
