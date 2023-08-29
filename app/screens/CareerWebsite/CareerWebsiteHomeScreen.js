@@ -9,8 +9,6 @@ import {
 } from 'react-native';
 
 import ScrollableHeader from '../../components/scrollable_header';
-import { Colors } from '../../assets/style_sheets/main/colors';
-import BackButton from '../../components/shared/back_button';
 
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 import mainStyles from "../../assets/style_sheets/main/main";
@@ -19,10 +17,12 @@ import { Divider } from 'react-native-paper';
 
 // import firebase from 'react-native-firebase';
 import keyword from '../../data/analytics/keyword';
+import visitService from '../../services/visit_service';
 
 export default class CareerWebsiteHomeScreen extends Component {
   _goTo = (career) => {
     // firebase.analytics().logEvent(career.firebase_event_name);
+    visitService.recordVisitPage('career_website_detail', career.name, 'career_website')
     this.props.navigation.navigate(career.screen, {url: career.url, title: career.screen_title});
   }
 

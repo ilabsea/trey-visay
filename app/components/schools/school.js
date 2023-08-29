@@ -28,9 +28,8 @@ class School extends Component {
       <View>
         <TouchableOpacity
           style={[mainStyles.btnList, {alignItems: 'center', paddingVertical: getStyleOfDevice(18, 12)}]}
-          onPress={() => { this.props.navigation.navigate('InstitutionDetail', {school: school})} }
+          onPress={() => this.props.navigation.navigate('InstitutionDetail', {school: school})}
           >
-
           <View style={styles.imageContainer}>
             <CustomImageComponent source={!!logo ? {uri: logo} : null} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
           </View>

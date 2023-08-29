@@ -7,6 +7,7 @@ import ScrollableHeader from '../../components/scrollable_header';
 import InstitutionDetailProfile from '../../components/institutionDetails/InstitutionDetailProfile';
 import InstitutionDetailLogo from '../../components/institutionDetails/InstitutionDetailLogo';
 import InstitutionDetailDepartment from '../../components/institutionDetails/InstitutionDetailDepartment';
+import visitService from '../../services/visit_service';
 
 const PROFILE_SIZE = 120;
 
@@ -17,6 +18,10 @@ export default class InstitutionDetail extends Component {
     this.state = {
       school: props.route.params.school
     }
+  }
+
+  componentDidMount() {
+    visitService.recordVisitDetailScreen('school', this.state.school.id)
   }
 
   renderContact() {

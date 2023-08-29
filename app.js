@@ -11,6 +11,7 @@ import AuthContext from "./app/auth/context";
 import authStorage from "./app/auth/storage";
 import {seedDataToRealm} from './app/services/seed_data_service';
 import {environment} from './app/config/environment';
+import visitService from './app/services/visit_service';
 
 Sentry.init({
   dsn: environment.sentryDSN,
@@ -28,6 +29,7 @@ const App = () => {
     SplashScreen.hide();
     restoreUser();
     seedDataToRealm();
+    visitService.recordAppVisit();
   }, []);
 
   return (

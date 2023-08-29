@@ -17,21 +17,27 @@ import {getStyleOfDevice} from '../../utils/responsive_util'
 import videoUtil from '../../utils/video_util'
 import color from '../../themes/color'
 import Text from '../Text';
+import visitService from '../../services/visit_service';
 
 export default function VideoList (props) {
   const { width } = Dimensions.get('window');
   const imageWidth = width/2-58;
   const [modalVisible, setModalVisible] = useState(false);
 
+  const viewVideo = () => {
+    visitService.recordVisitDetailScreen('video', props.item.id);
+    setModalVisible(true);
+  }
+
   return(
     <View>
-      <TouchableOpacity style={styles.row} onPress={() => setModalVisible(true) }>
+      <TouchableOpacity style={styles.row} onPress={() => viewVideo() }>
         <Thumbnail
           url={props.item.url}
           imageWidth={imageWidth}
           imageHeight={getStyleOfDevice(120, 100)}
           iconStyle={{width: '20%', height: '30%', resizeMode: 'contain'}}
-          onPress={() => setModalVisible(true)}
+          onPress={() => viewVideo()}
         />
         <View style={styles.textContainer}>
           <Text style={[mainStyles.title, styles.title]}>{ props.item.name || props.item.title }</Text>
