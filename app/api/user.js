@@ -20,6 +20,7 @@ export const uploadUser = async(userUuid) => {
     high_school_code: user.highSchoolCode,
     middle_school_id: user.middleSchoolId,
     registered_at: user.createdAt,
+    other_grade: user.otherGrade,
     device_id: await getUniqueId(),
     device_type: isTablet() ? "tablet" : "mobile",
     device_os: Platform.OS,

@@ -21,6 +21,11 @@ const CustomBottomSheetPickerComponent = (props) => {
     return colors[type];
   }
 
+  const onSelectItem = (item) => {
+    setFieldValue(props.fieldName, item)
+    !!props.onSelectItem && props.onSelectItem(item);
+  }
+
   return <React.Fragment>
           <BottomSheetPicker
             {...props}
@@ -35,7 +40,7 @@ const CustomBottomSheetPickerComponent = (props) => {
             pickerContentHeight={props.contentHeight || defaultBottomSheetContentHeight}
             hideListItemAudio={true}
             selectedItem={values[props.fieldName]}
-            onSelectItem={(item) => {setFieldValue(props.fieldName, item)}}
+            onSelectItem={(item) => onSelectItem(item)}
             showRadioStyle={true}
             isOutlined={true}
             titleFontFamily={FontFamily.regular}

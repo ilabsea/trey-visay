@@ -2,21 +2,12 @@ import React from 'react';
 import {View, TouchableWithoutFeedback, Keyboard} from 'react-native';
 
 import styles from '../../assets/style_sheets/profile_form';
-import CustomBottomSheetPicker from '../../components/shared/CustomBottomSheetPicker';
-
-import grades from '../../data/json/grades.json';
-import classGroups from '../../data/json/class_groups.json';
-import provinces from '../../data/json/address/provinces.json';
-import districts from '../../data/json/address/districts.json';
-import highSchools from '../../data/json/address/highSchools.json';
-
-import { Text } from '../../components';
-import { Form, SubmitButton } from '../../components/forms';
+import { SubmitButton } from '../../components/forms';
+import FormPickers from './FormComponent/FormPickers';
 import * as Yup from "yup";
 import { GenderOption, TextInput, DatePicker } from './FormComponent';
 import { Formik } from "formik";
-import { FooterBar, BackButton, ScrollableHeader } from '../../components';
-import profileFormHelper from '../../helpers/profile_form_helper';
+import { ScrollableHeader } from '../../components';
 
 const requireGrade = {
   is: (grade) => grade != 'other',
@@ -35,7 +26,8 @@ const validationSchema = Yup.object().shape({
   }),
   provinceCode: Yup.string().when("grade", requireGrade),
   districtCode: Yup.string().when("grade", requireGrade),
-  highSchoolCode: Yup.string().when("grade", requireGrade)
+  highSchoolCode: Yup.string().when("grade", requireGrade),
+  otherGrade: Yup.string().when("grade", {is: (grade) => grade == 'other', then: (schema) => schema.required("មិនអាចទទេបានទេ")})
 });
 
 const FormScreen = ({onSubmit}) => {
@@ -94,32 +86,8 @@ const FormScreen = ({onSubmit}) => {
     classGroup: '',
     provinceCode: '',
     districtCode: '',
-    highSchoolCode: ''
-  }
-
-  const filterOption = (items, parendcode) => {
-    return items.filter((item) => item.parent_code == parendcode);
-  }
-
-  const isGradeSelected = (values) => {
-    return !!values.grade && values.grade != 'other'
-  }
-
-  const renderBottomSheetPicker = (title, placeholder, bottomSheetTitle, name, items, selectedFieldName = null) => {
-    return <View style={[styles.formGroup, {marginTop: 12}]}>
-              <CustomBottomSheetPicker
-                title={title}
-                placeholder={placeholder}
-                bottomSheetTitle={bottomSheetTitle}
-                required={true}
-                items={items}
-                fieldName={name}
-                selectedFieldName={selectedFieldName}
-                disabled={items.length == 0}
-                snapPoints={profileFormHelper.getPickerDimension(name).snapPoints}
-                contentHeight={profileFormHelper.getPickerDimension(name).contentHeight}
-              />
-           </View>
+    highSchoolCode: '',
+    otherGrade: '',
   }
 
   const renderContent = (values) => {
@@ -129,16 +97,7 @@ const FormScreen = ({onSubmit}) => {
         { renderGender() }
         { renderDateOfBirth() }
         { renderPhoneNumber() }
-        {renderBottomSheetPicker('ជាសិស្សថ្នាក់ទី', 'សូមជ្រើសរើសថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'ជ្រើសរើសថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'grade', grades, 'value')}
-
-        { isGradeSelected(values) &&
-          <View>
-            { ["11", "12"].includes(values['grade']) && renderBottomSheetPicker('ជាសិស្សក្នុងបណ្តុំថ្នាក់', 'សូមជ្រើសរើសបណ្ដុំថ្នាក់', 'ជ្រើសរើសបណ្ដុំថ្នាក់ដែលប្អូនកំពុងសិក្សា', 'classGroup', filterOption(classGroups, values.grade), 'code') }
-            { renderBottomSheetPicker('ខេត្ត/ក្រុង', 'សូមជ្រើសរើសខេត្ត/ក្រុង', 'ជ្រើសរើសខេត្ត/ក្រុងដែលប្អូនកំពុងសិក្សា', 'provinceCode', provinces, 'code') }
-            { renderBottomSheetPicker('ស្រុក/ខណ្ឌ', 'សូមជ្រើសរើសស្រុក/ខណ្ឌ', 'ជ្រើសរើសស្រុក/ខណ្ឌដែលប្អូនកំពុងសិក្សា', 'districtCode', filterOption(districts, values.provinceCode), 'code') }
-            { renderBottomSheetPicker('រៀននៅសាលា', 'សូមជ្រើសរើសសាលារៀន', 'ជ្រើសរើសរៀននៅសាលាដែលប្អូនកំពុងសិក្សា', 'highSchoolCode', filterOption(highSchools, values.districtCode), 'code') }
-          </View>
-        }
+        <FormPickers values={values} />
       </View>
     )
   }
