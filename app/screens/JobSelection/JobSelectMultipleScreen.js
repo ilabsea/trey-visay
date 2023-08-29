@@ -44,7 +44,7 @@ const JobSelectMultipleScreen = ({route, navigation}) => {
           textSearch={textSearch}
           errorMessage={errorMsg}
           type='job'
-          headerLabel={`ចូរជ្រើសរើសអាជីពការងារដែលអ្នកពេញចិត្តក្នុងការបន្តការសិក្សានាពេលអនាគត យ៉ាងច្រើនបំផុត 3មុខជំនាញក្នុងចំណោម ${data.length}មុខជំនាញ៖ `}
+          headerLabel={`ចូរជ្រើសរើសអាជីពការងារដែលអ្នកពេញចិត្តក្នុងការបន្តការសិក្សានាពេលអនាគត យ៉ាងច្រើនបំផុត 3មុខរបរក្នុងចំណោម ${data.length}មុខរបរ៖ `}
         />
       </View>
 
