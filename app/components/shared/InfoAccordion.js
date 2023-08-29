@@ -35,17 +35,19 @@ const InfoAccordion = (props) => {
 
   const renderAccordion = () => {
     return props.items.map((item, index) => {
-      return (
-        <List.Accordion
-          key={`accordion${index}`}
-          title={renderAccordionTitle(item)}
-          style={[styles.accordion, props.accordionStyle]}
-          onPress={() => onToggle(index)}
-          expanded={statuses[index]}
-        >
-          {renderContent(item)}
-        </List.Accordion>
-      )
+      if (!!item) {
+        return (
+          <List.Accordion
+            key={`accordion${index}`}
+            title={renderAccordionTitle(item)}
+            style={[styles.accordion, props.accordionStyle]}
+            onPress={() => onToggle(index)}
+            expanded={statuses[index]}
+          >
+            {renderContent(item)}
+          </List.Accordion>
+        )
+      }
     });
   }
 

@@ -4,15 +4,15 @@ import InfoAccordion from '../shared/InfoAccordion';
 import InfoAccordionContent from '../shared/InfoAccordionContent';
 import SchoolUtil from '../../utils/school_util';
 
-const MajorDetailAccordion = ({major}) => {
+const MajorDetailAccordion = ({major, showRecommendation}) => {
   const details = [
     {
-      title: "ក. ការពិពណ៌នាទូទៅ",
+      title: "ក. ព័ត៌មានទូទៅ",
       detail: major.general_info || "មិនទាន់មានទិន្នន័យ",
       children: []
     },
     {
-      title: "ខ. លក្ខខណ្ឌការងារ",
+      title: "ខ. មុខវិជ្ជាតម្រង់ទិស និងលក្ខខណ្ឌចាំបាច់",
       detail: "",
       children: [
         { title: "មុខវិជ្ជាតម្រង់ទិស", detail: major.orien_orientation_subjects },
@@ -44,7 +44,12 @@ const MajorDetailAccordion = ({major}) => {
       title: "ឆ. គ្រឹះស្ថានសិក្សា",
       detail: SchoolUtil.getSchoolNamesByIds(major.school_ids),
       children: []
-    }
+    },
+    showRecommendation ? {
+      title: "ជ. អនុសាសន៍",
+      detail: major.recommendation,
+      children: []
+    } : null
   ]
 
   return <InfoAccordion items={details}
