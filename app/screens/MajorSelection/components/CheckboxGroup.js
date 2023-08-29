@@ -82,7 +82,7 @@ const CheckboxGroup = ({options, textSearch, errorMessage, type, headerLabel}, r
       </View>
 
       <FlatList
-        style={{marginBottom: 1, paddingHorizontal: 16, flexGrow: 1}}
+        style={{marginBottom: 1, paddingHorizontal: 16, flex: 1}}
         data={renderOptions}
         keyExtractor={(option) => option.value.toString()}
         onEndReached={() => onEndReached()}
