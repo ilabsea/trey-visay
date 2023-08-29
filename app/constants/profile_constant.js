@@ -9,7 +9,7 @@ export const pickerBottomSheet = {
 }
 
 export const otherGrades = [
-  { label: 'ក្រោមថ្នាក់ទី៩', value: "under_grade_nine" },
+  { label: 'ជាសិស្សកំពុងរៀននៅក្រោមថ្នាក់ទី៩', value: "under_grade_nine" },
   { label: 'និស្សិតសកលវិទ្យាល័យ', value: "university_student" },
   { label: 'មុខរបរផ្សេងៗ', value: "other_occupation" },
 ]
