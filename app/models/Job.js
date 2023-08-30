@@ -46,7 +46,7 @@ export default class Job {
   static findAllByPersonalityTypes = (types) => {
     let jobs = []
     types.map(type => {
-      jobs = [...jobs, ...BaseModel.containsByAttr(MODEL, 'personality_type', `'${type}'`)]
+      jobs = [...jobs, ...BaseModel.beginsWith(MODEL, 'personality_type', `'${type}'`)]
     })
     return arrayUtil.filterDuplicate(jobs, 'id')
   }

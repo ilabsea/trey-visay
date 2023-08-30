@@ -1,14 +1,16 @@
 import React, {useEffect, useState, useRef} from 'react';
-import { View, FlatList, ActivityIndicator } from 'react-native';
+import { View, FlatList, ActivityIndicator, Keyboard, TouchableWithoutFeedback } from 'react-native';
+import { Divider } from 'react-native-paper';
 
+import { Text } from '../../../components';
 import { ErrorMessage } from '../../../components/forms';
 import Color from '../../../themes/color';
 import Checkbox from './Checkbox';
 
 const {useImperativeHandle} = React
 
-const CheckboxGroup = ({options, textSearch, errorMessage, updateSelectedItem, type}, ref) => {
-  const selectedValues = useRef([])
+const CheckboxGroup = ({options, textSearch, errorMessage, type, headerLabel}, ref) => {
+  const [selectedValues, setSelectedValues] = useState([]);
   const [paginateLoading, setPaginateLoading] = useState(false);
   const [renderOptions, setRenderOptions] = useState([])
   const listIndices = useRef({start: 0, end: 15})
@@ -21,21 +23,27 @@ const CheckboxGroup = ({options, textSearch, errorMessage, updateSelectedItem, t
   }, [options])
 
   const getSelectedValues = () => {
-    return selectedValues.current
+    return selectedValues;
+  }
+
+  const resetListIndices = () => {
+    listIndices.current = {start: 0, end: 15}
   }
 
   useImperativeHandle(ref, () => ({
-    getSelectedValues
+    getSelectedValues,
+    resetListIndices,
   }))
 
   const onPress = (isChecked, value) => {
     if (isChecked)
-      selectedValues.current.push(value)
+      setSelectedValues([...selectedValues, value]);
     else {
-      let index = selectedValues.current.indexOf(value);
-      selectedValues.current.splice(index, 1)
+      const index = selectedValues.indexOf(value);
+      let newValues = selectedValues;
+      newValues.splice(index, 1);
+      setSelectedValues([...newValues]);
     }
-    !!updateSelectedItem && updateSelectedItem(selectedValues.current.length)
   };
 
   const onEndReached = () => {
@@ -57,14 +65,24 @@ const CheckboxGroup = ({options, textSearch, errorMessage, updateSelectedItem, t
     return <ActivityIndicator size={'large'} color={Color.primaryColor} style={{marginTop: 10}} />
   }
 
+  const renderHeader = () => {
+    return <React.Fragment>
+              <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+                <Text style={{padding: 16}}>{headerLabel} {selectedValues.length}/3</Text>
+              </TouchableWithoutFeedback>
+              <Divider />
+           </React.Fragment>
+  }
+
   return (
     <View style={{flexGrow: 1}}>
+      {renderHeader()}
       <View style={{paddingHorizontal: 16}}>
         <ErrorMessage error={errorMessage} visible={errorMessage} />
       </View>
 
       <FlatList
-        style={{marginBottom: 1, paddingHorizontal: 16, flexGrow: 1}}
+        style={{marginBottom: 1, paddingHorizontal: 16, flex: 1}}
         data={renderOptions}
         keyExtractor={(option) => option.value.toString()}
         onEndReached={() => onEndReached()}
@@ -75,10 +93,10 @@ const CheckboxGroup = ({options, textSearch, errorMessage, updateSelectedItem, t
               value={ item.value }
               label={ item.name }
               onPress={ onPress }
-              checked={ selectedValues.current && selectedValues.current.indexOf(item.value) !== -1 }
+              checked={ selectedValues.length > 0 && selectedValues.indexOf(item.value) !== -1 }
               onEndReached={() => onEndReached()}
               type={type}
-              disabled={selectedValues.current.length == 3}
+              disabled={selectedValues.length == 3}
             />
           </View>
         )}

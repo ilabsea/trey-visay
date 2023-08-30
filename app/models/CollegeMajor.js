@@ -31,7 +31,7 @@ export default class CollegeMajor {
   static findAllByPersonalityTypes = (types) => {
     let majors = []
     types.map(type => {
-      majors = [...majors, ...BaseModel.containsByAttr(MODEL, 'personality_type', `'${type}'`)]
+      majors = [...majors, ...BaseModel.beginsWith(MODEL, 'personality_type', `'${type}'`)]
     })
     return arrayUtil.filterDuplicate(majors, 'id')
   }

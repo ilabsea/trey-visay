@@ -38,7 +38,7 @@ const SearchableHeader = (props) => {
 
   const handlePressBack = () => {
     if (searchVisible) {
-      !!props.setSearchedText && props.setSearchedText('')
+      (!!props.setSearchedText && !!props.searchedText) && props.setSearchedText('')
       setSearchVisible(false)
       return
     }
