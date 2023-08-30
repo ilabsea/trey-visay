@@ -16,7 +16,7 @@ const horizontalCardComponentStyles = StyleSheet.create({
     paddingHorizontal: 8
   },
   title: {
-    fontSize: FontSetting.title
+    fontSize: FontSetting.text
   },
   rightBtnContainer: {
     alignItems: 'center',
@@ -26,7 +26,7 @@ const horizontalCardComponentStyles = StyleSheet.create({
   startLabel: {
     color: color.primaryColor,
     marginRight: 4,
-    fontSize: FontSetting.text,
+    fontSize: FontSetting.text - 1,
   },
   arrowIcon: {
     color: color.pressable
