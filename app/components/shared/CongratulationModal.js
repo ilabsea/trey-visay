@@ -12,7 +12,7 @@ import {isShortScreenDevice} from '../../utils/responsive_util';
 const CongratulationModal = (props) => {
   const renderMessage = () => {
     return <View style={{flex: 1}}>
-              <Image source={require('../../assets/images/success.png')} style={{width: wp('52%'), height: wp('52%'), alignSelf: 'center', marginBottom: 16}} resizeMode='contain'/>
+              <Image source={require('../../assets/images/congratulations.gif')} style={{width: wp('80%'), height: wp('52%'), alignSelf: 'center', marginBottom: 16, marginTop: -10}} resizeMode='contain' />
               {props.message()}
            </View>
   }
