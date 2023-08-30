@@ -10,12 +10,12 @@ import characteristics from '../../components/HollandTestResult/json/characteris
 const HollandAboutScreen = ({route, navigation}) => {
   renderCharacteristics = () => {
     const items = [
-      { shortcut: 'R', label: 'ប្រភេទប្រាកដនិយម (Realistic-R: Doers' },
-      { shortcut: 'I', label: 'ប្រភេទពូកែអង្កេត (Investigative-I: Thinkers)' },
-      { shortcut: 'A', label: 'ប្រភេទសិល្បៈ (Artistic-A: Creators)' },
-      { shortcut: 'S', label: 'ប្រភេទសង្គម (Social-S: Helpers)' },
-      { shortcut: 'E', label: 'ប្រភេទសហគ្រិន (Enterprising-E: Persuaders)' },
-      { shortcut: 'C', label: 'ប្រភេទសណ្ដាប់ធ្នាប់ (Conventional-C: Organizers)' },
+      { shortcut: 'R', label: 'ប្រភេទប្រាកដនិយម (Realistic: Doers)' },
+      { shortcut: 'I', label: 'ប្រភេទពូកែអង្កេត (Investigative: Thinkers)' },
+      { shortcut: 'A', label: 'ប្រភេទសិល្បៈ (Artistic: Creators)' },
+      { shortcut: 'S', label: 'ប្រភេទសង្គម (Social: Helpers)' },
+      { shortcut: 'E', label: 'ប្រភេទសហគ្រិន (Enterprising: Persuaders)' },
+      { shortcut: 'C', label: 'ប្រភេទសណ្ដាប់ធ្នាប់ (Conventional: Organizers)' },
     ]
     return items.map((item, index) => {
       const color = characteristics.filter(characteristic => characteristic.shortcut == item.shortcut)[0].color;
@@ -35,10 +35,10 @@ const HollandAboutScreen = ({route, navigation}) => {
       <View style={{padding: screenHorizontalPadding, paddingTop: 8, backgroundColor: 'white', flex: 1}}>
         <Text style={{marginBottom: 10}}>
           លោកបណ្ឌិត John Holland ជាចិត្តវិទូសញ្ជាតិអាមេរិក បានបង្កើត <BoldLabelComponent label="«ទ្រឹស្ដីហូឡែន ឬហូឡែនកូដ» "/>
-          ដោយផ្ដោតលើការវិភាគពីចំណាប់អារម្មណ៍របស់មនុស្ស ដើម្បីកំណត់ពីបរិស្ថាន ការងារ ដែលគេចូលចិត្ត និងស្របតាមលក្ខណៈសម្បត្តិរបស់ពួកគេ។ ឧបករណ៍តេស្ដស្វ័យវាយតម្លៃហូឡែនកូដនេះ ត្រូវបានប្រើប្រាស់ ដើម្បីជួយឱ្យសិស្ស និស្សិត ឬអ្នកស្វែងរកការងារធ្វើ អាចបន្ស៊ីចំណាប់អារម្មណ៍ផ្ទាល់ខ្លួនទៅនឹងការជ្រើសរើស មុខជំនាញសិក្សា និងអាជីពការងារ បានសមរម្យទៅតាមស្ថានភាពបុគ្គលរៀងៗខ្លួន។ នៅពេលអនុវត្តតេស្ដ ហូឡែនកូដនេះចប់ អ្នកនឹងទទួលបានកូដផ្ទាល់ខ្លួន ៣អក្សរ ដែលបញ្ជាក់អំពីប្រភេទបុគ្គលិកលក្ខណៈ។ អ្នកអាចប្រើប្រាស់កូដដែលទទួលបាននោះ ដើម្បីជ្រើស​រើសមុខជំនាញសិក្សា ឬអាជីពការងារដែលស័ក្ដិសមនឹងអ្នក។
+          ដោយផ្ដោតលើការវិភាគពីចំណាប់អារម្មណ៍របស់មនុស្ស ដើម្បីកំណត់ពីបរិស្ថាន ការងារ ដែលគេចូលចិត្ត និងស្របតាមលក្ខណៈសម្បត្តិរបស់ពួកគេ។ ឧបករណ៍តេស្ដស្វ័យវាយតម្លៃហូឡែនកូដនេះ ត្រូវបានប្រើប្រាស់ ដើម្បីជួយឱ្យសិស្ស និស្សិត ឬអ្នកស្វែងរកការងារធ្វើ អាចបន្ស៊ីចំណាប់អារម្មណ៍ផ្ទាល់ខ្លួនទៅនឹងការជ្រើសរើស មុខជំនាញសិក្សា និងអាជីពការងារ បានសមរម្យទៅតាមស្ថានភាពបុគ្គលរៀងៗខ្លួន។
         </Text>
 
-        <Text style={{marginVertical: 12}}>តាមរយៈទ្រឹស្ដីហូឡែននេះ បុគ្គលិកលក្ខណៈរបស់មនុស្សត្រូវបានបែងចែកជា <BoldLabelComponent label="៦ ក្រុម" /> (RIASEC)៖</Text>
+        <Text style={{marginVertical: 0}}>តាមរយៈទ្រឹស្ដីហូឡែននេះ បុគ្គលិកលក្ខណៈរបស់មនុស្សត្រូវបានបែងចែកជា <BoldLabelComponent label="៦ ក្រុម" /> (RIASEC)៖</Text>
         { renderCharacteristics() }
       </View>
     )
