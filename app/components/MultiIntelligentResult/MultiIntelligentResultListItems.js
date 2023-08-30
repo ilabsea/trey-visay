@@ -9,23 +9,27 @@ import intelligenceTypes from '../../data/json/intelligence_types.json'
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import Color from '../../themes/color';
 
-const MultiIntelligentResultListItems = ({navigation}) => {
+const MultiIntelligentResultListItems = ({navigation, quiz}) => {
   const renderList = () => {
-    return intelligenceTypes.map((item, index) => {
-      return (
-        <View key={index}>
-          <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate('IntelligenceDetailScreen', {shortcut: item.shortcut})}>
-            <Text style={{fontSize: FontSetting.text, flex: 1, paddingRight: 16}} numberOfLines={1}>{item.label}</Text>
+    return quiz.sortedIntelligenceScore.map((score, index) => {
+      const typeIndex = intelligenceTypes.findIndex((type) => type.code == score[0]);
+      if (typeIndex != -1) {
+        const item = intelligenceTypes[typeIndex];
+        return (
+          <View key={index}>
+            <TouchableOpacity style={styles.itemContainer} onPress={() => navigation.navigate('IntelligentDetailScreen', {code: item.code})}>
+              <Text style={{fontSize: FontSetting.text, flex: 1, paddingRight: 16}} numberOfLines={1}>{item.name_km} ({item.name_en})</Text>
 
-            <View style={{flexDirection: 'row', alignItems: 'center'}}>
-              <Text style={{fontSize: 13, marginRight: 6, color: Color.gray}}>មើលលម្អិត</Text>
-              <Icon name='angle-right' size={24} color='#bbb' style={{marginTop: -3}} />
-            </View>
-          </TouchableOpacity>
-          <Divider/>
-        </View>
-      )
-    })
+              <View style={{flexDirection: 'row', alignItems: 'center'}}>
+                <Text style={{fontSize: 13, marginRight: 6, color: Color.gray}}>មើលលម្អិត</Text>
+                <Icon name='angle-right' size={24} color='#bbb' style={{marginTop: -3}} />
+              </View>
+            </TouchableOpacity>
+            <Divider/>
+          </View>
+        )
+      }
+    });
   }
 
   return (

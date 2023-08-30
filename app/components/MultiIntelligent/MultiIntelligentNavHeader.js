@@ -1,10 +1,10 @@
 import React from 'react'
 import {Animated, View, StyleSheet} from 'react-native'
 import {Appbar} from 'react-native-paper';
-import { useDispatch } from 'react-redux';
 
-import {BackButton, Text} from '../../components'
-import {goBack, reset} from '../../hooks/RootNavigation'
+import {BackButton} from '../../components'
+import QuizExitConfirmationModal from '../../components/shared/QuizExitConfirmationModal';
+import {goBack} from '../../hooks/RootNavigation'
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import {FontFamily} from '../../themes/font';
 import Color from '../../themes/color';
@@ -15,7 +15,6 @@ import ProgressStep from './ProgressStep';
 
 const MultiIntelligentNavHeader = (props) => {
   const [modalVisible, setModalVisible] = React.useState(false)
-  const dispatch = useDispatch();
 
   const progressArrowOpacity = props.scrollY.interpolate({
     inputRange: [0, 60],
@@ -56,7 +55,7 @@ const MultiIntelligentNavHeader = (props) => {
         </View>
       </Appbar.Header>
       {renderProgressIndicator()}
-      {/* {renderConfirmation()} */}
+      <QuizExitConfirmationModal visible={modalVisible} type='intelligentTest' closeModal={() => setModalVisible(false)} />
     </View>
   )
 }

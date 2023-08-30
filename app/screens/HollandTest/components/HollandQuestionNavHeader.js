@@ -1,10 +1,9 @@
 import React from 'react'
 import {Animated, View, StyleSheet} from 'react-native'
 import {Appbar} from 'react-native-paper';
-import { useDispatch } from 'react-redux';
 
 import {BackButton, Text, ProgressStep} from '../../../components'
-import ConfirmationModal from '../../../components/shared/ConfirmationModal';
+import QuizExitConfirmationModal from '../../../components/shared/QuizExitConfirmationModal';
 import HollandProgressArrow from './HollandProgressArrow';
 
 import {goBack, reset} from '../../../hooks/RootNavigation'
@@ -12,35 +11,9 @@ import { FontSetting } from '../../../assets/style_sheets/font_setting';
 import {FontFamily} from '../../../themes/font';
 import Color from '../../../themes/color';
 import {getStyleOfOS} from '../../../utils/responsive_util'
-import { resetAnswer } from '../../../redux/features/quiz/hollandSlice';
 
 const CustomNavigationHeader = (props) => {
   const [modalVisible, setModalVisible] = React.useState(false)
-  const dispatch = useDispatch();
-
-  const renderConfirmation = () => {
-    const message = (
-      <React.Fragment>
-        <Text>រាល់ចម្លើយដែលអ្នកបានជ្រើសរើសនឹងត្រូវបាត់បង់នៅពេលចាក់ចេញ។</Text>
-        <Text style={{marginTop: 12}}>តើអ្នកពិតជាចង់ចាកចេញពីការតេស្តនេះមែន ឬទេ?</Text>
-      </React.Fragment>
-    )
-
-    const returnHome = () => {
-      dispatch(resetAnswer());
-      reset({routeName: 'HomeTab', params: {}})
-    }
-
-    return <ConfirmationModal
-              visible={modalVisible}
-              leftButtonLabel='ទេ'
-              rightButtonLabel='បាទ/ចាស'
-              onLeftPress={() => setModalVisible(false)}
-              onRightPress={() => returnHome()}
-              message={() => message}
-              onDismiss={() => setModalVisible(false)}
-            />
-  }
 
   const progressArrowOpacity = props.scrollY.interpolate({
     inputRange: [0, 60],
@@ -81,7 +54,7 @@ const CustomNavigationHeader = (props) => {
         </View>
       </Appbar.Header>
       {renderProgressIndicator()}
-      {renderConfirmation()}
+      <QuizExitConfirmationModal visible={modalVisible} type='hollandTest' closeModal={() => setModalVisible(false)} />
     </View>
   )
 }

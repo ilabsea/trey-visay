@@ -1,22 +1,42 @@
 import React from 'react'
 import { Animated, View } from 'react-native'
 import DeviceInfo from 'react-native-device-info'
+import { useSelector, useDispatch } from 'react-redux';
 
 import MultiIntelligentNavHeader from '../../components/MultiIntelligent/MultiIntelligentNavHeader';
 import QuestionItem from '../../components/MultiIntelligent/QuestionItem';
 import { Form, SubmitButton } from '../../components/forms';
 import Text from '../../components/Text'
-import { getQuestions, getForm, getHollandScore } from '../../services/intelligent_question_service';
+import { getForm, getMultiIntelligentQuestions, getIntelligentScore } from '../../services/question_service';
 import {getStyleOfOS} from '../../utils/responsive_util';
+import IntelligentQuiz from '../../models/IntelligentQuiz';
+import {appendAnswer, resetAnswer} from '../../redux/features/quiz/intelligentSlice';
+import {setCurrentQuiz} from '../../redux/features/quiz/intelligentQuizSlice';
+import SidekiqJob from '../../models/SidekiqJob';
 
-const initialValues = {"A_01": "", "C_01": "", "E_01": "", "I_01": "", "R_01": "", "S_01": ""}
+export default MultiIntelligentQuestionnaireScreen = ({route, navigation}) => {
+  const currentIntelligentResponse = useSelector((state) => state.currentIntelligent.value);
+  const currentQuiz = useSelector((state) => state.currentIntelligentQuiz.value);
+  const dispatch = useDispatch();
 
-export default MultiINtelligentQuestionnaireScreen = ({route, navigation}) => {
   const scrollY = React.useRef(new Animated.Value(0));
-  const { questions, isPageEnd, page } = getQuestions(route.params?.page);
+  const { questions, isPageEnd, page } = getMultiIntelligentQuestions(route.params?.page);
+  const { validationSchema, initialValues } = getForm(questions, currentIntelligentResponse);
 
   const handleSubmit = (values, {errors}) => {
+    dispatch(appendAnswer(values));
+
     if (isPageEnd) {
+      const response = {...currentIntelligentResponse, ...values}
+      IntelligentQuiz.write(() => {
+        currentQuiz.intelligenceScore = getIntelligentScore(response);
+        currentQuiz.intelligenceResponse = response;
+        currentQuiz.finishedAt = new Date();
+        SidekiqJob.create(currentQuiz.uuid, 'uploadIntelligenceQuiz');
+
+        dispatch(setCurrentQuiz(currentQuiz))
+        dispatch(resetAnswer());
+      });
       return navigation.navigate('MultiIntelligentResultScreen');
     }
     navigation.push('MultiIntelligentQuestionnaireScreen', {page: page + 1});
@@ -36,7 +56,7 @@ export default MultiINtelligentQuestionnaireScreen = ({route, navigation}) => {
     <Form
       initialValues={initialValues}
       onSubmit={ handleSubmit }
-      // validationSchema={validationSchema}
+      validationSchema={validationSchema}
     >
       <MultiIntelligentNavHeader step={page} scrollY={scrollY.current}/>
       <Animated.ScrollView contentContainerStyle={{flexGrow: 1, paddingTop: getStyleOfOS(DeviceInfo.hasNotch() ? 152 : 124, 105)}}

@@ -13,7 +13,7 @@ const Rating = (props) => {
       <View style={{flex: 1, justifyContent: 'flex-end', alignItems: 'center'}}>
         <Image source={ images[props.icon] } style={[{width: 50, height: 50}, props.style]} />
       </View>
-      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 0}}>
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center', paddingHorizontal: 2}}>
         <Text style={{fontSize: isShortWidthScreen() ? 11 : 12, width: '100%', textAlign: 'center', lineHeight: 18, paddingHorizontal: 2}}>{props.label}</Text>
       </View>
     </View>

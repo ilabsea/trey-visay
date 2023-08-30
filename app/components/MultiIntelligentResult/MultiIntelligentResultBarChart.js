@@ -1,11 +1,20 @@
 import React, {useState} from 'react';
-import { StyleSheet, View, processColor, Text } from 'react-native';
+import { StyleSheet, View, processColor } from 'react-native';
 import { BarChart } from 'react-native-charts-wrapper';
 
-const MultiIntelligentResultBarChart = () => {
+import intelligenceTypes from '../../data/json/intelligence_types.json';
+
+const MultiIntelligentResultBarChart = ({quiz}) => {
+  const intelligenceScore = quiz.sortedIntelligenceScore;
+  const yData = intelligenceScore.map(c => ({y: c[1]}));
+  const xData = intelligenceScore.map(c => {
+    const index = intelligenceTypes.findIndex((type) => type.code == c[0])
+    return index != -1 ? intelligenceTypes[index].name_km : '';
+  })
+
   const [data, setData] = useState({
     dataSets: [{
-      values: [{y: 500}, {y: 400}, {y: 300}, {y: 200}, {y: 100}, {y: 70}, {y: 50}],
+      values: yData,
       label: '',
       config: {
         drawValues: false,
@@ -16,13 +25,12 @@ const MultiIntelligentResultBarChart = () => {
 
   const [xAxis, setXAxis] = useState({
     enabled: true,
-    valueFormatter: ['Linguistic', 'Logical–mathematical', 'Bodily–kinaesthetic', 'Musical', 'Spatial-Visual', 'Interpersonal', 'Intrapersonal'],
+    valueFormatter: xData,
 	  labelRotationAngle: -70,
     granularityEnabled: true,
     position: 'BOTTOM',
     gridColor: processColor('white'),
     textSize: 10,
-    // avoidFirstLastClipping: true,
   })
 
   const [yAxis, setYAxis] = useState({

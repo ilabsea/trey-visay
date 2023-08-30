@@ -5,23 +5,23 @@ import { Text } from '../../components';
 import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader'
 import intelligenceTypes from '../../data/json/intelligence_types.json'
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
-import IntelligenceDetailAccordion from '../../components/IntelligenceDetail/IntelligenceDetailAccordion'
+import IntelligentDetailAccordion from '../../components/IntelligentDetail/IntelligentDetailAccordion'
 import {screenHorizontalPadding} from '../../constants/component_constant'
 
-const IntelligenceDetailScreen = ({route}) => {
-  const intelligence = intelligenceTypes.filter(item => item.shortcut == route.params.shortcut)[0]
+const IntelligentDetailScreen = ({route}) => {
+  const intelligence = intelligenceTypes.filter(item => item.code == route.params.code)[0]
   return (
     <View style={{flex: 1}}>
-      <CustomNavigationHeader title={intelligence.label} headerStyle={{zIndex: 1}} />
+      <CustomNavigationHeader title={intelligence.name_km} headerStyle={{zIndex: 1}} />
 
       <ScrollView>
         <Text style={{marginTop: 16, marginBottom: 8, paddingHorizontal: screenHorizontalPadding, color: '#000'}}>
-          ទម្រង់នៃបញ្ញា និងរបៀបនៃការសិក្សា <BoldLabelComponent label={intelligence.label} />៖
+          ទម្រង់នៃបញ្ញា និងរបៀបនៃការសិក្សា <BoldLabelComponent label={intelligence.name_km} />៖
         </Text>
-        <IntelligenceDetailAccordion intelligence={intelligence} />
+        <IntelligentDetailAccordion intelligence={intelligence} />
       </ScrollView>
     </View>
   )
 }
 
-export default IntelligenceDetailScreen
+export default IntelligentDetailScreen

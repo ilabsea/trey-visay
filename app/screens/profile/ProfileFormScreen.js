@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import {
   Platform,
   StatusBar,
@@ -12,10 +12,14 @@ import FormScreen from './Form';
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrentUser } from '../../redux/features/user/userSlice';
 import useAuth from "../../auth/useAuth";
+import IntelligentQuiz from '../../models/IntelligentQuiz';
+import {setCurrentQuiz} from '../../redux/features/quiz/intelligentQuizSlice';
+import {resetAnswer} from '../../redux/features/quiz/intelligentSlice';
 
-const ProfileFormScreen = ({navigation}) => {
+const ProfileFormScreen = ({navigation, route}) => {
   const { logIn } = useAuth();
   const dispatch = useDispatch();
+  const currentIntelligentQuiz = useSelector((state) => state.currentIntelligentQuiz.value);
 
   useEffect(() => {
     if (Platform.OS == 'android') {
@@ -31,12 +35,23 @@ const ProfileFormScreen = ({navigation}) => {
         SidekiqJob.create(user.uuid, 'uploadUser');
 
         logIn(user);
-
-        navigation.navigate('PersonalUnderstandingTestScreen');
+        handleRedirection(user);
       })
     } catch (e) {
       console.log(e);
     }
+  }
+
+  const handleRedirection = (user) => {
+    if (route.params.type == 'hollandTest')
+      return navigation.navigate('PersonalUnderstandingTestScreen')
+
+    const intelligentQuiz = IntelligentQuiz.create({userUuid: user.uuid, createdAt: new Date()});
+    if (!!currentIntelligentQuiz) IntelligentQuiz.delete(currentIntelligentQuiz.uuid);
+
+    dispatch(setCurrentQuiz(intelligentQuiz));
+    dispatch(resetAnswer());
+    navigation.navigate('MultiIntelligentInstructionScreen');
   }
 
   return (

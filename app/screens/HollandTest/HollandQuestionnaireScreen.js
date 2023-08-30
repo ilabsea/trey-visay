@@ -9,7 +9,7 @@ import { Form, SubmitButton } from '../../components/forms';
 import { useSelector, useDispatch } from 'react-redux';
 import { appendAnswer, resetAnswer } from '../../redux/features/quiz/hollandSlice';
 import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
-import { getQuestions, getForm, getHollandScore } from './services/question_service';
+import { getHollandQuestions, getForm, getHollandScore } from '../../services/question_service';
 import SidekiqJob from '../../models/SidekiqJob';
 import {getStyleOfOS} from '../../utils/responsive_util';
 
@@ -20,7 +20,7 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
   const dispatch = useDispatch();
 
   // Pagination and form validation
-  const { questions, isPageEnd, page } = getQuestions(route.params?.page);
+  const { questions, isPageEnd, page } = getHollandQuestions(route.params?.page);
   const { validationSchema, initialValues } = getForm(questions, currentHollandResponse);
 
   const scrollY = React.useRef(new Animated.Value(0));

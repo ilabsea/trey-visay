@@ -12,6 +12,8 @@ import {hollandTestResultOptionsSnapPoints} from '../../constants/modal_constant
 import {getStyleOfOS} from '../../utils/responsive_util';
 import { useSelector } from 'react-redux';
 
+import Quiz from '../../models/Quiz';
+
 const HollandTestResult = ({navigation}) => {
   const currentQuiz = useSelector((state) => state.currentQuiz.value);
   const modalRef = React.useRef();

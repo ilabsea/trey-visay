@@ -5,6 +5,7 @@ import {
   uploadJobResponse
 } from "./holland_quiz";
 import { uploadVisit } from './visit_api';
+import { uploadIntelligenceQuiz } from './intelligent_quiz_api';
 
 export default {
   uploadUser,
@@ -12,4 +13,5 @@ export default {
   uploadMajorResponse,
   uploadJobResponse,
   uploadVisit,
+  uploadIntelligenceQuiz,
 }
