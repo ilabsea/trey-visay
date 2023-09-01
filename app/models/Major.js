@@ -28,11 +28,15 @@ export default class Major {
     return majors
   }
 
-  static findAllByPersonalityTypes = (types) => {
+  static findAllByGradeAndPersonalityTypes = (grade, otherGrade, types) => {
     let majors = []
     types.map(type => {
       majors = [...majors, ...BaseModel.beginsWith(MODEL, 'personality_type', `'${type}'`)]
     })
+    // vocational grade major will not be shown if the user's grade is higher than 9 or university student
+    if (grade > 9 || (grade == 'other' && otherGrade == 'university_student'))
+      majors = majors.filter(major => major.grade != 'vocational_grade');
+
     return arrayUtil.filterDuplicate(majors, 'id')
   }
 

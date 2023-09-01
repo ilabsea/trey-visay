@@ -42,7 +42,7 @@ const holland_major_responses_attributes = (quiz) => {
 
   for(let i = 0; i < codes.length; i++) {
     attributes.push({
-      college_major_code: codes[i],
+      major_code: codes[i],
       selected: codes[i] == quiz.majorCodeSelected
     })
   }

@@ -7,13 +7,15 @@ import CheckboxGroup from './components/CheckboxGroup';
 import SearchableHeader from '../../components/shared/searchableHeaders/SearchableHeader'
 import FooterBar from "../../components/footer/FooterBar";
 import Major from '../../models/Major';
+import useAuth from "../../auth/useAuth";
 
 const MajorSelectMultipleScreen = ({route, navigation}) => {
   const [textSearch, setTextSearch] = useState('');
   const [errorMsg, setErrorMsg] = useState('')
   const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const dispatch = useDispatch();
-  const data = Major.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
+  const {user} = useAuth();
+  const data = Major.findAllByGradeAndPersonalityTypes(user.grade, user.otherGrade, currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
 
   let formRef = React.useRef()
 
