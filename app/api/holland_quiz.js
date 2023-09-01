@@ -3,7 +3,6 @@ import { Platform } from 'react-native';
 import { getUniqueId, isTablet, getVersion, getSystemName,  getSystemVersion } from 'react-native-device-info';
 import User from '../models/User';
 import Quiz from '../models/Quiz';
-import CollegeMajor from '../models/CollegeMajor';
 import Job from '../models/Job';
 
 const endpoint = "/holland_quizzes";

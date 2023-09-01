@@ -1,7 +1,7 @@
 'use strict';
 
 import Realm from 'realm';
-import CollegeMajor from '../../../models/CollegeMajor';
+import Major from '../../../models/Major';
 import Job from '../../../models/Job';
 
 const routes = {
@@ -42,7 +42,7 @@ export default class Quiz extends Realm.Object {
   }
 
   get selectedMajor() {
-    return !!this.majorCodeSelected ? CollegeMajor.findByCode(this.majorCodeSelected) : null;
+    return !!this.majorCodeSelected ? Major.findByCode(this.majorCodeSelected) : null;
   }
 
   get selectedJob() {

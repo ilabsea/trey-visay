@@ -6,14 +6,14 @@ import { setCurrentQuiz } from '../../redux/features/quiz/quizSlice';
 import CheckboxGroup from './components/CheckboxGroup';
 import SearchableHeader from '../../components/shared/searchableHeaders/SearchableHeader'
 import FooterBar from "../../components/footer/FooterBar";
-import CollegeMajor from '../../models/CollegeMajor';
+import Major from '../../models/Major';
 
 const MajorSelectMultipleScreen = ({route, navigation}) => {
   const [textSearch, setTextSearch] = useState('');
   const [errorMsg, setErrorMsg] = useState('')
   const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const dispatch = useDispatch();
-  const data = CollegeMajor.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
+  const data = Major.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
 
   let formRef = React.useRef()
 

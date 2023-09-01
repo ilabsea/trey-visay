@@ -3,7 +3,7 @@ import User from '../migrations/v4/user';
 import Quiz from '../migrations/v4/quiz';
 import School from '../migrations/v4/school';
 import DownloadedImage from '../migrations/v4/downloaded_image';
-import CollegeMajor from '../migrations/v4/college_major';
+import Major from '../migrations/v4/major';
 import Job from '../migrations/v4/job';
 import JobCluster from '../migrations/v4/job_cluster';
 import Video from '../migrations/v4/video';
@@ -16,7 +16,7 @@ const schema4 = [
   Quiz,
   School,
   DownloadedImage,
-  CollegeMajor,
+  Major,
   Job,
   JobCluster,
   Video,
