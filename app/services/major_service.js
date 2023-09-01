@@ -1,8 +1,8 @@
 import Major from '../models/Major'
 import {itemsPerPage} from '../constants/sync_data_constant'
-import CollegeMajorApi from '../api/college_major_api'
+import MajorApi from '../api/major_api'
 
-const collegeMajorSyncService = (() => {
+const majorService = (() => {
   return {
     syncAllData
   }
@@ -25,11 +25,11 @@ const collegeMajorSyncService = (() => {
       return
     }
 
-    new CollegeMajorApi().load(page, (res) => {
+    new MajorApi().load(page, (res) => {
       const allPage = Math.ceil(res.pagy.count / itemsPerPage)
       _syncAndRemoveByPage(page+1, allPage, [...prevCollegeMajors, ...res.majors])
     })
   }
 })()
 
-export default collegeMajorSyncService
+export default majorService
