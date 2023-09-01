@@ -7,28 +7,29 @@ const majorService = (() => {
     syncAllData
   }
 
-  function syncAllData() {
-    _syncAndRemoveByPage(1, 1)
+  function syncAllData(callback) {
+    _syncAndRemoveByPage(1, 1, callback)
   }
 
   // private method
-  function _handleSaveMajor(collegeMajors) {
+  function _handleSaveMajor(collegeMajors, callback) {
     collegeMajors.map(collegeMajor => {
       Major.create(collegeMajor)
     });
+    !!callback && callback();
   }
 
-  function _syncAndRemoveByPage(page, totalPage, prevCollegeMajors = []) {
+  function _syncAndRemoveByPage(page, totalPage, callback, prevCollegeMajors = []) {
     if (page > totalPage) {
       Major.deleteAll()
-      _handleSaveMajor(prevCollegeMajors)
+      _handleSaveMajor(prevCollegeMajors, callback)
       return
     }
 
     new MajorApi().load(page, (res) => {
       const allPage = Math.ceil(res.pagy.count / itemsPerPage)
-      _syncAndRemoveByPage(page+1, allPage, [...prevCollegeMajors, ...res.majors])
-    })
+      _syncAndRemoveByPage(page+1, allPage, callback, [...prevCollegeMajors, ...res.majors])
+    }, (error) => !!callback && callback())
   }
 })()
 

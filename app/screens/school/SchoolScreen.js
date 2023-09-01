@@ -111,7 +111,7 @@ export default class SchoolScreen extends Component {
   }
 
   onRefresh() {
-    majorService.syncAllData()
+    majorService.syncAllData(() => this.listRef.current?.stopRefreshLoading())   // wait until finish syncing the major to hide the loading
     schoolSyncService.syncAllData(kinds[this.state.activePage], (schools) => {
       let options = {
         kind: kinds[this.state.activePage],
@@ -122,7 +122,6 @@ export default class SchoolScreen extends Component {
         searchText: ''
       }
       this.setState({schools: SchoolUtil.getSchools(options)})
-      this.listRef.current?.stopRefreshLoading()
     }, () => {
       this.listRef.current?.stopRefreshLoading()
     })
