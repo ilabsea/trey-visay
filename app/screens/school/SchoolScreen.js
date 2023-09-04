@@ -30,6 +30,7 @@ export default class SchoolScreen extends Component {
       currentProvince: '',
       currentMajor: '',
       currentCategory: '',
+      currentDepartment: '',
       loading: true,
       searchText: '',
       hasInternet: false,
@@ -55,10 +56,12 @@ export default class SchoolScreen extends Component {
     SchoolUtil.getSelectedProvince((province) => {
       SchoolUtil.getSelectedMajor((major) => {
         SchoolUtil.getSelectedCategory((category) => {
-          province = province == 'គ្រប់ទីកន្លែង' ? '': province;
-          major = major == 'គ្រប់ជំនាញ' ? '': major;
-          this.setState({ currentProvince: province, currentMajor: major, currentCategory: category });
-          this.setSchools(this.state.activePage);
+          SchoolUtil.getSelectedDepartment(department => {
+            province = province == 'គ្រប់ទីកន្លែង' ? '': province;
+            major = major == 'គ្រប់ជំនាញ' ? '': major;
+            this.setState({ currentProvince: province, currentMajor: major, currentCategory: category, currentDepartment: department });
+            this.setSchools(this.state.activePage);
+          })
         })
       });
     });
@@ -70,6 +73,7 @@ export default class SchoolScreen extends Component {
       province: this.state.currentProvince,
       major: this.state.currentMajor,
       category: this.state.currentCategory,
+      department: this.state.currentDepartment,
       page: this.page,
       searchText: this.state.searchText
     }
@@ -101,13 +105,13 @@ export default class SchoolScreen extends Component {
   }
 
   getMore() {
-    if (this.isRequestingData || this.isEndPage) {
-      return;
-    }
+    if (this.isRequestingData || this.isEndPage)
+      return this.listRef.current?.stopPaginateLoading();
 
     this.isRequestingData = true;
     this.page++;
     this.setSchools(this.state.activePage);
+    this.listRef.current?.stopPaginateLoading()
   }
 
   onRefresh() {
@@ -118,6 +122,7 @@ export default class SchoolScreen extends Component {
         province: this.state.currentProvince,
         major: this.state.currentMajor,
         category: this.state.currentCategory,
+        department: this.state.currentDepartment,
         page: this.page,
         searchText: ''
       }
@@ -143,7 +148,9 @@ export default class SchoolScreen extends Component {
               renderItem={ ({item}) => this._renderRow(item) }
               hasInternet={this.state.hasInternet}
               keyExtractor={ this._keyExtractor }
+              offlineEndReached={true}
               refreshingAction={() => this.onRefresh()}
+              endReachedAction={() => this.getMore()}
            />
   }
 
@@ -169,7 +176,7 @@ export default class SchoolScreen extends Component {
             navigation={this.props.navigation}
             kind={kinds[this.state.activePage]}
             refreshValue={ this.refreshState.bind(this)}
-            number={!!this.state.currentProvince + !!this.state.currentMajor + !!this.state.currentCategory}
+            number={!!this.state.currentProvince + !!this.state.currentMajor + !!this.state.currentCategory + !!this.state.currentDepartment}
           />
         </View>
       </View>

@@ -4,6 +4,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 import { Colors } from '../../../assets/style_sheets/main/colors';
 import {Text} from '../../../components';
+import {FontSetting} from '../../../assets/style_sheets/font_setting';
 
 const FilterButton = (props) => {
   let activeIconBg = props.isSelected ? { backgroundColor: Colors.blue }: { backgroundColor: Colors.gray };
@@ -17,7 +18,7 @@ const FilterButton = (props) => {
                 style={styles.icon}
               />
             </View>
-            <Text numberOfLines={2} style={[activeText, { flex: 1 , paddingRight: 16, lineHeight: 28}]}>{props.label}</Text>
+            <Text numberOfLines={props.numberOfLines || 3} style={[activeText, { flex: 1 , paddingRight: 16, lineHeight: 21, fontSize: FontSetting.sub_title}, props.labelStyle]}>{props.label}</Text>
           </TouchableOpacity>
 }
 

@@ -10,8 +10,10 @@ import OneList from '../../../components/list/one_list';
 import FooterBar from '../../../components/footer/FooterBar';
 import FilterButton from './filter_button';
 import FilterCategoryButtons from './filter_category_buttons';
+import FilterDepartmentButtons from './filter_department_buttons';
 import keyword from '../../../data/analytics/keyword';
 import Color from '../../../themes/color';
+import provinces from '../../../data/json/address/provinces.json';
 
 const categories = {
   'public': 'សាលារដ្ឋ',
@@ -20,7 +22,7 @@ const categories = {
 }
 
 class FilterScreen extends Component {
-  _keyExtractor = (item, index) => index.toString();
+  _keyExtractor = (item, index) => item.toString();
 
   constructor(props){
     super(props);
@@ -29,17 +31,34 @@ class FilterScreen extends Component {
       selectedValue: '',
       selectedProvince: '',
       selectedCategory: '',
+      selectedDepartment: '',
       kind: props.route.params.kind
     }
   }
 
   componentDidMount() {
-    this.refreshProvinceValue();
+    SchoolUtil.getSelectedProvince((province) => {
+      this.setState({ selectedProvince: province || '' });
+    });
+    SchoolUtil.getSelectedCategory(category => {
+      this.setState({ selectedCategory: category })
+    })
+    SchoolUtil.getSelectedDepartment(department => {
+      this.setState({selectedDepartment: department})
+    })
+    SchoolUtil.getSelectedMajor((major) => {
+      major = major == 'គ្រប់ជំនាញ' ? '': major;
+      this.setState({ selectedValue: major });
+    });
+
+    setTimeout(() => {
+      this.setState({majors: SchoolUtil.getMajors(this.state.selectedProvince, this.state.selectedCategory || 'public', this.state.selectedDepartment)})
+    }, 300)
   }
 
   resetValues = () => {
     SchoolUtil.clearSelectedValues();
-    this.setState({ selectedValue: '', selectedProvince: '', selectedCategory: '' });
+    this.setState({ selectedValue: '', selectedProvince: '', selectedCategory: '', selectedDepartment: '' });
     this.refreshProvinceValue();
   }
 
@@ -51,6 +70,7 @@ class FilterScreen extends Component {
     let selectedValue = this.state.selectedValue == null ? '' : this.state.selectedValue;
     SchoolUtil.setSelectedMajor(selectedValue);
     SchoolUtil.setSelectedCategory(!this.state.selectedCategory ? '' : this.state.selectedCategory);
+    SchoolUtil.setSelectedDepartment(!this.state.selectedDepartment ? '' : this.state.selectedDepartment);
 
     // firebase.analytics().logEvent(keyword.INSTITUTION_FILTER_APPLIED);
 
@@ -60,18 +80,10 @@ class FilterScreen extends Component {
 
   refreshProvinceValue() {
     SchoolUtil.getSelectedProvince((province) => {
-      province = province == 'គ្រប់ទីកន្លែង'? '' : province;
       this.setState({
         selectedProvince: province,
-        majors: SchoolUtil.getMajors(this.state.selectedProvince, 'public')
+        majors: SchoolUtil.getMajors(province, this.state.selectedCategory || 'public', this.state.selectedDepartment)
       });
-      SchoolUtil.getSelectedMajor((major) => {
-        major = major == 'គ្រប់ជំនាញ' ? '': major;
-        this.setState({ selectedValue: major });
-      });
-      SchoolUtil.getSelectedCategory(category => {
-        this.setState({ selectedCategory: category })
-      })
     });
   }
 
@@ -85,15 +97,21 @@ class FilterScreen extends Component {
            />
   }
 
+  renderTvetDepartments() {
+    return <FilterDepartmentButtons selectedDepartment={this.state.selectedDepartment} selectedProvince={this.state.selectedProvince}
+              updateSelectedDepartment={(department) => this.setState({selectedDepartment: department, majors: SchoolUtil.getMajors(this.state.selectedProvince, this.state.selectedCategory || 'public', department)})}
+           />
+  }
+
   renderCategories() {
     return <FilterCategoryButtons
               selectedCategory={this.state.selectedCategory}
-              updateSelectedCategory={(category) => this.setState({selectedCategory: category})}
+              updateSelectedCategory={(category) => this.setState({selectedCategory: category, majors: SchoolUtil.getMajors(this.state.selectedProvince, category || 'public', this.state.selectedDepartment)})}
            />
   }
 
   renderTopSection() {
-    let province = this.state.selectedProvince ? this.state.selectedProvince : 'គ្រប់ទីកន្លែង';
+    let province = !!this.state.selectedProvince ? provinces.filter(province => province.code == this.state.selectedProvince)[0].label : 'គ្រប់ទីកន្លែង';
     return (
       <React.Fragment>
         <OneList text='ជ្រើសរើសទីតាំង' selectedValue={province}
@@ -101,12 +119,13 @@ class FilterScreen extends Component {
             this.props.navigation.navigate('FilterProvinces', {
               title: 'ជ្រើសរើសទីតាំង',
               kind: this.state.kind,
-              selectedProvince: province,
+              selectedProvince: this.state.selectedProvince,
               refreshValue: this.refreshProvinceValue.bind(this)
             })
           }}
         />
         {this.renderCategories()}
+        {this.props.route.params.kind == 'tvet_institute' && this.renderTvetDepartments()}
 
         <Text style={{marginLeft: 16, marginTop: 10, marginBottom: 6, color: Color.paleBlackColor}}>
           ជ្រើសរើសជំនាញ

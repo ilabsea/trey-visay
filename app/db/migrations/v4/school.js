@@ -12,7 +12,7 @@ School.schema = {
     id: 'int?',
     name: 'string',
     address: 'string',
-    province: 'string?',
+    province: 'int?',
     phone_numbers: 'string?',
     faxes: 'string?',
     emails: 'string?',

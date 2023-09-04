@@ -40,6 +40,10 @@ export default class School {
     return realm.objects('School').filtered('id IN $0', Object.values(ids));
   }
 
+  static findByKindAndProvince = (kind, province) => {
+    return realm.objects('School').filtered(`kind = '${kind}' AND province = ${parseInt(province)}`);
+  }
+
   static deleteAll = () => {
     BaseModel.deleteAll(MODEL)
   }
@@ -52,7 +56,7 @@ export default class School {
       name: school.name,
       logo: school.logo.url,
       address: school.address,
-      province: school.province,
+      province: parseInt(school.province),
       phone_numbers: school.phone_numbers,
       faxes: school.faxes,
       emails: school.emails,

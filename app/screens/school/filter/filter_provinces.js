@@ -43,10 +43,10 @@ class FilterProvinces extends Component {
       <View key={i}>
         <TouchableOpacity
           style={{flexDirection: 'row', minHeight: isShortScreenDevice() ? pressableItemSize : 56, paddingHorizontal: screenHorizontalPadding, alignItems: 'center', paddingVertical: 6}}
-          onPress={()=> this.setSelectedProvince(province)}
+          onPress={()=> this.setSelectedProvince(province.code)}
         >
-          <Text style={{flex: 1, marginTop: 2}}>{province}</Text>
-          { this.state.selectedProvince == province &&
+          <Text style={{flex: 1, marginTop: 2}}>{province.label}</Text>
+          { this.state.selectedProvince == province.code &&
             <Icon name='check' size={24} color={Color.pressable} />
           }
         </TouchableOpacity>
@@ -56,11 +56,11 @@ class FilterProvinces extends Component {
   }
 
   render(){
-    let provinces = ['គ្រប់ទីកន្លែង'].concat(this.state.provinces)
+    let provinces = [{label: 'គ្រប់ទីកន្លែង', code: ''}].concat(this.state.provinces)
     return (
-      <View style={{flexGrow: 1}}>
+      <View style={{flex: 1}}>
         <CustomNavigationHeader title="ជ្រើសរើសទីតាំង"/>
-        <ScrollView>
+        <ScrollView contentContainerStyle={{flexGrow: 1, paddingBottom: 16}}>
           { provinces.map((province, i) => {
             { return (this.renderProvinces(province, i))}
           })}
