@@ -35,6 +35,7 @@ export default HollandQuestionnaireScreen = ({route, navigation}) => {
         currentQuiz.step = 1
         currentQuiz.hollandResponse = responses
         currentQuiz.hollandScore = getHollandScore(responses)
+        currentQuiz.finishedAt = new Date();
         SidekiqJob.create(currentQuiz.uuid, 'uploadHollandQuiz');
 
         dispatch(setCurrentQuiz(currentQuiz));
