@@ -52,7 +52,7 @@ export default class CareerClusterScreen extends Component {
   renderCareerCluster(cluster, i) {
     return (
       <View key={cluster.uuid} style={mainStyles.carouselBox}>
-        <ButtonList hasLine={false} title={cluster.name}
+        <ButtonList hasLine={false} title={`${cluster.display_order}. ${cluster.name}`}
           onPress={() => {
             this.props.navigation.navigate('CareerIndexScreen', {
               cluster_code: cluster.code,
