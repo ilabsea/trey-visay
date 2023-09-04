@@ -3,7 +3,6 @@ import { Platform } from 'react-native';
 import { getUniqueId, isTablet, getVersion, getSystemName,  getSystemVersion } from 'react-native-device-info';
 import User from '../models/User';
 import Quiz from '../models/Quiz';
-import CollegeMajor from '../models/CollegeMajor';
 import Job from '../models/Job';
 
 const endpoint = "/holland_quizzes";
@@ -43,7 +42,7 @@ const holland_major_responses_attributes = (quiz) => {
 
   for(let i = 0; i < codes.length; i++) {
     attributes.push({
-      college_major_code: codes[i],
+      major_code: codes[i],
       selected: codes[i] == quiz.majorCodeSelected
     })
   }

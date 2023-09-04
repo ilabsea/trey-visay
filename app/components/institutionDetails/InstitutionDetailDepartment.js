@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import mainStyles from '../../assets/style_sheets/main/main';
@@ -7,18 +8,21 @@ import { Colors } from '../../assets/style_sheets/main/colors';
 import Text from '../Text';
 
 const InstitutionDetailDepartment = (props) => {
+  const navigation = useNavigation();
   let {departments} = props.school
   departments = JSON.parse(departments)
 
   const renderMajors = (majors) => {
     return majors.map((major, i) => {
               return (
-                <View style={[styles.btn, i % 2 == 0 && {borderRightWidth: 0.5}]} key={`major-${i}`}>
+                <TouchableOpacity onPress={() => navigation.navigate('MajorDetailScreen', { title: major.name, major_id: major.id })}
+                  style={[styles.btn, i % 2 == 0 && {borderRightWidth: 0.5}]} key={`major-${i}`}
+                >
                   <View style={styles.iconWrapper}>
                     <Image source={require("../../assets/icons/school/major.png")} resizeMode='contain' style={styles.icon} />
                   </View>
-                  <Text numberOfLines={2} style={{ flex: 1 , paddingRight: 16}}>{major}</Text>
-                </View>
+                  <Text numberOfLines={2} style={{ flex: 1 , paddingRight: 16}}>{major.name}</Text>
+                </TouchableOpacity>
               )
            })
   }
@@ -37,7 +41,6 @@ const InstitutionDetailDepartment = (props) => {
               )
            })
   }
-
 
   if (!departments || !departments.length)
     return (null);

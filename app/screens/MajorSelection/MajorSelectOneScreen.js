@@ -10,7 +10,7 @@ import CustomNavigationHeader from '../../components/shared/CustomNavigationHead
 import * as Yup from "yup";
 import RadioGroup from './components/RadioGroup';
 import Quiz from '../../models/Quiz';
-import CollegeMajor from '../../models/CollegeMajor';
+import Major from '../../models/Major';
 import SidekiqJob from '../../models/SidekiqJob';
 
 const MajorSelectOneScreen = ({route, navigation}) => {
@@ -19,7 +19,7 @@ const MajorSelectOneScreen = ({route, navigation}) => {
   const [selectedMajor, setSelectedMajor] = React.useState(null)
   const [resetAction, setResetAction] = React.useState(null)
   const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
-  const majors = CollegeMajor.findAllByCodes(Object.values(currentQuiz.majorCodeSelections)).map(x => ({name: x.name, value: x.code}))
+  const majors = Major.findAllByCodes(Object.values(currentQuiz.majorCodeSelections)).map(x => ({name: x.name, value: x.code}))
 
   const updateQuiz = (major) => {
     Quiz.write(()=> {
@@ -32,7 +32,7 @@ const MajorSelectOneScreen = ({route, navigation}) => {
 
   const modalMessage = (prefixLabel, suffixLabel) => {
     if (!!selectedMajor)
-      return <Text>{prefixLabel} “<BoldLabelComponent label={CollegeMajor.findByCode(selectedMajor).name}/>” {suffixLabel}</Text>
+      return <Text>{prefixLabel} “<BoldLabelComponent label={Major.findByCode(selectedMajor).name}/>” {suffixLabel}</Text>
   }
 
   const renderPopupModals = () => {

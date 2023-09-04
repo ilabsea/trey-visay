@@ -6,10 +6,10 @@ import CustomNavigationHeader from '../../components/shared/CustomNavigationHead
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
 import MajorDetailAccordion from '../../components/MajorDetails/MajorDetailAccordion'
 import {screenHorizontalPadding} from '../../constants/component_constant'
-import CollegeMajor from '../../models/CollegeMajor';
+import Major from '../../models/Major';
 
 const MajorDetailScreen = ({route}) => {
-  const major = CollegeMajor.findByCode(route.params.major_code) || {};
+  const major = route.params.major_id ? Major.findById(route.params.major_id) || {} : Major.findByCode(route.params.major_code) || {};
 
   return (
     <View style={{flex: 1}}>
