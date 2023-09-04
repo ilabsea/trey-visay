@@ -12,7 +12,7 @@ export default class JobCluster {
   }
 
   static getAll() {
-    return [...BaseModel.getAll(MODEL)]
+    return [...BaseModel.getAll(MODEL).sorted('display_order', false)]
   }
 
   // private method

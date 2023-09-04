@@ -34,7 +34,7 @@ class ButtonList extends React.Component {
               />
             </View>
           }
-          <BoldLabelComponent label={this.props.title} style={mainStyles.text} />
+          <BoldLabelComponent label={this.props.title} style={[mainStyles.text, {lineHeight: 24}]} />
           <Text style={{paddingRight: 8}}>{this.props.numberAtRight}</Text>
           { !this.props.hideArrow && <AwesomeIcon name='angle-right' size={30} color='#bbb' /> }
         </TouchableOpacity>
