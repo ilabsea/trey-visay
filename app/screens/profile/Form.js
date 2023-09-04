@@ -18,7 +18,7 @@ const validationSchema = Yup.object().shape({
   fullName: Yup.string().required("សូមបញ្ចូលឈ្មោះ"),
   sex: Yup.string().required("សូមជ្រើសរើស"),
   dateOfBirth: Yup.string().required("សូមបញ្ចូលថ្ងៃខែឆ្នាំកំណើត"),
-  phoneNumber: Yup.string().required("សូមបញ្ចូលលេខទូរស័ព្ទត្រូវដែលត្រឹមត្រូវ").matches(/^0[1-9]{8,9}$/, "សូមបញ្ចូលលេខទូរស័ព្ទត្រូវដែលត្រឹមត្រូវ"),
+  phoneNumber: Yup.string().required("សូមបញ្ចូលលេខទូរស័ព្ទត្រូវដែលត្រឹមត្រូវ").matches(/^0[1-9]{1}[0-9]{7,8}$/, "សូមបញ្ចូលលេខទូរស័ព្ទត្រូវដែលត្រឹមត្រូវ"),
   grade: Yup.string().required("មិនអាចទទេបានទេ"),
   classGroup: Yup.string().when("grade", {
     is: (grade) => ["11", "12"].includes(grade),
