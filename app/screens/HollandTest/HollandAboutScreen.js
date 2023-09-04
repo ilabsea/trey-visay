@@ -1,62 +1,57 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Image,
-} from 'react-native';
+import { View, ScrollView } from 'react-native';
 
-import mainStyles from '../../assets/style_sheets/main/main';
 import Text from '../../components/Text';
 import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader';
+import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
 import {screenHorizontalPadding} from '../../constants/component_constant';
+import characteristics from '../../components/HollandTestResult/json/characteristics';
 
 const HollandAboutScreen = ({route, navigation}) => {
+  renderCharacteristics = () => {
+    const items = [
+      { shortcut: 'R', label: 'ប្រភេទប្រាកដនិយម (Realistic: Doers)' },
+      { shortcut: 'I', label: 'ប្រភេទពូកែអង្កេត (Investigative: Thinkers)' },
+      { shortcut: 'A', label: 'ប្រភេទសិល្បៈ (Artistic: Creators)' },
+      { shortcut: 'S', label: 'ប្រភេទសង្គម (Social: Helpers)' },
+      { shortcut: 'E', label: 'ប្រភេទសហគ្រិន (Enterprising: Persuaders)' },
+      { shortcut: 'C', label: 'ប្រភេទសណ្ដាប់ធ្នាប់ (Conventional: Organizers)' },
+    ]
+    return items.map((item, index) => {
+      const color = characteristics.filter(characteristic => characteristic.shortcut == item.shortcut)[0].color;
+      return (
+        <View key={index} style={{flexDirection: 'row', alignItems: 'center', height: 62}}>
+          <View style={{borderWidth: 2, borderRadius: 6, width: 38, height: 38, marginRight: 10, justifyContent: 'center', alignItems: 'center', borderColor: color}}>
+            <Text style={{color: color, fontWeight: 'bold', lineHeight: 20}}>{item.shortcut}</Text>
+          </View>
+          <Text style={{flexShrink: 1, lineHeight: 28}}>{item.label}</Text>
+        </View>
+      )
+    });
+  }
+
   renderContent = () => {
     return (
       <View style={{padding: screenHorizontalPadding, paddingTop: 8, backgroundColor: 'white', flex: 1}}>
         <Text style={{marginBottom: 10}}>
-          ធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព ដើម្បីដឹងពីចំណង់ចូលចិត្ត ទេពកោសល្យ និងអាជីពដែលស័ក្តិសមសំរាប់អ្នកនៅពេលអនាគត
+          លោកបណ្ឌិត John Holland ជាចិត្តវិទូសញ្ជាតិអាមេរិក បានបង្កើត <BoldLabelComponent label="«ទ្រឹស្ដីហូឡែន ឬហូឡែនកូដ» "/>
+          ដោយផ្ដោតលើការវិភាគពីចំណាប់អារម្មណ៍របស់មនុស្ស ដើម្បីកំណត់ពីបរិស្ថាន ការងារ ដែលគេចូលចិត្ត និងស្របតាមលក្ខណៈសម្បត្តិរបស់ពួកគេ។ ឧបករណ៍តេស្ដស្វ័យវាយតម្លៃហូឡែនកូដនេះ ត្រូវបានប្រើប្រាស់ ដើម្បីជួយឱ្យសិស្ស និស្សិត ឬអ្នកស្វែងរកការងារធ្វើ អាចបន្ស៊ីចំណាប់អារម្មណ៍ផ្ទាល់ខ្លួនទៅនឹងការជ្រើសរើស មុខជំនាញសិក្សា និងអាជីពការងារ បានសមរម្យទៅតាមស្ថានភាពបុគ្គលរៀងៗខ្លួន។
         </Text>
-        <View style={styles.rowWrapper}>
-          <View style={[styles.imageWrapper, mainStyles.boxShadow]}>
-            <Image style={{width: 18, height: 24}} source={require('../../assets/images/career_tests/personality.png')} />
-          </View>
 
-          <Text>១. ស្វែងយល់អំពីខ្លួន</Text>
-        </View>
-        <View style={styles.rowWrapper}>
-          <View style={[styles.imageWrapper, mainStyles.boxShadow]}>
-            <Image source={require('../../assets/images/career_tests/careers.png')} />
-          </View>
-          <Text>២. វាយតម្លៃផែនការមុខរបរ</Text>
-        </View>
+        <Text style={{marginVertical: 0}}>តាមរយៈទ្រឹស្ដីហូឡែននេះ បុគ្គលិកលក្ខណៈរបស់មនុស្សត្រូវបានបែងចែកជា <BoldLabelComponent label="៦ ក្រុម" /> (RIASEC)៖</Text>
+        { renderCharacteristics() }
       </View>
     )
   }
 
   return (
-    <View style={{flex: 1}}>
+    <View style={{flex: 1, backgroundColor: 'white'}}>
       <CustomNavigationHeader title='អំពីការវាយតម្លៃមុខរបរនិងអាជីព' headerStyle={{zIndex: 1}} />
-      {renderContent()}
+      <ScrollView contentContainerStyle={{flexGrow: 1, paddingBottom: 16}}>
+        {renderContent()}
+      </ScrollView>
     </View>
   )
 }
 
 export default HollandAboutScreen
-
-const styles = StyleSheet.create({
-  rowWrapper: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 16
-  },
-  imageWrapper: {
-    width: 64,
-    height: 64,
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginRight: 14
-  },
-})

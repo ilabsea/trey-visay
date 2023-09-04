@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
     fontSize: FontSetting.nav_title,
     color: DEFAULT_TEXT_COLOR,
     paddingHorizontal: 16,
+    paddingTop: 3,
     textAlign: getStyleOfOS('center', 'left'),
   },
 })
