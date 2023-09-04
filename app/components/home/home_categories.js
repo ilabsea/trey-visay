@@ -2,7 +2,7 @@ import keyword from '../../data/analytics/keyword';
 
 const HomeCategories = [
   {
-    title: 'វាយតម្លៃមុខរបរ',
+    title: 'វាយតម្លៃមុខរបរនិងអាជីព',
     url: 'HollandNavigator',
     source_image: require('../../assets/images/home/career_test.png'),
     color: ['rgb(53, 174, 235)', 'rgb(24, 118, 211)'],

@@ -56,7 +56,7 @@ const tiltedCardComponentStyles = StyleSheet.create({
     top: isShortScreenDevice() ? -15 : -20
   },
   title: {
-    fontSize: FontSetting.title,
+    fontSize: FontSetting.text,
     paddingHorizontal: 8,
   }
 });

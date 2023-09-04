@@ -3,12 +3,11 @@ import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-nativ
 
 const HorizontalCardImageComponentStyles = StyleSheet.create({
   container:{
-    alignItems: 'center',
     justifyContent: 'center',
-    width: wp('26%')
+    width: wp('22%'),
   },
   image: {
-    width: 105,
+    width: 90,
     height: 86,
   }
 });

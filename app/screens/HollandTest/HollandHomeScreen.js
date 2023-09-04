@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Image } from 'react-native';
 // import firebase from 'react-native-firebase';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
@@ -27,7 +28,7 @@ const HollandHomeScreen = ({route, navigation}) => {
           hasLine={true}
           icon={{color: Color.blue, src: require('../../assets/icons/others/info.png')}}
           onPress={() => { navigation.navigate('HollandAboutScreen') }}
-          title='អំពីការធ្វើតេសវាយតម្លៃមុខរបរ និងអាជីព' />
+          title='អំពីការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព' />
       </View>
     )
   }
@@ -63,7 +64,7 @@ const HollandHomeScreen = ({route, navigation}) => {
         <CardItem>
           <Body>
             <Text>សួស្តីសាជាថ្មី</Text>
-            <Text>ការធ្វើតេស្តវាយតម្លៃមុខរបរ និងអាជីព</Text>
+            <Text>ការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព</Text>
 
             <View style={{width: '100%'}}>
               <StartQuizButton type='hollandTest' />
