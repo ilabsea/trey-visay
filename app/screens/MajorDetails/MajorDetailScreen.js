@@ -9,7 +9,7 @@ import {screenHorizontalPadding} from '../../constants/component_constant'
 import Major from '../../models/Major';
 
 const MajorDetailScreen = ({route}) => {
-  const major = Major.findByCode(route.params.major_code) || {};
+  const major = route.params.major_id ? Major.findById(route.params.major_id) || {} : Major.findByCode(route.params.major_code) || {};
 
   return (
     <View style={{flex: 1}}>

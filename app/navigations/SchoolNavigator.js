@@ -9,6 +9,8 @@ import SchoolScreen from '../screens/school/SchoolScreen';
 import InstitutionDetail from '../screens/school/institution_detail';
 import FilterScreen from '../screens/school/filter/filter_screen';
 import FilterProvinces from '../screens/school/filter/filter_provinces';
+import MajorDetailScreen from '../screens/MajorDetails/MajorDetailScreen';
+
 import { Colors } from '../assets/style_sheets/main/colors';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 
@@ -38,6 +40,7 @@ function SchoolNavigator() {
       <Stack.Screen name="InstitutionDetail" component={InstitutionDetail} options={{headerShown: false}} />
       <Stack.Screen name="FilterScreen" component={FilterScreen} options={{headerShown: false}}/>
       <Stack.Screen name="FilterProvinces" component={FilterProvinces} options={{headerShown: false}}/>
+      <Stack.Screen name="MajorDetailScreen" component={MajorDetailScreen} options={{headerShown: false}} />
     </Stack.Navigator>
   )
 }

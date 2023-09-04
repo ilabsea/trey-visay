@@ -16,6 +16,10 @@ export default class Major {
     return BaseModel.getAll(MODEL)
   }
 
+  static findById = (id) => {
+    return BaseModel.findByAttr(MODEL, {id: id})[0];
+  }
+
   static findByCode = (code) => {
     return BaseModel.findByAttr(MODEL, {code: `'${code}'`})[0]
   }
