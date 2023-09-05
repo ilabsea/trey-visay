@@ -19,7 +19,7 @@ export default function CardListComponent({item, onPress}) {
       default:
         return <TiltedCardComponent
                   item={item}
-                  containerStyle={{marginTop: getStyleOfDevice(68, 46)}}
+                  containerStyle={{marginTop: getStyleOfDevice(68, 50), elevation: 0}}
                   onPress={onPress}
                 />
     }

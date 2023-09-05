@@ -1,4 +1,6 @@
 import {StyleSheet, Platform} from 'react-native';
+import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import DeviceInfo from 'react-native-device-info';
 import color from '../../../themes/color';
 import componentUtil from '../../../utils/component_util';
 import {isLowPixelDensityDevice, isShortScreenDevice} from '../../../utils/responsive_util';
@@ -6,9 +8,17 @@ import {FontSetting} from '../../../assets/style_sheets/font_setting';
 
 const tiltedCardComponentStyles = StyleSheet.create({
   container: {
-    maxHeight: isShortScreenDevice() ? 140 : 155,
     width: componentUtil.getGridCardWidth(),
-    borderRadius: 70
+    borderRadius: 70,
+    borderTopLeftRadius: 100,
+    ...Platform.select({
+      ios: {
+        maxHeight: DeviceInfo.hasNotch() ? hp('14%') : hp('15%'),
+      },
+      android: {
+        maxHeight: isShortScreenDevice() ? hp('14.5%') : hp('15%'),
+      }
+    }),
   },
   tiltedView: {
     backgroundColor: color.whiteColor,
@@ -22,7 +32,7 @@ const tiltedCardComponentStyles = StyleSheet.create({
     ...Platform.select({
       ios: {
         borderBottomRightRadius: 40,
-        top: isLowPixelDensityDevice() ? -5.5 : -7,
+        top: isLowPixelDensityDevice() ? -5.5 : -7.4,
         right: -2.9
       },
       android: {
@@ -48,6 +58,7 @@ const tiltedCardComponentStyles = StyleSheet.create({
     backgroundColor: color.whiteColor,
     borderRadius: 10,
     borderTopRightRadius: 0,
+    elevation: 1,
     flexDirection: 'column',
     flexGrow: 1,
   },
