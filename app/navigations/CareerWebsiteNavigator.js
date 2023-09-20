@@ -12,8 +12,7 @@ function CareerWebsiteNavigator() {
   return (
     <Stack.Navigator initialRouteName="CareerWebsiteHomeScreen">
       <Stack.Screen name="CareerWebsiteHomeScreen" component={CareerWebsiteHomeScreen} options={{headerShown: false}}/>
-      <Stack.Screen name="NeaCareerScreen" component={WebviewScreen} options={{headerShown: false}}/>
-      <Stack.Screen name="BongSreyCareerScreen" component={WebviewScreen} options={{headerShown: false}}/>
+      <Stack.Screen name="WebViewScreen" component={WebviewScreen} options={{headerShown: false}}/>
     </Stack.Navigator>
   )
 }

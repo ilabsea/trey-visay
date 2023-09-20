@@ -9,6 +9,7 @@ import JobCluster from '../migrations/v4/job_cluster';
 import Video from '../migrations/v4/video';
 import Visit from '../migrations/v4/visit';
 import IntelligentQuiz from '../migrations/v4/intelligent_quiz';
+import CareerWebsite from '../migrations/v4/career_website';
 
 const schema4 = [
   Sidekiq,
@@ -22,6 +23,7 @@ const schema4 = [
   Video,
   Visit,
   IntelligentQuiz,
+  CareerWebsite,
 ];
 
 export default schema4;

@@ -1,30 +1,32 @@
 import React from 'react';
-import { Text, View, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
+import { Text, View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import { Divider } from 'react-native-paper';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
 
 // import firebase from 'react-native-firebase';
+import CustomImageComponent from '../../../components/shared/CustomImageComponent';
 import { FontSetting } from "../../../assets/style_sheets/font_setting";
 import mainStyles from "../../../assets/style_sheets/main/main";
 import visitService from '../../../services/visit_service';
 
 const CareerWebsiteItem = ({career}) => {
   const navigation = useNavigation();
-  let { width } = Dimensions.get('window');
-  let imageWidth = width/2-120;
+  const imageWidth = (Dimensions.get('window').width/2) - 120;
 
-  const goTo = () => {
+  const viewWebsite = () => {
     // firebase.analytics().logEvent(career.firebase_event_name);
     visitService.recordVisitPage('career_website_detail', career.name, 'career_website')
-    navigation.navigate(career.screen, {url: career.url, title: career.screen_title});
+    navigation.navigate('WebViewScreen', {url: career.url, title: career.name});
   }
 
   return (
     <View>
-      <TouchableOpacity style={styles.row} onPress={() => goTo()}>
+      <TouchableOpacity style={styles.row} onPress={() => viewWebsite()}>
         <View style={{width: imageWidth}}>
-          <Image source={career.logo} style={{width: imageWidth, height: imageWidth}}/>
+          <CustomImageComponent source={!!career.logo ? {uri: career.logo} : null} style={{width: imageWidth, height: imageWidth}} resizeMode='contain'
+            emptyImageStyle={{width: imageWidth, height: imageWidth}}
+          />
         </View>
 
         <View style={styles.textContainer}>
