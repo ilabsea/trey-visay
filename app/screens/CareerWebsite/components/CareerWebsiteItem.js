@@ -9,10 +9,11 @@ import CustomImageComponent from '../../../components/shared/CustomImageComponen
 import { FontSetting } from "../../../assets/style_sheets/font_setting";
 import mainStyles from "../../../assets/style_sheets/main/main";
 import visitService from '../../../services/visit_service';
+import Color from '../../../themes/color';
 
 const CareerWebsiteItem = ({career}) => {
   const navigation = useNavigation();
-  const imageWidth = (Dimensions.get('window').width/2) - 120;
+  const imageWidth = (Dimensions.get('window').width/2) - 125;
 
   const viewWebsite = () => {
     // firebase.analytics().logEvent(career.firebase_event_name);
@@ -23,14 +24,14 @@ const CareerWebsiteItem = ({career}) => {
   return (
     <View>
       <TouchableOpacity style={styles.row} onPress={() => viewWebsite()}>
-        <View style={{width: imageWidth}}>
+        <View style={{width: imageWidth, justifyContent: 'center'}}>
           <CustomImageComponent source={!!career.logo ? {uri: career.logo} : null} style={{width: imageWidth, height: imageWidth}} resizeMode='contain'
             emptyImageStyle={{width: imageWidth, height: imageWidth}}
           />
         </View>
 
         <View style={styles.textContainer}>
-          <Text style={mainStyles.title}>{ career.name }</Text>
+          <Text style={[mainStyles.title, {color: Color.blackColor, marginBottom: 8}]}>{ career.name }</Text>
           <Text style={styles.description}>{ career.description }</Text>
         </View>
 
@@ -60,7 +61,7 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: FontSetting.sub_title,
-    color: '#3A3A3A',
+    color: Color.grayColor,
     lineHeight: 25
   },
 });

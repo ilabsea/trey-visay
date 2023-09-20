@@ -12,11 +12,15 @@ export default class CareerWebsite {
   }
 
   static getAll = () => {
-    return BaseModel.getAll(MODEL);
+    return [...BaseModel.getAll(MODEL)];
   }
 
   static create = (data) => {
     BaseModel.create(MODEL, this._buildParams(data));
+  }
+
+  static deleteAll = () => {
+    BaseModel.deleteAll(MODEL);
   }
 
   // private method
