@@ -56,7 +56,7 @@ export default class School {
       name: school.name,
       logo: school.logo.url,
       address: school.address,
-      province: parseInt(school.province),
+      province: !!school.province ? parseInt(school.province) : null,
       phone_numbers: school.phone_numbers,
       faxes: school.faxes,
       emails: school.emails,

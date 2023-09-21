@@ -32,7 +32,7 @@ export default class ShowCategoryScreen extends Component {
     return (
       <React.Fragment>
         <Text style={mainStyles.sectionText}>មហាវិទ្យាល័យ</Text>
-        <SchoolListView navigation={this.props.navigation} data={this.state.schools}/>
+        <SchoolListView data={this.state.schools}/>
       </React.Fragment>
     )
   }

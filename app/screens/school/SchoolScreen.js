@@ -3,9 +3,9 @@ import { ActivityIndicator, View } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 
 import SchoolNavigationHeader from '../../components/schools/SchoolNavigationHeader';
-import School from '../../components/schools/school';
 import FilterButton from '../../components/schools/filter_button';
-import CustomFlatListComponent from '../../components/shared/CustomFlatListComponent';
+import CustomFlatListComponent from '../../components/shared/CustomFlatListComponent'
+import SchoolListItemComponent from '../../components/shared/SchoolListItemComponent';;
 
 import SchoolUtil from '../../utils/school_util';
 import {Colors} from '../../assets/style_sheets/main/colors';
@@ -95,7 +95,7 @@ export default class SchoolScreen extends Component {
   }
 
   _renderRow(school) {
-    return <School school={school} showCategory={false} navigation={this.props.navigation}/>
+    return <SchoolListItemComponent school={school} showCategory={false} />
   }
 
   setContent(active){
