@@ -20,6 +20,21 @@ const SchoolListItemComponent = (props) => {
   const {school} = props;
   const logo = DownloadedImage.getImagePath(school.logo)
 
+  const renderAddress = () => {
+    let address = 'មិនមាន';
+    if (!!school.address) {
+      const addresses = school.address.split(" ");
+      address = addresses.length == 1 ? school.address : `${addresses[addresses.length - 2]} ${addresses[addresses.length - 1]}`
+    }
+
+    return <View style={{flexDirection: 'row'}}>
+              <AwesomeIcon name='map-marker' color={color.pressable} size={18} />
+              <Text numberOfLines={1} style={styles.schoolAddress}>
+                {address}
+              </Text>
+           </View>
+  }
+
   return (
     <View>
       <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', paddingVertical: 12}}
@@ -37,13 +52,9 @@ const SchoolListItemComponent = (props) => {
               <Text style={styles.schoolAddress}>{CATEGORIES[school.category] || 'មិនមាន'}</Text>
             </View>
           }
-
-          <View style={{flexDirection: 'row'}}>
-            <AwesomeIcon name='map-marker' color={color.pressable} size={18} />
-            <Text numberOfLines={1} style={styles.schoolAddress}>{school.address || 'មិនមាន'}</Text>
-          </View>
+          {renderAddress()}
         </View>
-        <View><AwesomeIcon name='angle-right' size={24} color='#bbb' style={{flexGrow: 1, verticalAlign: 'middle'}} /></View>
+        <View><AwesomeIcon name='angle-right' size={24} color='#bbb' style={{verticalAlign: 'middle'}} /></View>
       </TouchableOpacity>
       <Divider />
     </View>
@@ -65,7 +76,8 @@ const styles = StyleSheet.create({
   schoolAddress: {
     marginLeft: 8,
     fontSize: FontSetting.sub_title,
-    lineHeight: 26
+    lineHeight: 26,
+    flex: 1
   },
   nameLabel: {
     fontSize: getStyleOfDevice(FontSetting.title, FontSetting.text),

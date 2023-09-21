@@ -7,6 +7,8 @@ import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
 import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader';
 import { reset } from '../../hooks/RootNavigation';
 import Quiz from '../../models/Quiz';
+import {screenHorizontalPadding} from '../../constants/component_constant';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 
 const JobRecommendationScreen = ({route, navigation}) => {
   const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
@@ -24,7 +26,7 @@ const JobRecommendationScreen = ({route, navigation}) => {
     <View style={{flex: 1}}>
       <CustomNavigationHeader title='ជម្រើសអាជីពការងារ' headerStyle={{zIndex: 1}} onPressBack={() => navigation.dispatch(StackActions.replace('HollandNavigator'))} />
       <ScrollView>
-        <Text style={{textAlign: 'center', marginVertical: 16}}>ការផ្តល់អនុសាសន៍</Text>
+        <Text style={{marginLeft: screenHorizontalPadding, fontSize: FontSetting.title, marginBottom: 6, marginTop: 16}}>ការផ្តល់អនុសាសន៍</Text>
 
         <Card style={{padding: 16}}>
           <Text>

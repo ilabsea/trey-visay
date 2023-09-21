@@ -16,6 +16,8 @@ import VocationalNavigator from './VocationalNavigator';
 import CareerWebsiteNavigator from './CareerWebsiteNavigator';
 import MultiIntelligentNavigator from './MultiIntelligentNavigator';
 
+import InstitutionDetail from '../screens/school/institution_detail';
+
 import { Platform } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
@@ -68,6 +70,7 @@ function RootStack() {
         <Stack.Screen name="VideoScreen" component={VideoScreen} options={{}}/>
         <Stack.Screen name="VocationalNavigator" component={VocationalNavigator} options={{}}/>
         <Stack.Screen name="CareerWebsiteNavigator" component={CareerWebsiteNavigator} options={{}}/>
+        <Stack.Screen name="InstitutionDetail" component={InstitutionDetail} options={{headerShown: false}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

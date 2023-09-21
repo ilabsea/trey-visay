@@ -5,20 +5,18 @@ import { Card } from 'react-native-paper';
 import { StackActions } from '@react-navigation/native';
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
 import ConfirmationModal from '../../components/shared/ConfirmationModal';
+
 import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader';
 import SchoolList from '../../components/schools/school_list';
 import Quiz from '../../models/Quiz';
 import {screenHorizontalPadding} from '../../constants/component_constant';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
-import {FontFamily} from '../../themes/font';
 import School from '../../models/School';
 
 const MajorRecommendationScreen = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = React.useState(false);
   const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const major = currentQuiz.selectedMajor || {};
-
-  console.log('== Major = ', major)
 
   useEffect(() => {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
@@ -51,19 +49,16 @@ const MajorRecommendationScreen = ({route, navigation}) => {
   }
 
   const renderTitle = (label) => {
-    return <Text style={{marginLeft: screenHorizontalPadding, fontSize: FontSetting.title, marginBottom: 6, marginTop: 16, fontFamily: FontFamily.bold}}>{label}</Text>
-    // return <Text style={{marginLeft: screenHorizontalPadding, fontSize: FontSetting.title, marginBottom: 6, marginTop: 16, fontFamily: FontFamily.regular}}>{label}</Text>
+    return <Text style={{marginLeft: screenHorizontalPadding, fontSize: FontSetting.title, marginBottom: 6, marginTop: 16}}>{label}</Text>
   }
 
   const renderRelatedSchools = () => {
     const schools = major.school_ids.map(schoolId => School.findById(schoolId));
     return (
-      <View>
+      <React.Fragment>
         {renderTitle('គ្រឺះស្ថានសិក្សា')}
-        <View>
-          <SchoolList navigation={navigation} data={schools} />
-        </View>
-      </View>
+        <SchoolList navigation={navigation} data={schools} />
+      </React.Fragment>
     )
   }
 
@@ -79,10 +74,7 @@ const MajorRecommendationScreen = ({route, navigation}) => {
             { major.recommendation }
           </Text>
         </Card>
-
-
         {renderRelatedSchools()}
-
       </ScrollView>
       {renderModal()}
       <FooterBar icon='keyboard-arrow-right' text='រួចរាល់' onPress={() => onPressDone()} />
