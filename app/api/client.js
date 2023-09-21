@@ -3,7 +3,7 @@ import { environment } from '../config/environment';
 
 const apiClient = create({
   baseURL: environment.baseURL,
-  headers: {'Authorization': `Token ${environment.apiKey}`}
+  headers: {'Authorization': `Token ${environment.backendApiKey}`}
 });
 
 export default apiClient;

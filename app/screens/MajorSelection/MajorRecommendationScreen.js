@@ -5,8 +5,13 @@ import { Card } from 'react-native-paper';
 import { StackActions } from '@react-navigation/native';
 import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
 import ConfirmationModal from '../../components/shared/ConfirmationModal';
+
 import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader';
+import SchoolList from '../../components/schools/school_list';
 import Quiz from '../../models/Quiz';
+import {screenHorizontalPadding} from '../../constants/component_constant';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
+import School from '../../models/School';
 
 const MajorRecommendationScreen = ({route, navigation}) => {
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -43,12 +48,25 @@ const MajorRecommendationScreen = ({route, navigation}) => {
     navigation.dispatch(StackActions.replace('HollandNavigator'))
   }
 
+  const renderTitle = (label) => {
+    return <Text style={{marginLeft: screenHorizontalPadding, fontSize: FontSetting.title, marginBottom: 6, marginTop: 16}}>{label}</Text>
+  }
+
+  const renderRelatedSchools = () => {
+    const schools = major.school_ids.map(schoolId => School.findById(schoolId));
+    return (
+      <React.Fragment>
+        {renderTitle('គ្រឺះស្ថានសិក្សា')}
+        <SchoolList navigation={navigation} data={schools} />
+      </React.Fragment>
+    )
+  }
+
   return (
     <View style={{flex: 1}}>
       <CustomNavigationHeader title='ជម្រើសជំនាញកម្រិតឧត្តមសិក្សា' headerStyle={{zIndex: 1}} onPressBack={() => navigation.dispatch(StackActions.replace('HollandNavigator'))} />
       <ScrollView>
-        <Text style={{textAlign: 'center', marginVertical: 16}}>ការផ្តល់អនុសាសន៍</Text>
-
+        {renderTitle('ការផ្តល់អនុសាសន៍')}
         <Card style={{padding: 16}}>
           <Text>
             ដើម្បីអាចបន្តការសិក្សាលើមុខជំនាញ.."<BoldLabelComponent label={major.name}/>".. នៅកម្រិតឧត្តមសិក្សាទទួល បានជោគជ័យ ប្អូនត្រូវពិនិត្យលើចំណុចមួយ ចំនួនដូច ខាងក្រោម៖
@@ -56,7 +74,7 @@ const MajorRecommendationScreen = ({route, navigation}) => {
             { major.recommendation }
           </Text>
         </Card>
-
+        {renderRelatedSchools()}
       </ScrollView>
       {renderModal()}
       <FooterBar icon='keyboard-arrow-right' text='រួចរាល់' onPress={() => onPressDone()} />
