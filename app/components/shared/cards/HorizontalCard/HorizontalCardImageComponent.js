@@ -10,7 +10,7 @@ const styles = getStyleOfDevice(tabletStyles, mobileStyles);
 const HorizontalCardImageComponent = (props) => {
   return (
     <View style={styles.container}>
-    <Image source={props.image} resizeMode='center' style={styles.image} />
+      <Image source={props.image} resizeMode='contain' style={styles.image} />
     </View>
   )
 }

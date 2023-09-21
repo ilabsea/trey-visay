@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import {getStyleOfDevice} from '../../../../utils/responsive_util'
+import {View, StyleSheet, Image, Platform} from 'react-native';
+import DeviceInfo from 'react-native-device-info';
+import {getStyleOfDevice, isShortScreenDevice} from '../../../../utils/responsive_util'
 
 const TitledCardImageComponent = (props) => {
   return <View style={{flex: 1.5}}>
@@ -10,11 +11,19 @@ const TitledCardImageComponent = (props) => {
 
 const styles = StyleSheet.create({
   image: {
-    height: getStyleOfDevice(125, 115),
-    width: '100%',
     top: -46,
     zIndex: 1,
-    borderColor: 'black',
+    alignSelf: 'center',
+    ...Platform.select({
+      android: {
+        height: getStyleOfDevice(125, isShortScreenDevice() ? 80 : 85),
+        width: isShortScreenDevice() ? '70%' : '75%',
+      },
+      ios: {
+        height: getStyleOfDevice(125, DeviceInfo.hasNotch() ? 85 : 78),
+        width: DeviceInfo.hasNotch() ? '75%' : '70%',
+      }
+    })
   }
 });
 

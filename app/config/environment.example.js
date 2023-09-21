@@ -7,5 +7,5 @@ export const environment = {
   maxFailedAttempt: 3,
   baseURL: 'http://192.168.1.145:3000/api/v1',
   sentryDSN: '',
-  apiKey: '',
+  backendApiKey: '',
 };
