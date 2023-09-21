@@ -57,8 +57,8 @@ export default class SchoolScreen extends Component {
       SchoolUtil.getSelectedMajor((major) => {
         SchoolUtil.getSelectedCategory((category) => {
           SchoolUtil.getSelectedDepartment(department => {
-            province = province == 'គ្រប់ទីកន្លែង' ? '': province;
-            major = major == 'គ្រប់ជំនាញ' ? '': major;
+            province = province == '0' ? '': province;
+            major = major == '0' ? '': major;
             this.setState({ currentProvince: province, currentMajor: major, currentCategory: category, currentDepartment: department });
             this.setSchools(this.state.activePage);
           })

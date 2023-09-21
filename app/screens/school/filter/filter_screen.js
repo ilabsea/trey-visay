@@ -11,6 +11,9 @@ import FooterBar from '../../../components/footer/FooterBar';
 import FilterButton from './filter_button';
 import FilterCategoryButtons from './filter_category_buttons';
 import FilterDepartmentButtons from './filter_department_buttons';
+
+import FilterPickers from './filter_pickers';
+
 import keyword from '../../../data/analytics/keyword';
 import Color from '../../../themes/color';
 import provinces from '../../../data/json/address/provinces.json';
@@ -139,7 +142,9 @@ class FilterScreen extends Component {
     return (
       <View style={{flex: 1}}>
         <FilterNavigationHeader resetValues={() => this.resetValues()} />
-        <FlatList
+        <FilterPickers/>
+          
+        {/* <FlatList
           data={ majors }
           renderItem={ ({item, index}) => this.renderButton(item, index) }
           refreshing={false}
@@ -147,7 +152,7 @@ class FilterScreen extends Component {
           horizontal={false}
           numColumns={2}
           ListHeaderComponent={() => this.renderTopSection()}
-        />
+        /> */}
         <FooterBar text='យល់ព្រម' onPress={this.setFilterValues.bind(this)} />
       </View>
     )

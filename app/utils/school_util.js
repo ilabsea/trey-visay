@@ -86,10 +86,13 @@ export default class SchoolUtil {
 
   static getMajors(selectedProvince, category, department) {
     const schools = SchoolModel.getAll().filter(school => {
-      if (!!selectedProvince)
-        return school.province == selectedProvince && school.category == category
+      if (!!selectedProvince && selectedProvince != '0') {
+        if (!!category && category != '0')
+          return school.province == selectedProvince && school.category == category;
 
-      return school.category == category
+        return school.province == selectedProvince;
+      }
+      return (!!category && category != '0') ? school.category == category : school;
     });
 
     let majors = []
@@ -97,7 +100,7 @@ export default class SchoolUtil {
 
     schools.map(school => {
       const schoolDepartments = JSON.parse(school.departments)
-      departments = [...departments, ...(!!department ? schoolDepartments.filter(item => item.name == department)  : schoolDepartments)]
+      departments = [...departments, ...((!!department && department != '0') ? schoolDepartments.filter(item => item.name == department)  : schoolDepartments)]
     })
 
     departments.map(department => {
@@ -122,10 +125,25 @@ export default class SchoolUtil {
 
   static getTvetDepartments(province) {
     let tvetDepartments = []
-    const schools = !!province ? SchoolModel.findByKindAndProvince('tvet_institute', province) : SchoolModel.findByKind('tvet_institute');
+    const schools = (!!province && province != '0') ? SchoolModel.findByKindAndProvince('tvet_institute', province) : SchoolModel.findByKind('tvet_institute');
     schools.map(school => {
       tvetDepartments = [...tvetDepartments, ...JSON.parse(school.departments).map(department => department.name)]
     });
     return [...new Set(tvetDepartments)]
+  }
+
+  static getProvincesForPicker(kind) {
+    const schools = !!kind ? SchoolModel.findByKind(kind) : SchoolModel.getAll()
+    const provinces = [...new Set(schools.map(school => { return provinceList.filter(province => province.code == parseInt(school.province))[0]}))];
+    provinces.sort();
+    return [{ code: '0', label: 'គ្រប់គ្រឹះស្ថានសិក្សា' }, ...provinces]
+  }
+
+  static getDepartmentsForPicker(province) {
+    return [{ code: '0', label: 'គ្រប់កម្រិត' }, ...this.getTvetDepartments(province).map((item) => ({code: item, label: item}))];
+  }
+
+  static getMajorsForPicker(province, category, department) {
+    return [{code: '0', label: 'គ្រប់ជំនាញ'}, ...this.getMajors(province, category, department).map((item) => ({code: item, label: item}))];
   }
 }

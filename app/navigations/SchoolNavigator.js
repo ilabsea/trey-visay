@@ -8,6 +8,7 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 import SchoolScreen from '../screens/school/SchoolScreen';
 import FilterScreen from '../screens/school/filter/filter_screen';
 import FilterProvinces from '../screens/school/filter/filter_provinces';
+import SchoolFilterScreen from '../screens/school/filter/SchoolFilterScreen';
 import MajorDetailScreen from '../screens/MajorDetails/MajorDetailScreen';
 
 import { Colors } from '../assets/style_sheets/main/colors';
@@ -38,6 +39,7 @@ function SchoolNavigator() {
       })}/> */}
       <Stack.Screen name="FilterScreen" component={FilterScreen} options={{headerShown: false}}/>
       <Stack.Screen name="FilterProvinces" component={FilterProvinces} options={{headerShown: false}}/>
+      <Stack.Screen name="SchoolFilterScreen" component={SchoolFilterScreen} options={{headerShown: false}}/>
       <Stack.Screen name="MajorDetailScreen" component={MajorDetailScreen} options={{headerShown: false}} />
     </Stack.Navigator>
   )
