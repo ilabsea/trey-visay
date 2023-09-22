@@ -1,5 +1,5 @@
 import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
-import {getStyleOfOS} from '../utils/responsive_util';
+import {getStyleOfOS, isLowPixelDensityDevice} from '../utils/responsive_util';
 
 export const schoolCategories = [
   { code: 'null', label: 'គ្រប់ប្រភេទគ្រឹះស្ថាន' },
@@ -9,7 +9,7 @@ export const schoolCategories = [
 ]
 
 export const filterPickerBottomSheets = {
-  'category': { snapPoints: [hp('44%')], contentHeight: hp('40%') },
+  'category': { snapPoints: isLowPixelDensityDevice() ? [hp('47%')] : [hp('44')], contentHeight: isLowPixelDensityDevice() ? hp('44.5%') : hp('40%') },
   'major': { snapPoints: [hp('80%')], contentHeight: hp('76%') },
   'default': { snapPoints: [hp('60%')], contentHeight: hp('56%') }
 }

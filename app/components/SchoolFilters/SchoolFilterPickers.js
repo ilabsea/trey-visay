@@ -3,14 +3,14 @@ import { ScrollView } from 'react-native';
 import { useFormikContext } from "formik";
 import { useNavigation } from '@react-navigation/native';
 
-import CustomBottomSheetPicker from '../../../components/shared/CustomBottomSheetPicker';
-import FooterBar from '../../../components/footer/FooterBar';
-import {screenHorizontalPadding} from '../../../constants/component_constant';
-import {schoolCategories} from '../../../constants/school_filter_constant';
-import schoolUtil from '../../../utils/school_util';
-import schoolFilterHelper from '../../../helpers/school_filter_helper';
+import CustomBottomSheetPicker from '../shared/CustomBottomSheetPicker';
+import FooterBar from '../footer/FooterBar';
+import {screenHorizontalPadding} from '../../constants/component_constant';
+import {schoolCategories} from '../../constants/school_filter_constant';
+import schoolUtil from '../../utils/school_util';
+import schoolFilterHelper from '../../helpers/school_filter_helper';
 
-const FilterPickers = (props) => {
+const SchoolFilterPickers = (props) => {
   const navigation = useNavigation();
   const { setFieldValue, values } = useFormikContext();
 
@@ -22,7 +22,7 @@ const FilterPickers = (props) => {
   }, []);
 
   const pickerItems = {
-    'province': { options: schoolUtil.getProvincesForPicker(props.kink), title: 'ជ្រើសរើសទីតាំង', bottomSheetTitle: 'ជ្រើសរើសទីតាំងរបស់គ្រឹះស្ថានសិក្សា', fieldName: 'province', isSearchable: false },
+    'province': { options: schoolUtil.getProvincesForPicker(props.kind), title: 'ជ្រើសរើសទីតាំង', bottomSheetTitle: 'ជ្រើសរើសទីតាំងរបស់គ្រឹះស្ថានសិក្សា', fieldName: 'province', isSearchable: false },
     'category': { options: schoolCategories, title: 'ប្រភេទគ្រឹះស្ថាន', bottomSheetTitle: 'ជ្រើសរើសប្រភេទគ្រឹះស្ថាន', fieldName: 'category', isSearchable: false },
     'department': { options: schoolUtil.getDepartmentsForPicker(values.province), title: 'កម្រិតសញ្ញាបត្រ', bottomSheetTitle: 'ជ្រើសរើសកម្រិតសញ្ញាបត្រ', fieldName: 'department', isSearchable: false },
     'major': { options: schoolUtil.getMajorsForPicker(values.province, values.category, values.department), title: 'ជំនាញសិក្សា', bottomSheetTitle: 'ជ្រើសរើសជំនាញសិក្សា',
@@ -30,7 +30,7 @@ const FilterPickers = (props) => {
              }
   }
 
-  const setFilterValues = () => {
+  const saveSelectedFilters = () => {
     schoolUtil.setSelectedProvince(values.province == '0' ? '' : values.province);
     schoolUtil.setSelectedMajor(values.major == '0' ? '' : values.major);
     schoolUtil.setSelectedCategory(values.category == '0' ? '' : values.category);
@@ -39,6 +39,13 @@ const FilterPickers = (props) => {
     // firebase.analytics().logEvent(keyword.INSTITUTION_FILTER_APPLIED);
     props.refreshValue();
     navigation.goBack();
+  }
+
+  const onSelectItem = (fieldName, item) => {
+    if (fieldName == 'province' || fieldName == 'category' || fieldName == 'department')
+      setFieldValue('major', '0')
+    if (fieldName == 'province')
+      setFieldValue('department', '0')
   }
 
   const renderPickers = () => {
@@ -51,6 +58,7 @@ const FilterPickers = (props) => {
                 key={index}
                 title={item.title}
                 placeholder={item.title}
+                placeholderAudio={null}
                 bottomSheetTitle={item.bottomSheetTitle}
                 required={false}
                 items={item.options}
@@ -59,9 +67,10 @@ const FilterPickers = (props) => {
                 disabled={item.options.length == 0}
                 snapPoints={schoolFilterHelper.getPickerDimension(key).snapPoints}
                 contentHeight={schoolFilterHelper.getPickerDimension(key).contentHeight}
-                containerStyle={{marginTop: 26}}
+                containerStyle={{marginTop: index == 0 ? 20 : 26, marginBottom: 2}}
                 isSearchable={item.isSearchable}
                 searchPlaceholder={item.searchPlaceholder || ''}
+                onSelectItem={(value) => onSelectItem(key, value)}
              />
     })
   }
@@ -73,9 +82,9 @@ const FilterPickers = (props) => {
         {renderPickers()}
       </ScrollView>
 
-      <FooterBar text='យល់ព្រម' onPress={() => setFilterValues()} />
+      <FooterBar text='យល់ព្រម' onPress={() => saveSelectedFilters()} />
     </React.Fragment>
   )
 }
 
-export default FilterPickers;
+export default SchoolFilterPickers;

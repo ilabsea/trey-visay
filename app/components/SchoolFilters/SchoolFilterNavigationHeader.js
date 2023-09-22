@@ -5,13 +5,11 @@ import { useFormikContext } from "formik"
 import CustomNavigationHeader from '../shared/CustomNavigationHeader'
 import {Text} from '..'
 import color from '../../themes/color'
-import schoolUtil from '../../utils/school_util';
 
-const FilterNavigationHeader = (props) => {
+const SchoolFilterNavigationHeader = (props) => {
   const { setFieldValue } = useFormikContext();
 
   const resetValues = () => {
-    schoolUtil.clearSelectedValues();
     setFieldValue('province', '0');
     setFieldValue('category', '0');
     setFieldValue('department', '0');
@@ -27,4 +25,4 @@ const FilterNavigationHeader = (props) => {
   return <CustomNavigationHeader title='ស្វែងរកគ្រឹះស្ថានសិក្សា' rightButton={() => renderRightBtn()} headerStyle={{borderBottomWidth: 1.5, borderColor: color.paleGray}} />
 }
 
-export default FilterNavigationHeader
+export default SchoolFilterNavigationHeader

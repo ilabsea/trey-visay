@@ -6,7 +6,7 @@ import {
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
 
 import SchoolScreen from '../screens/school/SchoolScreen';
-import SchoolFilterScreen from '../screens/school/filter/SchoolFilterScreen';
+import SchoolFilterScreen from '../screens/SchoolFilters/SchoolFilterScreen';
 
 import { Colors } from '../assets/style_sheets/main/colors';
 import { FontSetting } from '../assets/style_sheets/font_setting';

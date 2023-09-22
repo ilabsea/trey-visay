@@ -77,13 +77,6 @@ export default class SchoolUtil {
     return uniList.slice(start, end);
   }
 
-  static getProvinces(kind) {
-    const schools = !!kind ? SchoolModel.findByKind(kind) : SchoolModel.getAll()
-    const provinces = [...new Set(schools.map(school => { return provinceList.filter(province => province.code == parseInt(school.province))[0]}))];
-    provinces.sort();
-    return provinces;
-  }
-
   static getMajors(selectedProvince, category, department) {
     const schools = SchoolModel.getAll().filter(school => {
       if (!!selectedProvince && selectedProvince != '0') {
@@ -133,8 +126,11 @@ export default class SchoolUtil {
   }
 
   static getProvincesForPicker(kind) {
-    const schools = !!kind ? SchoolModel.findByKind(kind) : SchoolModel.getAll()
+    const schools = !!kind ? [...SchoolModel.findByKind(kind)] : [...SchoolModel.getAll()]
     const provinces = [...new Set(schools.map(school => { return provinceList.filter(province => province.code == parseInt(school.province))[0]}))];
+    if (!provinces[0])  // return only default item if all the schools have province as null
+      return [{ code: '0', label: 'គ្រប់គ្រឹះស្ថានសិក្សា' }]
+
     provinces.sort();
     return [{ code: '0', label: 'គ្រប់គ្រឹះស្ថានសិក្សា' }, ...provinces]
   }
