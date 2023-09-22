@@ -15,7 +15,7 @@ const InstitutionDetailDepartment = (props) => {
   const renderMajors = (majors) => {
     return majors.map((major, i) => {
               return (
-                <TouchableOpacity onPress={() => navigation.navigate('MajorDetailScreen', { title: major.name, major_id: major.id })}
+                <TouchableOpacity onPress={() => navigation.navigate('MajorDetailScreen', { title: major.name, major_id: major.id, hide_school_list: true })}
                   style={[styles.btn, i % 2 == 0 && {borderRightWidth: 0.5}]} key={`major-${i}`}
                 >
                   <View style={styles.iconWrapper}>

@@ -19,7 +19,7 @@ const MajorDetailScreen = ({route}) => {
         <Text style={{marginTop: 16, marginBottom: 8, paddingHorizontal: screenHorizontalPadding, color: '#000'}}>
           ការសិក្សាមុខវិជ្ជាថ្នាក់បរិញ្ញាបត្រ <BoldLabelComponent label={route.params.title} />៖
         </Text>
-        <MajorDetailAccordion major={major} showRecommendation={route.params.showRecommendation} />
+        <MajorDetailAccordion major={major} showRecommendation={route.params.showRecommendation} hideSchoolList={route.params.hide_school_list} />
       </ScrollView>
     </View>
   )

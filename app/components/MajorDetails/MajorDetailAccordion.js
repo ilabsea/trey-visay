@@ -4,7 +4,7 @@ import InfoAccordion from '../shared/InfoAccordion';
 import InfoAccordionContent from '../shared/InfoAccordionContent';
 import SchoolUtil from '../../utils/school_util';
 
-const MajorDetailAccordion = ({major, showRecommendation}) => {
+const MajorDetailAccordion = ({major, showRecommendation, hideSchoolList}) => {
   const details = [
     {
       title: "ក. ព័ត៌មានទូទៅ",
@@ -40,11 +40,11 @@ const MajorDetailAccordion = ({major, showRecommendation}) => {
       detail: major.worthy_career,
       children: []
     },
-    {
+    !hideSchoolList ? {
       title: "ឆ. គ្រឹះស្ថានសិក្សា",
       detail: SchoolUtil.getSchoolNamesByIds(major.school_ids),
       children: []
-    },
+    } : null,
     showRecommendation ? {
       title: "ជ. អនុសាសន៍",
       detail: major.recommendation,

@@ -7,7 +7,6 @@ import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-nat
 
 import SchoolScreen from '../screens/school/SchoolScreen';
 import SchoolFilterScreen from '../screens/school/filter/SchoolFilterScreen';
-import MajorDetailScreen from '../screens/MajorDetails/MajorDetailScreen';
 
 import { Colors } from '../assets/style_sheets/main/colors';
 import { FontSetting } from '../assets/style_sheets/font_setting';
@@ -24,7 +23,6 @@ function SchoolNavigator() {
     <Stack.Navigator screenOptions={{}} initialRouteName="Root">
       <Stack.Screen name ="Root" component={SchoolScreen} options={{headerShown: false}} />
       <Stack.Screen name="SchoolFilterScreen" component={SchoolFilterScreen} options={{headerShown: false}}/>
-      <Stack.Screen name="MajorDetailScreen" component={MajorDetailScreen} options={{headerShown: false}} />
     </Stack.Navigator>
   )
 }
