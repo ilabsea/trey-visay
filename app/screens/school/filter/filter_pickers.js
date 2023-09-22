@@ -44,6 +44,9 @@ const FilterPickers = (props) => {
   const renderPickers = () => {
     return Object.keys(pickerItems).map((key, index) => {
       const item = pickerItems[key];
+      if (props.kind != 'tvet_institute' && key == 'department')
+        return;
+
       return <CustomBottomSheetPicker
                 key={index}
                 title={item.title}
