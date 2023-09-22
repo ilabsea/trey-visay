@@ -10,5 +10,6 @@ export const schoolCategories = [
 
 export const filterPickerBottomSheets = {
   'category': { snapPoints: [hp('44%')], contentHeight: hp('40%') },
+  'major': { snapPoints: [hp('80%')], contentHeight: hp('76%') },
   'default': { snapPoints: [hp('60%')], contentHeight: hp('56%') }
 }

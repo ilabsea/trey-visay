@@ -1,4 +1,4 @@
-import {filterPickerBottomSheets} from '../constants/school_constant';
+import {filterPickerBottomSheets} from '../constants/school_filter_constant';
 
 const schoolFilterHelper = (() => {
   return {

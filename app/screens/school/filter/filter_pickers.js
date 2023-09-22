@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import CustomBottomSheetPicker from '../../../components/shared/CustomBottomSheetPicker';
 import FooterBar from '../../../components/footer/FooterBar';
 import {screenHorizontalPadding} from '../../../constants/component_constant';
-import {schoolCategories} from '../../../constants/school_constant';
+import {schoolCategories} from '../../../constants/school_filter_constant';
 import schoolUtil from '../../../utils/school_util';
 import schoolFilterHelper from '../../../helpers/school_filter_helper';
 
@@ -21,11 +21,13 @@ const FilterPickers = (props) => {
     schoolUtil.getSelectedMajor((major) => { setFieldValue('major', !major ? '0' : major) })
   }, []);
 
-  let pickerItems = {
-    'province': { options: schoolUtil.getProvincesForPicker(props.kink), title: 'ជ្រើសរើសទីតាំង', bottomSheetTitle: 'ជ្រើសរើសទីតាំងរបស់គ្រឹះស្ថានសិក្សា', fieldName: 'province' },
-    'category': { options: schoolCategories, title: 'ប្រភេទគ្រឹះស្ថាន', bottomSheetTitle: 'ជ្រើសរើសប្រភេទគ្រឹះស្ថាន', fieldName: 'category' },
-    'department': { options: schoolUtil.getDepartmentsForPicker(values.province), title: 'កម្រិតសញ្ញាបត្រ', bottomSheetTitle: 'ជ្រើសរើសកម្រិតសញ្ញាបត្រ', fieldName: 'department' },
-    'major': { options: schoolUtil.getMajorsForPicker(values.province, values.category || 'public', values.department), title: 'ជំនាញសិក្សា', bottomSheetTitle: 'ជ្រើសរើសជំនាញសិក្សា', fieldName: 'major' },
+  const pickerItems = {
+    'province': { options: schoolUtil.getProvincesForPicker(props.kink), title: 'ជ្រើសរើសទីតាំង', bottomSheetTitle: 'ជ្រើសរើសទីតាំងរបស់គ្រឹះស្ថានសិក្សា', fieldName: 'province', isSearchable: false },
+    'category': { options: schoolCategories, title: 'ប្រភេទគ្រឹះស្ថាន', bottomSheetTitle: 'ជ្រើសរើសប្រភេទគ្រឹះស្ថាន', fieldName: 'category', isSearchable: false },
+    'department': { options: schoolUtil.getDepartmentsForPicker(values.province), title: 'កម្រិតសញ្ញាបត្រ', bottomSheetTitle: 'ជ្រើសរើសកម្រិតសញ្ញាបត្រ', fieldName: 'department', isSearchable: false },
+    'major': { options: schoolUtil.getMajorsForPicker(values.province, values.category, values.department), title: 'ជំនាញសិក្សា', bottomSheetTitle: 'ជ្រើសរើសជំនាញសិក្សា',
+               fieldName: 'major', isSearchable: true, searchPlaceholder: 'ស្វែងរកជំនាញ'
+             }
   }
 
   const setFilterValues = () => {
@@ -55,6 +57,8 @@ const FilterPickers = (props) => {
                 snapPoints={schoolFilterHelper.getPickerDimension(key).snapPoints}
                 contentHeight={schoolFilterHelper.getPickerDimension(key).contentHeight}
                 containerStyle={{marginTop: 26}}
+                isSearchable={item.isSearchable}
+                searchPlaceholder={item.searchPlaceholder || ''}
              />
     })
   }
