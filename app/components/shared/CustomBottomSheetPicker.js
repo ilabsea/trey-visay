@@ -34,8 +34,8 @@ const CustomBottomSheetPickerComponent = (props) => {
             titleStyle={[{color: colorSet('title'), fontSize: FontSetting.sub_title}, props.titleStyle]}
             pickerStyle={{backgroundColor: 'white', borderColor: Color.borderColor, borderWidth: 0.5, borderRadius: inputBoxBorderRadius, paddingLeft: 12, paddingRight: 4}}
             bottomSheetTitleStyle={[{fontSize: FontSetting.title, fontFamily: FontFamily.bold, lineHeight: 28, marginTop: 6}, Platform.OS === 'android' && {fontWeight: 'normal'}]}
-            placeholderStyle={[{fontSize: FontSetting.text, fontFamily: FontFamily.regular, alignSelf: 'center', color: colorSet('text')}, props.placeholderStyle]}
-            itemTextStyle={{fontSize: FontSetting.text, fontFamily: FontFamily.regular}}
+            placeholderStyle={[{fontSize: FontSetting.text, fontFamily: FontFamily.regular, alignSelf: 'center', color: colorSet('text'), lineHeight: 28}, props.placeholderStyle]}
+            itemTextStyle={{fontSize: FontSetting.text, fontFamily: FontFamily.regular, lineHeight: 28}}
             snapPoints={props.snapPoints || defaultBottomSheetSnapPoints}
             pickerContentHeight={props.contentHeight || defaultBottomSheetContentHeight}
             hideListItemAudio={true}
@@ -45,6 +45,7 @@ const CustomBottomSheetPickerComponent = (props) => {
             isOutlined={true}
             titleFontFamily={FontFamily.regular}
             requiredTitleStyle={{fontSize: FontSetting.sub_title}}
+            searchInputStyle={[{height: 48}, Platform.OS == 'ios' && {lineHeight: 19}]}
           />
           <ErrorMessage error={errors[props.fieldName]} visible={touched[props.fieldName]} style={{lineHeight: 20, marginBottom: -10, marginTop: 4}} />
         </React.Fragment>

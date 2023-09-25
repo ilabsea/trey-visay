@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { ActivityIndicator, View } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
+import { useSelector } from 'react-redux';
 
 import SchoolNavigationHeader from '../../components/schools/SchoolNavigationHeader';
 import FilterButton from '../../components/schools/filter_button';
@@ -17,123 +18,108 @@ const kinds = {
   2: "tvet_institute"
 }
 
-export default class SchoolScreen extends Component {
-  _keyExtractor = (item, index) => index.toString();
+const SchoolScreen = (props) => {
+  const [state, setState] = useReducer((prev, next) => {
+    return {...prev, ...next}
+  }, {
+    activePage: 1,
+    schools: [],
+    majors: [],
+    currentProvince: '',
+    currentMajor: '',
+    currentCategory: '',
+    currentDepartment: '',
+    loading: true,
+    searchText: '',
+    hasInternet: false,
+  });
+  let currentPage = 1;
+  let isEndPage = true;
+  let isRequestingData = false;
+  const listRef = React.createRef();
+  let netInfoUnsubscribe = null;
+  const schoolFilterOptions = useSelector(state => state.schoolFilterOptions.value);
 
-  constructor(props) {
-    super(props)
-
-    this.state = {
-      activePage: 1,
-      schools: [],
-      majors: [],
-      currentProvince: '',
-      currentMajor: '',
-      currentCategory: '',
-      currentDepartment: '',
-      loading: true,
-      searchText: '',
-      hasInternet: false,
-    }
-    this.listRef = React.createRef()
-    this.netInfoUnsubscribe = null;
-  }
-
-  componentDidMount() {
-    this.refreshState();
-    this.netInfoUnsubscribe = NetInfo.addEventListener(state => {
-      this.setState({hasInternet: state.isConnected && state.isInternetReachable})
+  useEffect(() => {
+    netInfoUnsubscribe = NetInfo.addEventListener(state => {
+      setState({hasInternet: state.isConnected && state.isInternetReachable})
     });
-  }
+  }, []);
 
-  componentWillUnmount() {
-    !!this.netInfoUnsubscribe && this.netInfoUnsubscribe();
-  }
+  useEffect(() => {
+    const { province, category, major, department } = schoolFilterOptions;
+    resetData();
+    setState({ currentProvince: province, currentMajor: major, currentCategory: category, currentDepartment: department });
+    setSchools(state.activePage);
+  }, [schoolFilterOptions])
 
-  refreshState() {
-    this.resetData();
-
-    SchoolUtil.getSelectedProvince((province) => {
-      SchoolUtil.getSelectedMajor((major) => {
-        SchoolUtil.getSelectedCategory((category) => {
-          SchoolUtil.getSelectedDepartment(department => {
-            province = province == 'គ្រប់ទីកន្លែង' ? '': province;
-            major = major == 'គ្រប់ជំនាញ' ? '': major;
-            this.setState({ currentProvince: province, currentMajor: major, currentCategory: category, currentDepartment: department });
-            this.setSchools(this.state.activePage);
-          })
-        })
-      });
-    });
-  }
-
-  setSchools(active, searchText = '') {
+  const setSchools = (active) => {
+    const { province, category, major, department } = schoolFilterOptions;
     let options = {
       kind: kinds[active],
-      province: this.state.currentProvince,
-      major: this.state.currentMajor,
-      category: this.state.currentCategory,
-      department: this.state.currentDepartment,
-      page: this.page,
-      searchText: this.state.searchText
+      province: province,
+      major: major,
+      category: category,
+      department: department,
+      page: currentPage,
+      searchText: state.searchText
     }
 
     let schools = SchoolUtil.getSchools(options);
-    this.isEndPage = !schools.length;
-    this.schools = [...this.schools, ...schools];
-    this.isRequestingData = false;
+    isEndPage = !schools.length;
+    isRequestingData = false;
 
-    this.setState({
-      schools: this.schools,
+    setState({
+      schools: schools,
       loading: false,
     });
   }
 
-  resetData() {
-    this.page = 1;
-    this.schools = [];
+  const resetData = () => {
+    currentPage = 1;
+    schools = [];
   }
 
-  _renderRow(school) {
+  const _renderRow = (school) => {
     return <SchoolListItemComponent school={school} showCategory={false} />
   }
 
-  setContent(active){
-    this.resetData();
-    this.setState({activePage: active});
-    this.setSchools(active, this.state.searchText);
+  const setContent = (active) => {
+    resetData();
+    setState({activePage: active});
+    setSchools(active);
   }
 
-  getMore() {
-    if (this.isRequestingData || this.isEndPage)
-      return this.listRef.current?.stopPaginateLoading();
+  const getMore = () => {
+    if (isRequestingData || isEndPage)
+      return listRef.current?.stopPaginateLoading();
 
-    this.isRequestingData = true;
-    this.page++;
-    this.setSchools(this.state.activePage);
-    this.listRef.current?.stopPaginateLoading()
+    isRequestingData = true;
+    currentPage++;
+    setSchools(state.activePage);
+    listRef.current?.stopPaginateLoading()
   }
 
-  onRefresh() {
-    majorService.syncAllData(() => this.listRef.current?.stopRefreshLoading())   // wait until finish syncing the major to hide the loading
-    schoolSyncService.syncAllData(kinds[this.state.activePage], (schools) => {
+  const onRefresh = () => {
+    majorService.syncAllData(() => listRef.current?.stopRefreshLoading())   // wait until finish syncing the major to hide the loading
+    schoolSyncService.syncAllData(kinds[state.activePage], (schools) => {
       let options = {
-        kind: kinds[this.state.activePage],
-        province: this.state.currentProvince,
-        major: this.state.currentMajor,
-        category: this.state.currentCategory,
-        department: this.state.currentDepartment,
-        page: this.page,
+        kind: kinds[state.activePage],
+        province: state.currentProvince,
+        major: state.currentMajor,
+        category: state.currentCategory,
+        department: state.currentDepartment,
+        page: page,
         searchText: ''
       }
-      this.setState({schools: SchoolUtil.getSchools(options)})
+      setState({schools: SchoolUtil.getSchools(options)})
     }, () => {
-      this.listRef.current?.stopRefreshLoading()
+      listRef.current?.stopRefreshLoading()
     })
   }
 
-  renderContent() {
-    if (this.state.loading) {
+  const renderContent = () => {
+    if (state.loading) {
       return (
         <View style={{marginTop: '55%'}}>
           <ActivityIndicator size="large" color={Colors.blue} />
@@ -142,43 +128,42 @@ export default class SchoolScreen extends Component {
     }
 
     return <CustomFlatListComponent
-              ref={this.listRef}
-              data={ this.state.schools.filter(school => school.name.includes(this.state.searchText)) }
-              renderItem={ ({item}) => this._renderRow(item) }
-              hasInternet={this.state.hasInternet}
-              keyExtractor={ this._keyExtractor }
+              ref={listRef}
+              data={ state.schools.filter(school => school.name.includes(state.searchText)) }
+              renderItem={ ({item}) => _renderRow(item) }
+              hasInternet={state.hasInternet}
+              keyExtractor={ (item, index) => index.toString() }
               offlineEndReached={true}
-              refreshingAction={() => this.onRefresh()}
-              endReachedAction={() => this.getMore()}
+              refreshingAction={() => onRefresh()}
+              endReachedAction={() => getMore()}
            />
   }
 
-  onSearchChange(text) {
+  const onSearchChange = (text) => {
     if (text == '') {
-      this.resetData();
-      this.setSchools(this.state.activePage, text);
+      resetData();
+      setSchools(state.activePage, text);
     }
-    this.setState({searchText: text})
+    setState({searchText: text})
   }
 
-  render() {
-    return (
+  return (
+    <View style={{flex: 1}}>
+      <SchoolNavigationHeader activePage={state.activePage} setContent={(active) => setContent(active)}
+        searchedText={state.searchText}
+        setSearchedText={(text) => onSearchChange(text)}
+      />
+
       <View style={{flex: 1}}>
-        <SchoolNavigationHeader activePage={this.state.activePage} setContent={(active) => this.setContent(active)}
-          searchedText={this.state.searchText}
-          setSearchedText={(text) => this.onSearchChange(text)}
+        { renderContent() }
+        <FilterButton
+          navigation={props.navigation}
+          kind={kinds[state.activePage]}
+          number={!!state.currentProvince + !!state.currentMajor + !!state.currentCategory + !!state.currentDepartment}
         />
-
-        <View style={{flex: 1}}>
-          { this.renderContent() }
-          <FilterButton
-            navigation={this.props.navigation}
-            kind={kinds[this.state.activePage]}
-            refreshValue={ this.refreshState.bind(this)}
-            number={!!this.state.currentProvince + !!this.state.currentMajor + !!this.state.currentCategory + !!this.state.currentDepartment}
-          />
-        </View>
       </View>
-    )
-  }
+    </View>
+  )
 }
+
+export default SchoolScreen;

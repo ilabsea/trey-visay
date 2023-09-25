@@ -1,50 +1,9 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import SchoolModel from '../models/School';
 import provinceList from '../data/json/address/provinces.json';
 
 const PER_PAGE = 20;
 
 export default class SchoolUtil {
-  static setSelectedProvince(province, callback){
-    AsyncStorage.setItem('SelectedProvince', province);
-  }
-
-  static getSelectedProvince(callback){
-    AsyncStorage.getItem('SelectedProvince', (err, result) => {
-      !!callback && callback(result);
-    })
-  }
-
-  static setSelectedMajor(major){
-    AsyncStorage.setItem('selectedMajor', major);
-  }
-
-  static getSelectedMajor(callback){
-    AsyncStorage.getItem('selectedMajor', (err, result) => {
-      !!callback && callback(result);
-    })
-  }
-
-  static setSelectedCategory(category) {
-    AsyncStorage.setItem('selectedCategory', category);
-  }
-
-  static getSelectedCategory(callback){
-    AsyncStorage.getItem('selectedCategory', (err, result) => {
-      !!callback && callback(result);
-    })
-  }
-
-  static setSelectedDepartment(department) {
-    AsyncStorage.setItem('selectedDepartment', department);
-  }
-
-  static getSelectedDepartment(callback){
-    AsyncStorage.getItem('selectedDepartment', (err, result) => {
-      !!callback && callback(result);
-    })
-  }
-
   static getSchools(options) {
     let uniList = SchoolModel.getAll()
     if (!!options.kind)
@@ -77,19 +36,15 @@ export default class SchoolUtil {
     return uniList.slice(start, end);
   }
 
-  static getProvinces(kind) {
-    const schools = !!kind ? SchoolModel.findByKind(kind) : SchoolModel.getAll()
-    const provinces = [...new Set(schools.map(school => { return provinceList.filter(province => province.code == parseInt(school.province))[0]}))];
-    provinces.sort();
-    return provinces;
-  }
-
   static getMajors(selectedProvince, category, department) {
     const schools = SchoolModel.getAll().filter(school => {
-      if (!!selectedProvince)
-        return school.province == selectedProvince && school.category == category
+      if (!!selectedProvince && selectedProvince != '0') {
+        if (!!category && category != '0')
+          return school.province == selectedProvince && school.category == category;
 
-      return school.category == category
+        return school.province == selectedProvince;
+      }
+      return (!!category && category != '0') ? school.category == category : school;
     });
 
     let majors = []
@@ -97,20 +52,13 @@ export default class SchoolUtil {
 
     schools.map(school => {
       const schoolDepartments = JSON.parse(school.departments)
-      departments = [...departments, ...(!!department ? schoolDepartments.filter(item => item.name == department)  : schoolDepartments)]
+      departments = [...departments, ...((!!department && department != '0') ? schoolDepartments.filter(item => item.name == department)  : schoolDepartments)]
     })
 
     departments.map(department => {
       majors = [...majors, ...department.majors]
     })
     return [...new Set(majors)]
-  }
-
-  static clearSelectedValues(){
-    this.setSelectedProvince('');
-    this.setSelectedMajor('');
-    this.setSelectedCategory('');
-    this.setSelectedDepartment('');
   }
 
   static getSchoolNamesByIds(schoolIds) {
@@ -122,10 +70,28 @@ export default class SchoolUtil {
 
   static getTvetDepartments(province) {
     let tvetDepartments = []
-    const schools = !!province ? SchoolModel.findByKindAndProvince('tvet_institute', province) : SchoolModel.findByKind('tvet_institute');
+    const schools = (!!province && province != '0') ? SchoolModel.findByKindAndProvince('tvet_institute', province) : SchoolModel.findByKind('tvet_institute');
     schools.map(school => {
       tvetDepartments = [...tvetDepartments, ...JSON.parse(school.departments).map(department => department.name)]
     });
     return [...new Set(tvetDepartments)]
+  }
+
+  static getProvincesForPicker(kind) {
+    const schools = !!kind ? [...SchoolModel.findByKind(kind)] : [...SchoolModel.getAll()]
+    const provinces = [...new Set(schools.map(school => { return provinceList.filter(province => province.code == parseInt(school.province))[0]}))];
+    if (!provinces[0])  // return only default item if all the schools have province as null
+      return [{ code: '0', label: 'គ្រប់គ្រឹះស្ថានសិក្សា' }]
+
+    provinces.sort();
+    return [{ code: '0', label: 'គ្រប់គ្រឹះស្ថានសិក្សា' }, ...provinces]
+  }
+
+  static getDepartmentsForPicker(province) {
+    return [{ code: '0', label: 'គ្រប់កម្រិត' }, ...this.getTvetDepartments(province).map((item) => ({code: item, label: item}))];
+  }
+
+  static getMajorsForPicker(province, category, department) {
+    return [{code: '0', label: 'គ្រប់ជំនាញ'}, ...this.getMajors(province, category, department).map((item) => ({code: item, label: item}))];
   }
 }
