@@ -3,12 +3,12 @@ import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import TextHighlight from 'react-native-text-highlighter';
 
 import Text from '../Text';
 import CustomImageComponent from './CustomImageComponent';
-import BoldLabelComponent from './BoldLabelComponent';
-import mainStyles from '../../assets/style_sheets/main/main';
 import {FontSetting} from '../../assets/style_sheets/font_setting';
+import {FontFamily} from '../../themes/font';
 import DownloadedImage from '../../models/DownloadedImage';
 import {getStyleOfDevice, getStyleOfOS} from '../../utils/responsive_util';
 import color from '../../themes/color';
@@ -45,7 +45,8 @@ const SchoolListItemComponent = (props) => {
         </View>
 
         <View style={{flex: 1, marginLeft: 16, marginRight: 8}}>
-          <BoldLabelComponent label={school.name} numberOfLines={1} style={[mainStyles.title, styles.nameLabel]} />
+          <TextHighlight numberOfLines={1} textToHighlight={school.name} searchWords={[props.searchText]} textStyle={[styles.nameLabel]}/>
+
           { (props.showCategory && CATEGORIES[school.category]) &&
             <View style={{flexDirection: 'row', marginTop: 2}}>
               <AwesomeIcon name='building-o' color={color.pressable} size={14} style={{marginTop: 3}} />
@@ -81,8 +82,10 @@ const styles = StyleSheet.create({
   },
   nameLabel: {
     fontSize: getStyleOfDevice(FontSetting.title, FontSetting.text),
+    fontFamily: FontFamily.bold,
     color: '#000000',
-    marginTop: 4
+    marginTop: 4,
+    lineHeight: 34
   },
 })
 
