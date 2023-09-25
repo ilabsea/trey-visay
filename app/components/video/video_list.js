@@ -40,7 +40,9 @@ export default function VideoList (props) {
           onPress={() => viewVideo()}
         />
         <View style={styles.textContainer}>
-          <Text style={[mainStyles.title, styles.title]}>{ props.item.name || props.item.title }</Text>
+          <Text style={[mainStyles.title, styles.title]} allowTextHighlight={true} searchText={props.searchText}
+            label={ props.item.name || props.item.title }
+          />
           <Text style={styles.source}>{ props.item.author }</Text>
         </View>
 

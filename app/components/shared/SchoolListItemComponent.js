@@ -12,6 +12,7 @@ import {FontFamily} from '../../themes/font';
 import DownloadedImage from '../../models/DownloadedImage';
 import {getStyleOfDevice, getStyleOfOS} from '../../utils/responsive_util';
 import color from '../../themes/color';
+import {titleLineHeight} from '../../constants/component_constant'
 
 const CATEGORIES = { public: 'សាលារដ្ឋ', private: 'សាលាឯកជន', ngo: 'អង្គការ', default: '' }
 
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
     fontFamily: FontFamily.bold,
     color: '#000000',
     marginTop: 4,
-    lineHeight: 34
+    lineHeight: titleLineHeight
   },
 })
 

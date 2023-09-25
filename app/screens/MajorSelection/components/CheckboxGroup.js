@@ -97,6 +97,7 @@ const CheckboxGroup = ({options, textSearch, errorMessage, type, headerLabel}, r
               onEndReached={() => onEndReached()}
               type={type}
               disabled={selectedValues.length == 3}
+              textSearch={textSearch}
             />
           </View>
         )}

@@ -37,7 +37,10 @@ const MyCheckbox = (props) => {
       />
 
       <TouchableOpacity onPress={onPress} style={{flex: 1, justifyContent: 'center', paddingVertical: 8}}>
-        <Text style={{lineHeight: 28, color: props.disabled && !checked ? Color.gray : Color.blackColor}}>{props.label}</Text>
+        <Text style={{lineHeight: 28, color: props.disabled && !checked ? Color.gray : Color.blackColor}} allowTextHighlight={true}
+          searchText={props.textSearch}
+          label={props.label}
+        />
       </TouchableOpacity>
 
       <Divider style={{width: 1, height: '65%',marginHorizontal: 8}} />
