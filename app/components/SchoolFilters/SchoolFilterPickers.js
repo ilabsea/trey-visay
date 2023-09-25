@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import { ScrollView } from 'react-native';
 import { useFormikContext } from "formik";
 import { useNavigation } from '@react-navigation/native';
+import { useDispatch, useSelector } from 'react-redux';
 
 import CustomBottomSheetPicker from '../shared/CustomBottomSheetPicker';
 import FooterBar from '../footer/FooterBar';
@@ -9,16 +10,20 @@ import {screenHorizontalPadding} from '../../constants/component_constant';
 import {schoolCategories} from '../../constants/school_filter_constant';
 import schoolUtil from '../../utils/school_util';
 import schoolFilterHelper from '../../helpers/school_filter_helper';
+import {setSelectedOptions} from '../../redux/features/school/schoolFilterSlice';
 
 const SchoolFilterPickers = (props) => {
   const navigation = useNavigation();
   const { setFieldValue, values } = useFormikContext();
+  const dispatch = useDispatch();
+  const schoolFilterOptions = useSelector(state => state.schoolFilterOptions.value);
 
   useEffect(() => {
-    schoolUtil.getSelectedProvince((province) => { setFieldValue('province', !province ? '0' : province) })
-    schoolUtil.getSelectedCategory(category => { setFieldValue('category', !category ? '0' : category) })
-    schoolUtil.getSelectedDepartment(department => { setFieldValue('department', !department ? '0' : department) })
-    schoolUtil.getSelectedMajor((major) => { setFieldValue('major', !major ? '0' : major) })
+    const {province, category, major, department} = schoolFilterOptions;
+    setFieldValue('province', !province ? '0' : province);
+    setFieldValue('category', !category ? '0' : category);
+    setFieldValue('department', !department ? '0' : department);
+    setFieldValue('major', !major ? '0' : major);
   }, []);
 
   const pickerItems = {
@@ -31,13 +36,14 @@ const SchoolFilterPickers = (props) => {
   }
 
   const saveSelectedFilters = () => {
-    schoolUtil.setSelectedProvince(values.province == '0' ? '' : values.province);
-    schoolUtil.setSelectedMajor(values.major == '0' ? '' : values.major);
-    schoolUtil.setSelectedCategory(values.category == '0' ? '' : values.category);
-    schoolUtil.setSelectedDepartment(values.department == '0' ? '' : values.department);
-
+    const selctedOptions = {
+      province: values.province == '0' ? '' : values.province,
+      category: values.category == '0' ? '' : values.category,
+      major: values.major == '0' ? '' : values.major,
+      department: values.department == '0' ? '' : values.department
+    }
     // firebase.analytics().logEvent(keyword.INSTITUTION_FILTER_APPLIED);
-    props.refreshValue();
+    dispatch(setSelectedOptions(selctedOptions));
     navigation.goBack();
   }
 

@@ -2,7 +2,7 @@ import { heightPercentageToDP as hp } from 'react-native-responsive-screen';
 import {getStyleOfOS, isLowPixelDensityDevice} from '../utils/responsive_util';
 
 export const schoolCategories = [
-  { code: 'null', label: 'គ្រប់ប្រភេទគ្រឹះស្ថាន' },
+  { code: '0', label: 'គ្រប់ប្រភេទគ្រឹះស្ថាន' },
   { code: 'public', label: 'សាលារដ្ឋ' },
   { code: 'private', label: 'សាលាឯកជន' },
   { code: 'ngo', label: 'អង្គការ'}

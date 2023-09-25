@@ -1,50 +1,9 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import SchoolModel from '../models/School';
 import provinceList from '../data/json/address/provinces.json';
 
 const PER_PAGE = 20;
 
 export default class SchoolUtil {
-  static setSelectedProvince(province, callback){
-    AsyncStorage.setItem('SelectedProvince', province);
-  }
-
-  static getSelectedProvince(callback){
-    AsyncStorage.getItem('SelectedProvince', (err, result) => {
-      !!callback && callback(result);
-    })
-  }
-
-  static setSelectedMajor(major){
-    AsyncStorage.setItem('selectedMajor', major);
-  }
-
-  static getSelectedMajor(callback){
-    AsyncStorage.getItem('selectedMajor', (err, result) => {
-      !!callback && callback(result);
-    })
-  }
-
-  static setSelectedCategory(category) {
-    AsyncStorage.setItem('selectedCategory', category);
-  }
-
-  static getSelectedCategory(callback){
-    AsyncStorage.getItem('selectedCategory', (err, result) => {
-      !!callback && callback(result);
-    })
-  }
-
-  static setSelectedDepartment(department) {
-    AsyncStorage.setItem('selectedDepartment', department);
-  }
-
-  static getSelectedDepartment(callback){
-    AsyncStorage.getItem('selectedDepartment', (err, result) => {
-      !!callback && callback(result);
-    })
-  }
-
   static getSchools(options) {
     let uniList = SchoolModel.getAll()
     if (!!options.kind)
@@ -100,13 +59,6 @@ export default class SchoolUtil {
       majors = [...majors, ...department.majors]
     })
     return [...new Set(majors)]
-  }
-
-  static clearSelectedValues(){
-    this.setSelectedProvince('');
-    this.setSelectedMajor('');
-    this.setSelectedCategory('');
-    this.setSelectedDepartment('');
   }
 
   static getSchoolNamesByIds(schoolIds) {

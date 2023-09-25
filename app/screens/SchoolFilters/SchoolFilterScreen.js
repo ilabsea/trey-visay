@@ -8,9 +8,9 @@ import SchoolFilterNavigationHeader from '../../components/SchoolFilters/SchoolF
 const SchoolFilterScreen = (props) => {
   const initialValue = {
     province: '0',
-    category: '',
-    department: '',
-    major: '',
+    category: '0',
+    department: '0',
+    major: '0',
   }
 
   return (
