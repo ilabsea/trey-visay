@@ -26,3 +26,4 @@ export const pressableItemSize = 48
 export const arrowRightIconSize = getStyleOfDevice(30, 24)
 export const inputBoxBorderRadius = 6
 export const inputBoxHeight = 56
+export const titleLineHeight = 34

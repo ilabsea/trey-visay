@@ -1,10 +1,14 @@
 import * as React from 'react';
 import { Text, StyleSheet } from 'react-native';
+import TextHighlight from 'react-native-text-highlighter';
 import { FontSetting } from '../assets/style_sheets/font_setting';
 import {FontFamily} from '../themes/font';
 import {getStyleOfDevice} from '../utils/responsive_util';
 
 const MyText = (props) => {
+  if (!!props.allowTextHighlight)
+    return <TextHighlight textToHighlight={props.label} searchWords={[props.searchText]} textStyle={[styles.textStyle, props.style]}/>
+
   return (
     <Text {...props} style={[styles.textStyle, props.style]} >{props.children}</Text>
   );

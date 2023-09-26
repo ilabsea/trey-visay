@@ -81,7 +81,7 @@ const SchoolScreen = (props) => {
   }
 
   const _renderRow = (school) => {
-    return <SchoolListItemComponent school={school} showCategory={false} />
+    return <SchoolListItemComponent school={school} showCategory={false} searchText={state.searchText} />
   }
 
   const setContent = (active) => {

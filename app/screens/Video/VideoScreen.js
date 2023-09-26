@@ -22,7 +22,7 @@ export default class VideoScreen extends Component {
     this.state = {
       pagination: {},
       videos: Video.getAll(),
-      textSearch: '',
+      searchText: '',
       isInternetReachable: false
     }
     this.listRef = React.createRef()
@@ -47,7 +47,7 @@ export default class VideoScreen extends Component {
       return <LoadingIndicator loading={ item.loading } />
     }
 
-    return <VideoListView item={item} isInternetReachable={this.state.isInternetReachable} />
+    return <VideoListView item={item} isInternetReachable={this.state.isInternetReachable} searchText={this.state.searchText} />
   }
 
   _onRefresh() {
@@ -72,12 +72,12 @@ export default class VideoScreen extends Component {
   }
 
   _onChangeText(val) {
-    this.setState({textSearch: val});
+    this.setState({searchText: val});
     this.setState({videos: val.length > 1 ? Video.findAllByName(val) : Video.getAll()})
   }
 
   _onSearchClosed() {
-    this.setState({textSearch: ''});
+    this.setState({searchText: ''});
     this._onRefresh();
   }
 
@@ -104,7 +104,7 @@ export default class VideoScreen extends Component {
     return (
       <View style={{flex: 1}} ref="myRef">
         <SearchableHeader title="វីដេអូមុខរបរ" placeholder="ស្វែងរកវីដេអូ" containerStyle={{borderBottomWidth: 1.5, borderColor: color.paleGray}}
-          searchedText={this.state.textSearch}
+          searchedText={this.state.searchText}
           setSearchedText={(text) => this._onChangeText(text)}
         />
         {this._renderMainContent()}
