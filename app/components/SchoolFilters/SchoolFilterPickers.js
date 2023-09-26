@@ -36,14 +36,14 @@ const SchoolFilterPickers = (props) => {
   }
 
   const saveSelectedFilters = () => {
-    const selctedOptions = {
+    const selectedOptions = {
       province: values.province == '0' ? '' : values.province,
       category: values.category == '0' ? '' : values.category,
       major: values.major == '0' ? '' : values.major,
       department: values.department == '0' ? '' : values.department
     }
     // firebase.analytics().logEvent(keyword.INSTITUTION_FILTER_APPLIED);
-    dispatch(setSelectedOptions(selctedOptions));
+    dispatch(setSelectedOptions(selectedOptions));
     navigation.goBack();
   }
 

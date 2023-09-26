@@ -58,7 +58,7 @@ export default class SchoolUtil {
     departments.map(department => {
       majors = [...majors, ...department.majors]
     })
-    return [...new Set(majors)]
+    return [...new Map(majors.map((major) => [major.id, major])).values()];    // filter duplicate major by ID
   }
 
   static getSchoolNamesByIds(schoolIds) {
@@ -92,6 +92,6 @@ export default class SchoolUtil {
   }
 
   static getMajorsForPicker(province, category, department) {
-    return [{code: '0', label: 'គ្រប់ជំនាញ'}, ...this.getMajors(province, category, department).map((item) => ({code: item, label: item}))];
+    return [{code: '0', label: 'គ្រប់ជំនាញ'}, ...this.getMajors(province, category, department).map((item) => ({code: item.id, label: item.name}))];
   }
 }
