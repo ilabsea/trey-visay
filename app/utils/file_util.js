@@ -11,9 +11,10 @@ const fileUtil = (() => {
   }
 
   function isFileImage(fileName) {
-    const extensions = ['.jpg', '.jpeg', '.png']
+    const fileExtension = fileName.split('/').at(-1).split('.').at(-1);   // get the file extension from the file name (ex: jpg, png, ...)
+    const extensions = ['jpg', 'jpeg', 'png']
     for(let i = 0; i < extensions.length; i++) {
-      if (fileName.endsWith(extensions[i]))
+      if (!!fileExtension && fileExtension.toLowerCase() == extensions[i])
         return true
     }
     return false

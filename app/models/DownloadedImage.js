@@ -33,9 +33,8 @@ class DownloadedImage {
   static getLocalImage(fileUrl) {
     if (!fileUrl) return null;
 
-    const paths = fileUrl.split('/');
-    const filename = paths[paths.length - 1];
-    return images[filename.split('.')[0]] ? images[filename.split('.')[0]] : null
+    const filename = fileUrl.split('/').at(-1).split('.')[0];     // get the file name with the extension (ex: rupp)
+    return images[filename] ? images[filename] : null;
   }
 }
 

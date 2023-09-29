@@ -11,9 +11,15 @@ const imageDownloadService = (() => {
     if (index >= items.length)
       return !!callback && callback();
 
-    const item = items[index]  
-    if (item.logo.url != null && !DownloadedImage.isFileNameExisted(item.logo.url) && fileUtil.isFileImage(item.logo.url)) {
-      fileDownloadService.download(item.logo.url, (filename, isNewFile) => {
+    const item = items[index]
+    let logoUrl = null;
+    if (item.logo && item.logo.url)
+      logoUrl = item.logo.url;
+    else if (item.logo_url)
+      logoUrl = item.logo_url;
+
+    if (logoUrl != null && !DownloadedImage.isFileNameExisted(logoUrl) && fileUtil.isFileImage(logoUrl)) {
+      fileDownloadService.download(logoUrl, (filename, isNewFile) => {
         !!isNewFile && DownloadedImage.create({name: filename})
         this.handleDownloadItemsLogo(index + 1, items, callback)
       }, () => this.handleDownloadItemsLogo(index + 1, items, callback))
