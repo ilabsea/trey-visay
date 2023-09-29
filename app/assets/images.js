@@ -78,6 +78,10 @@ const images = {
   unsure: require('./images/emoji/3.png'),
   dislike: require('./images/emoji/2.png'),
   very_dislike: require('./images/emoji/1.png'),
+
+  // career websites
+  bongsrey_logo: require('./images/career_center/bongsrey_logo.png'),
+  nea_logo: require('./images/career_center/nea_logo.png'),
 };
 
 export default images;

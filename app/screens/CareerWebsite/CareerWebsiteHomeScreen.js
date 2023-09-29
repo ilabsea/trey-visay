@@ -1,116 +1,70 @@
 import React, {Component} from 'react';
-import {
-  Text,
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Dimensions,
-  Image,
-} from 'react-native';
+import { Animated } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 
 import ScrollableHeader from '../../components/scrollable_header';
+import CareerWebsiteItem from './components/CareerWebsiteItem';
+import CustomFlatListComponent from '../../components/shared/CustomFlatListComponent'
 
-import { FontSetting } from "../../assets/style_sheets/font_setting";
-import mainStyles from "../../assets/style_sheets/main/main";
-import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import { Divider } from 'react-native-paper';
-
-// import firebase from 'react-native-firebase';
-import keyword from '../../data/analytics/keyword';
-import visitService from '../../services/visit_service';
+import scrollableHeaderUtil from '../../utils/scrollable_header_util';
+import CareerWebsite from '../../models/CareerWebsite';
+import careerWebsiteService from '../../services/career_website_service';
 
 export default class CareerWebsiteHomeScreen extends Component {
-  _goTo = (career) => {
-    // firebase.analytics().logEvent(career.firebase_event_name);
-    visitService.recordVisitPage('career_website_detail', career.name, 'career_website')
-    this.props.navigation.navigate(career.screen, {url: career.url, title: career.screen_title});
+  constructor(props) {
+    super(props);
+    this.state = {
+      careerWebsites: CareerWebsite.getAll(),
+      hasInternet: false,
+      scrollY: new Animated.Value(0),
+    }
+
+    this.listRef = React.createRef();
+    this.netInfoUnsubscribe = null;
   }
 
-  _renderContent = () => {
-    let career_centers = [
-      {
-        name: 'ទីភ្នាក់ងារជាតិមុខរបរ និងការងារ',
-        description: 'ការងារ កម្លាំងពលកម្ម និងព័ត៌មានទីផ្សារការងារ',
-        url: 'http://nea.gov.kh/index.do',
-        logo: require('../../assets/images/career_center/nea_logo.png'),
-        screen: 'NeaCareerScreen',
-        screen_title: 'ទីភ្នាក់ងារជាតិមុខរបរ និងការងារ',
-        firebase_event_name: keyword.NEA_PLATFORM
-      },
-      {
-        name: 'បងស្រី',
-        description: 'ទីប្រឹក្សាការងារ',
-        url: 'https://bongsrey.com/',
-        logo: require('../../assets/images/career_center/bongsrey_logo.png'),
-        screen: 'BongSreyCareerScreen',
-        screen_title: 'បងស្រី ទីប្រឹក្សាការងារ',
-        firebase_event_name: keyword.BONG_SREY
-      },
-    ]
+  componentDidMount() {
+    this.netInfoUnsubscribe = NetInfo.addEventListener(state => {
+      this.setState({hasInternet: state.isConnected && state.isInternetReachable})
+    });
+  }
 
-    let { width } = Dimensions.get('window');
-    let imageWidth = width/2-120;
+  componentWillUnmount() {
+    !!this.netInfoUnsubscribe && this.netInfoUnsubscribe();
+  }
 
-    doms = career_centers.map((career, index) => {
-      return(
-        <View key={index}>
-          <TouchableOpacity style={styles.row} onPress={() => this._goTo(career)}>
-            <View style={{width: imageWidth}}>
-              <Image source={career.logo} style={{width: imageWidth, height: imageWidth}}/>
-            </View>
+  onRefresh() {
+    careerWebsiteService.syncAllData(() => {
+      this.setState({careerWebsites: CareerWebsite.getAll()});
+      this.listRef.current?.stopRefreshLoading()
+    });
+  }
 
-            <View style={styles.textContainer}>
-              <Text style={mainStyles.title}>{ career.name }</Text>
-              <Text style={styles.description}>{ career.description }</Text>
-            </View>
-
-            <View style={{alignSelf: 'center'}}>
-              <AwesomeIcon name='angle-right' size={24} color='#bbb'/>
-            </View>
-          </TouchableOpacity>
-          <Divider />
-        </View>
-      )
-    })
-
+  renderContent = () => {
     return (
-      <View style={{marginTop: 10}}>
-        {doms}
-      </View>
-    );
+      <CustomFlatListComponent
+        ref={this.listRef}
+        data={ this.state.careerWebsites }
+        renderItem={ ({item}) => <CareerWebsiteItem career={item} /> }
+        keyExtractor={(item, index) => index.toString()}
+        hasInternet={this.state.hasInternet}
+        refreshingAction={() => this.onRefresh()}
+        customContentContainerStyle={{flexGrow: 1, paddingTop: scrollableHeaderUtil.getContentMarginTop() + 20, paddingBottom: 16}}
+        refreshControllOffset={scrollableHeaderUtil.getContentMarginTop()}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: this.state.scrollY } } }], { useNativeDriver: true })}
+      />
+    )
   }
 
   render() {
     return(
-      <View style={{flex: 1}}>
-        <ScrollableHeader
-          renderContent={ this._renderContent }
-          title={'មជ្ឈមណ្ឌលការងារ'}
-          largeTitle={'មជ្ឈមណ្ឌលការងារ'}
-        />
-      </View>
+      <ScrollableHeader
+        renderContent={ this.renderContent }
+        title={'មជ្ឈមណ្ឌលការងារ'}
+        largeTitle={'មជ្ឈមណ្ឌលការងារ'}
+        useCustomScrollContent={true}
+        scrollY={this.state.scrollY}
+      />
     )
   }
 }
-
-const styles = StyleSheet.create({
-  row: {
-    flex: 1,
-    backgroundColor: 'white',
-    flexDirection: 'row',
-    padding: 16
-  },
-  textContainer: {
-    flex: 1,
-    marginLeft: 8,
-    marginRight: 16
-  },
-  title: {
-    fontSize: FontSetting.title,
-  },
-  description: {
-    fontSize: FontSetting.sub_title,
-    color: '#3A3A3A',
-    lineHeight: 25
-  },
-});
