@@ -5,7 +5,14 @@ const PER_PAGE = 20;
 
 export default class SchoolUtil {
   static getSchools(options) {
-    let uniList = SchoolModel.getAll()
+    let uniList = this.getNoPagySchools(options);
+    let page = options.page || 1;
+    let end = page * PER_PAGE;
+    return uniList.slice(0, end);
+  }
+
+  static getNoPagySchools(options) {
+    let uniList = [...SchoolModel.getAll()]
     if (!!options.kind)
       uniList = uniList.filter(school => school.kind == options.kind);
 
@@ -21,7 +28,7 @@ export default class SchoolUtil {
 
     if (!!options.major) {
       uniList = uniList.filter((school) => {
-        let departments = JSON.parse(school.departments).filter((department) => department.majors.includes(options.major));
+        let departments = JSON.parse(school.departments).filter((department) => department.majors.filter(major => major.id == options.major).length > 0);
         return !!departments.length;
       });
     }
@@ -29,11 +36,7 @@ export default class SchoolUtil {
     if (!!options.category)
       uniList = uniList.filter(school => school.category == options.category);
 
-    let page = options.page || 1;
-    let start = (page - 1) * PER_PAGE;
-    let end = page * PER_PAGE;
-
-    return uniList.slice(start, end);
+    return uniList;
   }
 
   static getMajors(selectedProvince, category, department) {

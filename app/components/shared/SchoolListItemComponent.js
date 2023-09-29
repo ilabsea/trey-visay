@@ -42,7 +42,7 @@ const SchoolListItemComponent = (props) => {
         onPress={() => navigation.navigate('InstitutionDetail', {school: school})}
       >
         <View style={styles.imageContainer}>
-          <CustomImageComponent source={!!logo ? {uri: logo} : null} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
+          <CustomImageComponent source={!!logo ? {uri: logo} : DownloadedImage.getLocalImage(school.logo)} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>
         </View>
 
         <View style={{flex: 1, marginLeft: 16, marginRight: 8}}>
