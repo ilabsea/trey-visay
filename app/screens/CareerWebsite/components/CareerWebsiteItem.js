@@ -10,6 +10,7 @@ import { FontSetting } from "../../../assets/style_sheets/font_setting";
 import mainStyles from "../../../assets/style_sheets/main/main";
 import visitService from '../../../services/visit_service';
 import Color from '../../../themes/color';
+import DownloadedImage from '../../../models/DownloadedImage';
 
 const CareerWebsiteItem = ({career}) => {
   const navigation = useNavigation();
@@ -21,11 +22,12 @@ const CareerWebsiteItem = ({career}) => {
     navigation.navigate('WebViewScreen', {url: career.url, title: career.name});
   }
 
+  const logo = DownloadedImage.getImagePath(career.logo);
   return (
     <View>
       <TouchableOpacity style={styles.row} onPress={() => viewWebsite()}>
         <View style={{width: imageWidth, justifyContent: 'center'}}>
-          <CustomImageComponent source={!!career.logo ? {uri: career.logo} : null} style={{width: imageWidth, height: imageWidth}} resizeMode='contain'
+          <CustomImageComponent source={!!logo ? {uri: logo} : DownloadedImage.getLocalImage(career.logo)} style={{width: imageWidth, height: imageWidth}} resizeMode='contain'
             emptyImageStyle={{width: imageWidth, height: imageWidth}}
           />
         </View>

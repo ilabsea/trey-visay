@@ -34,7 +34,10 @@ export default class CareerWebsiteHomeScreen extends Component {
   }
 
   onRefresh() {
-    careerWebsiteService.syncAllData(() => this.listRef.current?.stopRefreshLoading())
+    careerWebsiteService.syncAllData(() => {
+      this.setState({careerWebsites: CareerWebsite.getAll()});
+      this.listRef.current?.stopRefreshLoading()
+    });
   }
 
   renderContent = () => {

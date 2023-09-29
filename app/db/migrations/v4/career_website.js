@@ -11,7 +11,7 @@ CareerWebsite.schema = {
     uuid: 'string',
     id: 'string?',      // ID of the career website on the server-side
     name: 'string',
-    description: 'string',
+    description: 'string?',
     url: 'string',
     logo: 'string?'
   }

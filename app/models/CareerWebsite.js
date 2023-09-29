@@ -25,6 +25,6 @@ export default class CareerWebsite {
 
   // private method
   static _buildParams = (data) => {
-    return {...data, uuid: uuidv4(), logo: data.logo.url}
+    return {...data, uuid: uuidv4(), logo: data.logo_url}
   }
 }
