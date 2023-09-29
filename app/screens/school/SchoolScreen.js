@@ -18,6 +18,11 @@ const kinds = {
   2: "tvet_institute"
 }
 
+let currentPage = 1;
+let isRequestingData = false;
+let isEndPage = true;
+const listRef = React.createRef();
+
 const SchoolScreen = (props) => {
   const [state, setState] = useReducer((prev, next) => {
     return {...prev, ...next}
@@ -33,10 +38,6 @@ const SchoolScreen = (props) => {
     searchText: '',
     hasInternet: false,
   });
-  let currentPage = 1;
-  let isEndPage = true;
-  let isRequestingData = false;
-  const listRef = React.createRef();
   let netInfoUnsubscribe = null;
   const schoolFilterOptions = useSelector(state => state.schoolFilterOptions.value);
 
@@ -65,10 +66,9 @@ const SchoolScreen = (props) => {
       searchText: state.searchText
     }
 
-    let schools = SchoolUtil.getSchools(options);
-    isEndPage = !schools.length;
+    const schools = [...SchoolUtil.getSchools(options)];
+    isEndPage = schools.length == SchoolUtil.getNoPagySchools(options).length;
     isRequestingData = false;
-
     setState({
       schools: schools,
       loading: false,
@@ -77,7 +77,7 @@ const SchoolScreen = (props) => {
 
   const resetData = () => {
     currentPage = 1;
-    schools = [];
+    setState({schools: []});
   }
 
   const _renderRow = (school) => {
@@ -109,7 +109,7 @@ const SchoolScreen = (props) => {
         major: state.currentMajor,
         category: state.currentCategory,
         department: state.currentDepartment,
-        page: page,
+        page: currentPage,
         searchText: ''
       }
       setState({schools: SchoolUtil.getSchools(options)})

@@ -9,7 +9,7 @@ const InstitutionDetailLogo = ({profileSize, schoolLogo}) => {
   const logo = DownloadedImage.getImagePath(schoolLogo)
   return (
     <View style={[mainStyles.boxShadow, {width: profileSize, height: profileSize, padding: 7, borderRadius: 8, backgroundColor: '#fff'}]}>
-      <CustomImageComponent source={!!logo ? {uri: logo} : null} style={{width: 106, height: 106}} resizeMode='contain' emptyImageStyle={{width: 106, height: 106}}/>
+      <CustomImageComponent source={!!logo ? {uri: logo} : DownloadedImage.getLocalImage(schoolLogo)} style={{width: 106, height: 106}} resizeMode='contain' emptyImageStyle={{width: 106, height: 106}}/>
     </View>
   )
 }

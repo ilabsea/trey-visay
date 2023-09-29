@@ -7,7 +7,8 @@ const MODEL = 'JobCluster'
 export default class JobCluster {
   static seedData = () => {
     jobClusters.map(jobCluster => {
-      BaseModel.create(MODEL, {...jobCluster, uuid: uuidv4(), video_ids: this.getFomattedVideoIds(jobCluster.videos)}, 'modified')
+      const displayOrder = !!jobCluster.display_order ? parseInt(jobCluster.display_order) : this.getAll().length + 1;
+      BaseModel.create(MODEL, {...jobCluster, uuid: uuidv4(), video_ids: this.getFomattedVideoIds(jobCluster.videos), display_order: displayOrder}, 'modified')
     })
   }
 

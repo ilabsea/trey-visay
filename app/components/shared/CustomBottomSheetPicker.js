@@ -45,7 +45,7 @@ const CustomBottomSheetPickerComponent = (props) => {
             isOutlined={true}
             titleFontFamily={FontFamily.regular}
             requiredTitleStyle={{fontSize: FontSetting.sub_title}}
-            searchInputStyle={[{height: 48}, Platform.OS == 'ios' && {lineHeight: 19}]}
+            searchInputStyle={{height: 48, lineHeight: Platform.OS == 'ios' ? 19 : 22}}
           />
           <ErrorMessage error={errors[props.fieldName]} visible={touched[props.fieldName]} style={{lineHeight: 20, marginBottom: -10, marginTop: 4}} />
         </React.Fragment>
