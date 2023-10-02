@@ -53,7 +53,7 @@ export default class Job {
 
   static getVideosById = (jobId) => {
     const job = this.findById(jobId)
-    if (!job) return []
+    if (!job || job.video_ids.length == 0) return []
 
     const idsQuery = job.video_ids.map(id => `id = '${id}'`).join(' OR ');
     return realm.objects('Video').filtered(`(${idsQuery})`)
