@@ -54,7 +54,7 @@ const SchoolScreen = (props) => {
     setSchools(state.activePage);
   }, [schoolFilterOptions])
 
-  const setSchools = (active) => {
+  const setSchools = (active, searchText = '') => {
     const { province, category, major, department } = schoolFilterOptions;
     let options = {
       kind: kinds[active],
@@ -63,7 +63,7 @@ const SchoolScreen = (props) => {
       category: category,
       department: department,
       page: currentPage,
-      searchText: state.searchText
+      searchText: searchText
     }
 
     const schools = [...SchoolUtil.getSchools(options)];
@@ -129,7 +129,7 @@ const SchoolScreen = (props) => {
 
     return <CustomFlatListComponent
               ref={listRef}
-              data={ state.schools.filter(school => school.name.includes(state.searchText)) }
+              data={ state.schools }
               renderItem={ ({item}) => _renderRow(item) }
               hasInternet={state.hasInternet}
               keyExtractor={ (item, index) => index.toString() }
@@ -140,10 +140,10 @@ const SchoolScreen = (props) => {
   }
 
   const onSearchChange = (text) => {
-    if (text == '') {
+    if (text == '')
       resetData();
-      setSchools(state.activePage, text);
-    }
+
+    setSchools(state.activePage, text);
     setState({searchText: text})
   }
 

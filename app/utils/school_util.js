@@ -36,6 +36,9 @@ export default class SchoolUtil {
     if (!!options.category)
       uniList = uniList.filter(school => school.category == options.category);
 
+    if (!!options.searchText)
+      uniList = uniList.filter(school => school.name.includes(options.searchText));
+
     return uniList;
   }
 
