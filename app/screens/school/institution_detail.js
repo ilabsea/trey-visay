@@ -77,7 +77,7 @@ export default class InstitutionDetail extends Component {
       <ScrollableHeader
         backgroundColor={Colors.blue}
         textColor={'#fff'}
-        statusBarColor={Colors.blueStatusBar}
+        statusBarColor={Colors.blue}
         barStyle={'light-content'}
         headerStyle={{borderBottomWidth: 0}}
         renderContent={ this.renderContent }

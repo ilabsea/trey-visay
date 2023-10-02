@@ -86,7 +86,7 @@ export default PersonalUnderstandingTest = ({navigation}) => {
         <ScrollableHeader
           backgroundColor={Color.blue}
           textColor={'#fff'}
-          statusBarColor={Color.blueStatusBar}
+          statusBarColor={Color.blue}
           barStyle={'light-content'}
           renderContent={ renderContent }
           title={'ស្វែងយល់ពីខ្លួនឯង'}
