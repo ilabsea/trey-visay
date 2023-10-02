@@ -24,8 +24,8 @@ const ListItem = ({caption, item={}}) => {
       <List.Item
         onPress={() => navigation.navigate(item.route, {...item.routeParam}) }
         title={title}
-        style={[{ backgroundColor: Color.whiteColor, borderBottomWidth: 1, borderColor: Color.paleGray , paddingHorizontal: getStyleOfDevice(14, 6)}]}
-        right={props => <List.Icon {...props} icon="chevron-right" />}
+        style={[{ backgroundColor: Color.whiteColor, borderBottomWidth: 1, borderColor: Color.paleGray , paddingHorizontal: getStyleOfDevice(14, 6), height: 60, justifyContent: 'center'}]}
+        right={props => <List.Icon {...props} icon="chevron-right" style={{alignSelf: 'center', alignItems: 'flex-end'}} />}
       />
     </View>
   )

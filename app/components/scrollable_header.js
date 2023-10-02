@@ -42,7 +42,7 @@ class ScrollableHeader extends Component {
   }
 
   renderStatusBar() {
-    let bgColor = this.props.statusBarColor || 'rgba(0, 0, 0, 0.251)';
+    let bgColor = this.props.statusBarColor || 'white';
     let barStyle = this.props.barStyle || 'dark-content';
     return (
       <StatusBar

@@ -54,7 +54,7 @@ const HollandTestInstruction = ({route, navigation}) => {
       <ScrollableHeader
         backgroundColor={Color.blue}
         textColor={'#fff'}
-        statusBarColor={Color.blueStatusBar}
+        statusBarColor={Color.blue}
         barStyle={'light-content'}
         renderContent={ renderContent }
         onPressBack={() => navigation.popToTop()}
