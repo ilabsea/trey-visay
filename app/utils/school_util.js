@@ -1,4 +1,5 @@
 import SchoolModel from '../models/School';
+import Major from '../models/Major';
 import provinceList from '../data/json/address/provinces.json';
 
 const PER_PAGE = 20;
@@ -70,8 +71,21 @@ export default class SchoolUtil {
   static getSchoolNamesByIds(schoolIds) {
     if (!schoolIds) return ''
 
-    const schools = SchoolModel.findAllByIds(schoolIds);
-    return schools.map(school => `- ${school.name}`).join("")
+    const schools = [...new Map(SchoolModel.findAllByIds(schoolIds).map((school) => [school.name, school])).values()];   // filter duplicate school by name
+    return schools.map(school => ` - ${school.name}`).join("")
+  }
+
+  static getSchoolNamesByMajor(majorId) {
+    const major = Major.findById(majorId);
+    if (!major)
+      return "";
+
+    const subMajors = Major.findAllByParentCode(major.parent_code);
+    let schoolIds = major.school_ids;
+    subMajors.map(subMajor => {
+      schoolIds = [...schoolIds, ...subMajor.school_ids];
+    })
+    return this.getSchoolNamesByIds([...new Set(schoolIds)]);
   }
 
   static getTvetDepartments(province) {
