@@ -45,7 +45,7 @@ const HollandTestResult = ({route, navigation}) => {
 
         <HollandTestResultCharacteristicAccordions quiz={currentQuiz}/>
         <ListItem caption={"ជំនាញកម្រិតឧត្តមសិក្សារបស់អ្នក"} item={{title: !!currentQuiz.selectedMajor && currentQuiz.selectedMajor.name, route: currentQuiz.majorRoute, routeParam: {quizUuid: currentQuiz.uuid, major_code: currentQuiz.majorCodeSelected, showRecommendation: true}}}/>
-        <ListItem caption={"មុខរបរ ឬអាជីពសាកសមរបស់អ្នក"} item={{title: !!currentQuiz.selectedJob && currentQuiz.selectedJob.name, route: currentQuiz.jobRoute, routeParam: {quizUuid: currentQuiz.uuid, job_code: currentQuiz.jobCodeSelected}}}/>
+        <ListItem caption={"មុខរបរ ឬអាជីពស័ក្ដិសមរបស់អ្នក"} item={{title: !!currentQuiz.selectedJob && currentQuiz.selectedJob.name, route: currentQuiz.jobRoute, routeParam: {quizUuid: currentQuiz.uuid, job_code: currentQuiz.jobCodeSelected}}}/>
       </View>
     )
   }
