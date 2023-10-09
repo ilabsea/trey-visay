@@ -88,6 +88,9 @@ export default class Job {
   }
 
   static getFomattedSchoolIds = (schools) => {
+    if (!schools)
+      return [];
+
     return schools.map(school => school.id)
   }
 

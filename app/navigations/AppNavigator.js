@@ -28,7 +28,11 @@ function HomeTab() {
   return (
     <Tab.Navigator screenOptions={{
       headerShown: false,
-      tabBarLabelStyle: { lineHeight: Platform.OS == 'android' ? 20 : 0}
+      tabBarLabelStyle: {
+        lineHeight: Platform.OS == 'android' ? 20 : 0,
+        fontSize: FontSetting.sub_title -1,
+        paddingBottom: 2
+      }
     }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{
         tabBarLabel: 'ទំព័រដេីម',
