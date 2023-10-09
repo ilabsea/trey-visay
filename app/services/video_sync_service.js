@@ -1,36 +1,32 @@
+import Moment from 'moment';
 import Video from '../models/Video'
-import {itemsPerPage} from '../constants/sync_data_constant';
 import VideoApi from '../api/video_api';
+import asyncStorageService from './async_storage_service';
 
 const videoSyncService = (() => {
   return {
-    syncAllData
+    syncDataByPage
   }
 
-  function syncAllData(callback) {
-    _syncAndRemoveByPage(1, 1, callback)
-  }
+  async function syncDataByPage(page, callback) {
+    let updatedAt = await asyncStorageService.getItem('VIDEO_UPDATED_AT');
+    new VideoApi().load(page, updatedAt, (res) => {
+      res.videos.map(video => {
+        const existedVideo = Video.findById(video.id)
+        if (!updatedAt || (!!updatedAt && Moment(updatedAt).isBefore(video.updated_at)))
+          updatedAt = video.updated_at;
 
-  // private method
-  function _handleSaveVideo(videos) {
-    videos.map(video => {
-      Video.create(video)
-    });
-  }
-
-  function _syncAndRemoveByPage(page, totalPage, callback, prevVideos = []) {
-    if (page > totalPage) {
-      Video.deleteAll()
-      _handleSaveVideo(prevVideos)
-      !!callback && callback(Video.getAll())
-      return 
-    }
-
-    new VideoApi().load(page, (res) => {
-      const allPage = Math.ceil(res.pagy.count / itemsPerPage)
-      _syncAndRemoveByPage(page+1, allPage, callback, [...prevVideos, ...res.videos])
+        if (video.deleted_at)
+          !!existedVideo && Video.deleteByUuid(existedVideo.uuid);
+        else if (!existedVideo)
+          Video.create(video)
+        else if (!Moment(video.updated_at).isSame(existedVideo.updated_at))
+          Video.update(existedVideo.uuid, video);
+      });
+      asyncStorageService.setItem('VIDEO_UPDATED_AT', updatedAt);
+      !!callback && callback(Video.getAll(), false)
     }, (error) => {
-      !!callback && callback(Video.getAll())
+      !!callback && callback(Video.getAll(), true)
     })
   }
 })()

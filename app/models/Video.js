@@ -14,11 +14,15 @@ export default class Video {
   }
 
   static getAll = () => {
-    return [...BaseModel.getAll(MODEL)]
+    return [...BaseModel.getAll(MODEL).sorted('updated_at', true)];
   }
 
   static create = (data) => {
     BaseModel.create(MODEL, {...data, uuid: uuidv4()})
+  }
+
+  static update = (uuid, data) => {
+    BaseModel.update(MODEL, uuid, data);
   }
 
   static findById = (id) => {
@@ -31,5 +35,9 @@ export default class Video {
 
   static deleteAll = () => {
     BaseModel.deleteAll(MODEL)
+  }
+
+  static deleteByUuid = (uuid) => {
+    BaseModel.deleteByUuid(MODEL, uuid);
   }
 }

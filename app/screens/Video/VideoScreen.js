@@ -14,6 +14,7 @@ import color from '../../themes/color'
 import Video from '../../models/Video';
 import videoSyncService from '../../services/video_sync_service';
 import {scrollViewPaddingBottom} from '../../constants/component_constant';
+import { itemsPerPage } from '../../constants/sync_data_constant';
 
 export default class VideoScreen extends Component {
   constructor(props) {
@@ -21,11 +22,14 @@ export default class VideoScreen extends Component {
 
     this.state = {
       pagination: {},
-      videos: Video.getAll(),
+      videos: Video.getAll().slice(0, 20),
       searchText: '',
       isInternetReachable: false
     }
     this.listRef = React.createRef()
+    this.isSyncingData = false;
+    this.currentPage = 1;
+    this.listIndex = 20;
   }
 
   componentDidMount() {
@@ -51,10 +55,30 @@ export default class VideoScreen extends Component {
   }
 
   _onRefresh() {
-    videoSyncService.syncAllData((videos) => {
-      this.setState({videos: videos})
+    this.currentPage = 1;
+    this.listIndex = 20;
+    this._syncVideo(1);
+  }
+  
+  _syncVideo(page) {
+    videoSyncService.syncDataByPage(page, (videos, isError) => {
+      if (isError)
+        this.currentPage = Math.ceil(videos.length / itemsPerPage);
+
+      this.setState({videos: videos.slice(0, this.listIndex)})
       this.listRef.current?.stopRefreshLoading()
-    })
+      this.listRef.current?.stopPaginateLoading()
+    });
+  }
+
+  _loadMore() {
+    if (this.isSyncingData)
+      return this.listRef.current?.stopPaginateLoading();
+
+    this.isRequestingData = true;
+    this.listIndex += 20
+    this.currentPage++;
+    this._syncVideo(this.currentPage);
   }
 
   _renderContent() {
@@ -66,7 +90,9 @@ export default class VideoScreen extends Component {
         keyExtractor={(item, index) => item.uuid}
         hasInternet={this.state.isInternetReachable}
         refreshingAction={() => this._onRefresh()}
+        endReachedAction={() => this._loadMore()}
         customContentContainerStyle={{flexGrow: 1, paddingBottom: scrollViewPaddingBottom}}
+        initialNumToRender={20}
       />
     )
   }
