@@ -45,6 +45,10 @@ export default class Major {
     return arrayUtil.filterDuplicate(majors, 'id')
   }
 
+  static findAllByParentCode = (parentCode) => {
+    return BaseModel.findByAttr(MODEL, {parent_code: `'${parentCode}'`});
+  }
+
   static create = (data) => {
     BaseModel.create(MODEL, {...data, uuid: uuidv4(), school_ids: this.getFomattedSchoolIds(data.schools)}, 'modified')
   }

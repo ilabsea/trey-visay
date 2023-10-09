@@ -42,7 +42,7 @@ const MajorDetailAccordion = ({major, showRecommendation, hideSchoolList}) => {
     },
     !hideSchoolList ? {
       title: "ឆ. គ្រឹះស្ថានសិក្សា",
-      detail: SchoolUtil.getSchoolNamesByIds(major.school_ids),
+      detail: SchoolUtil.getSchoolNamesByMajor(major.id),
       children: []
     } : null,
     showRecommendation ? {
