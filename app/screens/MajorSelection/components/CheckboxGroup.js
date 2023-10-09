@@ -11,13 +11,13 @@ const {useImperativeHandle} = React
 
 const CheckboxGroup = ({options, textSearch, errorMessage, type, headerLabel}, ref) => {
   const [selectedValues, setSelectedValues] = useState([]);
-  const [paginateLoading, setPaginateLoading] = useState(false);
+  const [paginateLoading, setPaginateLoading] = useState(true);
   const [renderOptions, setRenderOptions] = useState([])
   const listIndices = useRef({start: 0, end: 15})
 
   useEffect(() => {
     if (!!textSearch)
-      setRenderOptions(options)
+      setRenderOptions([...options])
     else if (options.length > 0 && renderOptions.length == 0 || !textSearch)
       setRenderOptions([...options.slice(0, 15)])
   }, [options])
@@ -47,16 +47,15 @@ const CheckboxGroup = ({options, textSearch, errorMessage, type, headerLabel}, r
   };
 
   const onEndReached = () => {
-    if (listIndices.current.end >= options.length) return
+    if (listIndices.current.end >= options.length) {
+      setPaginateLoading(false)
+      return
+    }
 
-    setPaginateLoading(true)
     const start = listIndices.current.end;
     const end = parseInt(listIndices.current.end) + 15
     listIndices.current = {start: start, end: end}
-    setTimeout(() => {
-      setRenderOptions(renderOptions.concat([...options.slice(start, end)]))
-      setPaginateLoading(false)
-    }, 200)
+    setRenderOptions([...renderOptions.concat([...options.slice(start, end)])])
   }
 
   const renderListFooter = () => {
@@ -84,7 +83,8 @@ const CheckboxGroup = ({options, textSearch, errorMessage, type, headerLabel}, r
       <FlatList
         style={{marginBottom: 1, paddingHorizontal: 16, flex: 1}}
         data={renderOptions}
-        keyExtractor={(option) => option.value.toString()}
+        keyExtractor={(option, index) => `${option.value.toString()}_${index}`}
+        onEndReachedThreshold={0.2}
         onEndReached={() => onEndReached()}
         renderItem={({ item, index }) => (
           <View style={{minHeight: 56, borderBottomWidth: 0.5, justifyContent: 'center', borderColor: Color.gray}}>
@@ -94,7 +94,6 @@ const CheckboxGroup = ({options, textSearch, errorMessage, type, headerLabel}, r
               label={ item.name }
               onPress={ onPress }
               checked={ selectedValues.length > 0 && selectedValues.indexOf(item.value) !== -1 }
-              onEndReached={() => onEndReached()}
               type={type}
               disabled={selectedValues.length == 3}
               textSearch={textSearch}

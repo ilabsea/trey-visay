@@ -15,7 +15,7 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
   const currentQuiz = Quiz.findByUuid(route.params.quizUuid);
   const dispatch = useDispatch();
   const {user} = useAuth();
-  const data = Major.findAllByGradeAndPersonalityTypes(user.grade, user.otherGrade, currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
+  const data = Major.findAllParentByGradeAndPersonalityTypes(user.grade, user.otherGrade, currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
 
   let formRef = React.useRef()
 
