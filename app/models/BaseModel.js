@@ -1,3 +1,4 @@
+import Moment from 'moment';
 import realm from '../db/schema';
 
 class BaseModel {
@@ -51,6 +52,11 @@ class BaseModel {
 
   static beginsWith = (model, column, value) => {
     return realm.objects(model).filtered(`${column} BEGINSWITH[c] ${value}`);
+  }
+  
+  static getLastUpdatedAt = (model) => {
+    const item = this.getAll(model).sorted('updated_at', true)[0];
+    return !!item ? item.updated_at : null;
   }
 
   // private method

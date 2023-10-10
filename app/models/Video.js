@@ -30,7 +30,7 @@ export default class Video {
   }
 
   static findAllByName = (name) => {
-    return arrayUtil.filterDuplicate(BaseModel.containsByAttr(MODEL, 'name', `'${name}'`), 'id')
+    return arrayUtil.filterDuplicate(BaseModel.containsByAttr(MODEL, 'name', `'${name}'`).sorted('updated_at', true), 'id')
   }
 
   static deleteAll = () => {

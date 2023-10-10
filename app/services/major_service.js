@@ -1,35 +1,20 @@
 import Major from '../models/Major'
-import {itemsPerPage} from '../constants/sync_data_constant'
 import MajorApi from '../api/major_api'
+import asyncStorageService from './async_storage_service'
+import realmSyncService from './realm_sync_service'
 
 const majorService = (() => {
   return {
-    syncAllData
+    syncData,
   }
 
-  function syncAllData(callback) {
-    _syncAndRemoveByPage(1, 1, callback)
-  }
-
-  // private method
-  function _handleSaveMajor(collegeMajors, callback) {
-    collegeMajors.map(collegeMajor => {
-      Major.create(collegeMajor)
+  async function syncData() {
+    let updatedAt = await asyncStorageService.getItem('MAJOR_UPDATED_AT');
+    new MajorApi().load(updatedAt, (res) => {
+      realmSyncService.handleSyncObject(Major, res.majors, updatedAt, (newUpdatedAt) => {
+        asyncStorageService.setItem('MAJOR_UPDATED_AT', newUpdatedAt);
+      });
     });
-    !!callback && callback();
-  }
-
-  function _syncAndRemoveByPage(page, totalPage, callback, prevCollegeMajors = []) {
-    if (page > totalPage) {
-      Major.deleteAll()
-      _handleSaveMajor(prevCollegeMajors, callback)
-      return
-    }
-
-    new MajorApi().load(page, (res) => {
-      const allPage = Math.ceil(res.pagy.count / itemsPerPage)
-      _syncAndRemoveByPage(page+1, allPage, callback, [...prevCollegeMajors, ...res.majors])
-    }, (error) => !!callback && callback())
   }
 })()
 

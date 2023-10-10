@@ -22,14 +22,12 @@ export default class VideoScreen extends Component {
 
     this.state = {
       pagination: {},
-      videos: Video.getAll().slice(0, 20),
+      videos: Video.getAll().slice(0, itemsPerPage),
       searchText: '',
       isInternetReachable: false
     }
     this.listRef = React.createRef()
-    this.isSyncingData = false;
-    this.currentPage = 1;
-    this.listIndex = 20;
+    this.listIndex = itemsPerPage;
   }
 
   componentDidMount() {
@@ -55,30 +53,32 @@ export default class VideoScreen extends Component {
   }
 
   _onRefresh() {
-    this.currentPage = 1;
-    this.listIndex = 20;
-    this._syncVideo(1);
+    this.listIndex = itemsPerPage;
+    this._syncVideo(() => this.listRef.current?.stopRefreshLoading());
   }
   
-  _syncVideo(page) {
-    videoSyncService.syncDataByPage(page, (videos, isError) => {
-      if (isError)
-        this.currentPage = Math.ceil(videos.length / itemsPerPage);
+  _syncVideo(callback) {
+    videoSyncService.syncData((videos) => {
+      if (videos.length == this.state.videos.length)
+        this.listIndex = Math.ceil(videos.length / itemsPerPage) * itemsPerPage;
 
-      this.setState({videos: videos.slice(0, this.listIndex)})
-      this.listRef.current?.stopRefreshLoading()
-      this.listRef.current?.stopPaginateLoading()
+      this.setState({videos: Video.findAllByName(this.state.searchText).slice(0, this.listIndex)})
+      !!callback && callback();
     });
   }
 
   _loadMore() {
-    if (this.isSyncingData)
+    if (this.listRef.current?.isLoading())
       return this.listRef.current?.stopPaginateLoading();
 
-    this.isRequestingData = true;
-    this.listIndex += 20
-    this.currentPage++;
-    this._syncVideo(this.currentPage);
+    this.listIndex += itemsPerPage
+    if (!!this.state.searchText) {
+      this.listRef.current?.stopPaginateLoading()
+      this.setState({videos: Video.findAllByName(this.state.searchText).slice(0, this.listIndex)})
+      return;
+    }
+
+    this._syncVideo(() => this.listRef.current?.stopPaginateLoading());
   }
 
   _renderContent() {
@@ -92,7 +92,6 @@ export default class VideoScreen extends Component {
         refreshingAction={() => this._onRefresh()}
         endReachedAction={() => this._loadMore()}
         customContentContainerStyle={{flexGrow: 1, paddingBottom: scrollViewPaddingBottom}}
-        initialNumToRender={20}
       />
     )
   }

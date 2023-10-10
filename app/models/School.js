@@ -13,7 +13,11 @@ export default class School {
   }
 
   static getAll = () => {
-    return BaseModel.getAll(MODEL).sorted('id', false)
+    return BaseModel.getAll(MODEL).sorted('updated_at', true)
+  }
+
+  static getLastUpdatedAt = () => {
+    return BaseModel.getLastUpdatedAt(MODEL);
   }
 
   static findByCategory = (category) => {
@@ -48,6 +52,10 @@ export default class School {
     BaseModel.deleteAll(MODEL)
   }
 
+  static deleteByUuid = (uuid) => {
+    BaseModel.deleteByUuid(MODEL, uuid);
+  }
+
   // private method
   static getFormattedData(school) {
     return {
@@ -65,6 +73,7 @@ export default class School {
       category: school.category,
       departments: JSON.stringify(school.departments),
       kind: school.kind,
+      updated_at: school.updated_at,
     }
   }
 }
