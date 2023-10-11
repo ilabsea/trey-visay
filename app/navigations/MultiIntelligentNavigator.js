@@ -2,6 +2,7 @@ import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import MultiIntelligentHomeScreen from '../screens/MultiIntelligent/MultiIntelligentHomeScreen';
+import MultiIntelligentAboutScreen from '../screens/MultiIntelligent/MultiIntelligentAboutScreen';
 import ProfileFormScreen from '../screens/Profile/ProfileFormScreen';
 import MultiIntelligentInstructionScreen from '../screens/MultiIntelligent/MultiIntelligentInstructionScreen';
 import MultiIntelligentQuestionnaireScreen from '../screens/MultiIntelligent/MultiIntelligentQuestionnaireScreen';
@@ -15,6 +16,7 @@ const MultiIntelligentStackNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="MultiIntelligentHomeScreen" component={MultiIntelligentHomeScreen} options={{headerShown: false}} />
+      <Stack.Screen name="MultiIntelligentAboutScreen" component={MultiIntelligentAboutScreen} options={{headerShown: false}} />
       <Stack.Screen name="ProfileFormScreen" component={ProfileFormScreen} options={{headerShown: false}} />
       <Stack.Screen name="MultiIntelligentInstructionScreen" component={MultiIntelligentInstructionScreen} options={{headerShown: false}} />
       <Stack.Screen name="MultiIntelligentQuestionnaireScreen" component={MultiIntelligentQuestionnaireScreen} options={{headerShown: false}} />

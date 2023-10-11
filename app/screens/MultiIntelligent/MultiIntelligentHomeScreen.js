@@ -28,7 +28,7 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
           hasLine={true}
           iconColor={Color.blue}
           icon={<Icon name='information-variant' size={25} color={Color.blue} />}
-          onPress={() => { }}
+          onPress={() => { navigation.navigate('MultiIntelligentAboutScreen') }}
           title='អំពីតេស្តភាពឆ្លាតវៃ' />
       </View>
     )
