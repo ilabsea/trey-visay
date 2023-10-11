@@ -9,7 +9,7 @@ import JobCluster from '../migrations/v4/job_cluster';
 import Video from '../migrations/v5/video';
 import Visit from '../migrations/v4/visit';
 import IntelligentQuiz from '../migrations/v4/intelligent_quiz';
-import CareerWebsite from '../migrations/v4/career_website';
+import CareerWebsite from '../migrations/v5/career_website';
 
 const schema5 = [
   Sidekiq,

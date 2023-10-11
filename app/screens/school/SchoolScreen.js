@@ -14,7 +14,6 @@ import SchoolUtil from '../../utils/school_util';
 import schoolSyncService from '../../services/school_sync_service';
 import majorService from '../../services/major_service';
 import asyncStorageService from '../../services/async_storage_service';
-import { itemsPerPage } from '../../constants/sync_data_constant';
 
 const kinds = {
   1: "higher_education",
@@ -37,8 +36,6 @@ const SchoolScreen = (props) => {
     hasInternet: false,
   });
   const schoolFilterOptions = useSelector(state => state.schoolFilterOptions.value);
-  const currentPage = useRef(1);
-  const listIndex = useRef(20);
 
   useEffect(() => {
     initUpdatedAt();
@@ -58,7 +55,6 @@ const SchoolScreen = (props) => {
 
   useEffect(() => {
     const { province, category, major, department } = schoolFilterOptions;
-    resetListIndex();
     setState({ currentProvince: province, currentMajor: major, currentCategory: category, currentDepartment: department });
     setSchools(state.activePage, state.searchText);
   }, [schoolFilterOptions])
@@ -71,17 +67,9 @@ const SchoolScreen = (props) => {
       major: major,
       category: category,
       department: department,
-      page: currentPage.current,
       searchText: searchText
     }
-
-    const schools = [...SchoolUtil.getSchools(options)];
-    setState({schools: schools.slice(0, listIndex.current)});
-  }
-
-  const resetListIndex = () => {
-    currentPage.current = 1;
-    listIndex.current = itemsPerPage;
+    setState({schools: [...SchoolUtil.getSchools(options)]});
   }
 
   const _renderRow = (school) => {
@@ -89,39 +77,15 @@ const SchoolScreen = (props) => {
   }
 
   const setContent = (active) => {
-    resetListIndex();
     setState({activePage: active});
     setSchools(active);
   }
 
-  const getMore = () => {
-    if (listRef.current?.isLoading())
-      return listRef.current?.stopPaginateLoading();
-
-    listIndex.current += 20;
-    currentPage.current++;
-    // prevent sync data on end of the list when there is no internet or when searching the school
-    if (!state.hasInternet || !!state.searchText) {
-      setSchools(state.activePage, state.searchText);
-      listRef.current?.stopPaginateLoading();
-      return;
-    }
-    syncSchool(() => { listRef.current?.stopPaginateLoading() });
-  }
-
   const onRefresh = () => {
-    resetListIndex();
     majorService.syncData()
-    syncSchool(() => listRef.current?.stopRefreshLoading());
-  }
-
-  const syncSchool = (callback) => {
     schoolSyncService.syncData(kinds[state.activePage], (schools) => {
-      if (schools.length == state.schools.length)
-        listIndex.current = Math.ceil(schools.length / itemsPerPage) * itemsPerPage;
-
       setSchools(state.activePage, state.searchText)
-      !!callback && callback();
+      listRef.current?.stopRefreshLoading()
     });
   }
 
@@ -134,14 +98,10 @@ const SchoolScreen = (props) => {
               keyExtractor={ (item, index) => index.toString() }
               offlineEndReached={true}
               refreshingAction={() => onRefresh()}
-              endReachedAction={() => getMore()}
            />
   }
 
   const onSearchChange = (text) => {
-    if (text == '')
-      resetListIndex();
-
     setSchools(state.activePage, text);
     setState({searchText: text})
   }

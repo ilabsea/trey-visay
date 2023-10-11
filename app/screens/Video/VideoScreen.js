@@ -13,8 +13,8 @@ import CustomFlatListComponent from '../../components/shared/CustomFlatListCompo
 import color from '../../themes/color'
 import Video from '../../models/Video';
 import videoSyncService from '../../services/video_sync_service';
+import asyncStorageService from '../../services/async_storage_service';
 import {scrollViewPaddingBottom} from '../../constants/component_constant';
-import { itemsPerPage } from '../../constants/sync_data_constant';
 
 export default class VideoScreen extends Component {
   constructor(props) {
@@ -22,15 +22,15 @@ export default class VideoScreen extends Component {
 
     this.state = {
       pagination: {},
-      videos: Video.getAll().slice(0, itemsPerPage),
+      videos: Video.getAll(),
       searchText: '',
       isInternetReachable: false
     }
     this.listRef = React.createRef()
-    this.listIndex = itemsPerPage;
   }
 
   componentDidMount() {
+    this.initUpdatedAt();
     this.unsubscribe = NetInfo.addEventListener(state => {
       this.setState({
         isInternetReachable: state.isInternetReachable,
@@ -38,6 +38,11 @@ export default class VideoScreen extends Component {
         showLoading: false
       });
     });
+  }
+
+  async initUpdatedAt() {
+    if (!await asyncStorageService.getItem('VIDEO_UPDATED_AT'))
+      asyncStorageService.setItem('VIDEO_UPDATED_AT', Video.getLastUpdatedAt());
   }
 
   componentWillUnMount() {
@@ -53,32 +58,10 @@ export default class VideoScreen extends Component {
   }
 
   _onRefresh() {
-    this.listIndex = itemsPerPage;
-    this._syncVideo(() => this.listRef.current?.stopRefreshLoading());
-  }
-  
-  _syncVideo(callback) {
     videoSyncService.syncData((videos) => {
-      if (videos.length == this.state.videos.length)
-        this.listIndex = Math.ceil(videos.length / itemsPerPage) * itemsPerPage;
-
-      this.setState({videos: Video.findAllByName(this.state.searchText).slice(0, this.listIndex)})
-      !!callback && callback();
+      this.setState({videos: Video.findAllByName(this.state.searchText)})
+      this.listRef.current?.stopRefreshLoading()
     });
-  }
-
-  _loadMore() {
-    if (this.listRef.current?.isLoading())
-      return this.listRef.current?.stopPaginateLoading();
-
-    this.listIndex += itemsPerPage
-    if (!!this.state.searchText) {
-      this.listRef.current?.stopPaginateLoading()
-      this.setState({videos: Video.findAllByName(this.state.searchText).slice(0, this.listIndex)})
-      return;
-    }
-
-    this._syncVideo(() => this.listRef.current?.stopPaginateLoading());
   }
 
   _renderContent() {
@@ -90,7 +73,6 @@ export default class VideoScreen extends Component {
         keyExtractor={(item, index) => item.uuid}
         hasInternet={this.state.isInternetReachable}
         refreshingAction={() => this._onRefresh()}
-        endReachedAction={() => this._loadMore()}
         customContentContainerStyle={{flexGrow: 1, paddingBottom: scrollViewPaddingBottom}}
       />
     )

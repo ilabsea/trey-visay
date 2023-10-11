@@ -17,6 +17,10 @@ export default class Video {
     return [...BaseModel.getAll(MODEL).sorted('updated_at', true)];
   }
 
+  static getLastUpdatedAt = () => {
+    return BaseModel.getLastUpdatedAt(MODEL);
+  }
+
   static create = (data) => {
     BaseModel.create(MODEL, {...data, uuid: uuidv4()})
   }
