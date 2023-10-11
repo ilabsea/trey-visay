@@ -14,6 +14,7 @@ import {getStyleOfOS} from '../../utils/responsive_util';
 import JobCluster from '../../models/JobCluster'
 import Job from '../../models/Job'
 import jobSyncService from '../../services/job_sync_service'
+import asyncStorageService from '../../services/async_storage_service';
 import {scrollViewPaddingBottom} from '../../constants/component_constant';
 
 export default class CareerClusterScreen extends Component {
@@ -32,9 +33,15 @@ export default class CareerClusterScreen extends Component {
   }
 
   componentDidMount() {
+    this.initUpdatedAt()
     this.netInfoUnsubscribe = NetInfo.addEventListener(state => {
       this.setState({hasInternet: state.isConnected && state.isInternetReachable})
     });
+  }
+
+  async initUpdatedAt() {
+    if (!await asyncStorageService.getItem('JOB_UPDATED_AT'))
+      asyncStorageService.setItem('JOB_UPDATED_AT', Job.getLastUpdatedAt());
   }
 
   componentWillUnmount() {
@@ -67,7 +74,7 @@ export default class CareerClusterScreen extends Component {
   }
 
   onRefresh() {
-    jobSyncService.syncAllData(() => this.listRef.current?.stopRefreshLoading())
+    jobSyncService.syncData(() => this.listRef.current?.stopRefreshLoading());
   }
 
   renderContent = () => {

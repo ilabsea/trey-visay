@@ -1,4 +1,3 @@
-import Moment from 'moment';
 import realm from '../db/schema';
 
 class BaseModel {

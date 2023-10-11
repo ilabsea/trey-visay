@@ -20,15 +20,10 @@ const CustomFlatListComponent = React.forwardRef((props, ref) => {
     setRefreshing(false)
   }
 
-  const isLoading = () => {
-    return refreshing || paginateLoading;
-  }
-
   // To enable the parent component to call below functions from Ref
   useImperativeHandle(ref, () => ({
     stopPaginateLoading,
-    stopRefreshLoading,
-    isLoading,
+    stopRefreshLoading
   }))
 
   const onEndReached = () => {

@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import { View } from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 import { useSelector } from 'react-redux';
@@ -96,7 +96,6 @@ const SchoolScreen = (props) => {
               renderItem={ ({item}) => _renderRow(item) }
               hasInternet={state.hasInternet}
               keyExtractor={ (item, index) => index.toString() }
-              offlineEndReached={true}
               refreshingAction={() => onRefresh()}
            />
   }

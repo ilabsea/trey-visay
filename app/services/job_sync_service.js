@@ -1,40 +1,24 @@
 import Job from '../models/Job'
-import {itemsPerPage} from '../constants/sync_data_constant';
 import imageDownloadService from './image_download_service';
 import JobApi from '../api/job_api';
+import asyncStorageService from './async_storage_service';
+import realmSyncService from './realm_sync_service';
 
 const jobSyncService = (() => {
   return {
-    syncAllData
+    syncData
   }
 
-  function syncAllData(callback) {
-    _syncAndRemoveByPage(1, 1, callback)
-  }
-
-  // private method
-  function _handleSaveJob(jobs) {
-    jobs.map(job => {
-      Job.create(job)
-    });
-  }
-
-  function _syncAndRemoveByPage(page, totalPage, callback, prevJobs = []) {
-    if (page > totalPage) {
-      Job.deleteAll()
-      _handleSaveJob(prevJobs)
-      !!callback && callback()
-      return 
-    }
-
-    new JobApi().load(page, (res) => {
+  async function syncData(callback) {
+    let updatedAt = await asyncStorageService.getItem('JOB_UPDATED_AT');
+    new JobApi().load(updatedAt, (res) => {
       imageDownloadService.handleDownloadItemsLogo(0, res.jobs, () => {
-        const allPage = Math.ceil(res.pagy.count / itemsPerPage)
-        _syncAndRemoveByPage(page+1, allPage, callback, [...prevJobs, ...res.jobs])
+        realmSyncService.handleSyncObject(Job, res.jobs, updatedAt, (newUpdatedAt) => {
+          asyncStorageService.setItem('JOB_UPDATED_AT', newUpdatedAt);
+        });
+        !!callback && callback()
       })
-    }, (error) => {
-      !!callback && callback()
-    })
+    }, (error) => !!callback && callback())
   }
 })()
 
