@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { View } from 'react-native'
 import Quiz from '../../models/Quiz';
 import { useDispatch } from 'react-redux';
@@ -7,6 +7,7 @@ import CheckboxGroup from '../MajorSelection/components/CheckboxGroup';
 import SearchableHeader from '../../components/shared/searchableHeaders/SearchableHeader'
 import FooterBar from "../../components/footer/FooterBar";
 import Job from '../../models/Job';
+import visitService from '../../services/visit_service';
 
 const JobSelectMultipleScreen = ({route, navigation}) => {
   const [textSearch, setTextSearch] = useState('');
@@ -15,6 +16,10 @@ const JobSelectMultipleScreen = ({route, navigation}) => {
   const dispatch = useDispatch();
   let formRef = React.useRef()
   const data = Job.findAllByPersonalityTypes(currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
+
+  useEffect(() => {
+    visitService.recordVisitPage('job');
+  }, [])
 
   const handleSubmit = () => {
     if (formRef.current?.getSelectedValues().length == 0 || formRef.current?.getSelectedValues().length > 3)

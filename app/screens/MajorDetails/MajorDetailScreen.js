@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { View, ScrollView } from 'react-native'
 import { Text } from '../../components';
 
@@ -7,9 +7,14 @@ import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
 import MajorDetailAccordion from '../../components/MajorDetails/MajorDetailAccordion'
 import {screenHorizontalPadding} from '../../constants/component_constant'
 import Major from '../../models/Major';
+import visitService from '../../services/visit_service';
 
 const MajorDetailScreen = ({route}) => {
   const major = route.params.major_id ? Major.findById(route.params.major_id) || {} : Major.findByCode(route.params.major_code) || {};
+
+  useEffect(() => {
+    visitService.recordVisitDetailScreen('major', major.id)
+  }, []);
 
   return (
     <View style={{flex: 1}}>
