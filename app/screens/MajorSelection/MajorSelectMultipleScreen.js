@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View } from 'react-native'
 import Quiz from '../../models/Quiz';
 import { useSelector, useDispatch } from 'react-redux';
@@ -8,6 +8,7 @@ import SearchableHeader from '../../components/shared/searchableHeaders/Searchab
 import FooterBar from "../../components/footer/FooterBar";
 import Major from '../../models/Major';
 import useAuth from "../../auth/useAuth";
+import visitService from '../../services/visit_service';
 
 const MajorSelectMultipleScreen = ({route, navigation}) => {
   const [textSearch, setTextSearch] = useState('');
@@ -16,8 +17,11 @@ const MajorSelectMultipleScreen = ({route, navigation}) => {
   const dispatch = useDispatch();
   const {user} = useAuth();
   const data = Major.findAllParentByGradeAndPersonalityTypes(user.grade, user.otherGrade, currentQuiz.topPersonalityTypes).map(x => ({ name: x.name, value: x.code }))
-
   let formRef = React.useRef()
+
+  useEffect(() => {
+    visitService.recordVisitPage('major');
+  }, [])
 
   const handleSubmit = () => {
     if (formRef.current?.getSelectedValues().length == 0 || formRef.current?.getSelectedValues().length > 3)
