@@ -2,17 +2,8 @@ import SchoolModel from '../models/School';
 import Major from '../models/Major';
 import provinceList from '../data/json/address/provinces.json';
 
-const PER_PAGE = 20;
-
 export default class SchoolUtil {
   static getSchools(options) {
-    let uniList = this.getNoPagySchools(options);
-    let page = options.page || 1;
-    let end = page * PER_PAGE;
-    return uniList.slice(0, end);
-  }
-
-  static getNoPagySchools(options) {
     let uniList = [...SchoolModel.getAll()]
     if (!!options.kind)
       uniList = uniList.filter(school => school.kind == options.kind);
@@ -112,6 +103,6 @@ export default class SchoolUtil {
   }
 
   static getMajorsForPicker(province, category, department) {
-    return [{code: '0', label: 'គ្រប់ជំនាញ'}, ...this.getMajors(province, category, department).map((item) => ({code: item.id, label: item.name}))];
+    return [{code: '0', label: 'គ្រប់ជំនាញ'}, ...this.getMajors(province, category, department).map((item) => ({code: item.id, label: Major.getNameById(item.id) || item.name}))];
   }
 }

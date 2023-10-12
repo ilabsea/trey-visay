@@ -6,8 +6,8 @@ export default class BaseApi {
     this.subModel = subModel;
   }
 
-  load = (page, successCallback, failureCallback) => {
-    client.get(this.responsibleModel, {page: page})
+  load = (updatedAt, successCallback, failureCallback) => {
+    client.get(this.responsibleModel, {updated_at: updatedAt})
           .then((res) => {
             if (res.ok)
               successCallback && successCallback(res.data)

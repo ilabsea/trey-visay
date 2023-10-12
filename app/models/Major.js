@@ -16,6 +16,15 @@ export default class Major {
     return BaseModel.getAll(MODEL)
   }
 
+  static getLastUpdatedAt = () => {
+    return BaseModel.getLastUpdatedAt(MODEL);
+  }
+
+  static getNameById = (id) => {
+    const major = BaseModel.findByAttr(MODEL, {id: id})[0];
+    return !!major ? major.name : '';
+  }
+
   static findById = (id) => {
     return BaseModel.findByAttr(MODEL, {id: id})[0];
   }
@@ -51,6 +60,10 @@ export default class Major {
 
   static create = (data) => {
     BaseModel.create(MODEL, {...data, uuid: uuidv4(), school_ids: this.getFomattedSchoolIds(data.schools)}, 'modified')
+  }
+
+  static update = (uuid, data) => {
+    BaseModel.update(MODEL, uuid, {...data, school_ids: this.getFomattedSchoolIds(data.schools)})
   }
 
   static deleteAll = () => {

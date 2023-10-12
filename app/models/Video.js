@@ -14,11 +14,19 @@ export default class Video {
   }
 
   static getAll = () => {
-    return [...BaseModel.getAll(MODEL)]
+    return [...BaseModel.getAll(MODEL).sorted('updated_at', true)];
+  }
+
+  static getLastUpdatedAt = () => {
+    return BaseModel.getLastUpdatedAt(MODEL);
   }
 
   static create = (data) => {
     BaseModel.create(MODEL, {...data, uuid: uuidv4()})
+  }
+
+  static update = (uuid, data) => {
+    BaseModel.update(MODEL, uuid, data);
   }
 
   static findById = (id) => {
@@ -26,10 +34,14 @@ export default class Video {
   }
 
   static findAllByName = (name) => {
-    return arrayUtil.filterDuplicate(BaseModel.containsByAttr(MODEL, 'name', `'${name}'`), 'id')
+    return arrayUtil.filterDuplicate(BaseModel.containsByAttr(MODEL, 'name', `'${name}'`).sorted('updated_at', true), 'id')
   }
 
   static deleteAll = () => {
     BaseModel.deleteAll(MODEL)
+  }
+
+  static deleteByUuid = (uuid) => {
+    BaseModel.deleteByUuid(MODEL, uuid);
   }
 }

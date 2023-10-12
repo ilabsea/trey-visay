@@ -14,11 +14,19 @@ export default class Job {
   }
 
   static create = (data) => {
-    BaseModel.create(MODEL, this.getFormattedData(data), 'modified')
+    BaseModel.create(MODEL, this.getFormattedData(data, false), 'modified')
   }
 
   static getAll = () => {
     return BaseModel.getAll(MODEL)
+  }
+
+  static getLastUpdatedAt = () => {
+    return BaseModel.getLastUpdatedAt(MODEL);
+  }
+
+  static update = (uuid, data) => {
+    BaseModel.update(MODEL, uuid, this.getFormattedData(data, true));
   }
 
   static findAllByJobCluster = (jobClusterCode) => {
@@ -63,6 +71,10 @@ export default class Job {
     BaseModel.deleteAll(MODEL)
   }
 
+  static deleteByUuid = (uuid) => {
+    BaseModel.deleteByUuid(MODEL, uuid);
+  }
+
   static getSchoolsByJobId = (id) => {
     const job = this.findById(id)
     if (!job) return []
@@ -79,10 +91,15 @@ export default class Job {
     return schools.map(school => school.id)
   }
 
-  static getFormattedData(job) {
+  static getFormattedData(job, isUpdate) {
     const {logo, videos, schools, job_cluster, name_km, name_en, ...data} = job
-    return {...data, uuid: uuidv4(), logo: job.logo.url, video_ids: this.getFomattedVideoIds(videos), school_ids: this.getFomattedSchoolIds(schools),
-            job_cluster_id: job_cluster.id || null, job_cluster_code: job_cluster.code || null, job_cluster_name: job_cluster.name || null
-           }
+    const params = {...data, uuid: uuidv4(), logo: job.logo.url, video_ids: this.getFomattedVideoIds(videos), school_ids: !!schools ? this.getFomattedSchoolIds(schools) : [],
+                      job_cluster_id: job_cluster.id || null, job_cluster_code: job_cluster.code || null, job_cluster_name: job_cluster.name || null
+                   }
+
+    if (isUpdate)
+      return params;
+
+    return {...params, uuid: uuidv4()};
   }
 }

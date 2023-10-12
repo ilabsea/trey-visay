@@ -15,12 +15,28 @@ export default class CareerWebsite {
     return [...BaseModel.getAll(MODEL)];
   }
 
+  static getLastUpdatedAt = () => {
+    return BaseModel.getLastUpdatedAt(MODEL);
+  }
+
+  static findById = (id) => {
+    return BaseModel.findByAttr(MODEL, {id: `'${id}'`})[0];
+  }
+
   static create = (data) => {
     BaseModel.create(MODEL, this._buildParams(data));
   }
 
+  static update = (uuid, data) => {
+    BaseModel.update(MODEL, uuid, {...data, logo: data.logo_url});
+  }
+
   static deleteAll = () => {
     BaseModel.deleteAll(MODEL);
+  }
+
+  static deleteByUuid = () => {
+    BaseModel.deleteByUuid(MODEL, uuid);
   }
 
   // private method
