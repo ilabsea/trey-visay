@@ -12,5 +12,6 @@ export const pageAttrs = {
 export const detailScreenAttrs = {
   'school': { pageable_type: 'School', code: 'school_detail', parent_code: 'school', name: 'school detail' },
   'job': { pageable_type: 'Job', code: 'job_detail', parent_code: 'job', name: 'job detail' },
-  'video': { pageable_type: 'Video', code: 'video_detail', parent_code: 'video', name: 'video detail' }
+  'video': { pageable_type: 'Video', code: 'video_detail', parent_code: 'video', name: 'video detail' },
+  'major': { pageable_type: 'Major', code: 'major_detail', parent_code: 'major', name: 'major detail' },
 }

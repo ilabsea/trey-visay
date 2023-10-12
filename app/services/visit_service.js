@@ -44,9 +44,6 @@ const visitService = (() => {
       pageable_type: params.pageable_type,
       user_uuid: !!user ? user.uuid : null
     }
-
-    console.log('== visit params = ', data)
-
     Visit.write(() => {
       Visit.create(data);
       SidekiqJob.create(data.uuid, 'uploadVisit');

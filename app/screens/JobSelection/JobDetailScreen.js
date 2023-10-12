@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { View, ScrollView } from 'react-native'
 
 import { Text } from '../../components';
@@ -7,9 +7,14 @@ import BoldLabelComponent from '../../components/shared/BoldLabelComponent'
 import JobDetailAccordion from '../../components/jobDetails/JobDetailAccordion'
 import {screenHorizontalPadding} from '../../constants/component_constant'
 import Job from '../../models/Job';
+import visitService from '../../services/visit_service';
 
 const JobDetailScreen = ({route}) => {
   const job = Job.findByCode(route.params.job_code) || {}
+
+  useEffect(() => {
+    visitService.recordVisitDetailScreen('job', job.id)
+  }, []);
 
   return (
     <View style={{flex: 1}}>
