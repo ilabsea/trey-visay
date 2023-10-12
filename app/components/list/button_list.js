@@ -1,12 +1,6 @@
 import React from 'react';
-import {
-  View,
-  TouchableOpacity,
-  StyleSheet,
-  Image
-} from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
-import IonicIcon from 'react-native-vector-icons/Ionicons';
 import { Divider } from 'react-native-paper';
 import Text from '../Text';
 
@@ -26,17 +20,13 @@ class ButtonList extends React.Component {
           onPress={this.props.onPress}
         >
           { this.props.icon &&
-            <View style={{ width: 32, height: 32, borderRadius: 12, backgroundColor: this.props.icon.color, marginRight: 16}}>
-              <Image
-                source={this.props.icon.src}
-                resizeMode='contain'
-                style={{width: 20, height: 20, margin: 6}}
-              />
+            <View style={{ width: 32, height: 32, borderRadius: 12, borderColor: this.props.iconColor, marginRight: 16, borderWidth: 2, justifyContent: 'center', alignItems: 'center'}}>
+              {this.props.icon}
             </View>
           }
-          <BoldLabelComponent label={this.props.title} style={[mainStyles.text, {lineHeight: 24}]} />
+          <BoldLabelComponent label={this.props.title} style={[mainStyles.text, {lineHeight: 24, marginTop: 2}]} />
           <Text style={{paddingRight: 8}}>{this.props.numberAtRight}</Text>
-          { !this.props.hideArrow && <AwesomeIcon name='angle-right' size={30} color='#bbb' /> }
+          { !this.props.hideArrow && <AwesomeIcon name='angle-right' size={30} color='#bbb' style={{marginTop: -2}} /> }
         </TouchableOpacity>
         { this.props.hasLine && <Divider/> }
       </View>

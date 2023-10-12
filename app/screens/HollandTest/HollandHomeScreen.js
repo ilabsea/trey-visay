@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TouchableOpacity, Image } from 'react-native';
 // import firebase from 'react-native-firebase';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
@@ -26,7 +27,8 @@ const HollandHomeScreen = ({route, navigation}) => {
       <View style={{marginVertical: 12, backgroundColor: 'white'}}>
         <ButtonList
           hasLine={true}
-          icon={{color: Color.blue, src: require('../../assets/icons/others/info.png')}}
+          iconColor={Color.blue}
+          icon={<Icon name='information-variant' size={25} color={Color.blue} />}
           onPress={() => { navigation.navigate('HollandAboutScreen') }}
           title='អំពីការធ្វើតេស្តវាយតម្លៃមុខរបរនិងអាជីព' />
       </View>

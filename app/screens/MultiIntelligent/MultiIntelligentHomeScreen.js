@@ -2,6 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Body, CardItem } from 'native-base';
 import { useDispatch } from 'react-redux';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
@@ -25,8 +26,9 @@ const MultiIntelligentHomeScreen = ({route, navigation}) => {
       <View style={{marginVertical: 12, backgroundColor: 'white'}}>
         <ButtonList
           hasLine={true}
-          icon={{color: Color.blue, src: require('../../assets/icons/others/info.png')}}
-          onPress={() => { }}
+          iconColor={Color.blue}
+          icon={<Icon name='information-variant' size={25} color={Color.blue} />}
+          onPress={() => { navigation.navigate('MultiIntelligentAboutScreen') }}
           title='អំពីតេស្តភាពឆ្លាតវៃ' />
       </View>
     )

@@ -5,6 +5,7 @@ import {
   Platform
 } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import ButtonList from '../../components/list/button_list';
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
@@ -49,7 +50,8 @@ export default function Others(props) {
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
           <ButtonList
             hasLine={true}
-            icon={{color: Color.blue, src: require('../../assets/icons/others/info.png')}}
+            iconColor={Color.blue}
+            icon={<Icon name='information-variant' size={25} color={Color.blue} />}
             onPress={() => { navigation.navigate('About') }}
             title='អំពីកម្មវិធី' />
         </View>
@@ -57,13 +59,15 @@ export default function Others(props) {
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
           <ButtonList
             hasLine={true}
-            icon={{color: 'rgb(53, 174, 235)', src: require('../../assets/icons/others/share.png')}}
+            iconColor='rgb(53, 174, 235)'
+            icon={<Icon name='share-variant' size={18} color='rgb(53, 174, 235)' />}
             onPress={() => onPressShareApp() }
             title='ចែករំលែកកម្មវិធី' />
 
           <ButtonList
             hasLine={true}
-            icon={{color: 'rgb(172, 175, 193)', src: require('../../assets/icons/others/term_condition.png')}}
+            iconColor='rgb(172, 175, 193)'
+            icon={<Icon name='file-document-outline' size={21} color='rgb(172, 175, 193)' />}
             onPress={() => { navigation.navigate('TermsCondition') }}
             title='គោលការណ៏ និងលក្ខខណ្ឌ' />
         </View>
