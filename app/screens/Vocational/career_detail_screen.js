@@ -8,6 +8,7 @@ import VideoListView from '../../components/video/video_list';
 import ScrollableHeader from '../../components/scrollable_header';
 import Text from '../../components/Text';
 import CareerProfile from '../../components/careers/CareerProfile';
+import JobDetailAccordion from '../../components/jobDetails/JobDetailAccordion'
 
 import Job from '../../models/Job';
 import visitService from '../../services/visit_service';
@@ -62,7 +63,8 @@ export default class ShowCategoryScreen extends Component {
 
   _renderContent = () => {
     return (
-      <View style={{paddingBottom: 20}}>
+      <View style={{paddingBottom: 20, paddingTop: 8}}>
+        <JobDetailAccordion job={this.state.career} />
         { !!this.state.schools.length && this.renderSchoolList()}
         {!!this.state.videos.length && this.renderVideoList()}
       </View>
