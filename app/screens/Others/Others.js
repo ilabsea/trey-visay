@@ -16,6 +16,8 @@ import keyword from '../../data/analytics/keyword';
 import useAuth from "../../auth/useAuth";
 import { useNavigation } from '@react-navigation/native';
 import {getStyleOfOS} from '../../utils/responsive_util';
+import urlUtil from '../../utils/url_util';
+import urlService from '../../services/url_service';
 
 export default function Others(props) {
   const { user, logOut } = useAuth();
@@ -68,7 +70,7 @@ export default function Others(props) {
             hasLine={true}
             iconColor='rgb(172, 175, 193)'
             icon={<Icon name='file-document-outline' size={21} color='rgb(172, 175, 193)' />}
-            onPress={() => { navigation.navigate('TermsCondition') }}
+            onPress={() => { urlService.openUrl(urlUtil.getAbsoluteUrl('/terms-and-conditions')) }}
             title='គោលការណ៏ និងលក្ខខណ្ឌ' />
         </View>
 
