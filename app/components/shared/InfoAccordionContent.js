@@ -23,7 +23,7 @@ const InfoAccordionContent = ({info}) => {
 
     return (
       <View style={style}>
-        { !!arr[0] &&
+        { (!!arr[0] && arr[0] != ' ') &&
           <Text style={{color: Color.blackColor}}>
             { arr[0] }
           </Text>
