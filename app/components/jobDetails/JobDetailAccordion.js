@@ -16,7 +16,7 @@ const JobDetailAccordion = ({job}) => {
       children: [
         {title: "ភារកិច្ចចម្បងៗ", detail: job.jd_main_task},
         {title: "បរិយាកាសការងារ", detail: job.jd_environment},
-        {title: "ជំនាញផ្នែកតិចណូឡូជី", detail: job.jd_technology_skill}
+        {title: "ចរិតលក្ខណៈនៃអាជីព", detail: job.jd_work_style}
       ]
     },
     {
@@ -24,18 +24,17 @@ const JobDetailAccordion = ({job}) => {
       detail: "",
       children: [
         {title: "កម្រិតវប្បធម៌ទាមទារ", detail: job.edu_education_level},
-        {title: "មុខវិជ្ជាគាំទ្រនៅមធ្យមសិក្សា", detail: job.edu_high_school_supported_subject},
-        {title: "ជំនាញ/ឯកទេសនៅឧត្ដមសិក្សា", detail: job.edu_higher_education_skill}
+        {title: "ជំនាញគាំទ្រនៅមធ្យមសិក្សា", detail: job.edu_subjects_at_high_school},
+        {title: "ជំនាញឬឯកទេសនៅឧត្តមសិក្សា", detail: job.edu_majors_at_university}
       ]
     },
     {
       title: "ឃ. គុណវុឌ្ឍគាំទ្រសំខាន់ៗ",
       detail: "",
       children: [
-        {title: "ចំណេះដឹងគាំទ្រ", detail: job.qua_supported_knowledge},
-        {title: "ជំនាញគាំទ្រ", detail: job.qua_supported_skill},
-        {title: "សមត្ថភាពគាំទ្រ", detail: job.qua_supported_capacity},
-        {title: "ចរិតលក្ខណៈនៃអាជីព", detail: job.qua_characteristic_of_job}
+        {title: "ចំណេះដឹងគាំទ្រ", detail: job.personal_competency_knowledge},
+        {title: "ជំនាញគាំទ្រ", detail: job.personal_competency_skill},
+        {title: "សមត្ថភាពគាំទ្រ", detail: job.personal_competency_ability},
       ]
     }
   ]

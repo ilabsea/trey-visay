@@ -20,7 +20,7 @@ Job.schema = {
     general_description: 'string?',
     jd_main_task: 'string?',
     jd_environment: 'string?',
-    jd_work_style: 'string?',
+    jd_technology_skill: 'string?',
     edu_education_level: 'string?',
     edu_subjects_at_high_school: 'string?',
     edu_majors_at_university: 'string?',
