@@ -37,15 +37,7 @@ const JobDetailAccordion = ({job}) => {
         {title: "សមត្ថភាពគាំទ្រ", detail: job.qua_supported_capacity},
         {title: "ចរិតលក្ខណៈនៃអាជីព", detail: job.qua_characteristic_of_job}
       ]
-    },
-    {
-      title: "ង. ព័ត៌មានបន្ថែម",
-      detail: "",
-      children: [
-        {title: "ទីផ្សារការងារ", detail: job.info_job_market},
-        {title: "អាជីពប្រហាក់ប្រហែល", detail: job.info_similar_job}
-      ]
-    },
+    }
   ]
 
   return <InfoAccordion items={details}
