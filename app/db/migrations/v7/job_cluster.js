@@ -14,6 +14,7 @@ JobCluster.schema = {
     name: 'string',
     video_ids: { type: 'string[]', default: [], optional: true },
     display_order: 'int',
-    recommendation: 'string?'
+    recommendation: 'string?',
+    logo: 'string?',
   }
 }

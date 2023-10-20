@@ -50,8 +50,9 @@ export default class CareerClusterScreen extends Component {
   }
 
   renderItem(career, index){
+    const careerLogo = !!career.logo ? career.logo : JobCluster.findById(career.job_cluster_id).logo;
     return(
-      <CardItem item={career} text={career.name} image={career.logo} index={index} width={'40%'} height={'18%'}
+      <CardItem item={career} text={career.name} image={careerLogo} index={index} width={'40%'} height={'18%'}
         onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career_id: career.id})}
       />
     )
@@ -75,8 +76,9 @@ export default class CareerClusterScreen extends Component {
   }
 
   onRefresh() {
-    jobClusterService.syncData();
-    jobSyncService.syncData(() => this.listRef.current?.stopRefreshLoading());
+    jobClusterService.syncData(() => {
+      jobSyncService.syncData(() => this.listRef.current?.stopRefreshLoading());
+    });
   }
 
   renderContent = () => {

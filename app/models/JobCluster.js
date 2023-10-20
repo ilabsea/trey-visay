@@ -20,11 +20,11 @@ export default class JobCluster {
   }
 
   static create(data) {
-    BaseModel.create(MODEL, {...data, uuid: uuidv4(), video_ids: this.getFormattedVideoIds(data.videos), display_order: this.getAll().length + 1}, 'modified')
+    BaseModel.create(MODEL, {...data, uuid: uuidv4(), logo: data.logo.url, video_ids: this.getFormattedVideoIds(data.videos), display_order: this.getAll().length + 1}, 'modified')
   }
 
   static update(uuid, data) {
-    BaseModel.update(MODEL, uuid, {...data, video_ids: this.getFormattedVideoIds(data.videos)})
+    BaseModel.update(MODEL, uuid, {...data, logo: data.logo.url, video_ids: this.getFormattedVideoIds(data.videos)})
   }
 
   static deleteByUuid = (uuid) => {
