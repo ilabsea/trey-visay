@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Platform } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import { Divider } from 'react-native-paper';
 import Text from '../Text';
@@ -24,7 +24,7 @@ class ButtonList extends React.Component {
               {this.props.icon}
             </View>
           }
-          <BoldLabelComponent label={this.props.title} style={[mainStyles.text, {lineHeight: 24, marginTop: 2}]} />
+          <BoldLabelComponent label={this.props.title} style={[mainStyles.text, {lineHeight: 24, marginTop: Platform.OS == 'ios' ? 0 : 4 }]} />
           <Text style={{paddingRight: 8}}>{this.props.numberAtRight}</Text>
           { !this.props.hideArrow && <AwesomeIcon name='angle-right' size={30} color='#bbb' style={{marginTop: -2}} /> }
         </TouchableOpacity>

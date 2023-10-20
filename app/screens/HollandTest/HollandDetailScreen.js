@@ -9,6 +9,8 @@ import {screenHorizontalPadding} from '../../constants/component_constant';
 import {getStyleOfOS, getStyleOfDevice} from '../../utils/responsive_util';
 import Quiz from '../../models/Quiz';
 import Color from '../../themes/color';
+import {FontFamily} from '../../themes/font';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
 import { useNavigation } from '@react-navigation/native';
 
 const ListItem = ({caption, item={}}) => {
@@ -26,6 +28,7 @@ const ListItem = ({caption, item={}}) => {
         title={title}
         style={[{ backgroundColor: Color.whiteColor, borderBottomWidth: 1, borderColor: Color.paleGray , paddingHorizontal: getStyleOfDevice(14, 6), height: 60, justifyContent: 'center'}]}
         right={props => <List.Icon {...props} icon="chevron-right" style={{alignSelf: 'center', alignItems: 'flex-end'}} />}
+        titleStyle={{fontFamily: FontFamily.regular, fontSize: FontSetting.text}}
       />
     </View>
   )
