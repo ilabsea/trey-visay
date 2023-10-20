@@ -8,8 +8,6 @@ export default class JobCluster {
   static seedData = () => {
     jobClusters.map(jobCluster => {
       this.create(jobCluster);
-      // const displayOrder = !!jobCluster.display_order ? parseInt(jobCluster.display_order) : this.getAll().length + 1;
-      // BaseModel.create(MODEL, {...jobCluster, uuid: uuidv4(), video_ids: this.getFormattedVideoIds(jobCluster.videos), display_order: displayOrder}, 'modified')
     })
   }
 
@@ -29,7 +27,7 @@ export default class JobCluster {
     BaseModel.update(MODEL, uuid, {...data, video_ids: this.getFormattedVideoIds(data.videos)})
   }
 
-  static deleteByUuid = () => {
+  static deleteByUuid = (uuid) => {
     BaseModel.deleteByUuid(MODEL, uuid);
   }
 

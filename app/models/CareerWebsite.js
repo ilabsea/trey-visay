@@ -35,7 +35,7 @@ export default class CareerWebsite {
     BaseModel.deleteAll(MODEL);
   }
 
-  static deleteByUuid = () => {
+  static deleteByUuid = (uuid) => {
     BaseModel.deleteByUuid(MODEL, uuid);
   }
 
