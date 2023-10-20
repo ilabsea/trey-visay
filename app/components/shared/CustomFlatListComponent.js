@@ -40,6 +40,9 @@ const CustomFlatListComponent = React.forwardRef((props, ref) => {
 
     setRefreshing(true)
     !!props.refreshingAction && props.refreshingAction()
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 25000);
   }
 
   const renderListFooter = () => {
