@@ -66,6 +66,10 @@ export default class Major {
     BaseModel.update(MODEL, uuid, {...data, school_ids: this.getFomattedSchoolIds(data.schools)})
   }
 
+  static deleteByUuid = () => {
+    BaseModel.deleteByUuid(MODEL, uuid);
+  }
+
   static deleteAll = () => {
     BaseModel.deleteAll(MODEL)
   }

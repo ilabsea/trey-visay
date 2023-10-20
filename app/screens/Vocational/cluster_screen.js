@@ -14,6 +14,7 @@ import {getStyleOfOS} from '../../utils/responsive_util';
 import JobCluster from '../../models/JobCluster'
 import Job from '../../models/Job'
 import jobSyncService from '../../services/job_sync_service'
+import jobClusterService from '../../services/job_cluster_service'
 import asyncStorageService from '../../services/async_storage_service';
 import {scrollViewPaddingBottom} from '../../constants/component_constant';
 
@@ -74,6 +75,7 @@ export default class CareerClusterScreen extends Component {
   }
 
   onRefresh() {
+    jobClusterService.syncData();
     jobSyncService.syncData(() => this.listRef.current?.stopRefreshLoading());
   }
 
