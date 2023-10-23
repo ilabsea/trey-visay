@@ -41,7 +41,7 @@ const InfoAccordionContent = ({info}) => {
     return items.map((item, i) => {
       return <View key={`detail-${i}`} style={[{flexDirection: 'row', paddingRight: 10}, hasTitle && {marginLeft: 12}]}>
                 <Text style={{fontSize: getStyleOfOS(6, 10), marginRight: 8, marginTop: getStyleOfOS(0, -1)}}>{'\u2B24'}</Text>
-                <Text>{item.split('\r\n')[0]}</Text>
+                <Text selectable={true}>{item.split('\r\n')[0]}</Text>
              </View>
     })
   }
