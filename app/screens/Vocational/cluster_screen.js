@@ -50,9 +50,8 @@ export default class CareerClusterScreen extends Component {
   }
 
   renderItem(career, index){
-    const careerLogo = !!career.logo ? career.logo : JobCluster.findById(career.job_cluster_id).logo;
     return(
-      <CardItem item={career} text={career.name} image={careerLogo} index={index} width={'40%'} height={'18%'}
+      <CardItem item={career} text={career.name} image={career.logoSource} index={index} width={'40%'} height={'18%'}
         onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career_id: career.id})}
       />
     )

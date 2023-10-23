@@ -1,8 +1,25 @@
 'use strict';
 
 import Realm from 'realm';
+import JobCluster from '../../../models/JobCluster';
+import DownloadedImage from '../../../models/DownloadedImage';
+import Images from '../../../assets/images_js/careers_images';
+import fileUtil from '../../../utils/file_util';
 
-export default class Job extends Realm.Object {}
+export default class Job extends Realm.Object {
+  get logoSource() {
+    let logo = !!this.logo ? this.logo : JobCluster.findById(this.job_cluster_id).logo;
+    if (!logo)
+      return Images.default;
+
+    const downloadedLogo = DownloadedImage.getImagePath(logo);
+    if (!!downloadedLogo)
+      return {uri: downloadedLogo};
+
+    const filename = fileUtil.getFilenameFromUrl(logo).split('.')[0];
+    return !!Images[filename] ? Images[filename] : Images.default;
+  }
+}
 
 Job.schema = {
   name: 'Job',

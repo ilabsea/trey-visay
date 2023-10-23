@@ -24,7 +24,7 @@ export default class CareerIndexScreen extends Component {
           borderRadiusOnlyOnTop={true}
           item={career}
           text={career.name}
-          image={career.logo}
+          image={career.logoSource}
           width={'42%'}
           height={'20%'}
           onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career_id: career.id})}/>
