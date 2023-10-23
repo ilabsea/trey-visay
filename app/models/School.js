@@ -13,7 +13,7 @@ export default class School {
   }
 
   static getAll = () => {
-    return BaseModel.getAll(MODEL).sorted('updated_at', true)
+    return BaseModel.getAll(MODEL).sorted('display_order', false)
   }
 
   static getLastUpdatedAt = () => {
@@ -25,7 +25,7 @@ export default class School {
   }
 
   static findByKind = (kind) => {
-    return BaseModel.findByAttr(MODEL, {kind: `'${kind}'`})
+    return BaseModel.findByAttr(MODEL, {kind: `'${kind}'`}).sorted('display_order', false)
   }
 
   static findById = (id) => {
@@ -74,6 +74,7 @@ export default class School {
       departments: JSON.stringify(school.departments),
       kind: school.kind,
       updated_at: school.updated_at,
+      display_order: school.display_order,
     }
   }
 }
