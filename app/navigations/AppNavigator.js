@@ -36,7 +36,7 @@ function HomeTab() {
     }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{
         tabBarLabel: 'ទំព័រដេីម',
-        tabBarIcon: ({ focused, horizontal, tintColor }) => (<MaterialIcon name='home' size={22} color={tintColor} />),
+        tabBarIcon: ({ focused, horizontal, color }) => (<MaterialIcon name='home' size={22} color={color} />),
       }} />
       {/*<Tab.Screen name="Profile" component={ProfileStack} options={{
         tabBarLabel: 'ប្រវត្តិរូបសង្ខេប',
@@ -45,7 +45,7 @@ function HomeTab() {
       }} />*/}
       <Tab.Screen name="Others" component={OtherNavigator} options={{
         tabBarLabel: 'ផ្សេងៗ',
-        tabBarIcon: ({ focused, horizontal, tintColor }) => (<AwesomeIcon name='ellipsis-h' size={24} color={tintColor} />)
+        tabBarIcon: ({ focused, horizontal, color }) => (<AwesomeIcon name='ellipsis-h' size={24} color={color} />)
       }}/>
     </Tab.Navigator>
   );

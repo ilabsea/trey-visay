@@ -3,9 +3,8 @@ import { View, ScrollView, BackHandler } from 'react-native'
 import { Text, FooterBar } from '../../components';
 import { Card } from 'react-native-paper';
 import { StackActions } from '@react-navigation/native';
-import BoldLabelComponent from '../../components/shared/BoldLabelComponent';
 import ConfirmationModal from '../../components/shared/ConfirmationModal';
-
+import HtmlRenderComponent from '../../components/shared/HtmlRenderComponent';
 import CustomNavigationHeader from '../../components/shared/CustomNavigationHeader';
 import SchoolList from '../../components/schools/school_list';
 import Quiz from '../../models/Quiz';
@@ -68,11 +67,7 @@ const MajorRecommendationScreen = ({route, navigation}) => {
       <ScrollView>
         {renderTitle('ការផ្តល់អនុសាសន៍')}
         <Card style={{padding: 16}}>
-          <Text>
-            ដើម្បីអាចបន្តការសិក្សាលើមុខជំនាញ.."<BoldLabelComponent label={major.name}/>".. នៅកម្រិតឧត្តមសិក្សាទទួល បានជោគជ័យ ប្អូនត្រូវពិនិត្យលើចំណុចមួយ ចំនួនដូច ខាងក្រោម៖
-
-            { major.recommendation }
-          </Text>
+          <HtmlRenderComponent source={!!major.recommendation ? major.recommendation : 'មិនមានអនុសាសន៍'} />
         </Card>
         {renderRelatedSchools()}
       </ScrollView>

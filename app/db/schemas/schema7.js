@@ -5,7 +5,7 @@ import School from '../migrations/v7/school';
 import DownloadedImage from '../migrations/v4/downloaded_image';
 import Major from '../migrations/v5/major';
 import Job from '../migrations/v6/job';
-import JobCluster from '../migrations/v4/job_cluster';
+import JobCluster from '../migrations/v7/job_cluster';
 import Video from '../migrations/v5/video';
 import Visit from '../migrations/v4/visit';
 import IntelligentQuiz from '../migrations/v4/intelligent_quiz';

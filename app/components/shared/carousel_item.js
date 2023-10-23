@@ -1,29 +1,16 @@
-import React, { Component } from 'react';
-import { View, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
-import Carousel from 'react-native-snap-carousel';
-import { widthPercentageToDP as wp, heightPercentageToDP as hp } from 'react-native-responsive-screen';
-
-const { width, height } = Dimensions.get('window');
+import React from 'react';
+import { View, FlatList } from 'react-native';
 
 const CarouselItem = (props) =>  {
-  let style = props.noStyle ? '' : { paddingLeft: 28 };
-  let itemWidth = props.width ? wp(props.width) : wp('45%');
-  let activeSlideAlignment = props.activeSlideAlignment ? props.activeSlideAlignment: 'start';
-  let enableSnap = props.enableSnap ? props.enableSnap : false;
-  return(
-    <Carousel
+  return (
+    <FlatList
+      contentContainerStyle={{paddingHorizontal: 22, marginTop: 4}}
       data={props.data}
-      renderItem={props.renderItem}
-      sliderWidth={width}
-      itemWidth={itemWidth}
-      activeSlideAlignment={activeSlideAlignment}
-      inactiveSlideOpacity={1}
-      inactiveSlideScale={1}
-      onSnapToItem={props.onSnapToItem}
-      layout={'default'}
-      enableSnap={enableSnap}
-      containerCustomStyle={style}
-      removeClippedSubviews={false}
+      keyExtractor={(option, index) => `${option.value.toString()}_${index}`}
+      renderItem={({ item, index }) => props.renderItem({item, index})}
+      horizontal={true}
+      ItemSeparatorComponent={<View style={{width: 20}}/>}
+      showsHorizontalScrollIndicator={false}
     />
   )
 }

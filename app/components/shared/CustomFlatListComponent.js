@@ -4,6 +4,7 @@ import {Animated, View, FlatList, RefreshControl, ActivityIndicator} from 'react
 import color from '../../themes/color';
 import {screenHorizontalPadding} from '../../constants/component_constant';
 import {getStyleOfOS} from '../../utils/responsive_util';
+import { environment } from '../../config/environment';
 
 const {useImperativeHandle} = React
 
@@ -40,6 +41,9 @@ const CustomFlatListComponent = React.forwardRef((props, ref) => {
 
     setRefreshing(true)
     !!props.refreshingAction && props.refreshingAction()
+    setTimeout(() => {
+      setRefreshing(false);
+    }, environment.apiRequestTimeout);
   }
 
   const renderListFooter = () => {

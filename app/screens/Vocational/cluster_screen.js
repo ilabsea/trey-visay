@@ -14,6 +14,7 @@ import {getStyleOfOS} from '../../utils/responsive_util';
 import JobCluster from '../../models/JobCluster'
 import Job from '../../models/Job'
 import jobSyncService from '../../services/job_sync_service'
+import jobClusterService from '../../services/job_cluster_service'
 import asyncStorageService from '../../services/async_storage_service';
 import {scrollViewPaddingBottom} from '../../constants/component_constant';
 
@@ -50,7 +51,7 @@ export default class CareerClusterScreen extends Component {
 
   renderItem(career, index){
     return(
-      <CardItem item={career} text={career.name} image={career.logo} index={index} width={'40%'} height={'18%'}
+      <CardItem item={career} text={career.name} image={career.logoSource} index={index} width={'40%'} height={'18%'}
         onPress={() => this.props.navigation.navigate('CareerDetailScreen', {career_id: career.id})}
       />
     )
@@ -74,7 +75,9 @@ export default class CareerClusterScreen extends Component {
   }
 
   onRefresh() {
-    jobSyncService.syncData(() => this.listRef.current?.stopRefreshLoading());
+    jobClusterService.syncData(() => {
+      jobSyncService.syncData(() => this.listRef.current?.stopRefreshLoading());
+    });
   }
 
   renderContent = () => {

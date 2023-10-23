@@ -24,7 +24,7 @@ const JobDetailScreen = ({route}) => {
         <Text style={{marginTop: 16, marginBottom: 8, paddingHorizontal: screenHorizontalPadding, color: '#000'}}>
           ស្វែងយល់អំពីការសិក្សាមុខរបរ <BoldLabelComponent label={route.params.title} />៖
         </Text>
-        <JobDetailAccordion job={job} />
+        <JobDetailAccordion job={job} showRecommendation={true} />
       </ScrollView>
     </View>
   )

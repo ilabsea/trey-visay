@@ -2,8 +2,9 @@ import React from 'react';
 
 import InfoAccordion from '../shared/InfoAccordion';
 import InfoAccordionContent from '../shared/InfoAccordionContent';
+import JobCluster from '../../models/JobCluster';
 
-const JobDetailAccordion = ({job}) => {
+const JobDetailAccordion = ({job, showRecommendation}) => {
   const details = [
     {
       title: "ក. ការពិពណ៌នាទូទៅ",
@@ -36,7 +37,13 @@ const JobDetailAccordion = ({job}) => {
         {title: "ជំនាញគាំទ្រ", detail: job.personal_competency_skill},
         {title: "សមត្ថភាពគាំទ្រ", detail: job.personal_competency_ability},
       ]
-    }
+    },
+    showRecommendation ? {
+      title: "ង. អនុសាសន៍",
+      detail: JobCluster.findById(job.job_cluster_id).recommendation,
+      children: [],
+      isHTML: true
+    } : null
   ]
 
   return <InfoAccordion items={details}

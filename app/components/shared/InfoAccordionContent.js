@@ -2,6 +2,8 @@ import React from 'react';
 
 import {View} from 'react-native';
 import { Text } from '../../components';
+import HtmlRenderComponent from './HtmlRenderComponent';
+
 import Color from '../../themes/color';
 import {FontFamily} from '../../themes/font';
 import {getStyleOfOS} from '../../utils/responsive_util';
@@ -24,9 +26,11 @@ const InfoAccordionContent = ({info}) => {
     return (
       <View style={style}>
         { (!!arr[0] && arr[0] != ' ') &&
-          <Text style={{color: Color.blackColor}}>
-            { arr[0] }
-          </Text>
+          (info.isHTML ? <HtmlRenderComponent source={arr[0]} />
+          : <Text style={{color: Color.blackColor}}>
+              { arr[0] }
+            </Text>
+          )
         }
         {renderUnorderedList(arr2, !!arr[0])}
       </View>
