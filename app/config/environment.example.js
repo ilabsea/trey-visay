@@ -8,4 +8,5 @@ export const environment = {
   baseURL: 'http://192.168.1.145:3000/api/v2',
   sentryDSN: '',
   backendApiKey: '',
+  apiRequestTimeout: 15000,    // in milliseconds
 };
