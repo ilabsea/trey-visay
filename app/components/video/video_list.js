@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   Platform
 } from 'react-native';
-import { Thumbnail } from 'react-native-thumbnail-video';
 import {Divider} from 'react-native-paper';
 import { FontSetting } from "../../assets/style_sheets/font_setting";
 import mainStyles from "../../assets/style_sheets/main/main";
@@ -18,6 +17,7 @@ import videoUtil from '../../utils/video_util'
 import color from '../../themes/color'
 import Text from '../Text';
 import visitService from '../../services/visit_service';
+import VideoThumbnail from './VideoThumbnail';
 
 export default function VideoList (props) {
   const { width } = Dimensions.get('window');
@@ -32,13 +32,7 @@ export default function VideoList (props) {
   return(
     <View>
       <TouchableOpacity style={styles.row} onPress={() => viewVideo() }>
-        <Thumbnail
-          url={props.item.url}
-          imageWidth={imageWidth}
-          imageHeight={getStyleOfDevice(120, 100)}
-          iconStyle={{width: '20%', height: '30%', resizeMode: 'contain'}}
-          onPress={() => viewVideo()}
-        />
+        <VideoThumbnail url={props.item.url} width={imageWidth} height={getStyleOfDevice(120, 100)} />
         <View style={styles.textContainer}>
           <Text style={[mainStyles.title, styles.title]} allowTextHighlight={true} searchText={props.searchText}
             label={ props.item.name || props.item.title }
