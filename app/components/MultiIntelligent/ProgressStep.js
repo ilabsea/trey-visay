@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
-import { Icon } from 'native-base';
 import Color from '../../themes/color';
 
 const ProgressStep = (props) => {
@@ -13,7 +13,7 @@ const ProgressStep = (props) => {
         { props.step > step &&
           <View style={[scrollHeaderStyles.numberWrapper, scrollHeaderStyles.doneIconWrapper]} >
             <View style={[scrollHeaderStyles.doneIcon]}>
-              <Icon name='checkmark' style={{fontSize: 12, color: Color.blue}} />
+              <Icon name='checkmark' size={12} color={Color.blue} />
             </View>
           </View>
         }

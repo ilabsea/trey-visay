@@ -51,7 +51,12 @@ export default StyleSheet.create({
   iconText: {
     fontSize: FontSetting.text,
     fontWeight: 'bold',
-    color: 'rgb(24,118,211)'
+    color: 'rgb(24,118,211)',
+    ...Platform.select({
+      android: {
+        marginTop: -1
+      }
+    })
   },
   line: {
     flex: 0.8,
