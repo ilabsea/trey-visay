@@ -8,6 +8,7 @@ import InstitutionDetailProfile from '../../components/institutionDetails/Instit
 import InstitutionDetailLogo from '../../components/institutionDetails/InstitutionDetailLogo';
 import InstitutionDetailDepartment from '../../components/institutionDetails/InstitutionDetailDepartment';
 import visitService from '../../services/visit_service';
+import School from '../../models/School';
 
 const PROFILE_SIZE = 120;
 
@@ -16,7 +17,7 @@ export default class InstitutionDetail extends Component {
     super(props);
 
     this.state = {
-      school: props.route.params.school
+      school: School.findById(props.route.params.school_id)
     }
   }
 
