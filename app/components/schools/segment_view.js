@@ -35,7 +35,7 @@ export default class SegmentView extends Component {
 
   render() {
     return (
-      <View style={{flexDirection: 'row', width: '58%', borderWidth: 1, borderRadius: 6, borderColor: Color.pressable, height: pressableItemSize}}>
+      <View style={{flexDirection: 'row', width: '58%', borderWidth: 1, borderRadius: 6, borderColor: Color.pressable, height: pressableItemSize, marginTop: 4}}>
         {this.segmentButton('ឧត្ដមសិក្សា', 1)}
         {this.segmentButton('TVET', 2)}
       </View>
