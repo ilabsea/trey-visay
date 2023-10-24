@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
-import {StyleSheet} from 'react-native';
-import { Button, Segment, Text } from 'native-base';
+import {View, TouchableOpacity} from 'react-native';
 
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 import {pressableItemSize} from '../../constants/component_constant';
-import {getStyleOfOS} from '../../utils/responsive_util';
-import {FontFamily} from '../../themes/font';
+import Color from '../../themes/color';
+import Text from '../Text';
 
-const borderRadius = 6
 export default class SegmentView extends Component {
   constructor(props){
     super(props);
@@ -17,33 +15,30 @@ export default class SegmentView extends Component {
     return <Text style={{fontSize: FontSetting.text}}>{label}</Text>
   }
 
+  segmentButton(label, value, style) {
+    const activeStyle = {
+      text: {color: Color.whiteColor},
+      button: {backgroundColor: Color.pressable}
+    }
+    const nonActiveStyle = {
+      text: {color: Color.pressable},
+      button: {backgroundColor: Color.white}
+    }
+    return (
+      <TouchableOpacity onPress={() => this.props.setContent(value)}
+        style={[{flex: 1, justifyContent: 'center', alignItems: 'center'}, style, this.props.activePage == value ? activeStyle.button : nonActiveStyle.button]}
+      >
+        <Text style={this.props.activePage == value ? activeStyle.text : nonActiveStyle.text}>{label}</Text>
+      </TouchableOpacity>
+    )
+  }
+
   render() {
     return (
-      <Segment style={{marginTop: 6}}>
-        <Button first active={this.props.activePage == 1} onPress={()=>this.props.setContent(1)}
-          style={[styles.button, {borderTopLeftRadius: borderRadius, borderBottomLeftRadius: borderRadius}]}
-        >
-          <Text style={[styles.text, {marginTop: getStyleOfOS(-2, 0)}]}>ឧត្ដមសិក្សា</Text>
-        </Button>
-        <Button last active={this.props.activePage == 2} onPress={()=>this.props.setContent(2)}
-          style={[styles.button, {borderTopRightRadius: borderRadius, borderBottomRightRadius: borderRadius, marginLeft: -1}]}
-        >
-          <Text style={styles.text}>TVET</Text>
-        </Button>
-      </Segment>
+      <View style={{flexDirection: 'row', width: '58%', borderWidth: 1, borderRadius: 6, borderColor: Color.pressable, height: pressableItemSize}}>
+        {this.segmentButton('ឧត្ដមសិក្សា', 1)}
+        {this.segmentButton('TVET', 2)}
+      </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  button: {
-    alignItems: 'center',
-    height: pressableItemSize,
-    justifyContent: 'center',
-    minWidth: 110
-  },
-  text: {
-    fontFamily: FontFamily.regular,
-    fontSize: FontSetting.text
-  }
-})
