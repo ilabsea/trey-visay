@@ -39,7 +39,7 @@ const SchoolListItemComponent = (props) => {
   return (
     <View>
       <TouchableOpacity style={{flexDirection: 'row', alignItems: 'center', paddingVertical: 12}}
-        onPress={() => navigation.navigate('InstitutionDetail', {school: school})}
+        onPress={() => navigation.navigate('InstitutionDetail', {school_id: school.id})}
       >
         <View style={styles.imageContainer}>
           <CustomImageComponent source={!!logo ? {uri: logo} : DownloadedImage.getLocalImage(school.logo)} style={styles.image} resizeMode='contain' emptyImageStyle={styles.image}/>

@@ -38,7 +38,6 @@ export default class Sidekiq {
     let jobs = realm.objects(MODEL).filtered("isDone = true");
 
     realm.write(() => {
-      console.log("--------delete jobs: ", jobs.length);
       realm.delete(jobs);
     });
   }

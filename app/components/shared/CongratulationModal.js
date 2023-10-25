@@ -1,13 +1,13 @@
 import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
-import {Modal, Portal} from 'react-native-paper';
-import {Button} from 'native-base';
+import {Modal, Portal, Button} from 'react-native-paper';
 import {widthPercentageToDP as wp, heightPercentageToDP as hp} from 'react-native-responsive-screen';
 
-import Text from '../Text';
 import Color from '../../themes/color';
 import {pressableItemSize, buttonBorderRadius, cardBorderRadius} from '../../constants/component_constant';
 import {isShortScreenDevice} from '../../utils/responsive_util';
+import { FontSetting } from '../../assets/style_sheets/font_setting';
+import {FontFamily} from '../../themes/font';
 
 const CongratulationModal = (props) => {
   const renderMessage = () => {
@@ -18,8 +18,10 @@ const CongratulationModal = (props) => {
   }
 
   const renderButton = () => {
-    return <Button style={styles.btn} onPress={() => props.onPressButton()}>
-              <Text style={{color: Color.whiteColor}}>ការផុ្តល់អនុសាសន៍</Text>
+    return <Button style={styles.btn} onPress={() => props.onPressButton()}
+              labelStyle={{color: Color.whiteColor, fontSize: FontSetting.text, fontFamily: FontFamily.regular}}
+            >
+              ការផុ្តល់អនុសាសន៍
            </Button>
   }
 

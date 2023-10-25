@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import {
-  View,
-  Image,
-  Text,
-} from 'react-native';
+import { View, Text } from 'react-native';
+import Icon from 'react-native-vector-icons/Ionicons';
 import scrollHeaderStyles from '../../assets/style_sheets/scroll_header';
-import { Content, Icon } from 'native-base';
 import Color from '../../themes/color';
 
 export default class ProgressStep extends Component {
-  _renderNumberIcon(image, step) {
+  _renderNumberIcon(step) {
     let iconStyle = this.props.step == step ? {} : scrollHeaderStyles.inactiveIcon;
 
     return (
@@ -17,7 +13,7 @@ export default class ProgressStep extends Component {
         { this.props.step > step &&
           <View style={[scrollHeaderStyles.numberWrapper, scrollHeaderStyles.doneIconWrapper]} >
             <View style={[scrollHeaderStyles.doneIcon]}>
-              <Icon name='checkmark' style={{fontSize: 12, color: Color.blue}} />
+              <Icon name='checkmark' size={12} color={Color.blue} />
             </View>
           </View>
         }
@@ -43,7 +39,7 @@ export default class ProgressStep extends Component {
 
     for(let i=0; i<arr.length; i++) {
       let step = i + 1;
-      doms.push(this._renderNumberIcon(arr[i], step));
+      doms.push(this._renderNumberIcon(step));
 
       if (i != arr.length-1) {
         let key = arr.length + step + 1;
