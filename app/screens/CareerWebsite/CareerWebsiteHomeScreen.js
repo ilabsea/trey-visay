@@ -42,9 +42,11 @@ export default class CareerWebsiteHomeScreen extends Component {
 
   onRefresh() {
     this.listIndex = itemsPerPage;
-    careerWebsiteService.syncData((careerWebsites) => {
-      this.setState({careerWebsites: careerWebsites});
-      this.listRef.current?.stopRefreshLoading();
+    careerWebsiteService.syncData(() => {
+      setTimeout(() => {
+        this.setState({careerWebsites: CareerWebsite.getAll()});
+        this.listRef.current?.stopRefreshLoading();
+      }, 1000);
     });
   }
 

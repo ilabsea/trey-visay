@@ -17,8 +17,8 @@ const careerWebsiteService = (() => {
           asyncStorageService.setItem('CAREER_WEBSITE_UPDATED_AT', newUpdatedAt);
         });
       })
-      !!callback && callback(CareerWebsite.getAll());
-    }, (error) => !!callback && callback(CareerWebsite.getAll()) )
+      !!callback && callback();
+    }, (error) => !!callback && callback() )
   }
 })();
 
