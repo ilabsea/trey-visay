@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {
   View,
   Text,
-  TouchableOpacity,
-  Image,
   StyleSheet,
   Linking
 } from 'react-native';
@@ -13,6 +11,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 
 import mainStyles from '../../assets/style_sheets/main/main';
 import { Colors } from '../../assets/style_sheets/main/colors';
+import {FontFamily} from '../../themes/font';
 
 class ListItem extends Component {
   constructor(props){
@@ -49,13 +48,12 @@ class ListItem extends Component {
               { !!contactParams.isLink && data!='មិនមាន' &&
                 <Text
                   onPress={ () => this.onPressLink() }
-                  style={mainStyles.link}>
+                  style={[mainStyles.link, {fontFamily: FontFamily.regular}]}>
                   {data}
                 </Text>
               }
               { (!contactParams.isLink || data=='មិនមាន') &&
-                <Text
-                  style={mainStyles.text}>
+                <Text style={[mainStyles.text, {fontFamily: FontFamily.regular, lineHeight: 25, color: '#626262'}]}>
                   {data}
                 </Text>
               }
