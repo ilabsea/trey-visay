@@ -13,6 +13,7 @@ import schema4 from './schemas/schema4';
 import schema5 from './schemas/schema5';
 import schema6 from './schemas/schema6';
 import schema7 from './schemas/schema7';
+import schema8 from './schemas/schema8';
 
 const schemas = [
   { schema: schema1, schemaVersion: 1 },
@@ -24,6 +25,7 @@ const schemas = [
   { schema: schema5, schemaVersion: 7 },
   { schema: schema6, schemaVersion: 8 },
   { schema: schema7, schemaVersion: 9 },
+  { schema: schema8, schemaVersion: 10 },
 ]
 
 // the first schema to update to is the current schema version
