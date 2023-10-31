@@ -18,7 +18,7 @@ const CareerWebsiteItem = ({career}) => {
 
   const viewWebsite = () => {
     // firebase.analytics().logEvent(career.firebase_event_name);
-    visitService.recordVisitPage('career_website_detail', career.name, 'career_website')
+    visitService.recordVisitDetailScreen('career_website_detail', career.id)
     navigation.navigate('WebViewScreen', {url: career.url, title: career.name});
   }
 
