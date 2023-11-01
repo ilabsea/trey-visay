@@ -40,7 +40,7 @@ const JobDetailAccordion = ({job, showRecommendation}) => {
     },
     showRecommendation ? {
       title: "ង. អនុសាសន៍",
-      detail: JobCluster.findById(job.job_cluster_id).recommendation,
+      detail: job.recommendation,
       children: [],
       isHTML: true
     } : null

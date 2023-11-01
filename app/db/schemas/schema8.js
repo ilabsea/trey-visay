@@ -11,7 +11,7 @@ import Visit from '../migrations/v4/visit';
 import IntelligentQuiz from '../migrations/v4/intelligent_quiz';
 import CareerWebsite from '../migrations/v5/career_website';
 
-const schema5 = [
+const schema8 = [
   Sidekiq,
   User,
   Quiz,
@@ -26,4 +26,4 @@ const schema5 = [
   CareerWebsite,
 ];
 
-export default schema5;
+export default schema8;

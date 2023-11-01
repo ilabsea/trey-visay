@@ -7,7 +7,6 @@ import CustomNavigationHeader from '../../components/shared/CustomNavigationHead
 import HtmlRenderComponent from '../../components/shared/HtmlRenderComponent';
 import { reset } from '../../hooks/RootNavigation';
 import Quiz from '../../models/Quiz';
-import JobCluster from '../../models/JobCluster';
 import {screenHorizontalPadding} from '../../constants/component_constant';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
 
@@ -29,7 +28,7 @@ const JobRecommendationScreen = ({route, navigation}) => {
       <ScrollView>
         <Text style={{marginLeft: screenHorizontalPadding, fontSize: FontSetting.title, marginBottom: 6, marginTop: 16}}>ការផ្តល់អនុសាសន៍</Text>
         <Card style={{padding: 16}}>
-          <HtmlRenderComponent source={!!job.job_cluster_id ? JobCluster.findById(job.job_cluster_id).recommendation : 'មិនមានអនុសាសន៍'} />
+          <HtmlRenderComponent source={!!job.recommendation ? job.recommendation : 'មិនមានអនុសាសន៍'} />
         </Card>
       </ScrollView>
 
