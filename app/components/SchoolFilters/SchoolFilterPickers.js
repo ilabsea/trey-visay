@@ -29,7 +29,7 @@ const SchoolFilterPickers = (props) => {
   const pickerItems = {
     'province': { options: schoolUtil.getProvincesForPicker(props.kind), title: 'ជ្រើសរើសទីតាំង', bottomSheetTitle: 'ជ្រើសរើសទីតាំងរបស់គ្រឹះស្ថានសិក្សា', fieldName: 'province', isSearchable: false },
     'category': { options: schoolCategories, title: 'ប្រភេទគ្រឹះស្ថាន', bottomSheetTitle: 'ជ្រើសរើសប្រភេទគ្រឹះស្ថាន', fieldName: 'category', isSearchable: false },
-    'department': { options: schoolUtil.getDepartmentsForPicker(values.province), title: 'កម្រិតសញ្ញាបត្រ', bottomSheetTitle: 'ជ្រើសរើសកម្រិតសញ្ញាបត្រ', fieldName: 'department', isSearchable: false },
+    'department': { options: schoolUtil.getDepartmentsForPicker(values.province), title: 'កម្រិតសញ្ញាបត្រ', bottomSheetTitle: 'ជ្រើសរើសកម្រិតសញ្ញាបត្រ', fieldName: 'department', isSearchable: true, searchPlaceholder: 'ស្វែងរកកម្រិតសញ្ញាបត្រ' },
     'major': { options: schoolUtil.getMajorsForPicker(values.province, values.category, values.department), title: 'ជំនាញសិក្សា', bottomSheetTitle: 'ជ្រើសរើសជំនាញសិក្សា',
                fieldName: 'major', isSearchable: true, searchPlaceholder: 'ស្វែងរកជំនាញ'
              }
