@@ -10,6 +10,7 @@ import ButtonList from '../../components/list/button_list';
 import Color from '../../themes/color';
 import ScrollableHeader from '../../components/scrollable_header';
 import MyStatusBar from '../../components/shared/status_bar';
+import Text from '../../components/Text';
 import Share from 'react-native-share';
 // import firebase from 'react-native-firebase';
 import keyword from '../../data/analytics/keyword';
@@ -74,6 +75,9 @@ export default function Others(props) {
             title='គោលការណ៏ និងលក្ខខណ្ឌ' />
         </View>
 
+        <Text style={{textAlign: 'center', marginTop: 4}}>
+          ជំនាន់: { DeviceInfo.getVersion() }
+        </Text>
       </View>
     );
   }
