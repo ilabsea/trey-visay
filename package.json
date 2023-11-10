@@ -27,7 +27,7 @@
     "@realm/react": "^0.4.3",
     "@reduxjs/toolkit": "^1.9.2",
     "@sentry/react-native": "^5.6.0",
-    "apisauce": "^2.1.6",
+    "apisauce": "^3.0.1",
     "base-64": "^1.0.0",
     "deprecated-react-native-prop-types": "^4.0.0",
     "formik": "^2.2.9",
