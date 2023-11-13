@@ -1,10 +1,10 @@
 // In App.js in a new project
 
 import * as React from 'react';
-import { View, Text, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import DeviceInfo from 'react-native-device-info';
 
 import HomeScreen from '../screens/Home/HomeScreen';
 import SchoolNavigator from './SchoolNavigator';
@@ -32,7 +32,8 @@ function HomeTab() {
         lineHeight: Platform.OS == 'android' ? 20 : 0,
         fontSize: FontSetting.sub_title -1,
         paddingBottom: 2
-      }
+      },
+      tabBarStyle: (Platform.OS == 'ios' && DeviceInfo.hasNotch()) && {paddingBottom: 14}
     }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{
         tabBarLabel: 'ទំព័រដេីម',
