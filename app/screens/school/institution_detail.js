@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Platform, Dimensions } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 
 import { Colors } from '../../assets/style_sheets/main/colors';
 import ListItem from '../../components/schools/list_item';
@@ -64,8 +65,9 @@ export default class InstitutionDetail extends Component {
   }
 
   renderContent = () => {
+    const marginTop = (Platform.OS == 'ios' && DeviceInfo.hasNotch() && Dimensions.get('screen').height > 896) ? -12 : 0
     return(
-      <View style={[{backgroundColor: 'white', marginBottom: 12}]}>
+      <View style={[{backgroundColor: 'white', marginBottom: 12, marginTop: marginTop}]}>
         { this._renderProfile() }
         { this.renderContact() }
         <InstitutionDetailDepartment school={this.state.school} />
