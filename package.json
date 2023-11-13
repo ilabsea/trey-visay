@@ -44,7 +44,6 @@
     "react-native-fs": "^2.20.0",
     "react-native-gesture-handler": "^2.10.1",
     "react-native-global-props": "^1.1.5",
-    "react-native-image-crop-picker": "^0.39.0",
     "react-native-linear-gradient": "^2.5.4",
     "react-native-material-ripple": "^0.8.0",
     "react-native-modal": "^13.0.1",

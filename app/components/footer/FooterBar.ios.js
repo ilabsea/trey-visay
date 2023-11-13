@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet,View } from 'react-native';
 import {Button} from 'react-native-paper';
+import DeviceInfo from 'react-native-device-info';
 
 import {screenHorizontalPadding} from '../../constants/component_constant';
 import { FontSetting } from '../../assets/style_sheets/font_setting';
@@ -24,10 +25,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderTopWidth: 0.2,
     borderColor: Color.footerBorder,
-    height: 66,
+    height: DeviceInfo.hasNotch() ? 80 : 66,
     justifyContent: 'center',
     paddingHorizontal: screenHorizontalPadding,
     width: '100%',
+    paddingBottom: DeviceInfo.hasNotch() ? 12 : 0,
   },
   button: {
     alignSelf: 'center',
