@@ -26,4 +26,14 @@ const schema8 = [
   CareerWebsite,
 ];
 
+export const migrateClearData = (oldRealm, newRealm) => {
+  if (oldRealm.schemaVersion < 10) {
+    const schemas = ['School', 'Major', 'JobCluster', 'Job', 'Video', 'CareerWebsite'];
+    schemas.map(schema => {
+      const newObjects = newRealm.objects(schema);
+      newRealm.delete(newObjects);
+    })
+  }
+}
+
 export default schema8;

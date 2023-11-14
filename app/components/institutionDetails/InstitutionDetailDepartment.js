@@ -21,7 +21,7 @@ const InstitutionDetailDepartment = (props) => {
                   <View style={styles.iconWrapper}>
                     <Image source={require("../../assets/icons/school/major.png")} resizeMode='contain' style={styles.icon} />
                   </View>
-                  <Text numberOfLines={2} style={{ flex: 1 , paddingRight: 16}}>{major.name}</Text>
+                  <Text numberOfLines={2} style={{ flex: 1 , paddingRight: 16, lineHeight: 28}}>{major.name}</Text>
                 </TouchableOpacity>
               )
            })
@@ -31,7 +31,7 @@ const InstitutionDetailDepartment = (props) => {
     return departments.map((department, i) => {
               return (
                 <View key={`departure-${i}`} style={[mainStyles.box, {marginTop: i == 0 ? 0 : 6}]}>
-                  { !!department.name &&
+                  { (!!department.name && department.name.toLowerCase() != 'n/a') &&
                     <Text style={mainStyles.sectionText}> {department.name} </Text>
                   }
                   <View style={[mainStyles.grid, { justifyContent: 'flex-start', margin: 0 }]}>
