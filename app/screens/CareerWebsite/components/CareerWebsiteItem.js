@@ -11,10 +11,11 @@ import mainStyles from "../../../assets/style_sheets/main/main";
 import visitService from '../../../services/visit_service';
 import Color from '../../../themes/color';
 import DownloadedImage from '../../../models/DownloadedImage';
+import {getStyleOfDevice} from '../../../utils/responsive_util';
 
 const CareerWebsiteItem = ({career}) => {
   const navigation = useNavigation();
-  const imageWidth = (Dimensions.get('window').width/2) - 125;
+  const imageWidth = (Dimensions.get('window').width/2) - getStyleOfDevice(380, 125);
 
   const viewWebsite = () => {
     // firebase.analytics().logEvent(career.firebase_event_name);
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   },
   textContainer: {
     flex: 1,
-    marginLeft: 8,
+    marginLeft: getStyleOfDevice(16, 8),
     marginRight: 16
   },
   title: {
@@ -64,7 +65,7 @@ const styles = StyleSheet.create({
   description: {
     fontSize: FontSetting.sub_title,
     color: Color.grayColor,
-    lineHeight: 25
+    lineHeight: getStyleOfDevice(46, 25)
   },
 });
 
