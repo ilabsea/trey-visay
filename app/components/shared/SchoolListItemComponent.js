@@ -28,8 +28,8 @@ const SchoolListItemComponent = (props) => {
       address = addresses.length == 1 ? school.address : `${addresses[addresses.length - 2]} ${addresses[addresses.length - 1]}`
     }
 
-    return <View style={{flexDirection: 'row'}}>
-              <AwesomeIcon name='map-marker' color={color.pressable} size={18} />
+    return <View style={{flexDirection: 'row', marginTop: getStyleOfDevice(12, 0)}}>
+              <AwesomeIcon name='map-marker' color={color.pressable} size={getStyleOfDevice(26, 18)} />
               <Text numberOfLines={1} style={styles.schoolAddress}>
                 {address}
               </Text>
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   schoolAddress: {
     marginLeft: 8,
     fontSize: FontSetting.sub_title,
-    lineHeight: 26,
+    lineHeight: getStyleOfDevice(30, 26),
     flex: 1
   },
   nameLabel: {

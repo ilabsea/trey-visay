@@ -21,6 +21,7 @@ import { Platform } from 'react-native';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import { FontSetting } from '../assets/style_sheets/font_setting';
+import {getStyleOfDevice} from '../utils/responsive_util';
 
 const Tab = createBottomTabNavigator();
 
@@ -37,7 +38,7 @@ function HomeTab() {
     }}>
       <Tab.Screen name="Home" component={HomeScreen} options={{
         tabBarLabel: 'ទំព័រដេីម',
-        tabBarIcon: ({ focused, horizontal, color }) => (<MaterialIcon name='home' size={22} color={color} />),
+        tabBarIcon: ({ focused, horizontal, color }) => (<MaterialIcon name='home' size={getStyleOfDevice(30, 22)} color={color} />),
       }} />
       {/*<Tab.Screen name="Profile" component={ProfileStack} options={{
         tabBarLabel: 'ប្រវត្តិរូបសង្ខេប',
@@ -46,7 +47,7 @@ function HomeTab() {
       }} />*/}
       <Tab.Screen name="Others" component={OtherNavigator} options={{
         tabBarLabel: 'ផ្សេងៗ',
-        tabBarIcon: ({ focused, horizontal, color }) => (<AwesomeIcon name='ellipsis-h' size={24} color={color} />)
+        tabBarIcon: ({ focused, horizontal, color }) => (<AwesomeIcon name='ellipsis-h' size={getStyleOfDevice(28, 24)} color={color} />)
       }}/>
     </Tab.Navigator>
   );
