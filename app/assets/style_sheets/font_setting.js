@@ -1,5 +1,6 @@
 import RF from "react-native-responsive-fontsize";
 import { Dimensions, Platform } from 'react-native';
+import DeviceInfo from 'react-native-device-info';
 import {getStyleOfDevice, isShortWidthScreen} from '../../utils/responsive_util';
 
 let { width } = Dimensions.get('window');
@@ -14,7 +15,7 @@ const FontSetting = {
   text: Platform.OS === 'ios' ? getStyleOfDevice(RF(2), RF(2.4)) : getStyleOfDevice(RF(1.9), isShortWidthScreen() ? RF(2.3) : RF(2.2)),
   title: Platform.OS === 'ios' ? getStyleOfDevice(RF(2.2), RF(2.4)) : RF(2.4),
   small_text: Platform.OS =='ios' ? getStyleOfDevice(RF(1.8), RF(2.2)) : getStyleOfDevice(RF(1.7), RF(1.8)),
-  button_text: RF(2.6),
+  button_text: (Platform.OS == 'ios' && DeviceInfo.hasNotch()) ? RF(2.4) : RF(2.6),
   sub_title: isShortWidthScreen() ? RF(2) : RF(1.9),
   hint: RF(1.6),
 
