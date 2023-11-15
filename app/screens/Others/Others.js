@@ -6,8 +6,10 @@ import {
 } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import IonIcon from 'react-native-vector-icons/Ionicons';
 import ButtonList from '../../components/list/button_list';
 import Color from '../../themes/color';
+import {FontFamily} from '../../themes/font';
 import ScrollableHeader from '../../components/scrollable_header';
 import MyStatusBar from '../../components/shared/status_bar';
 import Text from '../../components/Text';
@@ -16,9 +18,10 @@ import Share from 'react-native-share';
 import keyword from '../../data/analytics/keyword';
 import useAuth from "../../auth/useAuth";
 import { useNavigation } from '@react-navigation/native';
-import {getStyleOfOS} from '../../utils/responsive_util';
+import {getStyleOfOS, getStyleOfDevice} from '../../utils/responsive_util';
 import urlUtil from '../../utils/url_util';
 import urlService from '../../services/url_service';
+import {FontSetting} from '../../assets/style_sheets/font_setting'
 
 export default function Others(props) {
   const { user, logOut } = useAuth();
@@ -46,10 +49,30 @@ export default function Others(props) {
     })
   }
 
+  const userProfile = () => {
+    return (
+      <View style={{backgroundColor: 'white', paddingVertical: 12, paddingHorizontal: 16, marginTop: 16, flexDirection: 'row', alignItems: 'center'}}>
+        <View style={{borderWidth: 2, borderColor: Color.lightGrayColor, borderRadius: 65, width: 65, height: 65, justifyContent: 'center', alignItems: 'center'}}>
+          <IonIcon name='person-outline' size={42} color={Color.lightGrayColor} />
+        </View>
+        <View style={{marginLeft: 16, flex: 1}}>
+          <View style={{flexDirection: 'row'}}>
+            <Text style={{fontSize: getStyleOfDevice(FontSetting.sub_title, 14)}}>ID: </Text>
+            <View style={{flex: 1}}>
+              <Text selectable={true} style={{fontSize: getStyleOfDevice(FontSetting.sub_title, 14)}}>{user.uuid}</Text>
+            </View>
+          </View>
+          <Text selectable={true} style={{fontFamily: FontFamily.regular, lineHeight: 34, fontSize: FontSetting.text}}>{user.fullName}</Text>
+        </View>
+      </View>
+    )
+  }
+
   const renderContent = () => {
     return (
       <View>
         <MyStatusBar />
+        { !!user && userProfile() }
         <View style={{marginTop: 16, backgroundColor: 'white'}}>
           <ButtonList
             hasLine={true}
