@@ -1,6 +1,6 @@
 import BaseModel from './BaseModel';
 import realm from '../db/schema';
-import uuidv4 from '../utils/uuidv4';
+import randomId from '../utils/id_util';
 
 const MODEL = "User"
 
@@ -14,7 +14,7 @@ export default class User {
   }
 
   static create = (params) => {
-    return realm.create(MODEL, {...params, uuid: uuidv4(), createdAt: new Date()});
+    return realm.create(MODEL, {...params, uuid: randomId(), createdAt: new Date()});
   }
 
   static update = (uuid, params) => {

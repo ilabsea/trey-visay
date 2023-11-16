@@ -57,9 +57,9 @@ export default function Others(props) {
         </View>
         <View style={{marginLeft: 16, flex: 1}}>
           <View style={{flexDirection: 'row'}}>
-            <Text style={{fontSize: getStyleOfDevice(FontSetting.sub_title, 14)}}>ID: </Text>
+            <Text style={{fontSize: getStyleOfDevice(FontSetting.sub_title, FontSetting.text)}}>ID: </Text>
             <View style={{flex: 1}}>
-              <Text selectable={true} style={{fontSize: getStyleOfDevice(FontSetting.sub_title, 14)}}>{user.uuid}</Text>
+              <Text selectable={true} style={{fontSize: getStyleOfDevice(FontSetting.sub_title, FontSetting.text)}}>{user.uuid}</Text>
             </View>
           </View>
           <Text selectable={true} style={{fontFamily: FontFamily.regular, lineHeight: 34, fontSize: FontSetting.text}}>{user.fullName}</Text>
