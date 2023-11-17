@@ -5,31 +5,45 @@ It is a mobile application (Android & iOS) that allows high school students to d
 
 ### Prerequisites
 
-- Make sure your environment is set up to run React Native applications. Follow the [React Native](https://facebook.github.io/react-native/docs/getting-started.html) instructions for getting started.
-- Apps using Realm 11.4.0.
-- React Native 0.71.2.
-- Node version 18.12.1 or later.
+- Make sure your environment is set up to run React Native applications. Follow the [React Native](https://reactnative.dev/docs/environment-setup?guide=native) instructions for getting started.
+- Apps using Realm 11.4.0
+- React Native 0.71.2
+- Node version 18.12.1
 
 #### Run the application
-- Go to the repository
+**1.** Go to the project directory
 ```
 $cd trey-visay
 ```
-- Install dependencies
+**2.** Install dependencies by running the below command
 ```
 $npm install
 ```
-- To start Metro, run below command inside your React Native project
+**3.** Create a new file named "environment.js" in the "app/config" directory then copy and paste the content from the "environment.example.js" (in the same directory) and use the valid API URL and credential of the app in the environment.js file
+
+
+**4.** Start the Metro, run the below command inside your React Native project directory
 ```
-npx react-native start
+npm start
 ```
-- To start the application run on Android
+
+**5.** Open a new tab of your terminal to run the on iOS or Android
+#### For Android
+- To run the application on Android
 ```
-$npx react-native run-android
+$npm run android
 ```
-- To start the application run on iOS
+
+#### For iOS
+- Go to the 'ios' directory then run below command
 ```
-$npx react-native run-ios
+$pod install
+```
+**Note:** If it gets an error when running pod install try removing the file "Podfile.lock" in the ios folder then run pod install again.
+
+- To run the application on iOS
+```
+$npm run ios
 ```
 
 #### Build for Release
