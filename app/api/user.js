@@ -24,7 +24,8 @@ export const uploadUser = async(userUuid) => {
     device_id: await getUniqueId(),
     device_type: isTablet() ? "tablet" : "mobile",
     device_os: Platform.OS,
-    app_version: getVersion()
+    app_version: getVersion(),
+    uuid: user.uuid,
   }
 
   return new Promise((resolve, reject) => {
