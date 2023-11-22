@@ -96,6 +96,13 @@ export default function Others(props) {
             icon={<Icon name='file-document-outline' size={21} color='rgb(172, 175, 193)' />}
             onPress={() => { urlService.openUrl(urlUtil.getAbsoluteUrl('/terms-and-conditions')) }}
             title='គោលការណ៏ និងលក្ខខណ្ឌ' />
+
+          <ButtonList
+            hasLine={true}
+            iconColor='#53aca0'
+            icon={<Icon name='shield-outline' size={21} color='#53aca0' />}
+            onPress={() => { urlService.openUrl(urlUtil.getAbsoluteUrl('/privacy-policy')) }}
+            title='គោលការណ៏ឯកជនភាព' />
         </View>
 
         <Text style={{textAlign: 'center', marginTop: 4}}>
