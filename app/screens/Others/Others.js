@@ -99,8 +99,8 @@ export default function Others(props) {
 
           <ButtonList
             hasLine={true}
-            iconColor='#53aca0'
-            icon={<Icon name='shield-outline' size={21} color='#53aca0' />}
+            iconColor='rgb(53, 174, 235)'
+            icon={<Icon name='shield-outline' size={21} color='rgb(53, 174, 235)' />}
             onPress={() => { urlService.openUrl(urlUtil.getAbsoluteUrl('/privacy-policy')) }}
             title='គោលការណ៏ឯកជនភាព' />
         </View>
