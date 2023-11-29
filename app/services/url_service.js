@@ -1,4 +1,4 @@
-import {Linking} from 'react-native';
+import {Linking, Alert, Platform} from 'react-native';
 import toastMessageHelper from '../helpers/toast_message_helper';
 
 const urlService = (() => {
@@ -6,12 +6,17 @@ const urlService = (() => {
     openUrl,
   }
 
-  async function openUrl(url) {
+  async function openUrl(url, label = '') {
     await Linking.canOpenURL(url).then(supported => {
-      if (supported)
+      if (supported) {
         Linking.openURL(url);
+        return;
+      }
+
+      if (Platform.OS == 'android')
+        toastMessageHelper.showMessage(`មិនអាចបើកតំណនេះ: ${label || url}`)
       else
-        toastMessageHelper.showMessage(`មិនអាចបើកតំណនេះ: ${url}`)
+        Alert.alert(`មិនអាចបើកតំណនេះ: ${label || url}`);
     });
   }
 })();

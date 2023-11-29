@@ -31,7 +31,7 @@ export default class InstitutionDetail extends Component {
     if(!school.id){
       school = {
         address: 'មិនមាន',
-        phoneNumbers: 'មិនមាន',
+        phone_numbers: 'មិនមាន',
         faxes: 'មិនមាន',
         emails: 'មិនមាន',
         websiteOrFacebook: []
@@ -41,7 +41,7 @@ export default class InstitutionDetail extends Component {
     return (
       <View style={{ paddingLeft: 8 }}>
         <ListItem contact={{data: school.address, icon: 'map-marker', iconSize: 28}} />
-        <ListItem contact={{data: school.phoneNumbers, icon: 'phone'}} />
+        <ListItem contact={{data: school.phone_numbers, icon: 'phone'}} />
         <ListItem contact={{data: school.faxes, icon: 'fax', iconSize: 24}}/>
         <ListItem contact={{data: school.emails, icon: 'envelope', isLink: true, isEmail: true, iconSize: 24}} />
         <ListItem contact={{data: school.websiteOrFacebook, icon: 'globe', isLink: true}} />

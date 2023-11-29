@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { View, Linking, Platform } from 'react-native';
+import { View, Platform } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 
 import mainStyles from '../../assets/style_sheets/main/main';
@@ -38,18 +38,8 @@ export default class ShowCategoryScreen extends Component {
     )
   }
 
-  _onOpenUrl(url) {
-    Linking.canOpenURL(url).then((supported) => {
-      if (!supported) {
-        return;
-      }
-
-      return Linking.openURL(url);
-    }).catch(()=>{});
-  }
-
   renderVideo(video) {
-    return <VideoListView key={video.uuid} onPress={() => this._onOpenUrl(video.url)} item={video} />
+    return <VideoListView key={video.uuid} item={video} />
   }
 
   renderVideoList(){
