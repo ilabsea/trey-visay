@@ -3,7 +3,6 @@ import {
   View,
   Text,
   StyleSheet,
-  Linking
 } from 'react-native';
 import { Divider } from 'react-native-paper';
 import AwesomeIcon from 'react-native-vector-icons/FontAwesome';
@@ -12,6 +11,7 @@ import MaterialIcon from 'react-native-vector-icons/MaterialIcons';
 import mainStyles from '../../assets/style_sheets/main/main';
 import { Colors } from '../../assets/style_sheets/main/colors';
 import {FontFamily} from '../../themes/font';
+import urlService from '../../services/url_service';
 
 class ListItem extends Component {
   constructor(props){
@@ -20,8 +20,7 @@ class ListItem extends Component {
 
   onPressLink() {
     let prefix = this.props.contact.isEmail ? 'mailto:' : 'http://';
-
-    Linking.openURL(prefix + this.props.contact.data);
+    urlService.openUrl(prefix + this.props.contact.data, this.props.contact.data);
   }
 
   render(){
