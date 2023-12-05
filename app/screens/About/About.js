@@ -15,37 +15,15 @@ import Text from '../../components/Text';
 
 export default class About extends Component {
   _openLink(url) {
+    if (!url) return;
+
     Linking.openURL(url);
   }
 
-  _renderImageButton(styles, link_url, source){
-    return(
-      <TouchableOpacity style={styles.btn}
-        onPress={()=> this._openLink(link_url)}>
-        <Image
-          style={styles.img}
-          resizeMode="contain"
-          source={source}/>
-      </TouchableOpacity>
-    )
-  }
-
-  _renderContent = () => {
+  _renderStakeholderV1() {
     return (
-      <View style={styles.container}>
-        <Text style={[styles.paragraph, {marginTop: 0}]}>
-          កម្មវិធី​ត្រីវិស័យ គឺ​ជា​កម្មវិធី​ទូរស័ព្ទ​មួយ​ដែល​អនុញ្ញាត​ឱ្យ​សិស្ស​ថ្នាក់​ទី៩ ដល់​ថ្នាក់​ទី១២
-          អាច​ធ្វើ​ការ​ស្វែងយល់​អំពី​ខ្លួន​ឯង ដោយ​ធ្វើ​ការ​តេស្ត​ជា​មួយ​នឹង​កម្មវិធី ដើម្បី​អាច​អោយ​គាត់​ស្គាល់​ពី​ជំនាញ​ទន់
-          និង​ជំនាញ​រឹង​ និង​កំណត់​គោលដៅ​របស់​ខ្លួន សម្រាប់​ការ​ជ្រើសរើស​ជំនាញ​វិជ្ជាជីវៈ​នា​ពេល​អនាគត។
-        </Text>
-
-        <Text style={styles.paragraph}>
-          បន្ថែម​ពី​នេះ​ទៀត​កម្មវិធី​ត្រីវិស័យ បាន​បញ្ចូល​នៅ​ព័ត៌មាន​ទាក់ទង​ជា​មួយ​នឹង​គ្រឹះស្ថាន​សិក្សា​នៅ​ក្នុង​ស្រុក​
-          ពត័មាន​ជំនាញ​ដែល​យើង​ត្រូវ​សិក្សា​នៅ​សាកលវិទ្យាល័យ ក៏​ដូច​ជាព័ត៌មាន​អំពី​ជំនាញ​វិជ្ជាជីវៈ
-          ដោយ​ភ្ជាប់​ជា​មួយ​សាលា​ដែល​យើងអាច​សិក្សា​បាន។
-        </Text>
-
-        <Text style={styles.paragraph}>សហការផលិតដោយ</Text>
+      <>
+        <Text style={styles.stakeholderTitle}>កំណែទី១ (ឆ្នាំ២០១៨) សហការផលិតដោយ / Version 1 (2018) Co-produced by</Text>
 
         <View style={styles.imgWrapper}>
           { this._renderImageButton(
@@ -61,7 +39,7 @@ export default class About extends Component {
           }
         </View>
 
-        <Text style={styles.paragraph}>អភិវឌ្ឍន៍ដោយ</Text>
+        <Text style={styles.paragraph}>អភិវឌ្ឍន៍ដោយ / Developed by</Text>
 
         <View style={styles.imgWrapper}>
           { this._renderImageButton(
@@ -71,7 +49,7 @@ export default class About extends Component {
           }
         </View>
 
-        <Text style={styles.paragraph}>គាំទ្រថវិកាពី</Text>
+        <Text style={styles.paragraph}>គាំទ្រថវិកាពី / Funding from</Text>
 
         <View style={styles.imgWrapper}>
           { this._renderImageButton(
@@ -94,12 +72,118 @@ export default class About extends Component {
             require('../../assets/images/about/spider.png'))
           }
         </View>
+      </>
+    )
+  }
 
-        <View style={styles.footer}>
-          <Text style={{textAlign: 'right'}}>
-            ជំនាន់: { DeviceInfo.getVersion() }
-          </Text>
+  _renderStakeholderV2() {
+    return (
+      <>
+        <Text style={styles.stakeholderTitle}>កំណែទី២ (ឆ្នាំ២០២៣) កែលម្អមាតិកានិងផលិតដោយ / Version 2 (2023) Content Improvement and Produced by</Text>
+
+        <View style={styles.imgWrapper}>
+          { this._renderImageButton(
+            {btn: [styles.imgButton, {width: 70}], img: [styles.img, {maxHeight: 70}]},
+            'http://www.moeys.gov.kh',
+            require('../../assets/images/about/moeys.png'))
+          }
         </View>
+
+        <Text style={styles.paragraph}>អភិវឌ្ឍន៍ដោយ / Developed by</Text>
+
+        <View style={styles.imgWrapper}>
+          { this._renderImageButton(
+            {btn: styles.imgButton, img: styles.img},
+            'https://www.kawsang.com/',
+            require('../../assets/images/about/kawsang_logo.png'))
+          }
+        </View>
+
+        <Text style={styles.paragraph}>គាំទ្រថវិកាពី / Funding from</Text>
+
+        <View style={styles.imgWrapper}>
+          { this._renderImageButton(
+            { btn: [styles.imgButton, {width: 120}], img: [styles.img, {maxHeight: 70}] },
+            '',
+            require('../../assets/images/about/adb_project.jpg'))
+          }
+
+          { this._renderImageButton(
+            { btn: [styles.imgButton, {width: 120}], img: [styles.img, {maxHeight: 50}] },
+            'https://www.adb.org/',
+            require('../../assets/images/about/adb.jpg'))
+          }
+        </View>
+      </>
+    )
+  }
+
+  _renderImageButton(styles, link_url, source){
+    return(
+      <TouchableOpacity style={styles.btn}
+        onPress={()=> this._openLink(link_url)}>
+        <Image
+          style={styles.img}
+          resizeMode="contain"
+          source={source}/>
+      </TouchableOpacity>
+    )
+  }
+
+  _renderCareerPath() {
+    contents = [
+      {
+        title: '«ត្រីវិស័យ» ផ្ដល់ជូននូវម៌ាគាឆ្ពោះទៅការជ្រើសរើសអាជីពស័ក្ដិសមនឹងអ្នកតាមរយៈកញ្ចប់ព័ត៌មានក្នុងមុខងារសំខាន់ៗ៖',
+        list: ['វាយតម្លៃមុខរបរនិងអាជីព', 'តេស្ដភាពឆ្លាតវៃ', 'ព័ត៌មានអំពីគ្រឹះស្ថានសិក្សា', 'ព័ត៌មានអំពីប្រភេទការងារ', 'វីដេអូមុខរបរ', 'មជ្ឈមណ្ឌលការងារ']
+      },
+      {
+        title: '«Trey Visay» provides the path to choosing the right career for you through a package of key functions:',
+        list: ['Career assessment/Holland Test', 'Multiple Intelligence test', 'Institution Information', 'Career Information', 'Video of careers', 'Career center']
+      }
+    ]
+
+    return (
+      <>
+        { contents.map((content, index) =>
+          <View key={index}>
+            <Text style={styles.paragraph}>
+             { content.title }
+            </Text>
+
+            <View style={{alignSelf: 'flex-start', paddingHorizontal: 20}}>
+              { content.list.map((item, index) => <Text key={index}>- {item}</Text>) }
+            </View>
+          </View>
+        )}
+      </>
+    )
+  }
+
+  _renderAppVersion() {
+    return (
+      <View style={styles.footer}>
+        <Text style={{textAlign: 'right'}}>
+          ជំនាន់ / Version: { DeviceInfo.getVersion() }
+        </Text>
+      </View>
+    )
+  }
+
+  _renderContent = () => {
+    return (
+      <View style={styles.container}>
+        <Text style={[styles.paragraph, {marginTop: 0}]}>
+          «ត្រីវិស័យ» ជាកម្មវិធីទូរសព្ទដៃឆ្លាតវៃថ្មីមួយ (Offline App) ត្រូវបានបង្កើតឡើងក្នុងគោលបំណងគាំទ្រដល់សិស្សានុសិស្សកម្រិតថ្នាក់ទី៩ ដល់ទី ១២ ក្នុងការតម្រង់ទិសវិជ្ជាជីវៈតាមរយៈការធ្វើស្វ័យវាយតម្លៃអំពីជម្រើសមុខរបរ អាជីពនិងការសិក្សា ដែលជាទុនបម្រុងមួយជួយពួកគេឱ្យមានមូលដ្ឋានក្នុងការរៀបចំផែនការសិក្សានិងអាជីពនាពេលអនាគតបានសមរម្យ។
+        </Text>
+
+        <Text style={styles.paragraph}>
+          «Trey Visay» is a new smart phone app (Offline App) designed to support students in grades 9 to 12 in a vocational orientation through self-assessment of career and major study choice. As a reserve, help them to have a proper foundation for future study and career planning.
+        </Text>
+
+        { this._renderCareerPath() }
+        { this._renderStakeholderV1() }
+        { this._renderStakeholderV2() }
+        { this._renderAppVersion() }
       </View>
     )
   }
@@ -123,8 +207,12 @@ const styles = StyleSheet.create({
     padding: 16
   },
   paragraph: {
-    textAlign: 'justify',
-    marginTop: 5,
+    marginTop: 10,
+    fontSize: FontSetting.text
+  },
+  stakeholderTitle: {
+    textAlign: 'center',
+    marginTop: 40,
     fontSize: FontSetting.text
   },
   footer: {
