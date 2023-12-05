@@ -44,7 +44,7 @@ export default class InstitutionDetail extends Component {
         <ListItem contact={{data: school.phone_numbers, icon: 'phone'}} />
         <ListItem contact={{data: school.faxes, icon: 'fax', iconSize: 24}}/>
         <ListItem contact={{data: school.emails, icon: 'envelope', isLink: true, isEmail: true, iconSize: 24}} />
-        <ListItem contact={{data: school.websiteOrFacebook, icon: 'globe', isLink: true}} />
+        <ListItem contact={{data: school.website, icon: 'globe', isLink: true}} />
       </View>
     )
   }
