@@ -49,7 +49,7 @@ export default class About extends Component {
           }
         </View>
 
-        <Text style={styles.paragraph}>គាំទ្រថវិកាពី / Funding from</Text>
+        <Text style={styles.paragraph}>គាំទ្រថវិកាដោយ / Funded by</Text>
 
         <View style={styles.imgWrapper}>
           { this._renderImageButton(
@@ -79,7 +79,7 @@ export default class About extends Component {
   _renderStakeholderV2() {
     return (
       <>
-        <Text style={styles.stakeholderTitle}>កំណែទី២ (ឆ្នាំ២០២៣) កែលម្អមាតិកានិងផលិតដោយ / Version 2 (2023) Content Improvement and Produced by</Text>
+        <Text style={styles.stakeholderTitle}>កំណែទី២ (ឆ្នាំ២០២៣) កែលម្អមាតិកានិងផលិតដោយ / Version 2 (2023) Content updated and produced by</Text>
 
         <View style={styles.imgWrapper}>
           { this._renderImageButton(
@@ -99,7 +99,7 @@ export default class About extends Component {
           }
         </View>
 
-        <Text style={styles.paragraph}>គាំទ្រថវិកាពី / Funding from</Text>
+        <Text style={styles.paragraph}>គាំទ្រថវិកាដោយ / Funded by</Text>
 
         <View style={styles.imgWrapper}>
           { this._renderImageButton(
@@ -137,8 +137,8 @@ export default class About extends Component {
         list: ['វាយតម្លៃមុខរបរនិងអាជីព', 'តេស្ដភាពឆ្លាតវៃ', 'ព័ត៌មានអំពីគ្រឹះស្ថានសិក្សា', 'ព័ត៌មានអំពីប្រភេទការងារ', 'វីដេអូមុខរបរ', 'មជ្ឈមណ្ឌលការងារ']
       },
       {
-        title: '«Trey Visay» provides the path to choosing the right career for you through a package of key functions:',
-        list: ['Career assessment/Holland Test', 'Multiple Intelligence test', 'Institution Information', 'Career Information', 'Video of careers', 'Career center']
+        title: 'Trey Visay provides proper option on career pathways through the following key functions:',
+        list: ['Career assessment/Holland test', 'Multiple intelligence test', 'Training institution information', 'Career information', 'Exposure video of variety of careers', 'Information from the Job Center']
       }
     ]
 
@@ -177,7 +177,7 @@ export default class About extends Component {
         </Text>
 
         <Text style={styles.paragraph}>
-          «Trey Visay» is a new smart phone app (Offline App) designed to support students in grades 9 to 12 in a vocational orientation through self-assessment of career and major study choice. As a reserve, help them to have a proper foundation for future study and career planning.
+          Trey Visay is an offline application for smartphone and tablet, developed to assist students from grade 9 to 12 in self-assessment on study and career options so that they are able to plan their further education and future career choice properly.
         </Text>
 
         { this._renderCareerPath() }
