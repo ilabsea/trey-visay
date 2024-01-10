@@ -14,7 +14,6 @@ import SchoolUtil from '../../utils/school_util';
 import schoolSyncService from '../../services/school_sync_service';
 import highSchoolSyncService from '../../services/high_school_sync_service';
 import majorService from '../../services/major_service';
-import asyncStorageService from '../../services/async_storage_service';
 
 const kinds = {
   1: "higher_education",
@@ -39,21 +38,12 @@ const SchoolScreen = (props) => {
   const schoolFilterOptions = useSelector(state => state.schoolFilterOptions.value);
 
   useEffect(() => {
-    initUpdatedAt();
     const netInfoUnsubscribe = NetInfo.addEventListener(state => {
       setState({hasInternet: state.isConnected && state.isInternetReachable})
     });
 
     return () => !!netInfoUnsubscribe && netInfoUnsubscribe();
   }, []);
-
-  const initUpdatedAt = async () => {
-    if (!await asyncStorageService.getItem('SCHOOL_UPDATED_AT') || !await asyncStorageService.getItem('MAJOR_UPDATED_AT')) {
-      asyncStorageService.setItem('SCHOOL_UPDATED_AT', School.getLastUpdatedAt());
-      asyncStorageService.setItem('MAJOR_UPDATED_AT', Major.getLastUpdatedAt());
-    }
-    highSchoolSyncService.initUpdatedAt();
-  }
 
   useEffect(() => {
     const { province, category, major, department } = schoolFilterOptions;
