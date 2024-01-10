@@ -9,11 +9,12 @@ import grades from '../../../data/json/grades.json';
 import classGroups from '../../../data/json/class_groups.json';
 import provinces from '../../../data/json/address/provinces.json';
 import districts from '../../../data/json/address/districts.json';
-import highSchools from '../../../data/json/address/highSchools.json';
+import HighSchool from '../../../models/HighSchool';
 import profileFormHelper from '../../../helpers/profile_form_helper';
 import {otherGrades} from '../../../constants/profile_constant';
 
 const FormPickers = (props) => {
+  const highSchools = HighSchool.getAll();
   const { setFieldValue } = useFormikContext();
   const renderBottomSheetPicker = (title, placeholder, bottomSheetTitle, name, items, selectedFieldName = null, onSelectItem = null) => {
     return <View style={[styles.formGroup, {marginTop: 12}]}>

@@ -15,6 +15,7 @@ import schema6 from './schemas/schema6';
 import schema7 from './schemas/schema7';
 import schema8, {migrateClearData} from './schemas/schema8';
 import schema9, {migrateClearJobData} from './schemas/schema9';
+import schema10, {migrateClearData as migrateClearDataV10} from './schemas/schema10';
 
 const schemas = [
   { schema: schema1, schemaVersion: 1 },
@@ -28,6 +29,7 @@ const schemas = [
   { schema: schema7, schemaVersion: 9 },
   { schema: schema8, schemaVersion: 10, onMigration: migrateClearData },
   { schema: schema9, schemaVersion: 11, onMigration: migrateClearJobData },
+  { schema: schema10, schemaVersion: 12, onMigration: migrateClearDataV10 },
 ]
 
 // the first schema to update to is the current schema version
