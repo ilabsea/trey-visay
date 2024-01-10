@@ -15,7 +15,8 @@ const requireGrade = {
 }
 
 const validationSchema = Yup.object().shape({
-  fullName: Yup.string().required("សូមបញ្ចូលឈ្មោះ"),
+  firstName: Yup.string().required("សូមបញ្ចូលនាមខ្លួន"),
+  lastName: Yup.string().required("សូមបញ្ចូលនាមត្រកូល"),
   sex: Yup.string().required("សូមជ្រើសរើស"),
   dateOfBirth: Yup.string().required("សូមបញ្ចូលថ្ងៃខែឆ្នាំកំណើត"),
   phoneNumber: Yup.string().required("សូមបញ្ចូលលេខទូរស័ព្ទត្រូវដែលត្រឹមត្រូវ").matches(/^0[1-9]{1}[0-9]{7,8}$/, "សូមបញ្ចូលលេខទូរស័ព្ទត្រូវដែលត្រឹមត្រូវ"),
@@ -33,12 +34,25 @@ const validationSchema = Yup.object().shape({
 const FormScreen = ({onSubmit}) => {
   const title = 'បំពេញប្រវត្តិរូបសង្ខេប';
 
-  const renderFullName = () => {
+  const renderFirstName = () => {
     return (
       <View style={styles.formGroup}>
         <TextInput
-          name="fullName"
-          label="ឈ្មោះពេញ"
+          name="firstName"
+          label="នាមខ្លួន"
+          iconName="account"
+          required={true}
+        />
+      </View>
+    )
+  }
+
+  const renderLastName = () => {
+    return (
+      <View style={styles.formGroup}>
+        <TextInput
+          name="lastName"
+          label="នាមត្រកូល"
           iconName="account"
           required={true}
         />
@@ -78,7 +92,8 @@ const FormScreen = ({onSubmit}) => {
   }
 
   const initialValue = {
-    fullName: '',
+    firstName: '',
+    lastName: '',
     sex: '',
     dateOfBirth: '',
     phoneNumber: '',
@@ -93,7 +108,8 @@ const FormScreen = ({onSubmit}) => {
   const renderContent = (values) => {
     return (
       <View style={{padding: 16, flexGrow: 1}}>
-        { renderFullName() }
+        { renderLastName() }
+        { renderFirstName() }
         { renderGender() }
         { renderDateOfBirth() }
         { renderPhoneNumber() }

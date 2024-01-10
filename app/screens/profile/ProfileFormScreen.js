@@ -30,6 +30,8 @@ const ProfileFormScreen = ({navigation, route}) => {
 
   const handleSubmit = (values) => {
     try {
+      values.fullName = `${values.lastName} ${values.firstName}`;
+
       User.write(() => {
         let user = User.create(values);
         SidekiqJob.create(user.uuid, 'uploadUser');
