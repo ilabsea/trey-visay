@@ -3,6 +3,7 @@ import SchoolApi from '../api/school_api';
 import imageDownloadService from './image_download_service';
 import asyncStorageService from './async_storage_service';
 import realmSyncService from './realm_sync_service';
+import useLastUpdatedAt, { lastUpdateAtKeys } from '../hooks/useLastUpdatedAt';
 
 const schoolSyncService = (() => {
   return {
@@ -10,11 +11,12 @@ const schoolSyncService = (() => {
   }
 
   async function syncData(kind, successCallback) {
-    let updatedAt = await asyncStorageService.getItem('SCHOOL_UPDATED_AT');
+    let updatedAt = await useLastUpdatedAt(School, lastUpdateAtKeys.school)
+
     new SchoolApi().load(updatedAt, (res) => {
       imageDownloadService.handleDownloadItemsLogo(0, res.schools, () => {
         realmSyncService.handleSyncObject(School, res.schools, updatedAt, (newUpdatedAt) => {
-          asyncStorageService.setItem('SCHOOL_UPDATED_AT', newUpdatedAt);
+          asyncStorageService.setItem(lastUpdateAtKeys.school, newUpdatedAt);
         });
         !!successCallback && successCallback(School.findByKind(kind))
       })
@@ -24,4 +26,4 @@ const schoolSyncService = (() => {
   }
 })()
 
-export default schoolSyncService
+export default schoolSyncService;

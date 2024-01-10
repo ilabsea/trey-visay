@@ -19,6 +19,10 @@ export default class JobCluster {
     return BaseModel.findByAttr(MODEL, {id: `'${id}'`})[0];
   }
 
+  static getLastUpdatedAt = () => {
+    return BaseModel.getLastUpdatedAt(MODEL);
+  }
+
   static create(data) {
     BaseModel.create(MODEL, {...data, uuid: uuidv4(), logo: data.logo.url, video_ids: this.getFormattedVideoIds(data.videos), display_order: this.getAll().length + 1}, 'modified')
   }

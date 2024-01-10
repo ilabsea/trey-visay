@@ -9,7 +9,6 @@ import CustomFlatListComponent from '../../components/shared/CustomFlatListCompo
 import scrollableHeaderUtil from '../../utils/scrollable_header_util';
 import CareerWebsite from '../../models/CareerWebsite';
 import careerWebsiteService from '../../services/career_website_service';
-import asyncStorageService from '../../services/async_storage_service';
 import { itemsPerPage } from '../../constants/sync_data_constant';
 
 export default class CareerWebsiteHomeScreen extends Component {
@@ -29,11 +28,6 @@ export default class CareerWebsiteHomeScreen extends Component {
     this.netInfoUnsubscribe = NetInfo.addEventListener(state => {
       this.setState({hasInternet: state.isConnected && state.isInternetReachable})
     });
-  }
-
-  async initUpdatedAt() {
-    if (!await asyncStorageService.getItem('CAREER_WEBSITE_UPDATED_AT'))
-      asyncStorageService.setItem('CAREER_WEBSITE_UPDATED_AT', CareerWebsite.getLastUpdatedAt());
   }
 
   componentWillUnmount() {

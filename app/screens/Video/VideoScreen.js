@@ -13,7 +13,6 @@ import CustomFlatListComponent from '../../components/shared/CustomFlatListCompo
 import color from '../../themes/color'
 import Video from '../../models/Video';
 import videoSyncService from '../../services/video_sync_service';
-import asyncStorageService from '../../services/async_storage_service';
 import {scrollViewPaddingBottom} from '../../constants/component_constant';
 
 export default class VideoScreen extends Component {
@@ -30,7 +29,6 @@ export default class VideoScreen extends Component {
   }
 
   componentDidMount() {
-    this.initUpdatedAt();
     this.unsubscribe = NetInfo.addEventListener(state => {
       this.setState({
         isInternetReachable: state.isInternetReachable,
@@ -38,11 +36,6 @@ export default class VideoScreen extends Component {
         showLoading: false
       });
     });
-  }
-
-  async initUpdatedAt() {
-    if (!await asyncStorageService.getItem('VIDEO_UPDATED_AT'))
-      asyncStorageService.setItem('VIDEO_UPDATED_AT', Video.getLastUpdatedAt());
   }
 
   componentWillUnMount() {
